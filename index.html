@@ -3563,8 +3563,251 @@ document.getElementById(
 
     }
 );
+</span>
 
+                </div>
+
+            </div>
+
+            <div class="alert info">
+                <div class="alert-icon">💡</div>
+                <div>
+                    <strong>ศูนย์บริการดิจิทัล</strong>
+                    <span>เปิดให้บริการแจ้งปัญหาและติดต่อราชการออนไลน์ตลอด 24 ชั่วโมง</span>
+                </div>
+            </div>
+
+            <div class="alert warning">
+                <div class="alert-icon">⚠️</div>
+                <div>
+                    <strong>สายด่วนผู้ใหญ่บ้าน</strong>
+                    <span>กรณีฉุกเฉินเร่งด่วน สามารถติดต่อผู้ใหญ่บ้านได้โดยตรง</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+</main>
+
+<!-- =========================================================
+     MODAL (ฟอร์มแจ้งเรื่องร้องเรียน / เมนู)
+========================================================= -->
+
+<div class="modal" id="requestModal">
+    <div class="modal-box">
+        <div class="modal-head">
+            <h3 id="modalTitle">📝 แจ้งปัญหามูลบ้าน / ขอความช่วยเหลือ</h3>
+            <button class="close" onclick="closeModal('requestModal')">✕</button>
+        </div>
+        <form onsubmit="submitRequest(event)">
+            <div class="form-group">
+                <label>ชื่อ-นามสกุล ผู้แจ้ง</label>
+                <input type="text" id="reqName" required placeholder="ระบุชื่อ-นามสกุล">
+            </div>
+            <div class="form-group">
+                <label>เบอร์โทรศัพท์</label>
+                <input type="tel" id="reqPhone" required placeholder="08X-XXX-XXXX">
+            </div>
+            <div class="form-group">
+                <label>ประเภทเรื่องที่แจ้ง</label>
+                <select id="reqType">
+                    <option value="ไฟฟ้า/ถนน">ไฟฟ้าสาธารณะ / ถนนชำรุด</option>
+                    <option value="ขยะ/สิ่งแวดล้อม">ขยะ / สิ่งแวดล้อม</option>
+                    <option value="เหตุรบกวน">เสียงดัง / เหตุรบกวน</option>
+                    <option value="ขอความช่วยเหลือ">ขอความช่วยเหลือกรณีพิเศษ</option>
+                    <option value="อื่นๆ">อื่นๆ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>รายละเอียดและสถานที่เกิดเหตุ</label>
+                <textarea id="reqDetail" required placeholder="ระบุรายละเอียดให้ชัดเจน..."></textarea>
+            </div>
+            <button type="submit" class="form-submit">ส่งเรื่องแจ้งปัญหา</button>
+        </form>
+    </div>
+</div>
+
+<!-- =========================================================
+     TOAST NOTIFICATION
+========================================================= -->
+
+<div class="toast" id="toast">ข้อความแจ้งเตือน</div>
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+    <strong>ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</strong>
+    <p>ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
+    <p style="margin-top:8px; opacity:0.7;">© 2026 RONGKHEM e-VILLAGE OFFICE • All Rights Reserved</p>
+</footer>
+
+<!-- =========================================================
+     BOTTOM NAV (MOBILE)
+========================================================= -->
+
+<nav class="bottom-nav">
+    <button class="active" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <span class="bottom-icon">🏠</span> หน้าแรก
+    </button>
+    <button onclick="focusAI()">
+        <span class="bottom-icon">🤖</span> ถาม AI
+    </button>
+    <button onclick="openRequest()">
+        <span class="bottom-icon">📝</span> แจ้งเรื่อง
+    </button>
+    <button onclick="trackRequest()">
+        <span class="bottom-icon">📍</span> ติดตาม
+    </button>
+    <button onclick="showComing('ติดต่อเจ้าหน้าที่')">
+        <span class="bottom-icon">📞</span> ติดต่อ
+    </button>
+</nav>
+
+<!-- =========================================================
+     JAVASCRIPT LOGIC
+========================================================= -->
+
+<script>
+// 1. Live Clock & Thai Date
+function updateClock() {
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('th-TH', { hour12: false });
+    document.getElementById('clock').innerText = timeStr;
+
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateStr = now.toLocaleDateString('th-TH', options);
+    document.getElementById('thaiDate').innerText = dateStr;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// 2. Mock Weather & PM2.5 Data Load
+function loadData() {
+    // Weather
+    document.getElementById('temperature').innerText = '28°C';
+    document.getElementById('weatherDescription').innerText = 'ท้องฟ้าโปร่ง มีเมฆเล็กน้อย';
+    document.getElementById('humidity').innerText = '72%';
+    document.getElementById('wind').innerText = '12 km/h';
+    document.getElementById('rain').innerText = '10%';
+
+    // PM2.5
+    const pm = 18;
+    document.getElementById('pmValue').innerText = pm;
+    document.getElementById('pmStatus').innerText = 'อากาศดีเยี่ยม';
+    document.getElementById('pmAdvice').innerText = 'คุณภาพอากาศอยู่ในระดับดี เหมาะสำหรับกิจกรรมกลางแจ้ง';
+    document.getElementById('pmUpdate').innerText = 'อัปเดตล่าสุด: วันนี้';
+    document.getElementById('pmAlertText').innerText = `ค่า PM2.5 ปัจจุบันอยู่ที่ ${pm} µg/m³ (อยู่ในเกณฑ์ปกติ)`;
+
+    // Stats
+    document.getElementById('citizens').innerText = '640';
+    document.getElementById('elderly').innerText = '125';
+
+    // Forecast
+    const forecastContainer = document.getElementById('forecast');
+    const days = ['พรุ่งนี้', 'เสาร์', 'อาทิตย์', 'จันทร์', 'อังคาร'];
+    forecastContainer.innerHTML = days.map(d => `
+        <div class="forecast-card">
+            <div class="forecast-day">${d}</div>
+            <div class="forecast-icon">🌤️</div>
+            <div class="forecast-temp">29°C / 23°C</div>
+            <div class="forecast-extra">ฝน 20%</div>
+        </div>
+    `).join('');
+}
+window.onload = loadData;
+
+// 3. AI Assistant
+function focusAI() {
+    document.getElementById('aiSection').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('aiInput').focus();
+}
+
+function askAI() {
+    const input = document.getElementById('aiInput');
+    const q = input.value.trim();
+    if (!q) return;
+
+    let reply = `ขอบคุณสำหรับคำถาม "${q}" ครับ ขณะนี้ระบบ AI กำลังประมวลผลข้อมูลของบ้านร่องเข็ม หมู่ 6 หากต้องการแจ้งเรื่องด่วน สามารถกดปุ่ม "แจ้งปัญหา" ได้เลยครับ`;
+    
+    if (q.includes('อากาศ')) {
+        reply = 'วันนี้สภาพอากาศบ้านร่องเข็ม อุณหภูมิประมาณ 28°C ท้องฟ้าโปร่ง มีเมฆเล็กน้อยครับ';
+    } else if (q.includes('PM2.5') || q.includes('ฝุ่น')) {
+        reply = 'ค่า PM2.5 วันนี้อยู่ที่ 18 µg/m³ อากาศอยู่ในเกณฑ์ดีมากครับ';
+    } else if (q.includes('ประชุม')) {
+        reply = 'การประชุมประจำเดือนของหมู่บ้านร่องเข็ม ปกติจัดขึ้นทุกต้นเดือน ณ ศาลาอเนกประสงค์ครับ';
+    } else if (q.includes('แจ้งปัญหา')) {
+        reply = 'คุณสามารถกดปุ่ม "📝 แจ้งเรื่อง" ที่เมนูด้านบนหรือด้านล่าง เพื่อส่งเรื่องถึงผู้ใหญ่บ้านได้ทันทีครับ';
+    }
+
+    document.getElementById('aiMessage').innerHTML = `<b>คำถาม:</b> ${q}<br><br>🤖 <b>ตอบ:</b> ${reply}`;
+    input.value = '';
+}
+
+function askSuggestion(text) {
+    document.getElementById('aiInput').value = text;
+    askAI();
+}
+
+function startVoice() {
+    showToast('🎤 เปิดระบบรับเสียง (กำลังพัฒนา)');
+}
+
+function speakAI() {
+    const msg = document.getElementById('aiMessage').innerText;
+    if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(msg);
+        utterance.lang = 'th-TH';
+        window.speechSynthesis.speak(utterance);
+    } else {
+        showToast('เบราว์เซอร์ไม่รองรับการอ่านเสียง');
+    }
+}
+
+// 4. Modal & Actions
+function openRequest() {
+    document.getElementById('requestModal').classList.add('show');
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove('show');
+}
+
+function submitRequest(e) {
+    e.preventDefault();
+    closeModal('requestModal');
+    showToast('✅ ส่งเรื่องร้องเรียนเรียบร้อยแล้ว!');
+}
+
+function trackRequest() {
+    showToast('📍 ฟังก์ชันติดตามเรื่องจะเปิดให้บริการเร็วๆ นี้');
+}
+
+function showComing(title) {
+    showToast(`ℹ️ ระบบ${title} กำลังอยู่ระหว่างการพัฒนา`);
+}
+
+function openMainMenu() {
+    showToast('☰ เมนูหลัก');
+}
+
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.innerText = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+}
 </script>
+
+</body>
+</html>
 
 </body>
 </html>
