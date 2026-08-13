@@ -1,0 +1,3346 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+ห้องบัญชาการผู้ใหญ่บ้าน | RONGKHEM e-VILLAGE OFFICE
+</title>
+
+<meta
+    name="theme-color"
+    content="#07111f"
+>
+
+<style>
+
+:root{
+
+    --dark:#07111f;
+    --dark2:#0d2036;
+
+    --blue:#2563eb;
+    --cyan:#06b6d4;
+
+    --green:#16a34a;
+    --yellow:#f59e0b;
+    --orange:#f97316;
+    --red:#dc2626;
+
+    --bg:#eef3f8;
+    --card:#fff;
+
+    --text:#0f172a;
+    --muted:#64748b;
+
+    --border:#e2e8f0;
+
+    --shadow:
+    0 12px 35px rgba(15,23,42,.08);
+
+}
+
+*{
+
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
+}
+
+body{
+
+    font-family:
+    "Noto Sans Thai",
+    "Prompt",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:260px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #020617,
+        #0b1d33
+    );
+
+    color:#fff;
+
+    padding:20px 14px;
+
+    z-index:1000;
+
+    transition:.3s;
+
+}
+
+.logo-area{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:5px 8px 22px;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+.logo{
+
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:25px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
+
+}
+
+.logo-title{
+
+    font-size:14px;
+    font-weight:900;
+
+}
+
+.logo-sub{
+
+    font-size:9px;
+    color:#94a3b8;
+
+    margin-top:3px;
+
+}
+
+.menu-title{
+
+    font-size:9px;
+
+    color:#64748b;
+
+    margin:
+
+    22px 10px 8px;
+
+    letter-spacing:1px;
+
+}
+
+.side-menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.side-menu button{
+
+    width:100%;
+
+    border:none;
+
+    background:transparent;
+
+    color:#cbd5e1;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:.2s;
+
+}
+
+.side-menu button:hover,
+.side-menu button.active{
+
+    background:
+    rgba(37,99,235,.22);
+
+    color:#fff;
+
+}
+
+.side-icon{
+
+    width:28px;
+
+    text-align:center;
+
+    font-size:18px;
+
+}
+
+.sidebar-bottom{
+
+    position:absolute;
+
+    bottom:20px;
+
+    left:14px;
+    right:14px;
+
+}
+
+.profile{
+
+    background:
+    rgba(255,255,255,.06);
+
+    padding:12px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+}
+
+.profile-icon{
+
+    width:35px;
+    height:35px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#1e40af;
+
+}
+
+.profile strong{
+
+    display:block;
+
+    font-size:10px;
+
+}
+
+.profile span{
+
+    display:block;
+
+    color:#94a3b8;
+
+    font-size:8px;
+
+    margin-top:3px;
+
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.main{
+
+    margin-left:260px;
+
+    min-height:100vh;
+
+}
+
+
+/* =========================================
+   TOPBAR
+========================================= */
+
+.topbar{
+
+    height:70px;
+
+    background:#fff;
+
+    border-bottom:
+    1px solid
+    var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+}
+
+.page-title h1{
+
+    font-size:19px;
+
+}
+
+.page-title p{
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    margin-top:3px;
+
+}
+
+.top-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.clock-mini{
+
+    font-size:13px;
+
+    font-weight:800;
+
+    color:#334155;
+
+    padding:
+    8px 12px;
+
+    background:#f8fafc;
+
+    border-radius:10px;
+
+}
+
+.notification{
+
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f8fafc;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+    position:relative;
+
+}
+
+.notification-dot{
+
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    right:8px;
+    top:8px;
+
+}
+
+.mobile-menu{
+
+    display:none;
+
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.content{
+
+    padding:22px;
+
+    max-width:1500px;
+
+    margin:auto;
+
+}
+
+
+/* =========================================
+   WELCOME
+========================================= */
+
+.welcome{
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #0f172a,
+        #124b78,
+        #0891b2
+    );
+
+    border-radius:24px;
+
+    color:#fff;
+
+    padding:24px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.welcome::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    border-radius:50%;
+
+    background:
+    rgba(255,255,255,.06);
+
+    right:-130px;
+    top:-140px;
+
+}
+
+.welcome small{
+
+    color:#67e8f9;
+
+    font-size:10px;
+
+}
+
+.welcome h2{
+
+    margin-top:6px;
+
+    font-size:25px;
+
+}
+
+.welcome p{
+
+    margin-top:7px;
+
+    color:#cbd5e1;
+
+    font-size:11px;
+
+}
+
+
+/* =========================================
+   KPI
+========================================= */
+
+.kpi-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(6,1fr);
+
+    gap:12px;
+
+    margin-top:18px;
+
+}
+
+.kpi{
+
+    background:#fff;
+
+    border:
+    1px solid
+    var(--border);
+
+    border-radius:18px;
+
+    padding:16px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.kpi-icon{
+
+    width:38px;
+    height:38px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:#eff6ff;
+
+    font-size:19px;
+
+}
+
+.kpi-number{
+
+    font-size:24px;
+
+    font-weight:900;
+
+    margin-top:10px;
+
+}
+
+.kpi-label{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.kpi-change{
+
+    color:var(--green);
+
+    font-size:9px;
+
+    margin-top:5px;
+
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.grid-main{
+
+    display:grid;
+
+    grid-template-columns:
+    1.3fr
+    .7fr;
+
+    gap:16px;
+
+    margin-top:18px;
+
+}
+
+.panel{
+
+    background:#fff;
+
+    border:
+    1px solid
+    var(--border);
+
+    border-radius:22px;
+
+    padding:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.panel-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+.panel-head strong{
+
+    font-size:14px;
+
+}
+
+.panel-head span{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =========================================
+   AI
+========================================= */
+
+.ai-panel{
+
+    background:
+    linear-gradient(
+        145deg,
+        #07111f,
+        #0d2b46
+    );
+
+    color:#fff;
+
+}
+
+.ai-header{
+
+    display:flex;
+
+    gap:12px;
+
+    align-items:center;
+
+}
+
+.ai-avatar{
+
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:23px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #06b6d4,
+        #2563eb
+    );
+
+}
+
+.ai-name{
+
+    font-weight:900;
+
+    font-size:13px;
+
+}
+
+.ai-status{
+
+    color:#4ade80;
+
+    font-size:9px;
+
+    margin-top:3px;
+
+}
+
+.ai-chat{
+
+    margin-top:15px;
+
+    min-height:180px;
+
+    max-height:260px;
+
+    overflow:auto;
+
+    padding-right:4px;
+
+}
+
+.ai-bubble{
+
+    background:
+    rgba(255,255,255,.07);
+
+    border:
+    1px solid
+    rgba(255,255,255,.08);
+
+    padding:13px;
+
+    border-radius:14px;
+
+    font-size:10px;
+
+    line-height:1.8;
+
+}
+
+.ai-input-row{
+
+    display:flex;
+
+    gap:6px;
+
+    margin-top:12px;
+
+}
+
+.ai-input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:11px;
+
+    padding:11px;
+
+    font-size:10px;
+
+}
+
+.ai-send{
+
+    width:42px;
+
+    border:none;
+
+    border-radius:11px;
+
+    background:#06b6d4;
+
+    color:#fff;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================
+   WORK
+========================================= */
+
+.work{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.work-item{
+
+    display:flex;
+
+    gap:10px;
+
+    align-items:center;
+
+    padding:11px 0;
+
+    border-bottom:
+    1px solid
+    #f1f5f9;
+
+}
+
+.work-item:last-child{
+
+    border-bottom:none;
+
+}
+
+.work-icon{
+
+    width:38px;
+    height:38px;
+
+    border-radius:11px;
+
+    background:#f8fafc;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:17px;
+
+}
+
+.work-body{
+
+    flex:1;
+
+}
+
+.work-body strong{
+
+    display:block;
+
+    font-size:11px;
+
+}
+
+.work-body span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    margin-top:3px;
+
+}
+
+.status{
+
+    font-size:8px;
+
+    font-weight:800;
+
+}
+
+.status.red{
+
+    color:var(--red);
+
+}
+
+.status.orange{
+
+    color:var(--orange);
+
+}
+
+.status.green{
+
+    color:var(--green);
+
+}
+
+
+/* =========================================
+   WEATHER
+========================================= */
+
+.weather-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.weather-temp{
+
+    font-size:38px;
+
+    font-weight:900;
+
+}
+
+.weather-icon-big{
+
+    font-size:45px;
+
+}
+
+.weather-desc{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.weather-info{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:7px;
+
+    margin-top:15px;
+
+}
+
+.weather-info div{
+
+    background:#f8fafc;
+
+    padding:9px;
+
+    text-align:center;
+
+    border-radius:10px;
+
+}
+
+.weather-info strong{
+
+    display:block;
+
+    font-size:11px;
+
+}
+
+.weather-info span{
+
+    display:block;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+
+/* =========================================
+   PM
+========================================= */
+
+.pm-dashboard{
+
+    margin-top:15px;
+
+    padding:15px;
+
+    border-radius:16px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ecfeff,
+        #f0fdfa
+    );
+
+}
+
+.pm-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+.pm-value{
+
+    font-size:28px;
+
+    font-weight:900;
+
+}
+
+.pm-unit{
+
+    font-size:8px;
+
+    color:var(--muted);
+
+}
+
+.pm-status{
+
+    padding:6px 9px;
+
+    border-radius:999px;
+
+    background:#dcfce7;
+
+    color:#15803d;
+
+    font-size:9px;
+
+    font-weight:800;
+
+}
+
+.pm-advice{
+
+    margin-top:8px;
+
+    font-size:9px;
+
+    color:#475569;
+
+    line-height:1.6;
+
+}
+
+
+/* =========================================
+   QUICK ACTION
+========================================= */
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:10px;
+
+    margin-top:18px;
+
+}
+
+.quick{
+
+    border:none;
+
+    background:#fff;
+
+    border:
+    1px solid
+    var(--border);
+
+    border-radius:16px;
+
+    padding:15px 8px;
+
+    cursor:pointer;
+
+    box-shadow:
+    0 7px 20px
+    rgba(15,23,42,.05);
+
+}
+
+.quick-icon{
+
+    font-size:23px;
+
+}
+
+.quick strong{
+
+    display:block;
+
+    font-size:10px;
+
+    margin-top:7px;
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+    rgba(2,6,23,.65);
+
+    backdrop-filter:blur(8px);
+
+    z-index:2000;
+
+    padding:20px;
+
+}
+
+.modal.show{
+
+    display:flex;
+
+}
+
+.modal-box{
+
+    width:
+    min(600px,100%);
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:22px;
+
+}
+
+.modal-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.close{
+
+    width:36px;
+    height:36px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#f1f5f9;
+
+    cursor:pointer;
+
+    font-size:18px;
+
+}
+
+.form-group{
+
+    margin-top:12px;
+
+}
+
+.form-group label{
+
+    display:block;
+
+    font-size:10px;
+
+    font-weight:800;
+
+    margin-bottom:5px;
+
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+    width:100%;
+
+    padding:11px;
+
+    border:
+    1px solid
+    var(--border);
+
+    border-radius:11px;
+
+    outline:none;
+
+    font-size:11px;
+
+}
+
+.form-group textarea{
+
+    min-height:100px;
+
+}
+
+.save-button{
+
+    width:100%;
+
+    border:none;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border-radius:11px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #2563eb,
+        #06b6d4
+    );
+
+    color:#fff;
+
+    font-weight:800;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:1200px){
+
+    .kpi-grid{
+
+        grid-template-columns:
+        repeat(3,1fr);
+
+    }
+
+    .menu-grid{
+
+        grid-template-columns:
+        repeat(4,1fr);
+
+    }
+
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        transform:
+        translateX(-100%);
+
+    }
+
+    .sidebar.open{
+
+        transform:
+        translateX(0);
+
+    }
+
+    .main{
+
+        margin-left:0;
+
+    }
+
+    .mobile-menu{
+
+        display:block;
+
+        border:none;
+
+        background:#f1f5f9;
+
+        width:40px;
+        height:40px;
+
+        border-radius:10px;
+
+        cursor:pointer;
+
+        margin-right:10px;
+
+    }
+
+    .topbar{
+
+        padding:0 15px;
+
+    }
+
+    .grid-main{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .content{
+
+        padding:14px;
+
+    }
+
+    .kpi-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .quick-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .welcome h2{
+
+        font-size:21px;
+
+    }
+
+    .clock-mini{
+
+        display:none;
+
+    }
+
+}
+
+
+/* =========================================
+   TOAST
+========================================= */
+
+.toast{
+
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    background:#0f172a;
+
+    color:#fff;
+
+    padding:12px 16px;
+
+    border-radius:12px;
+
+    font-size:10px;
+
+    opacity:0;
+
+    transform:
+    translateY(20px);
+
+    pointer-events:none;
+
+    transition:.3s;
+
+    z-index:5000;
+
+}
+
+.toast.show{
+
+    opacity:1;
+
+    transform:
+    translateY(0);
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ======================================================
+     SIDEBAR
+====================================================== -->
+
+<aside
+    class="sidebar"
+    id="sidebar">
+
+
+    <div class="logo-area">
+
+        <div class="logo">
+            🏛️
+        </div>
+
+        <div>
+
+            <div class="logo-title">
+                RONGKHEM e-VILLAGE
+            </div>
+
+            <div class="logo-sub">
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        MAIN MENU
+    </div>
+
+
+    <div class="side-menu">
+
+
+        <button
+            class="active"
+            onclick="goHome()">
+
+            <span class="side-icon">
+                📊
+            </span>
+
+            ศูนย์บัญชาการ
+
+        </button>
+
+
+        <button
+            onclick="coming('ข้อมูลประชาชน')">
+
+            <span class="side-icon">
+                👥
+            </span>
+
+            ประชาชน
+
+        </button>
+
+
+        <button
+            onclick="coming('ครัวเรือน')">
+
+            <span class="side-icon">
+                🏠
+            </span>
+
+            ครัวเรือน
+
+        </button>
+
+
+        <button
+            onclick="coming('ผู้สูงอายุ')">
+
+            <span class="side-icon">
+                👴
+            </span>
+
+            ผู้สูงอายุ
+
+        </button>
+
+
+        <button
+            onclick="coming('กลุ่มเปราะบาง')">
+
+            <span class="side-icon">
+                ❤️
+            </span>
+
+            กลุ่มเปราะบาง
+
+        </button>
+
+
+        <button
+            onclick="coming('รับเรื่องร้องเรียน')">
+
+            <span class="side-icon">
+                📝
+            </span>
+
+            รับเรื่องร้องเรียน
+
+        </button>
+
+
+        <button
+            onclick="coming('หนังสือราชการ')">
+
+            <span class="side-icon">
+                📂
+            </span>
+
+            หนังสือราชการ
+
+        </button>
+
+
+        <button
+            onclick="coming('ปฏิทินงาน')">
+
+            <span class="side-icon">
+                📅
+            </span>
+
+            ปฏิทินงาน
+
+        </button>
+
+
+        <button
+            onclick="coming('รายงาน')">
+
+            <span class="side-icon">
+                📈
+            </span>
+
+            รายงาน
+
+        </button>
+
+
+    </div>
+
+
+    <div class="menu-title">
+        SYSTEM
+    </div>
+
+
+    <div class="side-menu">
+
+
+        <button
+            onclick="coming('AI ผู้ช่วยผู้ใหญ่บ้าน')">
+
+            <span class="side-icon">
+                🤖
+            </span>
+
+            AI ผู้ช่วย
+
+        </button>
+
+
+        <button
+            onclick="coming('ตั้งค่าระบบ')">
+
+            <span class="side-icon">
+                ⚙️
+            </span>
+
+            ตั้งค่าระบบ
+
+        </button>
+
+
+    </div>
+
+
+    <div class="sidebar-bottom">
+
+        <div class="profile">
+
+            <div class="profile-icon">
+                👨‍💼
+            </div>
+
+            <div>
+
+                <strong>
+                    ผู้ใหญ่บ้าน
+                </strong>
+
+                <span>
+                    บ้านร่องเข็ม หมู่ 6
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+<!-- ======================================================
+     MAIN
+====================================================== -->
+
+<div class="main">
+
+
+    <header class="topbar">
+
+
+        <div
+            style="
+            display:flex;
+            align-items:center;
+            ">
+
+            <button
+                class="mobile-menu"
+                onclick="toggleSidebar()">
+
+                ☰
+
+            </button>
+
+
+            <div class="page-title">
+
+                <h1>
+                    ศูนย์บัญชาการผู้ใหญ่บ้าน
+                </h1>
+
+                <p>
+                    RONGKHEM e-VILLAGE OFFICE
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="top-actions">
+
+            <div
+                class="clock-mini"
+                id="clock">
+                00:00:00
+            </div>
+
+
+            <button
+                class="notification"
+                onclick="showToast('มี 3 รายการที่ต้องติดตาม')">
+
+                🔔
+
+                <span
+                    class="notification-dot">
+                </span>
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main class="content">
+
+
+        <!-- ==============================================
+             WELCOME
+        =============================================== -->
+
+        <section class="welcome">
+
+            <small>
+                ● ระบบออนไลน์
+            </small>
+
+            <h2>
+                สวัสดีครับ ผู้ใหญ่บ้าน 👋
+            </h2>
+
+            <p>
+                นี่คือศูนย์บัญชาการบริหารจัดการ
+                บ้านร่องเข็ม หมู่ที่ 6
+                จากที่เดียว
+            </p>
+
+        </section>
+
+
+        <!-- ==============================================
+             KPI
+        =============================================== -->
+
+        <section class="kpi-grid">
+
+
+            <div class="kpi">
+
+                <div class="kpi-icon">
+                    🏠
+                </div>
+
+                <div
+                    class="kpi-number"
+                    id="householdCount">
+                    192
+                </div>
+
+                <div class="kpi-label">
+                    ครัวเรือน
+                </div>
+
+                <div class="kpi-change">
+                    ● ข้อมูลหมู่บ้าน
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-icon">
+                    👥
+                </div>
+
+                <div
+                    class="kpi-number"
+                    id="citizenCount">
+                    --
+                </div>
+
+                <div class="kpi-label">
+                    ประชาชน
+                </div>
+
+                <div class="kpi-change">
+                    ● ฐานข้อมูล
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-icon">
+                    👴
+                </div>
+
+                <div
+                    class="kpi-number"
+                    id="elderlyCount">
+                    --
+                </div>
+
+                <div class="kpi-label">
+                    ผู้สูงอายุ
+                </div>
+
+                <div class="kpi-change">
+                    ● ฐานข้อมูล
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-icon">
+                    📝
+                </div>
+
+                <div
+                    class="kpi-number">
+                    8
+                </div>
+
+                <div class="kpi-label">
+                    คำร้องค้าง
+                </div>
+
+                <div
+                    class="kpi-change"
+                    style="color:#ea580c">
+
+                    ● ต้องติดตาม
+
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-icon">
+                    📥
+                </div>
+
+                <div
+                    class="kpi-number">
+                    5
+                </div>
+
+                <div class="kpi-label">
+                    หนังสือเข้า
+                </div>
+
+                <div class="kpi-change">
+                    เดือนนี้
+                </div>
+
+            </div>
+
+
+            <div class="kpi">
+
+                <div class="kpi-icon">
+                    📤
+                </div>
+
+                <div
+                    class="kpi-number">
+                    12
+                </div>
+
+                <div class="kpi-label">
+                    หนังสือออก
+                </div>
+
+                <div class="kpi-change">
+                    เดือนนี้
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==============================================
+             MAIN GRID
+        =============================================== -->
+
+        <section class="grid-main">
+
+
+            <!-- AI -->
+
+            <div class="panel ai-panel">
+
+                <div class="ai-header">
+
+                    <div class="ai-avatar">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <div class="ai-name">
+                            AI ผู้ช่วยผู้ใหญ่บ้าน
+                        </div>
+
+                        <div class="ai-status">
+                            ● ONLINE
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="ai-chat"
+                    id="aiChat">
+
+                    <div class="ai-bubble">
+
+                        👋 สวัสดีครับผู้ใหญ่บ้าน
+
+                        <br><br>
+
+                        ผมช่วยสรุปข้อมูล
+                        วิเคราะห์งานค้าง
+                        ตรวจสอบคำร้อง
+                        และช่วยร่างเอกสารได้ครับ
+
+                        <br><br>
+
+                        ลองถามว่า
+
+                        <br>
+
+                        <b>
+                        “วันนี้มีงานอะไรต้องทำบ้าง?”
+                        </b>
+
+                    </div>
+
+                </div>
+
+
+                <div class="ai-input-row">
+
+                    <input
+                        class="ai-input"
+                        id="aiInput"
+                        placeholder="ถาม AI ผู้ช่วยผู้ใหญ่บ้าน...">
+
+                    <button
+                        class="ai-send"
+                        onclick="askAI()">
+
+                        ➤
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- WORK -->
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <strong>
+                        🚨 งานเร่งด่วน
+                    </strong>
+
+                    <span>
+                        3 เรื่อง
+                    </span>
+
+                </div>
+
+
+                <div class="work">
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            🚰
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                น้ำประปาหมู่บ้าน
+                            </strong>
+
+                            <span>
+                                แจ้ง 11 ส.ค. 2569
+                            </span>
+
+                        </div>
+
+                        <div class="status red">
+                            เร่งด่วน
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            💡
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                ไฟส่องสว่าง
+                            </strong>
+
+                            <span>
+                                แจ้ง 12 ส.ค. 2569
+                            </span>
+
+                        </div>
+
+                        <div class="status orange">
+                            รอติดตาม
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            🗑️
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                ปัญหาขยะ
+                            </strong>
+
+                            <span>
+                                แจ้ง 12 ส.ค. 2569
+                            </span>
+
+                        </div>
+
+                        <div class="status orange">
+                            ดำเนินการ
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            🔥
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                ตรวจสอบพื้นที่เสี่ยง
+                            </strong>
+
+                            <span>
+                                งานติดตาม
+                            </span>
+
+                        </div>
+
+                        <div class="status green">
+                            ปกติ
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==============================================
+             WEATHER + PM
+        =============================================== -->
+
+        <section
+            class="grid-main"
+            style="margin-top:16px;">
+
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <strong>
+                        🌤️ สภาพอากาศบ้านร่องเข็ม
+                    </strong>
+
+                    <span>
+                        LIVE
+                    </span>
+
+                </div>
+
+
+                <div class="weather-row">
+
+                    <div>
+
+                        <div
+                            class="weather-temp"
+                            id="weatherTemp">
+
+                            --°
+
+                        </div>
+
+                        <div
+                            class="weather-desc"
+                            id="weatherDesc">
+
+                            กำลังโหลด...
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="weather-icon-big"
+                        id="weatherIcon">
+
+                        🌤️
+
+                    </div>
+
+                </div>
+
+
+                <div class="weather-info">
+
+                    <div>
+
+                        <strong id="humidity">
+                            --%
+                        </strong>
+
+                        <span>
+                            ความชื้น
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="wind">
+                            -- km/h
+                        </strong>
+
+                        <span>
+                            ลม
+                        </span>
+
+                    </div>
+
+
+                    <div>
+
+                        <strong id="rain">
+                            --%
+                        </strong>
+
+                        <span>
+                            โอกาสฝน
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pm-dashboard">
+
+                    <div class="pm-top">
+
+                        <div>
+
+                            <div
+                                class="pm-value"
+                                id="pmValue">
+
+                                --
+
+                            </div>
+
+                            <div class="pm-unit">
+                                PM2.5 µg/m³
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="pm-status"
+                            id="pmStatus">
+
+                            กำลังตรวจสอบ
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="pm-advice"
+                        id="pmAdvice">
+
+                        กำลังโหลดข้อมูลคุณภาพอากาศ...
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TODAY -->
+
+            <div class="panel">
+
+                <div class="panel-head">
+
+                    <strong>
+                        📅 งานวันนี้
+                    </strong>
+
+                    <span>
+                        วันนี้
+                    </span>
+
+                </div>
+
+
+                <div class="work">
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            📋
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                ตรวจสอบคำร้องประชาชน
+                            </strong>
+
+                            <span>
+                                3 รายการ
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            📥
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                ตรวจสอบหนังสือเข้า
+                            </strong>
+
+                            <span>
+                                2 รายการ
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            📢
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                ประชาสัมพันธ์ข่าว
+                            </strong>
+
+                            <span>
+                                เตรียมประกาศหมู่บ้าน
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="work-item">
+
+                        <div class="work-icon">
+                            🏘️
+                        </div>
+
+                        <div class="work-body">
+
+                            <strong>
+                                งานลงพื้นที่
+                            </strong>
+
+                            <span>
+                                ตรวจสอบพื้นที่ตามคำร้อง
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==============================================
+             QUICK ACTION
+        =============================================== -->
+
+        <section>
+
+            <div class="panel-head"
+                 style="margin-top:22px;">
+
+                <strong>
+                    ⚡ ทางลัดการทำงาน
+                </strong>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+
+                <button
+                    class="quick"
+                    onclick="openDocument()">
+
+                    <div class="quick-icon">
+                        📄
+                    </div>
+
+                    <strong>
+                        สร้างหนังสือ
+                    </strong>
+
+                </button>
+
+
+                <button
+                    class="quick"
+                    onclick="openAnnouncement()">
+
+                    <div class="quick-icon">
+                        📢
+                    </div>
+
+                    <strong>
+                        สร้างประกาศ
+                    </strong>
+
+                </button>
+
+
+                <button
+                    class="quick"
+                    onclick="coming('รายงานประจำเดือน')">
+
+                    <div class="quick-icon">
+                        📊
+                    </div>
+
+                    <strong>
+                        รายงาน
+                    </strong>
+
+                </button>
+
+
+                <button
+                    class="quick"
+                    onclick="coming('ปฏิทินงาน')">
+
+                    <div class="quick-icon">
+                        📅
+                    </div>
+
+                    <strong>
+                        ปฏิทิน
+                    </strong>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- ======================================================
+     DOCUMENT MODAL
+====================================================== -->
+
+<div
+    class="modal"
+    id="documentModal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                📄 สร้างหนังสือราชการ
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('documentModal')">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                เรื่อง
+            </label>
+
+            <input
+                id="docTitle"
+                placeholder="ระบุชื่อเรื่อง">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                รายละเอียด
+            </label>
+
+            <textarea
+                id="docDetail"
+                placeholder="รายละเอียดหนังสือ"></textarea>
+
+        </div>
+
+
+        <button
+            class="save-button"
+            onclick="saveDocument()">
+
+            💾 บันทึกร่างหนังสือ
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ======================================================
+     ANNOUNCEMENT MODAL
+====================================================== -->
+
+<div
+    class="modal"
+    id="announcementModal">
+
+    <div class="modal-box">
+
+        <div class="modal-head">
+
+            <h3>
+                📢 สร้างประกาศหมู่บ้าน
+            </h3>
+
+            <button
+                class="close"
+                onclick="closeModal('announcementModal')">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                หัวข้อประกาศ
+            </label>
+
+            <input
+                id="announcementTitle"
+                placeholder="เช่น แจ้งประชุมประจำเดือน">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                เนื้อหาประกาศ
+            </label>
+
+            <textarea
+                id="announcementDetail"
+                placeholder="รายละเอียดประกาศ"></textarea>
+
+        </div>
+
+
+        <button
+            class="save-button"
+            onclick="saveAnnouncement()">
+
+            📢 บันทึกร่างประกาศ
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<div
+    class="toast"
+    id="toast">
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+const LAT = 19.1667;
+
+const LON = 99.9000;
+
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+function updateClock(){
+
+    const now =
+        new Date();
+
+
+    document.getElementById(
+        "clock"
+    ).textContent =
+
+        new Intl.DateTimeFormat(
+            "th-TH",
+            {
+                timeZone:"Asia/Bangkok",
+
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+
+                hour12:false
+            }
+        ).format(now);
+
+}
+
+updateClock();
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =========================================================
+   WEATHER
+========================================================= */
+
+function weatherText(code){
+
+    const map = {
+
+        0:["☀️","ท้องฟ้าแจ่มใส"],
+
+        1:["🌤️","มีเมฆเล็กน้อย"],
+
+        2:["⛅","มีเมฆบางส่วน"],
+
+        3:["☁️","มีเมฆมาก"],
+
+        45:["🌫️","มีหมอก"],
+
+        48:["🌫️","มีหมอก"],
+
+        51:["🌦️","ฝนปรอย"],
+
+        53:["🌦️","ฝนปรอย"],
+
+        55:["🌧️","ฝนปรอยหนัก"],
+
+        61:["🌦️","ฝนเล็กน้อย"],
+
+        63:["🌧️","ฝนปานกลาง"],
+
+        65:["🌧️","ฝนตกหนัก"],
+
+        80:["🌦️","ฝนตกเป็นช่วง"],
+
+        81:["🌧️","ฝนตก"],
+
+        82:["⛈️","ฝนตกหนัก"],
+
+        95:["⛈️","พายุฝนฟ้าคะนอง"],
+
+        96:["⛈️","พายุฝนฟ้าคะนอง"],
+
+        99:["⛈️","พายุฝนฟ้าคะนองรุนแรง"]
+
+    };
+
+    return map[code]
+        || ["🌤️","ไม่ทราบข้อมูล"];
+
+}
+
+
+async function loadWeather(){
+
+    try{
+
+        const url =
+
+        "https://api.open-meteo.com/v1/forecast" +
+
+        "?latitude="+LAT +
+
+        "&longitude="+LON +
+
+        "&current="+
+        "temperature_2m,"+
+        "relative_humidity_2m,"+
+        "weather_code,"+
+        "wind_speed_10m" +
+
+        "&daily="+
+        "precipitation_probability_max" +
+
+        "&timezone=Asia%2FBangkok";
+
+
+        const response =
+            await fetch(url);
+
+
+        const data =
+            await response.json();
+
+
+        const current =
+            data.current;
+
+
+        const [
+            icon,
+            description
+        ] =
+            weatherText(
+                current.weather_code
+            );
+
+
+        document.getElementById(
+            "weatherIcon"
+        ).textContent =
+            icon;
+
+
+        document.getElementById(
+            "weatherTemp"
+        ).textContent =
+            Math.round(
+                current.temperature_2m
+            )+"°";
+
+
+        document.getElementById(
+            "weatherDesc"
+        ).textContent =
+            description;
+
+
+        document.getElementById(
+            "humidity"
+        ).textContent =
+            Math.round(
+                current.relative_humidity_2m
+            )+"%";
+
+
+        document.getElementById(
+            "wind"
+        ).textContent =
+            Math.round(
+                current.wind_speed_10m
+            )+" km/h";
+
+
+        document.getElementById(
+            "rain"
+        ).textContent =
+
+            (
+                data.daily
+                .precipitation_probability_max[0]
+                ?? 0
+            )+"%";
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =========================================================
+   PM2.5
+========================================================= */
+
+function pmLevel(value){
+
+    if(value <= 15){
+
+        return [
+            "🟢 ดีมาก",
+            "สามารถทำกิจกรรมกลางแจ้งได้ตามปกติ"
+        ];
+
+    }
+
+
+    if(value <= 25){
+
+        return [
+            "🟢 ดี",
+            "สามารถทำกิจกรรมกลางแจ้งได้ตามปกติ"
+        ];
+
+    }
+
+
+    if(value <= 37.5){
+
+        return [
+            "🟡 เริ่มมีผลกระทบ",
+            "ควรลดกิจกรรมกลางแจ้งที่ใช้แรงมาก"
+        ];
+
+    }
+
+
+    if(value <= 75){
+
+        return [
+            "🟠 มีผลกระทบ",
+            "ควรลดกิจกรรมกลางแจ้ง"
+        ];
+
+    }
+
+
+    return [
+        "🔴 มีผลกระทบสูง",
+        "ควรหลีกเลี่ยงกิจกรรมกลางแจ้ง"
+    ];
+
+}
+
+
+async function loadPM25(){
+
+    try{
+
+        const url =
+
+        "https://air-quality-api.open-meteo.com/v1/air-quality"+
+
+        "?latitude="+LAT+
+
+        "&longitude="+LON+
+
+        "&current=pm2_5"+
+
+        "&timezone=Asia%2FBangkok";
+
+
+        const response =
+            await fetch(url);
+
+
+        const data =
+            await response.json();
+
+
+        const value =
+            Number(
+                data.current.pm2_5
+            );
+
+
+        const level =
+            pmLevel(value);
+
+
+        document.getElementById(
+            "pmValue"
+        ).textContent =
+            Math.round(value);
+
+
+        document.getElementById(
+            "pmStatus"
+        ).textContent =
+            level[0];
+
+
+        document.getElementById(
+            "pmAdvice"
+        ).textContent =
+            level[1];
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+    }
+
+}
+
+
+/* =========================================================
+   AI
+========================================================= */
+
+function askAI(){
+
+    const input =
+        document.getElementById(
+            "aiInput"
+        );
+
+
+    const question =
+        input.value.trim();
+
+
+    if(!question){
+
+        return;
+
+    }
+
+
+    const chat =
+        document.getElementById(
+            "aiChat"
+        );
+
+
+    const user =
+        document.createElement(
+            "div"
+        );
+
+
+    user.className =
+        "ai-bubble";
+
+
+    user.style.marginBottom =
+        "8px";
+
+
+    user.innerHTML =
+        "👤 <b>ผู้ใหญ่บ้าน:</b> "
+        +
+        question;
+
+
+    chat.appendChild(
+        user
+    );
+
+
+    const answer =
+        getAIAnswer(
+            question
+        );
+
+
+    const bot =
+        document.createElement(
+            "div"
+        );
+
+
+    bot.className =
+        "ai-bubble";
+
+
+    bot.innerHTML =
+        "🤖 <b>AI:</b><br><br>"
+        +
+        answer;
+
+
+    chat.appendChild(
+        bot
+    );
+
+
+    chat.scrollTop =
+        chat.scrollHeight;
+
+
+    input.value = "";
+
+}
+
+
+function getAIAnswer(question){
+
+    const q =
+        question.toLowerCase();
+
+
+    if(
+        q.includes("งาน") ||
+        q.includes("วันนี้") ||
+        q.includes("ต้องทำ")
+    ){
+
+        return `
+            วันนี้มีงานที่ควรติดตาม เช่น
+            <br><br>
+            🔴 ตรวจสอบคำร้องเร่งด่วน
+            <br>
+            📥 ตรวจสอบหนังสือเข้า
+            <br>
+            📢 เตรียมข่าวประชาสัมพันธ์
+            <br>
+            🏘️ ลงพื้นที่ตามคำร้อง
+            <br><br>
+            ผมสามารถพัฒนาต่อให้ดึง
+            “งานจริงจาก Supabase”
+            แล้วจัดลำดับความสำคัญให้อัตโนมัติได้ครับ
+        `;
+
+    }
+
+
+    if(
+        q.includes("ร้องเรียน") ||
+        q.includes("คำร้อง")
+    ){
+
+        return `
+            ตอนนี้ระบบแสดงคำร้องค้าง
+            <b>8 เรื่อง</b>
+            <br><br>
+            มีเรื่องเร่งด่วนที่ควรติดตาม
+            เช่น น้ำประปาและไฟส่องสว่าง
+            <br><br>
+            ในขั้นต่อไป AI จะอ่านข้อมูลคำร้อง
+            จากฐานข้อมูลจริงและสรุปให้ผู้ใหญ่บ้านครับ
+        `;
+
+    }
+
+
+    if(
+        q.includes("ฝุ่น") ||
+        q.includes("pm2.5")
+    ){
+
+        const value =
+            document.getElementById(
+                "pmValue"
+            ).textContent;
+
+
+        return `
+            ขณะนี้ระบบตรวจพบ PM2.5
+            ประมาณ <b>${value} µg/m³</b>
+            <br><br>
+            ${document.getElementById(
+                "pmAdvice"
+            ).textContent}
+        `;
+
+    }
+
+
+    if(
+        q.includes("อากาศ") ||
+        q.includes("ฝน")
+    ){
+
+        return `
+            ขณะนี้อุณหภูมิประมาณ
+            <b>
+            ${document.getElementById(
+                "weatherTemp"
+            ).textContent}
+            </b>
+            <br>
+            ${document.getElementById(
+                "weatherDesc"
+            ).textContent}
+            <br><br>
+            ความชื้น
+            ${document.getElementById(
+                "humidity"
+            ).textContent}
+            <br>
+            ลม
+            ${document.getElementById(
+                "wind"
+            ).textContent}
+        `;
+
+    }
+
+
+    return `
+        ผมรับคำถามแล้วครับ
+        <br><br>
+        ในเวอร์ชันต่อไปจะเชื่อม AI
+        เข้ากับฐานข้อมูลหมู่บ้านจริง
+        เพื่อให้สามารถตอบข้อมูล
+        ครัวเรือน ประชาชน คำร้อง
+        หนังสือราชการ กิจกรรม
+        และรายงานต่าง ๆ ได้ครับ
+    `;
+
+}
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function openDocument(){
+
+    document.getElementById(
+        "documentModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function openAnnouncement(){
+
+    document.getElementById(
+        "announcementModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeModal(id){
+
+    document.getElementById(
+        id
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+function saveDocument(){
+
+    const title =
+        document.getElementById(
+            "docTitle"
+        ).value.trim();
+
+
+    if(!title){
+
+        showToast(
+            "กรุณาระบุชื่อเรื่อง"
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "rongkhem_document",
+        JSON.stringify({
+
+            title:title,
+
+            detail:
+            document.getElementById(
+                "docDetail"
+            ).value,
+
+            createdAt:
+            new Date().toISOString()
+
+        })
+    );
+
+
+    closeModal(
+        "documentModal"
+    );
+
+
+    showToast(
+        "บันทึกร่างหนังสือแล้ว"
+    );
+
+}
+
+
+function saveAnnouncement(){
+
+    const title =
+        document.getElementById(
+            "announcementTitle"
+        ).value.trim();
+
+
+    if(!title){
+
+        showToast(
+            "กรุณาระบุหัวข้อประกาศ"
+        );
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "rongkhem_announcement",
+        JSON.stringify({
+
+            title:title,
+
+            detail:
+            document.getElementById(
+                "announcementDetail"
+            ).value,
+
+            createdAt:
+            new Date().toISOString()
+
+        })
+    );
+
+
+    closeModal(
+        "announcementModal"
+    );
+
+
+    showToast(
+        "บันทึกร่างประกาศแล้ว"
+    );
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function toggleSidebar(){
+
+    document.getElementById(
+        "sidebar"
+    ).classList.toggle(
+        "open"
+    );
+
+}
+
+
+function goHome(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+function coming(name){
+
+    showToast(
+        "เปิดระบบ "+name
+    );
+
+}
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        () => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
+    );
+
+}
+
+
+/* =========================================================
+   INIT
+========================================================= */
+
+loadWeather();
+
+loadPM25();
+
+
+setInterval(
+    loadWeather,
+    10*60*1000
+);
+
+
+setInterval(
+    loadPM25,
+    10*60*1000
+);
+
+
+document.getElementById(
+    "aiInput"
+).addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key === "Enter"){
+
+            askAI();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
