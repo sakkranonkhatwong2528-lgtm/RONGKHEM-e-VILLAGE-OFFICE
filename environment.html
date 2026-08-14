@@ -6,1244 +6,804 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>
-สิ่งแวดล้อม / PM2.5 | RONGKHEM e-VILLAGE
+สิ่งแวดล้อม | RONGKHEM e-VILLAGE
 </title>
 
 <link rel="preconnect"
-href="https://fonts.googleapis.com">
+      href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+      rel="stylesheet">
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-/* =====================================================
-ROOT
-===================================================== */
-
 :root{
 
---bg:#03101a;
+    --bg:#07111f;
+    --card:rgba(15,29,48,.88);
+    --border:rgba(255,255,255,.08);
 
---panel:rgba(4,29,43,.94);
+    --text:#f8fafc;
+    --muted:#94a3b8;
 
---border:rgba(112,190,220,.24);
+    --cyan:#22d3ee;
+    --blue:#38bdf8;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --orange:#fb923c;
+    --red:#fb7185;
 
---text:#ffffff;
-
---muted:#9db5be;
-
---green:#4cff70;
-
---cyan:#45e8ff;
-
---purple:#d78cff;
-
---orange:#ffb53d;
-
---red:#ff5d5d;
-
---sidebar:260px;
+    --radius:22px;
 
 }
-
-
-/* =====================================================
-RESET
-===================================================== */
 
 *{
 
-box-sizing:border-box;
-
-margin:0;
-
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 
 }
-
 
 body{
 
-min-height:100vh;
+    font-family:"Prompt",sans-serif;
 
-font-family:
-"Prompt",
-"Kanit",
-sans-serif;
+    color:var(--text);
 
-color:var(--text);
+    min-height:100vh;
 
-background:
+    background:
 
-linear-gradient(
-rgba(0,12,20,.92),
-rgba(0,12,20,.97)
-),
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(34,197,94,.08),
+        transparent 30%
+    ),
 
-url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
-center/cover fixed no-repeat;
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(34,211,238,.08),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
+    );
 
 }
 
+.container{
 
-button,
-input,
-select{
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
 
-font-family:inherit;
-
-}
-
-
-button{
-
-cursor:pointer;
+    margin:auto;
 
 }
 
 
 /* =====================================================
-SIDEBAR
+HEADER
 ===================================================== */
 
-.sidebar{
+.header{
 
-position:fixed;
+    position:sticky;
+    top:0;
+    z-index:100;
 
-left:0;
+    background:
+    rgba(4,11,20,.86);
 
-top:0;
+    backdrop-filter:
+    blur(18px);
 
-bottom:0;
-
-width:var(--sidebar);
-
-padding:20px 14px;
-
-background:
-
-linear-gradient(
-180deg,
-rgba(1,18,30,.99),
-rgba(1,10,18,.98)
-);
-
-border-right:
-1px solid
-rgba(120,201,230,.18);
-
-z-index:1000;
-
-overflow-y:auto;
+    border-bottom:
+    1px solid var(--border);
 
 }
 
+.header-inner{
 
-.sidebar-brand{
+    min-height:76px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:11px;
+    justify-content:space-between;
 
-padding:
-5px
-9px
-20px;
-
-margin-bottom:13px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.09);
+    gap:20px;
 
 }
 
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
 
 .logo{
 
-width:54px;
+    width:48px;
+    height:48px;
 
-height:54px;
+    border-radius:15px;
 
-display:flex;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-align-items:center;
+    font-size:21px;
 
-justify-content:center;
-
-border-radius:15px;
-
-font-size:29px;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(255,188,49,.17),
-rgba(4,38,51,.4)
-);
-
-border:
-1px solid
-rgba(255,190,54,.27);
+    background:
+    linear-gradient(
+        135deg,
+        #15803d,
+        #22c55e
+    );
 
 }
 
+.brand h1{
 
-.brand-title{
+    font-family:"Kanit";
 
-font-family:"Kanit";
-
-font-size:17px;
-
-line-height:1.1;
+    font-size:19px;
 
 }
 
+.brand p{
 
-.brand-title span{
+    color:var(--muted);
 
-color:#b6ff43;
-
-}
-
-
-.brand-sub{
-
-color:#9eb8c2;
-
-font-size:10px;
-
-margin-top:3px;
+    font-size:11px;
 
 }
 
+.back{
 
-.menu{
+    padding:
+    9px 14px;
 
-display:flex;
+    border-radius:12px;
 
-flex-direction:column;
+    border:
+    1px solid var(--border);
 
-gap:4px;
+    background:
+    rgba(255,255,255,.04);
 
-}
+    color:white;
 
+    cursor:pointer;
 
-.menu a{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-padding:
-12px
-13px;
-
-color:#d6e3e8;
-
-text-decoration:none;
-
-border-radius:12px;
-
-font-size:13px;
-
-border:
-1px solid
-transparent;
-
-transition:.2s;
-
-}
-
-
-.menu a:hover{
-
-background:
-rgba(51,205,104,.08);
-
-border-color:
-rgba(65,231,108,.14);
-
-transform:
-translateX(2px);
-
-}
-
-
-.menu a.active{
-
-background:
-
-linear-gradient(
-100deg,
-rgba(31,190,75,.42),
-rgba(19,90,52,.22)
-);
-
-border-color:
-rgba(84,238,106,.7);
-
-color:#ffffff;
-
-}
-
-
-.icon{
-
-width:28px;
-
-text-align:center;
-
-font-size:20px;
-
-}
-
-
-.contact{
-
-margin-top:18px;
-
-padding:14px;
-
-border-radius:15px;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(7,40,55,.9),
-rgba(3,22,33,.9)
-);
-
-border:
-1px solid
-rgba(116,196,219,.23);
-
-}
-
-
-.contact h3{
-
-font-family:"Kanit";
-
-font-size:16px;
-
-margin-bottom:10px;
-
-}
-
-
-.contact p{
-
-color:#b7cbd3;
-
-font-size:10px;
-
-margin:7px 0;
+    font-family:inherit;
 
 }
 
 
 /* =====================================================
-TOPBAR
+TITLE
 ===================================================== */
 
-.topbar{
+.page-head{
 
-position:fixed;
-
-left:var(--sidebar);
-
-right:0;
-
-top:0;
-
-height:78px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:0 25px;
-
-background:
-rgba(3,22,35,.91);
-
-backdrop-filter:
-blur(18px);
-
-border-bottom:
-1px solid
-var(--border);
-
-z-index:900;
+    margin-top:30px;
 
 }
 
+.page-head h2{
 
-.page-title{
+    font-family:"Kanit";
 
-display:flex;
-
-align-items:center;
-
-gap:12px;
+    font-size:36px;
 
 }
 
+.page-head p{
 
-.big-icon{
+    margin-top:5px;
 
-width:44px;
+    color:var(--muted);
 
-height:44px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:12px;
-
-background:
-rgba(69,232,255,.08);
-
-border:
-1px solid
-rgba(69,232,255,.25);
-
-font-size:24px;
+    font-size:13px;
 
 }
 
+.source{
 
-.page-title h1{
+    display:inline-flex;
 
-font-family:"Kanit";
+    align-items:center;
 
-font-size:21px;
+    gap:8px;
 
-font-weight:500;
+    margin-top:12px;
 
-}
+    padding:
+    8px 12px;
 
+    border-radius:10px;
 
-.page-title p{
+    color:#86efac;
 
-color:#8ea7b1;
+    background:
+    rgba(34,197,94,.07);
 
-font-size:10px;
+    border:
+    1px solid
+    rgba(34,197,94,.16);
 
-}
-
-
-.clock{
-
-text-align:right;
-
-}
-
-
-.time{
-
-font-family:"Kanit";
-
-font-size:25px;
-
-}
-
-
-.today{
-
-color:#8ea7b1;
-
-font-size:10px;
-
-}
-
-
-.mobile-button{
-
-display:none;
-
-width:42px;
-
-height:42px;
-
-border-radius:10px;
-
-background:
-rgba(255,255,255,.05);
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-color:#ffffff;
-
-font-size:20px;
+    font-size:11px;
 
 }
 
 
 /* =====================================================
-MAIN
+STATS
 ===================================================== */
 
-.main{
+.stats{
 
-margin-left:var(--sidebar);
+    margin-top:22px;
 
-padding-top:78px;
+    display:grid;
 
-min-height:100vh;
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
 
 }
 
+.stat{
 
-.content{
+    padding:22px;
 
-max-width:1550px;
+    border-radius:22px;
 
-margin:auto;
+    background:
+    var(--card);
 
-padding:25px;
+    border:
+    1px solid var(--border);
+
+}
+
+.stat-icon{
+
+    width:46px;
+    height:46px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+}
+
+.stat-value{
+
+    margin-top:12px;
+
+    font-family:"Kanit";
+
+    font-size:34px;
+
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:12px;
 
 }
 
 
 /* =====================================================
-STATUS HEADER
+PM CARD
 ===================================================== */
-
-.status-header{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:20px;
-
-padding:20px 22px;
-
-margin-bottom:18px;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-110deg,
-rgba(8,57,66,.95),
-rgba(3,29,41,.95)
-);
-
-border:
-1px solid
-rgba(72,220,104,.22);
-
-box-shadow:
-0 15px 45px
-rgba(0,0,0,.25);
-
-}
-
-
-.status-main{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-}
-
-
-.status-light{
-
-width:16px;
-
-height:16px;
-
-border-radius:50%;
-
-background:#48dc68;
-
-box-shadow:
-0 0 18px
-rgba(72,220,104,.8);
-
-animation:pulse 2s infinite;
-
-}
-
-
-@keyframes pulse{
-
-0%,100%{
-box-shadow:0 0 8px rgba(72,220,104,.5);
-}
-
-50%{
-box-shadow:0 0 25px rgba(72,220,104,.9);
-}
-
-}
-
-
-.status-title{
-
-font-family:"Kanit";
-
-font-size:19px;
-
-}
-
-
-.status-sub{
-
-font-size:9px;
-
-color:#8da9b3;
-
-margin-top:3px;
-
-}
-
-
-.update{
-
-text-align:right;
-
-font-size:8px;
-
-color:#78949e;
-
-}
-
-
-.update strong{
-
-display:block;
-
-color:#8ff49b;
-
-font-family:"Kanit";
-
-font-size:11px;
-
-margin-top:2px;
-
-}
-
-
-/* =====================================================
-AIR CARDS
-===================================================== */
-
-.air-grid{
-
-display:grid;
-
-grid-template-columns:
-1.5fr
-repeat(4,1fr);
-
-gap:15px;
-
-margin-bottom:18px;
-
-}
-
-
-.air-card{
-
-padding:20px;
-
-border-radius:18px;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
-
-border:
-1px solid
-var(--border);
-
-box-shadow:
-0 15px 40px
-rgba(0,0,0,.25);
-
-}
-
 
 .pm-card{
 
-position:relative;
+    margin-top:20px;
 
-overflow:hidden;
+    padding:24px;
 
-background:
+    border-radius:22px;
 
-radial-gradient(
-circle at 85% 15%,
-rgba(72,220,104,.13),
-transparent 35%
-),
+    background:
+    var(--card);
 
-linear-gradient(
-145deg,
-rgba(4,38,49,.98),
-rgba(2,18,29,.96)
-);
+    border:
+    1px solid var(--border);
 
 }
 
+.card-head{
 
-.pm-label{
+    display:flex;
 
-color:#83a1aa;
+    align-items:center;
 
-font-size:9px;
+    justify-content:space-between;
+
+    gap:15px;
 
 }
 
+.card-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.card-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+.pm-value{
+
+    margin-top:22px;
+
+    display:flex;
+
+    align-items:end;
+
+    gap:9px;
+
+}
 
 .pm-number{
 
-font-family:"Kanit";
+    font-family:"Kanit";
 
-font-size:56px;
+    font-size:58px;
 
-line-height:1;
-
-margin-top:8px;
-
-color:#70ef88;
+    line-height:1;
 
 }
-
 
 .pm-unit{
 
-color:#8faab4;
+    margin-bottom:6px;
 
-font-size:9px;
+    color:var(--muted);
 
-}
-
-
-.aqi{
-
-display:inline-flex;
-
-margin-top:10px;
-
-padding:
-5px
-9px;
-
-border-radius:7px;
-
-font-size:8px;
-
-color:#8ff49b;
-
-background:
-rgba(72,220,104,.1);
-
-border:
-1px solid
-rgba(72,220,104,.2);
+    font-size:12px;
 
 }
 
+.pm-status{
 
-.air-icon{
+    display:inline-flex;
 
-font-size:25px;
+    margin-top:13px;
 
-}
+    padding:
+    7px 12px;
 
+    border-radius:999px;
 
-.air-label{
+    color:#facc15;
 
-color:#78949e;
+    background:
+    rgba(250,204,21,.08);
 
-font-size:9px;
+    border:
+    1px solid
+    rgba(250,204,21,.14);
 
-margin-top:9px;
-
-}
-
-
-.air-value{
-
-font-family:"Kanit";
-
-font-size:25px;
-
-margin-top:2px;
-
-}
-
-
-.air-sub{
-
-color:#67838e;
-
-font-size:8px;
-
-margin-top:2px;
+    font-size:10px;
 
 }
 
 
 /* =====================================================
-MAIN GRID
+GRID
 ===================================================== */
 
-.main-grid{
+.grid{
 
-display:grid;
+    margin-top:20px;
 
-grid-template-columns:
-1.45fr
-.75fr;
+    display:grid;
 
-gap:18px;
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:15px;
+
+}
+
+.card{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
 
 }
 
 
 /* =====================================================
-CHART
+ENVIRONMENT ITEMS
 ===================================================== */
 
-.panel{
+.env-list{
 
-border-radius:20px;
+    margin-top:18px;
 
-background:
+    display:flex;
 
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
+    flex-direction:column;
 
-border:
-1px solid
-var(--border);
-
-box-shadow:
-0 15px 45px
-rgba(0,0,0,.27);
-
-overflow:hidden;
+    gap:10px;
 
 }
 
+.env-item{
 
-.panel-head{
+    padding:16px;
 
-display:flex;
+    border-radius:16px;
 
-align-items:center;
+    background:
+    rgba(255,255,255,.035);
 
-justify-content:space-between;
+    display:flex;
 
-padding:
-17px
-20px;
+    align-items:center;
 
-border-bottom:
-1px solid
-rgba(255,255,255,.07);
+    justify-content:space-between;
 
-}
-
-
-.panel-head h2{
-
-font-family:"Kanit";
-
-font-size:18px;
-
-font-weight:500;
+    gap:15px;
 
 }
 
+.env-left{
 
-.panel-head span{
+    display:flex;
 
-font-size:8px;
+    align-items:center;
 
-color:#718d97;
-
-}
-
-
-.chart-area{
-
-height:330px;
-
-padding:20px;
-
-position:relative;
+    gap:13px;
 
 }
 
+.env-icon{
 
-canvas{
+    width:43px;
+    height:43px;
 
-width:100% !important;
+    border-radius:13px;
 
-height:100% !important;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+}
+
+.env-name{
+
+    font-size:13px;
+
+}
+
+.env-desc{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.env-value{
+
+    font-family:"Kanit";
+
+    font-size:20px;
+
+    color:#86efac;
 
 }
 
 
 /* =====================================================
-RIGHT PANELS
+ACTIONS
 ===================================================== */
 
-.risk-list{
+.actions{
 
-padding:10px;
+    margin-top:18px;
 
-}
+    display:grid;
 
+    grid-template-columns:
+    1fr 1fr;
 
-.risk-item{
-
-display:flex;
-
-align-items:center;
-
-gap:11px;
-
-padding:12px;
-
-border-radius:12px;
-
-transition:.2s;
+    gap:10px;
 
 }
 
+.action{
 
-.risk-item:hover{
+    padding:17px;
 
-background:
-rgba(255,255,255,.035);
+    border-radius:16px;
 
-}
-
-
-.risk-icon{
-
-width:40px;
-
-height:40px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:10px;
-
-background:
-rgba(255,181,61,.08);
-
-border:
-1px solid
-rgba(255,181,61,.15);
-
-font-size:20px;
+    background:
+    rgba(255,255,255,.035);
 
 }
 
+.action i{
 
-.risk-info{
+    color:#86efac;
 
-flex:1;
-
-}
-
-
-.risk-title{
-
-font-size:10px;
+    font-size:20px;
 
 }
 
+.action h3{
 
-.risk-desc{
+    margin-top:9px;
 
-font-size:8px;
-
-color:#718d97;
-
-margin-top:3px;
+    font-size:13px;
 
 }
 
+.action p{
 
-.risk-level{
+    margin-top:4px;
 
-font-size:8px;
+    color:var(--muted);
 
-color:#ffd38d;
+    font-size:10px;
+
+    line-height:1.7;
 
 }
 
 
 /* =====================================================
-ANNOUNCEMENT
+WARNING
 ===================================================== */
-
-.announcement{
-
-margin-top:18px;
-
-padding:20px;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-135deg,
-rgba(106,52,15,.32),
-rgba(4,28,40,.97)
-);
-
-border:
-1px solid
-rgba(255,181,61,.22);
-
-}
-
-
-.announcement-top{
-
-display:flex;
-
-align-items:center;
-
-gap:11px;
-
-}
-
-
-.announcement-icon{
-
-width:43px;
-
-height:43px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:12px;
-
-background:
-rgba(255,181,61,.1);
-
-font-size:22px;
-
-}
-
-
-.announcement h2{
-
-font-family:"Kanit";
-
-font-size:18px;
-
-font-weight:500;
-
-}
-
-
-.announcement p{
-
-color:#9db5be;
-
-font-size:9px;
-
-line-height:1.8;
-
-margin-top:12px;
-
-}
-
 
 .warning{
 
-display:grid;
+    margin-top:20px;
 
-grid-template-columns:
-repeat(3,1fr);
+    padding:20px;
 
-gap:10px;
+    display:flex;
 
-margin-top:14px;
+    align-items:flex-start;
 
-}
+    gap:14px;
 
+    border-radius:20px;
 
-.warning-item{
+    background:
+    rgba(250,204,21,.06);
 
-padding:12px;
-
-border-radius:10px;
-
-background:
-rgba(255,255,255,.035);
-
-border:
-1px solid
-rgba(255,255,255,.06);
+    border:
+    1px solid
+    rgba(250,204,21,.16);
 
 }
 
+.warning-icon{
 
-.warning-item strong{
+    width:43px;
+    height:43px;
 
-font-size:9px;
+    flex:none;
 
-display:block;
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#facc15;
+
+    background:
+    rgba(250,204,21,.08);
 
 }
 
+.warning h3{
 
-.warning-item span{
+    font-size:14px;
 
-font-size:8px;
+}
 
-color:#78949e;
+.warning p{
 
-display:block;
+    margin-top:5px;
 
-margin-top:4px;
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
 
 }
 
 
 /* =====================================================
-FORECAST
+TABLE
 ===================================================== */
 
-.forecast{
+.table-card{
 
-margin-top:18px;
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.table-wrap{
+
+    margin-top:18px;
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    min-width:700px;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    padding:
+    14px 12px;
+
+    text-align:left;
+
+    color:#86efac;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    background:
+    rgba(34,197,94,.04);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+td{
+
+    padding:
+    14px 12px;
+
+    font-size:11px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+}
+
+.empty{
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+}
+
+.empty i{
+
+    display:block;
+
+    margin-bottom:12px;
+
+    font-size:40px;
+
+    color:
+    rgba(34,197,94,.28);
 
 }
 
 
-.forecast-grid{
+/* =====================================================
+FOOTER
+===================================================== */
 
-display:grid;
+.footer{
 
-grid-template-columns:
-repeat(7,1fr);
+    margin-top:45px;
 
-}
+    padding:
+    25px 0;
 
+    border-top:
+    1px solid var(--border);
 
-.forecast-day{
+    color:var(--muted);
 
-padding:16px 8px;
+    font-size:11px;
 
-text-align:center;
+    display:flex;
 
-border-right:
-1px solid
-rgba(255,255,255,.05);
+    justify-content:space-between;
 
-}
-
-
-.forecast-day:last-child{
-
-border-right:0;
-
-}
-
-
-.forecast-date{
-
-font-size:8px;
-
-color:#78949e;
-
-}
-
-
-.forecast-icon{
-
-font-size:25px;
-
-margin:10px 0;
-
-}
-
-
-.forecast-pm{
-
-font-family:"Kanit";
-
-font-size:18px;
-
-}
-
-
-.forecast-unit{
-
-font-size:7px;
-
-color:#718d97;
-
-}
-
-
-.forecast-temp{
-
-font-size:8px;
-
-color:#a8bec6;
-
-margin-top:5px;
+    gap:20px;
 
 }
 
@@ -1252,178 +812,72 @@ margin-top:5px;
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:1250px){
+@media(max-width:900px){
 
-:root{
---sidebar:230px;
-}
+    .stats{
 
-.air-grid{
+        grid-template-columns:
+        repeat(2,1fr);
 
-grid-template-columns:
-repeat(3,1fr);
+    }
 
-}
+    .grid{
 
-.pm-card{
+        grid-template-columns:
+        1fr;
 
-grid-column:
-span 3;
+    }
 
 }
 
-.main-grid{
+@media(max-width:600px){
 
-grid-template-columns:1fr;
+    .container{
 
-}
+        width:
+        calc(100% - 20px);
 
-}
+    }
 
+    .page-head h2{
 
-@media(max-width:1000px){
+        font-size:29px;
 
-.sidebar{
+    }
 
-transform:
-translateX(-100%);
+    .stats{
 
-transition:.3s;
+        grid-template-columns:
+        1fr 1fr;
 
-}
+        gap:10px;
 
-.sidebar.open{
+    }
 
-transform:
-translateX(0);
+    .stat{
 
-}
+        padding:16px;
 
-.topbar{
+    }
 
-left:0;
+    .stat-value{
 
-}
+        font-size:28px;
 
-.main{
+    }
 
-margin-left:0;
+    .actions{
 
-}
+        grid-template-columns:
+        1fr;
 
-.mobile-button{
+    }
 
-display:block;
+    .footer{
 
-}
+        display:block;
 
-.page-title p{
-
-display:none;
-
-}
-
-}
-
-
-@media(max-width:750px){
-
-.content{
-
-padding:13px;
-
-}
-
-.air-grid{
-
-grid-template-columns:
-repeat(2,1fr);
-
-}
-
-.pm-card{
-
-grid-column:
-span 2;
-
-}
-
-.status-header{
-
-align-items:flex-start;
-
-flex-direction:column;
-
-}
-
-.update{
-
-text-align:left;
-
-}
-
-.warning{
-
-grid-template-columns:1fr;
-
-}
-
-.forecast-grid{
-
-grid-template-columns:
-repeat(4,1fr);
-
-}
-
-.forecast-day{
-
-border-bottom:
-1px solid
-rgba(255,255,255,.05);
-
-}
-
-.clock{
-
-display:none;
-
-}
-
-}
-
-
-@media(max-width:480px){
-
-.air-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.pm-card{
-
-grid-column:auto;
-
-}
-
-.forecast-grid{
-
-grid-template-columns:
-repeat(2,1fr);
-
-}
-
-.pm-number{
-
-font-size:48px;
-
-}
-
-.page-title h1{
-
-font-size:17px;
-
-}
+    }
 
 }
 
@@ -1435,1290 +889,1246 @@ font-size:17px;
 <body>
 
 
-<!-- =====================================================
-SIDEBAR
-===================================================== -->
+<header class="header">
 
-<aside
-class="sidebar"
-id="sidebar"
->
+<div class="container header-inner">
 
-<div class="sidebar-brand">
+
+<div class="brand">
 
 <div class="logo">
-🏛️
+
+<i class="fa-solid fa-leaf"></i>
+
 </div>
 
 <div>
 
-<div class="brand-title">
+<h1>
+RONGKHEM e-VILLAGE
+</h1>
 
-RONGKHEM
-<span>e-VILLAGE</span>
+<p>
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+</p>
 
 </div>
 
-<div class="brand-sub">
+</div>
+
+
+<button
+class="back"
+onclick="location.href='../index.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+กลับหน้าหลัก
+
+</button>
+
+
+</div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =====================================================
+TITLE
+===================================================== -->
+
+<section class="page-head">
+
+<h2>
+สิ่งแวดล้อมและ PM2.5
+</h2>
+
+<p>
+ระบบติดตามคุณภาพอากาศ การเผา ขยะ และสิ่งแวดล้อมของหมู่บ้าน
+</p>
+
+<div class="source">
+
+<i class="fa-solid fa-database"></i>
+
+ข้อมูลจริงจากระบบหมู่บ้านและแหล่งข้อมูลที่เชื่อมต่อ
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+STATS
+===================================================== -->
+
+<section class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-wind"></i>
+
+</div>
+
+<div
+id="pm25"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+PM2.5 µg/m³
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-fire"></i>
+
+</div>
+
+<div
+id="burning"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+เหตุการเผาที่บันทึก
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<div
+id="waste"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ข้อมูลการจัดการขยะ
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-seedling"></i>
+
+</div>
+
+<div
+id="environmentProjects"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+โครงการสิ่งแวดล้อม
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+PM2.5
+===================================================== -->
+
+<section class="pm-card">
+
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+คุณภาพอากาศ PM2.5
+</div>
+
+<div class="card-sub">
+ค่าล่าสุดจากแหล่งข้อมูลที่ระบบเชื่อมต่อ
+</div>
+
+</div>
+
+<i class="fa-solid fa-cloud-sun"
+style="font-size:28px;color:#86efac">
+</i>
+
+</div>
+
+
+<div class="pm-value">
+
+<div
+id="pmValue"
+class="pm-number">
+
+--
+
+</div>
+
+<div class="pm-unit">
+
+µg/m³
+
+</div>
+
+</div>
+
+
+<div
+id="pmStatus"
+class="pm-status">
+
+ยังไม่มีข้อมูลคุณภาพอากาศ
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+GRID
+===================================================== -->
+
+<section class="grid">
+
+
+<!-- BURNING -->
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+การเผาและไฟป่า
+</div>
+
+<div class="card-sub">
+ติดตามเหตุการณ์ในพื้นที่หมู่บ้าน
+</div>
+
+</div>
+
+<i class="fa-solid fa-fire"
+style="color:#fb923c">
+</i>
+
+</div>
+
+
+<div class="env-list">
+
+
+<div class="env-item">
+
+<div class="env-left">
+
+<div class="env-icon">
+
+<i class="fa-solid fa-fire"></i>
+
+</div>
+
+<div>
+
+<div class="env-name">
+เหตุเผาในพื้นที่
+</div>
+
+<div class="env-desc">
+ข้อมูลจากการแจ้งเหตุ
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="burning2"
+class="env-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="env-item">
+
+<div class="env-left">
+
+<div class="env-icon">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+<div>
+
+<div class="env-name">
+เหตุที่อยู่ระหว่างติดตาม
+</div>
+
+<div class="env-desc">
+รายการที่ยังไม่ปิด
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="openCases"
+class="env-value">
+
+--
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- WASTE -->
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+การจัดการขยะ
+</div>
+
+<div class="card-sub">
+ระบบจัดการขยะของชุมชน
+</div>
+
+</div>
+
+<i class="fa-solid fa-recycle"
+style="color:#22c55e">
+</i>
+
+</div>
+
+
+<div class="env-list">
+
+
+<div class="env-item">
+
+<div class="env-left">
+
+<div class="env-icon">
+
+<i class="fa-solid fa-recycle"></i>
+
+</div>
+
+<div>
+
+<div class="env-name">
+การคัดแยกขยะ
+</div>
+
+<div class="env-desc">
+ข้อมูลที่บันทึกในระบบ
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="sorting"
+class="env-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="env-item">
+
+<div class="env-left">
+
+<div class="env-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<div>
+
+<div class="env-name">
+ขยะที่จัดการแล้ว
+</div>
+
+<div class="env-desc">
+ข้อมูลจากการบันทึก
+
+</div>
+
+</div>
+
+</div>
+
+<div
+id="managedWaste"
+class="env-value">
+
+--
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+ACTIONS
+===================================================== -->
+
+<section class="grid">
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+มาตรการด้านสิ่งแวดล้อม
+</div>
+
+<div class="card-sub">
+ระบบสามารถใช้ติดตามงานในพื้นที่
+</div>
+
+</div>
+
+<i class="fa-solid fa-shield-heart"
+style="color:#22c55e">
+</i>
+
+</div>
+
+
+<div class="actions">
+
+
+<div class="action">
+
+<i class="fa-solid fa-ban"></i>
+
+<h3>
+เฝ้าระวังการเผา
+</h3>
+
+<p>
+บันทึกเหตุ แจ้งเตือน และติดตามสถานะ
+การดำเนินการในพื้นที่
+</p>
+
+</div>
+
+
+<div class="action">
+
+<i class="fa-solid fa-mask-face"></i>
+
+<h3>
+แจ้งเตือนฝุ่น
+</h3>
+
+<p>
+แสดงระดับ PM2.5 และข้อความแนะนำ
+เมื่อมีข้อมูลจากแหล่งตรวจวัด
+</p>
+
+</div>
+
+
+<div class="action">
+
+<i class="fa-solid fa-recycle"></i>
+
+<h3>
+คัดแยกขยะ
+</h3>
+
+<p>
+ติดตามกิจกรรมคัดแยกและการจัดการขยะ
+ของชุมชน
+</p>
+
+</div>
+
+
+<div class="action">
+
+<i class="fa-solid fa-tree"></i>
+
+<h3>
+พื้นที่สีเขียว
+</h3>
+
+<p>
+รองรับการบันทึกพื้นที่สีเขียว
+และกิจกรรมอนุรักษ์
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+ข้อมูลสิ่งแวดล้อม
+</div>
+
+<div class="card-sub">
+รายการที่บันทึกเข้าสู่ระบบ
+</div>
+
+</div>
+
+<i class="fa-solid fa-chart-line"
+style="color:#22c55e">
+</i>
+
+</div>
+
+
+<div
+id="environmentList"
+class="env-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-leaf"></i>
+
+ยังไม่มีข้อมูลสิ่งแวดล้อม
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+WARNING
+===================================================== -->
+
+<section class="warning">
+
+<div class="warning-icon">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+<div>
+
+<h3>
+การแจ้งเตือน PM2.5
+</h3>
+
+<p>
+
+เมื่อมีการเชื่อมต่อแหล่งข้อมูลคุณภาพอากาศจริง
+ระบบสามารถเปลี่ยนสถานะอัตโนมัติตามค่าที่ตรวจวัดได้
+โดยไม่ควรแสดงค่าที่ไม่ได้มาจากแหล่งข้อมูลจริง
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+LOG TABLE
+===================================================== -->
+
+<section class="table-card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+บันทึกเหตุการณ์สิ่งแวดล้อม
+</div>
+
+<div class="card-sub">
+ประวัติการบันทึกในระบบ
+</div>
+
+</div>
+
+<i class="fa-solid fa-clock-rotate-left"
+style="color:#86efac">
+</i>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+วันที่
+</th>
+
+<th>
+ประเภท
+</th>
+
+<th>
+สถานที่
+</th>
+
+<th>
+รายละเอียด
+</th>
+
+<th>
+สถานะ
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="environmentTable">
+
+<tr>
+
+<td
+colspan="5"
+class="empty">
+
+<i class="fa-solid fa-database"></i>
+
+ยังไม่มีข้อมูลเหตุการณ์สิ่งแวดล้อม
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
 
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
 
-</div>
-
-</div>
-
-
-<nav class="menu">
-
-
-<a href="index.html">
-
-<span class="icon">🏠</span>
-หน้าหลัก
-
-</a>
-
-
-<a href="citizen.html">
-
-<span class="icon">👥</span>
-ข้อมูลประชาชน
-
-</a>
-
-
-<a href="household.html">
-
-<span class="icon">🏠</span>
-ข้อมูลครัวเรือน
-
-</a>
-
-
-<a href="leader.html">
-
-<span class="icon">👔</span>
-ผู้นำชุมชน
-
-</a>
-
-
-<a href="news.html">
-
-<span class="icon">📢</span>
-ข่าวประชาสัมพันธ์
-
-</a>
-
-
-<a href="activity.html">
-
-<span class="icon">📅</span>
-กิจกรรม / ปฏิทิน
-
-</a>
-
-
-<a href="incident.html">
-
-<span class="icon">🚨</span>
-แจ้งเหตุ / ร้องเรียน
-
-</a>
-
-
-<a href="service.html">
-
-<span class="icon">🤝</span>
-บริการประชาชน
-
-</a>
-
-
-<a href="project.html">
-
-<span class="icon">🏗️</span>
-โครงการพัฒนาหมู่บ้าน
-
-</a>
-
-
-<a
-href="environment.html"
-class="active"
->
-
-<span class="icon">🌱</span>
-สิ่งแวดล้อม / PM2.5
-
-</a>
-
-
-<a href="wetland.html">
-
-<span class="icon">💧</span>
-แหล่งซับน้ำจำ
-
-</a>
-
-
-<a href="rice.html">
-
-<span class="icon">🍚</span>
-กลุ่มข้าวสาร
-
-</a>
-
-
-<a href="statistics.html">
-
-<span class="icon">📊</span>
-สถิติหมู่บ้าน
-
-</a>
-
-
-<a href="admin.html">
-
-<span class="icon">⚙️</span>
-ตั้งค่าระบบ
-
-</a>
-
-
-</nav>
-
-
-<div class="contact">
-
-<h3>
-ที่ทำการผู้ใหญ่บ้าน
-</h3>
-
-<p>
-📞 โทร. 088-888-8888
-</p>
-
-<p>
-🟢 LINE ID: rongkhem.village
-</p>
-
-<p>
-🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
-</p>
-
-</div>
-
-</aside>
-
-
-<!-- =====================================================
-TOPBAR
-===================================================== -->
-
-<header class="topbar">
-
-
-<div class="page-title">
-
-
-<button
-class="mobile-button"
-id="mobileButton"
->
-☰
-</button>
-
-
-<div class="big-icon">
-🌱
-</div>
-
-
 <div>
 
-<h1>
-ศูนย์สิ่งแวดล้อม / PM2.5
-</h1>
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
 
-<p>
-ระบบเฝ้าระวังคุณภาพอากาศและสิ่งแวดล้อม บ้านร่องเข็ม
-</p>
-
-</div>
-
-
-</div>
-
-
-<div class="clock">
-
-<div
-class="time"
-id="time"
->
-00:00:00
-</div>
-
-<div
-class="today"
-id="today"
->
-กำลังโหลด...
-</div>
-
-</div>
-
-
-</header>
-
-
-<!-- =====================================================
-MAIN
-===================================================== -->
-
-<main class="main">
-
-<div class="content">
-
-
-<!-- STATUS -->
-
-<section class="status-header">
-
-
-<div class="status-main">
-
-<div class="status-light"></div>
-
-<div>
-
-<div class="status-title">
-สถานการณ์คุณภาพอากาศ
-</div>
-
-<div class="status-sub">
-บ้านร่องเข็ม หมู่ที่ 6 • ระบบเฝ้าระวังสิ่งแวดล้อม
-</div>
-
-</div>
-
-</div>
-
-
-<div class="update">
-
-อัปเดตล่าสุด
-
-<strong id="updateTime">
-กำลังโหลด...
-</strong>
-
-</div>
-
-
-</section>
-
-
-<!-- AIR CARDS -->
-
-<section class="air-grid">
-
-
-<div class="air-card pm-card">
-
-<div class="pm-label">
-PM2.5 ปัจจุบัน
-</div>
-
-<div
-class="pm-number"
-id="pm25"
->
-18
-</div>
-
-<div class="pm-unit">
-µg/m³
-</div>
-
-<div class="aqi">
-🟢 คุณภาพอากาศดี
-</div>
-
-</div>
-
-
-<div class="air-card">
-
-<div class="air-icon">
-🌡️
-</div>
-
-<div class="air-label">
-อุณหภูมิ
-</div>
-
-<div
-class="air-value"
-id="temperature"
->
-27°
-</div>
-
-<div class="air-sub">
-องศาเซลเซียส
-</div>
-
-</div>
-
-
-<div class="air-card">
-
-<div class="air-icon">
-💧
-</div>
-
-<div class="air-label">
-ความชื้น
-</div>
-
-<div
-class="air-value"
-id="humidity"
->
-78%
-</div>
-
-<div class="air-sub">
-Relative Humidity
-</div>
-
-</div>
-
-
-<div class="air-card">
-
-<div class="air-icon">
-🌬️
-</div>
-
-<div class="air-label">
-ความเร็วลม
-</div>
-
-<div
-class="air-value"
-id="wind"
->
-8
-</div>
-
-<div class="air-sub">
-km/h
-</div>
-
-</div>
-
-
-<div class="air-card">
-
-<div class="air-icon">
-☁️
-</div>
-
-<div class="air-label">
-สภาพอากาศ
-</div>
-
-<div
-class="air-value"
-id="weather"
->
-มีเมฆ
-</div>
-
-<div class="air-sub">
-วันนี้
-</div>
-
-</div>
-
-
-</section>
-
-
-<!-- MAIN GRID -->
-
-<section class="main-grid">
-
-
-<!-- CHART -->
-
-<div class="panel">
-
-
-<div class="panel-head">
-
-<h2>
-📊 PM2.5 ย้อนหลัง 24 ชั่วโมง
-</h2>
-
-<span>
-หน่วย µg/m³
-</span>
-
-</div>
-
-
-<div class="chart-area">
-
-<canvas
-id="pmChart"
-></canvas>
-
-</div>
-
-
-</div>
-
-
-<!-- RISK -->
-
-<div class="panel">
-
-
-<div class="panel-head">
-
-<h2>
-🔥 จุดเสี่ยงในพื้นที่
-</h2>
-
-<span>
-วันนี้
-</span>
-
-</div>
-
-
-<div class="risk-list">
-
-
-<div class="risk-item">
-
-<div class="risk-icon">
-🔥
-</div>
-
-<div class="risk-info">
-
-<div class="risk-title">
-พื้นที่เกษตรด้านท้ายหมู่บ้าน
-</div>
-
-<div class="risk-desc">
-พบควัน / ต้องเฝ้าระวัง
-</div>
-
-</div>
-
-<div class="risk-level">
-เฝ้าระวัง
-</div>
-
-</div>
-
-
-<div class="risk-item">
-
-<div class="risk-icon">
-🌫️
-</div>
-
-<div class="risk-info">
-
-<div class="risk-title">
-พื้นที่ริมถนนสายหลัก
-</div>
-
-<div class="risk-desc">
-ฝุ่นจากการสัญจร
-</div>
-
-</div>
-
-<div class="risk-level">
-ปานกลาง
-</div>
-
-</div>
-
-
-<div class="risk-item">
-
-<div class="risk-icon">
-🏭
-</div>
-
-<div class="risk-info">
-
-<div class="risk-title">
-พื้นที่เผาเศษวัสดุ
-</div>
-
-<div class="risk-desc">
-ตรวจสอบเป็นระยะ
-</div>
-
-</div>
-
-<div class="risk-level">
-เฝ้าระวัง
-</div>
-
-</div>
-
-
-<div class="risk-item">
-
-<div class="risk-icon">
-🌳
-</div>
-
-<div class="risk-info">
-
-<div class="risk-title">
-พื้นที่ป่าและแนวเขา
-</div>
-
-<div class="risk-desc">
-ไม่มีเหตุผิดปกติ
-</div>
-
-</div>
-
-<div
-class="risk-level"
-style="color:#8ff49b"
->
-ปกติ
-</div>
-
 </div>
 
+</footer>
 
-</div>
-
-</div>
-
-
-</section>
-
-
-<!-- ANNOUNCEMENT -->
-
-<section class="announcement">
-
-
-<div class="announcement-top">
-
-
-<div class="announcement-icon">
-📢
-</div>
-
-
-<div>
-
-<h2>
-ประกาศเฝ้าระวังการเผาและฝุ่น PM2.5
-</h2>
-
-</div>
-
-
-</div>
-
-
-<p>
-
-ขอความร่วมมือประชาชนบ้านร่องเข็ม
-งดการเผาในที่โล่ง ลดการเผาเศษวัสดุทางการเกษตร
-และหากพบเห็นเหตุไฟไหม้หรือการเผาที่อาจก่อให้เกิด
-ผลกระทบต่อชุมชน ขอให้แจ้งที่ทำการผู้ใหญ่บ้านโดยเร็ว
-
-</p>
-
-
-<div class="warning">
-
-
-<div class="warning-item">
-
-<strong>
-🔥 งดเผาในที่โล่ง
-</strong>
-
-<span>
-ลดควันและฝุ่น PM2.5
-</span>
-
-</div>
-
-
-<div class="warning-item">
-
-<strong>
-😷 ป้องกันสุขภาพ
-</strong>
-
-<span>
-สวมหน้ากากเมื่อค่าฝุ่นสูง
-</span>
-
-</div>
-
-
-<div class="warning-item">
-
-<strong>
-📞 พบเหตุแจ้งทันที
-</strong>
-
-<span>
-แจ้งผู้นำชุมชนหรือฝ่ายปกครอง
-</span>
-
-</div>
-
-
-</div>
-
-
-</section>
-
-
-<!-- FORECAST -->
-
-<section class="panel forecast">
-
-
-<div class="panel-head">
-
-<h2>
-🌤️ แนวโน้มคุณภาพอากาศ
-</h2>
-
-<span>
-7 วัน
-</span>
-
-</div>
-
-
-<div
-class="forecast-grid"
-id="forecast"
-></div>
-
-
-</section>
-
-
-</div>
 
 </main>
+
 
 
 <script>
 
 /* =====================================================
-DATA
+SUPABASE
 ===================================================== */
 
-const pmHistory=[
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
 
-16,18,20,22,24,26,
-
-28,25,23,21,20,18,
-
-17,19,22,24,21,20,
-
-18,17,16,17,18,18
-
-];
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
 
 
-const forecastData=[
-
-{
-day:"วันนี้",
-icon:"🌤️",
-pm:18,
-temp:"27°"
-},
-
-{
-day:"เสาร์",
-icon:"🌥️",
-pm:21,
-temp:"28°"
-},
-
-{
-day:"อาทิตย์",
-icon:"🌦️",
-pm:24,
-temp:"29°"
-},
-
-{
-day:"จันทร์",
-icon:"☁️",
-pm:27,
-temp:"28°"
-},
-
-{
-day:"อังคาร",
-icon:"🌤️",
-pm:23,
-temp:"29°"
-},
-
-{
-day:"พุธ",
-icon:"🌧️",
-pm:19,
-temp:"27°"
-},
-
-{
-day:"พฤหัสฯ",
-icon:"🌤️",
-pm:17,
-temp:"28°"
-}
-
-];
-
-
-/* =====================================================
-CLOCK
-===================================================== */
-
-function updateClock(){
-
-const now=
-new Date();
-
-
-document.getElementById(
-"time"
-).textContent=
-
-now.toLocaleTimeString(
-"th-TH",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-hour12:false
-}
-);
-
-
-document.getElementById(
-"today"
-).textContent=
-
-now.toLocaleDateString(
-"th-TH",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-);
-
-
-document.getElementById(
-"updateTime"
-).textContent=
-
-now.toLocaleTimeString(
-"th-TH",
-{
-hour:"2-digit",
-minute:"2-digit"
-}
-);
-
-}
-
-
-updateClock();
-
-setInterval(
-updateClock,
-1000
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
 /* =====================================================
-CANVAS CHART
+ESCAPE
 ===================================================== */
 
-function drawChart(){
+function escapeHTML(value){
 
-const canvas=
-document.getElementById(
-"pmChart"
-);
+    return String(
+        value ?? ""
+    )
 
-const ctx=
-canvas.getContext("2d");
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
-
-const rect=
-canvas.getBoundingClientRect();
-
-
-const dpr=
-window.devicePixelRatio||1;
+}
 
 
-canvas.width=
-rect.width*dpr;
+/* =====================================================
+NUMBER
+===================================================== */
 
-canvas.height=
-rect.height*dpr;
+function numberFormat(value){
 
+    if(
+        value === null ||
+        value === undefined
+    ){
 
-ctx.scale(dpr,dpr);
+        return "--";
 
+    }
 
-const width=
-rect.width;
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
 
-const height=
-rect.height;
-
-
-const padding={
-top:20,
-right:20,
-bottom:35,
-left:40
-};
+}
 
 
-const chartWidth=
-width-
-padding.left-
-padding.right;
+/* =====================================================
+PM STATUS
+===================================================== */
 
-
-const chartHeight=
-height-
-padding.top-
-padding.bottom;
-
-
-const max=
-40;
-
-const min=
-0;
-
-
-/* GRID */
-
-ctx.font="10px Prompt";
-
-ctx.textAlign="right";
-
-ctx.textBaseline="middle";
-
-ctx.fillStyle="#607b86";
-
-
-for(
-let value=0;
-value<=40;
-value+=10
+function getPMStatus(
+    value
 ){
 
-const y=
-padding.top+
-chartHeight-
-(
-(value-min)/
-(max-min)
-)*chartHeight;
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "ยังไม่มีข้อมูลคุณภาพอากาศ";
+
+    }
 
 
-ctx.strokeStyle=
-"rgba(255,255,255,.06)";
-
-ctx.lineWidth=1;
-
-ctx.beginPath();
-
-ctx.moveTo(
-padding.left,
-y
-);
-
-ctx.lineTo(
-width-padding.right,
-y
-);
-
-ctx.stroke();
+    const pm =
+    Number(value);
 
 
-ctx.fillText(
-value,
-padding.left-8,
-y
-);
+    if(pm <= 15){
+
+        return "อากาศดี";
+
+    }
+
+    if(pm <= 25){
+
+        return "อากาศปานกลาง";
+
+    }
+
+    if(pm <= 37.5){
+
+        return "เริ่มมีผลกระทบต่อสุขภาพ";
+
+    }
+
+    if(pm <= 75){
+
+        return "มีผลกระทบต่อสุขภาพ";
+
+    }
+
+    return "มีผลกระทบต่อสุขภาพมาก";
+
+}
+
+
+/* =====================================================
+LOAD DASHBOARD
+===================================================== */
+
+async function loadEnvironment(){
+
+    try{
+
+        /*
+          ตาราง environment_summary
+          สำหรับเก็บค่าปัจจุบันของระบบ
+        */
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "environment_summary"
+        )
+
+        .select("*")
+
+        .limit(1)
+
+        .maybeSingle();
+
+
+        if(error)
+            throw error;
+
+
+        if(!data)
+            return;
+
+
+        const pm =
+        data.pm25;
+
+
+        document.getElementById(
+            "pm25"
+        ).textContent =
+        pm !== null &&
+        pm !== undefined
+        ?
+        numberFormat(pm)
+        :
+        "--";
+
+
+        document.getElementById(
+            "pmValue"
+        ).textContent =
+        pm !== null &&
+        pm !== undefined
+        ?
+        Number(pm)
+        :
+        "--";
+
+
+        document.getElementById(
+            "pmStatus"
+        ).textContent =
+        getPMStatus(pm);
+
+
+        document.getElementById(
+            "burning"
+        ).textContent =
+        numberFormat(
+            data.burning_cases
+        );
+
+
+        document.getElementById(
+            "burning2"
+        ).textContent =
+        numberFormat(
+            data.burning_cases
+        );
+
+
+        document.getElementById(
+            "openCases"
+        ).textContent =
+        numberFormat(
+            data.open_cases
+        );
+
+
+        document.getElementById(
+            "waste"
+        ).textContent =
+        numberFormat(
+            data.waste_records
+        );
+
+
+        document.getElementById(
+            "sorting"
+        ).textContent =
+        numberFormat(
+            data.sorting_records
+        );
+
+
+        document.getElementById(
+            "managedWaste"
+        ).textContent =
+        numberFormat(
+            data.managed_waste
+        );
+
+
+        document.getElementById(
+            "environmentProjects"
+        ).textContent =
+        numberFormat(
+            data.environment_projects
+        );
+
+
+    }catch(error){
+
+        console.log(
+            "ยังไม่มี environment_summary"
+        );
+
+    }
 
 }
 
 
-/* AREA */
+/* =====================================================
+LOAD EVENTS
+===================================================== */
 
-const points=[];
+async function loadEvents(){
 
-
-pmHistory.forEach(
-(value,index)=>{
-
-const x=
-padding.left+
-(index/(pmHistory.length-1))
-*chartWidth;
+    const table =
+    document.getElementById(
+        "environmentTable"
+    );
 
 
-const y=
-padding.top+
-chartHeight-
-(
-(value-min)/
-(max-min)
-)*chartHeight;
+    const list =
+    document.getElementById(
+        "environmentList"
+    );
 
 
-points.push({x,y});
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "environment_events"
+        )
+
+        .select("*")
+
+        .order(
+            "event_date",
+            {
+                ascending:false
+            }
+        );
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        table.innerHTML =
+        data.map(
+            item => `
+
+            <tr>
+
+                <td>
+
+                    ${formatDate(
+                        item.event_date
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+                        item.type
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+                        item.location
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+                        item.description
+                    )}
+
+                </td>
+
+                <td>
+
+                    ${escapeHTML(
+                        item.status
+                    )}
+
+                </td>
+
+            </tr>
+
+            `
+        ).join("");
+
+
+        list.innerHTML =
+        data.slice(
+            0,
+            4
+        ).map(
+            item => `
+
+            <div class="env-item">
+
+                <div class="env-left">
+
+                    <div class="env-icon">
+
+                        <i class="fa-solid fa-leaf"></i>
+
+                    </div>
+
+                    <div>
+
+                        <div class="env-name">
+
+                            ${escapeHTML(
+                                item.type
+                            )}
+
+                        </div>
+
+                        <div class="env-desc">
+
+                            ${escapeHTML(
+                                item.location
+                            )}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="env-value">
+
+                    ${formatDate(
+                        item.event_date
+                    )}
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        console.log(
+            "ยังไม่มี environment_events"
+        );
+
+    }
 
 }
-);
 
 
-/* AREA FILL */
+/* =====================================================
+DATE
+===================================================== */
 
-ctx.beginPath();
-
-ctx.moveTo(
-points[0].x,
-padding.top+chartHeight
-);
-
-points.forEach(
-p=>ctx.lineTo(
-p.x,
-p.y
-)
-);
-
-ctx.lineTo(
-points[points.length-1].x,
-padding.top+chartHeight
-);
-
-ctx.closePath();
-
-ctx.fillStyle=
-"rgba(69,232,255,.08)";
-
-ctx.fill();
-
-
-/* LINE */
-
-ctx.beginPath();
-
-points.forEach(
-(p,index)=>{
-
-if(index===0)
-ctx.moveTo(p.x,p.y);
-
-else
-ctx.lineTo(p.x,p.y);
-
-}
-);
-
-ctx.strokeStyle=
-"#45e8ff";
-
-ctx.lineWidth=2.5;
-
-ctx.stroke();
-
-
-/* POINTS */
-
-points.forEach(
-p=>{
-
-ctx.beginPath();
-
-ctx.arc(
-p.x,
-p.y,
-3,
-0,
-Math.PI*2
-);
-
-ctx.fillStyle=
-"#45e8ff";
-
-ctx.fill();
-
-}
-);
-
-
-/* X LABELS */
-
-ctx.textAlign="center";
-
-ctx.textBaseline="top";
-
-ctx.fillStyle="#607b86";
-
-
-for(
-let i=0;
-i<24;
-i+=4
+function formatDate(
+    value
 ){
 
-const x=
-padding.left+
-(i/(pmHistory.length-1))
-*chartWidth;
+    if(!value)
+        return "-";
 
 
-ctx.fillText(
-String(i).padStart(2,"0")+" น.",
-x,
-height-20
-);
+    const date =
+    new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return escapeHTML(
+            value
+        );
+
+    }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
 
 }
-
-}
-
-
-window.addEventListener(
-"resize",
-drawChart
-);
-
-setTimeout(
-drawChart,
-100
-);
 
 
 /* =====================================================
-FORECAST
+INIT
 ===================================================== */
 
-function renderForecast(){
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-const container=
-document.getElementById(
-"forecast"
-);
+        loadEnvironment();
 
+        loadEvents();
 
-container.innerHTML="";
-
-
-forecastData.forEach(
-item=>{
-
-const div=
-document.createElement(
-"div"
-);
-
-
-div.className=
-"forecast-day";
-
-
-div.innerHTML=`
-
-<div class="forecast-date">
-${item.day}
-</div>
-
-<div class="forecast-icon">
-${item.icon}
-</div>
-
-<div class="forecast-pm">
-${item.pm}
-</div>
-
-<div class="forecast-unit">
-PM2.5
-</div>
-
-<div class="forecast-temp">
-🌡️ ${item.temp}
-</div>
-
-`;
-
-
-container.appendChild(div);
-
-}
-);
-
-}
-
-
-renderForecast();
-
-
-/* =====================================================
-SIMULATED SENSOR UPDATE
-===================================================== */
-
-function updateAir(){
-
-const pm=
-Math.max(
-10,
-Math.min(
-45,
-18+
-Math.round(
-(Math.random()-.5)*4
-)
-)
-);
-
-
-document.getElementById(
-"pm25"
-).textContent=
-pm;
-
-
-if(pm<=15){
-
-document.querySelector(
-".aqi"
-).innerHTML=
-"🟢 คุณภาพอากาศดี";
-
-document.querySelector(
-".pm-number"
-).style.color=
-"#70ef88";
-
-}
-
-else if(pm<=25){
-
-document.querySelector(
-".aqi"
-).innerHTML=
-"🟢 คุณภาพอากาศดี";
-
-document.querySelector(
-".pm-number"
-).style.color=
-"#70ef88";
-
-}
-
-else if(pm<=37){
-
-document.querySelector(
-".aqi"
-).innerHTML=
-"🟡 เริ่มมีผลกระทบ";
-
-document.querySelector(
-".pm-number"
-).style.color=
-"#ffd15c";
-
-}
-
-else{
-
-document.querySelector(
-".aqi"
-).innerHTML=
-"🔴 มีผลกระทบต่อสุขภาพ";
-
-document.querySelector(
-".pm-number"
-).style.color=
-"#ff6b6b";
-
-}
-
-}
-
-
-updateAir();
-
-setInterval(
-updateAir,
-15000
-);
-
-
-/* =====================================================
-MOBILE
-===================================================== */
-
-document
-.getElementById(
-"mobileButton"
-)
-.addEventListener(
-"click",
-()=>{
-
-document
-.getElementById(
-"sidebar"
-)
-.classList.toggle(
-"open"
-);
-
-}
+    }
 );
 
 </script>
+
 
 </body>
 
