@@ -8,12 +8,9 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-กิจกรรมหมู่บ้าน | RONGKHEM e-VILLAGE
-</title>
+<title>กิจกรรมชุมชน | RONGKHEM e-VILLAGE</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
       href="https://fonts.gstatic.com"
@@ -32,39 +29,26 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 :root{
 
     --bg:#07111f;
-
     --card:rgba(15,29,48,.88);
-
     --border:rgba(255,255,255,.08);
 
     --text:#f8fafc;
-
     --muted:#94a3b8;
 
     --cyan:#22d3ee;
-
     --blue:#38bdf8;
-
     --green:#22c55e;
-
     --yellow:#facc15;
-
     --orange:#fb923c;
-
-    --purple:#a78bfa;
-
     --red:#fb7185;
-
-    --radius:22px;
+    --purple:#a78bfa;
 
 }
 
 *{
 
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
 
 }
@@ -81,13 +65,13 @@ body{
 
     radial-gradient(
         circle at 10% 0%,
-        rgba(34,211,238,.10),
+        rgba(56,189,248,.10),
         transparent 30%
     ),
 
     radial-gradient(
         circle at 90% 20%,
-        rgba(59,130,246,.10),
+        rgba(167,139,250,.08),
         transparent 30%
     ),
 
@@ -162,7 +146,6 @@ HEADER
 .logo{
 
     width:48px;
-
     height:48px;
 
     border-radius:15px;
@@ -178,8 +161,8 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #0284c7,
-        #22d3ee
+        #2563eb,
+        #38bdf8
     );
 
 }
@@ -202,13 +185,11 @@ HEADER
 
 .back{
 
-    padding:
-    9px 14px;
+    padding:9px 14px;
 
     border-radius:12px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
@@ -260,19 +241,18 @@ TITLE
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
-    color:#67e8f9;
+    color:#7dd3fc;
 
     background:
-    rgba(34,211,238,.07);
+    rgba(56,189,248,.07);
 
     border:
     1px solid
-    rgba(34,211,238,.16);
+    rgba(56,189,248,.16);
 
     font-size:11px;
 
@@ -285,14 +265,14 @@ STATS
 
 .stats{
 
+    margin-top:22px;
+
     display:grid;
 
     grid-template-columns:
     repeat(4,1fr);
 
     gap:15px;
-
-    margin-top:22px;
 
 }
 
@@ -312,9 +292,8 @@ STATS
 
 .stat-icon{
 
-    width:45px;
-
-    height:45px;
+    width:46px;
+    height:46px;
 
     border-radius:14px;
 
@@ -324,10 +303,10 @@ STATS
 
     justify-content:center;
 
-    color:#67e8f9;
+    color:#7dd3fc;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(56,189,248,.08);
 
 }
 
@@ -351,7 +330,7 @@ STATS
 
 
 /* =====================================================
-CONTROL
+FILTER
 ===================================================== */
 
 .control{
@@ -370,39 +349,68 @@ CONTROL
 
 }
 
-.control-row{
+.filters{
 
     display:flex;
 
-    justify-content:space-between;
+    flex-wrap:wrap;
 
-    align-items:center;
+    gap:9px;
 
-    gap:15px;
+}
+
+.filter{
+
+    padding:9px 14px;
+
+    border-radius:11px;
+
+    border:1px solid var(--border);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
+
+}
+
+.filter.active{
+
+    color:white;
+
+    background:
+    rgba(56,189,248,.10);
+
+    border-color:
+    rgba(56,189,248,.30);
 
 }
 
 .search{
 
+    margin-top:13px;
+
     display:flex;
 
     gap:10px;
-
-    flex:1;
 
 }
 
 .search input{
 
-    width:100%;
+    flex:1;
 
-    padding:
-    13px 15px;
+    min-width:0;
+
+    padding:13px 15px;
 
     border-radius:13px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(0,0,0,.20);
@@ -417,8 +425,7 @@ CONTROL
 
 .btn{
 
-    padding:
-    12px 17px;
+    padding:12px 17px;
 
     border:0;
 
@@ -433,8 +440,8 @@ CONTROL
     background:
     linear-gradient(
         135deg,
-        #0284c7,
-        #06b6d4
+        #2563eb,
+        #0891b2
     );
 
 }
@@ -451,22 +458,17 @@ ACTIVITY GRID
     display:grid;
 
     grid-template-columns:
-    1.4fr .8fr;
+    repeat(3,1fr);
 
-    gap:18px;
+    gap:15px;
 
 }
 
+.activity-card{
 
-/* =====================================================
-TIMELINE
-===================================================== */
+    overflow:hidden;
 
-.timeline-card{
-
-    padding:24px;
-
-    border-radius:22px;
+    border-radius:21px;
 
     background:
     var(--card);
@@ -474,95 +476,25 @@ TIMELINE
     border:
     1px solid var(--border);
 
-}
-
-.card-head{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
 
 }
 
-.card-title{
+.activity-card:hover{
 
-    font-family:"Kanit";
+    transform:
+    translateY(-3px);
 
-    font-size:21px;
-
-}
-
-.card-sub{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:2px;
+    border-color:
+    rgba(56,189,248,.25);
 
 }
 
-.timeline{
+.activity-image{
 
-    position:relative;
-
-}
-
-.timeline::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:22px;
-
-    top:10px;
-
-    bottom:10px;
-
-    width:1px;
-
-    background:
-    rgba(34,211,238,.18);
-
-}
-
-.event{
-
-    position:relative;
-
-    display:grid;
-
-    grid-template-columns:
-    45px 1fr;
-
-    gap:15px;
-
-    margin-bottom:18px;
-
-}
-
-.event:last-child{
-
-    margin-bottom:0;
-
-}
-
-.event-dot{
-
-    position:relative;
-
-    z-index:2;
-
-    width:45px;
-
-    height:45px;
-
-    border-radius:14px;
+    height:175px;
 
     display:flex;
 
@@ -570,204 +502,362 @@ TIMELINE
 
     justify-content:center;
 
-    color:#67e8f9;
+    color:
+    rgba(56,189,248,.38);
+
+    font-size:44px;
 
     background:
-    #0d2031;
 
-    border:
-    1px solid
-    rgba(34,211,238,.20);
+    radial-gradient(
+        circle at 30% 20%,
+        rgba(56,189,248,.15),
+        transparent 40%
+    ),
 
-}
-
-.event-body{
-
-    padding:16px;
-
-    border-radius:16px;
-
-    background:
-    rgba(255,255,255,.035);
-
-    border:
-    1px solid
-    rgba(255,255,255,.04);
+    linear-gradient(
+        135deg,
+        #0b2034,
+        #10253b
+    );
 
 }
 
-.event-title{
+.activity-image img{
 
-    font-family:"Kanit";
+    width:100%;
+    height:100%;
 
-    font-size:16px;
-
-}
-
-.event-description{
-
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    line-height:1.7;
+    object-fit:cover;
 
 }
 
-.event-meta{
+.activity-body{
+
+    padding:20px;
+
+}
+
+.activity-meta{
 
     display:flex;
 
-    flex-wrap:wrap;
+    align-items:center;
 
-    gap:12px;
+    justify-content:space-between;
 
-    margin-top:10px;
-
-    color:#94a3b8;
-
-    font-size:10px;
+    gap:10px;
 
 }
 
-.event-meta i{
+.activity-type{
 
-    color:#67e8f9;
+    padding:5px 9px;
 
-}
+    border-radius:999px;
 
-
-/* =====================================================
-CALENDAR SIDE
-===================================================== */
-
-.calendar-card{
-
-    padding:24px;
-
-    border-radius:22px;
+    color:#7dd3fc;
 
     background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.calendar-title{
-
-    font-family:"Kanit";
-
-    font-size:21px;
-
-}
-
-.calendar{
-
-    margin-top:18px;
-
-}
-
-.calendar-head{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(7,1fr);
-
-    gap:5px;
-
-    margin-bottom:7px;
-
-}
-
-.calendar-head div{
-
-    text-align:center;
-
-    color:#67e8f9;
+    rgba(56,189,248,.08);
 
     font-size:9px;
 
 }
 
-.calendar-days{
+.activity-date{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.activity-title{
+
+    margin-top:12px;
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+    line-height:1.4;
+
+}
+
+.activity-description{
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.8;
+
+    display:
+    -webkit-box;
+
+    -webkit-line-clamp:4;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+}
+
+.activity-info{
+
+    margin-top:14px;
 
     display:grid;
 
     grid-template-columns:
-    repeat(7,1fr);
+    1fr 1fr;
 
-    gap:5px;
+    gap:8px;
 
 }
 
-.day{
+.info{
 
-    aspect-ratio:1;
+    padding:10px;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:9px;
+    border-radius:11px;
 
     background:
     rgba(255,255,255,.035);
 
-    color:#cbd5e1;
+}
+
+.info-label{
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+.info-value{
+
+    margin-top:3px;
+
+    color:#e2e8f0;
 
     font-size:10px;
 
 }
 
-.day.empty{
+.activity-footer{
 
-    background:transparent;
+    margin-top:15px;
+
+    padding-top:12px;
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    color:var(--muted);
+
+    font-size:9px;
 
 }
 
-.day.today{
 
-    color:white;
+/* =====================================================
+CALENDAR PANEL
+===================================================== */
+
+.calendar-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:16px;
+
+}
+
+.panel{
+
+    padding:23px;
+
+    border-radius:22px;
 
     background:
-    rgba(34,211,238,.15);
+    var(--card);
 
     border:
-    1px solid
-    rgba(34,211,238,.35);
+    1px solid var(--border);
 
 }
 
-.day.event-day{
+.panel-head{
 
-    position:relative;
+    display:flex;
 
-    color:#67e8f9;
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
 
 }
 
-.day.event-day::after{
+.panel-title{
 
-    content:"";
+    font-family:"Kanit";
 
-    position:absolute;
+    font-size:21px;
 
-    bottom:4px;
+}
 
-    width:4px;
+.panel-sub{
 
-    height:4px;
+    margin-top:2px;
 
-    border-radius:50%;
+    color:var(--muted);
 
-    background:#22d3ee;
+    font-size:10px;
+
+}
+
+.event-list{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.event{
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.event-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.event-title{
+
+    font-size:11px;
+
+}
+
+.event-status{
+
+    padding:4px 8px;
+
+    border-radius:999px;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+    font-size:9px;
+
+}
+
+.event-meta{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+.table-card{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.table-wrap{
+
+    margin-top:18px;
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    min-width:900px;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    padding:14px 12px;
+
+    text-align:left;
+
+    color:#7dd3fc;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    background:
+    rgba(56,189,248,.04);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+td{
+
+    padding:13px 12px;
+
+    font-size:11px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
 
 }
 
@@ -777,6 +867,9 @@ EMPTY
 ===================================================== */
 
 .empty{
+
+    grid-column:
+    1 / -1;
 
     padding:55px 20px;
 
@@ -792,10 +885,10 @@ EMPTY
 
     margin-bottom:13px;
 
-    font-size:40px;
+    font-size:42px;
 
     color:
-    rgba(34,211,238,.30);
+    rgba(56,189,248,.28);
 
 }
 
@@ -804,38 +897,33 @@ EMPTY
 INFO
 ===================================================== */
 
-.info{
+.info-box{
 
     margin-top:20px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:15px;
-
-}
-
-.info-card{
 
     padding:20px;
 
     border-radius:20px;
 
+    display:flex;
+
+    gap:14px;
+
     background:
-    var(--card);
+    rgba(56,189,248,.05);
 
     border:
-    1px solid var(--border);
+    1px solid
+    rgba(56,189,248,.13);
 
 }
 
 .info-icon{
 
     width:43px;
-
     height:43px;
+
+    flex:none;
 
     border-radius:13px;
 
@@ -845,22 +933,20 @@ INFO
 
     justify-content:center;
 
-    color:#67e8f9;
+    color:#7dd3fc;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(56,189,248,.08);
 
 }
 
-.info-card h3{
-
-    margin-top:13px;
+.info-box h3{
 
     font-size:14px;
 
 }
 
-.info-card p{
+.info-box p{
 
     margin-top:5px;
 
@@ -881,8 +967,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -916,20 +1001,20 @@ RESPONSIVE
     .activity-grid{
 
         grid-template-columns:
-        1fr;
+        1fr 1fr;
 
     }
 
-    .info{
+    .calendar-grid{
 
         grid-template-columns:
-        1fr 1fr;
+        1fr;
 
     }
 
 }
 
-@media(max-width:600px){
+@media(max-width:620px){
 
     .container{
 
@@ -945,9 +1030,6 @@ RESPONSIVE
     }
 
     .stats{
-
-        grid-template-columns:
-        1fr 1fr;
 
         gap:10px;
 
@@ -965,22 +1047,16 @@ RESPONSIVE
 
     }
 
-    .control-row{
+    .activity-grid{
 
-        display:block;
+        grid-template-columns:
+        1fr;
 
     }
 
     .search{
 
-        margin-top:10px;
-
-    }
-
-    .info{
-
-        grid-template-columns:
-        1fr;
+        flex-direction:column;
 
     }
 
@@ -1009,10 +1085,9 @@ RESPONSIVE
 
 <div class="logo">
 
-<i class="fa-solid fa-calendar-days"></i>
+<i class="fa-solid fa-calendar-check"></i>
 
 </div>
-
 
 <div>
 
@@ -1049,21 +1124,25 @@ onclick="location.href='../index.html'">
 <main class="container">
 
 
+<!-- =====================================================
+TITLE
+===================================================== -->
+
 <section class="page-head">
 
 <h2>
-กิจกรรมหมู่บ้าน
+ศูนย์กิจกรรมและงานชุมชน
 </h2>
 
 <p>
-ปฏิทินกิจกรรมและภารกิจของบ้านร่องเข็ม หมู่ที่ 6
+รวมกิจกรรม งานประชุม โครงการ และกิจกรรมสำคัญของบ้านร่องเข็ม
 </p>
 
 <div class="source">
 
 <i class="fa-solid fa-database"></i>
 
-ข้อมูลกิจกรรมจากฐานข้อมูลหมู่บ้าน
+ข้อมูลกิจกรรมจากฐานข้อมูลจริงของระบบ
 
 </div>
 
@@ -1082,7 +1161,7 @@ STATS
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-calendar-check"></i>
+<i class="fa-solid fa-calendar-days"></i>
 
 </div>
 
@@ -1090,7 +1169,7 @@ STATS
 id="totalActivities"
 class="stat-value">
 
-0
+--
 
 </div>
 
@@ -1107,7 +1186,7 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-clock"></i>
+<i class="fa-solid fa-calendar-day"></i>
 
 </div>
 
@@ -1115,7 +1194,7 @@ class="stat-value">
 id="upcomingActivities"
 class="stat-value">
 
-0
+--
 
 </div>
 
@@ -1132,21 +1211,21 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-location-dot"></i>
+<i class="fa-solid fa-people-group"></i>
 
 </div>
 
 <div
-id="locationCount"
+id="meetingCount"
 class="stat-value">
 
-0
+--
 
 </div>
 
 <div class="stat-label">
 
-สถานที่จัดกิจกรรม
+ประชุม/ประชาคม
 
 </div>
 
@@ -1157,12 +1236,12 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-users"></i>
+<i class="fa-solid fa-leaf"></i>
 
 </div>
 
 <div
-id="participantCount"
+id="communityCount"
 class="stat-value">
 
 --
@@ -1171,7 +1250,7 @@ class="stat-value">
 
 <div class="stat-label">
 
-ผู้เข้าร่วมที่บันทึกไว้
+กิจกรรมชุมชน
 
 </div>
 
@@ -1183,28 +1262,59 @@ class="stat-value">
 
 
 <!-- =====================================================
-SEARCH
+FILTER
 ===================================================== -->
 
 <section class="control">
 
-<div class="control-row">
 
-<div>
+<div class="filters">
 
-<strong
-style="font-family:Kanit;font-size:18px">
 
-ค้นหากิจกรรม
+<button
+class="filter active"
+onclick="setFilter('all',this)">
 
-</strong>
+ทั้งหมด
 
-<div
-style="color:#94a3b8;font-size:10px">
+</button>
 
-ค้นหาจากชื่อกิจกรรม สถานที่ หรือรายละเอียด
 
-</div>
+<button
+class="filter"
+onclick="setFilter('ประชุม',this)">
+
+ประชุม
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('กิจกรรมชุมชน',this)">
+
+กิจกรรมชุมชน
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('โครงการ',this)">
+
+โครงการ
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('ประเพณี',this)">
+
+ประเพณี
+
+</button>
+
 
 </div>
 
@@ -1216,6 +1326,7 @@ id="searchInput"
 type="search"
 placeholder="ค้นหากิจกรรม..."
 autocomplete="off">
+
 
 <button
 class="btn"
@@ -1229,6 +1340,25 @@ onclick="loadActivities()">
 
 </div>
 
+
+</section>
+
+
+
+<!-- =====================================================
+ACTIVITY CARDS
+===================================================== -->
+
+<section
+id="activityGrid"
+class="activity-grid">
+
+<div class="empty">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+กำลังโหลดข้อมูลกิจกรรม...
+
 </div>
 
 </section>
@@ -1236,104 +1366,173 @@ onclick="loadActivities()">
 
 
 <!-- =====================================================
-MAIN
+CALENDAR
 ===================================================== -->
 
-<section class="activity-grid">
+<section class="calendar-grid">
 
 
-<!-- TIMELINE -->
+<div class="panel">
 
-<div class="timeline-card">
-
-<div class="card-head">
+<div class="panel-head">
 
 <div>
 
-<div class="card-title">
-กำหนดการกิจกรรม
+<div class="panel-title">
+กิจกรรมที่กำลังจะมาถึง
 </div>
 
-<div class="card-sub">
-เรียงตามวันที่ล่าสุด
+<div class="panel-sub">
+เรียงตามวันที่จัดกิจกรรม
 </div>
 
 </div>
 
-<i class="fa-solid fa-list-check"
-style="color:#22d3ee">
+<i
+class="fa-solid fa-calendar-days"
+style="color:#7dd3fc;font-size:23px">
 </i>
 
 </div>
 
 
 <div
-id="activityList"
-class="timeline">
+id="upcomingList"
+class="event-list">
 
 <div class="empty">
 
-<i class="fa-solid fa-calendar-xmark"></i>
+<i class="fa-solid fa-calendar"></i>
 
-กำลังโหลดข้อมูลกิจกรรม...
-
-</div>
+ยังไม่มีข้อมูลกิจกรรม
 
 </div>
 
 </div>
 
+</div>
 
 
-<!-- CALENDAR -->
 
-<div class="calendar-card">
+<div class="panel">
 
-<div class="card-head">
+<div class="panel-head">
 
 <div>
 
-<div class="calendar-title">
-ปฏิทิน
+<div class="panel-title">
+กิจกรรมล่าสุด
 </div>
 
-<div
-id="calendarMonth"
-class="card-sub">
-
+<div class="panel-sub">
+ประวัติกิจกรรมที่บันทึกไว้
 </div>
 
 </div>
 
-<i class="fa-solid fa-calendar-days"
-style="color:#22d3ee">
+<i
+class="fa-solid fa-clock-rotate-left"
+style="color:#7dd3fc;font-size:23px">
 </i>
 
 </div>
 
 
-<div class="calendar">
-
-<div class="calendar-head">
-
-<div>อา.</div>
-<div>จ.</div>
-<div>อ.</div>
-<div>พ.</div>
-<div>พฤ.</div>
-<div>ศ.</div>
-<div>ส.</div>
-
-</div>
-
-
 <div
-id="calendarDays"
-class="calendar-days">
+id="recentList"
+class="event-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+ยังไม่มีข้อมูลกิจกรรม
 
 </div>
 
 </div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+TABLE
+===================================================== -->
+
+<section class="table-card">
+
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ทะเบียนกิจกรรมชุมชน
+</div>
+
+<div class="panel-sub">
+ข้อมูลจากตาราง activities
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-table-list"
+style="color:#7dd3fc;font-size:24px">
+</i>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ลำดับ</th>
+
+<th>กิจกรรม</th>
+
+<th>ประเภท</th>
+
+<th>วันที่</th>
+
+<th>สถานที่</th>
+
+<th>สถานะ</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="activityTable">
+
+<tr>
+
+<td
+colspan="6"
+class="empty">
+
+<i class="fa-solid fa-database"></i>
+
+ยังไม่มีข้อมูลกิจกรรม
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </div>
 
@@ -1346,77 +1545,29 @@ class="calendar-days">
 INFO
 ===================================================== -->
 
-<section class="info">
-
-
-<div class="info-card">
+<section class="info-box">
 
 <div class="info-icon">
 
-<i class="fa-solid fa-bullhorn"></i>
+<i class="fa-solid fa-circle-info"></i>
 
 </div>
 
+<div>
+
 <h3>
-ประชาสัมพันธ์
+ศูนย์กิจกรรมบ้านร่องเข็ม
 </h3>
 
 <p>
 
-กิจกรรมที่เผยแพร่ต่อประชาชนควรมีวัน เวลา
-สถานที่ และหน่วยงานหรือผู้รับผิดชอบอย่างชัดเจน
+กิจกรรมที่แสดงควรเป็นกิจกรรมที่ผู้ดูแลระบบบันทึกไว้จริง
+สามารถใช้เป็นปฏิทินกลางของหมู่บ้านสำหรับประชาชน
+ผู้นำชุมชน และหน่วยงานที่เกี่ยวข้อง
 
 </p>
 
 </div>
-
-
-
-<div class="info-card">
-
-<div class="info-icon">
-
-<i class="fa-solid fa-clipboard-check"></i>
-
-</div>
-
-<h3>
-ติดตามผล
-</h3>
-
-<p>
-
-ระบบสามารถต่อยอดให้บันทึกผู้เข้าร่วม
-ผลการดำเนินงาน และภาพกิจกรรมได้
-
-</p>
-
-</div>
-
-
-
-<div class="info-card">
-
-<div class="info-icon">
-
-<i class="fa-solid fa-database"></i>
-
-</div>
-
-<h3>
-ข้อมูลจริง
-</h3>
-
-<p>
-
-หากยังไม่มีข้อมูลในฐานข้อมูล
-ระบบจะแสดงสถานะว่าไม่มีข้อมูล
-แทนการสร้างกิจกรรมขึ้นเอง
-
-</p>
-
-</div>
-
 
 </section>
 
@@ -1476,11 +1627,12 @@ supabase.createClient(
 STATE
 ===================================================== */
 
-let activities = [];
+let currentFilter =
+"all";
 
 
 /* =====================================================
-ESCAPE
+HELPERS
 ===================================================== */
 
 function escapeHTML(value){
@@ -1498,13 +1650,26 @@ function escapeHTML(value){
 }
 
 
-/* =====================================================
-DATE
-===================================================== */
+function numberFormat(value){
 
-function formatThaiDate(
-    value
-){
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "--";
+
+    }
+
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
+
+}
+
+
+function formatDate(value){
 
     if(!value)
         return "-";
@@ -1539,24 +1704,21 @@ function formatThaiDate(
 }
 
 
-/* =====================================================
-TIME
-===================================================== */
-
-function formatTime(
-    value
-){
+function toDate(value){
 
     if(!value)
-        return "";
+        return null;
 
+    const date =
+    new Date(value);
 
-    return String(
-        value
-    ).substring(
-        0,
-        5
-    );
+    return Number.isNaN(
+        date.getTime()
+    )
+    ?
+    null
+    :
+    date;
 
 }
 
@@ -1567,9 +1729,9 @@ LOAD ACTIVITIES
 
 async function loadActivities(){
 
-    const list =
+    const grid =
     document.getElementById(
-        "activityList"
+        "activityGrid"
     );
 
 
@@ -1594,9 +1756,23 @@ async function loadActivities(){
         .order(
             "activity_date",
             {
-                ascending:true
+                ascending:false,
+                nullsFirst:false
             }
         );
+
+
+        if(
+            currentFilter !== "all"
+        ){
+
+            query =
+            query.eq(
+                "type",
+                currentFilter
+            );
+
+        }
 
 
         if(keyword){
@@ -1619,7 +1795,7 @@ async function loadActivities(){
             throw error;
 
 
-        activities =
+        const activities =
         data || [];
 
 
@@ -1627,11 +1803,19 @@ async function loadActivities(){
             activities
         );
 
-        updateStatistics(
+        renderTable(
             activities
         );
 
-        renderCalendar(
+        renderUpcoming(
+            activities
+        );
+
+        renderRecent(
+            activities
+        );
+
+        updateStatistics(
             activities
         );
 
@@ -1644,29 +1828,30 @@ async function loadActivities(){
         );
 
 
-        activities = [];
-
-
-        list.innerHTML = `
+        grid.innerHTML = `
 
         <div class="empty">
 
-            <i class="fa-solid fa-calendar-xmark"></i>
+            <i class="fa-solid fa-database"></i>
 
             ยังไม่มีข้อมูลกิจกรรมในฐานข้อมูล
 
             <br>
 
-            กรุณาเพิ่มข้อมูลจากระบบผู้ดูแล
+            กรุณานำเข้าข้อมูลจริงก่อนใช้งาน
 
         </div>
 
         `;
 
 
-        updateStatistics([]);
+        renderTable([]);
 
-        renderCalendar([]);
+        renderUpcoming([]);
+
+        renderRecent([]);
+
+        updateStatistics([]);
 
     }
 
@@ -1674,25 +1859,24 @@ async function loadActivities(){
 
 
 /* =====================================================
-RENDER ACTIVITIES
+RENDER CARDS
 ===================================================== */
 
 function renderActivities(
-    data
+    activities
 ){
 
-    const list =
+    const grid =
     document.getElementById(
-        "activityList"
+        "activityGrid"
     );
 
 
     if(
-        !data ||
-        data.length === 0
+        activities.length === 0
     ){
 
-        list.innerHTML = `
+        grid.innerHTML = `
 
         <div class="empty">
 
@@ -1709,119 +1893,524 @@ function renderActivities(
     }
 
 
-    list.innerHTML =
-    data.map(
-        item => {
+    grid.innerHTML =
+    activities.map(
+        item => `
 
-            const icon =
-            item.category === "ประชุม"
-            ? "fa-users"
-            : item.category === "อบรม"
-            ? "fa-chalkboard-user"
-            : item.category === "พัฒนา"
-            ? "fa-screwdriver-wrench"
-            : "fa-calendar-check";
+        <article
+        class="activity-card">
 
 
-            const time =
-            formatTime(
-                item.start_time
-            );
+            <div
+            class="activity-image">
 
-
-            return `
-
-            <div class="event">
-
-
-                <div class="event-dot">
-
-                    <i class="fa-solid ${icon}">
+                ${
+                    item.image_url
+                    ?
+                    `
+                    <img
+                    src="${escapeHTML(
+                        item.image_url
+                    )}"
+                    alt=""
+                    >
+                    `
+                    :
+                    `
+                    <i
+                    class="fa-solid
+                    fa-calendar-check">
                     </i>
-
-                </div>
-
-
-                <div class="event-body">
-
-
-                    <div class="event-title">
-
-                        ${escapeHTML(
-                            item.title
-                        )}
-
-                    </div>
-
-
-                    <div class="event-description">
-
-                        ${escapeHTML(
-                            item.description
-                        )}
-
-                    </div>
-
-
-                    <div class="event-meta">
-
-
-                        <span>
-
-                            <i class="fa-regular fa-calendar"></i>
-
-                            ${formatThaiDate(
-                                item.activity_date
-                            )}
-
-                        </span>
-
-
-                        ${
-                            time
-                            ?
-                            `
-                            <span>
-
-                                <i class="fa-regular fa-clock"></i>
-
-                                ${escapeHTML(time)} น.
-
-                            </span>
-                            `
-                            :
-                            ""
-                        }
-
-
-                        ${
-                            item.location
-                            ?
-                            `
-                            <span>
-
-                                <i class="fa-solid fa-location-dot"></i>
-
-                                ${escapeHTML(
-                                    item.location
-                                )}
-
-                            </span>
-                            `
-                            :
-                            ""
-                        }
-
-
-                    </div>
-
-                </div>
+                    `
+                }
 
             </div>
 
-            `;
+
+            <div
+            class="activity-body">
+
+
+                <div
+                class="activity-meta">
+
+
+                    <span
+                    class="activity-type">
+
+                        ${escapeHTML(
+                            item.type ||
+                            "กิจกรรม"
+                        )}
+
+                    </span>
+
+
+                    <span
+                    class="activity-date">
+
+                        ${
+                            item.activity_date
+                            ?
+                            formatDate(
+                                item.activity_date
+                            )
+                            :
+                            "-"
+                        }
+
+                    </span>
+
+
+                </div>
+
+
+                <div
+                class="activity-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        "ไม่มีชื่อกิจกรรม"
+                    )}
+
+                </div>
+
+
+                <div
+                class="activity-description">
+
+                    ${escapeHTML(
+                        item.description ||
+                        "ไม่มีรายละเอียด"
+                    )}
+
+                </div>
+
+
+                <div
+                class="activity-info">
+
+
+                    <div class="info">
+
+                        <div class="info-label">
+                        สถานที่
+                        </div>
+
+                        <div class="info-value">
+
+                            ${escapeHTML(
+                                item.location ||
+                                "-"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <div class="info-label">
+                        ผู้รับผิดชอบ
+                        </div>
+
+                        <div class="info-value">
+
+                            ${escapeHTML(
+                                item.organizer ||
+                                "-"
+                            )}
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                class="activity-footer">
+
+                    <i
+                    class="fa-solid fa-users">
+                    </i>
+
+                    ${
+                        escapeHTML(
+                            item.status ||
+                            "ไม่ระบุสถานะ"
+                        )
+                    }
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+UPCOMING
+===================================================== */
+
+function renderUpcoming(
+    activities
+){
+
+    const list =
+    document.getElementById(
+        "upcomingList"
+    );
+
+
+    const now =
+    new Date();
+
+
+    const upcoming =
+    activities
+    .filter(
+        item => {
+
+            const date =
+            toDate(
+                item.activity_date
+            );
+
+            return date &&
+                   date >= now;
 
         }
+    )
+    .sort(
+        (a,b) =>
+        new Date(
+            a.activity_date
+        ) -
+        new Date(
+            b.activity_date
+        )
+    )
+    .slice(0,6);
+
+
+    if(
+        upcoming.length === 0
+    ){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-calendar"></i>
+
+            ยังไม่มีกิจกรรมที่กำลังจะมาถึง
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    upcoming.map(
+        item => `
+
+        <div class="event">
+
+            <div class="event-top">
+
+                <div class="event-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        "กิจกรรม"
+                    )}
+
+                </div>
+
+                <span
+                class="event-status">
+
+                    ${escapeHTML(
+                        item.type ||
+                        "กิจกรรม"
+                    )}
+
+                </span>
+
+            </div>
+
+            <div class="event-meta">
+
+                <i
+                class="fa-solid fa-calendar">
+                </i>
+
+                ${
+                    item.activity_date
+                    ?
+                    formatDate(
+                        item.activity_date
+                    )
+                    :
+                    "-"
+                }
+
+                ·
+
+                <i
+                class="fa-solid fa-location-dot">
+                </i>
+
+                ${
+                    escapeHTML(
+                        item.location ||
+                        "ไม่ระบุสถานที่"
+                    )
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+RECENT
+===================================================== */
+
+function renderRecent(
+    activities
+){
+
+    const list =
+    document.getElementById(
+        "recentList"
+    );
+
+
+    const recent =
+    [...activities]
+    .filter(
+        item =>
+        toDate(
+            item.activity_date
+        )
+    )
+    .sort(
+        (a,b) =>
+        new Date(
+            b.activity_date
+        ) -
+        new Date(
+            a.activity_date
+        )
+    )
+    .slice(0,6);
+
+
+    if(
+        recent.length === 0
+    ){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            ยังไม่มีประวัติกิจกรรม
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    recent.map(
+        item => `
+
+        <div class="event">
+
+            <div class="event-top">
+
+                <div class="event-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        "กิจกรรม"
+                    )}
+
+                </div>
+
+                <span
+                class="event-status">
+
+                    ${escapeHTML(
+                        item.status ||
+                        "เสร็จสิ้น"
+                    )}
+
+                </span>
+
+            </div>
+
+            <div class="event-meta">
+
+                ${
+                    item.activity_date
+                    ?
+                    formatDate(
+                        item.activity_date
+                    )
+                    :
+                    "-"
+                }
+
+                ·
+
+                ${
+                    escapeHTML(
+                        item.location ||
+                        "ไม่ระบุสถานที่"
+                    )
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+function renderTable(
+    activities
+){
+
+    const table =
+    document.getElementById(
+        "activityTable"
+    );
+
+
+    if(
+        activities.length === 0
+    ){
+
+        table.innerHTML = `
+
+        <tr>
+
+            <td
+            colspan="6"
+            class="empty">
+
+                <i class="fa-solid fa-database"></i>
+
+                ยังไม่มีข้อมูลกิจกรรม
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+    activities.map(
+        (item,index) => `
+
+        <tr>
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.title ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.type ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${
+                    item.activity_date
+                    ?
+                    formatDate(
+                        item.activity_date
+                    )
+                    :
+                    "-"
+                }
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.location ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.status ||
+                    "-"
+                )}
+
+            </td>
+
+        </tr>
+
+        `
     ).join("");
 
 }
@@ -1832,242 +2421,132 @@ STATISTICS
 ===================================================== */
 
 function updateStatistics(
-    data
+    activities
 ){
-
-    const total =
-    data.length;
-
 
     const now =
     new Date();
 
 
     const upcoming =
-    data.filter(
+    activities.filter(
         item => {
 
-            if(!item.activity_date)
-                return false;
-
-            return new Date(
+            const date =
+            toDate(
                 item.activity_date
-            ) >= now;
+            );
+
+            return date &&
+                   date >= now;
 
         }
     ).length;
 
 
-    const locations =
-    new Set(
-        data
-        .map(
-            item =>
-            item.location
-        )
-        .filter(Boolean)
-    ).size;
+    const meetings =
+    activities.filter(
+        item =>
+        item.type === "ประชุม"
+    ).length;
 
 
-    let participants = 0;
+    const community =
+    activities.filter(
+        item =>
+        item.type === "กิจกรรมชุมชน"
+    ).length;
 
-    data.forEach(
-        item => {
 
-            if(
-                item.participants !== null &&
-                item.participants !== undefined
-            ){
-
-                participants +=
-                Number(
-                    item.participants
-                ) || 0;
-
-            }
-
-        }
+    setValue(
+        "totalActivities",
+        activities.length
     );
 
-
-    document.getElementById(
-        "totalActivities"
-    ).textContent =
-    total.toLocaleString(
-        "th-TH"
+    setValue(
+        "upcomingActivities",
+        upcoming
     );
 
-
-    document.getElementById(
-        "upcomingActivities"
-    ).textContent =
-    upcoming.toLocaleString(
-        "th-TH"
+    setValue(
+        "meetingCount",
+        meetings
     );
 
-
-    document.getElementById(
-        "locationCount"
-    ).textContent =
-    locations.toLocaleString(
-        "th-TH"
+    setValue(
+        "communityCount",
+        community
     );
-
-
-    document.getElementById(
-        "participantCount"
-    ).textContent =
-    participants > 0
-    ? participants.toLocaleString("th-TH")
-    : "--";
 
 }
 
 
 /* =====================================================
-CALENDAR
+SET VALUE
 ===================================================== */
 
-function renderCalendar(
-    data
+function setValue(
+    id,
+    value
 ){
 
-    const now =
-    new Date();
-
-
-    const year =
-    now.getFullYear();
-
-
-    const month =
-    now.getMonth();
-
-
-    const monthName =
-    now.toLocaleDateString(
-        "th-TH",
-        {
-            month:"long",
-            year:"numeric"
-        }
-    );
-
-
+    const element =
     document.getElementById(
-        "calendarMonth"
-    ).textContent =
-    monthName;
-
-
-    const firstDay =
-    new Date(
-        year,
-        month,
-        1
-    ).getDay();
-
-
-    const daysInMonth =
-    new Date(
-        year,
-        month + 1,
-        0
-    ).getDate();
-
-
-    const eventDays =
-    new Set();
-
-
-    data.forEach(
-        item => {
-
-            if(!item.activity_date)
-                return;
-
-
-            const d =
-            new Date(
-                item.activity_date
-            );
-
-
-            if(
-                d.getFullYear() === year &&
-                d.getMonth() === month
-            ){
-
-                eventDays.add(
-                    d.getDate()
-                );
-
-            }
-
-        }
+        id
     );
 
 
-    const calendar =
-    document.getElementById(
-        "calendarDays"
-    );
+    if(!element)
+        return;
 
 
-    let html = "";
-
-
-    for(
-        let i = 0;
-        i < firstDay;
-        i++
-    ){
-
-        html += `
-        <div class="day empty"></div>
-        `;
-
-    }
-
-
-    for(
-        let day = 1;
-        day <= daysInMonth;
-        day++
-    ){
-
-        const today =
-        day === now.getDate();
-
-
-        const hasEvent =
-        eventDays.has(day);
-
-
-        html += `
-
-        <div
-        class="day
-        ${today ? "today" : ""}
-        ${hasEvent ? "event-day" : ""}">
-
-            ${day}
-
-        </div>
-
-        `;
-
-    }
-
-
-    calendar.innerHTML =
-    html;
+    element.textContent =
+    value > 0
+    ?
+    numberFormat(value)
+    :
+    "--";
 
 }
 
 
 /* =====================================================
-ENTER SEARCH
+FILTER
+===================================================== */
+
+function setFilter(
+    filter,
+    button
+){
+
+    currentFilter =
+    filter;
+
+
+    document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        item =>
+        item.classList.remove(
+            "active"
+        )
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    loadActivities();
+
+}
+
+
+/* =====================================================
+SEARCH
 ===================================================== */
 
 document
