@@ -1,0 +1,10 @@
+-- สร้าง Bucket สำหรับเก็บรูปภาพ
+INSERT INTO storage.buckets (id, name, public) 
+VALUES ('rongkhem-images', 'rongkhem-images', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- อนุญาตให้ทุกคนเข้าถึงและอัปโหลดรูปภาพได้
+CREATE POLICY "Public Read & Upload Access" 
+ON storage.objects FOR ALL 
+USING (bucket_id = 'rongkhem-images')
+WITH CHECK (bucket_id = 'rongkhem-images');
