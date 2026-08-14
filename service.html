@@ -6,862 +6,333 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>
 ศูนย์บริการประชาชน | RONGKHEM e-VILLAGE
 </title>
 
 <link rel="preconnect"
-href="https://fonts.googleapis.com">
+      href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+      rel="stylesheet">
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-/* =====================================================
-ROOT
-===================================================== */
-
 :root{
 
---bg:#03101a;
+    --bg:#07111f;
+    --card:rgba(15,29,48,.88);
+    --border:rgba(255,255,255,.08);
 
---panel:rgba(4,29,43,.94);
+    --text:#f8fafc;
+    --muted:#94a3b8;
 
---border:rgba(112,190,220,.24);
-
---text:#ffffff;
-
---muted:#9db5be;
-
---green:#4cff70;
-
---cyan:#45e8ff;
-
---purple:#d78cff;
-
---orange:#ffb53d;
-
---red:#ff5d5d;
-
---sidebar:260px;
+    --cyan:#22d3ee;
+    --blue:#38bdf8;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --orange:#fb923c;
+    --red:#fb7185;
+    --purple:#a78bfa;
 
 }
-
-
-/* =====================================================
-RESET
-===================================================== */
 
 *{
 
-box-sizing:border-box;
-
-margin:0;
-
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 
 }
-
 
 body{
 
-min-height:100vh;
+    font-family:"Prompt",sans-serif;
 
-font-family:
-"Prompt",
-"Kanit",
-sans-serif;
+    color:var(--text);
 
-color:var(--text);
+    min-height:100vh;
 
-background:
+    background:
 
-linear-gradient(
-rgba(0,12,20,.92),
-rgba(0,12,20,.97)
-),
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(34,211,238,.10),
+        transparent 30%
+    ),
 
-url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
-center/cover fixed no-repeat;
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(59,130,246,.10),
+        transparent 30%
+    ),
 
-}
-
-
-button,
-input,
-select,
-textarea{
-
-font-family:inherit;
+    linear-gradient(
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
+    );
 
 }
 
+.container{
 
-button{
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
 
-cursor:pointer;
+    margin:auto;
 
 }
 
 
 /* =====================================================
-SIDEBAR
+HEADER
 ===================================================== */
 
-.sidebar{
+.header{
 
-position:fixed;
+    position:sticky;
 
-left:0;
+    top:0;
 
-top:0;
+    z-index:100;
 
-bottom:0;
+    background:
+    rgba(4,11,20,.86);
 
-width:var(--sidebar);
+    backdrop-filter:
+    blur(18px);
 
-padding:20px 14px;
-
-background:
-
-linear-gradient(
-180deg,
-rgba(1,18,30,.99),
-rgba(1,10,18,.98)
-);
-
-border-right:
-1px solid
-rgba(120,201,230,.18);
-
-z-index:1000;
-
-overflow-y:auto;
+    border-bottom:
+    1px solid var(--border);
 
 }
 
+.header-inner{
 
-.sidebar-brand{
+    min-height:76px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    justify-content:space-between;
 
-gap:11px;
+    align-items:center;
 
-padding:
-5px
-9px
-20px;
-
-margin-bottom:13px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.09);
+    gap:20px;
 
 }
 
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
 
 .logo{
 
-width:54px;
+    width:48px;
 
-height:54px;
+    height:48px;
 
-display:flex;
+    border-radius:15px;
 
-align-items:center;
+    display:flex;
 
-justify-content:center;
+    align-items:center;
 
-border-radius:15px;
+    justify-content:center;
 
-font-size:29px;
+    font-size:21px;
 
-background:
-
-linear-gradient(
-145deg,
-rgba(255,188,49,.17),
-rgba(4,38,51,.4)
-);
-
-border:
-1px solid
-rgba(255,190,54,.27);
+    background:
+    linear-gradient(
+        135deg,
+        #0369a1,
+        #22d3ee
+    );
 
 }
 
+.brand h1{
 
-.brand-title{
+    font-family:"Kanit";
 
-font-family:"Kanit";
-
-font-size:17px;
-
-line-height:1.1;
+    font-size:19px;
 
 }
 
+.brand p{
 
-.brand-title span{
+    color:var(--muted);
 
-color:#b6ff43;
-
-}
-
-
-.brand-sub{
-
-color:#9eb8c2;
-
-font-size:10px;
-
-margin-top:3px;
+    font-size:11px;
 
 }
 
+.back{
 
-.menu{
+    padding:
+    9px 14px;
 
-display:flex;
+    border-radius:12px;
 
-flex-direction:column;
+    border:
+    1px solid var(--border);
 
-gap:4px;
+    background:
+    rgba(255,255,255,.04);
 
-}
+    color:white;
 
+    cursor:pointer;
 
-.menu a{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-padding:
-12px
-13px;
-
-color:#d6e3e8;
-
-text-decoration:none;
-
-border-radius:12px;
-
-font-size:13px;
-
-border:
-1px solid
-transparent;
-
-transition:.2s;
-
-}
-
-
-.menu a:hover{
-
-background:
-rgba(51,205,104,.08);
-
-border-color:
-rgba(65,231,108,.14);
-
-transform:
-translateX(2px);
-
-}
-
-
-.menu a.active{
-
-background:
-
-linear-gradient(
-100deg,
-rgba(31,190,75,.42),
-rgba(19,90,52,.22)
-);
-
-border-color:
-rgba(84,238,106,.7);
-
-color:#ffffff;
-
-}
-
-
-.icon{
-
-width:28px;
-
-text-align:center;
-
-font-size:20px;
-
-}
-
-
-.contact{
-
-margin-top:18px;
-
-padding:14px;
-
-border-radius:15px;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(7,40,55,.9),
-rgba(3,22,33,.9)
-);
-
-border:
-1px solid
-rgba(116,196,219,.23);
-
-}
-
-
-.contact h3{
-
-font-family:"Kanit";
-
-font-size:16px;
-
-margin-bottom:10px;
-
-}
-
-
-.contact p{
-
-color:#b7cbd3;
-
-font-size:10px;
-
-margin:7px 0;
+    font-family:inherit;
 
 }
 
 
 /* =====================================================
-TOPBAR
+TITLE
 ===================================================== */
 
-.topbar{
+.page-head{
 
-position:fixed;
-
-left:var(--sidebar);
-
-right:0;
-
-top:0;
-
-height:78px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:0 25px;
-
-background:
-rgba(3,22,35,.91);
-
-backdrop-filter:
-blur(18px);
-
-border-bottom:
-1px solid
-var(--border);
-
-z-index:900;
+    margin-top:30px;
 
 }
 
+.page-head h2{
 
-.page-title{
+    font-family:"Kanit";
 
-display:flex;
-
-align-items:center;
-
-gap:12px;
+    font-size:36px;
 
 }
 
+.page-head p{
 
-.big-icon{
+    margin-top:5px;
 
-width:44px;
+    color:var(--muted);
 
-height:44px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:12px;
-
-background:
-rgba(69,232,255,.08);
-
-border:
-1px solid
-rgba(69,232,255,.25);
-
-font-size:24px;
+    font-size:13px;
 
 }
 
+.source{
 
-.page-title h1{
+    display:inline-flex;
 
-font-family:"Kanit";
+    align-items:center;
 
-font-size:21px;
+    gap:8px;
 
-font-weight:500;
+    margin-top:12px;
 
-}
+    padding:
+    8px 12px;
 
+    border-radius:10px;
 
-.page-title p{
+    color:#67e8f9;
 
-color:#8ea7b1;
+    background:
+    rgba(34,211,238,.07);
 
-font-size:10px;
+    border:
+    1px solid
+    rgba(34,211,238,.16);
 
-}
-
-
-.clock{
-
-text-align:right;
-
-}
-
-
-.time{
-
-font-family:"Kanit";
-
-font-size:25px;
-
-}
-
-
-.today{
-
-color:#8ea7b1;
-
-font-size:10px;
-
-}
-
-
-.mobile-button{
-
-display:none;
-
-width:42px;
-
-height:42px;
-
-border-radius:10px;
-
-background:
-rgba(255,255,255,.05);
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-color:#ffffff;
-
-font-size:20px;
+    font-size:11px;
 
 }
 
 
 /* =====================================================
-MAIN
+STATS
 ===================================================== */
 
-.main{
+.stats{
 
-margin-left:var(--sidebar);
+    margin-top:22px;
 
-padding-top:78px;
+    display:grid;
 
-min-height:100vh;
+    grid-template-columns:
+    repeat(4,1fr);
 
-}
-
-
-.content{
-
-max-width:1550px;
-
-margin:auto;
-
-padding:25px;
+    gap:15px;
 
 }
 
+.stat{
 
-/* =====================================================
-SUMMARY
-===================================================== */
+    padding:22px;
 
-.summary{
+    border-radius:22px;
 
-display:grid;
+    background:
+    var(--card);
 
-grid-template-columns:
-repeat(5,1fr);
-
-gap:14px;
-
-margin-bottom:18px;
+    border:
+    1px solid var(--border);
 
 }
 
+.stat-icon{
 
-.summary-card{
+    width:46px;
 
-padding:18px;
+    height:46px;
 
-border-radius:17px;
+    border-radius:14px;
 
-background:
+    display:flex;
 
-linear-gradient(
-145deg,
-rgba(5,36,51,.92),
-rgba(2,20,30,.91)
-);
+    align-items:center;
 
-border:
-1px solid
-var(--border);
+    justify-content:center;
 
-box-shadow:
-0 15px 40px
-rgba(0,0,0,.25);
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
 
 }
 
+.stat-value{
 
-.summary-icon{
+    margin-top:12px;
 
-font-size:25px;
+    font-family:"Kanit";
 
-}
-
-
-.summary-title{
-
-color:#94adb7;
-
-font-size:10px;
-
-margin-top:6px;
+    font-size:34px;
 
 }
 
+.stat-label{
 
-.summary-number{
+    color:var(--muted);
 
-font-family:"Kanit";
-
-font-size:29px;
-
-line-height:1.1;
-
-margin-top:2px;
-
-}
-
-
-.green{
-
-border-color:
-rgba(76,255,112,.28);
-
-}
-
-
-.cyan{
-
-border-color:
-rgba(69,232,255,.28);
-
-}
-
-
-.orange{
-
-border-color:
-rgba(255,181,61,.28);
-
-}
-
-
-.red{
-
-border-color:
-rgba(255,93,93,.28);
-
-}
-
-
-.purple{
-
-border-color:
-rgba(215,140,255,.28);
-
-}
-
-
-/* =====================================================
-WELCOME
-===================================================== */
-
-.welcome{
-
-display:grid;
-
-grid-template-columns:
-1.4fr
-.6fr;
-
-gap:18px;
-
-margin-bottom:18px;
-
-}
-
-
-.welcome-card{
-
-padding:25px;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-135deg,
-rgba(12,62,76,.85),
-rgba(3,27,39,.95)
-);
-
-border:
-1px solid
-rgba(69,232,255,.2);
-
-}
-
-
-.welcome-card h2{
-
-font-family:"Kanit";
-
-font-size:25px;
-
-font-weight:500;
-
-}
-
-
-.welcome-card p{
-
-color:#a2bbc4;
-
-font-size:11px;
-
-line-height:1.8;
-
-margin-top:8px;
-
-}
-
-
-.welcome-actions{
-
-display:flex;
-
-gap:8px;
-
-flex-wrap:wrap;
-
-margin-top:18px;
-
-}
-
-
-.quick-btn{
-
-padding:
-9px
-13px;
-
-border-radius:9px;
-
-border:
-1px solid
-rgba(255,255,255,.1);
-
-background:
-rgba(255,255,255,.05);
-
-color:#fff;
-
-font-size:9px;
-
-}
-
-
-.quick-btn:hover{
-
-background:
-rgba(69,232,255,.1);
-
-}
-
-
-.contact-card{
-
-padding:22px;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-135deg,
-rgba(31,190,75,.12),
-rgba(3,27,39,.95)
-);
-
-border:
-1px solid
-rgba(72,220,104,.2);
-
-}
-
-
-.contact-card h3{
-
-font-family:"Kanit";
-
-font-size:18px;
-
-font-weight:500;
-
-}
-
-
-.contact-item{
-
-display:flex;
-
-align-items:center;
-
-gap:9px;
-
-margin-top:12px;
-
-font-size:10px;
-
-color:#a8bec5;
-
-}
-
-
-/* =====================================================
-TOOLBAR
-===================================================== */
-
-.toolbar{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:12px;
-
-padding:16px;
-
-margin-bottom:18px;
-
-border-radius:17px;
-
-background:
-rgba(4,29,43,.88);
-
-border:
-1px solid
-var(--border);
-
-}
-
-
-.search{
-
-width:100%;
-
-max-width:650px;
-
-padding:
-12px
-15px;
-
-border-radius:11px;
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-background:
-rgba(255,255,255,.045);
-
-color:#ffffff;
-
-outline:none;
-
-font-size:12px;
-
-}
-
-
-.search:focus{
-
-border-color:
-rgba(69,232,255,.55);
+    font-size:12px;
 
 }
 
@@ -872,639 +343,573 @@ SERVICE GRID
 
 .service-grid{
 
-display:grid;
+    margin-top:20px;
 
-grid-template-columns:
-repeat(4,1fr);
+    display:grid;
 
-gap:17px;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
 
 }
-
 
 .service-card{
 
-position:relative;
+    padding:23px;
 
-overflow:hidden;
+    border-radius:22px;
 
-padding:20px;
+    background:
+    var(--card);
 
-border-radius:18px;
+    border:
+    1px solid var(--border);
 
-background:
+    cursor:pointer;
 
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
-
-border:
-1px solid
-var(--border);
-
-box-shadow:
-0 15px 45px
-rgba(0,0,0,.25);
-
-transition:.25s;
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
 
 }
-
 
 .service-card:hover{
 
-transform:
-translateY(-4px);
+    transform:
+    translateY(-3px);
 
-border-color:
-rgba(69,232,255,.4);
+    border-color:
+    rgba(34,211,238,.25);
 
 }
-
 
 .service-icon{
 
-width:55px;
+    width:50px;
 
-height:55px;
+    height:50px;
 
-display:flex;
+    border-radius:15px;
 
-align-items:center;
+    display:flex;
 
-justify-content:center;
+    align-items:center;
 
-border-radius:15px;
+    justify-content:center;
 
-font-size:28px;
+    color:#67e8f9;
 
-background:
-rgba(69,232,255,.08);
-
-border:
-1px solid
-rgba(69,232,255,.15);
+    background:
+    rgba(34,211,238,.08);
 
 }
 
+.service-card h3{
 
-.service-card.green
-.service-icon{
+    margin-top:15px;
 
-background:
-rgba(72,220,104,.08);
+    font-family:"Kanit";
 
-border-color:
-rgba(72,220,104,.18);
+    font-size:19px;
 
 }
 
+.service-card p{
 
-.service-card.orange
-.service-icon{
+    margin-top:5px;
 
-background:
-rgba(255,181,61,.08);
+    color:var(--muted);
 
-border-color:
-rgba(255,181,61,.18);
+    font-size:11px;
 
-}
-
-
-.service-card.purple
-.service-icon{
-
-background:
-rgba(215,140,255,.08);
-
-border-color:
-rgba(215,140,255,.18);
+    line-height:1.8;
 
 }
 
+.service-arrow{
 
-.service-card.red
-.service-icon{
+    margin-top:14px;
 
-background:
-rgba(255,93,93,.08);
+    color:#67e8f9;
 
-border-color:
-rgba(255,93,93,.18);
-
-}
-
-
-.service-title{
-
-font-family:"Kanit";
-
-font-size:17px;
-
-margin-top:15px;
-
-}
-
-
-.service-desc{
-
-color:#8faab4;
-
-font-size:9px;
-
-line-height:1.7;
-
-margin-top:5px;
-
-min-height:45px;
-
-}
-
-
-.service-footer{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-margin-top:16px;
-
-padding-top:12px;
-
-border-top:
-1px solid
-rgba(255,255,255,.06);
-
-}
-
-
-.service-status{
-
-font-size:8px;
-
-color:#718d97;
-
-}
-
-
-.service-btn{
-
-padding:
-7px
-10px;
-
-border-radius:8px;
-
-background:
-rgba(72,220,104,.08);
-
-border:
-1px solid
-rgba(72,220,104,.2);
-
-color:#8ff39d;
-
-font-size:8px;
-
-}
-
-
-.service-btn:hover{
-
-background:
-rgba(72,220,104,.15);
+    font-size:11px;
 
 }
 
 
 /* =====================================================
-REQUEST TABLE
+MAIN GRID
 ===================================================== */
 
-.requests{
+.main-grid{
 
-margin-top:18px;
+    margin-top:20px;
 
-border-radius:19px;
+    display:grid;
 
-overflow:hidden;
+    grid-template-columns:
+    1.15fr .85fr;
 
-background:
-
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
-
-border:
-1px solid
-var(--border);
+    gap:16px;
 
 }
 
+.panel{
 
-.requests-head{
+    padding:23px;
 
-display:flex;
+    border-radius:22px;
 
-align-items:center;
+    background:
+    var(--card);
 
-justify-content:space-between;
-
-padding:
-17px
-19px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.08);
+    border:
+    1px solid var(--border);
 
 }
 
+.panel-head{
 
-.requests-head h2{
+    display:flex;
 
-font-family:"Kanit";
+    align-items:center;
 
-font-size:18px;
+    justify-content:space-between;
 
-font-weight:500;
-
-}
-
-
-.table-wrap{
-
-overflow-x:auto;
+    gap:15px;
 
 }
 
+.panel-title{
 
-table{
+    font-family:"Kanit";
 
-width:100%;
-
-border-collapse:collapse;
-
-min-width:850px;
+    font-size:21px;
 
 }
 
+.panel-sub{
 
-th{
+    margin-top:2px;
 
-padding:
-12px
-14px;
+    color:var(--muted);
 
-text-align:left;
-
-font-size:9px;
-
-color:#7895a0;
-
-font-weight:400;
-
-background:
-rgba(255,255,255,.025);
-
-}
-
-
-td{
-
-padding:
-13px
-14px;
-
-font-size:9px;
-
-color:#c4d4d9;
-
-border-top:
-1px solid
-rgba(255,255,255,.05);
-
-}
-
-
-.status{
-
-display:inline-flex;
-
-padding:
-5px
-8px;
-
-border-radius:6px;
-
-font-size:7px;
-
-}
-
-
-.status-wait{
-
-color:#ffd38e;
-
-background:
-rgba(255,181,61,.09);
-
-}
-
-
-.status-progress{
-
-color:#9eeeff;
-
-background:
-rgba(69,232,255,.09);
-
-}
-
-
-.status-done{
-
-color:#8ef49b;
-
-background:
-rgba(72,220,104,.09);
-
-}
-
-
-.table-btn{
-
-padding:
-5px
-8px;
-
-border-radius:6px;
-
-background:
-rgba(255,255,255,.04);
-
-border:
-1px solid
-rgba(255,255,255,.08);
-
-color:#c8d8dc;
-
-font-size:7px;
+    font-size:11px;
 
 }
 
 
 /* =====================================================
-MODAL
+FORM
 ===================================================== */
-
-.modal{
-
-position:fixed;
-
-inset:0;
-
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-padding:20px;
-
-background:
-rgba(0,0,0,.72);
-
-backdrop-filter:
-blur(8px);
-
-z-index:3000;
-
-}
-
-
-.modal.show{
-
-display:flex;
-
-}
-
-
-.modal-box{
-
-width:min(720px,100%);
-
-max-height:90vh;
-
-overflow-y:auto;
-
-border-radius:20px;
-
-background:
-
-linear-gradient(
-145deg,
-#082a3a,
-#031721
-);
-
-border:
-1px solid
-rgba(100,210,235,.28);
-
-box-shadow:
-0 25px 80px
-rgba(0,0,0,.6);
-
-}
-
-
-.modal-head{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:
-18px
-20px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.08);
-
-}
-
-
-.modal-head h3{
-
-font-family:"Kanit";
-
-font-size:19px;
-
-font-weight:500;
-
-}
-
-
-.close{
-
-width:34px;
-
-height:34px;
-
-border-radius:9px;
-
-border:
-1px solid
-rgba(255,255,255,.1);
-
-background:
-rgba(255,255,255,.05);
-
-color:#fff;
-
-font-size:18px;
-
-}
-
 
 .form{
 
-padding:20px;
+    margin-top:18px;
 
-display:grid;
+    display:grid;
 
-grid-template-columns:
-repeat(2,1fr);
+    gap:13px;
 
-gap:14px;
+}
+
+.field{
+
+    display:grid;
+
+    gap:6px;
+
+}
+
+.field label{
+
+    color:#cbd5e1;
+
+    font-size:11px;
+
+}
+
+.field input,
+.field select,
+.field textarea{
+
+    width:100%;
+
+    padding:
+    12px 14px;
+
+    border-radius:12px;
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(0,0,0,.20);
+
+    color:white;
+
+    outline:none;
+
+    font-family:"Prompt";
+
+}
+
+.field textarea{
+
+    min-height:105px;
+
+    resize:vertical;
+
+}
+
+.field select option{
+
+    color:#111827;
+
+}
+
+.form-row{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:10px;
+
+}
+
+.submit{
+
+    margin-top:3px;
+
+    padding:
+    13px;
+
+    border:0;
+
+    border-radius:13px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
+
+    background:
+    linear-gradient(
+        135deg,
+        #0284c7,
+        #06b6d4
+    );
 
 }
 
 
-.form-group{
+/* =====================================================
+TRACKING
+===================================================== */
 
-display:flex;
+.tracking-box{
 
-flex-direction:column;
+    margin-top:18px;
 
-gap:5px;
+    padding:18px;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.tracking-box input{
+
+    width:100%;
+
+    padding:
+    12px 14px;
+
+    border-radius:12px;
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(0,0,0,.20);
+
+    color:white;
+
+    outline:none;
+
+    font-family:"Prompt";
+
+}
+
+.track-btn{
+
+    width:100%;
+
+    margin-top:9px;
+
+    padding:11px;
+
+    border:0;
+
+    border-radius:12px;
+
+    background:
+    rgba(34,211,238,.10);
+
+    border:
+    1px solid
+    rgba(34,211,238,.20);
+
+    color:#67e8f9;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
+
+}
+
+.track-result{
+
+    margin-top:14px;
+
+}
+
+.status-line{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:12px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    margin-bottom:8px;
+
+}
+
+.status-dot{
+
+    width:9px;
+
+    height:9px;
+
+    border-radius:50%;
+
+    background:#64748b;
+
+}
+
+.status-dot.active{
+
+    background:#22d3ee;
+
+    box-shadow:
+    0 0 12px
+    rgba(34,211,238,.7);
 
 }
 
 
-.form-group.full{
+/* =====================================================
+REQUEST LIST
+===================================================== */
 
-grid-column:1/-1;
+.request-list{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.request{
+
+    padding:16px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.request-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.request-title{
+
+    font-size:13px;
+
+}
+
+.request-status{
+
+    padding:
+    4px 8px;
+
+    border-radius:999px;
+
+    font-size:9px;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.request-meta{
+
+    margin-top:7px;
+
+    color:var(--muted);
+
+    font-size:10px;
 
 }
 
 
-.form-group label{
+/* =====================================================
+PRIVACY
+===================================================== */
 
-color:#9bb4bd;
+.privacy{
 
-font-size:10px;
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    gap:14px;
+
+    background:
+    rgba(167,139,250,.06);
+
+    border:
+    1px solid
+    rgba(167,139,250,.15);
+
+}
+
+.privacy-icon{
+
+    width:43px;
+
+    height:43px;
+
+    flex:none;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#c4b5fd;
+
+    background:
+    rgba(167,139,250,.08);
+
+}
+
+.privacy h3{
+
+    font-size:14px;
+
+}
+
+.privacy p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
 
 }
 
 
-.form-group input,
-.form-group textarea,
-.form-group select{
+/* =====================================================
+EMPTY
+===================================================== */
 
-padding:11px;
+.empty{
 
-border-radius:9px;
+    padding:40px 20px;
 
-background:
-rgba(255,255,255,.045);
+    text-align:center;
 
-color:#fff;
+    color:var(--muted);
 
-border:
-1px solid
-rgba(255,255,255,.12);
+}
 
-outline:none;
+.empty i{
 
-font-size:11px;
+    display:block;
+
+    margin-bottom:12px;
+
+    font-size:36px;
+
+    color:
+    rgba(34,211,238,.30);
 
 }
 
 
-.form-group textarea{
+/* =====================================================
+FOOTER
+===================================================== */
 
-min-height:90px;
+.footer{
 
-resize:vertical;
+    margin-top:45px;
 
-}
+    padding:
+    25px 0;
 
+    border-top:
+    1px solid var(--border);
 
-.form-group select option{
+    color:var(--muted);
 
-background:#06202e;
+    font-size:11px;
 
-}
+    display:flex;
 
+    justify-content:space-between;
 
-.modal-actions{
-
-display:flex;
-
-justify-content:flex-end;
-
-gap:8px;
-
-padding:
-0 20px
-20px;
-
-}
-
-
-.btn{
-
-border:0;
-
-padding:
-11px
-17px;
-
-border-radius:11px;
-
-font-size:11px;
-
-font-weight:500;
-
-color:#02150a;
-
-background:#48dc68;
-
-}
-
-
-.btn-cancel{
-
-color:#d5e0e4;
-
-background:
-rgba(255,255,255,.07);
-
-border:
-1px solid
-rgba(255,255,255,.1);
+    gap:20px;
 
 }
 
@@ -1513,164 +918,86 @@ rgba(255,255,255,.1);
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:1250px){
+@media(max-width:950px){
 
-:root{
+    .stats{
 
---sidebar:230px;
+        grid-template-columns:
+        repeat(2,1fr);
 
-}
+    }
 
-.service-grid{
+    .service-grid{
 
-grid-template-columns:
-repeat(3,1fr);
+        grid-template-columns:
+        1fr 1fr;
 
-}
+    }
 
-.summary{
+    .main-grid{
 
-grid-template-columns:
-repeat(3,1fr);
+        grid-template-columns:
+        1fr;
 
-}
-
-.welcome{
-
-grid-template-columns:1fr;
+    }
 
 }
 
-}
+@media(max-width:600px){
 
+    .container{
 
-@media(max-width:1000px){
+        width:
+        calc(100% - 20px);
 
-.sidebar{
+    }
 
-transform:
-translateX(-100%);
+    .page-head h2{
 
-transition:.3s;
+        font-size:29px;
 
-}
+    }
 
-.sidebar.open{
+    .stats{
 
-transform:
-translateX(0);
+        grid-template-columns:
+        1fr 1fr;
 
-}
+        gap:10px;
 
-.topbar{
+    }
 
-left:0;
+    .stat{
 
-}
+        padding:16px;
 
-.main{
+    }
 
-margin-left:0;
+    .stat-value{
 
-}
+        font-size:28px;
 
-.mobile-button{
+    }
 
-display:block;
+    .service-grid{
 
-}
+        grid-template-columns:
+        1fr;
 
-.page-title p{
+    }
 
-display:none;
+    .form-row{
 
-}
+        grid-template-columns:
+        1fr;
 
-}
+    }
 
+    .footer{
 
-@media(max-width:800px){
+        display:block;
 
-.content{
-
-padding:13px;
-
-}
-
-.service-grid{
-
-grid-template-columns:
-repeat(2,1fr);
-
-}
-
-.summary{
-
-grid-template-columns:
-repeat(2,1fr);
-
-}
-
-.toolbar{
-
-flex-direction:column;
-
-align-items:stretch;
-
-}
-
-.search{
-
-max-width:none;
-
-}
-
-.clock{
-
-display:none;
-
-}
-
-}
-
-
-@media(max-width:520px){
-
-.summary{
-
-grid-template-columns:1fr;
-
-}
-
-.service-grid{
-
-grid-template-columns:1fr;
-
-}
-
-.page-title h1{
-
-font-size:17px;
-
-}
-
-.form{
-
-grid-template-columns:1fr;
-
-}
-
-.form-group.full{
-
-grid-column:auto;
-
-}
-
-.welcome-card h2{
-
-font-size:21px;
-
-}
+    }
 
 }
 
@@ -1682,624 +1009,350 @@ font-size:21px;
 <body>
 
 
-<!-- =====================================================
-SIDEBAR
-===================================================== -->
+<header class="header">
 
-<aside
-class="sidebar"
-id="sidebar"
->
+<div class="container header-inner">
 
-<div class="sidebar-brand">
+
+<div class="brand">
 
 <div class="logo">
-🏛️
-</div>
 
-<div>
+<i class="fa-solid fa-handshake-angle"></i>
 
-<div class="brand-title">
-
-RONGKHEM
-<span>e-VILLAGE</span>
-
-</div>
-
-<div class="brand-sub">
-
-ที่ทำการผู้ใหญ่บ้านออนไลน์
-
-</div>
-
-</div>
-
-</div>
-
-
-<nav class="menu">
-
-
-<a href="index.html">
-
-<span class="icon">🏠</span>
-หน้าหลัก
-
-</a>
-
-
-<a href="citizen.html">
-
-<span class="icon">👥</span>
-ข้อมูลประชาชน
-
-</a>
-
-
-<a href="household.html">
-
-<span class="icon">🏠</span>
-ข้อมูลครัวเรือน
-
-</a>
-
-
-<a href="leader.html">
-
-<span class="icon">👔</span>
-ผู้นำชุมชน
-
-</a>
-
-
-<a href="news.html">
-
-<span class="icon">📢</span>
-ข่าวประชาสัมพันธ์
-
-</a>
-
-
-<a href="activity.html">
-
-<span class="icon">📅</span>
-กิจกรรม / ปฏิทิน
-
-</a>
-
-
-<a href="incident.html">
-
-<span class="icon">🚨</span>
-แจ้งเหตุ / ร้องเรียน
-
-</a>
-
-
-<a
-href="service.html"
-class="active"
->
-
-<span class="icon">🤝</span>
-บริการประชาชน
-
-</a>
-
-
-<a href="project.html">
-
-<span class="icon">🏗️</span>
-โครงการพัฒนาหมู่บ้าน
-
-</a>
-
-
-<a href="environment.html">
-
-<span class="icon">🌱</span>
-สิ่งแวดล้อม / PM2.5
-
-</a>
-
-
-<a href="wetland.html">
-
-<span class="icon">💧</span>
-แหล่งซับน้ำจำ
-
-</a>
-
-
-<a href="rice.html">
-
-<span class="icon">🍚</span>
-กลุ่มข้าวสาร
-
-</a>
-
-
-<a href="statistics.html">
-
-<span class="icon">📊</span>
-สถิติหมู่บ้าน
-
-</a>
-
-
-<a href="admin.html">
-
-<span class="icon">⚙️</span>
-ตั้งค่าระบบ
-
-</a>
-
-
-</nav>
-
-
-<div class="contact">
-
-<h3>
-ที่ทำการผู้ใหญ่บ้าน
-</h3>
-
-<p>
-📞 โทร. 088-888-8888
-</p>
-
-<p>
-🟢 LINE ID: rongkhem.village
-</p>
-
-<p>
-🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
-</p>
-
-</div>
-
-</aside>
-
-
-<!-- =====================================================
-TOPBAR
-===================================================== -->
-
-<header class="topbar">
-
-
-<div class="page-title">
-
-
-<button
-class="mobile-button"
-id="mobileButton"
->
-☰
-</button>
-
-
-<div class="big-icon">
-🤝
 </div>
 
 
 <div>
 
 <h1>
-ศูนย์บริการประชาชนออนไลน์
+RONGKHEM e-VILLAGE
 </h1>
 
 <p>
-บริการประชาชนจากที่ทำการผู้ใหญ่บ้านออนไลน์
+ที่ทำการผู้ใหญ่บ้านออนไลน์
 </p>
 
 </div>
 
-
 </div>
 
 
-<div class="clock">
+<button
+class="back"
+onclick="location.href='../index.html'">
 
-<div
-class="time"
-id="time"
->
-00:00:00
-</div>
+<i class="fa-solid fa-arrow-left"></i>
 
-<div
-class="today"
-id="today"
->
-กำลังโหลด...
-</div>
+กลับหน้าหลัก
+
+</button>
+
 
 </div>
-
 
 </header>
 
 
+
+<main class="container">
+
+
 <!-- =====================================================
-MAIN
+TITLE
 ===================================================== -->
 
-<main class="main">
-
-<div class="content">
-
-
-<!-- SUMMARY -->
-
-<section class="summary">
-
-
-<div class="summary-card cyan">
-
-<div class="summary-icon">
-🤝
-</div>
-
-<div class="summary-title">
-บริการทั้งหมด
-</div>
-
-<div
-class="summary-number"
-id="serviceCount"
->
-8
-</div>
-
-</div>
-
-
-<div class="summary-card orange">
-
-<div class="summary-icon">
-📋
-</div>
-
-<div class="summary-title">
-คำขอทั้งหมด
-</div>
-
-<div
-class="summary-number"
-id="requestCount"
->
-16
-</div>
-
-</div>
-
-
-<div class="summary-card purple">
-
-<div class="summary-icon">
-⏳
-</div>
-
-<div class="summary-title">
-รอดำเนินการ
-</div>
-
-<div
-class="summary-number"
-id="waitingCount"
->
-4
-</div>
-
-</div>
-
-
-<div class="summary-card cyan">
-
-<div class="summary-icon">
-🔧
-</div>
-
-<div class="summary-title">
-กำลังดำเนินการ
-</div>
-
-<div
-class="summary-number"
-id="workingCount"
->
-6
-</div>
-
-</div>
-
-
-<div class="summary-card green">
-
-<div class="summary-icon">
-✅
-</div>
-
-<div class="summary-title">
-เสร็จแล้ว
-</div>
-
-<div
-class="summary-number"
-id="completeCount"
->
-6
-</div>
-
-</div>
-
-
-</section>
-
-
-<!-- WELCOME -->
-
-<section class="welcome">
-
-
-<div class="welcome-card">
+<section class="page-head">
 
 <h2>
-🏛️ ยินดีต้อนรับสู่ศูนย์บริการประชาชน
+ศูนย์บริการประชาชน
 </h2>
 
 <p>
-ประชาชนบ้านร่องเข็มสามารถติดต่อ ขอรับบริการ
-แจ้งปัญหา และส่งคำร้องต่าง ๆ ผ่านระบบออนไลน์
-ได้จากโทรศัพท์มือถือ โดยไม่จำเป็นต้องเดินทางมายัง
-ที่ทำการผู้ใหญ่บ้านในเบื้องต้น
+ช่องทางรับเรื่อง แจ้งปัญหา ขอความช่วยเหลือ และติดตามการดำเนินงาน
 </p>
 
+<div class="source">
 
-<div class="welcome-actions">
+<i class="fa-solid fa-shield-halved"></i>
 
-<button
-class="quick-btn"
-onclick="openService('หนังสือรับรอง')"
->
-📄 ขอหนังสือรับรอง
-</button>
-
-<button
-class="quick-btn"
-onclick="openService('แบบคำร้องทั่วไป')"
->
-📝 แบบคำร้อง
-</button>
-
-<button
-class="quick-btn"
-onclick="location.href='incident.html'"
->
-🚨 แจ้งเหตุ
-</button>
-
-<button
-class="quick-btn"
-onclick="openService('ขอประชาสัมพันธ์')"
->
-📢 ขอประชาสัมพันธ์
-</button>
-
-</div>
-
-</div>
-
-
-<div class="contact-card">
-
-<h3>
-📞 ติดต่อที่ทำการผู้ใหญ่บ้าน
-</h3>
-
-
-<div class="contact-item">
-
-<span>☎️</span>
-
-<span>
-088-888-8888
-</span>
-
-</div>
-
-
-<div class="contact-item">
-
-<span>💬</span>
-
-<span>
-LINE: rongkhem.village
-</span>
-
-</div>
-
-
-<div class="contact-item">
-
-<span>📍</span>
-
-<span>
-บ้านร่องเข็ม หมู่ที่ 6
-</span>
-
-</div>
-
-
-<div class="contact-item">
-
-<span>🕐</span>
-
-<span>
-08.30 - 16.30 น.
-</span>
-
-</div>
+ข้อมูลคำร้องจะถูกจัดการโดยผู้มีสิทธิ์เข้าถึง
 
 </div>
 
 </section>
 
-
-<!-- TOOLBAR -->
-
-<section class="toolbar">
-
-
-<input
-type="search"
-id="searchInput"
-class="search"
-placeholder="🔎 ค้นหาบริการ เช่น หนังสือรับรอง ถนน ไฟฟ้า น้ำประปา..."
->
-
-
-</section>
-
-
-<!-- SERVICE GRID -->
-
-<section
-class="service-grid"
-id="serviceGrid"
-></section>
-
-
-<!-- REQUEST TABLE -->
-
-<section class="requests">
-
-
-<div class="requests-head">
-
-<h2>
-📋 คำขอรับบริการล่าสุด
-</h2>
-
-<span
-style="font-size:9px;color:#7895a0"
->
-ติดตามสถานะคำขอ
-</span>
-
-</div>
-
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-เลขที่
-</th>
-
-<th>
-บริการ
-</th>
-
-<th>
-ผู้ยื่นคำขอ
-</th>
-
-<th>
-วันที่
-</th>
-
-<th>
-สถานะ
-</th>
-
-<th>
-ดำเนินการ
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody
-id="requestTable"
-></tbody>
-
-
-</table>
-
-</div>
-
-</section>
-
-
-</div>
-
-</main>
 
 
 <!-- =====================================================
-MODAL
+STATS
 ===================================================== -->
 
+<section class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-inbox"></i>
+
+</div>
+
 <div
-class="modal"
-id="modal"
->
+id="totalRequests"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+เรื่องทั้งหมด
+
+</div>
+
+</div>
 
 
-<div class="modal-box">
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-hourglass-half"></i>
+
+</div>
+
+<div
+id="pendingRequests"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+รอดำเนินการ
+
+</div>
+
+</div>
 
 
-<div class="modal-head">
+<div class="stat">
 
-<h3
-id="modalTitle"
->
-ขอรับบริการ
+<div class="stat-icon">
+
+<i class="fa-solid fa-spinner"></i>
+
+</div>
+
+<div
+id="workingRequests"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+กำลังดำเนินการ
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+<div
+id="completedRequests"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+ดำเนินการแล้ว
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+SERVICES
+===================================================== -->
+
+<section class="service-grid">
+
+
+<div
+class="service-card"
+onclick="focusRequest('ทั่วไป')">
+
+<div class="service-icon">
+
+<i class="fa-solid fa-file-circle-exclamation"></i>
+
+</div>
+
+<h3>
+แจ้งปัญหาทั่วไป
 </h3>
 
+<p>
+แจ้งเรื่องที่พบในพื้นที่หมู่บ้าน
+เพื่อให้ที่ทำการผู้ใหญ่บ้านรับทราบและดำเนินการ
+</p>
 
-<button
-class="close"
-id="closeModal"
->
-×
-</button>
+<div class="service-arrow">
+
+เริ่มแจ้งเรื่อง
+<i class="fa-solid fa-arrow-right"></i>
+
+</div>
+
+</div>
+
+
+
+<div
+class="service-card"
+onclick="focusRequest('โครงสร้างพื้นฐาน')">
+
+<div class="service-icon">
+
+<i class="fa-solid fa-road"></i>
+
+</div>
+
+<h3>
+ถนน / ไฟฟ้า / น้ำ
+</h3>
+
+<p>
+แจ้งปัญหาด้านโครงสร้างพื้นฐาน
+และสาธารณูปโภคในพื้นที่
+</p>
+
+<div class="service-arrow">
+
+เริ่มแจ้งเรื่อง
+<i class="fa-solid fa-arrow-right"></i>
+
+</div>
+
+</div>
+
+
+
+<div
+class="service-card"
+onclick="focusRequest('สิ่งแวดล้อม')">
+
+<div class="service-icon">
+
+<i class="fa-solid fa-leaf"></i>
+
+</div>
+
+<h3>
+สิ่งแวดล้อม
+</h3>
+
+<p>
+แจ้งเหตุเผา ขยะ ควัน ฝุ่น
+หรือปัญหาสิ่งแวดล้อมในชุมชน
+</p>
+
+<div class="service-arrow">
+
+เริ่มแจ้งเรื่อง
+<i class="fa-solid fa-arrow-right"></i>
+
+</div>
+
+</div>
+
+
+
+</section>
+
+
+
+<!-- =====================================================
+MAIN GRID
+===================================================== -->
+
+<section class="main-grid">
+
+
+<!-- FORM -->
+
+<div
+id="requestPanel"
+class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+แจ้งเรื่อง / ขอความช่วยเหลือ
+</div>
+
+<div class="panel-sub">
+กรอกข้อมูลเพื่อส่งเรื่องเข้าสู่ระบบ
+</div>
+
+</div>
+
+<i class="fa-solid fa-paper-plane"
+style="color:#22d3ee;font-size:24px">
+</i>
 
 </div>
 
 
 <form
-class="form"
-id="serviceForm"
->
+id="requestForm"
+class="form">
 
 
-<div class="form-group">
+<div class="form-row">
+
+
+<div class="field">
 
 <label>
-ชื่อผู้ขอรับบริการ
+ชื่อผู้แจ้ง
 </label>
 
 <input
-id="requester"
-required
-placeholder="ชื่อ - นามสกุล"
->
+id="citizenName"
+type="text"
+placeholder="ชื่อ-นามสกุล">
 
 </div>
 
 
-<div class="form-group">
+<div class="field">
 
 <label>
 เบอร์โทรศัพท์
@@ -2307,42 +1360,46 @@ placeholder="ชื่อ - นามสกุล"
 
 <input
 id="phone"
-required
-placeholder="08x-xxx-xxxx"
->
+type="tel"
+placeholder="เบอร์โทรศัพท์">
 
 </div>
 
 
-<div class="form-group full">
+</div>
+
+
+<div class="field">
 
 <label>
-บริการที่ต้องการ
+ประเภทเรื่อง
 </label>
 
 <select
-id="serviceType"
-required
->
+id="category">
 
-<option value="หนังสือรับรอง">
-📄 ขอหนังสือรับรอง
+<option value="">
+-- เลือกประเภทเรื่อง --
 </option>
 
-<option value="แบบคำร้องทั่วไป">
-📝 แบบคำร้องทั่วไป
+<option value="ทั่วไป">
+เรื่องทั่วไป
 </option>
 
-<option value="ขอประชาสัมพันธ์">
-📢 ขอประชาสัมพันธ์
+<option value="โครงสร้างพื้นฐาน">
+ถนน / ไฟฟ้า / น้ำ
 </option>
 
-<option value="ขอข้อมูลครัวเรือน">
-🏠 ขอข้อมูลครัวเรือน
+<option value="สิ่งแวดล้อม">
+สิ่งแวดล้อม
 </option>
 
-<option value="ขอความช่วยเหลือ">
-🤝 ขอความช่วยเหลือ
+<option value="สวัสดิการ">
+สวัสดิการ / ขอความช่วยเหลือ
+</option>
+
+<option value="อื่น ๆ">
+อื่น ๆ
 </option>
 
 </select>
@@ -2350,740 +1407,905 @@ required
 </div>
 
 
-<div class="form-group full">
+<div class="field">
 
 <label>
-รายละเอียดคำขอ
-</label>
-
-<textarea
-id="details"
-required
-placeholder="ระบุรายละเอียดที่ต้องการ..."
-></textarea>
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-หมายเหตุ / ข้อมูลเพิ่มเติม
+หัวข้อเรื่อง
 </label>
 
 <input
-id="note"
-placeholder="ถ้ามี"
->
+id="title"
+type="text"
+placeholder="ระบุหัวข้อเรื่อง">
 
 </div>
+
+
+<div class="field">
+
+<label>
+รายละเอียด
+</label>
+
+<textarea
+id="description"
+placeholder="อธิบายรายละเอียดของเรื่องที่ต้องการแจ้ง"></textarea>
+
+</div>
+
+
+<div class="field">
+
+<label>
+สถานที่เกิดเหตุ / จุดที่พบปัญหา
+</label>
+
+<input
+id="location"
+type="text"
+placeholder="เช่น บริเวณหน้าบ้าน / ถนน / จุดสาธารณะ">
+
+</div>
+
+
+<button
+type="submit"
+class="submit">
+
+<i class="fa-solid fa-paper-plane"></i>
+
+ส่งเรื่องเข้าสู่ระบบ
+
+</button>
 
 
 </form>
 
 
-<div class="modal-actions">
+<div
+id="formMessage"
+style="
+margin-top:12px;
+font-size:11px;
+color:#86efac;
+">
+</div>
+
+
+</div>
+
+
+
+<!-- TRACKING -->
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ติดตามเรื่อง
+</div>
+
+<div class="panel-sub">
+ตรวจสอบสถานะด้วยเลขที่คำร้อง
+</div>
+
+</div>
+
+<i class="fa-solid fa-magnifying-glass"
+style="color:#22d3ee;font-size:22px">
+</i>
+
+</div>
+
+
+<div class="tracking-box">
+
+<input
+id="trackingId"
+type="text"
+placeholder="กรอกเลขที่คำร้อง">
 
 
 <button
-class="btn btn-cancel"
-id="cancelButton"
->
-ยกเลิก
+class="track-btn"
+onclick="trackRequest()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+ตรวจสอบสถานะ
+
 </button>
 
 
-<button
-class="btn"
-id="saveButton"
->
-💾 ส่งคำขอ
-</button>
+<div
+id="trackResult"
+class="track-result">
 
+<div class="empty">
+
+<i class="fa-solid fa-file-circle-question"></i>
+
+กรอกเลขที่คำร้องเพื่อค้นหา
+
+</div>
 
 </div>
 
 
 </div>
 
+
+<div
+style="
+margin-top:18px;
+color:#94a3b8;
+font-size:10px;
+line-height:1.8;
+">
+
+<strong
+style="color:#cbd5e1">
+
+สถานะคำร้อง
+
+</strong>
+
+<br>
+
+• รอดำเนินการ — เรื่องได้รับแล้ว
+<br>
+
+• กำลังดำเนินการ — อยู่ระหว่างประสานงาน
+<br>
+
+• ดำเนินการแล้ว — ปิดเรื่อง
+
 </div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+RECENT REQUESTS
+===================================================== -->
+
+<section class="panel"
+style="margin-top:20px">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+เรื่องล่าสุด
+</div>
+
+<div class="panel-sub">
+แสดงเฉพาะข้อมูลที่ระบบอนุญาตให้เผยแพร่
+</div>
+
+</div>
+
+<i class="fa-solid fa-list"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="requestList"
+class="request-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-inbox"></i>
+
+กำลังโหลดข้อมูล...
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+PRIVACY
+===================================================== -->
+
+<section class="privacy">
+
+<div class="privacy-icon">
+
+<i class="fa-solid fa-user-shield"></i>
+
+</div>
+
+<div>
+
+<h3>
+การคุ้มครองข้อมูลผู้แจ้ง
+</h3>
+
+<p>
+
+ข้อมูลชื่อ เบอร์โทรศัพท์ และรายละเอียดส่วนบุคคล
+จะไม่ควรเปิดเผยต่อสาธารณะโดยไม่จำเป็น
+ระบบนี้ออกแบบให้ข้อมูลคำร้องและข้อมูลผู้แจ้ง
+แยกการเข้าถึงตามสิทธิ์ของผู้ใช้งาน
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+
+<div>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</div>
+
+</footer>
+
+
+</main>
+
 
 
 <script>
 
 /* =====================================================
-SERVICES
+SUPABASE
 ===================================================== */
 
-const services=[
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
 
-{
-id:1,
-icon:"📄",
-title:"ขอหนังสือรับรอง",
-desc:"ยื่นคำขอหนังสือรับรองจากที่ทำการผู้ใหญ่บ้าน",
-color:"cyan",
-status:"เปิดให้บริการ"
-},
-
-{
-id:2,
-icon:"📝",
-title:"แบบคำร้องทั่วไป",
-desc:"ส่งคำร้องหรือข้อเสนอแนะเกี่ยวกับการพัฒนาหมู่บ้าน",
-color:"green",
-status:"เปิดให้บริการ"
-},
-
-{
-id:3,
-icon:"📢",
-title:"ขอประชาสัมพันธ์",
-desc:"ขอให้ที่ทำการผู้ใหญ่บ้านประชาสัมพันธ์ข่าวหรือกิจกรรม",
-color:"orange",
-status:"เปิดให้บริการ"
-},
-
-{
-id:4,
-icon:"🏠",
-title:"ข้อมูลครัวเรือน",
-desc:"ติดต่อขอข้อมูลหรือประสานงานด้านข้อมูลครัวเรือน",
-color:"purple",
-status:"เปิดให้บริการ"
-},
-
-{
-id:5,
-icon:"🤝",
-title:"ขอความช่วยเหลือ",
-desc:"แจ้งความต้องการความช่วยเหลือหรือประสานหน่วยงาน",
-color:"green",
-status:"เปิดให้บริการ"
-},
-
-{
-id:6,
-icon:"💧",
-title:"แจ้งปัญหาน้ำประปา",
-desc:"แจ้งน้ำไม่ไหล น้ำขุ่น ท่อแตก หรือปัญหาระบบประปา",
-color:"cyan",
-status:"เปิดให้บริการ"
-},
-
-{
-id:7,
-icon:"💡",
-title:"แจ้งปัญหาไฟฟ้า",
-desc:"แจ้งไฟฟ้าดับ ไฟส่องสว่างเสีย หรือปัญหาไฟฟ้าสาธารณะ",
-color:"orange",
-status:"เปิดให้บริการ"
-},
-
-{
-id:8,
-icon:"🛣️",
-title:"แจ้งปัญหาถนน",
-desc:"แจ้งถนนชำรุด หลุมบ่อ ป้าย หรือสิ่งกีดขวางทางจราจร",
-color:"red",
-status:"เปิดให้บริการ"
-}
-
-];
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
 
 
-/* =====================================================
-REQUESTS
-===================================================== */
-
-let requests=[
-
-{
-id:"SV-0016",
-service:"หนังสือรับรอง",
-name:"สมชาย ใจดี",
-date:"14/08/2569",
-status:"เสร็จแล้ว"
-},
-
-{
-id:"SV-0015",
-service:"แจ้งปัญหาน้ำประปา",
-name:"มาลี วงศ์คำ",
-date:"14/08/2569",
-status:"กำลังดำเนินการ"
-},
-
-{
-id:"SV-0014",
-service:"ขอประชาสัมพันธ์",
-name:"วิชัย แสนดี",
-date:"13/08/2569",
-status:"รอดำเนินการ"
-},
-
-{
-id:"SV-0013",
-service:"แบบคำร้องทั่วไป",
-name:"จันทร์เพ็ญ บุญมา",
-date:"13/08/2569",
-status:"เสร็จแล้ว"
-},
-
-{
-id:"SV-0012",
-service:"ขอความช่วยเหลือ",
-name:"บุญมี คำปัน",
-date:"12/08/2569",
-status:"กำลังดำเนินการ"
-},
-
-{
-id:"SV-0011",
-service:"แจ้งปัญหาถนน",
-name:"ประเสริฐ คำดี",
-date:"11/08/2569",
-status:"รอดำเนินการ"
-}
-
-];
-
-
-/* =====================================================
-ELEMENTS
-===================================================== */
-
-const serviceGrid=
-document.getElementById(
-"serviceGrid"
-);
-
-const search=
-document.getElementById(
-"searchInput"
-);
-
-const modal=
-document.getElementById(
-"modal"
-);
-
-const form=
-document.getElementById(
-"serviceForm"
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
 /* =====================================================
-RENDER SERVICES
+ESCAPE
 ===================================================== */
 
-function renderServices(){
+function escapeHTML(value){
 
-const keyword=
-search.value
-.trim()
-.toLowerCase();
+    return String(
+        value ?? ""
+    )
 
-
-const filtered=
-services.filter(service=>{
-
-const text=
-(
-service.title+
-" "+
-service.desc
-).toLowerCase();
-
-return(
-!keyword ||
-text.includes(keyword)
-);
-
-});
-
-
-serviceGrid.innerHTML="";
-
-
-filtered.forEach(service=>{
-
-const card=
-document.createElement("article");
-
-card.className=
-"service-card "+
-service.color;
-
-
-card.innerHTML=`
-
-<div class="service-icon">
-${service.icon}
-</div>
-
-
-<div class="service-title">
-${service.title}
-</div>
-
-
-<div class="service-desc">
-${service.desc}
-</div>
-
-
-<div class="service-footer">
-
-<span class="service-status">
-🟢 ${service.status}
-</span>
-
-
-<button
-class="service-btn"
-onclick="openService('${service.title}')"
->
-ใช้บริการ →
-</button>
-
-</div>
-
-`;
-
-
-serviceGrid.appendChild(card);
-
-});
-
-
-updateSummary();
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
 /* =====================================================
-OPEN SERVICE
+FOCUS FORM
 ===================================================== */
 
-function openService(serviceName){
-
-form.reset();
-
-
-document.getElementById(
-"serviceType"
-).value=
-serviceName;
-
-
-document.getElementById(
-"modalTitle"
-).textContent=
-serviceName;
-
-
-modal.classList.add(
-"show"
-);
-
-}
-
-
-/* =====================================================
-CLOSE
-===================================================== */
-
-function closeModal(){
-
-modal.classList.remove(
-"show"
-);
-
-}
-
-
-document
-.getElementById("closeModal")
-.addEventListener(
-"click",
-closeModal
-);
-
-
-document
-.getElementById("cancelButton")
-.addEventListener(
-"click",
-closeModal
-);
-
-
-modal.addEventListener(
-"click",
-event=>{
-
-if(
-event.target===modal
+function focusRequest(
+    category
 ){
 
-closeModal();
+    const panel =
+    document.getElementById(
+        "requestPanel"
+    );
+
+    const select =
+    document.getElementById(
+        "category"
+    );
+
+
+    select.value =
+    category;
+
+
+    panel.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
 
 }
-
-}
-);
 
 
 /* =====================================================
-SAVE REQUEST
+SUBMIT
 ===================================================== */
 
 document
-.getElementById("saveButton")
+.getElementById(
+    "requestForm"
+)
 .addEventListener(
-"click",
-saveRequest
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        const message =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+        const payload = {
+
+            citizen_name:
+            document
+            .getElementById(
+                "citizenName"
+            )
+            .value
+            .trim(),
+
+            phone:
+            document
+            .getElementById(
+                "phone"
+            )
+            .value
+            .trim(),
+
+            category:
+            document
+            .getElementById(
+                "category"
+            )
+            .value,
+
+            title:
+            document
+            .getElementById(
+                "title"
+            )
+            .value
+            .trim(),
+
+            description:
+            document
+            .getElementById(
+                "description"
+            )
+            .value
+            .trim(),
+
+            location:
+            document
+            .getElementById(
+                "location"
+            )
+            .value
+            .trim(),
+
+            status:
+            "รอดำเนินการ"
+
+        };
+
+
+        if(
+            !payload.title ||
+            !payload.category ||
+            !payload.description
+        ){
+
+            message.style.color =
+            "#fda4af";
+
+            message.textContent =
+            "กรุณากรอกประเภทเรื่อง หัวข้อ และรายละเอียด";
+
+            return;
+
+        }
+
+
+        try{
+
+            const {
+                data,
+                error
+            } =
+            await supabaseClient
+
+            .from(
+                "service_requests"
+            )
+
+            .insert(
+                payload
+            )
+
+            .select(
+                "request_no"
+            )
+
+            .single();
+
+
+            if(error)
+                throw error;
+
+
+            message.style.color =
+            "#86efac";
+
+
+            message.innerHTML =
+            `ส่งเรื่องเรียบร้อยแล้ว
+            ${
+                data?.request_no
+                ?
+                `เลขที่คำร้อง: <strong>${escapeHTML(data.request_no)}</strong>`
+                :
+                ""
+            }`;
+
+
+            this.reset();
+
+
+            loadRequests();
+
+            loadStatistics();
+
+
+        }catch(error){
+
+            console.error(
+                error
+            );
+
+
+            message.style.color =
+            "#fda4af";
+
+            message.textContent =
+            "ไม่สามารถส่งเรื่องได้ กรุณาตรวจสอบการเชื่อมต่อฐานข้อมูล";
+
+        }
+
+    }
 );
 
 
-function saveRequest(){
+/* =====================================================
+TRACK
+===================================================== */
 
-if(
-!form.checkValidity()
-){
+async function trackRequest(){
 
-form.reportValidity();
-
-return;
-
-}
-
-
-const now=
-new Date();
+    const id =
+    document
+    .getElementById(
+        "trackingId"
+    )
+    .value
+    .trim();
 
 
-const buddhistYear=
-now.getFullYear()+543;
+    const result =
+    document.getElementById(
+        "trackResult"
+    );
 
 
-const newRequest={
+    if(!id){
 
-id:
-"SV-"+String(
-requests.length+17
-).padStart(4,"0"),
+        result.innerHTML = `
 
-service:
-document.getElementById(
-"serviceType"
-).value,
+        <div class="empty">
 
-name:
-document.getElementById(
-"requester"
-).value.trim(),
+            <i class="fa-solid fa-key"></i>
 
-date:
-now.getDate()+
-"/"+
-String(
-now.getMonth()+1
-).padStart(2,"0")+
-"/"+
-buddhistYear,
+            กรุณากรอกเลขที่คำร้อง
 
-status:
-"รอดำเนินการ"
+        </div>
 
-};
+        `;
+
+        return;
+
+    }
 
 
-requests.unshift(
-newRequest
-);
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "service_requests"
+        )
+
+        .select(
+            "request_no,title,status,created_at"
+        )
+
+        .eq(
+            "request_no",
+            id
+        )
+
+        .maybeSingle();
 
 
-closeModal();
+        if(error)
+            throw error;
 
-renderRequests();
 
-updateSummary();
+        if(!data){
 
-alert(
-"ส่งคำขอเรียบร้อยแล้ว\nเลขที่คำขอ: "+
-newRequest.id
-);
+            result.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fa-solid fa-circle-question"></i>
+
+                ไม่พบเลขที่คำร้องนี้
+
+            </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        result.innerHTML = `
+
+        <div class="status-line">
+
+            <span class="status-dot active"></span>
+
+            <div>
+
+                <strong>
+                    ${escapeHTML(data.status)}
+                </strong>
+
+                <br>
+
+                <span
+                style="color:#94a3b8;font-size:10px">
+
+                    ${escapeHTML(data.title)}
+
+                </span>
+
+            </div>
+
+        </div>
+
+        <div
+        style="color:#94a3b8;font-size:10px">
+
+            เลขที่คำร้อง:
+            ${escapeHTML(data.request_no)}
+
+        </div>
+
+        `;
+
+
+    }catch(error){
+
+        result.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-database"></i>
+
+            ไม่สามารถตรวจสอบข้อมูลได้
+
+        </div>
+
+        `;
+
+    }
 
 }
 
 
 /* =====================================================
-RENDER REQUESTS
+LOAD REQUESTS
 ===================================================== */
 
-function renderRequests(){
+async function loadRequests(){
 
-const table=
-document.getElementById(
-"requestTable"
-);
-
-table.innerHTML="";
+    const list =
+    document.getElementById(
+        "requestList"
+    );
 
 
-requests
-.slice(0,12)
-.forEach(item=>{
+    try{
 
-let statusClass=
-"status-wait";
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
 
-if(
-item.status==="กำลังดำเนินการ"
-){
+        .from(
+            "service_requests"
+        )
 
-statusClass=
-"status-progress";
+        .select(
+            "request_no,title,category,status,created_at"
+        )
 
-}
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        )
 
-if(
-item.status==="เสร็จแล้ว"
-){
-
-statusClass=
-"status-done";
-
-}
-
-
-const row=
-document.createElement("tr");
+        .limit(10);
 
 
-row.innerHTML=`
-
-<td>
-${item.id}
-</td>
-
-<td>
-${item.service}
-</td>
-
-<td>
-${item.name}
-</td>
-
-<td>
-${item.date}
-</td>
-
-<td>
-
-<span
-class="status ${statusClass}"
->
-${item.status}
-</span>
-
-</td>
-
-<td>
-
-<button
-class="table-btn"
-onclick="viewRequest('${item.id}')"
->
-👁️ ดู
-</button>
-
-</td>
-
-`;
+        if(error)
+            throw error;
 
 
-table.appendChild(row);
+        if(
+            !data ||
+            data.length === 0
+        ){
 
-});
+            list.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fa-solid fa-inbox"></i>
+
+                ยังไม่มีข้อมูลคำร้อง
+
+            </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+        data.map(
+            item => `
+
+            <div class="request">
+
+                <div class="request-top">
+
+                    <div class="request-title">
+
+                        ${escapeHTML(
+                            item.title
+                        )}
+
+                    </div>
+
+                    <span
+                    class="request-status">
+
+                        ${escapeHTML(
+                            item.status
+                        )}
+
+                    </span>
+
+                </div>
+
+                <div class="request-meta">
+
+                    ${escapeHTML(
+                        item.category
+                    )}
+
+                    ·
+
+                    เลขที่
+                    ${escapeHTML(
+                        item.request_no
+                    )}
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-database"></i>
+
+            ยังไม่มีข้อมูลคำร้องในฐานข้อมูล
+
+        </div>
+
+        `;
+
+    }
 
 }
 
 
 /* =====================================================
-VIEW REQUEST
+STATISTICS
 ===================================================== */
 
-function viewRequest(id){
+async function loadStatistics(){
 
-const item=
-requests.find(
-x=>x.id===id
-);
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "service_requests"
+        )
+
+        .select(
+            "status"
+        );
 
 
-if(!item)
-return;
+        if(error)
+            throw error;
 
 
-alert(
+        const rows =
+        data || [];
 
-"เลขที่คำขอ: "+
-item.id+
 
-"\nบริการ: "+
-item.service+
+        const total =
+        rows.length;
 
-"\nผู้ยื่น: "+
-item.name+
 
-"\nวันที่: "+
-item.date+
+        const pending =
+        rows.filter(
+            item =>
+            item.status ===
+            "รอดำเนินการ"
+        ).length;
 
-"\nสถานะ: "+
-item.status
 
-);
+        const working =
+        rows.filter(
+            item =>
+            item.status ===
+            "กำลังดำเนินการ"
+        ).length;
+
+
+        const completed =
+        rows.filter(
+            item =>
+            item.status ===
+            "ดำเนินการแล้ว"
+        ).length;
+
+
+        document.getElementById(
+            "totalRequests"
+        ).textContent =
+        total.toLocaleString(
+            "th-TH"
+        );
+
+
+        document.getElementById(
+            "pendingRequests"
+        ).textContent =
+        pending.toLocaleString(
+            "th-TH"
+        );
+
+
+        document.getElementById(
+            "workingRequests"
+        ).textContent =
+        working.toLocaleString(
+            "th-TH"
+        );
+
+
+        document.getElementById(
+            "completedRequests"
+        ).textContent =
+        completed.toLocaleString(
+            "th-TH"
+        );
+
+
+    }catch(error){
+
+        console.log(
+            "ยังไม่มี service_requests"
+        );
+
+    }
 
 }
 
 
 /* =====================================================
-SUMMARY
+INIT
 ===================================================== */
 
-function updateSummary(){
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-document.getElementById(
-"serviceCount"
-).textContent=
-services.length;
+        loadRequests();
 
+        loadStatistics();
 
-document.getElementById(
-"requestCount"
-).textContent=
-requests.length;
-
-
-document.getElementById(
-"waitingCount"
-).textContent=
-requests.filter(
-x=>x.status==="รอดำเนินการ"
-).length;
-
-
-document.getElementById(
-"workingCount"
-).textContent=
-requests.filter(
-x=>x.status==="กำลังดำเนินการ"
-).length;
-
-
-document.getElementById(
-"completeCount"
-).textContent=
-requests.filter(
-x=>x.status==="เสร็จแล้ว"
-).length;
-
-}
-
-
-/* =====================================================
-SEARCH
-===================================================== */
-
-search.addEventListener(
-"input",
-renderServices
+    }
 );
-
-
-/* =====================================================
-CLOCK
-===================================================== */
-
-function updateClock(){
-
-const now=
-new Date();
-
-
-document.getElementById(
-"time"
-).textContent=
-now.toLocaleTimeString(
-"th-TH",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-hour12:false
-}
-);
-
-
-document.getElementById(
-"today"
-).textContent=
-now.toLocaleDateString(
-"th-TH",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-);
-
-}
-
-
-updateClock();
-
-setInterval(
-updateClock,
-1000
-);
-
-
-/* =====================================================
-MOBILE MENU
-===================================================== */
-
-document
-.getElementById("mobileButton")
-.addEventListener(
-"click",
-()=>{
-
-document
-.getElementById("sidebar")
-.classList.toggle(
-"open"
-);
-
-}
-);
-
-
-/* =====================================================
-START
-===================================================== */
-
-renderServices();
-
-renderRequests();
-
-updateSummary();
 
 </script>
+
 
 </body>
 
