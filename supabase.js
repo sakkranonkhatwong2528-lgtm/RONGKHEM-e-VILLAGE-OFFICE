@@ -1,1543 +1,510 @@
 /* =========================================================
    RONGKHEM e-VILLAGE
-   SUPABASE DATABASE CORE
-   ที่ทำการผู้ใหญ่บ้านออนไลน์
+   SUPABASE DATABASE ENGINE
    ========================================================= */
 
+(function () {
 
-/* =========================================================
-   1. SUPABASE CONFIG
-   ========================================================= */
+    "use strict";
 
-/*
-   ให้นำค่าจริงจาก
+    /* -----------------------------------------------------
+       ตรวจสอบ Supabase
+    ----------------------------------------------------- */
 
-   Supabase Dashboard
-   → Project Settings
-   → API
-
-   มาใส่ตรงนี้
-*/
-
-const SUPABASE_URL =
-    "ใส่_URL_SUPABASE_ของคุณ";
-
-const SUPABASE_KEY =
-    "ใส่_ANON_KEY_ของคุณ";
-
-
-/* =========================================================
-   2. CREATE CLIENT
-   ========================================================= */
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
-
-
-/* =========================================================
-   3. SYSTEM CONFIG
-   ========================================================= */
-
-const RONGKHEM_CONFIG = {
-
-    villageName:
-        "บ้านร่องเข็ม",
-
-    villageNo:
-        "หมู่ที่ 6",
-
-    subdistrict:
-        "ตำบลจำป่าหวาย",
-
-    district:
-        "อำเภอเมืองพะเยา",
-
-    province:
-        "จังหวัดพะเยา",
-
-    systemName:
-        "RONGKHEM e-VILLAGE",
-
-    systemTitle:
-        "ที่ทำการผู้ใหญ่บ้านออนไลน์"
-
-};
-
-
-/* =========================================================
-   4. DATABASE TABLES
-   ========================================================= */
-
-const TABLES = {
-
-    citizens:
-        "citizens",
-
-    households:
-        "households",
-
-    leaders:
-        "leaders",
-
-    news:
-        "news",
-
-    activities:
-        "activities",
-
-    incidents:
-        "incidents",
-
-    services:
-        "services",
-
-    projects:
-        "projects",
-
-    environment:
-        "environment",
-
-    wetland:
-        "wetland",
-
-    riceMembers:
-        "rice_members",
-
-    riceFunerals:
-        "rice_funerals",
-
-    riceStock:
-        "rice_stock",
-
-    statistics:
-        "statistics",
-
-    notifications:
-        "notifications",
-
-    systemLogs:
-        "system_logs"
-
-};
-
-
-/* =========================================================
-   5. GENERIC GET
-   ========================================================= */
-
-async function dbGet(
-    table,
-    options = {}
-){
-
-    try{
-
-        let query =
-            supabaseClient
-                .from(table)
-                .select(
-                    options.select || "*"
-                );
-
-
-        if(
-            options.order
-        ){
-
-            query =
-                query.order(
-                    options.order.column,
-                    {
-                        ascending:
-                            options.order.ascending ??
-                            false
-                    }
-                );
-
-        }
-
-
-        if(
-            options.limit
-        ){
-
-            query =
-                query.limit(
-                    options.limit
-                );
-
-        }
-
-
-        if(
-            options.eq
-        ){
-
-            Object.entries(
-                options.eq
-            ).forEach(
-                ([column,value]) => {
-
-                    query =
-                        query.eq(
-                            column,
-                            value
-                        );
-
-                }
-            );
-
-        }
-
-
-        const {
-            data,
-            error
-        } = await query;
-
-
-        if(error)
-            throw error;
-
-
-        return {
-
-            success:true,
-
-            data:data || [],
-
-            error:null
-
-        };
-
-    }
-    catch(error){
+    if (
+        typeof supabase === "undefined"
+    ) {
 
         console.error(
-            "dbGet Error:",
-            error
+            "ไม่พบ Supabase JS Library"
         );
 
-        return {
-
-            success:false,
-
-            data:[],
-
-            error:error
-
-        };
+        return;
 
     }
 
-}
+
+    /* -----------------------------------------------------
+       อ่าน Config
+    ----------------------------------------------------- */
+
+    const URL =
+        window.SUPABASE_URL ||
+        "";
+
+    const KEY =
+        window.SUPABASE_KEY ||
+        "";
 
 
-/* =========================================================
-   6. GET ONE
-   ========================================================= */
+    if (!URL || !KEY) {
 
-async function dbGetOne(
-    table,
-    column,
-    value
-){
-
-    try{
-
-        const {
-            data,
-            error
-        } = await
-        supabaseClient
-            .from(table)
-            .select("*")
-            .eq(
-                column,
-                value
-            )
-            .maybeSingle();
-
-
-        if(error)
-            throw error;
-
-
-        return {
-
-            success:true,
-
-            data:data,
-
-            error:null
-
-        };
-
-    }
-    catch(error){
-
-        console.error(
-            "dbGetOne Error:",
-            error
+        console.warn(
+            "ยังไม่ได้ตั้งค่า SUPABASE_URL / SUPABASE_KEY"
         );
 
-        return {
-
-            success:false,
-
-            data:null,
-
-            error:error
-
-        };
-
     }
 
-}
 
+    /* -----------------------------------------------------
+       Client
+    ----------------------------------------------------- */
 
-/* =========================================================
-   7. INSERT
-   ========================================================= */
-
-async function dbInsert(
-    table,
-    payload
-){
-
-    try{
-
-        const {
-            data,
-            error
-        } = await
-        supabaseClient
-            .from(table)
-            .insert(
-                payload
-            )
-            .select();
-
-
-        if(error)
-            throw error;
-
-
-        return {
-
-            success:true,
-
-            data:data || [],
-
-            error:null
-
-        };
-
-    }
-    catch(error){
-
-        console.error(
-            "dbInsert Error:",
-            error
+    const client =
+        supabase.createClient(
+            URL,
+            KEY
         );
 
-        return {
 
-            success:false,
+    window.supabaseClient =
+        client;
 
-            data:[],
 
-            error:error
+    /* =====================================================
+       RONGKHEM DATABASE API
+       ===================================================== */
 
-        };
+    const DB = {
 
-    }
 
-}
+        /* =================================================
+           VILLAGE
+        ================================================= */
 
+        async getVillage() {
 
-/* =========================================================
-   8. UPDATE
-   ========================================================= */
+            const result =
+                await client
+                    .from(
+                        "village_settings"
+                    )
+                    .select("*")
+                    .order(
+                        "updated_at",
+                        {
+                            ascending: false
+                        }
+                    )
+                    .limit(1)
+                    .maybeSingle();
 
-async function dbUpdate(
-    table,
-    id,
-    payload
-){
 
-    try{
+            if (result.error)
+                throw result.error;
 
-        const {
-            data,
-            error
-        } = await
-        supabaseClient
-            .from(table)
-            .update(
-                payload
-            )
-            .eq(
-                "id",
-                id
-            )
-            .select();
 
+            return result.data;
 
-        if(error)
-            throw error;
+        },
 
 
-        return {
+        async updateVillage(data) {
 
-            success:true,
+            const current =
+                await this.getVillage();
 
-            data:data || [],
 
-            error:null
+            if (!current) {
 
-        };
+                const result =
+                    await client
+                        .from(
+                            "village_settings"
+                        )
+                        .insert(data)
+                        .select()
+                        .single();
 
-    }
-    catch(error){
 
-        console.error(
-            "dbUpdate Error:",
-            error
-        );
+                if (result.error)
+                    throw result.error;
 
-        return {
 
-            success:false,
-
-            data:[],
-
-            error:error
-
-        };
-
-    }
-
-}
-
-
-/* =========================================================
-   9. DELETE
-   ========================================================= */
-
-async function dbDelete(
-    table,
-    id
-){
-
-    try{
-
-        const {
-            error
-        } = await
-        supabaseClient
-            .from(table)
-            .delete()
-            .eq(
-                "id",
-                id
-            );
-
-
-        if(error)
-            throw error;
-
-
-        return {
-
-            success:true,
-
-            error:null
-
-        };
-
-    }
-    catch(error){
-
-        console.error(
-            "dbDelete Error:",
-            error
-        );
-
-        return {
-
-            success:false,
-
-            error:error
-
-        };
-
-    }
-
-}
-
-
-/* =========================================================
-   10. COUNT
-   ========================================================= */
-
-async function dbCount(
-    table
-){
-
-    try{
-
-        const {
-            count,
-            error
-        } = await
-        supabaseClient
-            .from(table)
-            .select(
-                "*",
-                {
-                    count:"exact",
-                    head:true
-                }
-            );
-
-
-        if(error)
-            throw error;
-
-
-        return {
-
-            success:true,
-
-            count:
-                count || 0,
-
-            error:null
-
-        };
-
-    }
-    catch(error){
-
-        console.error(
-            "dbCount Error:",
-            error
-        );
-
-        return {
-
-            success:false,
-
-            count:0,
-
-            error:error
-
-        };
-
-    }
-
-}
-
-
-/* =========================================================
-   11. DASHBOARD DATA
-   ========================================================= */
-
-async function getDashboardData(){
-
-    try{
-
-        const [
-
-            citizens,
-            households,
-            leaders,
-            news,
-            projects,
-            incidents,
-            riceMembers
-
-        ] = await Promise.all([
-
-            dbCount(
-                TABLES.citizens
-            ),
-
-            dbCount(
-                TABLES.households
-            ),
-
-            dbCount(
-                TABLES.leaders
-            ),
-
-            dbCount(
-                TABLES.news
-            ),
-
-            dbCount(
-                TABLES.projects
-            ),
-
-            dbCount(
-                TABLES.incidents
-            ),
-
-            dbCount(
-                TABLES.riceMembers
-            )
-
-        ]);
-
-
-        return {
-
-            success:true,
-
-            data:{
-
-                citizens:
-                    citizens.count,
-
-                households:
-                    households.count,
-
-                leaders:
-                    leaders.count,
-
-                news:
-                    news.count,
-
-                projects:
-                    projects.count,
-
-                incidents:
-                    incidents.count,
-
-                riceMembers:
-                    riceMembers.count
+                return result.data;
 
             }
 
-        };
 
-    }
-    catch(error){
-
-        console.error(
-            "Dashboard Error:",
-            error
-        );
-
-        return {
-
-            success:false,
-
-            data:null,
-
-            error:error
-
-        };
-
-    }
-
-}
+            const result =
+                await client
+                    .from(
+                        "village_settings"
+                    )
+                    .update({
+                        ...data,
+                        updated_at:
+                            new Date()
+                                .toISOString()
+                    })
+                    .eq(
+                        "id",
+                        current.id
+                    )
+                    .select()
+                    .single();
 
 
-/* =========================================================
-   12. CITIZENS
-   ========================================================= */
+            if (result.error)
+                throw result.error;
 
-async function getCitizens(){
 
-    return await dbGet(
-        TABLES.citizens,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
+            return result.data;
+
+        },
+
+
+        /* =================================================
+           STATISTICS
+        ================================================= */
+
+        async getStatistics() {
+
+            const result =
+                await client
+                    .from(
+                        "verified_statistics"
+                    )
+                    .select("*")
+                    .order(
+                        "updated_at",
+                        {
+                            ascending: false
+                        }
+                    )
+                    .limit(1)
+                    .maybeSingle();
+
+
+            if (result.error)
+                throw result.error;
+
+
+            return result.data;
+
+        },
+
+
+        async updateStatistics(data) {
+
+            const current =
+                await this.getStatistics();
+
+
+            const payload = {
+
+                population_total:
+                    Number(
+                        data.population_total
+                    ),
+
+                population_male:
+                    Number(
+                        data.population_male
+                    ),
+
+                population_female:
+                    Number(
+                        data.population_female
+                    ),
+
+                households_total:
+                    Number(
+                        data.households_total
+                    ),
+
+                survey_total:
+                    Number(
+                        data.survey_total
+                    ),
+
+                survey_households:
+                    Number(
+                        data.survey_households
+                    ),
+
+                elderly_60_plus:
+                    Number(
+                        data.elderly_60_plus
+                    ),
+
+                elderly_percent:
+                    Number(
+                        data.elderly_percent
+                    ),
+
+                disabled_total:
+                    Number(
+                        data.disabled_total
+                    ),
+
+                chronic_disease_total:
+                    Number(
+                        data.chronic_disease_total
+                    ),
+
+                vulnerable_selections:
+                    Number(
+                        data.vulnerable_selections
+                    ),
+
+                source:
+                    "VERIFIED DATA BUILD",
+
+                verified:
+                    true,
+
+                updated_at:
+                    new Date()
+                        .toISOString()
+
+            };
+
+
+            if (!current) {
+
+                const result =
+                    await client
+                        .from(
+                            "verified_statistics"
+                        )
+                        .insert(payload)
+                        .select()
+                        .single();
+
+
+                if (result.error)
+                    throw result.error;
+
+
+                return result.data;
+
             }
-        }
-    );
 
-}
 
+            const result =
+                await client
+                    .from(
+                        "verified_statistics"
+                    )
+                    .update(payload)
+                    .eq(
+                        "id",
+                        current.id
+                    )
+                    .select()
+                    .single();
 
-async function addCitizen(
-    citizen
-){
 
-    return await dbInsert(
-        TABLES.citizens,
-        citizen
-    );
+            if (result.error)
+                throw result.error;
 
-}
 
+            return result.data;
 
-async function updateCitizen(
-    id,
-    citizen
-){
+        },
 
-    return await dbUpdate(
-        TABLES.citizens,
-        id,
-        citizen
-    );
 
-}
+        /* =================================================
+           NEWS
+        ================================================= */
 
+        async getNews() {
 
-async function deleteCitizen(
-    id
-){
-
-    return await dbDelete(
-        TABLES.citizens,
-        id
-    );
-
-}
-
-
-/* =========================================================
-   13. HOUSEHOLDS
-   ========================================================= */
-
-async function getHouseholds(){
-
-    return await dbGet(
-        TABLES.households,
-        {
-            order:{
-                column:"house_number",
-                ascending:true
-            }
-        }
-    );
-
-}
-
-
-async function addHousehold(
-    household
-){
-
-    return await dbInsert(
-        TABLES.households,
-        household
-    );
-
-}
-
-
-async function updateHousehold(
-    id,
-    household
-){
-
-    return await dbUpdate(
-        TABLES.households,
-        id,
-        household
-    );
-
-}
-
-
-/* =========================================================
-   14. LEADERS
-   ========================================================= */
-
-async function getLeaders(){
-
-    return await dbGet(
-        TABLES.leaders,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function addLeader(
-    leader
-){
-
-    return await dbInsert(
-        TABLES.leaders,
-        leader
-    );
-
-}
-
-
-async function updateLeader(
-    id,
-    leader
-){
-
-    return await dbUpdate(
-        TABLES.leaders,
-        id,
-        leader
-    );
-
-}
-
-
-/* =========================================================
-   15. NEWS
-   ========================================================= */
-
-async function getNews(){
-
-    return await dbGet(
-        TABLES.news,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function addNews(
-    news
-){
-
-    return await dbInsert(
-        TABLES.news,
-        news
-    );
-
-}
-
-
-async function updateNews(
-    id,
-    news
-){
-
-    return await dbUpdate(
-        TABLES.news,
-        id,
-        news
-    );
-
-}
-
-
-async function deleteNews(
-    id
-){
-
-    return await dbDelete(
-        TABLES.news,
-        id
-    );
-
-}
-
-
-/* =========================================================
-   16. ACTIVITIES
-   ========================================================= */
-
-async function getActivities(){
-
-    return await dbGet(
-        TABLES.activities,
-        {
-            order:{
-                column:"activity_date",
-                ascending:true
-            }
-        }
-    );
-
-}
-
-
-async function addActivity(
-    activity
-){
-
-    return await dbInsert(
-        TABLES.activities,
-        activity
-    );
-
-}
-
-
-/* =========================================================
-   17. INCIDENTS
-   ========================================================= */
-
-async function getIncidents(){
-
-    return await dbGet(
-        TABLES.incidents,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function addIncident(
-    incident
-){
-
-    return await dbInsert(
-        TABLES.incidents,
-        incident
-    );
-
-}
-
-
-async function updateIncident(
-    id,
-    incident
-){
-
-    return await dbUpdate(
-        TABLES.incidents,
-        id,
-        incident
-    );
-
-}
-
-
-/* =========================================================
-   18. PROJECTS
-   ========================================================= */
-
-async function getProjects(){
-
-    return await dbGet(
-        TABLES.projects,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function addProject(
-    project
-){
-
-    return await dbInsert(
-        TABLES.projects,
-        project
-    );
-
-}
-
-
-async function updateProject(
-    id,
-    project
-){
-
-    return await dbUpdate(
-        TABLES.projects,
-        id,
-        project
-    );
-
-}
-
-
-/* =========================================================
-   19. ENVIRONMENT
-   ========================================================= */
-
-async function getEnvironment(){
-
-    return await dbGet(
-        TABLES.environment,
-        {
-            order:{
-                column:"recorded_at",
-                ascending:false
-            },
-            limit:20
-        }
-    );
-
-}
-
-
-async function addEnvironment(
-    data
-){
-
-    return await dbInsert(
-        TABLES.environment,
-        data
-    );
-
-}
-
-
-/* =========================================================
-   20. WETLAND
-   ========================================================= */
-
-async function getWetland(){
-
-    return await dbGet(
-        TABLES.wetland,
-        {
-            order:{
-                column:"recorded_at",
-                ascending:false
-            },
-            limit:20
-        }
-    );
-
-}
-
-
-async function addWetland(
-    data
-){
-
-    return await dbInsert(
-        TABLES.wetland,
-        data
-    );
-
-}
-
-
-/* =========================================================
-   21. RICE MEMBERS
-   ========================================================= */
-
-async function getRiceMembers(){
-
-    return await dbGet(
-        TABLES.riceMembers,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function addRiceMember(
-    member
-){
-
-    return await dbInsert(
-        TABLES.riceMembers,
-        member
-    );
-
-}
-
-
-async function updateRiceMember(
-    id,
-    member
-){
-
-    return await dbUpdate(
-        TABLES.riceMembers,
-        id,
-        member
-    );
-
-}
-
-
-async function deleteRiceMember(
-    id
-){
-
-    return await dbDelete(
-        TABLES.riceMembers,
-        id
-    );
-
-}
-
-
-/* =========================================================
-   22. RICE FUNERALS
-   ========================================================= */
-
-async function getRiceFunerals(){
-
-    return await dbGet(
-        TABLES.riceFunerals,
-        {
-            order:{
-                column:"funeral_date",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function addRiceFuneral(
-    funeral
-){
-
-    return await dbInsert(
-        TABLES.riceFunerals,
-        funeral
-    );
-
-}
-
-
-/* =========================================================
-   23. RICE STOCK
-   ========================================================= */
-
-async function getRiceStock(){
-
-    return await dbGet(
-        TABLES.riceStock,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            },
-            limit:1
-        }
-    );
-
-}
-
-
-async function addRiceStock(
-    stock
-){
-
-    return await dbInsert(
-        TABLES.riceStock,
-        stock
-    );
-
-}
-
-
-/* =========================================================
-   24. STATISTICS (อัปเดตใหม่เพื่อดึงข้อมูลสถิติประชากร)
-   ========================================================= */
-
-async function getStatistics(){
-
-    return await dbGet(
-        TABLES.statistics,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            }
-        }
-    );
-
-}
-
-
-async function getLatestStatistics(){
-
-    return await dbGet(
-        TABLES.statistics,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            },
-            limit:1
-        }
-    );
-
-}
-
-
-async function renderDashboardStats(){
-
-    const res = await getLatestStatistics();
-
-    // กำหนดข้อมูลตั้งต้นถ้าไม่มีใน DB
-    const defaultStats = {
-        total_citizens: 960,
-        male_count: 471,
-        female_count: 489,
-        household_count: 352,
-        elderly_count: 92,
-        disabled_count: 3,
-        chronic_count: 1,
-        vulnerable_count: 95,
-        survey_count: 202
-    };
-
-    const stats = (res.success && res.data && res.data.length > 0) 
-        ? res.data[0] 
-        : defaultStats;
-
-    const updateText = (id, val) => {
-        const el = document.getElementById(id);
-        if (el && val !== undefined) {
-            el.textContent = Number(val).toLocaleString("th-TH");
-        }
-    };
-
-    updateText("stat-citizens", stats.total_citizens);
-    updateText("stat-male", stats.male_count);
-    updateText("stat-female", stats.female_count);
-    updateText("stat-households", stats.household_count);
-    updateText("stat-elderly", stats.elderly_count);
-    updateText("stat-disabled", stats.disabled_count);
-    updateText("stat-chronic", stats.chronic_count);
-    updateText("stat-vulnerable", stats.vulnerable_count);
-    updateText("stat-surveys", stats.survey_count);
-
-}
-
-
-/* =========================================================
-   25. NOTIFICATIONS
-   ========================================================= */
-
-async function getNotifications(){
-
-    return await dbGet(
-        TABLES.notifications,
-        {
-            order:{
-                column:"created_at",
-                ascending:false
-            },
-            limit:30
-        }
-    );
-
-}
-
-
-async function addNotification(
-    notification
-){
-
-    return await dbInsert(
-        TABLES.notifications,
-        notification
-    );
-
-}
-
-
-/* =========================================================
-   26. SYSTEM LOG
-   ========================================================= */
-
-async function writeLog(
-    action,
-    description
-){
-
-    return await dbInsert(
-
-        TABLES.systemLogs,
-
-        {
-
-            action:
-                action,
-
-            description:
-                description,
-
-            created_at:
-                new Date().toISOString()
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   27. REALTIME
-   ========================================================= */
-
-function subscribeTable(
-    table,
-    callback
-){
-
-    return supabaseClient
-
-        .channel(
-            "rongkhem-" +
-            table
-        )
-
-        .on(
-
-            "postgres_changes",
-
-            {
-                event:"*",
-
-                schema:"public",
-
-                table:table
-
-            },
-
-            payload => {
-
-                console.log(
-                    "Realtime:",
-                    table,
-                    payload
-                );
-
-                if(
-                    typeof callback ===
-                    "function"
-                ){
-
-                    callback(
-                        payload
+            const result =
+                await client
+                    .from("news")
+                    .select("*")
+                    .order(
+                        "published_at",
+                        {
+                            ascending: false
+                        }
                     );
 
-                }
 
-            }
-
-        )
-
-        .subscribe();
-
-}
+            if (result.error)
+                throw result.error;
 
 
-/* =========================================================
-   28. CONNECTION TEST
-   ========================================================= */
+            return result.data || [];
 
-async function testDatabase(){
-
-    try{
-
-        const {
-            error
-        } = await
-        supabaseClient
-            .from(
-                TABLES.citizens
-            )
-            .select(
-                "id"
-            )
-            .limit(1);
+        },
 
 
-        if(error)
-            throw error;
+        async addNews(data) {
+
+            const result =
+                await client
+                    .from("news")
+                    .insert({
+                        ...data
+                    })
+                    .select()
+                    .single();
 
 
-        return {
-
-            success:true,
-
-            message:
-                "เชื่อมต่อฐานข้อมูลสำเร็จ"
-
-        };
-
-    }
-    catch(error){
-
-        console.error(
-            "Database connection error:",
-            error
-        );
-
-        return {
-
-            success:false,
-
-            message:
-                "ไม่สามารถเชื่อมต่อฐานข้อมูล",
-
-            error:error
-
-        };
-
-    }
-
-}
+            if (result.error)
+                throw result.error;
 
 
-/* =========================================================
-   29. GLOBAL HELPER
-   ========================================================= */
+            return result.data;
 
-function formatThaiDate(
-    date
-){
-
-    if(!date)
-        return "-";
+        },
 
 
-    const d =
-        new Date(date);
+        async updateNews(
+            id,
+            data
+        ) {
+
+            const result =
+                await client
+                    .from("news")
+                    .update(data)
+                    .eq(
+                        "id",
+                        id
+                    )
+                    .select()
+                    .single();
 
 
-    return d.toLocaleDateString(
-        "th-TH",
-        {
+            if (result.error)
+                throw result.error;
 
-            day:"numeric",
 
-            month:"long",
+            return result.data;
 
-            year:"numeric"
+        },
+
+
+        async deleteNews(id) {
+
+            const result =
+                await client
+                    .from("news")
+                    .delete()
+                    .eq(
+                        "id",
+                        id
+                    );
+
+
+            if (result.error)
+                throw result.error;
+
+
+            return true;
+
+        },
+
+
+        /* =================================================
+           ACTIVITIES
+        ================================================= */
+
+        async getActivities() {
+
+            const result =
+                await client
+                    .from("activities")
+                    .select("*")
+                    .order(
+                        "activity_date",
+                        {
+                            ascending: true
+                        }
+                    );
+
+
+            if (result.error)
+                throw result.error;
+
+
+            return result.data || [];
+
+        },
+
+
+        async addActivity(data) {
+
+            const result =
+                await client
+                    .from("activities")
+                    .insert(data)
+                    .select()
+                    .single();
+
+
+            if (result.error)
+                throw result.error;
+
+
+            return result.data;
+
+        },
+
+
+        async updateActivity(
+            id,
+            data
+        ) {
+
+            const result =
+                await client
+                    .from("activities")
+                    .update(data)
+                    .eq(
+                        "id",
+                        id
+                    )
+                    .select()
+                    .single();
+
+
+            if (result.error)
+                throw result.error;
+
+
+            return result.data;
+
+        },
+
+
+        async deleteActivity(id) {
+
+            const result =
+                await client
+                    .from("activities")
+                    .delete()
+                    .eq(
+                        "id",
+                        id
+                    );
+
+
+            if (result.error)
+                throw result.error;
+
+
+            return true;
 
         }
+
+    };
+
+
+    /* =====================================================
+       GLOBAL API
+    ===================================================== */
+
+    window.RongkhemDB =
+        DB;
+
+
+    console.log(
+        "✓ RONGKHEM DATABASE ENGINE READY"
     );
 
-}
-
-
-function formatThaiDateTime(
-    date
-){
-
-    if(!date)
-        return "-";
-
-
-    const d =
-        new Date(date);
-
-
-    return d.toLocaleString(
-        "th-TH",
-        {
-
-            dateStyle:"medium",
-
-            timeStyle:"short"
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   30. INITIALIZE
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    async function(){
-
-        console.log(
-            "================================="
-        );
-
-        console.log(
-            "RONGKHEM e-VILLAGE"
-        );
-
-        console.log(
-            "Database Core Loaded"
-        );
-
-        console.log(
-            "================================="
-        );
-
-
-        if(
-            SUPABASE_URL.includes(
-                "ใส่_URL"
-            )
-        ){
-
-            console.warn(
-                "กรุณาใส่ SUPABASE_URL"
-            );
-
-            // แสดงผลสถิติเบื้องต้นทันที แม้ยังไม่ได้เชื่อมต่อ DB
-            renderDashboardStats();
-            return;
-
-        }
-
-
-        const result =
-            await testDatabase();
-
-
-        if(
-            result.success
-        ){
-
-            console.log(
-                "🟢",
-                result.message
-            );
-
-            // ดึงสถิติมาแสดงบนหน้า Dashboard ทันที
-            await renderDashboardStats();
-
-        }else{
-
-            console.error(
-                "🔴",
-                result.message
-            );
-
-            // แม้เชื่อมต่อล้มเหลวก็ยังแสดงสถิติมาตรฐานไว้
-            renderDashboardStats();
-
-        }
-
-    }
-);
+})();
