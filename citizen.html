@@ -8,16 +8,10 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-ข้อมูลประชาชน | RONGKHEM e-VILLAGE
-</title>
+<title>ทะเบียนประชาชน | RONGKHEM e-VILLAGE</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
@@ -42,9 +36,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     --blue:#38bdf8;
     --green:#22c55e;
     --yellow:#facc15;
-    --purple:#a78bfa;
-
-    --radius:22px;
+    --orange:#fb923c;
+    --red:#fb7185;
 
 }
 
@@ -126,9 +119,9 @@ HEADER
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    justify-content:space-between;
 
     gap:20px;
 
@@ -152,7 +145,9 @@ HEADER
     border-radius:15px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:21px;
@@ -160,7 +155,7 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #0284c7,
+        #0369a1,
         #22d3ee
     );
 
@@ -184,18 +179,16 @@ HEADER
 
 .back{
 
-    border:
-    1px solid var(--border);
+    padding:9px 14px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
 
     color:white;
-
-    padding:
-    9px 14px;
-
-    border-radius:12px;
 
     cursor:pointer;
 
@@ -205,7 +198,7 @@ HEADER
 
 
 /* =====================================================
-PAGE HEADER
+TITLE
 ===================================================== */
 
 .page-head{
@@ -224,9 +217,9 @@ PAGE HEADER
 
 .page-head p{
 
-    color:var(--muted);
-
     margin-top:5px;
+
+    color:var(--muted);
 
     font-size:13px;
 
@@ -242,8 +235,7 @@ PAGE HEADER
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
@@ -267,6 +259,8 @@ STATS
 
 .stats{
 
+    margin-top:22px;
+
     display:grid;
 
     grid-template-columns:
@@ -274,16 +268,13 @@ STATS
 
     gap:15px;
 
-    margin-top:24px;
-
 }
 
 .stat{
 
     padding:22px;
 
-    border-radius:
-    var(--radius);
+    border-radius:22px;
 
     background:
     var(--card);
@@ -291,42 +282,19 @@ STATS
     border:
     1px solid var(--border);
 
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.stat::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:90px;
-
-    height:90px;
-
-    right:-35px;
-
-    top:-35px;
-
-    border-radius:50%;
-
-    background:
-    rgba(34,211,238,.05);
-
 }
 
 .stat-icon{
 
-    width:45px;
-    height:45px;
+    width:46px;
+    height:46px;
 
     border-radius:14px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     color:#67e8f9;
@@ -342,7 +310,7 @@ STATS
 
     font-family:"Kanit";
 
-    font-size:35px;
+    font-size:34px;
 
 }
 
@@ -356,28 +324,16 @@ STATS
 
 
 /* =====================================================
-GENDER
+CONTROL
 ===================================================== */
 
-.grid{
+.control{
 
     margin-top:20px;
 
-    display:grid;
+    padding:18px;
 
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:15px;
-
-}
-
-.card{
-
-    padding:23px;
-
-    border-radius:
-    var(--radius);
+    border-radius:20px;
 
     background:
     var(--card);
@@ -387,306 +343,68 @@ GENDER
 
 }
 
-.card-head{
+.filters{
 
     display:flex;
 
-    justify-content:space-between;
+    flex-wrap:wrap;
 
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:18px;
+    gap:9px;
 
 }
 
-.card-title{
+.filter{
 
-    font-family:"Kanit";
+    padding:9px 14px;
 
-    font-size:21px;
+    border-radius:11px;
 
-}
-
-.card-sub{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-
-.gender-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:12px;
-
-}
-
-.gender{
-
-    padding:20px;
-
-    border-radius:17px;
+    border:1px solid var(--border);
 
     background:
-    rgba(255,255,255,.035);
+    rgba(255,255,255,.04);
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
 
 }
 
-.gender-icon{
+.filter.active{
 
-    width:43px;
-    height:43px;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#67e8f9;
+    color:white;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(34,211,238,.10);
+
+    border-color:
+    rgba(34,211,238,.30);
 
 }
 
-.gender-number{
+.search{
 
-    margin-top:10px;
-
-    font-family:"Kanit";
-
-    font-size:30px;
-
-}
-
-.gender-label{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-.progress{
-
-    height:7px;
-
-    margin-top:12px;
-
-    background:
-    rgba(255,255,255,.07);
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-}
-
-.progress span{
-
-    display:block;
-
-    height:100%;
-
-    border-radius:999px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #0284c7,
-        #22d3ee
-    );
-
-}
-
-
-/* =====================================================
-SUMMARY
-===================================================== */
-
-.summary-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-.summary-row{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:
-    14px;
-
-    border-radius:14px;
-
-    background:
-    rgba(255,255,255,.035);
-
-}
-
-.summary-name{
-
-    font-size:12px;
-
-}
-
-.summary-value{
-
-    font-family:"Kanit";
-
-    color:#67e8f9;
-
-    font-size:19px;
-
-}
-
-
-/* =====================================================
-NOTICE
-===================================================== */
-
-.notice{
-
-    margin-top:20px;
-
-    padding:21px;
-
-    border-radius:
-    var(--radius);
-
-    display:flex;
-
-    gap:14px;
-
-    align-items:flex-start;
-
-    background:
-    rgba(250,204,21,.06);
-
-    border:
-    1px solid
-    rgba(250,204,21,.17);
-
-}
-
-.notice-icon{
-
-    width:43px;
-    height:43px;
-
-    flex:none;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:var(--yellow);
-
-    background:
-    rgba(250,204,21,.08);
-
-}
-
-.notice h3{
-
-    font-size:15px;
-
-}
-
-.notice p{
-
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.8;
-
-}
-
-
-/* =====================================================
-SEARCH
-===================================================== */
-
-.search-panel{
-
-    margin-top:20px;
-
-    padding:23px;
-
-    border-radius:
-    var(--radius);
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.search-title{
-
-    font-family:"Kanit";
-
-    font-size:21px;
-
-}
-
-.search-sub{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:2px;
-
-}
-
-.search-box{
+    margin-top:13px;
 
     display:flex;
 
     gap:10px;
 
-    margin-top:17px;
-
 }
 
-.search-box input{
+.search input{
 
     flex:1;
 
     min-width:0;
 
-    padding:
-    14px 16px;
+    padding:13px 15px;
 
     border-radius:13px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(0,0,0,.20);
@@ -699,21 +417,13 @@ SEARCH
 
 }
 
-.search-box input:focus{
-
-    border-color:
-    rgba(34,211,238,.4);
-
-}
-
 .btn{
 
-    padding:
-    12px 17px;
-
-    border-radius:13px;
+    padding:12px 17px;
 
     border:0;
+
+    border-radius:13px;
 
     color:white;
 
@@ -730,13 +440,175 @@ SEARCH
 
 }
 
-.btn.secondary{
+
+/* =====================================================
+CITIZEN GRID
+===================================================== */
+
+.citizen-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.citizen-card{
+
+    padding:21px;
+
+    border-radius:21px;
 
     background:
-    rgba(255,255,255,.05);
+    var(--card);
 
     border:
     1px solid var(--border);
+
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
+
+}
+
+.citizen-card:hover{
+
+    transform:
+    translateY(-3px);
+
+    border-color:
+    rgba(34,211,238,.22);
+
+}
+
+.citizen-top{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+.avatar{
+
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+    font-size:21px;
+
+}
+
+.citizen-status{
+
+    padding:5px 9px;
+
+    border-radius:999px;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+    font-size:9px;
+
+}
+
+.citizen-name{
+
+    margin-top:16px;
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+}
+
+.citizen-house{
+
+    margin-top:3px;
+
+    color:#67e8f9;
+
+    font-size:11px;
+
+}
+
+.citizen-info{
+
+    margin-top:15px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:9px;
+
+}
+
+.info{
+
+    padding:11px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.info-label{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.info-value{
+
+    margin-top:3px;
+
+    color:#e2e8f0;
+
+    font-size:11px;
+
+}
+
+.citizen-footer{
+
+    margin-top:15px;
+
+    padding-top:12px;
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    color:var(--muted);
+
+    font-size:9px;
 
 }
 
@@ -744,6 +616,50 @@ SEARCH
 /* =====================================================
 TABLE
 ===================================================== */
+
+.table-card{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.table-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.table-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.table-sub{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
 
 .table-wrap{
 
@@ -757,7 +673,7 @@ table{
 
     width:100%;
 
-    min-width:750px;
+    min-width:850px;
 
     border-collapse:collapse;
 
@@ -765,14 +681,13 @@ table{
 
 th{
 
-    padding:
-    14px 12px;
+    padding:14px 12px;
 
     text-align:left;
 
     color:#67e8f9;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:500;
 
@@ -786,38 +701,29 @@ th{
 
 td{
 
-    padding:
-    15px 12px;
+    padding:13px 12px;
 
-    font-size:12px;
-
-    color:#dbe4ef;
+    font-size:11px;
 
     border-bottom:
     1px solid rgba(255,255,255,.05);
 
 }
 
-.empty{
+.status{
 
-    text-align:center;
+    display:inline-flex;
 
-    padding:45px 20px;
+    padding:4px 8px;
 
-    color:var(--muted);
+    border-radius:999px;
 
-}
+    color:#86efac;
 
-.empty i{
+    background:
+    rgba(34,197,94,.08);
 
-    display:block;
-
-    margin-bottom:12px;
-
-    font-size:38px;
-
-    color:
-    rgba(34,211,238,.35);
+    font-size:9px;
 
 }
 
@@ -830,26 +736,20 @@ PRIVACY
 
     margin-top:20px;
 
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:15px;
-
-}
-
-.privacy-card{
-
     padding:20px;
 
     border-radius:20px;
 
+    display:flex;
+
+    gap:14px;
+
     background:
-    var(--card);
+    rgba(251,113,133,.05);
 
     border:
-    1px solid var(--border);
+    1px solid
+    rgba(251,113,133,.13);
 
 }
 
@@ -858,28 +758,30 @@ PRIVACY
     width:43px;
     height:43px;
 
+    flex:none;
+
     border-radius:13px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    color:#67e8f9;
+    color:#fda4af;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(251,113,133,.08);
 
 }
 
-.privacy-card h3{
-
-    margin-top:13px;
+.privacy h3{
 
     font-size:14px;
 
 }
 
-.privacy-card p{
+.privacy p{
 
     margin-top:5px;
 
@@ -893,6 +795,37 @@ PRIVACY
 
 
 /* =====================================================
+EMPTY
+===================================================== */
+
+.empty{
+
+    grid-column:
+    1 / -1;
+
+    padding:55px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+}
+
+.empty i{
+
+    display:block;
+
+    margin-bottom:13px;
+
+    font-size:42px;
+
+    color:
+    rgba(34,211,238,.30);
+
+}
+
+
+/* =====================================================
 FOOTER
 ===================================================== */
 
@@ -900,8 +833,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -932,7 +864,7 @@ RESPONSIVE
 
     }
 
-    .privacy{
+    .citizen-grid{
 
         grid-template-columns:
         1fr 1fr;
@@ -941,7 +873,7 @@ RESPONSIVE
 
 }
 
-@media(max-width:650px){
+@media(max-width:620px){
 
     .container{
 
@@ -957,9 +889,6 @@ RESPONSIVE
     }
 
     .stats{
-
-        grid-template-columns:
-        1fr 1fr;
 
         gap:10px;
 
@@ -977,30 +906,16 @@ RESPONSIVE
 
     }
 
-    .grid{
+    .citizen-grid{
 
         grid-template-columns:
         1fr;
 
     }
 
-    .gender-grid{
-
-        grid-template-columns:
-        1fr 1fr;
-
-    }
-
-    .search-box{
+    .search{
 
         flex-direction:column;
-
-    }
-
-    .privacy{
-
-        grid-template-columns:
-        1fr;
 
     }
 
@@ -1032,7 +947,6 @@ RESPONSIVE
 <i class="fa-solid fa-users"></i>
 
 </div>
-
 
 <div>
 
@@ -1076,18 +990,18 @@ TITLE
 <section class="page-head">
 
 <h2>
-ข้อมูลประชาชน
+ทะเบียนประชาชน
 </h2>
 
 <p>
-ภาพรวมประชากรบ้านร่องเข็ม หมู่ที่ 6
+ข้อมูลประชาชนในพื้นที่บ้านร่องเข็ม หมู่ที่ 6
 </p>
 
 <div class="source">
 
-<i class="fa-solid fa-file-lines"></i>
+<i class="fa-solid fa-database"></i>
 
-ข้อมูลประชากรอ้างอิงจากรายงาน ปีการศึกษา 2568
+ข้อมูลจากทะเบียนประชาชนในระบบ
 
 </div>
 
@@ -1111,16 +1025,66 @@ STATS
 </div>
 
 <div
-id="population"
+id="totalCitizens"
 class="stat-value">
 
-960
+0
 
 </div>
 
 <div class="stat-label">
 
-ประชากรรวม
+ประชาชนในระบบ
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-person"></i>
+
+</div>
+
+<div
+id="maleCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ชาย
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-person-dress"></i>
+
+</div>
+
+<div
+id="femaleCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+หญิง
 
 </div>
 
@@ -1136,66 +1100,16 @@ class="stat-value">
 </div>
 
 <div
-id="households"
+id="houseCount"
 class="stat-value">
 
-352
+--
 
 </div>
 
 <div class="stat-label">
 
-ครัวเรือน
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-person"></i>
-
-</div>
-
-<div
-id="male"
-class="stat-value">
-
-471
-
-</div>
-
-<div class="stat-label">
-
-ประชากรชาย
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-person-dress"></i>
-
-</div>
-
-<div
-id="female"
-class="stat-value">
-
-489
-
-</div>
-
-<div class="stat-label">
-
-ประชากรหญิง
+ครัวเรือนที่เชื่อมโยง
 
 </div>
 
@@ -1207,278 +1121,57 @@ class="stat-value">
 
 
 <!-- =====================================================
-GENDER + SUMMARY
+CONTROL
 ===================================================== -->
 
-<section class="grid">
+<section class="control">
 
 
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-สัดส่วนประชากร
-</div>
-
-<div class="card-sub">
-ประชากรทั้งหมด 960 คน
-</div>
-
-</div>
-
-<i class="fa-solid fa-chart-pie"
-style="color:#22d3ee">
-</i>
-
-</div>
+<div class="filters">
 
 
-<div class="gender-grid">
+<button
+class="filter active"
+onclick="setFilter('all',this)">
+
+ทั้งหมด
+
+</button>
 
 
-<div class="gender">
-
-<div class="gender-icon">
-
-<i class="fa-solid fa-person"></i>
-
-</div>
-
-<div
-id="male2"
-class="gender-number">
-
-471
-
-</div>
-
-<div class="gender-label">
+<button
+class="filter"
+onclick="setFilter('ชาย',this)">
 
 ชาย
 
-</div>
-
-<div class="progress">
-
-<span
-id="maleProgress"
-style="width:49.1%">
-</span>
-
-</div>
-
-</div>
+</button>
 
 
-<div class="gender">
-
-<div class="gender-icon">
-
-<i class="fa-solid fa-person-dress"></i>
-
-</div>
-
-<div
-id="female2"
-class="gender-number">
-
-489
-
-</div>
-
-<div class="gender-label">
+<button
+class="filter"
+onclick="setFilter('หญิง',this)">
 
 หญิง
 
-</div>
-
-<div class="progress">
-
-<span
-id="femaleProgress"
-style="width:50.9%">
-</span>
-
-</div>
-
-</div>
+</button>
 
 
 </div>
 
-</div>
 
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-สรุปข้อมูลประชากร
-</div>
-
-<div class="card-sub">
-ข้อมูลที่ยืนยันจากรายงาน
-</div>
-
-</div>
-
-<i class="fa-solid fa-database"
-style="color:#22d3ee">
-</i>
-
-</div>
-
-
-<div class="summary-list">
-
-
-<div class="summary-row">
-
-<div class="summary-name">
-ประชากรรวม
-</div>
-
-<div
-id="summaryPopulation"
-class="summary-value">
-960 คน
-</div>
-
-</div>
-
-
-<div class="summary-row">
-
-<div class="summary-name">
-ชาย
-</div>
-
-<div
-id="summaryMale"
-class="summary-value">
-471 คน
-</div>
-
-</div>
-
-
-<div class="summary-row">
-
-<div class="summary-name">
-หญิง
-</div>
-
-<div
-id="summaryFemale"
-class="summary-value">
-489 คน
-</div>
-
-</div>
-
-
-<div class="summary-row">
-
-<div class="summary-name">
-ครัวเรือน
-</div>
-
-<div
-id="summaryHouseholds"
-class="summary-value">
-352
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-NOTICE
-===================================================== -->
-
-<section class="notice">
-
-<div class="notice-icon">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-</div>
-
-<div>
-
-<h3>
-ข้อมูลสาธารณะและข้อมูลทะเบียน
-</h3>
-
-<p>
-
-หน้านี้แสดงเฉพาะข้อมูลสถิติประชากรที่มีอยู่ในรายงาน
-ยังไม่มีการนำรายชื่อ เลขประจำตัวประชาชน
-วันเดือนปีเกิด หรือข้อมูลส่วนบุคคลของประชาชน
-ขึ้นแสดงในเว็บไซต์สาธารณะ
-
-</p>
-
-<p>
-
-หากมีทะเบียนประชาชนจริง จะต้องกำหนดสิทธิ์การเข้าถึง
-ก่อนนำข้อมูลเข้าสู่ระบบ
-
-</p>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-SEARCH
-===================================================== -->
-
-<section class="search-panel">
-
-<div class="search-title">
-
-ค้นหาข้อมูลประชาชน
-
-</div>
-
-<div class="search-sub">
-
-สำหรับทะเบียนประชาชนที่ได้รับอนุญาตให้นำเข้าสู่ระบบเท่านั้น
-
-</div>
-
-
-<div class="search-box">
+<div class="search">
 
 <input
 id="searchInput"
 type="search"
-placeholder="ค้นหาชื่อ / เลขที่บ้าน"
+placeholder="ค้นหาชื่อ หรือบ้านเลขที่..."
 autocomplete="off">
 
 
 <button
 class="btn"
-onclick="searchCitizen()">
+onclick="loadCitizens()">
 
 <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -1486,14 +1179,63 @@ onclick="searchCitizen()">
 
 </button>
 
+</div>
 
-<button
-class="btn secondary"
-onclick="clearSearch()">
 
-ล้าง
+</section>
 
-</button>
+
+
+<!-- =====================================================
+CITIZEN CARDS
+===================================================== -->
+
+<section
+id="citizenGrid"
+class="citizen-grid">
+
+<div class="empty">
+
+<i class="fa-solid fa-users"></i>
+
+กำลังโหลดข้อมูลประชาชน...
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+TABLE
+===================================================== -->
+
+<section class="table-card">
+
+
+<div class="table-head">
+
+<div>
+
+<div class="table-title">
+
+ทะเบียนประชาชน
+
+</div>
+
+<div class="table-sub">
+
+ข้อมูลที่แสดงต้องได้รับอนุญาตตามสิทธิ์การเข้าถึง
+
+</div>
+
+</div>
+
+
+<i
+class="fa-solid fa-address-card"
+style="font-size:24px;color:#22d3ee">
+</i>
 
 </div>
 
@@ -1506,25 +1248,17 @@ onclick="clearSearch()">
 
 <tr>
 
-<th>
-ชื่อ-นามสกุล
-</th>
+<th>ลำดับ</th>
 
-<th>
-เลขที่บ้าน
-</th>
+<th>ชื่อ-นามสกุล</th>
 
-<th>
-เพศ
-</th>
+<th>เพศ</th>
 
-<th>
-อายุ
-</th>
+<th>อายุ</th>
 
-<th>
-สถานะ
-</th>
+<th>บ้านเลขที่</th>
+
+<th>สถานะ</th>
 
 </tr>
 
@@ -1537,16 +1271,12 @@ id="citizenTable">
 <tr>
 
 <td
-colspan="5"
+colspan="6"
 class="empty">
 
-<i class="fa-solid fa-user-lock"></i>
+<i class="fa-solid fa-database"></i>
 
-ยังไม่มีทะเบียนประชาชนรายบุคคลในฐานข้อมูล
-
-<br>
-
-ระบบจะไม่สร้างข้อมูลบุคคลขึ้นเอง
+ยังไม่มีข้อมูลประชาชน
 
 </td>
 
@@ -1558,6 +1288,7 @@ class="empty">
 
 </div>
 
+
 </section>
 
 
@@ -1568,14 +1299,13 @@ PRIVACY
 
 <section class="privacy">
 
-
-<div class="privacy-card">
-
 <div class="privacy-icon">
 
-<i class="fa-solid fa-lock"></i>
+<i class="fa-solid fa-user-lock"></i>
 
 </div>
+
+<div>
 
 <h3>
 ข้อมูลส่วนบุคคล
@@ -1583,60 +1313,14 @@ PRIVACY
 
 <p>
 
-ข้อมูลทะเบียนรายบุคคลจะไม่แสดงต่อสาธารณะ
-โดยไม่มีการกำหนดสิทธิ์การเข้าถึง
+ทะเบียนประชาชนเป็นข้อมูลสำหรับการบริหารจัดการภายใน
+ไม่ควรเปิดเผยเลขบัตรประชาชน เบอร์โทรศัพท์
+วันเดือนปีเกิด หรือข้อมูลส่วนบุคคลอื่นต่อสาธารณะ
+โดยไม่จำเป็น หน้านี้จึงแสดงเฉพาะข้อมูลที่ระบบกำหนดให้เผยแพร่
 
 </p>
 
 </div>
-
-
-
-<div class="privacy-card">
-
-<div class="privacy-icon">
-
-<i class="fa-solid fa-user-shield"></i>
-
-</div>
-
-<h3>
-สิทธิ์ผู้ใช้งาน
-</h3>
-
-<p>
-
-เตรียมแยกสิทธิ์สำหรับประชาชน
-ผู้ช่วยผู้ใหญ่บ้าน ผู้ใหญ่บ้าน
-และผู้ดูแลระบบ
-
-</p>
-
-</div>
-
-
-
-<div class="privacy-card">
-
-<div class="privacy-icon">
-
-<i class="fa-solid fa-database"></i>
-
-</div>
-
-<h3>
-ฐานข้อมูล
-</h3>
-
-<p>
-
-ข้อมูลสถิติจะอ่านจาก Supabase
-ส่วนทะเบียนรายบุคคลจะนำเข้าเมื่อมีข้อมูลจริง
-
-</p>
-
-</div>
-
 
 </section>
 
@@ -1655,6 +1339,7 @@ RONGKHEM e-VILLAGE
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
+
 
 <div>
 
@@ -1692,14 +1377,49 @@ supabase.createClient(
 
 
 /* =====================================================
-HELPER
+STATE
+===================================================== */
+
+let currentFilter =
+"all";
+
+
+/* =====================================================
+ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+NUMBER
 ===================================================== */
 
 function numberFormat(value){
 
-    return Number(
-        value || 0
-    ).toLocaleString(
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "--";
+
+    }
+
+    return Number(value)
+    .toLocaleString(
         "th-TH"
     );
 
@@ -1707,187 +1427,16 @@ function numberFormat(value){
 
 
 /* =====================================================
-LOAD STATISTICS
+LOAD CITIZENS
 ===================================================== */
 
-async function loadStatistics(){
+async function loadCitizens(){
 
-    try{
+    const grid =
+    document.getElementById(
+        "citizenGrid"
+    );
 
-        const {
-
-            data,
-            error
-
-        } =
-        await supabaseClient
-
-        .from("statistics")
-
-        .select(
-            "population,male,female,households"
-        )
-
-        .eq(
-            "year",
-            2568
-        )
-
-        .limit(1)
-
-        .maybeSingle();
-
-
-        if(error)
-            throw error;
-
-
-        if(!data)
-            return;
-
-
-        const population =
-        Number(
-            data.population || 0
-        );
-
-        const male =
-        Number(
-            data.male || 0
-        );
-
-        const female =
-        Number(
-            data.female || 0
-        );
-
-        const households =
-        Number(
-            data.households || 0
-        );
-
-
-        document.getElementById(
-            "population"
-        ).textContent =
-        numberFormat(
-            population
-        );
-
-
-        document.getElementById(
-            "households"
-        ).textContent =
-        numberFormat(
-            households
-        );
-
-
-        document.getElementById(
-            "male"
-        ).textContent =
-        numberFormat(
-            male
-        );
-
-
-        document.getElementById(
-            "female"
-        ).textContent =
-        numberFormat(
-            female
-        );
-
-
-        document.getElementById(
-            "male2"
-        ).textContent =
-        numberFormat(
-            male
-        );
-
-
-        document.getElementById(
-            "female2"
-        ).textContent =
-        numberFormat(
-            female
-        );
-
-
-        document.getElementById(
-            "summaryPopulation"
-        ).textContent =
-        numberFormat(
-            population
-        ) + " คน";
-
-
-        document.getElementById(
-            "summaryMale"
-        ).textContent =
-        numberFormat(
-            male
-        ) + " คน";
-
-
-        document.getElementById(
-            "summaryFemale"
-        ).textContent =
-        numberFormat(
-            female
-        ) + " คน";
-
-
-        document.getElementById(
-            "summaryHouseholds"
-        ).textContent =
-        numberFormat(
-            households
-        );
-
-
-        if(population > 0){
-
-            document.getElementById(
-                "maleProgress"
-            ).style.width =
-            (
-                male /
-                population *
-                100
-            ) + "%";
-
-
-            document.getElementById(
-                "femaleProgress"
-            ).style.width =
-            (
-                female /
-                population *
-                100
-            ) + "%";
-
-        }
-
-
-    }catch(error){
-
-        console.error(
-            "Statistics error:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-SEARCH CITIZEN
-===================================================== */
-
-async function searchCitizen(){
 
     const keyword =
     document
@@ -1898,28 +1447,300 @@ async function searchCitizen(){
     .trim();
 
 
+    try{
+
+        let query =
+        supabaseClient
+
+        .from("citizens")
+
+        .select("*")
+
+        .order(
+            "name",
+            {
+                ascending:true
+            }
+        );
+
+
+        if(
+            currentFilter !== "all"
+        ){
+
+            query =
+            query.eq(
+                "gender",
+                currentFilter
+            );
+
+        }
+
+
+        if(keyword){
+
+            query =
+            query.or(
+                `name.ilike.%${keyword}%,house_number.ilike.%${keyword}%`
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } = await query;
+
+
+        if(error)
+            throw error;
+
+
+        renderCitizens(
+            data || []
+        );
+
+
+        renderTable(
+            data || []
+        );
+
+
+        updateStatistics(
+            data || []
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Citizens:",
+            error
+        );
+
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-database"></i>
+
+            ยังไม่มีข้อมูลประชาชนในฐานข้อมูล
+
+            <br>
+
+            กรุณานำเข้าข้อมูลจริงจากไฟล์ก่อนใช้งาน
+
+        </div>
+
+        `;
+
+
+        renderTable([]);
+
+        updateStatistics([]);
+
+    }
+
+}
+
+
+/* =====================================================
+RENDER CARDS
+===================================================== */
+
+function renderCitizens(
+    citizens
+){
+
+    const grid =
+    document.getElementById(
+        "citizenGrid"
+    );
+
+
+    if(
+        citizens.length === 0
+    ){
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-user-slash"></i>
+
+            ไม่พบข้อมูลประชาชน
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+    citizens.map(
+        person => `
+
+        <article
+        class="citizen-card">
+
+
+            <div
+            class="citizen-top">
+
+
+                <div
+                class="avatar">
+
+                    <i
+                    class="fa-solid fa-user">
+                    </i>
+
+                </div>
+
+
+                <span
+                class="citizen-status">
+
+                    ${escapeHTML(
+                        person.status ||
+                        "ไม่ระบุ"
+                    )}
+
+                </span>
+
+
+            </div>
+
+
+            <div
+            class="citizen-name">
+
+                ${escapeHTML(
+                    person.name ||
+                    "ยังไม่มีข้อมูลชื่อ"
+                )}
+
+            </div>
+
+
+            <div
+            class="citizen-house">
+
+                <i
+                class="fa-solid fa-house">
+                </i>
+
+                บ้านเลขที่
+
+                ${escapeHTML(
+                    person.house_number ||
+                    "-"
+                )}
+
+            </div>
+
+
+            <div
+            class="citizen-info">
+
+
+                <div class="info">
+
+                    <div class="info-label">
+                    เพศ
+                    </div>
+
+                    <div class="info-value">
+
+                        ${escapeHTML(
+                            person.gender ||
+                            "--"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="info">
+
+                    <div class="info-label">
+                    อายุ
+                    </div>
+
+                    <div class="info-value">
+
+                        ${
+                            person.age !== null &&
+                            person.age !== undefined
+                            ?
+                            numberFormat(
+                                person.age
+                            ) + " ปี"
+                            :
+                            "--"
+                        }
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div
+            class="citizen-footer">
+
+                ข้อมูลสำหรับการบริหารจัดการหมู่บ้าน
+
+            </div>
+
+
+        </article>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+function renderTable(
+    citizens
+){
+
     const table =
-    document
-    .getElementById(
+    document.getElementById(
         "citizenTable"
     );
 
 
-    if(!keyword){
+    if(
+        citizens.length === 0
+    ){
 
         table.innerHTML = `
 
         <tr>
 
-        <td
-        colspan="5"
-        class="empty">
+            <td
+            colspan="6"
+            class="empty">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-database"></i>
 
-        กรุณาระบุชื่อหรือเลขที่บ้าน
+                ยังไม่มีข้อมูล
 
-        </td>
+            </td>
 
         </tr>
 
@@ -1930,83 +1751,193 @@ async function searchCitizen(){
     }
 
 
-    /*
-      ยังไม่มีตาราง citizen
-      สำหรับทะเบียนประชาชนจริง
+    table.innerHTML =
+    citizens.map(
+        (person,index) => `
 
-      จึงไม่สร้างข้อมูลสมมติ
-    */
+        <tr>
 
+            <td>
+                ${index + 1}
+            </td>
 
-    table.innerHTML = `
+            <td>
 
-    <tr>
+                ${escapeHTML(
+                    person.name ||
+                    "-"
+                )}
 
-    <td
-    colspan="5"
-    class="empty">
+            </td>
 
-    <i class="fa-solid fa-database"></i>
+            <td>
 
-    ยังไม่มีทะเบียนประชาชนรายบุคคลในระบบ
+                ${escapeHTML(
+                    person.gender ||
+                    "--"
+                )}
 
-    <br>
+            </td>
 
-    กรุณานำเข้าข้อมูลทะเบียนจริงก่อน
+            <td>
 
-    </td>
+                ${
+                    person.age !== null &&
+                    person.age !== undefined
+                    ?
+                    numberFormat(
+                        person.age
+                    )
+                    :
+                    "--"
+                }
 
-    </tr>
+            </td>
 
-    `;
+            <td>
+
+                ${escapeHTML(
+                    person.house_number ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                <span class="status">
+
+                    ${escapeHTML(
+                        person.status ||
+                        "ไม่ระบุ"
+                    )}
+
+                </span>
+
+            </td>
+
+        </tr>
+
+        `
+    ).join("");
 
 }
 
 
 /* =====================================================
-CLEAR
+STATISTICS
 ===================================================== */
 
-function clearSearch(){
+function updateStatistics(
+    citizens
+){
 
-    document
-    .getElementById(
-        "searchInput"
-    )
-    .value = "";
+    const total =
+    citizens.length;
 
 
-    document
-    .getElementById(
-        "citizenTable"
-    )
-    .innerHTML = `
+    const male =
+    citizens.filter(
+        person =>
+        person.gender === "ชาย"
+    ).length;
 
-    <tr>
 
-    <td
-    colspan="5"
-    class="empty">
+    const female =
+    citizens.filter(
+        person =>
+        person.gender === "หญิง"
+    ).length;
 
-    <i class="fa-solid fa-user-lock"></i>
 
-    ยังไม่มีทะเบียนประชาชนรายบุคคลในฐานข้อมูล
+    const houses =
+    new Set(
+        citizens
+        .map(
+            person =>
+            person.house_number
+        )
+        .filter(Boolean)
+    ).size;
 
-    <br>
 
-    ระบบจะไม่สร้างข้อมูลบุคคลขึ้นเอง
+    document.getElementById(
+        "totalCitizens"
+    ).textContent =
+    total.toLocaleString(
+        "th-TH"
+    );
 
-    </td>
 
-    </tr>
+    document.getElementById(
+        "maleCount"
+    ).textContent =
+    male > 0
+    ?
+    male.toLocaleString("th-TH")
+    :
+    "--";
 
-    `;
+
+    document.getElementById(
+        "femaleCount"
+    ).textContent =
+    female > 0
+    ?
+    female.toLocaleString("th-TH")
+    :
+    "--";
+
+
+    document.getElementById(
+        "houseCount"
+    ).textContent =
+    houses > 0
+    ?
+    houses.toLocaleString("th-TH")
+    :
+    "--";
 
 }
 
 
 /* =====================================================
-ENTER SEARCH
+FILTER
+===================================================== */
+
+function setFilter(
+    filter,
+    button
+){
+
+    currentFilter =
+    filter;
+
+
+    document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        item =>
+        item.classList.remove(
+            "active"
+        )
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    loadCitizens();
+
+}
+
+
+/* =====================================================
+SEARCH ENTER
 ===================================================== */
 
 document
@@ -2015,13 +1946,13 @@ document
 )
 .addEventListener(
     "keydown",
-    function(event){
+    event => {
 
         if(
             event.key === "Enter"
         ){
 
-            searchCitizen();
+            loadCitizens();
 
         }
 
@@ -2035,9 +1966,9 @@ INIT
 
 document.addEventListener(
     "DOMContentLoaded",
-    function(){
+    () => {
 
-        loadStatistics();
+        loadCitizens();
 
     }
 );
