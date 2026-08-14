@@ -103,6 +103,10 @@ button,input{font:inherit}button{cursor:pointer}.top{background:linear-gradient(
 </main>
 <div class="toast" id="toast"></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="supabase.js"></script>
+
 <script>
 const VERIFIED={
  leader:{name:"นายศักรนนทน์ ขัติย์วงศ์",role:"ผู้ใหญ่บ้าน หมู่ที่ 6",phone:"088-888-8888",line:"rongkhem.village"},
@@ -193,6 +197,99 @@ exportData.onclick=()=>{const blob=new Blob([JSON.stringify({data:DATA,photo:pho
 importBtn.onclick=()=>importFile.click();
 importFile.onchange=()=>{const f=importFile.files[0];if(!f)return;const r=new FileReader();r.onload=e=>{try{const x=JSON.parse(e.target.result);if(x.data)DATA=x.data;if(x.photo){photoData=x.photo;localStorage.setItem("RONGKHEM_LEADER_PHOTO",photoData);showPhoto(photoData)}save();fill();toast("✓ นำเข้าข้อมูลสำเร็จ")}catch(err){toast("ไฟล์สำรองไม่ถูกต้อง")}};r.readAsText(f)};
 fill();
+
+/* =========================================================
+   RONGKHEM ADMIN — SUPABASE BRIDGE
+   ใช้ฐานข้อมูลกลางเมื่อ config + supabase.js พร้อม
+   และเก็บ localStorage เป็น fallback
+   ========================================================= */
+async function loadFromCloud(){
+  if(!window.RongkhemDB) return false;
+
+  try{
+    const [village, stats] = await Promise.all([
+      RongkhemDB.getVillage(),
+      RongkhemDB.getStatistics()
+    ]);
+
+    if(village){
+      DATA.leader = {
+        name: village.leader_name ?? village.name ?? DATA.leader.name,
+        role: village.leader_role ?? DATA.leader.role,
+        phone: village.phone ?? village.leader_phone ?? DATA.leader.phone,
+        line: village.line_id ?? village.line ?? DATA.leader.line
+      };
+    }
+
+    if(stats){
+      DATA.stats = {
+        total: Number(stats.population_total ?? DATA.stats.total),
+        male: Number(stats.population_male ?? DATA.stats.male),
+        female: Number(stats.population_female ?? DATA.stats.female),
+        house: Number(stats.households_total ?? DATA.stats.house),
+        elderly: Number(stats.elderly_60_plus ?? DATA.stats.elderly),
+        disabled: Number(stats.disabled_total ?? DATA.stats.disabled),
+        chronic: Number(stats.chronic_disease_total ?? DATA.stats.chronic),
+        vulnerable: Number(stats.vulnerable_selections ?? DATA.stats.vulnerable),
+        survey: Number(stats.survey_total ?? DATA.stats.survey)
+      };
+    }
+
+    save();
+    fill();
+    toast("✓ โหลดข้อมูลจากฐานข้อมูลกลางแล้ว");
+    return true;
+
+  }catch(error){
+    console.warn("Cloud load:", error);
+    return false;
+  }
+}
+
+async function saveLeaderCloud(){
+  if(!window.RongkhemDB) return false;
+
+  const payload = {
+    leader_name: DATA.leader.name,
+    leader_role: DATA.leader.role,
+    phone: DATA.leader.phone,
+    line_id: DATA.leader.line
+  };
+
+  await RongkhemDB.updateVillage(payload);
+  return true;
+}
+
+async function saveStatsCloud(){
+  if(!window.RongkhemDB) return false;
+
+  await RongkhemDB.updateStatistics({
+    population_total: DATA.stats.total,
+    population_male: DATA.stats.male,
+    population_female: DATA.stats.female,
+    households_total: DATA.stats.house,
+    survey_total: DATA.stats.survey,
+    survey_households: DATA.stats.survey,
+    elderly_60_plus: DATA.stats.elderly,
+    elderly_percent:
+      DATA.stats.survey > 0
+        ? Number((DATA.stats.elderly / DATA.stats.survey * 100).toFixed(1))
+        : 0,
+    disabled_total: DATA.stats.disabled,
+    chronic_disease_total: DATA.stats.chronic,
+    vulnerable_selections: DATA.stats.vulnerable,
+    source: "VERIFIED DATA BUILD",
+    verified: true
+  });
+
+  return true;
+}
+
+/* โหลด Cloud หลังหน้า Admin พร้อม */
+window.addEventListener("load", async function(){
+  await loadFromCloud();
+});
+
 </script>
 </body>
 </html>
