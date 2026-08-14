@@ -543,5 +543,206 @@ document.addEventListener("keydown", function(e){
   setInterval(refreshLive,REFRESH_MS);
 })();
 </script>
+
+<script>
+/* =========================================================
+   RONGKHEM e-VILLAGE — AI ผู้ช่วยผู้ใหญ่บ้าน
+   ทำงานทันทีโดยไม่ต้องใช้ API Key
+   อ่านข้อมูลจาก Dashboard / VERIFIED DATA
+   ========================================================= */
+(function(){
+
+  const AI_DATA = {
+    population: 960,
+    male: 471,
+    female: 489,
+    households: 352,
+    elderly: 92,
+    survey: 202,
+    disabled: 3,
+    chronic: 1,
+    vulnerable: 95,
+    leader: "นายศักรนนทน์ ขัติย์วงศ์",
+    role: "ผู้ใหญ่บ้าน หมู่ที่ 6",
+    phone: "088-888-8888",
+    line: "rongkhem.village"
+  };
+
+  const money = n => Number(n).toLocaleString("th-TH");
+
+  function findFirst(ids){
+    for(const id of ids){
+      const el = document.getElementById(id);
+      if(el) return el;
+    }
+    return null;
+  }
+
+  const box = findFirst([
+    "aiMessages","chatMessages","aiChatMessages",
+    "assistantMessages","chatBox"
+  ]);
+
+  const input = findFirst([
+    "aiInput","chatInput","assistantInput",
+    "aiQuestion","questionInput"
+  ]);
+
+  const send = findFirst([
+    "aiSend","chatSend","assistantSend",
+    "sendQuestion","sendAI"
+  ]);
+
+  function getContainer(){
+    return box || document.querySelector(".ai-messages") ||
+           document.querySelector(".chat-messages") ||
+           document.querySelector("[data-ai-messages]");
+  }
+
+  function getInput(){
+    return input || document.querySelector(".ai-input input") ||
+           document.querySelector(".chat-input input") ||
+           document.querySelector('input[placeholder*="คำถาม"]') ||
+           document.querySelector('input[placeholder*="พิมพ์"]');
+  }
+
+  function addMessage(text, who="ai"){
+    const c = getContainer();
+    if(!c) return;
+
+    const div = document.createElement("div");
+    div.className = "ai-message " + who;
+    div.style.cssText =
+      "margin:8px 0;padding:10px 12px;border-radius:12px;line-height:1.65;white-space:pre-line;" +
+      (who==="user"
+        ? "background:#173845;text-align:right;"
+        : "background:#102a34;");
+
+    div.textContent = text;
+    c.appendChild(div);
+    c.scrollTop = c.scrollHeight;
+  }
+
+  function answer(question){
+    const q = String(question || "").trim().toLowerCase();
+
+    if(!q){
+      return "พิมพ์คำถามได้เลยครับ ผมพร้อมช่วยตอบข้อมูลของบ้านร่องเข็ม";
+    }
+
+    if(/(ประชากร|คนทั้งหมด|มีกี่คน|จำนวนคน)/.test(q)){
+      return `บ้านร่องเข็ม หมู่ที่ 6 มีประชากร ${money(AI_DATA.population)} คน\nชาย ${money(AI_DATA.male)} คน และหญิง ${money(AI_DATA.female)} คนครับ`;
+    }
+
+    if(/(ชาย|ผู้ชาย)/.test(q) && /(กี่คน|จำนวน|เท่าไร)/.test(q)){
+      return `ประชากรชายมี ${money(AI_DATA.male)} คนครับ`;
+    }
+
+    if(/(หญิง|ผู้หญิง)/.test(q) && /(กี่คน|จำนวน|เท่าไร)/.test(q)){
+      return `ประชากรหญิงมี ${money(AI_DATA.female)} คนครับ`;
+    }
+
+    if(/(ครัวเรือน|บ้านเรือน|บ้าน|หลัง)/.test(q)){
+      return `บ้านร่องเข็มมี ${money(AI_DATA.households)} ครัวเรือนครับ`;
+    }
+
+    if(/(ผู้สูงอายุ|สูงอายุ|60 ปี|60\+)/.test(q)){
+      return `จากข้อมูลสำรวจ มีผู้สูงอายุอายุ 60 ปีขึ้นไป ${money(AI_DATA.elderly)} คน จากผู้ตอบแบบสำรวจ ${money(AI_DATA.survey)} คนครับ`;
+    }
+
+    if(/(สำรวจ|แบบสำรวจ|ผู้ตอบ)/.test(q)){
+      return `ข้อมูลสำรวจมีผู้ตอบ ${money(AI_DATA.survey)} คน และสำรวจ ${money(AI_DATA.survey)} ครัวเรือนครับ`;
+    }
+
+    if(/(พิการ|ผู้พิการ)/.test(q)){
+      return `ข้อมูลที่ยืนยันแล้วมีผู้พิการ ${money(AI_DATA.disabled)} คนครับ`;
+    }
+
+    if(/(โรคเรื้อรัง|เรื้อรัง)/.test(q)){
+      return `ข้อมูลที่ยืนยันแล้วมีผู้ป่วยโรคเรื้อรัง ${money(AI_DATA.chronic)} คนครับ`;
+    }
+
+    if(/(เปราะบาง|กลุ่มเปราะบาง)/.test(q)){
+      return `ข้อมูลการเลือกกลุ่มเปราะบางรวม ${money(AI_DATA.vulnerable)} รายการครับ หมายเหตุ: ผู้ตอบสามารถเลือกได้มากกว่า 1 ข้อ`;
+    }
+
+    if(/(ผู้ใหญ่บ้าน|ผู้นำ|นายศักร)/.test(q)){
+      return `${AI_DATA.leader}\n${AI_DATA.role}\nโทร. ${AI_DATA.phone}\nLINE ID: ${AI_DATA.line}`;
+    }
+
+    if(/(ติดต่อ|โทร|เบอร์|โทรศัพท์|line|ไลน์)/.test(q)){
+      return `ติดต่อที่ทำการผู้ใหญ่บ้านได้ที่ ${AI_DATA.phone}\nLINE ID: ${AI_DATA.line}`;
+    }
+
+    if(/(สวัสดี|หวัดดี|hello|hi)/.test(q)){
+      return "สวัสดีครับ 🙏 ผมคือ AI ผู้ช่วยผู้ใหญ่บ้านบ้านร่องเข็ม พร้อมช่วยค้นข้อมูลจากระบบครับ";
+    }
+
+    if(/(ทำอะไรได้|ช่วยอะไร|ช่วยได้)/.test(q)){
+      return "ผมช่วยตอบข้อมูลที่มีอยู่ใน Dashboard ได้ เช่น ประชากร ครัวเรือน ผู้สูงอายุ แบบสำรวจ ผู้พิการ กลุ่มเปราะบาง และข้อมูลการติดต่อผู้ใหญ่บ้านครับ";
+    }
+
+    if(/(อากาศ|อุณหภูมิ|ฝน|ลม|pm2\.?5|ฝุ่น)/.test(q)){
+      const temp = findFirst(["weatherTemp","temperature","temp"]);
+      const pm = findFirst(["pm25","pm25Value","pmValue"]);
+      const t = temp ? temp.textContent.trim() : "--";
+      const p = pm ? pm.textContent.trim() : "--";
+      return `ข้อมูลอากาศปัจจุบันบน Dashboard: อุณหภูมิ ${t}\nPM2.5 ${p}\nหากหน้าสภาพอากาศกำลังโหลด ให้รอสักครู่เพื่อรับข้อมูลล่าสุดครับ`;
+    }
+
+    return "ขออภัยครับ ตอนนี้ผมตอบได้จากข้อมูลที่มีใน Dashboard เช่น ประชากร ครัวเรือน ผู้สูงอายุ แบบสำรวจ ผู้พิการ กลุ่มเปราะบาง และข้อมูลติดต่อผู้ใหญ่บ้าน ลองถามว่า “บ้านร่องเข็มมีกี่คน?” ได้เลยครับ";
+  }
+
+  function submit(){
+    const inp = getInput();
+    if(!inp) return;
+
+    const q = inp.value.trim();
+    if(!q) return;
+
+    addMessage(q, "user");
+    inp.value = "";
+
+    setTimeout(() => addMessage(answer(q), "ai"), 180);
+  }
+
+  if(send) send.addEventListener("click", submit);
+
+  const inp = getInput();
+  if(inp){
+    inp.addEventListener("keydown", e => {
+      if(e.key === "Enter"){
+        e.preventDefault();
+        submit();
+      }
+    });
+  }
+
+  /* ผูกปุ่มคำถามตัวอย่างทั้งหมด */
+  document.querySelectorAll(
+    '[data-question], .ai-question, .quick-question, .suggestion'
+  ).forEach(el => {
+    el.addEventListener("click", () => {
+      const q = el.dataset.question || el.textContent;
+      const inp = getInput();
+      if(inp){
+        inp.value = q.trim();
+        submit();
+      }
+    });
+  });
+
+  /* API สำหรับเรียกจากหน้าเว็บอื่น */
+  window.RONGKHEM_AI = {
+    ask: answer,
+    send: submit,
+    data: AI_DATA
+  };
+
+  console.log("✓ RONGKHEM AI ASSISTANT READY");
+
+})();
+</script>
+
 </body>
 </html>
