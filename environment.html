@@ -9,7 +9,7 @@
       content="width=device-width, initial-scale=1.0">
 
 <title>
-สิ่งแวดล้อม | RONGKHEM e-VILLAGE
+สิ่งแวดล้อมและ PM2.5 | RONGKHEM e-VILLAGE
 </title>
 
 <link rel="preconnect"
@@ -44,17 +44,14 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     --yellow:#facc15;
     --orange:#fb923c;
     --red:#fb7185;
-
-    --radius:22px;
+    --purple:#a78bfa;
 
 }
 
 *{
-
     box-sizing:border-box;
     margin:0;
     padding:0;
-
 }
 
 body{
@@ -69,13 +66,13 @@ body{
 
     radial-gradient(
         circle at 10% 0%,
-        rgba(34,197,94,.08),
+        rgba(34,211,238,.09),
         transparent 30%
     ),
 
     radial-gradient(
         circle at 90% 20%,
-        rgba(34,211,238,.08),
+        rgba(34,197,94,.07),
         transparent 30%
     ),
 
@@ -153,7 +150,9 @@ HEADER
     border-radius:15px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:21px;
@@ -161,7 +160,7 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #15803d,
+        #047857,
         #22c55e
     );
 
@@ -185,13 +184,11 @@ HEADER
 
 .back{
 
-    padding:
-    9px 14px;
+    padding:9px 14px;
 
     border-radius:12px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
@@ -243,8 +240,7 @@ TITLE
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
@@ -263,12 +259,164 @@ TITLE
 
 
 /* =====================================================
+PM HERO
+===================================================== */
+
+.pm-hero{
+
+    margin-top:22px;
+
+    padding:26px;
+
+    border-radius:24px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(6,78,59,.30),
+        rgba(15,29,48,.92)
+    );
+
+    border:
+    1px solid
+    rgba(34,197,94,.20);
+
+}
+
+.pm-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.pm-title{
+
+    font-family:"Kanit";
+
+    font-size:22px;
+
+}
+
+.pm-sub{
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.pm-reading{
+
+    margin-top:20px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    gap:12px;
+
+}
+
+.pm-value{
+
+    font-family:"Kanit";
+
+    font-size:65px;
+
+    line-height:1;
+
+}
+
+.pm-unit{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    padding-bottom:7px;
+
+}
+
+.pm-status{
+
+    margin-top:14px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:7px 11px;
+
+    border-radius:999px;
+
+    font-size:10px;
+
+}
+
+.pm-good{
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.10);
+
+}
+
+.pm-moderate{
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.10);
+
+}
+
+.pm-warning{
+
+    color:#fdba74;
+
+    background:
+    rgba(251,146,60,.10);
+
+}
+
+.pm-danger{
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.10);
+
+}
+
+.pm-unknown{
+
+    color:#94a3b8;
+
+    background:
+    rgba(148,163,184,.08);
+
+}
+
+
+/* =====================================================
 STATS
 ===================================================== */
 
 .stats{
 
-    margin-top:22px;
+    margin-top:20px;
 
     display:grid;
 
@@ -281,9 +429,9 @@ STATS
 
 .stat{
 
-    padding:22px;
+    padding:21px;
 
-    border-radius:22px;
+    border-radius:21px;
 
     background:
     var(--card);
@@ -301,7 +449,9 @@ STATS
     border-radius:14px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     color:#86efac;
@@ -313,11 +463,11 @@ STATS
 
 .stat-value{
 
-    margin-top:12px;
+    margin-top:11px;
 
     font-family:"Kanit";
 
-    font-size:34px;
+    font-size:33px;
 
 }
 
@@ -325,123 +475,16 @@ STATS
 
     color:var(--muted);
 
-    font-size:12px;
-
-}
-
-
-/* =====================================================
-PM CARD
-===================================================== */
-
-.pm-card{
-
-    margin-top:20px;
-
-    padding:24px;
-
-    border-radius:22px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.card-head{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-}
-
-.card-title{
-
-    font-family:"Kanit";
-
-    font-size:21px;
-
-}
-
-.card-sub{
-
-    margin-top:2px;
-
-    color:var(--muted);
-
     font-size:11px;
 
 }
 
-.pm-value{
-
-    margin-top:22px;
-
-    display:flex;
-
-    align-items:end;
-
-    gap:9px;
-
-}
-
-.pm-number{
-
-    font-family:"Kanit";
-
-    font-size:58px;
-
-    line-height:1;
-
-}
-
-.pm-unit{
-
-    margin-bottom:6px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-}
-
-.pm-status{
-
-    display:inline-flex;
-
-    margin-top:13px;
-
-    padding:
-    7px 12px;
-
-    border-radius:999px;
-
-    color:#facc15;
-
-    background:
-    rgba(250,204,21,.08);
-
-    border:
-    1px solid
-    rgba(250,204,21,.14);
-
-    font-size:10px;
-
-}
-
 
 /* =====================================================
-GRID
+MAIN GRID
 ===================================================== */
 
-.grid{
+.main-grid{
 
     margin-top:20px;
 
@@ -450,11 +493,11 @@ GRID
     grid-template-columns:
     1fr 1fr;
 
-    gap:15px;
+    gap:16px;
 
 }
 
-.card{
+.panel{
 
     padding:23px;
 
@@ -468,31 +511,7 @@ GRID
 
 }
 
-
-/* =====================================================
-ENVIRONMENT ITEMS
-===================================================== */
-
-.env-list{
-
-    margin-top:18px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-.env-item{
-
-    padding:16px;
-
-    border-radius:16px;
-
-    background:
-    rgba(255,255,255,.035);
+.panel-head{
 
     display:flex;
 
@@ -504,22 +523,138 @@ ENVIRONMENT ITEMS
 
 }
 
-.env-left{
+.panel-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.panel-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+/* =====================================================
+PM SCALE
+===================================================== */
+
+.pm-scale{
+
+    margin-top:22px;
+
+}
+
+.scale-bar{
+
+    height:15px;
+
+    border-radius:999px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #22c55e 0%,
+        #22c55e 20%,
+        #facc15 40%,
+        #fb923c 65%,
+        #ef4444 82%,
+        #7f1d1d 100%
+    );
+
+}
+
+.scale-labels{
+
+    margin-top:8px;
 
     display:flex;
 
-    align-items:center;
+    justify-content:space-between;
 
-    gap:13px;
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+.pm-advice{
+
+    margin-top:17px;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.pm-advice-title{
+
+    font-size:11px;
+
+}
+
+.pm-advice-text{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+ENVIRONMENT CARDS
+===================================================== */
+
+.env-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+.env-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
 
 }
 
 .env-icon{
 
-    width:43px;
-    height:43px;
+    width:47px;
+    height:47px;
 
-    border-radius:13px;
+    border-radius:14px;
 
     display:flex;
 
@@ -532,127 +667,230 @@ ENVIRONMENT ITEMS
     background:
     rgba(34,197,94,.08);
 
-}
-
-.env-name{
-
-    font-size:13px;
+    font-size:19px;
 
 }
 
-.env-desc{
+.env-title{
 
-    margin-top:2px;
+    margin-top:12px;
 
-    color:var(--muted);
+    font-family:"Kanit";
 
-    font-size:10px;
+    font-size:17px;
 
 }
 
 .env-value{
 
+    margin-top:7px;
+
     font-family:"Kanit";
 
-    font-size:20px;
+    font-size:27px;
 
-    color:#86efac;
+}
+
+.env-sub{
+
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:9px;
 
 }
 
 
 /* =====================================================
-ACTIONS
+REPORTS
 ===================================================== */
 
-.actions{
+.report-list{
 
     margin-top:18px;
 
-    display:grid;
+    display:flex;
 
-    grid-template-columns:
-    1fr 1fr;
+    flex-direction:column;
 
     gap:10px;
 
 }
 
-.action{
+.report{
 
-    padding:17px;
+    padding:15px;
 
-    border-radius:16px;
+    border-radius:15px;
 
     background:
     rgba(255,255,255,.035);
 
 }
 
-.action i{
+.report-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.report-title{
+
+    font-size:11px;
+
+}
+
+.report-status{
+
+    padding:4px 8px;
+
+    border-radius:999px;
+
+    font-size:9px;
+
+}
+
+.report-open{
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.08);
+
+}
+
+.report-done{
 
     color:#86efac;
 
-    font-size:20px;
+    background:
+    rgba(34,197,94,.08);
 
 }
 
-.action h3{
+.report-meta{
 
-    margin-top:9px;
-
-    font-size:13px;
-
-}
-
-.action p{
-
-    margin-top:4px;
+    margin-top:6px;
 
     color:var(--muted);
 
-    font-size:10px;
-
-    line-height:1.7;
+    font-size:9px;
 
 }
 
 
 /* =====================================================
-WARNING
+WATER
 ===================================================== */
 
-.warning{
+.water-card{
 
     margin-top:20px;
 
-    padding:20px;
+    padding:23px;
 
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:14px;
-
-    border-radius:20px;
+    border-radius:22px;
 
     background:
-    rgba(250,204,21,.06);
+    var(--card);
 
     border:
-    1px solid
-    rgba(250,204,21,.16);
+    1px solid var(--border);
 
 }
 
-.warning-icon{
+.water-info{
 
-    width:43px;
-    height:43px;
+    margin-top:18px;
 
-    flex:none;
+    display:grid;
 
-    border-radius:13px;
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:12px;
+
+}
+
+.water-item{
+
+    padding:16px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.water-label{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.water-value{
+
+    margin-top:5px;
+
+    font-family:"Kanit";
+
+    font-size:20px;
+
+}
+
+
+/* =====================================================
+BURNING
+===================================================== */
+
+.burning{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(127,29,29,.17),
+        rgba(15,29,48,.90)
+    );
+
+    border:
+    1px solid
+    rgba(251,113,133,.15);
+
+}
+
+.burning-head{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.burning-icon{
+
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
 
     display:flex;
 
@@ -660,28 +898,30 @@ WARNING
 
     justify-content:center;
 
-    color:#facc15;
+    color:#fda4af;
 
     background:
-    rgba(250,204,21,.08);
+    rgba(251,113,133,.08);
 
 }
 
-.warning h3{
+.burning h3{
 
-    font-size:14px;
+    font-family:"Kanit";
+
+    font-size:20px;
 
 }
 
-.warning p{
+.burning p{
 
-    margin-top:5px;
+    margin-top:12px;
 
     color:var(--muted);
 
     font-size:11px;
 
-    line-height:1.8;
+    line-height:1.9;
 
 }
 
@@ -718,7 +958,7 @@ table{
 
     width:100%;
 
-    min-width:700px;
+    min-width:850px;
 
     border-collapse:collapse;
 
@@ -726,14 +966,13 @@ table{
 
 th{
 
-    padding:
-    14px 12px;
+    padding:14px 12px;
 
     text-align:left;
 
     color:#86efac;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:500;
 
@@ -747,8 +986,7 @@ th{
 
 td{
 
-    padding:
-    14px 12px;
+    padding:13px 12px;
 
     font-size:11px;
 
@@ -757,9 +995,14 @@ td{
 
 }
 
+
+/* =====================================================
+EMPTY
+===================================================== */
+
 .empty{
 
-    padding:50px 20px;
+    padding:40px 20px;
 
     text-align:center;
 
@@ -773,10 +1016,10 @@ td{
 
     margin-bottom:12px;
 
-    font-size:40px;
+    font-size:38px;
 
     color:
-    rgba(34,197,94,.28);
+    rgba(34,197,94,.25);
 
 }
 
@@ -789,8 +1032,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -812,7 +1054,7 @@ FOOTER
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
     .stats{
 
@@ -821,7 +1063,14 @@ RESPONSIVE
 
     }
 
-    .grid{
+    .env-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .main-grid{
 
         grid-template-columns:
         1fr;
@@ -830,7 +1079,7 @@ RESPONSIVE
 
 }
 
-@media(max-width:600px){
+@media(max-width:620px){
 
     .container{
 
@@ -845,10 +1094,13 @@ RESPONSIVE
 
     }
 
-    .stats{
+    .pm-value{
 
-        grid-template-columns:
-        1fr 1fr;
+        font-size:52px;
+
+    }
+
+    .stats{
 
         gap:10px;
 
@@ -862,11 +1114,18 @@ RESPONSIVE
 
     .stat-value{
 
-        font-size:28px;
+        font-size:27px;
 
     }
 
-    .actions{
+    .env-grid{
+
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+    .water-info{
 
         grid-template-columns:
         1fr;
@@ -944,18 +1203,18 @@ TITLE
 <section class="page-head">
 
 <h2>
-สิ่งแวดล้อมและ PM2.5
+ศูนย์สิ่งแวดล้อมและ PM2.5
 </h2>
 
 <p>
-ระบบติดตามคุณภาพอากาศ การเผา ขยะ และสิ่งแวดล้อมของหมู่บ้าน
+ติดตามคุณภาพอากาศ การเผา ขยะ แหล่งน้ำ และสถานการณ์สิ่งแวดล้อมของชุมชน
 </p>
 
 <div class="source">
 
 <i class="fa-solid fa-database"></i>
 
-ข้อมูลจริงจากระบบหมู่บ้านและแหล่งข้อมูลที่เชื่อมต่อ
+ข้อมูลจากระบบสิ่งแวดล้อมของหมู่บ้าน
 
 </div>
 
@@ -964,149 +1223,46 @@ TITLE
 
 
 <!-- =====================================================
-STATS
+PM HERO
 ===================================================== -->
 
-<section class="stats">
+<section class="pm-hero">
 
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-wind"></i>
-
-</div>
-
-<div
-id="pm25"
-class="stat-value">
-
---
-
-</div>
-
-<div class="stat-label">
-
-PM2.5 µg/m³
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-fire"></i>
-
-</div>
-
-<div
-id="burning"
-class="stat-value">
-
---
-
-</div>
-
-<div class="stat-label">
-
-เหตุการเผาที่บันทึก
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-trash-can"></i>
-
-</div>
-
-<div
-id="waste"
-class="stat-value">
-
---
-
-</div>
-
-<div class="stat-label">
-
-ข้อมูลการจัดการขยะ
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-seedling"></i>
-
-</div>
-
-<div
-id="environmentProjects"
-class="stat-value">
-
---
-
-</div>
-
-<div class="stat-label">
-
-โครงการสิ่งแวดล้อม
-
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-PM2.5
-===================================================== -->
-
-<section class="pm-card">
-
-
-<div class="card-head">
+<div class="pm-top">
 
 <div>
 
-<div class="card-title">
+<div class="pm-title">
+
 คุณภาพอากาศ PM2.5
-</div>
-
-<div class="card-sub">
-ค่าล่าสุดจากแหล่งข้อมูลที่ระบบเชื่อมต่อ
-</div>
 
 </div>
 
-<i class="fa-solid fa-cloud-sun"
-style="font-size:28px;color:#86efac">
+<div class="pm-sub">
+
+ค่าล่าสุดจากข้อมูลที่ระบบบันทึกไว้
+
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-wind"
+style="
+font-size:30px;
+color:#86efac;
+">
+
 </i>
 
 </div>
 
 
-<div class="pm-value">
+<div class="pm-reading">
 
 <div
 id="pmValue"
-class="pm-number">
+class="pm-value">
 
 --
 
@@ -1123,9 +1279,24 @@ class="pm-number">
 
 <div
 id="pmStatus"
-class="pm-status">
+class="pm-status pm-unknown">
 
-ยังไม่มีข้อมูลคุณภาพอากาศ
+<i class="fa-solid fa-circle-question"></i>
+
+ยังไม่มีข้อมูล PM2.5
+
+</div>
+
+
+<div
+id="pmUpdated"
+style="
+margin-top:9px;
+color:#64748b;
+font-size:9px;
+">
+
+ยังไม่มีข้อมูลล่าสุด
 
 </div>
 
@@ -1135,43 +1306,255 @@ class="pm-status">
 
 
 <!-- =====================================================
-GRID
+STATS
 ===================================================== -->
 
-<section class="grid">
+<section class="stats">
 
 
-<!-- BURNING -->
+<div class="stat">
 
-<div class="card">
+<div class="stat-icon">
 
-<div class="card-head">
+<i class="fa-solid fa-smog"></i>
+
+</div>
+
+<div
+id="pmRecords"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+รายการ PM2.5
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-fire"></i>
+
+</div>
+
+<div
+id="burningReports"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+รายงานการเผา
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-trash-can"></i>
+
+</div>
+
+<div
+id="wasteReports"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+รายการขยะ/สิ่งแวดล้อม
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-droplet"></i>
+
+</div>
+
+<div
+id="waterRecords"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ข้อมูลแหล่งน้ำ
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+PM SCALE + REPORT
+===================================================== -->
+
+<section class="main-grid">
+
+
+<div class="panel">
+
+<div class="panel-head">
 
 <div>
 
-<div class="card-title">
-การเผาและไฟป่า
+<div class="panel-title">
+ระดับ PM2.5
 </div>
 
-<div class="card-sub">
-ติดตามเหตุการณ์ในพื้นที่หมู่บ้าน
+<div class="panel-sub">
+ใช้สำหรับอ่านค่าภาพรวมจากข้อมูลในระบบ
 </div>
 
 </div>
 
-<i class="fa-solid fa-fire"
-style="color:#fb923c">
+<i
+class="fa-solid fa-chart-line"
+style="color:#86efac;font-size:23px">
 </i>
 
 </div>
 
 
-<div class="env-list">
+<div class="pm-scale">
+
+<div class="scale-bar"></div>
+
+<div class="scale-labels">
+
+<span>
+ต่ำ
+</span>
+
+<span>
+เริ่มเฝ้าระวัง
+</span>
+
+<span>
+ปานกลาง
+</span>
+
+<span>
+สูง
+</span>
+
+<span>
+สูงมาก
+</span>
+
+</div>
+
+</div>
 
 
-<div class="env-item">
+<div class="pm-advice">
 
-<div class="env-left">
+<div class="pm-advice-title">
+
+<i class="fa-solid fa-shield-heart"></i>
+
+คำแนะนำ
+
+</div>
+
+<div
+id="pmAdvice"
+class="pm-advice-text">
+
+ยังไม่มีค่า PM2.5 สำหรับประเมินสถานการณ์
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+รายงานสิ่งแวดล้อมล่าสุด
+</div>
+
+<div class="panel-sub">
+การเผา ขยะ และเหตุการณ์ที่เกี่ยวข้อง
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-triangle-exclamation"
+style="color:#86efac;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="reportList"
+class="report-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-leaf"></i>
+
+ยังไม่มีรายงาน
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+ENVIRONMENT CARDS
+===================================================== -->
+
+<section class="env-grid">
+
+
+<div class="env-card">
 
 <div class="env-icon">
 
@@ -1179,67 +1562,23 @@ style="color:#fb923c">
 
 </div>
 
-<div>
+<div class="env-title">
 
-<div class="env-name">
-เหตุเผาในพื้นที่
-</div>
-
-<div class="env-desc">
-ข้อมูลจากการแจ้งเหตุ
-
-</div>
-
-</div>
+จุดเผา
 
 </div>
 
 <div
-id="burning2"
+id="burningCount"
 class="env-value">
 
 --
 
 </div>
 
-</div>
+<div class="env-sub">
 
-
-<div class="env-item">
-
-<div class="env-left">
-
-<div class="env-icon">
-
-<i class="fa-solid fa-triangle-exclamation"></i>
-
-</div>
-
-<div>
-
-<div class="env-name">
-เหตุที่อยู่ระหว่างติดตาม
-</div>
-
-<div class="env-desc">
-รายการที่ยังไม่ปิด
-
-</div>
-
-</div>
-
-</div>
-
-<div
-id="openCases"
-class="env-value">
-
---
-
-</div>
-
-</div>
-
+ข้อมูลจากรายงานในระบบ
 
 </div>
 
@@ -1247,73 +1586,7 @@ class="env-value">
 
 
 
-<!-- WASTE -->
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-การจัดการขยะ
-</div>
-
-<div class="card-sub">
-ระบบจัดการขยะของชุมชน
-</div>
-
-</div>
-
-<i class="fa-solid fa-recycle"
-style="color:#22c55e">
-</i>
-
-</div>
-
-
-<div class="env-list">
-
-
-<div class="env-item">
-
-<div class="env-left">
-
-<div class="env-icon">
-
-<i class="fa-solid fa-recycle"></i>
-
-</div>
-
-<div>
-
-<div class="env-name">
-การคัดแยกขยะ
-</div>
-
-<div class="env-desc">
-ข้อมูลที่บันทึกในระบบ
-
-</div>
-
-</div>
-
-</div>
-
-<div
-id="sorting"
-class="env-value">
-
---
-
-</div>
-
-</div>
-
-
-<div class="env-item">
-
-<div class="env-left">
+<div class="env-card">
 
 <div class="env-icon">
 
@@ -1321,31 +1594,87 @@ class="env-value">
 
 </div>
 
-<div>
+<div class="env-title">
 
-<div class="env-name">
-ขยะที่จัดการแล้ว
-</div>
-
-<div class="env-desc">
-ข้อมูลจากการบันทึก
-
-</div>
-
-</div>
+ขยะ
 
 </div>
 
 <div
-id="managedWaste"
+id="wasteCount"
 class="env-value">
 
 --
 
 </div>
 
+<div class="env-sub">
+
+รายการสิ่งแวดล้อม
+
 </div>
 
+</div>
+
+
+
+<div class="env-card">
+
+<div class="env-icon">
+
+<i class="fa-solid fa-droplet"></i>
+
+</div>
+
+<div class="env-title">
+
+แหล่งน้ำ
+
+</div>
+
+<div
+id="waterCount"
+class="env-value">
+
+--
+
+</div>
+
+<div class="env-sub">
+
+ข้อมูลแหล่งน้ำในระบบ
+
+</div>
+
+</div>
+
+
+
+<div class="env-card">
+
+<div class="env-icon">
+
+<i class="fa-solid fa-tree"></i>
+
+</div>
+
+<div class="env-title">
+
+พื้นที่สีเขียว
+
+</div>
+
+<div
+id="greenCount"
+class="env-value">
+
+--
+
+</div>
+
+<div class="env-sub">
+
+ข้อมูลที่บันทึกไว้
 
 </div>
 
@@ -1357,206 +1686,111 @@ class="env-value">
 
 
 <!-- =====================================================
-ACTIONS
+WATER
 ===================================================== -->
 
-<section class="grid">
+<section class="water-card">
 
-
-<div class="card">
-
-<div class="card-head">
+<div class="panel-head">
 
 <div>
 
-<div class="card-title">
-มาตรการด้านสิ่งแวดล้อม
+<div class="panel-title">
+แหล่งน้ำและทรัพยากรชุมชน
 </div>
 
-<div class="card-sub">
-ระบบสามารถใช้ติดตามงานในพื้นที่
-</div>
-
-</div>
-
-<i class="fa-solid fa-shield-heart"
-style="color:#22c55e">
-</i>
-
-</div>
-
-
-<div class="actions">
-
-
-<div class="action">
-
-<i class="fa-solid fa-ban"></i>
-
-<h3>
-เฝ้าระวังการเผา
-</h3>
-
-<p>
-บันทึกเหตุ แจ้งเตือน และติดตามสถานะ
-การดำเนินการในพื้นที่
-</p>
-
-</div>
-
-
-<div class="action">
-
-<i class="fa-solid fa-mask-face"></i>
-
-<h3>
-แจ้งเตือนฝุ่น
-</h3>
-
-<p>
-แสดงระดับ PM2.5 และข้อความแนะนำ
-เมื่อมีข้อมูลจากแหล่งตรวจวัด
-</p>
-
-</div>
-
-
-<div class="action">
-
-<i class="fa-solid fa-recycle"></i>
-
-<h3>
-คัดแยกขยะ
-</h3>
-
-<p>
-ติดตามกิจกรรมคัดแยกและการจัดการขยะ
-ของชุมชน
-</p>
-
-</div>
-
-
-<div class="action">
-
-<i class="fa-solid fa-tree"></i>
-
-<h3>
-พื้นที่สีเขียว
-</h3>
-
-<p>
-รองรับการบันทึกพื้นที่สีเขียว
-และกิจกรรมอนุรักษ์
-</p>
-
-</div>
-
-
+<div class="panel-sub">
+ข้อมูลทรัพยากรที่บันทึกไว้ในระบบ
 </div>
 
 </div>
 
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-ข้อมูลสิ่งแวดล้อม
-</div>
-
-<div class="card-sub">
-รายการที่บันทึกเข้าสู่ระบบ
-</div>
-
-</div>
-
-<i class="fa-solid fa-chart-line"
-style="color:#22c55e">
+<i
+class="fa-solid fa-water"
+style="color:#67e8f9;font-size:25px">
 </i>
 
 </div>
 
 
 <div
-id="environmentList"
-class="env-list">
+id="waterInfo"
+class="water-info">
 
 <div class="empty">
 
-<i class="fa-solid fa-leaf"></i>
+<i class="fa-solid fa-droplet"></i>
 
-ยังไม่มีข้อมูลสิ่งแวดล้อม
-
-</div>
+ยังไม่มีข้อมูลแหล่งน้ำ
 
 </div>
 
 </div>
-
 
 </section>
 
 
 
 <!-- =====================================================
-WARNING
+BURNING
 ===================================================== -->
 
-<section class="warning">
+<section class="burning">
 
-<div class="warning-icon">
+<div class="burning-head">
 
-<i class="fa-solid fa-triangle-exclamation"></i>
+<div class="burning-icon">
+
+<i class="fa-solid fa-fire-flame-curved"></i>
 
 </div>
 
 <div>
 
 <h3>
-การแจ้งเตือน PM2.5
+เฝ้าระวังการเผาในชุมชน
 </h3>
+
+</div>
+
+</div>
+
 
 <p>
 
-เมื่อมีการเชื่อมต่อแหล่งข้อมูลคุณภาพอากาศจริง
-ระบบสามารถเปลี่ยนสถานะอัตโนมัติตามค่าที่ตรวจวัดได้
-โดยไม่ควรแสดงค่าที่ไม่ได้มาจากแหล่งข้อมูลจริง
+ระบบนี้สามารถใช้เป็นศูนย์กลางบันทึกเหตุการณ์การเผา
+จุดเสี่ยง และการดำเนินการของผู้นำชุมชน
+เพื่อสนับสนุนการลดการเผาและการคุ้มครองสุขภาพของประชาชน
 
 </p>
-
-</div>
 
 </section>
 
 
 
 <!-- =====================================================
-LOG TABLE
+TABLE
 ===================================================== -->
 
 <section class="table-card">
 
-<div class="card-head">
+<div class="panel-head">
 
 <div>
 
-<div class="card-title">
-บันทึกเหตุการณ์สิ่งแวดล้อม
+<div class="panel-title">
+ทะเบียนข้อมูลสิ่งแวดล้อม
 </div>
 
-<div class="card-sub">
-ประวัติการบันทึกในระบบ
+<div class="panel-sub">
+ข้อมูลจากฐานข้อมูลจริง
 </div>
 
 </div>
 
-<i class="fa-solid fa-clock-rotate-left"
-style="color:#86efac">
+<i
+class="fa-solid fa-table-list"
+style="color:#86efac;font-size:24px">
 </i>
 
 </div>
@@ -1570,25 +1804,17 @@ style="color:#86efac">
 
 <tr>
 
-<th>
-วันที่
-</th>
+<th>ลำดับ</th>
 
-<th>
-ประเภท
-</th>
+<th>ประเภท</th>
 
-<th>
-สถานที่
-</th>
+<th>รายละเอียด</th>
 
-<th>
-รายละเอียด
-</th>
+<th>พื้นที่</th>
 
-<th>
-สถานะ
-</th>
+<th>วันที่</th>
+
+<th>สถานะ</th>
 
 </tr>
 
@@ -1601,12 +1827,12 @@ id="environmentTable">
 <tr>
 
 <td
-colspan="5"
+colspan="6"
 class="empty">
 
 <i class="fa-solid fa-database"></i>
 
-ยังไม่มีข้อมูลเหตุการณ์สิ่งแวดล้อม
+ยังไม่มีข้อมูล
 
 </td>
 
@@ -1635,6 +1861,7 @@ RONGKHEM e-VILLAGE
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
+
 
 <div>
 
@@ -1672,7 +1899,7 @@ supabase.createClient(
 
 
 /* =====================================================
-ESCAPE
+HELPERS
 ===================================================== */
 
 function escapeHTML(value){
@@ -1689,10 +1916,6 @@ function escapeHTML(value){
 
 }
 
-
-/* =====================================================
-NUMBER
-===================================================== */
 
 function numberFormat(value){
 
@@ -1713,371 +1936,7 @@ function numberFormat(value){
 }
 
 
-/* =====================================================
-PM STATUS
-===================================================== */
-
-function getPMStatus(
-    value
-){
-
-    if(
-        value === null ||
-        value === undefined
-    ){
-
-        return "ยังไม่มีข้อมูลคุณภาพอากาศ";
-
-    }
-
-
-    const pm =
-    Number(value);
-
-
-    if(pm <= 15){
-
-        return "อากาศดี";
-
-    }
-
-    if(pm <= 25){
-
-        return "อากาศปานกลาง";
-
-    }
-
-    if(pm <= 37.5){
-
-        return "เริ่มมีผลกระทบต่อสุขภาพ";
-
-    }
-
-    if(pm <= 75){
-
-        return "มีผลกระทบต่อสุขภาพ";
-
-    }
-
-    return "มีผลกระทบต่อสุขภาพมาก";
-
-}
-
-
-/* =====================================================
-LOAD DASHBOARD
-===================================================== */
-
-async function loadEnvironment(){
-
-    try{
-
-        /*
-          ตาราง environment_summary
-          สำหรับเก็บค่าปัจจุบันของระบบ
-        */
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "environment_summary"
-        )
-
-        .select("*")
-
-        .limit(1)
-
-        .maybeSingle();
-
-
-        if(error)
-            throw error;
-
-
-        if(!data)
-            return;
-
-
-        const pm =
-        data.pm25;
-
-
-        document.getElementById(
-            "pm25"
-        ).textContent =
-        pm !== null &&
-        pm !== undefined
-        ?
-        numberFormat(pm)
-        :
-        "--";
-
-
-        document.getElementById(
-            "pmValue"
-        ).textContent =
-        pm !== null &&
-        pm !== undefined
-        ?
-        Number(pm)
-        :
-        "--";
-
-
-        document.getElementById(
-            "pmStatus"
-        ).textContent =
-        getPMStatus(pm);
-
-
-        document.getElementById(
-            "burning"
-        ).textContent =
-        numberFormat(
-            data.burning_cases
-        );
-
-
-        document.getElementById(
-            "burning2"
-        ).textContent =
-        numberFormat(
-            data.burning_cases
-        );
-
-
-        document.getElementById(
-            "openCases"
-        ).textContent =
-        numberFormat(
-            data.open_cases
-        );
-
-
-        document.getElementById(
-            "waste"
-        ).textContent =
-        numberFormat(
-            data.waste_records
-        );
-
-
-        document.getElementById(
-            "sorting"
-        ).textContent =
-        numberFormat(
-            data.sorting_records
-        );
-
-
-        document.getElementById(
-            "managedWaste"
-        ).textContent =
-        numberFormat(
-            data.managed_waste
-        );
-
-
-        document.getElementById(
-            "environmentProjects"
-        ).textContent =
-        numberFormat(
-            data.environment_projects
-        );
-
-
-    }catch(error){
-
-        console.log(
-            "ยังไม่มี environment_summary"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-LOAD EVENTS
-===================================================== */
-
-async function loadEvents(){
-
-    const table =
-    document.getElementById(
-        "environmentTable"
-    );
-
-
-    const list =
-    document.getElementById(
-        "environmentList"
-    );
-
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "environment_events"
-        )
-
-        .select("*")
-
-        .order(
-            "event_date",
-            {
-                ascending:false
-            }
-        );
-
-
-        if(error)
-            throw error;
-
-
-        if(
-            !data ||
-            data.length === 0
-        ){
-
-            return;
-
-        }
-
-
-        table.innerHTML =
-        data.map(
-            item => `
-
-            <tr>
-
-                <td>
-
-                    ${formatDate(
-                        item.event_date
-                    )}
-
-                </td>
-
-                <td>
-
-                    ${escapeHTML(
-                        item.type
-                    )}
-
-                </td>
-
-                <td>
-
-                    ${escapeHTML(
-                        item.location
-                    )}
-
-                </td>
-
-                <td>
-
-                    ${escapeHTML(
-                        item.description
-                    )}
-
-                </td>
-
-                <td>
-
-                    ${escapeHTML(
-                        item.status
-                    )}
-
-                </td>
-
-            </tr>
-
-            `
-        ).join("");
-
-
-        list.innerHTML =
-        data.slice(
-            0,
-            4
-        ).map(
-            item => `
-
-            <div class="env-item">
-
-                <div class="env-left">
-
-                    <div class="env-icon">
-
-                        <i class="fa-solid fa-leaf"></i>
-
-                    </div>
-
-                    <div>
-
-                        <div class="env-name">
-
-                            ${escapeHTML(
-                                item.type
-                            )}
-
-                        </div>
-
-                        <div class="env-desc">
-
-                            ${escapeHTML(
-                                item.location
-                            )}
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="env-value">
-
-                    ${formatDate(
-                        item.event_date
-                    )}
-
-                </div>
-
-            </div>
-
-            `
-        ).join("");
-
-
-    }catch(error){
-
-        console.log(
-            "ยังไม่มี environment_events"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-DATE
-===================================================== */
-
-function formatDate(
-    value
-){
+function formatDate(value){
 
     if(!value)
         return "-";
@@ -2113,6 +1972,887 @@ function formatDate(
 
 
 /* =====================================================
+PM LEVEL
+===================================================== */
+
+function getPMStatus(
+    value
+){
+
+    const number =
+    Number(value);
+
+
+    if(
+        !Number.isFinite(
+            number
+        )
+    ){
+
+        return {
+
+            className:"pm-unknown",
+
+            text:"ยังไม่มีข้อมูล PM2.5",
+
+            icon:
+            "fa-circle-question",
+
+            advice:
+            "ยังไม่มีค่า PM2.5 สำหรับประเมินสถานการณ์"
+
+        };
+
+    }
+
+
+    /*
+     * ไม่สร้างค่าขึ้นเอง
+     * ใช้เพียงการจัดระดับเพื่อแสดงผล
+     */
+
+    if(number <= 15){
+
+        return {
+
+            className:"pm-good",
+
+            text:"ระดับต่ำ",
+
+            icon:"fa-circle-check",
+
+            advice:
+            "คุณภาพอากาศอยู่ในระดับที่ดีจากค่าที่ระบบบันทึกไว้"
+
+        };
+
+    }
+
+
+    if(number <= 25){
+
+        return {
+
+            className:"pm-moderate",
+
+            text:"ระดับเริ่มเฝ้าระวัง",
+
+            icon:"fa-circle-info",
+
+            advice:
+            "ควรติดตามค่าฝุ่นและสถานการณ์อย่างต่อเนื่อง"
+
+        };
+
+    }
+
+
+    if(number <= 37.5){
+
+        return {
+
+            className:"pm-warning",
+
+            text:"ระดับปานกลาง",
+
+            icon:"fa-triangle-exclamation",
+
+            advice:
+            "ควรเฝ้าระวัง โดยเฉพาะประชาชนกลุ่มเสี่ยง"
+
+        };
+
+    }
+
+
+    if(number <= 75){
+
+        return {
+
+            className:"pm-danger",
+
+            text:"ระดับสูง",
+
+            icon:"fa-triangle-exclamation",
+
+            advice:
+            "ควรลดกิจกรรมกลางแจ้งและติดตามคำแนะนำด้านสุขภาพ"
+
+        };
+
+    }
+
+
+    return {
+
+        className:"pm-danger",
+
+        text:"ระดับสูงมาก",
+
+        icon:"fa-triangle-exclamation",
+
+        advice:
+        "ควรหลีกเลี่ยงกิจกรรมกลางแจ้งและติดตามสถานการณ์อย่างใกล้ชิด"
+
+    };
+
+}
+
+
+/* =====================================================
+LOAD PM
+===================================================== */
+
+async function loadPM(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "environment"
+        )
+
+        .select("*")
+
+        .eq(
+            "type",
+            "PM2.5"
+        )
+
+        .order(
+            "recorded_at",
+            {
+                ascending:false,
+                nullsFirst:false
+            }
+        )
+
+        .limit(20);
+
+
+        if(error)
+            throw error;
+
+
+        const records =
+        data || [];
+
+
+        document.getElementById(
+            "pmRecords"
+        ).textContent =
+        records.length > 0
+        ?
+        numberFormat(
+            records.length
+        )
+        :
+        "--";
+
+
+        if(
+            records.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        const latest =
+        records[0];
+
+
+        const value =
+        latest.value ??
+        latest.pm25 ??
+        latest.pm2_5;
+
+
+        if(
+            value === null ||
+            value === undefined
+        ){
+
+            return;
+
+        }
+
+
+        const status =
+        getPMStatus(
+            value
+        );
+
+
+        document.getElementById(
+            "pmValue"
+        ).textContent =
+        Number(value)
+        .toLocaleString(
+            "th-TH",
+            {
+                maximumFractionDigits:1
+            }
+        );
+
+
+        const statusElement =
+        document.getElementById(
+            "pmStatus"
+        );
+
+
+        statusElement.className =
+        "pm-status " +
+        status.className;
+
+
+        statusElement.innerHTML = `
+
+            <i
+            class="fa-solid
+            ${status.icon}">
+            </i>
+
+            ${status.text}
+
+        `;
+
+
+        document.getElementById(
+            "pmAdvice"
+        ).textContent =
+        status.advice;
+
+
+        document.getElementById(
+            "pmUpdated"
+        ).textContent =
+        latest.recorded_at
+        ?
+        "อัปเดตล่าสุด " +
+        formatDate(
+            latest.recorded_at
+        )
+        :
+        "มีข้อมูล PM2.5";
+
+    }
+    catch(error){
+
+        console.log(
+            "ไม่มีตาราง environment หรือยังไม่มี PM2.5"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+LOAD ENVIRONMENT
+===================================================== */
+
+async function loadEnvironment(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "environment"
+        )
+
+        .select("*")
+
+        .order(
+            "recorded_at",
+            {
+                ascending:false,
+                nullsFirst:false
+            }
+        );
+
+
+        if(error)
+            throw error;
+
+
+        const records =
+        data || [];
+
+
+        renderEnvironmentTable(
+            records
+        );
+
+
+        calculateEnvironment(
+            records
+        );
+
+
+        renderReports(
+            records
+        );
+
+
+    }
+    catch(error){
+
+        console.log(
+            "Environment table unavailable"
+        );
+
+        renderEnvironmentTable([]);
+
+        renderReports([]);
+
+    }
+
+}
+
+
+/* =====================================================
+CALCULATE ENVIRONMENT
+===================================================== */
+
+function calculateEnvironment(
+    records
+){
+
+    const burning =
+    records.filter(
+        item => {
+
+            const type =
+            String(
+                item.type ||
+                ""
+            ).toLowerCase();
+
+            return (
+                type.includes("เผา") ||
+                type.includes("burn")
+            );
+
+        }
+    ).length;
+
+
+    const waste =
+    records.filter(
+        item => {
+
+            const type =
+            String(
+                item.type ||
+                ""
+            ).toLowerCase();
+
+            return (
+                type.includes("ขยะ") ||
+                type.includes("waste")
+            );
+
+        }
+    ).length;
+
+
+    const water =
+    records.filter(
+        item => {
+
+            const type =
+            String(
+                item.type ||
+                ""
+            ).toLowerCase();
+
+            return (
+                type.includes("น้ำ") ||
+                type.includes("water")
+            );
+
+        }
+    ).length;
+
+
+    const green =
+    records.filter(
+        item => {
+
+            const type =
+            String(
+                item.type ||
+                ""
+            ).toLowerCase();
+
+            return (
+                type.includes("สีเขียว") ||
+                type.includes("green") ||
+                type.includes("ป่า")
+            );
+
+        }
+    ).length;
+
+
+    document.getElementById(
+        "burningReports"
+    ).textContent =
+    burning > 0
+    ?
+    numberFormat(burning)
+    :
+    "--";
+
+
+    document.getElementById(
+        "wasteReports"
+    ).textContent =
+    waste > 0
+    ?
+    numberFormat(waste)
+    :
+    "--";
+
+
+    document.getElementById(
+        "waterRecords"
+    ).textContent =
+    water > 0
+    ?
+    numberFormat(water)
+    :
+    "--";
+
+
+    document.getElementById(
+        "burningCount"
+    ).textContent =
+    burning > 0
+    ?
+    numberFormat(burning)
+    :
+    "--";
+
+
+    document.getElementById(
+        "wasteCount"
+    ).textContent =
+    waste > 0
+    ?
+    numberFormat(waste)
+    :
+    "--";
+
+
+    document.getElementById(
+        "waterCount"
+    ).textContent =
+    water > 0
+    ?
+    numberFormat(water)
+    :
+    "--";
+
+
+    document.getElementById(
+        "greenCount"
+    ).textContent =
+    green > 0
+    ?
+    numberFormat(green)
+    :
+    "--";
+
+
+    renderWater(
+        records.filter(
+            item => {
+
+                const type =
+                String(
+                    item.type ||
+                    ""
+                ).toLowerCase();
+
+                return (
+                    type.includes("น้ำ") ||
+                    type.includes("water")
+                );
+
+            }
+        )
+    );
+
+}
+
+
+/* =====================================================
+RENDER REPORTS
+===================================================== */
+
+function renderReports(
+    records
+){
+
+    const list =
+    document.getElementById(
+        "reportList"
+    );
+
+
+    const reports =
+    records
+    .filter(
+        item => {
+
+            const type =
+            String(
+                item.type ||
+                ""
+            ).toLowerCase();
+
+            return (
+                type.includes("เผา") ||
+                type.includes("ขยะ") ||
+                type.includes("สิ่งแวดล้อม") ||
+                type.includes("burn") ||
+                type.includes("waste")
+            );
+
+        }
+    )
+    .slice(0,7);
+
+
+    if(
+        reports.length === 0
+    ){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-leaf"></i>
+
+            ยังไม่มีรายงานสิ่งแวดล้อม
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    reports.map(
+        item => {
+
+            const status =
+            String(
+                item.status ||
+                ""
+            );
+
+
+            const done =
+            status.includes(
+                "เสร็จ"
+            )
+            ||
+            status.includes(
+                "ดำเนินการแล้ว"
+            );
+
+
+            return `
+
+            <div class="report">
+
+                <div class="report-top">
+
+                    <div class="report-title">
+
+                        ${escapeHTML(
+                            item.title ||
+                            item.description ||
+                            item.type ||
+                            "รายงานสิ่งแวดล้อม"
+                        )}
+
+                    </div>
+
+                    <span
+                    class="report-status
+                    ${
+                        done
+                        ?
+                        "report-done"
+                        :
+                        "report-open"
+                    }">
+
+                        ${escapeHTML(
+                            item.status ||
+                            "รายงาน"
+                        )}
+
+                    </span>
+
+                </div>
+
+
+                <div class="report-meta">
+
+                    ${escapeHTML(
+                        item.type ||
+                        "-"
+                    )}
+
+                    ·
+
+                    ${escapeHTML(
+                        item.area ||
+                        item.location ||
+                        "-"
+                    )}
+
+                    ·
+
+                    ${
+                        item.recorded_at
+                        ?
+                        formatDate(
+                            item.recorded_at
+                        )
+                        :
+                        "-"
+                    }
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =====================================================
+RENDER WATER
+===================================================== */
+
+function renderWater(
+records
+){
+
+    const box =
+    document.getElementById(
+        "waterInfo"
+    );
+
+
+    if(
+        records.length === 0
+    ){
+
+        box.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-droplet"></i>
+
+            ยังไม่มีข้อมูลแหล่งน้ำ
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML =
+    records
+    .slice(0,6)
+    .map(
+        item => `
+
+        <div class="water-item">
+
+            <div class="water-label">
+
+                แหล่งน้ำ
+
+            </div>
+
+            <div class="water-value">
+
+                ${escapeHTML(
+                    item.title ||
+                    item.name ||
+                    item.description ||
+                    "ไม่ระบุ"
+                )}
+
+            </div>
+
+            <div
+            class="water-label"
+            style="margin-top:5px">
+
+                ${
+                    escapeHTML(
+                        item.area ||
+                        item.location ||
+                        "-"
+                    )
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+function renderEnvironmentTable(
+records
+){
+
+    const table =
+    document.getElementById(
+        "environmentTable"
+    );
+
+
+    if(
+        records.length === 0
+    ){
+
+        table.innerHTML = `
+
+        <tr>
+
+            <td
+            colspan="6"
+            class="empty">
+
+                <i class="fa-solid fa-database"></i>
+
+                ยังไม่มีข้อมูลสิ่งแวดล้อม
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+    records
+    .slice(0,100)
+    .map(
+        (item,index) => `
+
+        <tr>
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.type ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.title ||
+                    item.description ||
+                    item.name ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.area ||
+                    item.location ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${
+                    item.recorded_at
+                    ?
+                    formatDate(
+                        item.recorded_at
+                    )
+                    :
+                    "-"
+                }
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.status ||
+                    "-"
+                )}
+
+            </td>
+
+        </tr>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
 INIT
 ===================================================== */
 
@@ -2120,15 +2860,14 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        loadEnvironment();
+        loadPM();
 
-        loadEvents();
+        loadEnvironment();
 
     }
 );
 
 </script>
-
 
 </body>
 
