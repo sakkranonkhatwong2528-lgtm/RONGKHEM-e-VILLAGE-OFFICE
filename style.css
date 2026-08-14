@@ -26,7 +26,637 @@ textarea,
 select{
   font:inherit;
 }
+/* =========================================================
+   RONGKHEM e-VILLAGE OFFICE
+   STYLE.CSS — ส่วนที่ 3
+   MOBILE / SIDEBAR / NAV / ADMIN UX
+   ========================================================= */
 
+
+/* =========================================================
+   SIDEBAR NAV
+   ========================================================= */
+
+.sidebar .nav {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    text-decoration: none;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+}
+
+.sidebar .nav:hover {
+
+    transform:
+        translateX(2px);
+}
+
+
+/* =========================================================
+   ACTIVE NAV
+   ========================================================= */
+
+.sidebar .nav.active {
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,145,235,.28),
+            rgba(0,90,160,.08)
+        );
+
+    color: #fff;
+
+    border-right:
+        3px solid
+        #25a9ff;
+}
+
+
+/* =========================================================
+   NAV ICON
+   ========================================================= */
+
+.sidebar .nav .ico {
+
+    width: 27px;
+
+    min-width: 27px;
+
+    height: 27px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background:
+        rgba(70,180,255,.08);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   CONTACT
+   ========================================================= */
+
+.contact {
+
+    margin-top: 18px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,30,60,.45);
+
+    border:
+        1px solid
+        rgba(90,180,240,.13);
+
+    color: #9eb8ce;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+.contact h3 {
+
+    margin: 0 0 8px;
+
+    color: #fff;
+
+    font-size: 14px;
+}
+
+.contact .phone {
+
+    color: #78d1ff;
+
+    font-weight: 800;
+
+    margin-bottom: 4px;
+}
+
+
+/* =========================================================
+   DESKTOP DASHBOARD
+   ========================================================= */
+
+.dashboard {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        310px;
+
+    gap: 18px;
+
+    padding: 18px;
+}
+
+
+/* =========================================================
+   PANELS
+   ========================================================= */
+
+.panels {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.panels .panel:last-child {
+
+    grid-column:
+        1 / -1;
+}
+
+
+/* =========================================================
+   PANEL
+   ========================================================= */
+
+.panel {
+
+    min-width: 0;
+
+    border:
+        1px solid
+        rgba(80,180,255,.13);
+
+    border-radius: 13px;
+
+    background:
+        rgba(3,27,54,.74);
+
+    box-shadow:
+        0 8px 25px
+        rgba(0,0,0,.12);
+
+    overflow: hidden;
+}
+
+.panelHead {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 13px 15px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+}
+
+.panelHead h2 {
+
+    margin: 0;
+
+    font-size: 15px;
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   RIGHT CARDS
+   ========================================================= */
+
+.right {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 15px;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   MOBILE DASHBOARD
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .dashboard {
+
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .right {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, minmax(0,1fr));
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .panels {
+
+        grid-template-columns: 1fr;
+    }
+
+    .panels .panel:last-child {
+
+        grid-column:
+            auto;
+    }
+
+    .right {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+    .shell {
+
+        display: block;
+    }
+
+    .sidebar {
+
+        width: 100%;
+
+        height: auto;
+
+        position: relative;
+
+        top: auto;
+
+        overflow: visible;
+    }
+
+    .sidebar .nav {
+
+        min-height: 44px;
+    }
+
+    .contact {
+
+        display: none;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE HEADER
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+    .topbar {
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        padding: 9px 10px;
+    }
+
+    .brand b {
+
+        font-size: 13px;
+    }
+
+    .brand span {
+
+        font-size: 10px;
+    }
+
+    .online {
+
+        display: none;
+    }
+
+    .grow {
+
+        display: none;
+    }
+
+    .headClock {
+
+        order: 10;
+
+        width: 100%;
+
+        text-align: center;
+
+        padding-top: 5px;
+
+        border-top:
+            1px solid
+            rgba(255,255,255,.08);
+    }
+
+    .headWeather {
+
+        margin-left: auto;
+    }
+
+    .profile {
+
+        margin-left: 0;
+    }
+
+    .profilePic {
+
+        width: 34px;
+
+        height: 34px;
+    }
+
+    .profile small {
+
+        font-size: 9px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .dashboard {
+
+        padding: 10px;
+
+        gap: 10px;
+    }
+
+    .stats {
+
+        grid-template-columns:
+            1fr 1fr !important;
+
+        gap: 8px !important;
+    }
+
+    .metric {
+
+        padding: 11px !important;
+
+        min-height: 120px;
+    }
+
+    .metricTop h3 {
+
+        font-size: 12px;
+    }
+
+    .metricIcon {
+
+        width: 30px !important;
+
+        height: 30px !important;
+
+        font-size: 15px !important;
+    }
+
+    .metric .num {
+
+        font-size: 25px !important;
+    }
+
+    .metric p {
+
+        font-size: 10px !important;
+
+        line-height: 1.5;
+    }
+
+    .verified {
+
+        grid-column:
+            1 / -1;
+    }
+
+}
+
+
+/* =========================================================
+   TOUCH DEVICE
+   ========================================================= */
+
+@media (hover: none) {
+
+    .btn:hover,
+    .add:hover,
+    .ask:hover,
+    .heroUploadButton:hover,
+    .view:hover {
+
+        transform: none;
+
+        filter: none;
+    }
+
+}
+
+
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+input[type="file"] {
+
+    cursor: pointer;
+
+    padding: 8px !important;
+}
+
+input[type="file"]::file-selector-button {
+
+    margin-right: 10px;
+
+    padding: 7px 10px;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background:
+        #087cc5;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+
+    background:
+        #0996eb;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.modalBox::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar {
+
+    width: 7px;
+}
+
+.modalBox::-webkit-scrollbar-track,
+.sidebar::-webkit-scrollbar-track {
+
+    background:
+        rgba(0,0,0,.15);
+}
+
+.modalBox::-webkit-scrollbar-thumb,
+.sidebar::-webkit-scrollbar-thumb {
+
+    border-radius: 10px;
+
+    background:
+        rgba(80,170,230,.4);
+}
+
+.modalBox::-webkit-scrollbar-thumb:hover,
+.sidebar::-webkit-scrollbar-thumb:hover {
+
+    background:
+        rgba(80,190,255,.65);
+}
+
+
+/* =========================================================
+   FOCUS ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+
+    outline:
+        2px solid
+        #25a9ff;
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   DISABLE TEXT SELECTION ON UI BUTTONS
+   ========================================================= */
+
+.btn,
+.add,
+.ask,
+.view,
+.heroUploadButton,
+.managerActions button {
+
+    user-select: none;
+
+    -webkit-user-select: none;
+}
+
+
+/* =========================================================
+   SAFE IMAGE RENDERING
+   ========================================================= */
+
+img {
+
+    max-width: 100%;
+
+    height: auto;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer {
+
+    padding: 18px;
+
+    text-align: center;
+
+    color: #7692aa;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.06);
+}
+
+
+/* =========================================================
+   END STYLE.CSS PART 3
+   ========================================================= */
 button{
   cursor:pointer;
 }
