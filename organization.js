@@ -1,1683 +1,1541 @@
 /* =========================================================
    RONGKHEM e-VILLAGE OFFICE
    organization.js
-   ระบบองค์กรและกลุ่มชุมชน
-
-   รองรับ:
-   - ชรบ.
-   - อปพร.
-   - อสม.
-   - กลุ่มผู้สูงอายุ
-   - กลุ่มแม่บ้าน
-   - เพิ่ม
-   - แก้ไข
-   - ลบ
-   - ค้นหา
-   - อัปโหลดรูป
-   - สำรองข้อมูล
-   - นำเข้าข้อมูล
+   โครงสร้างองค์กรและกลุ่มชุมชน บ้านร่องเข็ม หมู่ 6
    ========================================================= */
 
 "use strict";
 
 (() => {
 
-  const STORAGE_KEY = "rongkhem_organizations_v1";
+const STORAGE_KEY = "rongkhem_community_organizations_v1";
 
-  let members = [];
-  let currentType = "ชรบ.";
-  let currentImageData = "";
+let organizations = [];
 
 
-  /* =======================================================
-     ชื่อองค์กร
-     ======================================================= */
+/* =========================================================
+   ข้อมูลเริ่มต้น
+   ========================================================= */
 
-  const organizationInfo = {
+const defaultOrganizations = [
 
-    "ชรบ.": {
-      title: "🛡️ ชุดรักษาความปลอดภัยหมู่บ้าน (ชรบ.)",
-      icon: "🛡️"
-    },
+  {
+    id: "leaders",
+    icon: "👔",
+    title: "กลุ่มผู้นำชุมชน",
+    description:
+      "ผู้นำชุมชนที่ทำหน้าที่ดูแล ปกครอง พัฒนาชุมชน และประสานงานกับหน่วยงานภายนอก",
+    type: "ทางการ",
 
-    "อปพร.": {
-      title: "🚒 อาสาสมัครป้องกันภัยฝ่ายพลเรือน (อปพร.)",
-      icon: "🚒"
-    },
+    members: [
 
-    "อสม.": {
-      title: "🩺 อาสาสมัครสาธารณสุขประจำหมู่บ้าน (อสม.)",
-      icon: "🩺"
-    },
+      {
+        id: "leader-001",
+        name: "นายศักรนนทน์ ขัติย์วงศ์",
+        position: "ผู้ใหญ่บ้าน"
+      },
 
-    "ผู้สูงอายุ": {
-      title: "👴 กลุ่มผู้สูงอายุ",
-      icon: "👴"
-    },
+      {
+        id: "leader-002",
+        name: "นายจักร์กวัส ประพลรัตนัง",
+        position: "ผู้ช่วยผู้ใหญ่บ้าน"
+      },
 
-    "แม่บ้าน": {
-      title: "👩‍🌾 กลุ่มแม่บ้าน",
-      icon: "👩‍🌾"
+      {
+        id: "leader-003",
+        name: "นางสาวสุภาพร วังมูล",
+        position: "ผู้ช่วยผู้ใหญ่บ้าน"
+      }
+
+    ]
+
+  },
+
+
+  {
+    id: "village-committee",
+    icon: "🏛️",
+    title: "คณะกรรมการหมู่บ้าน",
+    description:
+      "คณะกรรมการที่ช่วยงานผู้ใหญ่บ้าน และปฏิบัติหน้าที่ตามแบบแผนของทางราชการหรือที่นายอำเภอมอบหมาย",
+    type: "ทางการ",
+
+    members: [
+
+      {
+        id: "committee-001",
+        name: "นายอัครวัฒน์ วรพิพัฒน์ผัดดี",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-002",
+        name: "นายยนต์ บุญธิวงศ์",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-003",
+        name: "นางสาวนวกชมณ ปิงเมือง",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-004",
+        name: "นายประจักษ์ งานดี",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-005",
+        name: "นายยรรยง ผัดดี",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-006",
+        name: "นายผัด เครือนวล",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-007",
+        name: "นายสุนิตย์ ไข่หนู",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "committee-008",
+        name: "นายทวัน ทาฤทธิ์",
+        position: "กรรมการ"
+      }
+
+    ]
+
+  },
+
+
+  {
+    id: "village-fund",
+    icon: "💰",
+    title: "กองทุนหมู่บ้าน",
+    description:
+      "แหล่งเงินทุนหมุนเวียนสำหรับการลงทุนเพื่อพัฒนาอาชีพ สร้างงาน และสร้างรายได้ในชุมชน",
+    type: "ทางการ",
+
+    members: [
+
+      {
+        id: "fund-001",
+        name: "นายสมเกียรติ อุปเสน",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-002",
+        name: "นายวันชัย บุญเก่ง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-003",
+        name: "นายธวัชชัย บุญเก่ง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-004",
+        name: "นางไสว ศรีไชยอิน",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-005",
+        name: "นายภาณุพงษ์ ผัดดี",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-006",
+        name: "นายธนารันทกร ทินนา",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-007",
+        name: "นางอัมพร ปิงเมือง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-008",
+        name: "นายมา วังมูล",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "fund-009",
+        name: "นายสนาน วังมูล",
+        position: "สมาชิก"
+      }
+
+    ]
+
+  },
+
+
+  {
+    id: "village-health-volunteers",
+    icon: "❤️",
+    title: "อาสาสมัครสาธารณสุขประจำหมู่บ้าน (อสม.)",
+    description:
+      "กลุ่มอาสาสมัครสาธารณสุขประจำหมู่บ้าน จำนวน 26 คน ทำหน้าที่ด้านสุขภาพและประสานงานกับหน่วยบริการสาธารณสุข",
+    type: "ทางการ",
+
+    members: [
+
+      {
+        id: "osm-001",
+        name: "นางดวงแข จันทร์มูล",
+        position: "ประธาน อสม."
+      },
+
+      {
+        id: "osm-002",
+        name: "นางเกษร ผัดดี",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-003",
+        name: "นางศศิธร เข็มแก้ว",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-004",
+        name: "นางบัวจีน ปันใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-005",
+        name: "นายพัฒนศักดิ์ ดีกัลป์ลา",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-006",
+        name: "นางอำพร ปิงเมือง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-007",
+        name: "นางจันทร์สม ปิงเมือง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-008",
+        name: "นางกรรณิการ์ นาแพร่",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-009",
+        name: "นายชุมพล ใฝ่ใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-010",
+        name: "นางแสงเดือน จันทร์มูล",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-011",
+        name: "นางบัวหนอง ขัติย์ษิ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-012",
+        name: "นางทวีพร จันทร์มูล",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-013",
+        name: "นายแก้วมูล ทินนา",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-014",
+        name: "นางอลิษา ใฝ่จิตต์",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-015",
+        name: "นางเขียว งามจิต",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-016",
+        name: "นางเพ็ญศรี งามจิต",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-017",
+        name: "นางจันทร์ฉาม วงค์ปัญญา",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-018",
+        name: "นางบัวหนา ทาฤทธ์",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-019",
+        name: "นายอิ่ม จักจุ่ม",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-020",
+        name: "นายปัน ผัดดี",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-021",
+        name: "นายสุพัศน์ ปันใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-022",
+        name: "นายธนวัฒน์ ปันใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-023",
+        name: "นางอำไพวิทย์ ปัญญา",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-024",
+        name: "นางอำภา งามจิต",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-025",
+        name: "นายพิพัฒน์ ใฝ่ใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "osm-026",
+        name: "นายประจักร งานดี",
+        position: "สมาชิก"
+      }
+
+    ]
+
+  },
+
+
+  {
+    id: "housewives",
+    icon: "👩‍🌾",
+    title: "กลุ่มแม่บ้าน",
+    description:
+      "กลุ่มที่รวมตัวของผู้หญิงในหมู่บ้าน เพื่อทำงานร่วมกันในกิจกรรมต่าง ๆ ของชุมชน",
+    type: "ไม่เป็นทางการ",
+
+    members: [
+
+      {
+        id: "housewife-001",
+        name: "นางสาวจีรวรรณ ผัดดี",
+        position: "ประธาน"
+      },
+
+      {
+        id: "housewife-002",
+        name: "นางสำรอง มหาวรรณศรี",
+        position: "รองประธาน"
+      },
+
+      {
+        id: "housewife-003",
+        name: "นางสุภาวดี วังมูล",
+        position: "เลขาฯ"
+      },
+
+      {
+        id: "housewife-004",
+        name: "นางอารีย์ ประพลรัตนัง",
+        position: "เหรัญญิก"
+      },
+
+      {
+        id: "housewife-005",
+        name: "นางเดือนฉาย เครือวัลย์",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-006",
+        name: "นางวิลาวรรณ วังมูล",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-007",
+        name: "นางนงคราญ ยะนา",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-008",
+        name: "นางอาลิษา กอเตอะ",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-009",
+        name: "นางสุพรรณี บุญส่ง",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-010",
+        name: "นางสุปราณี ถิ่นลำปาง",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-011",
+        name: "นางปวีณา มิ่งขวัญ",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-012",
+        name: "นางสุดา บุญเก่ง",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-013",
+        name: "นางบรรณาลักษณ์ พลูคำ",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-014",
+        name: "นางกรรณิการ์ นาแพร่",
+        position: "กรรมการ"
+      },
+
+      {
+        id: "housewife-015",
+        name: "นางกรรณิกา บุญเก่ง",
+        position: "กรรมการ"
+      }
+
+    ]
+
+  },
+
+
+  {
+    id: "security",
+    icon: "🛡️",
+    title: "ชุดรักษาความปลอดภัยหมู่บ้าน (ชรบ.)",
+    description:
+      "ชุดรักษาความปลอดภัยหมู่บ้าน ทำหน้าที่สนับสนุนการรักษาความสงบเรียบร้อยและความปลอดภัยในชุมชน",
+    type: "ไม่เป็นทางการ",
+
+    members: [
+
+      {
+        id: "security-001",
+        name: "นายวันชัย บุญเก่ง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-002",
+        name: "นายผัด เครือนวล",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-003",
+        name: "นายสรชัย ใฝ่ใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-004",
+        name: "นายอินทอง บุญธิวงค์",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-005",
+        name: "นายชุมพล ใฝ่ใจ",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-006",
+        name: "นายศักรนนทน์ ขัติย์วงศ์",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-007",
+        name: "นายจักรวัส ประพลรัตนัง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-008",
+        name: "นายยรรยง ผัดดี",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-009",
+        name: "นายประจักร งานดี",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-010",
+        name: "นางสาวสุภาพร วังมูล",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-011",
+        name: "นายธวัชชัย ทาทอง",
+        position: "สมาชิก"
+      },
+
+      {
+        id: "security-012",
+        name: "นายธวัชชัย บุญเก่ง",
+        position: "สมาชิก"
+      }
+
+    ]
+
+  },
+
+
+  {
+    id: "funeral",
+    icon: "⚰️",
+    title: "กลุ่มฌาปนกิจ",
+    description:
+      "กลุ่มที่ร่วมกับหมู่บ้าน เมื่อมีสมาชิกเสียชีวิต จะเก็บเงินจากสมาชิกหลังคาเรือนละ 100 บาทต่อศพ และรวบรวมมอบให้ครอบครัวของสมาชิกที่เสียชีวิต",
+    type: "ไม่เป็นทางการ",
+
+    members: []
+
+  }
+
+];
+
+
+/* =========================================================
+   เริ่มระบบ
+   ========================================================= */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  init
+);
+
+
+function init() {
+
+  loadOrganizations();
+
+  renderOrganizations();
+
+}
+
+
+/* =========================================================
+   โหลดข้อมูล
+   ========================================================= */
+
+function loadOrganizations() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(
+        STORAGE_KEY
+      );
+
+    if (saved) {
+
+      const parsed =
+        JSON.parse(saved);
+
+      if (
+        Array.isArray(parsed)
+      ) {
+
+        organizations =
+          parsed;
+
+        return;
+
+      }
+
     }
 
-  };
+  } catch(error) {
+
+    console.error(
+      "โหลดข้อมูลองค์กรไม่สำเร็จ",
+      error
+    );
+
+  }
 
 
-  /* =======================================================
-     ข้อมูลเริ่มต้น
-     ======================================================= */
-
-  const defaultMembers = [
-
-    {
-      id: "org-001",
-      name: "ตัวอย่างสมาชิก ชรบ.",
-      type: "ชรบ.",
-      role: "สมาชิก",
-      gender: "ชาย",
-      phone: "",
-      status: "ปฏิบัติงาน",
-      bio: "ข้อมูลตัวอย่าง สามารถแก้ไขหรือลบได้",
-      image: "",
-      createdAt: new Date().toISOString()
-    }
-
-  ];
+  organizations =
+    JSON.parse(
+      JSON.stringify(
+        defaultOrganizations
+      )
+    );
 
 
-  /* =======================================================
-     เริ่มระบบ
-     ======================================================= */
+  saveOrganizations();
 
-  document.addEventListener(
-    "DOMContentLoaded",
-    init
+}
+
+
+/* =========================================================
+   บันทึกข้อมูล
+   ========================================================= */
+
+function saveOrganizations() {
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(
+      organizations
+    )
   );
 
-
-  function init() {
-
-    loadMembers();
-
-    setupForm();
-
-    setupClock();
-
-    detectTypeFromURL();
-
-    renderMembers();
-
-    updateSummary();
-
-  }
+}
 
 
-  /* =======================================================
-     โหลดข้อมูล
-     ======================================================= */
+/* =========================================================
+   แสดงองค์กร
+   ========================================================= */
 
-  function loadMembers() {
+window.renderOrganizations =
+function() {
 
-    try {
-
-      const saved =
-        localStorage.getItem(STORAGE_KEY);
-
-      if (saved) {
-
-        const parsed =
-          JSON.parse(saved);
-
-        if (Array.isArray(parsed)) {
-
-          members = parsed;
-
-          return;
-
-        }
-
-      }
-
-    } catch (error) {
-
-      console.error(
-        "โหลดข้อมูลองค์กรไม่สำเร็จ",
-        error
-      );
-
-    }
+  const container =
+    document.getElementById(
+      "organizationList"
+    );
 
 
-    members =
-      JSON.parse(
-        JSON.stringify(defaultMembers)
-      );
+  if (!container) return;
 
 
-    saveMembers();
+  if (
+    organizations.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div class="orgEmpty">
+
+        <div>👥</div>
+
+        <h3>
+          ยังไม่มีข้อมูลองค์กรชุมชน
+        </h3>
+
+        <button
+          onclick="addOrganization()"
+          class="orgBtn orgAdd"
+        >
+          ➕ เพิ่มองค์กร
+        </button>
+
+      </div>
+
+    `;
+
+    return;
 
   }
 
 
-  /* =======================================================
-     บันทึก
-     ======================================================= */
+  container.innerHTML =
+    organizations
+      .map(
+        renderOrganizationCard
+      )
+      .join("");
 
-  function saveMembers() {
+};
 
-    try {
 
-      localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(members)
-      );
+/* =========================================================
+   Card องค์กร
+   ========================================================= */
 
-    } catch (error) {
+function renderOrganizationCard(org) {
 
-      console.error(
-        "บันทึกข้อมูลไม่สำเร็จ",
-        error
-      );
+  const count =
+    org.members
+      ? org.members.length
+      : 0;
 
-      alert(
-        "ไม่สามารถบันทึกข้อมูลได้\n\n" +
-        "อาจเป็นเพราะพื้นที่จัดเก็บรูปภาพเต็ม"
-      );
 
-    }
+  const membersHTML =
+    count > 0
 
-  }
+      ? org.members
+          .map(
+            (
+              member,
+              index
+            ) => `
 
+              <div
+                class="memberRow"
+                data-member-id="${escapeHTML(member.id)}"
+              >
 
-  /* =======================================================
-     ตรวจสอบ ?type=
-     เช่น organization.html?type=อปพร.
-     ======================================================= */
+                <div class="memberNumber">
+                  ${index + 1}
+                </div>
 
-  function detectTypeFromURL() {
+                <div class="memberAvatar">
+                  ${org.icon}
+                </div>
 
-    const params =
-      new URLSearchParams(
-        window.location.search
-      );
+                <div class="memberInfo">
 
-    const type =
-      params.get("type");
+                  <strong>
+                    ${escapeHTML(member.name)}
+                  </strong>
 
-    if (
-      type &&
-      organizationInfo[type]
-    ) {
+                  <small>
+                    ${escapeHTML(member.position || "สมาชิก")}
+                  </small>
 
-      currentType = type;
+                </div>
 
-    }
+                <div class="memberActions">
 
+                  <button
+                    class="miniEdit"
+                    onclick="
+                      editMember(
+                        '${org.id}',
+                        '${member.id}'
+                      )
+                    "
+                  >
+                    ✏️
+                  </button>
 
-    updateTabs();
+                  <button
+                    class="miniDelete"
+                    onclick="
+                      deleteMember(
+                        '${org.id}',
+                        '${member.id}'
+                      )
+                    "
+                  >
+                    🗑️
+                  </button>
 
-  }
+                </div>
 
+              </div>
 
-  /* =======================================================
-     เปลี่ยนองค์กร
-     ======================================================= */
+            `
+          )
+          .join("")
 
-  window.switchOrganization =
-    function(type) {
+      : `
 
-      if (!organizationInfo[type]) {
-        return;
-      }
+          <div class="noMembers">
 
-
-      currentType = type;
-
-
-      updateTabs();
-
-      renderMembers();
-
-      updateSummary();
-
-      updateTitle();
-
-
-      const search =
-        document.getElementById(
-          "memberSearch"
-        );
-
-      if (search) {
-        search.value = "";
-      }
-
-    };
-
-
-  /* =======================================================
-     ปรับปุ่ม Tab
-     ======================================================= */
-
-  function updateTabs() {
-
-    document
-      .querySelectorAll(".orgTab")
-      .forEach(button => {
-
-        const type =
-          button.dataset.type;
-
-        button.classList.toggle(
-          "active",
-          type === currentType
-        );
-
-      });
-
-  }
-
-
-  /* =======================================================
-     หัวข้อ
-     ======================================================= */
-
-  function updateTitle() {
-
-    const title =
-      document.getElementById(
-        "organizationTitle"
-      );
-
-    if (!title) return;
-
-
-    const info =
-      organizationInfo[currentType];
-
-    if (!info) return;
-
-
-    title.textContent =
-      info.title;
-
-  }
-
-
-  /* =======================================================
-     แสดงสมาชิก
-     ======================================================= */
-
-  window.renderMembers =
-    function() {
-
-      const grid =
-        document.getElementById(
-          "memberGrid"
-        );
-
-      if (!grid) return;
-
-
-      const search =
-        document.getElementById(
-          "memberSearch"
-        );
-
-
-      const keyword =
-        search
-          ? search.value
-              .trim()
-              .toLowerCase()
-          : "";
-
-
-      const filtered =
-        members.filter(item => {
-
-          if (
-            item.type !== currentType
-          ) {
-
-            return false;
-
-          }
-
-
-          if (!keyword) {
-
-            return true;
-
-          }
-
-
-          const text = [
-
-            item.name,
-            item.role,
-            item.phone,
-            item.status,
-            item.bio
-
-          ]
-          .join(" ")
-          .toLowerCase();
-
-
-          return text.includes(
-            keyword
-          );
-
-        });
-
-
-      if (filtered.length === 0) {
-
-        grid.innerHTML = `
-
-          <div class="emptyBox">
-
-            <div class="icon">
-              ${organizationInfo[currentType]?.icon || "👥"}
-            </div>
-
-            <h3>
-              ยังไม่มีข้อมูลสมาชิก
-            </h3>
-
-            <p>
-              กดปุ่ม
-              "➕ เพิ่มสมาชิก"
-              เพื่อเพิ่มข้อมูล
-            </p>
+            📋 ยังไม่มีรายชื่อสมาชิก
 
           </div>
 
         `;
 
-        return;
 
-      }
+  return `
 
+    <article
+      class="organizationCard"
+      id="org-${org.id}"
+    >
 
-      grid.innerHTML =
-        filtered
-          .map(
-            createMemberCard
-          )
-          .join("");
+      <div class="organizationHeader">
 
-    };
+        <div class="organizationIcon">
+          ${org.icon}
+        </div>
 
+        <div class="organizationTitle">
 
-  /* =======================================================
-     สร้าง Card
-     ======================================================= */
-
-  function createMemberCard(item) {
-
-    const image =
-      item.image ||
-      "https://via.placeholder.com/600x450?text=RONGKHEM";
-
-
-    const statusClass =
-      item.status === "ปฏิบัติงาน"
-        ? "color:#059669;"
-        : "color:#dc2626;";
-
-
-    return `
-
-      <article class="memberCard">
-
-        <img
-          class="memberPhoto"
-          src="${image}"
-          alt="${escapeHTML(item.name)}"
-          onerror="
-            this.src='https://via.placeholder.com/600x450?text=RONGKHEM'
-          "
-        >
-
-        <div class="memberInfo">
-
-          <div class="memberRole">
-            ${escapeHTML(item.type || "-")}
+          <div class="organizationType">
+            ${escapeHTML(org.type)}
           </div>
 
-          <div class="memberName">
-            ${escapeHTML(item.name || "-")}
-          </div>
+          <h2>
+            ${escapeHTML(org.title)}
+          </h2>
 
-          <div class="memberDetail">
-
-            <div>
-              <strong>หน้าที่:</strong>
-              ${escapeHTML(item.role || "-")}
-            </div>
-
-            <div>
-              <strong>เพศ:</strong>
-              ${escapeHTML(item.gender || "-")}
-            </div>
-
-            <div>
-              <strong>โทรศัพท์:</strong>
-              ${escapeHTML(item.phone || "-")}
-            </div>
-
-            <div style="${statusClass};font-weight:700;margin-top:5px;">
-              ● ${escapeHTML(item.status || "-")}
-            </div>
-
-            <div style="margin-top:8px;">
-              ${escapeHTML(item.bio || "")}
-            </div>
-
-          </div>
-
-
-          <div class="actions">
-
-            <button
-              class="btn btnEdit"
-              onclick="
-                editMember('${item.id}')
-              "
-            >
-              ✏️ แก้ไข
-            </button>
-
-
-            <button
-              class="btn btnDelete"
-              onclick="
-                deleteMember('${item.id}')
-              "
-            >
-              🗑️ ลบ
-            </button>
-
-          </div>
+          <p>
+            ${escapeHTML(org.description)}
+          </p>
 
         </div>
 
-      </article>
+        <div class="organizationCount">
 
-    `;
+          <strong>
+            ${count}
+          </strong>
 
-  }
+          <span>
+            คน
+          </span>
 
+        </div>
 
-  /* =======================================================
-     สรุปจำนวน
-     ======================================================= */
-
-  function updateSummary() {
-
-    const data =
-      members.filter(
-        item =>
-          item.type === currentType
-      );
+      </div>
 
 
-    let male = 0;
+      <div class="organizationToolbar">
 
-    let female = 0;
+        <button
+          class="orgBtn orgAdd"
+          onclick="
+            addMember('${org.id}')
+          "
+        >
+          ➕ เพิ่มสมาชิก
+        </button>
 
-    let active = 0;
+        <button
+          class="orgBtn orgEdit"
+          onclick="
+            editOrganization('${org.id}')
+          "
+        >
+          ✏️ แก้ไของค์กร
+        </button>
+
+        <button
+          class="orgBtn orgDelete"
+          onclick="
+            deleteOrganization('${org.id}')
+          "
+        >
+          🗑️ ลบองค์กร
+        </button>
+
+      </div>
 
 
-    data.forEach(item => {
+      <div class="memberList">
 
-      if (item.gender === "ชาย") {
-        male++;
-      }
+        ${membersHTML}
 
-      if (item.gender === "หญิง") {
-        female++;
-      }
+      </div>
 
-      if (item.status === "ปฏิบัติงาน") {
-        active++;
-      }
+    </article>
 
-    });
+  `;
+
+}
 
 
-    setText(
-      "countMembers",
-      data.length
+/* =========================================================
+   เพิ่มสมาชิก
+   ========================================================= */
+
+window.addMember =
+function(orgId) {
+
+  const org =
+    organizations.find(
+      x => x.id === orgId
     );
 
-    setText(
-      "countMale",
-      male
+
+  if (!org) return;
+
+
+  const name =
+    prompt(
+      "กรอกชื่อ-นามสกุลสมาชิก"
     );
 
-    setText(
-      "countFemale",
-      female
+
+  if (!name) return;
+
+
+  const position =
+    prompt(
+      "กรอกตำแหน่ง",
+      "สมาชิก"
+    ) || "สมาชิก";
+
+
+  org.members =
+    org.members || [];
+
+
+  org.members.push({
+
+    id:
+      "member-" +
+      Date.now(),
+
+    name:
+      name.trim(),
+
+    position:
+      position.trim()
+
+  });
+
+
+  saveOrganizations();
+
+  renderOrganizations();
+
+};
+
+
+/* =========================================================
+   แก้ไขสมาชิก
+   ========================================================= */
+
+window.editMember =
+function(
+  orgId,
+  memberId
+) {
+
+  const org =
+    organizations.find(
+      x => x.id === orgId
     );
 
-    setText(
-      "countActive",
-      active
+
+  if (!org) return;
+
+
+  const member =
+    org.members.find(
+      x =>
+        String(x.id) ===
+        String(memberId)
     );
 
-  }
 
+  if (!member) return;
 
-  function setText(id, value) {
 
-    const element =
-      document.getElementById(id);
+  const name =
+    prompt(
+      "แก้ไขชื่อ-นามสกุล",
+      member.name
+    );
 
-    if (element) {
 
-      element.textContent =
-        value;
+  if (
+    name === null
+  ) return;
 
-    }
 
-  }
+  const position =
+    prompt(
+      "แก้ไขตำแหน่ง",
+      member.position || "สมาชิก"
+    );
 
 
-  /* =======================================================
-     เปิดฟอร์ม
-     ======================================================= */
+  if (
+    position === null
+  ) return;
 
-  window.openMemberForm =
-    function() {
 
-      const modal =
-        document.getElementById(
-          "memberModal"
-        );
+  member.name =
+    name.trim();
 
-      const form =
-        document.getElementById(
-          "memberForm"
-        );
 
+  member.position =
+    position.trim();
 
-      if (!modal || !form) {
-        return;
-      }
 
+  saveOrganizations();
 
-      form.reset();
+  renderOrganizations();
 
+};
 
-      document.getElementById(
-        "memberId"
-      ).value = "";
 
+/* =========================================================
+   ลบสมาชิก
+   ========================================================= */
 
-      document.getElementById(
-        "memberType"
-      ).value =
-        currentType;
+window.deleteMember =
+function(
+  orgId,
+  memberId
+) {
 
+  const org =
+    organizations.find(
+      x => x.id === orgId
+    );
 
-      document.getElementById(
-        "memberFormTitle"
-      ).textContent =
-        "➕ เพิ่มสมาชิก";
 
+  if (!org) return;
 
-      currentImageData = "";
 
+  const member =
+    org.members.find(
+      x =>
+        String(x.id) ===
+        String(memberId)
+    );
 
-      const preview =
-        document.getElementById(
-          "memberPreview"
-        );
 
+  if (!member) return;
 
-      if (preview) {
 
-        preview.src =
-          "https://via.placeholder.com/300x300?text=PHOTO";
+  const ok =
+    confirm(
+      "ยืนยันการลบสมาชิก\n\n" +
+      member.name
+    );
 
-      }
 
+  if (!ok) return;
 
-      modal.classList.add(
-        "show"
-      );
 
-    };
+  org.members =
+    org.members.filter(
+      x =>
+        String(x.id) !==
+        String(memberId)
+    );
 
 
-  /* =======================================================
-     ปิดฟอร์ม
-     ======================================================= */
+  saveOrganizations();
 
-  window.closeMemberForm =
-    function() {
+  renderOrganizations();
 
-      const modal =
-        document.getElementById(
-          "memberModal"
-        );
+};
 
 
-      if (modal) {
+/* =========================================================
+   เพิ่มองค์กร
+   ========================================================= */
 
-        modal.classList.remove(
-          "show"
-        );
+window.addOrganization =
+function() {
 
-      }
+  const title =
+    prompt(
+      "ชื่อองค์กร / กลุ่มชุมชน"
+    );
 
-    };
 
+  if (!title) return;
 
-  /* =======================================================
-     แก้ไขสมาชิก
-     ======================================================= */
 
-  window.editMember =
-    function(id) {
+  const description =
+    prompt(
+      "รายละเอียดองค์กร",
+      ""
+    ) || "";
 
-      const item =
-        members.find(
-          member =>
-            String(member.id) ===
-            String(id)
-        );
 
+  const icon =
+    prompt(
+      "ไอคอน",
+      "👥"
+    ) || "👥";
 
-      if (!item) {
 
-        alert(
-          "ไม่พบข้อมูลสมาชิก"
-        );
+  const type =
+    prompt(
+      "ประเภทองค์กร",
+      "ไม่เป็นทางการ"
+    ) || "ไม่เป็นทางการ";
 
-        return;
 
-      }
+  organizations.push({
 
+    id:
+      "org-" +
+      Date.now(),
 
-      document.getElementById(
-        "memberId"
-      ).value =
-        item.id;
+    icon,
 
+    title:
+      title.trim(),
 
-      document.getElementById(
-        "memberName"
-      ).value =
-        item.name || "";
+    description:
+      description.trim(),
 
+    type:
+      type.trim(),
 
-      document.getElementById(
-        "memberType"
-      ).value =
-        item.type || currentType;
+    members: []
 
+  });
 
-      document.getElementById(
-        "memberRole"
-      ).value =
-        item.role || "";
 
+  saveOrganizations();
 
-      document.getElementById(
-        "memberGender"
-      ).value =
-        item.gender || "ชาย";
+  renderOrganizations();
 
+};
 
-      document.getElementById(
-        "memberPhone"
-      ).value =
-        item.phone || "";
 
+/* =========================================================
+   แก้ไของค์กร
+   ========================================================= */
 
-      document.getElementById(
-        "memberStatus"
-      ).value =
-        item.status || "ปฏิบัติงาน";
+window.editOrganization =
+function(id) {
 
+  const org =
+    organizations.find(
+      x => x.id === id
+    );
 
-      document.getElementById(
-        "memberBio"
-      ).value =
-        item.bio || "";
 
+  if (!org) return;
 
-      const preview =
-        document.getElementById(
-          "memberPreview"
-        );
 
+  const title =
+    prompt(
+      "แก้ไขชื่อองค์กร",
+      org.title
+    );
 
-      if (preview) {
 
-        preview.src =
-          item.image ||
-          "https://via.placeholder.com/300x300?text=PHOTO";
+  if (
+    title === null
+  ) return;
 
-      }
 
+  const description =
+    prompt(
+      "แก้ไขรายละเอียด",
+      org.description
+    );
 
-      currentImageData =
-        item.image || "";
 
+  if (
+    description === null
+  ) return;
 
-      document.getElementById(
-        "memberFormTitle"
-      ).textContent =
-        "✏️ แก้ไขข้อมูลสมาชิก";
 
+  const icon =
+    prompt(
+      "แก้ไขไอคอน",
+      org.icon
+    );
 
-      document
-        .getElementById(
-          "memberModal"
-        )
-        .classList.add(
-          "show"
-        );
 
-    };
+  if (
+    icon === null
+  ) return;
 
 
-  /* =======================================================
-     ลบสมาชิก
-     ======================================================= */
+  org.title =
+    title.trim();
 
-  window.deleteMember =
-    function(id) {
 
-      const item =
-        members.find(
-          member =>
-            String(member.id) ===
-            String(id)
-        );
+  org.description =
+    description.trim();
 
 
-      if (!item) {
-        return;
-      }
+  org.icon =
+    icon.trim() ||
+    "👥";
 
 
-      const ok =
-        confirm(
-          "ยืนยันการลบข้อมูล?\n\n" +
-          item.name +
-          "\n" +
-          item.type
-        );
+  saveOrganizations();
 
+  renderOrganizations();
 
-      if (!ok) {
-        return;
-      }
+};
 
 
-      members =
-        members.filter(
-          member =>
-            String(member.id) !==
-            String(id)
-        );
+/* =========================================================
+   ลบองค์กร
+   ========================================================= */
 
+window.deleteOrganization =
+function(id) {
 
-      saveMembers();
+  const org =
+    organizations.find(
+      x => x.id === id
+    );
 
-      renderMembers();
 
-      updateSummary();
+  if (!org) return;
 
 
-      alert(
-        "ลบข้อมูลเรียบร้อยแล้ว"
-      );
+  const ok =
+    confirm(
+      "ยืนยันการลบองค์กรนี้?\n\n" +
+      org.title +
+      "\n\n" +
+      "รายชื่อสมาชิกทั้งหมดจะถูกลบออกจากข้อมูลนี้ด้วย"
+    );
 
-    };
 
+  if (!ok) return;
 
-  /* =======================================================
-     Preview รูป
-     ======================================================= */
 
-  window.previewMemberImage =
-    function(event) {
+  organizations =
+    organizations.filter(
+      x => x.id !== id
+    );
 
-      const file =
-        event.target.files &&
-        event.target.files[0];
 
+  saveOrganizations();
 
-      if (!file) {
-        return;
-      }
+  renderOrganizations();
 
+};
 
-      if (
-        !file.type.startsWith(
-          "image/"
-        )
-      ) {
 
-        alert(
-          "กรุณาเลือกไฟล์รูปภาพ"
-        );
+/* =========================================================
+   ค้นหาองค์กร / สมาชิก
+   ========================================================= */
 
-        event.target.value = "";
+window.searchOrganizations =
+function(keyword) {
 
-        return;
+  const cards =
+    document.querySelectorAll(
+      ".organizationCard"
+    );
 
-      }
 
+  const q =
+    String(keyword || "")
+      .trim()
+      .toLowerCase();
 
-      if (
-        file.size >
-        8 * 1024 * 1024
-      ) {
 
-        alert(
-          "ไฟล์รูปใหญ่เกินไป\n" +
-          "กรุณาเลือกไฟล์ไม่เกิน 8 MB"
-        );
+  cards.forEach(card => {
 
-        event.target.value = "";
+    if (!q) {
 
-        return;
+      card.style.display =
+        "";
 
-      }
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(event) {
-
-          const image =
-            new Image();
-
-
-          image.onload =
-            function() {
-
-              const maxWidth =
-                1000;
-
-              const maxHeight =
-                1000;
-
-
-              let width =
-                image.width;
-
-              let height =
-                image.height;
-
-
-              if (
-                width >
-                maxWidth
-              ) {
-
-                height =
-                  height *
-                  maxWidth /
-                  width;
-
-                width =
-                  maxWidth;
-
-              }
-
-
-              if (
-                height >
-                maxHeight
-              ) {
-
-                width =
-                  width *
-                  maxHeight /
-                  height;
-
-                height =
-                  maxHeight;
-
-              }
-
-
-              const canvas =
-                document.createElement(
-                  "canvas"
-                );
-
-
-              canvas.width =
-                Math.round(width);
-
-              canvas.height =
-                Math.round(height);
-
-
-              const ctx =
-                canvas.getContext(
-                  "2d"
-                );
-
-
-              ctx.drawImage(
-                image,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-              );
-
-
-              currentImageData =
-                canvas.toDataURL(
-                  "image/jpeg",
-                  0.82
-                );
-
-
-              const preview =
-                document.getElementById(
-                  "memberPreview"
-                );
-
-
-              if (preview) {
-
-                preview.src =
-                  currentImageData;
-
-              }
-
-            };
-
-
-          image.src =
-            event.target.result;
-
-        };
-
-
-      reader.readAsDataURL(file);
-
-    };
-
-
-  /* =======================================================
-     Submit Form
-     ======================================================= */
-
-  function setupForm() {
-
-    const form =
-      document.getElementById(
-        "memberForm"
-      );
-
-
-    if (!form) {
       return;
+
     }
 
 
-    form.addEventListener(
-      "submit",
-      function(event) {
+    const text =
+      card.textContent
+        .toLowerCase();
 
-        event.preventDefault();
 
+    card.style.display =
+      text.includes(q)
+        ? ""
+        : "none";
 
-        const id =
-          document.getElementById(
-            "memberId"
-          ).value.trim();
+  });
 
+};
 
-        const name =
-          document.getElementById(
-            "memberName"
-          ).value.trim();
 
+/* =========================================================
+   ส่งออกข้อมูล
+   ========================================================= */
 
-        const type =
-          document.getElementById(
-            "memberType"
-          ).value;
+window.exportOrganizations =
+function() {
 
+  const data =
+    JSON.stringify(
+      organizations,
+      null,
+      2
+    );
 
-        const role =
-          document.getElementById(
-            "memberRole"
-          ).value.trim();
 
-
-        const gender =
-          document.getElementById(
-            "memberGender"
-          ).value;
-
-
-        const phone =
-          document.getElementById(
-            "memberPhone"
-          ).value.trim();
-
-
-        const status =
-          document.getElementById(
-            "memberStatus"
-          ).value;
-
-
-        const bio =
-          document.getElementById(
-            "memberBio"
-          ).value.trim();
-
-
-        if (!name) {
-
-          alert(
-            "กรุณากรอกชื่อ-นามสกุล"
-          );
-
-          return;
-
-        }
-
-
-        /* -------------------------------
-           แก้ไข
-           ------------------------------- */
-
-        if (id) {
-
-          const index =
-            members.findIndex(
-              item =>
-                String(item.id) ===
-                String(id)
-            );
-
-
-          if (index === -1) {
-
-            alert(
-              "ไม่พบข้อมูลเดิม"
-            );
-
-            return;
-
-          }
-
-
-          members[index] = {
-
-            ...members[index],
-
-            name,
-            type,
-            role,
-            gender,
-            phone,
-            status,
-            bio,
-
-            image:
-              currentImageData ||
-              members[index].image ||
-              ""
-
-          };
-
-
-          saveMembers();
-
-          currentType = type;
-
-          updateTabs();
-
-          updateTitle();
-
-          renderMembers();
-
-          updateSummary();
-
-          closeMemberForm();
-
-
-          alert(
-            "แก้ไขข้อมูลเรียบร้อยแล้ว"
-          );
-
-
-          return;
-
-        }
-
-
-        /* -------------------------------
-           เพิ่ม
-           ------------------------------- */
-
-        const newMember = {
-
-          id:
-            "org-" +
-            Date.now() +
-            "-" +
-            Math.random()
-              .toString(36)
-              .slice(2,7),
-
-          name,
-          type,
-          role,
-          gender,
-          phone,
-          status,
-          bio,
-
-          image:
-            currentImageData || "",
-
-          createdAt:
-            new Date().toISOString()
-
-        };
-
-
-        members.unshift(
-          newMember
-        );
-
-
-        saveMembers();
-
-
-        currentType =
-          type;
-
-
-        updateTabs();
-
-        updateTitle();
-
-        renderMembers();
-
-        updateSummary();
-
-        closeMemberForm();
-
-
-        alert(
-          "เพิ่มข้อมูลเรียบร้อยแล้ว"
-        );
-
+  const blob =
+    new Blob(
+      [data],
+      {
+        type:
+          "application/json"
       }
     );
 
-  }
 
-
-  /* =======================================================
-     ปิด Modal เมื่อคลิกพื้นหลัง
-     ======================================================= */
-
-  document.addEventListener(
-    "click",
-    function(event) {
-
-      const modal =
-        document.getElementById(
-          "memberModal"
-        );
-
-
-      if (
-        modal &&
-        event.target === modal
-      ) {
-
-        closeMemberForm();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     ESC
-     ======================================================= */
-
-  document.addEventListener(
-    "keydown",
-    function(event) {
-
-      if (
-        event.key !== "Escape"
-      ) {
-        return;
-      }
-
-
-      const modal =
-        document.getElementById(
-          "memberModal"
-        );
-
-
-      if (
-        modal &&
-        modal.classList.contains(
-          "show"
-        )
-      ) {
-
-        closeMemberForm();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     นาฬิกา
-     ======================================================= */
-
-  function setupClock() {
-
-    updateClock();
-
-    setInterval(
-      updateClock,
-      1000
+  const url =
+    URL.createObjectURL(
+      blob
     );
 
-  }
+
+  const link =
+    document.createElement(
+      "a"
+    );
 
 
-  function updateClock() {
-
-    const clock =
-      document.getElementById(
-        "clock"
-      );
+  link.href =
+    url;
 
 
-    const date =
-      document.getElementById(
-        "date"
-      );
+  link.download =
+    "rongkhem-organizations.json";
 
 
-    const now =
-      new Date();
+  document.body.appendChild(
+    link
+  );
 
 
-    if (clock) {
+  link.click();
 
-      clock.textContent =
-        now.toLocaleTimeString(
-          "th-TH",
-          {
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit"
-          }
-        );
-
-    }
+  link.remove();
 
 
-    if (date) {
+  URL.revokeObjectURL(
+    url
+  );
 
-      date.textContent =
-        now.toLocaleDateString(
-          "th-TH",
-          {
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-          }
-        );
-
-    }
-
-  }
+};
 
 
-  /* =======================================================
-     สำรองข้อมูล
-     ======================================================= */
+/* =========================================================
+   นำเข้าข้อมูล
+   ========================================================= */
 
-  window.exportOrganizations =
-    function() {
+window.importOrganizations =
+function(file) {
+
+  if (!file) return;
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+  function(event) {
+
+    try {
 
       const data =
-        JSON.stringify(
-          members,
-          null,
-          2
-        );
-
-
-      const blob =
-        new Blob(
-          [data],
-          {
-            type:
-              "application/json"
-          }
-        );
-
-
-      const url =
-        URL.createObjectURL(
-          blob
-        );
-
-
-      const a =
-        document.createElement(
-          "a"
-        );
-
-
-      a.href =
-        url;
-
-
-      a.download =
-        "rongkhem-organizations-backup.json";
-
-
-      document.body.appendChild(a);
-
-      a.click();
-
-      a.remove();
-
-
-      URL.revokeObjectURL(
-        url
-      );
-
-    };
-
-
-  /* =======================================================
-     นำเข้าข้อมูล
-     ======================================================= */
-
-  window.importOrganizations =
-    function(file) {
-
-      if (!file) {
-        return;
-      }
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        function(event) {
-
-          try {
-
-            const data =
-              JSON.parse(
-                event.target.result
-              );
-
-
-            if (
-              !Array.isArray(data)
-            ) {
-
-              throw new Error(
-                "รูปแบบไม่ถูกต้อง"
-              );
-
-            }
-
-
-            members =
-              data;
-
-
-            saveMembers();
-
-            renderMembers();
-
-            updateSummary();
-
-
-            alert(
-              "นำเข้าข้อมูลเรียบร้อยแล้ว"
-            );
-
-
-          } catch(error) {
-
-            console.error(
-              error
-            );
-
-            alert(
-              "ไฟล์ข้อมูลไม่ถูกต้อง"
-            );
-
-          }
-
-        };
-
-
-      reader.readAsText(
-        file
-      );
-
-    };
-
-
-  /* =======================================================
-     ลบข้อมูลขององค์กรปัจจุบันทั้งหมด
-     ======================================================= */
-
-  window.deleteCurrentOrganization =
-    function() {
-
-      const count =
-        members.filter(
-          item =>
-            item.type ===
-            currentType
-        ).length;
-
-
-      if (!count) {
-
-        alert(
-          "ไม่มีข้อมูลให้ลบ"
-        );
-
-        return;
-
-      }
-
-
-      const ok =
-        confirm(
-          "⚠️ ระวัง\n\n" +
-          "ต้องการลบสมาชิกทั้งหมดของ\n" +
-          currentType +
-          "\nจำนวน " +
-          count +
-          " รายการหรือไม่?"
-        );
-
-
-      if (!ok) {
-        return;
-      }
-
-
-      members =
-        members.filter(
-          item =>
-            item.type !==
-            currentType
-        );
-
-
-      saveMembers();
-
-      renderMembers();
-
-      updateSummary();
-
-
-      alert(
-        "ลบข้อมูลทั้งหมดเรียบร้อยแล้ว"
-      );
-
-    };
-
-
-  /* =======================================================
-     ล้างข้อมูลตัวอย่าง
-     ======================================================= */
-
-  window.resetOrganizations =
-    function() {
-
-      const ok =
-        confirm(
-          "ต้องการคืนค่าข้อมูลเริ่มต้นหรือไม่?"
-        );
-
-
-      if (!ok) {
-        return;
-      }
-
-
-      members =
         JSON.parse(
-          JSON.stringify(
-            defaultMembers
-          )
+          event.target.result
         );
 
 
-      saveMembers();
+      if (
+        !Array.isArray(data)
+      ) {
 
-      renderMembers();
+        throw new Error(
+          "รูปแบบข้อมูลไม่ถูกต้อง"
+        );
 
-      updateSummary();
+      }
+
+
+      organizations =
+        data;
+
+
+      saveOrganizations();
+
+      renderOrganizations();
 
 
       alert(
-        "คืนค่าข้อมูลเรียบร้อยแล้ว"
+        "นำเข้าข้อมูลเรียบร้อยแล้ว"
       );
 
-    };
 
+    } catch(error) {
 
-  /* =======================================================
-     Escape HTML
-     ======================================================= */
-
-  function escapeHTML(value) {
-
-    return String(value || "")
-
-      .replaceAll(
-        "&",
-        "&amp;"
-      )
-
-      .replaceAll(
-        "<",
-        "&lt;"
-      )
-
-      .replaceAll(
-        ">",
-        "&gt;"
-      )
-
-      .replaceAll(
-        '"',
-        "&quot;"
-      )
-
-      .replaceAll(
-        "'",
-        "&#039;"
+      console.error(
+        error
       );
 
-  }
 
-
-  /* =======================================================
-     API สำหรับระบบอื่น
-     ======================================================= */
-
-  window.RONGKHEM_ORGANIZATIONS = {
-
-    getAll() {
-
-      return members;
-
-    },
-
-
-    getByType(type) {
-
-      return members.filter(
-        item =>
-          item.type === type
+      alert(
+        "ไม่สามารถนำเข้าข้อมูลได้"
       );
-
-    },
-
-
-    save() {
-
-      saveMembers();
-
-    },
-
-
-    reload() {
-
-      loadMembers();
-
-      renderMembers();
-
-      updateSummary();
 
     }
 
   };
+
+
+  reader.readAsText(
+    file
+  );
+
+};
+
+
+/* =========================================================
+   คืนค่าข้อมูลตั้งต้น
+   ========================================================= */
+
+window.resetOrganizations =
+function() {
+
+  const ok =
+    confirm(
+      "ต้องการคืนค่าข้อมูลองค์กรทั้งหมดตามข้อมูลตั้งต้นหรือไม่?"
+    );
+
+
+  if (!ok) return;
+
+
+  organizations =
+    JSON.parse(
+      JSON.stringify(
+        defaultOrganizations
+      )
+    );
+
+
+  saveOrganizations();
+
+  renderOrganizations();
+
+
+  alert(
+    "คืนค่าข้อมูลเรียบร้อยแล้ว"
+  );
+
+};
+
+
+/* =========================================================
+   Escape HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+  return String(
+    value ?? ""
+  )
+
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
+
+}
+
+
+/* =========================================================
+   API สำหรับไฟล์อื่น
+   ========================================================= */
+
+window.RONGKHEM_ORGANIZATIONS = {
+
+  getAll() {
+
+    return organizations;
+
+  },
+
+  get(id) {
+
+    return organizations.find(
+      x => x.id === id
+    );
+
+  },
+
+  save() {
+
+    saveOrganizations();
+
+  },
+
+  render() {
+
+    renderOrganizations();
+
+  }
+
+};
 
 })();
