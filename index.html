@@ -1,35 +1,30 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
 
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+content="width=device-width,initial-scale=1.0">
 
 <title>
 RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์
 </title>
 
-<meta name="description"
-content="ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา">
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
+href="https://fonts.gstatic.com"
+crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet">
+rel="stylesheet">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 
 <style>
 
@@ -39,35 +34,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 :root{
 
-    --bg:#050b14;
+    --bg:#020914;
+    --panel:rgba(5,20,31,.88);
+    --panel2:rgba(8,27,42,.90);
 
-    --sidebar:#07111e;
+    --border:rgba(160,220,255,.18);
 
-    --card:rgba(14,27,44,.86);
+    --white:#ffffff;
+    --muted:#b8c7d4;
 
-    --card2:rgba(17,34,54,.92);
-
-    --border:rgba(255,255,255,.075);
-
-    --text:#f8fafc;
-
-    --muted:#94a3b8;
-
-    --green:#22c55e;
-
-    --green2:#16a34a;
-
-    --cyan:#22d3ee;
-
-    --blue:#38bdf8;
-
-    --purple:#a78bfa;
-
+    --green:#4ade80;
+    --cyan:#67e8f9;
+    --purple:#d8b4fe;
     --orange:#fb923c;
-
     --yellow:#facc15;
-
-    --red:#fb7185;
+    --red:#f87171;
+    --blue:#60a5fa;
 
 }
 
@@ -77,57 +59,368 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 ========================================================= */
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
 
-html{
-
-    scroll-behavior:smooth;
-
+html,
+body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
 
-    min-height:100vh;
-
     font-family:"Prompt",sans-serif;
 
-    color:var(--text);
+    color:white;
 
-    background:
-
-    radial-gradient(
-        circle at 10% 0%,
-        rgba(34,197,94,.08),
-        transparent 28%
-    ),
-
-    radial-gradient(
-        circle at 90% 10%,
-        rgba(56,189,248,.07),
-        transparent 30%
-    ),
-
-    #050b14;
+    background:#020914;
 
 }
 
 
 /* =========================================================
-   LAYOUT
+   MAIN
 ========================================================= */
 
 .app{
 
     min-height:100vh;
 
+    display:grid;
+
+    grid-template-columns:
+    222px
+    1fr;
+
+    grid-template-rows:
+    125px
+    1fr;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+
+    grid-column:
+    1 / -1;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr
+    auto
+    330px;
+
+    align-items:center;
+
+    gap:25px;
+
+    padding:
+    15px 18px 14px 30px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        rgba(2,15,27,.97),
+        rgba(10,28,44,.82),
+        rgba(3,16,29,.96)
+    );
+
+    border:
+    1px solid rgba(140,210,255,.15);
+
+    border-radius:
+    0 0 18px 18px;
+
+}
+
+
+/* subtle mountain header */
+
+.header::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    linear-gradient(
+        transparent 55%,
+        rgba(120,160,180,.08)
+    );
+
+}
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand{
+
+    position:relative;
+
+    z-index:2;
+
     display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.brand-logo{
+
+    width:78px;
+
+    height:90px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:58px;
+
+    filter:
+    drop-shadow(
+        0 0 18px
+        rgba(0,190,255,.25)
+    );
+
+}
+
+.brand-title{
+
+    font-family:"Kanit";
+
+    font-size:29px;
+
+    font-weight:600;
+
+    line-height:1.05;
+
+    letter-spacing:.3px;
+
+}
+
+.brand-office{
+
+    margin-top:3px;
+
+    font-family:"Kanit";
+
+    font-size:23px;
+
+    font-weight:500;
+
+}
+
+.brand-location{
+
+    margin-top:3px;
+
+    color:#d5dde4;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   CLOCK
+========================================================= */
+
+.clock-area{
+
+    position:relative;
+
+    z-index:2;
+
+    text-align:right;
+
+}
+
+.clock{
+
+    font-family:"Kanit";
+
+    font-size:45px;
+
+    line-height:1;
+
+    letter-spacing:1px;
+
+}
+
+.date{
+
+    margin-top:4px;
+
+    font-size:13px;
+
+    color:#dbe4eb;
+
+}
+
+.day{
+
+    margin-top:3px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    color:#dbe4eb;
+
+    font-size:12px;
+
+}
+
+
+/* =========================================================
+   USER
+========================================================= */
+
+.user{
+
+    position:relative;
+
+    z-index:2;
+
+    min-height:88px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:8px 15px;
+
+    border:
+
+    1px solid
+    rgba(150,210,245,.16);
+
+    border-radius:14px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(17,39,59,.9),
+        rgba(8,24,39,.72)
+    );
+
+}
+
+.user-photo{
+
+    width:68px;
+
+    height:68px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+    border-radius:50%;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #94a3b8
+    );
+
+    border:
+    2px solid
+    rgba(255,255,255,.55);
+
+}
+
+.user-photo i{
+
+    color:#334155;
+
+    font-size:34px;
+
+}
+
+.user-name{
+
+    font-family:"Kanit";
+
+    font-size:17px;
+
+}
+
+.user-role{
+
+    margin-top:2px;
+
+    color:#dbe5ee;
+
+    font-size:12px;
+
+}
+
+.user-online{
+
+    margin-top:5px;
+
+    color:#4ade80;
+
+    font-size:11px;
+
+}
+
+.online-dot{
+
+    display:inline-block;
+
+    width:9px;
+
+    height:9px;
+
+    margin-right:5px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 9px
+    #22c55e;
 
 }
 
@@ -138,109 +431,27 @@ body{
 
 .sidebar{
 
-    position:fixed;
+    grid-column:1;
 
-    top:0;
+    grid-row:2;
 
-    left:0;
-
-    bottom:0;
-
-    z-index:300;
-
-    width:275px;
-
-    padding:20px 14px;
-
-    overflow-y:auto;
+    padding:14px 10px 12px;
 
     background:
 
     linear-gradient(
         180deg,
-        #06101c,
-        #071522
+        rgba(2,19,32,.98),
+        rgba(1,12,23,.98)
     );
 
     border-right:
-    1px solid var(--border);
+    1px solid
+    rgba(140,210,255,.12);
 
-    transition:
-    transform .25s ease;
-
-}
-
-
-.sidebar-brand{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    padding:4px 8px 20px;
+    overflow-y:auto;
 
 }
-
-.sidebar-logo{
-
-    width:48px;
-
-    height:48px;
-
-    flex:none;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:15px;
-
-    font-size:21px;
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #166534,
-        #22c55e
-    );
-
-    box-shadow:
-    0 10px 30px
-    rgba(34,197,94,.16);
-
-}
-
-.sidebar-title{
-
-    font-family:"Kanit";
-
-    font-size:17px;
-
-    font-weight:600;
-
-}
-
-.sidebar-title span{
-
-    color:#86efac;
-
-}
-
-.sidebar-sub{
-
-    margin-top:2px;
-
-    color:var(--muted);
-
-    font-size:10px;
-
-}
-
 
 .menu{
 
@@ -248,14 +459,13 @@ body{
 
     flex-direction:column;
 
-    gap:5px;
+    gap:4px;
 
 }
 
+.menu a{
 
-.menu-item{
-
-    min-height:48px;
+    min-height:45px;
 
     display:flex;
 
@@ -263,32 +473,38 @@ body{
 
     gap:12px;
 
-    padding:9px 11px;
+    padding:
+    7px 12px;
 
-    border-radius:13px;
-
-    color:#cbd5e1;
+    color:#e7edf3;
 
     text-decoration:none;
 
-    font-size:11px;
+    border:
+    1px solid
+    transparent;
 
-    transition:
-    background .2s ease,
-    color .2s ease;
+    border-radius:11px;
+
+    font-family:"Kanit";
+
+    font-size:13px;
+
+    transition:.2s;
 
 }
 
-.menu-item:hover{
-
-    color:white;
+.menu a:hover{
 
     background:
     rgba(255,255,255,.045);
 
+    border-color:
+    rgba(100,200,255,.1);
+
 }
 
-.menu-item.active{
+.menu a.active{
 
     color:white;
 
@@ -296,13 +512,17 @@ body{
 
     linear-gradient(
         135deg,
-        rgba(22,163,74,.32),
-        rgba(34,197,94,.10)
+        rgba(22,110,51,.95),
+        rgba(10,69,38,.90)
     );
 
     border:
     1px solid
-    rgba(34,197,94,.18);
+    rgba(90,220,120,.35);
+
+    box-shadow:
+    0 5px 20px
+    rgba(34,197,94,.12);
 
 }
 
@@ -320,305 +540,79 @@ body{
 
     justify-content:center;
 
-    border-radius:9px;
-
-    font-size:14px;
-
-    background:
-    rgba(255,255,255,.035);
+    font-size:18px;
 
 }
 
-.menu-item.active
-.menu-icon{
+.menu-text{
 
-    background:
-    rgba(34,197,94,.15);
-
-    color:#86efac;
+    line-height:1.05;
 
 }
 
-.menu-item small{
+.menu-text small{
 
-    color:#64748b;
-
-    font-size:8px;
-
-}
-
-
-.sidebar-contact{
-
-    margin-top:20px;
-
-    padding:15px;
-
-    border-radius:17px;
-
-    background:
-    rgba(255,255,255,.035);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.sidebar-contact-title{
-
-    font-family:"Kanit";
-
-    font-size:14px;
-
-}
-
-.contact-row{
-
-    margin-top:10px;
-
-    display:flex;
-
-    gap:8px;
-
-    color:var(--muted);
-
-    font-size:9px;
-
-    line-height:1.5;
-
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main{
-
-    width:calc(100% - 275px);
-
-    margin-left:275px;
-
-    min-width:0;
-
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-.top-header{
-
-    position:sticky;
-
-    top:0;
-
-    z-index:200;
-
-    min-height:82px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:18px;
-
-    padding:13px 28px;
-
-    background:
-    rgba(5,11,20,.82);
-
-    backdrop-filter:
-    blur(18px);
-
-    border-bottom:
-    1px solid var(--border);
-
-}
-
-.mobile-menu{
-
-    display:none;
-
-    width:42px;
-
-    height:42px;
-
-    border-radius:12px;
-
-    border:1px solid var(--border);
-
-    color:white;
-
-    background:
-    rgba(255,255,255,.04);
-
-    cursor:pointer;
-
-}
-
-
-.brand-mini{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:11px;
-
-    min-width:0;
-
-}
-
-.brand-logo{
-
-    width:43px;
-
-    height:43px;
-
-    flex:none;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:13px;
-
-    background:
-    rgba(34,197,94,.10);
-
-}
-
-.brand-mini h1{
-
-    font-family:"Kanit";
-
-    font-size:17px;
-
-}
-
-.brand-mini h1 span{
-
-    color:#86efac;
-
-}
-
-.brand-mini p{
-
-    color:var(--muted);
-
-    font-size:9px;
-
-}
-
-
-.clock-box{
-
-    text-align:right;
-
-}
-
-.clock{
-
-    font-family:"Kanit";
-
-    font-size:27px;
-
-    line-height:1;
-
-    letter-spacing:1px;
-
-}
-
-.date{
-
-    margin-top:4px;
-
-    color:var(--muted);
-
-    font-size:9px;
-
-}
-
-
-.user-box{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-}
-
-.avatar{
-
-    width:42px;
-
-    height:42px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:
-    rgba(255,255,255,.06);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.user-name{
-
-    font-size:10px;
-
-}
-
-.user-role{
-
-    color:var(--muted);
-
-    font-size:8px;
-
-}
-
-.online{
+    display:block;
 
     margin-top:2px;
 
-    color:#86efac;
+    color:#b6c7d3;
 
-    font-size:8px;
+    font-family:"Prompt";
+
+    font-size:9px;
 
 }
 
-.online-dot{
 
-    display:inline-block;
+/* =========================================================
+   CONTACT SIDEBAR
+========================================================= */
 
-    width:6px;
+.sidebar-contact{
 
-    height:6px;
+    margin-top:14px;
 
-    margin-right:4px;
+    padding:13px;
 
-    border-radius:50%;
+    border:
+    1px solid
+    rgba(130,210,245,.18);
 
-    background:#22c55e;
+    border-radius:11px;
 
-    box-shadow:
-    0 0 10px
-    #22c55e;
+    background:
+    rgba(5,24,38,.75);
+
+}
+
+.sidebar-contact h3{
+
+    text-align:center;
+
+    font-family:"Kanit";
+
+    font-size:15px;
+
+}
+
+.sidebar-contact p{
+
+    margin-top:8px;
+
+    color:#d8e1e7;
+
+    font-size:9px;
+
+    line-height:1.8;
+
+}
+
+.sidebar-contact i{
+
+    width:16px;
+
+    color:#4ade80;
 
 }
 
@@ -629,7 +623,73 @@ body{
 
 .content{
 
-    padding:27px;
+    grid-column:2;
+
+    grid-row:2;
+
+    position:relative;
+
+    min-width:0;
+
+    padding:14px;
+
+    overflow:hidden;
+
+    background:
+
+    linear-gradient(
+        rgba(1,12,21,.26),
+        rgba(1,12,21,.40)
+    ),
+
+    url("assets/rongkhem-village.jpg")
+    center center /
+    cover
+    fixed;
+
+}
+
+
+/* dark overlay */
+
+.content::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+
+    linear-gradient(
+        180deg,
+        rgba(1,10,18,.15),
+        rgba(1,10,18,.45)
+    );
+
+}
+
+
+/* =========================================================
+   DASHBOARD INNER
+========================================================= */
+
+.dashboard{
+
+    position:relative;
+
+    z-index:2;
+
+    display:grid;
+
+    grid-template-columns:
+    minmax(0,1fr)
+    330px;
+
+    gap:14px;
 
 }
 
@@ -640,43 +700,31 @@ body{
 
 .hero{
 
-    position:relative;
+    min-height:458px;
 
-    min-height:290px;
+    position:relative;
 
     overflow:hidden;
 
-    display:flex;
+    padding:18px 20px;
 
-    align-items:flex-end;
+    border:
+    1px solid
+    rgba(130,220,255,.25);
 
-    padding:30px;
-
-    border-radius:25px;
+    border-radius:17px;
 
     background:
 
     linear-gradient(
-        90deg,
-        rgba(2,6,23,.94),
-        rgba(2,6,23,.60),
-        rgba(2,6,23,.25)
+        180deg,
+        rgba(2,12,21,.12),
+        rgba(1,12,20,.36)
     ),
 
-    radial-gradient(
-        circle at 75% 30%,
-        rgba(34,197,94,.17),
-        transparent 30%
-    ),
-
-    linear-gradient(
-        135deg,
-        #10251d,
-        #102a3a
-    );
-
-    border:
-    1px solid var(--border);
+    url("assets/rongkhem-village.jpg")
+    center /
+    cover;
 
 }
 
@@ -686,21 +734,16 @@ body{
 
     position:absolute;
 
-    right:-100px;
+    inset:0;
 
-    bottom:-140px;
-
-    width:480px;
-
-    height:480px;
-
-    border-radius:50%;
+    pointer-events:none;
 
     background:
-    radial-gradient(
-        circle,
-        rgba(34,197,94,.18),
-        transparent 65%
+
+    linear-gradient(
+        90deg,
+        rgba(1,13,23,.35),
+        transparent 60%
     );
 
 }
@@ -711,207 +754,94 @@ body{
 
     z-index:2;
 
-    max-width:720px;
-
 }
 
-.live-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:7px;
-
-    padding:7px 11px;
-
-    border-radius:999px;
-
-    color:#86efac;
-
-    background:
-    rgba(34,197,94,.09);
-
-    border:
-    1px solid
-    rgba(34,197,94,.18);
-
-    font-size:9px;
-
-}
-
-.live-dot{
-
-    width:7px;
-
-    height:7px;
-
-    border-radius:50%;
-
-    background:#22c55e;
-
-    box-shadow:
-    0 0 12px #22c55e;
-
-    animation:pulse 1.7s infinite;
-
-}
-
-.hero h2{
-
-    margin-top:14px;
+.hero-title{
 
     font-family:"Kanit";
 
-    font-size:37px;
+    font-size:30px;
 
-    line-height:1.25;
-
-}
-
-.hero h2 span{
-
-    color:#86efac;
-
-}
-
-.hero p{
-
-    margin-top:9px;
-
-    color:#cbd5e1;
-
-    font-size:12px;
-
-    line-height:1.8;
+    font-weight:600;
 
 }
 
 .hero-motto{
 
-    margin-top:13px;
+    margin-top:3px;
 
-    color:#fde68a;
+    color:#facc15;
 
     font-family:"Kanit";
 
-    font-size:14px;
+    font-size:18px;
 
 }
 
-.hero-actions{
-
-    margin-top:17px;
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:9px;
-
-}
-
-.hero-btn{
+.hero-badge{
 
     display:inline-flex;
 
-    align-items:center;
+    margin-top:10px;
 
-    gap:8px;
+    padding:6px 11px;
 
-    padding:10px 14px;
-
-    border-radius:11px;
-
-    text-decoration:none;
-
-    color:white;
-
-    font-size:10px;
+    border-radius:8px;
 
     background:
-    rgba(34,197,94,.16);
+    rgba(34,197,94,.20);
 
     border:
     1px solid
-    rgba(34,197,94,.25);
+    rgba(74,222,128,.25);
 
-}
-
-.hero-btn.secondary{
-
-    background:
-    rgba(255,255,255,.055);
-
-    border-color:
-    var(--border);
+    font-size:10px;
 
 }
 
 
 /* =========================================================
-   KPI
+   DIAMOND CARDS
 ========================================================= */
 
-.kpi-grid{
+.diamonds{
 
-    margin-top:17px;
+    position:absolute;
+
+    z-index:3;
+
+    left:16px;
+
+    right:16px;
+
+    bottom:66px;
 
     display:grid;
 
     grid-template-columns:
     repeat(4,1fr);
 
-    gap:13px;
+    gap:17px;
 
 }
 
-.kpi{
+.diamond-wrap{
 
-    position:relative;
+    display:flex;
 
-    overflow:hidden;
+    flex-direction:column;
 
-    padding:19px;
-
-    min-height:150px;
-
-    border-radius:20px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
+    align-items:center;
 
 }
 
-.kpi::after{
+.diamond{
 
-    content:"";
+    width:150px;
 
-    position:absolute;
+    height:150px;
 
-    width:100px;
-
-    height:100px;
-
-    right:-30px;
-
-    bottom:-35px;
-
-    border-radius:50%;
-
-    background:
-    rgba(255,255,255,.025);
-
-}
-
-.kpi-icon{
-
-    width:43px;
-
-    height:43px;
+    transform:rotate(45deg);
 
     display:flex;
 
@@ -919,142 +849,184 @@ body{
 
     justify-content:center;
 
-    border-radius:13px;
-
-    font-size:18px;
-
-}
-
-.kpi.green .kpi-icon{
-
-    color:#86efac;
+    border-radius:18px;
 
     background:
-    rgba(34,197,94,.09);
+    rgba(7,25,30,.82);
 
 }
 
-.kpi.blue .kpi-icon{
+.diamond-inner{
 
-    color:#7dd3fc;
+    width:100%;
 
-    background:
-    rgba(56,189,248,.09);
+    transform:rotate(-45deg);
 
-}
-
-.kpi.purple .kpi-icon{
-
-    color:#c4b5fd;
-
-    background:
-    rgba(167,139,250,.09);
+    text-align:center;
 
 }
 
-.kpi.orange .kpi-icon{
+.diamond i{
 
-    color:#fdba74;
-
-    background:
-    rgba(251,146,60,.09);
+    font-size:34px;
 
 }
 
-.kpi-label{
-
-    margin-top:10px;
-
-    color:var(--muted);
-
-    font-size:9px;
-
-}
-
-.kpi-value{
+.diamond-title{
 
     margin-top:3px;
 
     font-family:"Kanit";
 
-    font-size:31px;
+    font-size:16px;
 
 }
 
-.kpi-unit{
+.diamond-number{
 
-    margin-left:4px;
+    font-family:"Kanit";
 
-    color:var(--muted);
+    font-size:32px;
 
-    font-family:"Prompt";
+    font-weight:600;
+
+    line-height:1;
+
+}
+
+.diamond-unit{
 
     font-size:10px;
 
 }
 
-.kpi-detail{
+.diamond-green{
 
-    margin-top:5px;
+    border:
+    1.5px solid
+    #8bf56e;
 
-    color:#64748b;
+    box-shadow:
+    0 0 22px
+    rgba(94,255,90,.12);
 
-    font-size:8px;
+}
 
+.diamond-green i{
+    color:#d9ffdb;
+}
+
+.diamond-cyan{
+
+    border:
+    1.5px solid
+    #67e8f9;
+
+}
+
+.diamond-cyan i{
+    color:#b8ffff;
+}
+
+.diamond-purple{
+
+    border:
+    1.5px solid
+    #d8b4fe;
+
+}
+
+.diamond-purple i{
+    color:#ead9ff;
+}
+
+.diamond-orange{
+
+    border:
+    1.5px solid
+    #fbbf24;
+
+}
+
+.diamond-orange i{
+    color:#ffd18a;
 }
 
 
 /* =========================================================
-   DASH GRID
+   DIAMOND DETAIL
 ========================================================= */
 
-.dashboard-grid{
+.diamond-detail{
 
-    margin-top:17px;
+    width:145px;
 
-    display:grid;
+    margin-top:12px;
 
-    grid-template-columns:
-    1.45fr
-    1fr
-    .85fr;
+    padding:7px 8px;
 
-    gap:15px;
+    text-align:center;
+
+    border:
+    1px solid
+    rgba(180,220,235,.16);
+
+    border-radius:9px;
+
+    background:
+    rgba(7,22,30,.82);
+
+    font-size:9px;
+
+    line-height:1.7;
 
 }
 
 
 /* =========================================================
-   PANEL
+   RIGHT COLUMN
+========================================================= */
+
+.right-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+
+/* =========================================================
+   PANEL COMMON
 ========================================================= */
 
 .panel{
 
-    padding:20px;
+    border:
+    1px solid
+    rgba(140,215,245,.22);
 
-    border-radius:20px;
+    border-radius:14px;
 
     background:
-    var(--card);
 
-    border:
-    1px solid var(--border);
+    linear-gradient(
+        135deg,
+        rgba(7,24,37,.94),
+        rgba(4,18,29,.91)
+    );
 
-}
-
-.panel-head{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:12px;
+    box-shadow:
+    0 8px 28px
+    rgba(0,0,0,.16);
 
 }
 
-.panel-title{
+.panel-header{
+
+    padding:13px 15px 9px;
 
     font-family:"Kanit";
 
@@ -1062,21 +1034,10 @@ body{
 
 }
 
-.panel-sub{
+.panel-body{
 
-    margin-top:2px;
-
-    color:var(--muted);
-
-    font-size:8px;
-
-}
-
-.panel-icon{
-
-    color:#86efac;
-
-    font-size:19px;
+    padding:
+    0 15px 14px;
 
 }
 
@@ -1085,44 +1046,27 @@ body{
    WEATHER
 ========================================================= */
 
-.weather{
+.weather-panel{
 
-    min-height:220px;
+    min-height:248px;
 
 }
 
 .weather-main{
 
-    margin-top:18px;
-
     display:flex;
 
     align-items:center;
 
-    gap:15px;
+    gap:13px;
 
 }
 
 .weather-icon{
 
-    width:67px;
+    font-size:58px;
 
-    height:67px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:20px;
-
-    color:#fde68a;
-
-    background:
-    rgba(250,204,21,.08);
-
-    font-size:32px;
+    color:#facc15;
 
 }
 
@@ -1130,301 +1074,121 @@ body{
 
     font-family:"Kanit";
 
-    font-size:47px;
+    font-size:42px;
 
     line-height:1;
 
 }
 
-.weather-desc{
+.weather-text{
 
-    margin-top:4px;
+    margin-top:2px;
 
-    color:var(--muted);
+    font-family:"Kanit";
 
-    font-size:9px;
+    font-size:13px;
 
 }
 
-.weather-meta{
+.weather-data{
 
-    margin-top:18px;
+    margin-top:14px;
 
     display:grid;
 
     grid-template-columns:
     repeat(3,1fr);
 
-    gap:8px;
+    border-top:
+    1px solid
+    rgba(255,255,255,.08);
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
 
 }
 
 .weather-item{
 
-    padding:10px;
+    padding:8px 4px;
 
-    border-radius:12px;
+    text-align:center;
 
-    background:
-    rgba(255,255,255,.035);
-
-}
-
-.weather-label{
-
-    color:var(--muted);
-
-    font-size:7px;
+    border-right:
+    1px solid
+    rgba(255,255,255,.08);
 
 }
 
-.weather-value{
+.weather-item:last-child{
 
-    margin-top:4px;
-
-    font-size:10px;
+    border-right:0;
 
 }
 
+.weather-item span{
 
-/* =========================================================
-   PM
-========================================================= */
+    display:block;
 
-.pm-card{
-
-    min-height:220px;
-
-}
-
-.pm-number{
-
-    margin-top:20px;
-
-    display:flex;
-
-    align-items:flex-end;
-
-    gap:8px;
-
-}
-
-.pm-number strong{
-
-    font-family:"Kanit";
-
-    font-size:48px;
-
-    line-height:1;
-
-}
-
-.pm-number span{
-
-    padding-bottom:5px;
-
-    color:var(--muted);
+    color:#c5d2dc;
 
     font-size:9px;
 
 }
 
-.pm-status{
-
-    margin-top:12px;
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:6px;
-
-    padding:6px 10px;
-
-    border-radius:999px;
-
-    font-size:8px;
-
-    color:#86efac;
-
-    background:
-    rgba(34,197,94,.08);
-
-}
-
-.pm-bar{
-
-    margin-top:18px;
-
-    height:8px;
-
-    border-radius:999px;
-
-    background:
-
-    linear-gradient(
-        90deg,
-        #22c55e 0%,
-        #22c55e 25%,
-        #facc15 45%,
-        #fb923c 65%,
-        #ef4444 82%,
-        #7f1d1d 100%
-    );
-
-}
-
-.pm-update{
-
-    margin-top:8px;
-
-    color:#64748b;
-
-    font-size:7px;
-
-}
-
-
-/* =========================================================
-   NEWS
-========================================================= */
-
-.news-list{
-
-    margin-top:14px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:9px;
-
-}
-
-.news-item{
+.weather-item strong{
 
     display:block;
 
-    padding:12px;
+    margin-top:2px;
 
-    border-radius:13px;
+    font-family:"Kanit";
 
-    text-decoration:none;
-
-    color:white;
-
-    background:
-    rgba(255,255,255,.035);
-
-    border:
-    1px solid
-    transparent;
+    font-size:14px;
 
 }
 
-.news-item:hover{
+.weather-footer{
 
-    border-color:
-    rgba(34,197,94,.18);
+    margin-top:9px;
 
-}
+    display:flex;
 
-.news-tag{
+    justify-content:space-between;
 
-    display:inline-block;
+    color:#d5e0e8;
 
-    padding:3px 7px;
-
-    border-radius:999px;
-
-    color:#86efac;
-
-    background:
-    rgba(34,197,94,.07);
-
-    font-size:7px;
-
-}
-
-.news-title{
-
-    margin-top:6px;
-
-    font-size:10px;
-
-    line-height:1.5;
-
-}
-
-.news-date{
-
-    margin-top:4px;
-
-    color:#64748b;
-
-    font-size:7px;
+    font-size:8px;
 
 }
 
 
 /* =========================================================
-   QUICK MENU
+   PM2.5
 ========================================================= */
 
-.quick-grid{
+.pm-panel{
 
-    margin-top:17px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(6,1fr);
-
-    gap:10px;
+    min-height:210px;
 
 }
 
-.quick{
+.pm-main{
 
-    padding:15px 9px;
+    display:flex;
 
-    text-align:center;
+    align-items:center;
 
-    text-decoration:none;
-
-    color:white;
-
-    border-radius:15px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-    transition:
-    transform .2s ease,
-    border-color .2s ease;
+    gap:15px;
 
 }
 
-.quick:hover{
+.pm-face{
 
-    transform:
-    translateY(-2px);
+    width:60px;
 
-    border-color:
-    rgba(34,197,94,.20);
-
-}
-
-.quick i{
-
-    width:38px;
-
-    height:38px;
-
-    margin:auto;
+    height:60px;
 
     display:flex;
 
@@ -1432,83 +1196,290 @@ body{
 
     justify-content:center;
 
-    border-radius:12px;
+    border-radius:50%;
 
-    color:#86efac;
+    color:white;
 
     background:
-    rgba(34,197,94,.07);
+    #83d13b;
+
+    font-size:32px;
 
 }
 
-.quick-title{
+.pm-value{
 
-    margin-top:8px;
+    font-family:"Kanit";
 
-    font-size:9px;
+    font-size:38px;
 
 }
 
-.quick-sub{
+.pm-unit{
 
-    margin-top:2px;
+    color:#cbd5df;
 
-    color:#64748b;
+    font-size:11px;
+
+}
+
+.pm-good{
+
+    margin-top:-3px;
+
+    color:#a7e46d;
+
+    font-family:"Kanit";
+
+    font-size:15px;
+
+}
+
+.pm-scale{
+
+    height:8px;
+
+    margin-top:14px;
+
+    border-radius:20px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #56c737 0 25%,
+        #f0dc31 25% 45%,
+        #f5a623 45% 65%,
+        #ef5a28 65% 82%,
+        #a8274d 82% 100%
+    );
+
+}
+
+.pm-labels{
+
+    margin-top:5px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#b8c4cd;
 
     font-size:7px;
 
 }
 
+.pm-update{
+
+    margin-top:8px;
+
+    text-align:right;
+
+    color:#a9b6c0;
+
+    font-size:8px;
+
+}
+
 
 /* =========================================================
-   ACTIVITY
+   LOWER GRID
 ========================================================= */
 
-.activity-grid{
+.lower{
 
-    margin-top:17px;
+    margin-top:13px;
 
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+    1.35fr
+    1fr
+    .82fr;
 
-    gap:15px;
-
-}
-
-.activity-list{
-
-    margin-top:15px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:9px;
+    gap:13px;
 
 }
 
-.activity{
+
+/* =========================================================
+   ANNOUNCEMENT
+========================================================= */
+
+.announcement{
+
+    min-height:290px;
+
+}
+
+.section-head{
 
     display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+    12px 15px;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+.section-head h2{
+
+    font-family:"Kanit";
+
+    font-size:17px;
+
+}
+
+.section-head a{
+
+    color:#9bd4f0;
+
+    text-decoration:none;
+
+    font-size:9px;
+
+}
+
+.notice{
+
+    display:grid;
+
+    grid-template-columns:
+    42px
+    1fr
+    auto;
 
     gap:10px;
 
-    padding:11px;
+    padding:
+    10px 15px;
 
-    border-radius:13px;
-
-    background:
-    rgba(255,255,255,.035);
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.065);
 
 }
 
-.activity-icon{
+.notice:last-child{
 
-    width:36px;
+    border-bottom:0;
 
-    height:36px;
+}
+
+.notice-icon{
+
+    width:35px;
+
+    height:35px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+}
+
+.notice-red{
+
+    color:white;
+
+    background:#dc4a43;
+
+}
+
+.notice-blue{
+
+    color:white;
+
+    background:#2476c4;
+
+}
+
+.notice-green{
+
+    color:white;
+
+    background:#38a74b;
+
+}
+
+.notice-orange{
+
+    color:white;
+
+    background:#ef7c19;
+
+}
+
+.notice-title{
+
+    font-size:10px;
+
+}
+
+.notice-text{
+
+    margin-top:3px;
+
+    color:#b6c4ce;
+
+    font-size:8px;
+
+    line-height:1.5;
+
+}
+
+.notice-date{
+
+    white-space:nowrap;
+
+    color:#dce5eb;
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+   AI
+========================================================= */
+
+.ai-panel{
+
+    min-height:290px;
+
+}
+
+.ai-top{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:12px 15px;
+
+}
+
+.robot{
+
+    width:60px;
+
+    height:60px;
 
     flex:none;
 
@@ -1518,26 +1489,356 @@ body{
 
     justify-content:center;
 
-    border-radius:11px;
-
-    color:#7dd3fc;
+    border-radius:20px;
 
     background:
-    rgba(56,189,248,.07);
+    linear-gradient(
+        135deg,
+        #d8e5ed,
+        #8094a5
+    );
+
+    color:#1d4258;
+
+    font-size:35px;
+
+}
+
+.ai-title{
+
+    font-family:"Kanit";
+
+    font-size:17px;
+
+}
+
+.ai-sub{
+
+    margin-top:2px;
+
+    color:#c0ccd5;
+
+    font-size:8px;
+
+}
+
+.ai-message{
+
+    margin:
+    0 15px 9px;
+
+    padding:10px;
+
+    border:
+    1px solid
+    rgba(90,160,210,.16);
+
+    border-radius:10px;
+
+    background:
+    rgba(20,47,70,.5);
+
+    font-size:9px;
+
+    line-height:1.6;
+
+}
+
+.ai-questions{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+    padding:
+    0 15px;
+
+}
+
+.ai-question{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:7px 10px;
+
+    color:#dce8ef;
+
+    border:
+    1px solid
+    rgba(160,205,230,.22);
+
+    border-radius:8px;
+
+    background:
+    rgba(8,26,40,.75);
+
+    font-size:8px;
+
+    cursor:pointer;
+
+}
+
+.ai-question i{
+
+    color:#b8dff4;
+
+}
+
+.ai-input{
+
+    margin:9px 15px;
+
+    display:flex;
+
+    gap:5px;
+
+}
+
+.ai-input input{
+
+    min-width:0;
+
+    flex:1;
+
+    padding:8px 10px;
+
+    border:0;
+
+    outline:0;
+
+    border-radius:8px;
+
+    background:#e5e9eb;
+
+    color:#17202a;
+
+    font-family:"Prompt";
+
+    font-size:8px;
+
+}
+
+.ai-input button{
+
+    width:37px;
+
+    border:0;
+
+    border-radius:8px;
+
+    color:white;
+
+    background:#43a83d;
+
+    cursor:pointer;
+
+}
+
+
+/* =========================================================
+   ACTIVITIES
+========================================================= */
+
+.activities{
+
+    min-height:290px;
+
+}
+
+.activity{
+
+    display:grid;
+
+    grid-template-columns:
+    34px
+    1fr
+    auto;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:
+    10px 13px;
+
+    border-bottom:
+    1px solid
+    rgba(255,255,255,.07);
+
+}
+
+.activity-icon{
+
+    width:31px;
+
+    height:31px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:7px;
+
+    font-size:14px;
+
+}
+
+.activity-blue{
+
+    background:#1e68a7;
+
+}
+
+.activity-green{
+
+    background:#4ba947;
+
+}
+
+.activity-orange{
+
+    background:#e67e1c;
 
 }
 
 .activity-title{
 
+    font-family:"Kanit";
+
     font-size:10px;
 
 }
 
-.activity-meta{
+.activity-place{
 
-    margin-top:3px;
+    margin-top:2px;
 
-    color:#64748b;
+    color:#aebdc8;
+
+    font-size:7px;
+
+}
+
+.activity-time{
+
+    padding:4px 6px;
+
+    border:
+    1px solid
+    rgba(74,222,128,.4);
+
+    border-radius:6px;
+
+    color:#a6f76d;
+
+    font-size:8px;
+
+}
+
+
+/* =========================================================
+   BOTTOM STATS
+========================================================= */
+
+.bottom{
+
+    margin-top:13px;
+
+    display:grid;
+
+    grid-template-columns:
+    2fr
+    1fr;
+
+    gap:13px;
+
+}
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:8px;
+
+    padding:10px;
+
+}
+
+.stat{
+
+    min-height:67px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:8px;
+
+    border:
+    1px solid
+    rgba(140,205,230,.15);
+
+    border-radius:8px;
+
+    background:
+    rgba(8,30,45,.78);
+
+}
+
+.stat-icon{
+
+    width:38px;
+
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    font-size:18px;
+
+}
+
+.stat-title{
+
+    color:#d1dce3;
+
+    font-size:7px;
+
+}
+
+.stat-value{
+
+    margin-top:1px;
+
+    font-family:"Kanit";
+
+    font-size:22px;
+
+}
+
+.stat-unit{
+
+    margin-left:3px;
+
+    color:#c4d0d8;
 
     font-size:7px;
 
@@ -1545,82 +1846,93 @@ body{
 
 
 /* =========================================================
-   EMPTY
+   CONTACT BOTTOM
 ========================================================= */
 
-.empty{
+.contacts{
 
-    padding:30px 15px;
+    display:grid;
 
-    text-align:center;
+    grid-template-columns:
+    repeat(3,1fr);
 
-    color:#64748b;
+    gap:7px;
+
+    padding:10px;
+
+}
+
+.contact{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+
+    padding:8px;
+
+    border:
+    1px solid
+    rgba(140,205,230,.16);
+
+    border-radius:8px;
+
+    background:
+    rgba(8,30,45,.78);
+
+}
+
+.contact-icon{
+
+    font-size:20px;
+
+}
+
+.contact-label{
+
+    color:#d1dce3;
+
+    font-size:7px;
+
+}
+
+.contact-value{
+
+    margin-top:1px;
 
     font-size:9px;
 
 }
 
-.empty i{
-
-    display:block;
-
-    margin-bottom:9px;
-
-    color:
-    rgba(34,197,94,.22);
-
-    font-size:27px;
-
-}
-
 
 /* =========================================================
-   FOOTER
+   MOBILE
 ========================================================= */
 
-.footer{
+.mobile-button{
 
-    margin-top:28px;
+    display:none;
 
-    padding:20px 0 30px;
+    position:fixed;
 
-    display:flex;
+    top:12px;
 
-    justify-content:space-between;
+    left:12px;
 
-    gap:20px;
+    z-index:1000;
 
-    color:#64748b;
+    width:42px;
 
-    font-size:8px;
+    height:42px;
 
-    border-top:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
-}
+    border-radius:10px;
 
+    color:white;
 
-/* =========================================================
-   ANIMATION
-========================================================= */
-
-@keyframes pulse{
-
-    0%,100%{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-    50%{
-
-        opacity:.5;
-
-        transform:scale(.85);
-
-    }
+    background:#071522;
 
 }
 
@@ -1629,26 +1941,63 @@ body{
    RESPONSIVE
 ========================================================= */
 
-@media(max-width:1200px){
+@media(max-width:1250px){
 
-    .dashboard-grid{
+    .app{
+
+        grid-template-columns:
+        205px
+        1fr;
+
+    }
+
+    .sidebar{
+
+        grid-column:1;
+
+    }
+
+    .header{
+
+        grid-template-columns:
+        1fr
+        auto;
+
+    }
+
+    .user{
+
+        display:none;
+
+    }
+
+    .dashboard{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .right-column{
+
+        display:grid;
 
         grid-template-columns:
         1fr 1fr;
 
     }
 
-    .news-panel{
+    .lower{
 
-        grid-column:
-        1 / -1;
+        grid-template-columns:
+        1fr 1fr;
 
     }
 
-    .quick-grid{
+    .activities{
 
-        grid-template-columns:
-        repeat(3,1fr);
+        grid-column:
+        1 / -1;
 
     }
 
@@ -1657,10 +2006,80 @@ body{
 
 @media(max-width:900px){
 
+    .app{
+
+        display:block;
+
+    }
+
+    .header{
+
+        min-height:92px;
+
+        padding:
+        10px 14px;
+
+        grid-template-columns:
+        1fr
+        auto;
+
+    }
+
+    .brand-logo{
+
+        display:none;
+
+    }
+
+    .brand-title{
+
+        font-size:22px;
+
+    }
+
+    .brand-office{
+
+        font-size:17px;
+
+    }
+
+    .brand-location{
+
+        font-size:9px;
+
+    }
+
+    .clock{
+
+        font-size:27px;
+
+    }
+
+    .date,
+    .day{
+
+        font-size:8px;
+
+    }
+
     .sidebar{
+
+        position:fixed;
+
+        z-index:900;
+
+        top:0;
+
+        left:0;
+
+        bottom:0;
+
+        width:225px;
 
         transform:
         translateX(-100%);
+
+        transition:.25s;
 
     }
 
@@ -1669,132 +2088,157 @@ body{
         transform:
         translateX(0);
 
-        box-shadow:
-        20px 0 60px
-        rgba(0,0,0,.45);
-
     }
 
-    .main{
-
-        width:100%;
-
-        margin-left:0;
-
-    }
-
-    .mobile-menu{
+    .mobile-button{
 
         display:block;
 
     }
 
-    .top-header{
+    .content{
 
-        padding:12px 16px;
+        min-height:
+        calc(100vh - 92px);
 
-    }
-
-    .brand-mini{
-
-        display:none;
+        padding:10px;
 
     }
 
-    .kpi-grid{
+    .diamonds{
+
+        position:relative;
+
+        left:auto;
+
+        right:auto;
+
+        bottom:auto;
+
+        margin-top:35px;
 
         grid-template-columns:
         repeat(2,1fr);
+
+        gap:40px 20px;
+
+    }
+
+    .hero{
+
+        min-height:auto;
+
+    }
+
+    .lower{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .bottom{
+
+        grid-template-columns:
+        1fr;
 
     }
 
 }
 
 
-@media(max-width:650px){
+@media(max-width:600px){
 
-    .content{
+    .brand-title{
 
-        padding:14px;
-
-    }
-
-    .clock{
-
-        font-size:21px;
+        font-size:18px;
 
     }
 
-    .user-name{
+    .brand-office{
+
+        font-size:14px;
+
+    }
+
+    .clock-area{
 
         display:none;
 
     }
 
-    .hero{
+    .hero-title{
 
-        min-height:310px;
-
-        padding:21px;
+        font-size:24px;
 
     }
 
-    .hero h2{
+    .hero-motto{
 
-        font-size:29px;
-
-    }
-
-    .kpi-grid{
-
-        gap:9px;
+        font-size:13px;
 
     }
 
-    .kpi{
-
-        min-height:135px;
-
-        padding:15px;
-
-    }
-
-    .kpi-value{
-
-        font-size:27px;
-
-    }
-
-    .dashboard-grid{
+    .diamonds{
 
         grid-template-columns:
-        1fr;
+        1fr 1fr;
+
+        gap:35px 5px;
 
     }
 
-    .news-panel{
+    .diamond{
 
-        grid-column:auto;
+        width:118px;
+
+        height:118px;
 
     }
 
-    .quick-grid{
+    .diamond i{
+
+        font-size:25px;
+
+    }
+
+    .diamond-title{
+
+        font-size:12px;
+
+    }
+
+    .diamond-number{
+
+        font-size:25px;
+
+    }
+
+    .diamond-detail{
+
+        width:115px;
+
+        font-size:7px;
+
+    }
+
+    .right-column{
+
+        display:flex;
+
+    }
+
+    .stats{
 
         grid-template-columns:
         repeat(2,1fr);
 
     }
 
-    .activity-grid{
+    .contacts{
 
         grid-template-columns:
         1fr;
-
-    }
-
-    .footer{
-
-        display:block;
 
     }
 
@@ -1808,336 +2252,26 @@ body{
 <body>
 
 
-<div class="app">
-
-
-<!-- =====================================================
-SIDEBAR
-===================================================== -->
-
-<aside
-class="sidebar"
-id="sidebar">
-
-
-<div class="sidebar-brand">
-
-<div class="sidebar-logo">
-🏛️
-</div>
-
-<div>
-
-<div class="sidebar-title">
-
-RONGKHEM
-<span>e-VILLAGE</span>
-
-</div>
-
-<div class="sidebar-sub">
-
-ที่ทำการผู้ใหญ่บ้านออนไลน์
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<nav class="menu">
-
-
-<a
-href="index.html"
-class="menu-item active">
-
-<span class="menu-icon">
-<i class="fa-solid fa-house"></i>
-</span>
-
-<span>
-
-หน้าหลัก<br>
-
-<small>
-ศูนย์บัญชาการ
-</small>
-
-</span>
-
-</a>
-
-
-
-<a
-href="pages/citizen.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-users"></i>
-</span>
-
-<span>
-ข้อมูลประชาชน
-</span>
-
-</a>
-
-
-
-<a
-href="pages/household.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-house"></i>
-</span>
-
-<span>
-ข้อมูลครัวเรือน
-</span>
-
-</a>
-
-
-
-<a
-href="pages/leader.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-user-tie"></i>
-</span>
-
-<span>
-ผู้นำชุมชน
-</span>
-
-</a>
-
-
-
-<a
-href="pages/news.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-bullhorn"></i>
-</span>
-
-<span>
-ข่าวประชาสัมพันธ์
-</span>
-
-</a>
-
-
-
-<a
-href="pages/activity.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-calendar-days"></i>
-</span>
-
-<span>
-กิจกรรม / ปฏิทิน
-</span>
-
-</a>
-
-
-
-<a
-href="pages/service.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-headset"></i>
-</span>
-
-<span>
-บริการประชาชน
-</span>
-
-</a>
-
-
-
-<a
-href="pages/project.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-diagram-project"></i>
-</span>
-
-<span>
-โครงการพัฒนาหมู่บ้าน
-</span>
-
-</a>
-
-
-
-<a
-href="pages/environment.html"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-leaf"></i>
-</span>
-
-<span>
-สิ่งแวดล้อม / PM2.5
-</span>
-
-</a>
-
-
-
-<a
-href="#"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-water"></i>
-</span>
-
-<span>
-แหล่งซับน้ำจำ
-</span>
-
-</a>
-
-
-
-<a
-href="#"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-bowl-rice"></i>
-</span>
-
-<span>
-กลุ่มข้าวสาร
-</span>
-
-</a>
-
-
-
-<a
-href="#"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-chart-pie"></i>
-</span>
-
-<span>
-สถิติหมู่บ้าน
-</span>
-
-</a>
-
-
-
-<a
-href="#"
-class="menu-item">
-
-<span class="menu-icon">
-<i class="fa-solid fa-gear"></i>
-</span>
-
-<span>
-ตั้งค่าระบบ
-</span>
-
-</a>
-
-
-</nav>
-
-
-
-<div class="sidebar-contact">
-
-<div class="sidebar-contact-title">
-
-ที่ทำการผู้ใหญ่บ้าน
-
-</div>
-
-
-<div class="contact-row">
-
-<i class="fa-solid fa-location-dot"></i>
-
-<span>
-บ้านร่องเข็ม หมู่ที่ 6
-ตำบลจำป่าหวาย
-อำเภอเมืองพะเยา
-จังหวัดพะเยา
-</span>
-
-</div>
-
-
-<div class="contact-row">
-
-<i class="fa-solid fa-phone"></i>
-
-<span>
-ข้อมูลโทรศัพท์ให้ผู้ดูแลระบบกำหนด
-</span>
-
-</div>
-
-
-<div class="contact-row">
-
-<i class="fa-solid fa-clock"></i>
-
-<span>
-เวลาทำการให้ผู้ดูแลระบบกำหนด
-</span>
-
-</div>
-
-</div>
-
-
-</aside>
-
-
-
-<!-- =====================================================
-MAIN
-===================================================== -->
-
-<div class="main">
-
-
-<header class="top-header">
-
-
 <button
-class="mobile-menu"
-id="mobileMenu">
+class="mobile-button"
+onclick="toggleSidebar()">
 
 <i class="fa-solid fa-bars"></i>
 
 </button>
 
 
-<div class="brand-mini">
+<div class="app">
+
+
+<!-- ======================================================
+HEADER
+====================================================== -->
+
+<header class="header">
+
+
+<div class="brand">
 
 <div class="brand-logo">
 🏛️
@@ -2145,30 +2279,31 @@ id="mobileMenu">
 
 <div>
 
-<h1>
-RONGKHEM
-<span>e-VILLAGE</span>
-</h1>
+<div class="brand-title">
+RONGKHEM e-VILLAGE
+</div>
 
-<p>
+<div class="brand-office">
 ที่ทำการผู้ใหญ่บ้านออนไลน์
-•
-บ้านร่องเข็ม หมู่ 6
-</p>
+</div>
 
+<div class="brand-location">
+บ้านร่องเข็ม หมู่ 6 ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
 </div>
 
 </div>
 
+</div>
 
 
-<div class="clock-box">
+<div class="clock-area">
 
 <div
 id="clock"
 class="clock">
 
-00:00:00
+09:36:45
 
 </div>
 
@@ -2176,35 +2311,48 @@ class="clock">
 id="date"
 class="date">
 
-กำลังโหลดวันที่...
+14 สิงหาคม 2569
+
+</div>
+
+<div
+id="day"
+class="day">
+
+<i class="fa-regular fa-calendar"></i>
+
+<span>
+วันศุกร์
+</span>
 
 </div>
 
 </div>
 
 
+<div class="user">
 
-<div class="user-box">
+<div class="user-photo">
 
-<div class="avatar">
-👨🏻‍💼
+<i class="fa-solid fa-user-tie"></i>
+
 </div>
 
 <div>
 
 <div class="user-name">
-ผู้ดูแลระบบหมู่บ้าน
+นายศักรนนท์ ขัติ์วงศ์
 </div>
 
 <div class="user-role">
 ผู้ใหญ่บ้าน หมู่ที่ 6
 </div>
 
-<div class="online">
+<div class="user-online">
 
 <span class="online-dot"></span>
 
-ระบบออนไลน์
+ออนไลน์
 
 </div>
 
@@ -2217,236 +2365,692 @@ class="date">
 
 
 
+<!-- ======================================================
+SIDEBAR
+====================================================== -->
+
+<aside
+id="sidebar"
+class="sidebar">
+
+
+<nav class="menu">
+
+
+<a
+href="index.html"
+class="active">
+
+<span class="menu-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+
+<span class="menu-text">
+
+หน้าแรก
+
+<small>
+ศูนย์บัญชาการ
+</small>
+
+</span>
+
+</a>
+
+
+<a href="pages/citizen.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-users"></i>
+</span>
+
+<span class="menu-text">
+ข้อมูลประชาชน
+</span>
+
+</a>
+
+
+<a href="pages/household.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+
+<span class="menu-text">
+ข้อมูลครัวเรือน
+</span>
+
+</a>
+
+
+<a href="pages/leader.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-people-group"></i>
+</span>
+
+<span class="menu-text">
+ผู้นำชุมชน
+</span>
+
+</a>
+
+
+<a href="pages/news.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-newspaper"></i>
+</span>
+
+<span class="menu-text">
+ข่าวประชาสัมพันธ์
+</span>
+
+</a>
+
+
+<a href="pages/activity.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-calendar-days"></i>
+</span>
+
+<span class="menu-text">
+กิจกรรม / ปฏิทิน
+</span>
+
+</a>
+
+
+<a href="pages/service.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-hand-holding-heart"></i>
+</span>
+
+<span class="menu-text">
+แจ้งเหตุ / ร้องเรียน
+</span>
+
+</a>
+
+
+<a href="pages/service.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-users-gear"></i>
+</span>
+
+<span class="menu-text">
+บริการประชาชน
+</span>
+
+</a>
+
+
+<a href="pages/project.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-briefcase"></i>
+</span>
+
+<span class="menu-text">
+โครงการพัฒนาหมู่บ้าน
+</span>
+
+</a>
+
+
+<a href="pages/environment.html">
+
+<span class="menu-icon">
+<i class="fa-solid fa-leaf"></i>
+</span>
+
+<span class="menu-text">
+สิ่งแวดล้อม / PM2.5
+</span>
+
+</a>
+
+
+<a href="#">
+
+<span class="menu-icon">
+<i class="fa-solid fa-thumbs-up"></i>
+</span>
+
+<span class="menu-text">
+แหล่งซับน้ำจำ
+</span>
+
+</a>
+
+
+<a href="#">
+
+<span class="menu-icon">
+<i class="fa-solid fa-gift"></i>
+</span>
+
+<span class="menu-text">
+กลุ่มข้าวสาร
+</span>
+
+</a>
+
+
+<a href="#">
+
+<span class="menu-icon">
+<i class="fa-solid fa-chart-column"></i>
+</span>
+
+<span class="menu-text">
+สถิติหมู่บ้าน
+</span>
+
+</a>
+
+
+<a href="#">
+
+<span class="menu-icon">
+<i class="fa-solid fa-gear"></i>
+</span>
+
+<span class="menu-text">
+ตั้งค่าระบบ
+</span>
+
+</a>
+
+
+</nav>
+
+
+
+<div class="sidebar-contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+
+<i class="fa-solid fa-phone"></i>
+โทร. 088-888-8888
+
+<br>
+
+<i class="fa-brands fa-line"></i>
+LINE ID : rongkhem.village
+
+<br>
+
+<i class="fa-regular fa-clock"></i>
+จันทร์ - ศุกร์ 08.30 - 16.30 น.
+
+</p>
+
+</div>
+
+
+</aside>
+
+
+
+<!-- ======================================================
+CONTENT
+====================================================== -->
+
 <main class="content">
 
 
-<!-- =====================================================
-HERO
-===================================================== -->
+<div class="dashboard">
+
+
+<!-- ====================================================
+LEFT / CENTER
+==================================================== -->
+
+<div>
+
 
 <section class="hero">
 
 
 <div class="hero-content">
 
+<div class="hero-title">
 
-<div class="live-badge">
-
-<span class="live-dot"></span>
-
-ข้อมูล ณ ปัจจุบัน
+ศูนย์บัญชาการข้อมูลหมู่บ้านร่องเข็ม
 
 </div>
-
-
-<h2>
-
-ศูนย์บัญชาการข้อมูล
-<span>
-หมู่บ้านร่องเข็ม
-</span>
-
-</h2>
-
-
-<p>
-
-ระบบบริหารจัดการข้อมูลชุมชน
-สำหรับที่ทำการผู้ใหญ่บ้านออนไลน์
-เชื่อมโยงข้อมูลเพื่อการบริหาร
-การติดตาม และการพัฒนาหมู่บ้าน
-
-</p>
-
 
 <div class="hero-motto">
 
-“ร่วมคิด ร่วมทำ ร่วมพัฒนา
-เพื่อบ้านร่องเข็มของเรา”
+“ร่วมคิด ร่วมทำ ร่วมพัฒนา เพื่อบ้านร่องเข็มของเรา”
+
+</div>
+
+<div class="hero-badge">
+
+<i class="fa-solid fa-circle-check"></i>
+
+&nbsp; ข้อมูล ณ เวลาปัจจุบัน
+
+</div>
 
 </div>
 
 
-<div class="hero-actions">
+<div class="diamonds">
 
-<a
-href="pages/citizen.html"
-class="hero-btn">
+
+<!-- PEOPLE -->
+
+<div class="diamond-wrap">
+
+<div
+class="diamond diamond-green">
+
+<div class="diamond-inner">
 
 <i class="fa-solid fa-users"></i>
 
-ดูข้อมูลประชาชน
-
-</a>
-
-
-<a
-href="pages/project.html"
-class="hero-btn secondary">
-
-<i class="fa-solid fa-diagram-project"></i>
-
-ติดตามโครงการ
-
-</a>
-
+<div class="diamond-title">
+ประชาชน
 </div>
 
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-KPI
-===================================================== -->
-
-<section class="kpi-grid">
-
-
-<div class="kpi green">
-
-<div class="kpi-icon">
-
-<i class="fa-solid fa-users"></i>
-
-</div>
-
-<div class="kpi-label">
-ประชาชนทั้งหมด
-</div>
-
-<div>
-
-<span
+<div
 id="population"
-class="kpi-value">
+class="diamond-number">
 --
-</span>
+</div>
 
-<span class="kpi-unit">
+<div class="diamond-unit">
 คน
-</span>
+</div>
+
+</div>
 
 </div>
 
 <div
 id="populationDetail"
-class="kpi-detail">
+class="diamond-detail">
 
-ข้อมูลจากฐานข้อมูลจริง
+หญิง -- คน
+<br>
+ชาย -- คน
 
 </div>
 
 </div>
 
 
+<!-- HOUSEHOLDS -->
 
-<div class="kpi blue">
+<div class="diamond-wrap">
 
-<div class="kpi-icon">
+<div
+class="diamond diamond-cyan">
+
+<div class="diamond-inner">
 
 <i class="fa-solid fa-house"></i>
 
-</div>
-
-<div class="kpi-label">
-ครัวเรือนทั้งหมด
-</div>
-
-<div>
-
-<span
-id="households"
-class="kpi-value">
---
-</span>
-
-<span class="kpi-unit">
+<div class="diamond-title">
 ครัวเรือน
-</span>
+</div>
+
+<div
+id="households"
+class="diamond-number">
+--
+</div>
+
+<div class="diamond-unit">
+ครัวเรือน
+</div>
+
+</div>
 
 </div>
 
 <div
 id="householdDetail"
-class="kpi-detail">
+class="diamond-detail">
 
-ข้อมูลจากฐานข้อมูลจริง
+บ้านเรือน -- หลัง
+<br>
+อาศัยอยู่จริง -- หลัง
 
 </div>
 
 </div>
 
 
+<!-- ELDERLY -->
 
-<div class="kpi purple">
+<div class="diamond-wrap">
 
-<div class="kpi-icon">
+<div
+class="diamond diamond-purple">
+
+<div class="diamond-inner">
 
 <i class="fa-solid fa-person-cane"></i>
 
-</div>
-
-<div class="kpi-label">
+<div class="diamond-title">
 ผู้สูงอายุ
 </div>
 
-<div>
-
-<span
+<div
 id="elderly"
-class="kpi-value">
+class="diamond-number">
 --
-</span>
+</div>
 
-<span class="kpi-unit">
+<div class="diamond-unit">
 คน
-</span>
-
 </div>
-
-<div class="kpi-detail">
-
-ข้อมูลจากทะเบียนผู้สูงอายุ
 
 </div>
 
 </div>
 
+<div
+id="elderlyDetail"
+class="diamond-detail">
 
-
-<div class="kpi orange">
-
-<div class="kpi-icon">
-
-<i class="fa-solid fa-hand-holding-heart"></i>
+ชาย -- คน
+<br>
+หญิง -- คน
 
 </div>
 
-<div class="kpi-label">
+</div>
+
+
+<!-- VULNERABLE -->
+
+<div class="diamond-wrap">
+
+<div
+class="diamond diamond-orange">
+
+<div class="diamond-inner">
+
+<i class="fa-solid fa-people-group"></i>
+
+<div class="diamond-title">
 กลุ่มเปราะบาง
 </div>
 
-<div>
-
-<span
+<div
 id="vulnerable"
-class="kpi-value">
+class="diamond-number">
 --
-</span>
+</div>
 
-<span class="kpi-unit">
+<div class="diamond-unit">
 คน
-</span>
+</div>
 
 </div>
 
-<div class="kpi-detail">
+</div>
 
-ข้อมูลจากฐานข้อมูลสุขภาพ/สังคม
+<div
+id="vulnerableDetail"
+class="diamond-detail">
+
+ผู้พิการ -- คน
+<br>
+ผู้ป่วยติดเตียง -- คน
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- ====================================================
+LOWER
+==================================================== -->
+
+<section class="lower">
+
+
+<!-- ANNOUNCEMENT -->
+
+<div class="panel announcement">
+
+
+<div class="section-head">
+
+<h2>
+ประกาศล่าสุด
+</h2>
+
+<a href="pages/news.html">
+ดูทั้งหมด
+</a>
+
+</div>
+
+
+<div id="announcementList">
+
+
+<div class="notice">
+
+<div class="notice-icon notice-red">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<div>
+
+<div class="notice-title">
+กำลังโหลดข้อมูลประกาศ...
+</div>
+
+<div class="notice-text">
+ข้อมูลจะอ่านจากไฟล์จริงของหมู่บ้าน
+</div>
+
+</div>
+
+<div class="notice-date">
+--
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- AI -->
+
+<div class="panel ai-panel">
+
+
+<div class="section-head">
+
+<h2>
+AI ผู้ช่วยผู้ใหญ่บ้าน
+</h2>
+
+</div>
+
+
+<div class="ai-top">
+
+<div class="robot">
+
+<i class="fa-solid fa-robot"></i>
+
+</div>
+
+<div>
+
+<div class="ai-title">
+สวัสดีครับ! ผมคือผู้ช่วย AI
+</div>
+
+<div class="ai-sub">
+พร้อมให้ข้อมูลและบริการประชาชน
+</div>
+
+</div>
+
+</div>
+
+
+<div class="ai-message">
+
+ผมสามารถช่วยค้นหาข้อมูล
+ข่าวสาร กิจกรรม
+และบริการของหมู่บ้านได้ครับ
+
+</div>
+
+
+<div class="ai-questions">
+
+<button
+class="ai-question"
+onclick="askAI('วันนี้มีประชุมหมู่บ้านไหมครับ?')">
+
+<span>
+วันนี้มีประชุมหมู่บ้านไหมครับ?
+</span>
+
+<i class="fa-solid fa-chevron-right"></i>
+
+</button>
+
+
+<button
+class="ai-question"
+onclick="askAI('แจ้งเหตุไฟไหม้ต้องทำอย่างไร?')">
+
+<span>
+แจ้งเหตุไฟไหม้ ต้องทำอย่างไร?
+</span>
+
+<i class="fa-solid fa-chevron-right"></i>
+
+</button>
+
+
+<button
+class="ai-question"
+onclick="askAI('ติดต่อที่ทำการผู้ใหญ่บ้านได้อย่างไร?')">
+
+<span>
+ติดต่อที่ทำการผู้ใหญ่บ้านได้อย่างไร?
+</span>
+
+<i class="fa-solid fa-chevron-right"></i>
+
+</button>
+
+
+<button
+class="ai-question"
+onclick="askAI('มีโครงการช่วยเหลืออะไรบ้าง?')">
+
+<span>
+มีโครงการช่วยเหลืออะไรบ้าง?
+</span>
+
+<i class="fa-solid fa-chevron-right"></i>
+
+</button>
+
+</div>
+
+
+<div class="ai-input">
+
+<input
+id="aiInput"
+placeholder="พิมพ์คำถามของคุณ...">
+
+<button onclick="sendAI()">
+
+<i class="fa-solid fa-play"></i>
+
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ACTIVITIES -->
+
+<div class="panel activities">
+
+
+<div class="section-head">
+
+<h2>
+กิจกรรมวันนี้
+</h2>
+
+<a href="pages/activity.html">
+ดูทั้งหมด
+</a>
+
+</div>
+
+
+<div id="activityList">
+
+<div class="activity">
+
+<div class="activity-icon activity-blue">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+</div>
+
+<div>
+
+<div class="activity-title">
+กำลังโหลดกิจกรรม...
+</div>
+
+<div class="activity-place">
+ข้อมูลจากปฏิทินหมู่บ้าน
+</div>
+
+</div>
+
+<div class="activity-time">
+--
+</div>
+
+</div>
+
 
 </div>
 
@@ -2456,50 +3060,275 @@ class="kpi-value">
 </section>
 
 
+<!-- ====================================================
+BOTTOM
+==================================================== -->
 
-<!-- =====================================================
-WEATHER / PM / NEWS
-===================================================== -->
+<section class="bottom">
 
-<section class="dashboard-grid">
+
+<div class="panel stats">
+
+
+<div class="stat">
+
+<div
+class="stat-icon"
+style="background:#7c2d2d">
+
+🚨
+
+</div>
+
+<div>
+
+<div class="stat-title">
+แจ้งเหตุทั้งหมด
+</div>
+
+<div>
+
+<span
+id="incidentCount"
+class="stat-value">
+--
+</span>
+
+<span class="stat-unit">
+ครั้ง
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-icon"
+style="background:#7c491d">
+
+🚧
+
+</div>
+
+<div>
+
+<div class="stat-title">
+กำลังดำเนินการ
+</div>
+
+<div>
+
+<span
+id="processingCount"
+class="stat-value">
+--
+</span>
+
+<span class="stat-unit">
+ครั้ง
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-icon"
+style="background:#246b3d">
+
+✓
+
+</div>
+
+<div>
+
+<div class="stat-title">
+ดำเนินการเสร็จสิ้น
+</div>
+
+<div>
+
+<span
+id="completedCount"
+class="stat-value">
+--
+</span>
+
+<span class="stat-unit">
+ครั้ง
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+class="stat-icon"
+style="background:#145b80">
+
+👥
+
+</div>
+
+<div>
+
+<div class="stat-title">
+ผู้ใช้งานระบบวันนี้
+</div>
+
+<div>
+
+<span
+id="visitorCount"
+class="stat-value">
+--
+</span>
+
+<span class="stat-unit">
+คน
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="panel contacts">
+
+
+<div class="contact">
+
+<div
+class="contact-icon"
+style="color:#38bdf8">
+
+<i class="fa-solid fa-phone"></i>
+
+</div>
+
+<div>
+
+<div class="contact-label">
+โทรศัพท์
+</div>
+
+<div class="contact-value">
+088-888-8888
+</div>
+
+</div>
+
+</div>
+
+
+<div class="contact">
+
+<div
+class="contact-icon"
+style="color:#60a5fa">
+
+<i class="fa-brands fa-facebook"></i>
+
+</div>
+
+<div>
+
+<div class="contact-label">
+Facebook
+</div>
+
+<div class="contact-value">
+ร่องเข็ม หมู่ 6
+</div>
+
+</div>
+
+</div>
+
+
+<div class="contact">
+
+<div
+class="contact-icon"
+style="color:#4ade80">
+
+<i class="fa-brands fa-line"></i>
+
+</div>
+
+<div>
+
+<div class="contact-label">
+Line OA
+</div>
+
+<div class="contact-value">
+@rongkhem.village
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
+
+
+<!-- ====================================================
+RIGHT COLUMN
+==================================================== -->
+
+<aside class="right-column">
 
 
 <!-- WEATHER -->
 
-<div class="panel weather">
+<div class="panel weather-panel">
 
-<div class="panel-head">
-
-<div>
-
-<div class="panel-title">
-สภาพอากาศวันนี้
+<div class="panel-header">
+สภาพอากาศ
 </div>
 
-<div class="panel-sub">
-ข้อมูลสภาพอากาศจะแสดงเมื่อเชื่อมต่อแหล่งข้อมูลจริง
-</div>
-
-</div>
-
-<i
-class="fa-solid fa-cloud-sun panel-icon">
-</i>
-
-</div>
+<div class="panel-body">
 
 
 <div class="weather-main">
 
-<div class="weather-icon">
-
-<i
+<div
 id="weatherIcon"
-class="fa-solid fa-cloud">
-</i>
+class="weather-icon">
+
+☁️☀️
 
 </div>
-
 
 <div>
 
@@ -2508,30 +3337,19 @@ class="fa-solid fa-cloud">
 <span
 id="temperature"
 class="temperature">
-
 --
-
 </span>
 
-<span
-style="
-color:#94a3b8;
-font-size:10px;
-">
-
+<span>
 °C
-
 </span>
 
 </div>
 
-
 <div
-id="weatherDescription"
-class="weather-desc">
-
-ยังไม่มีข้อมูลสภาพอากาศ
-
+id="weatherText"
+class="weather-text">
+กำลังโหลดข้อมูล
 </div>
 
 </div>
@@ -2539,56 +3357,63 @@ class="weather-desc">
 </div>
 
 
-<div class="weather-meta">
+<div class="weather-data">
 
 
 <div class="weather-item">
 
-<div class="weather-label">
-ฝน
-</div>
-
-<div
-id="rain"
-class="weather-value">
-
---
-
-</div>
-
-</div>
-
-
-<div class="weather-item">
-
-<div class="weather-label">
+<span>
 ความชื้น
-</div>
+</span>
 
-<div
-id="humidity"
-class="weather-value">
-
+<strong
+id="humidity">
 --
-
-</div>
+</strong>
 
 </div>
 
 
 <div class="weather-item">
 
-<div class="weather-label">
-ลม
-</div>
+<span>
+โอกาสฝน
+</span>
 
-<div
-id="wind"
-class="weather-value">
-
+<strong
+id="rain">
 --
+</strong>
 
 </div>
+
+
+<div class="weather-item">
+
+<span>
+ลม
+</span>
+
+<strong
+id="wind">
+--
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="weather-footer">
+
+<span>
+<i class="fa-solid fa-location-dot"></i>
+พะเยา อ.เมืองพะเยา
+</span>
+
+<span>
+อัปเดต --
+</span>
 
 </div>
 
@@ -2601,365 +3426,103 @@ class="weather-value">
 
 <!-- PM -->
 
-<div class="panel pm-card">
+<div class="panel pm-panel">
 
-<div class="panel-head">
-
-<div>
-
-<div class="panel-title">
+<div class="panel-header">
 PM2.5
 </div>
 
-<div class="panel-sub">
-คุณภาพอากาศจากข้อมูลที่ระบบบันทึก
-</div>
+<div class="panel-body">
+
+
+<div class="pm-main">
+
+<div class="pm-face">
+
+😊
 
 </div>
 
-<i
-class="fa-solid fa-wind panel-icon">
-</i>
+<div>
 
-</div>
+<div>
 
-
-<div class="pm-number">
-
-<strong
-id="pmValue">
-
+<span
+id="pmValue"
+class="pm-value">
 --
+</span>
 
-</strong>
+<span class="pm-unit">
+µg/m³
+</span>
+
+</div>
+
+<div
+id="pmGood"
+class="pm-good">
+กำลังตรวจสอบ
+</div>
+
+</div>
+
+</div>
+
+
+<div class="pm-scale"></div>
+
+
+<div class="pm-labels">
 
 <span>
-µg/m³
+0-25<br>
+ดีมาก
+</span>
+
+<span>
+26-37<br>
+ดี
+</span>
+
+<span>
+38-50<br>
+ปานกลาง
+</span>
+
+<span>
+51-90<br>
+เริ่มมีผล
+</span>
+
+<span>
+91 ขึ้นไป<br>
+มีผลกระทบ
 </span>
 
 </div>
 
 
 <div
-id="pmStatus"
-class="pm-status">
-
-<i class="fa-solid fa-circle-question"></i>
-
-ยังไม่มีข้อมูล
-
-</div>
-
-
-<div class="pm-bar"></div>
-
-
-<div
 id="pmUpdate"
 class="pm-update">
+อัปเดต --
+</div>
 
-ยังไม่มีข้อมูลล่าสุด
 
 </div>
 
 </div>
 
 
+</aside>
 
-<!-- NEWS -->
-
-<div class="panel news-panel">
-
-<div class="panel-head">
-
-<div>
-
-<div class="panel-title">
-ข่าวประชาสัมพันธ์
-</div>
-
-<div class="panel-sub">
-ข่าวสารล่าสุดจากระบบ
-</div>
 
 </div>
-
-<a
-href="pages/news.html"
-style="
-color:#86efac;
-font-size:9px;
-text-decoration:none;
-">
-
-ดูทั้งหมด
-
-</a>
-
-</div>
-
-
-<div
-id="newsList"
-class="news-list">
-
-<div class="empty">
-
-<i class="fa-solid fa-newspaper"></i>
-
-กำลังโหลดข่าว...
-
-</div>
-
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-QUICK MENU
-===================================================== -->
-
-<section class="quick-grid">
-
-
-<a
-href="pages/citizen.html"
-class="quick">
-
-<i class="fa-solid fa-users"></i>
-
-<div class="quick-title">
-ประชาชน
-</div>
-
-<div class="quick-sub">
-ข้อมูลประชาชน
-</div>
-
-</a>
-
-
-
-<a
-href="pages/household.html"
-class="quick">
-
-<i class="fa-solid fa-house"></i>
-
-<div class="quick-title">
-ครัวเรือน
-</div>
-
-<div class="quick-sub">
-ข้อมูลครัวเรือน
-</div>
-
-</a>
-
-
-
-<a
-href="pages/health.html"
-class="quick">
-
-<i class="fa-solid fa-heart-pulse"></i>
-
-<div class="quick-title">
-สุขภาพ
-</div>
-
-<div class="quick-sub">
-ข้อมูลสุขภาพ
-</div>
-
-</a>
-
-
-
-<a
-href="pages/project.html"
-class="quick">
-
-<i class="fa-solid fa-folder-open"></i>
-
-<div class="quick-title">
-โครงการ
-</div>
-
-<div class="quick-sub">
-ติดตามโครงการ
-</div>
-
-</a>
-
-
-
-<a
-href="pages/news.html"
-class="quick">
-
-<i class="fa-solid fa-bullhorn"></i>
-
-<div class="quick-title">
-ข่าวสาร
-</div>
-
-<div class="quick-sub">
-ประชาสัมพันธ์
-</div>
-
-</a>
-
-
-
-<a
-href="pages/service.html"
-class="quick">
-
-<i class="fa-solid fa-headset"></i>
-
-<div class="quick-title">
-บริการ
-</div>
-
-<div class="quick-sub">
-บริการประชาชน
-</div>
-
-</a>
-
-
-</section>
-
-
-
-<!-- =====================================================
-ACTIVITY
-===================================================== -->
-
-<section class="activity-grid">
-
-
-<div class="panel">
-
-<div class="panel-head">
-
-<div>
-
-<div class="panel-title">
-กิจกรรมล่าสุด
-</div>
-
-<div class="panel-sub">
-ข้อมูลจากปฏิทินชุมชน
-</div>
-
-</div>
-
-<i
-class="fa-solid fa-calendar-days panel-icon">
-</i>
-
-</div>
-
-
-<div
-id="activityList"
-class="activity-list">
-
-<div class="empty">
-
-<i class="fa-solid fa-calendar-days"></i>
-
-ยังไม่มีข้อมูลกิจกรรม
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="panel">
-
-<div class="panel-head">
-
-<div>
-
-<div class="panel-title">
-สถานะโครงการ
-</div>
-
-<div class="panel-sub">
-ภาพรวมโครงการพัฒนาหมู่บ้าน
-</div>
-
-</div>
-
-<i
-class="fa-solid fa-chart-line panel-icon">
-</i>
-
-</div>
-
-
-<div
-id="projectList"
-class="activity-list">
-
-<div class="empty">
-
-<i class="fa-solid fa-diagram-project"></i>
-
-ยังไม่มีข้อมูลโครงการ
-
-</div>
-
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<footer class="footer">
-
-<div>
-
-<strong>
-RONGKHEM e-VILLAGE
-</strong>
-
-<br>
-
-ที่ทำการผู้ใหญ่บ้านออนไลน์
-
-</div>
-
-
-<div>
-
-บ้านร่องเข็ม หมู่ที่ 6
-ตำบลจำป่าหวาย
-อำเภอเมืองพะเยา
-จังหวัดพะเยา
-
-</div>
-
-</footer>
 
 
 </main>
 
-</div>
 
 </div>
 
@@ -2977,97 +3540,11 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "ใส่_ANON_KEY_ของคุณ";
 
-
 const supabaseClient =
 supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
-
-
-/* =========================================================
-   HELPER
-========================================================= */
-
-function escapeHTML(value){
-
-    return String(
-        value ?? ""
-    )
-
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-function numberFormat(value){
-
-    if(
-        value === null ||
-        value === undefined ||
-        value === ""
-    ){
-
-        return "--";
-
-    }
-
-    const number =
-    Number(value);
-
-
-    if(
-        !Number.isFinite(number)
-    ){
-
-        return "--";
-
-    }
-
-    return number.toLocaleString(
-        "th-TH"
-    );
-
-}
-
-
-function formatDate(value){
-
-    if(!value)
-        return "-";
-
-
-    const date =
-    new Date(value);
-
-
-    if(
-        Number.isNaN(
-            date.getTime()
-        )
-    ){
-
-        return escapeHTML(
-            value
-        );
-
-    }
-
-
-    return date.toLocaleDateString(
-        "th-TH",
-        {
-            year:"numeric",
-            month:"short",
-            day:"numeric"
-        }
-    );
-
-}
 
 
 /* =========================================================
@@ -3099,12 +3576,29 @@ function updateClock(){
     now.toLocaleDateString(
         "th-TH",
         {
-            weekday:"long",
-            year:"numeric",
+            day:"numeric",
             month:"long",
-            day:"numeric"
+            year:"numeric"
         }
     );
+
+
+    document.getElementById(
+        "day"
+    ).innerHTML = `
+
+        <i class="fa-regular fa-calendar"></i>
+
+        <span>
+            ${now.toLocaleDateString(
+                "th-TH",
+                {
+                    weekday:"long"
+                }
+            )}
+        </span>
+
+    `;
 
 }
 
@@ -3118,162 +3612,171 @@ setInterval(
 
 
 /* =========================================================
-   MOBILE MENU
+   SIDEBAR
 ========================================================= */
 
-document
-.getElementById(
-    "mobileMenu"
-)
-.addEventListener(
-    "click",
-    () => {
+function toggleSidebar(){
 
-        document
-        .getElementById(
-            "sidebar"
-        )
-        .classList.toggle(
-            "open"
-        );
+    document
+    .getElementById(
+        "sidebar"
+    )
+    .classList.toggle(
+        "open"
+    );
 
-    }
-);
+}
 
 
 /* =========================================================
-   LOAD POPULATION
+   ESCAPE
 ========================================================= */
 
-async function loadPopulation(){
+function escapeHTML(
+    value
+){
+
+    return String(
+        value ?? ""
+    )
+
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT NUMBER
+========================================================= */
+
+function formatNumber(
+    value
+){
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return "--";
+
+    }
+
+
+    const number =
+    Number(value);
+
+
+    if(
+        !Number.isFinite(
+            number
+        )
+    ){
+
+        return "--";
+
+    }
+
+
+    return number.toLocaleString(
+        "th-TH"
+    );
+
+}
+
+
+/* =========================================================
+   JSON LOADER
+========================================================= */
+
+async function loadJSON(
+    file
+){
 
     try{
 
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "citizens"
-        )
-
-        .select(
-            "id,gender"
+        const response =
+        await fetch(
+            file,
+            {
+                cache:"no-store"
+            }
         );
-
-
-        if(error)
-            throw error;
-
-
-        const citizens =
-        data || [];
-
-
-        document.getElementById(
-            "population"
-        ).textContent =
-        citizens.length
-        ?
-        numberFormat(
-            citizens.length
-        )
-        :
-        "--";
-
-
-        const male =
-        citizens.filter(
-            item =>
-            String(
-                item.gender || ""
-            ).includes("ชาย")
-        ).length;
-
-
-        const female =
-        citizens.filter(
-            item =>
-            String(
-                item.gender || ""
-            ).includes("หญิง")
-        ).length;
 
 
         if(
-            male ||
-            female
+            !response.ok
         ){
 
-            document.getElementById(
-                "populationDetail"
-            ).textContent =
-            `ชาย ${numberFormat(male)} คน · หญิง ${numberFormat(female)} คน`;
+            throw new Error(
+                response.status
+            );
 
         }
 
+
+        const json =
+        await response.json();
+
+
+        if(
+            Array.isArray(
+                json
+            )
+        ){
+
+            return json;
+
+        }
+
+
+        if(
+            Array.isArray(
+                json.data
+            )
+        ){
+
+            return json.data;
+
+        }
+
+
+        return [];
+
     }
     catch(error){
 
-        console.log(
-            "citizens:",
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD HOUSEHOLDS
-========================================================= */
-
-async function loadHouseholds(){
-
-    try{
-
-        const {
-            data,
+        console.warn(
+            "ไม่สามารถโหลด",
+            file,
             error
-        } =
-        await supabaseClient
-
-        .from(
-            "households"
-        )
-
-        .select("id");
-
-
-        if(error)
-            throw error;
-
-
-        const households =
-        data || [];
-
-
-        document.getElementById(
-            "households"
-        ).textContent =
-        households.length
-        ?
-        numberFormat(
-            households.length
-        )
-        :
-        "--";
-
-    }
-    catch(error){
-
-        console.log(
-            "households:",
-            error.message
         );
+
+        return [];
 
     }
 
@@ -3281,232 +3784,67 @@ async function loadHouseholds(){
 
 
 /* =========================================================
-   LOAD ELDERLY
+   LOAD CITIZENS
 ========================================================= */
 
-async function loadElderly(){
+async function loadCitizens(){
 
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "elderly"
-        )
-
-        .select("id");
-
-
-        if(error)
-            throw error;
-
-
-        document.getElementById(
-            "elderly"
-        ).textContent =
-        data &&
-        data.length
-        ?
-        numberFormat(
-            data.length
-        )
-        :
-        "--";
-
-    }
-    catch(error){
-
-        console.log(
-            "elderly:",
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD VULNERABLE
-========================================================= */
-
-async function loadVulnerable(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "vulnerable"
-        )
-
-        .select("id");
-
-
-        if(error)
-            throw error;
-
-
-        document.getElementById(
-            "vulnerable"
-        ).textContent =
-        data &&
-        data.length
-        ?
-        numberFormat(
-            data.length
-        )
-        :
-        "--";
-
-    }
-    catch(error){
-
-        console.log(
-            "vulnerable:",
-            error.message
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   LOAD NEWS
-========================================================= */
-
-async function loadNews(){
-
-    const box =
-    document.getElementById(
-        "newsList"
+    const data =
+    await loadJSON(
+        "data/citizen.json"
     );
 
 
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "news"
-        )
-
-        .select("*")
-
-        .order(
-            "created_at",
-            {
-                ascending:false,
-                nullsFirst:false
-            }
-        )
-
-        .limit(4);
+    const count =
+    data.length;
 
 
-        if(error)
-            throw error;
+    document.getElementById(
+        "population"
+    ).textContent =
+    count
+    ?
+    formatNumber(count)
+    :
+    "--";
 
 
-        const news =
-        data || [];
+    const male =
+    data.filter(
+        item =>
+        String(
+            item.gender ||
+            item.sex ||
+            ""
+        ).includes("ชาย")
+    ).length;
 
 
-        if(
-            news.length === 0
-        ){
-
-            box.innerHTML = `
-
-            <div class="empty">
-
-                <i class="fa-solid fa-newspaper"></i>
-
-                ยังไม่มีข่าวประชาสัมพันธ์
-
-            </div>
-
-            `;
-
-            return;
-
-        }
+    const female =
+    data.filter(
+        item =>
+        String(
+            item.gender ||
+            item.sex ||
+            ""
+        ).includes("หญิง")
+    ).length;
 
 
-        box.innerHTML =
-        news.map(
-            item => `
+    if(
+        male ||
+        female
+    ){
 
-            <a
-            class="news-item"
-            href="pages/news.html">
+        document.getElementById(
+            "populationDetail"
+        ).innerHTML = `
 
-                <span
-                class="news-tag">
+            หญิง ${formatNumber(female)} คน
 
-                    ${escapeHTML(
-                        item.category ||
-                        "ประชาสัมพันธ์"
-                    )}
+            <br>
 
-                </span>
-
-                <div
-                class="news-title">
-
-                    ${escapeHTML(
-                        item.title ||
-                        item.name ||
-                        "ไม่มีหัวข้อข่าว"
-                    )}
-
-                </div>
-
-                <div
-                class="news-date">
-
-                    ${
-                        item.created_at
-                        ?
-                        formatDate(
-                            item.created_at
-                        )
-                        :
-                        "-"
-                    }
-
-                </div>
-
-            </a>
-
-            `
-        ).join("");
-
-    }
-    catch(error){
-
-        box.innerHTML = `
-
-        <div class="empty">
-
-            <i class="fa-solid fa-newspaper"></i>
-
-            ยังไม่มีข้อมูลข่าว
-
-        </div>
+            ชาย ${formatNumber(male)} คน
 
         `;
 
@@ -3516,10 +3854,345 @@ async function loadNews(){
 
 
 /* =========================================================
-   LOAD ACTIVITIES
+   HOUSEHOLDS
+========================================================= */
+
+async function loadHouseholds(){
+
+    const data =
+    await loadJSON(
+        "data/household.json"
+    );
+
+
+    document.getElementById(
+        "households"
+    ).textContent =
+    data.length
+    ?
+    formatNumber(
+        data.length
+    )
+    :
+    "--";
+
+
+    if(
+        data.length
+    ){
+
+        document.getElementById(
+            "householdDetail"
+        ).innerHTML = `
+
+            บ้านเรือน
+            ${formatNumber(data.length)}
+            หลัง
+
+            <br>
+
+            ข้อมูลจากไฟล์จริง
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   ELDERLY
+========================================================= */
+
+async function loadElderly(){
+
+    const data =
+    await loadJSON(
+        "data/elderly.json"
+    );
+
+
+    document.getElementById(
+        "elderly"
+    ).textContent =
+    data.length
+    ?
+    formatNumber(
+        data.length
+    )
+    :
+    "--";
+
+
+    const male =
+    data.filter(
+        item =>
+        String(
+            item.gender ||
+            item.sex ||
+            ""
+        ).includes("ชาย")
+    ).length;
+
+
+    const female =
+    data.filter(
+        item =>
+        String(
+            item.gender ||
+            item.sex ||
+            ""
+        ).includes("หญิง")
+    ).length;
+
+
+    if(
+        male ||
+        female
+    ){
+
+        document.getElementById(
+            "elderlyDetail"
+        ).innerHTML = `
+
+            ชาย ${formatNumber(male)} คน
+
+            <br>
+
+            หญิง ${formatNumber(female)} คน
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   VULNERABLE
+========================================================= */
+
+async function loadVulnerable(){
+
+    const data =
+    await loadJSON(
+        "data/vulnerable.json"
+    );
+
+
+    document.getElementById(
+        "vulnerable"
+    ).textContent =
+    data.length
+    ?
+    formatNumber(
+        data.length
+    )
+    :
+    "--";
+
+
+    const disabled =
+    data.filter(
+        item =>
+        String(
+            item.type ||
+            item.category ||
+            item.group ||
+            ""
+        )
+        .includes("พิการ")
+    ).length;
+
+
+    const bedridden =
+    data.filter(
+        item =>
+        String(
+            item.type ||
+            item.category ||
+            item.group ||
+            ""
+        )
+        .includes("ติดเตียง")
+    ).length;
+
+
+    if(
+        disabled ||
+        bedridden
+    ){
+
+        document.getElementById(
+            "vulnerableDetail"
+        ).innerHTML = `
+
+            ผู้พิการ
+            ${formatNumber(disabled)}
+            คน
+
+            <br>
+
+            ผู้ป่วยติดเตียง
+            ${formatNumber(bedridden)}
+            คน
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+async function loadAnnouncements(){
+
+    const data =
+    await loadJSON(
+        "data/news.json"
+    );
+
+
+    const box =
+    document.getElementById(
+        "announcementList"
+    );
+
+
+    if(
+        !data.length
+    ){
+
+        box.innerHTML = `
+
+            <div class="notice">
+
+                <div
+                class="notice-icon notice-blue">
+
+                    <i class="fa-solid fa-info"></i>
+
+                </div>
+
+                <div>
+
+                    <div class="notice-title">
+                        ยังไม่มีประกาศ
+                    </div>
+
+                    <div class="notice-text">
+                        ยังไม่มีข้อมูลประกาศในไฟล์ข่าว
+                    </div>
+
+                </div>
+
+                <div class="notice-date">
+                    --
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const colors = [
+        "notice-red",
+        "notice-blue",
+        "notice-green",
+        "notice-orange"
+    ];
+
+
+    const icons = [
+        "fa-bullhorn",
+        "fa-calendar-days",
+        "fa-file-lines",
+        "fa-triangle-exclamation"
+    ];
+
+
+    box.innerHTML =
+    data
+    .slice(0,4)
+    .map(
+        (item,index) => `
+
+        <div class="notice">
+
+            <div
+            class="notice-icon ${colors[index % colors.length]}">
+
+                <i
+                class="fa-solid ${icons[index % icons.length]}">
+                </i>
+
+            </div>
+
+
+            <div>
+
+                <div class="notice-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        item.name ||
+                        "ประกาศ"
+                    )}
+
+                </div>
+
+
+                <div class="notice-text">
+
+                    ${escapeHTML(
+                        item.description ||
+                        item.detail ||
+                        item.content ||
+                        ""
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="notice-date">
+
+                ${
+                    item.date ||
+                    item.created_at ||
+                    "--"
+                }
+
+            </div>
+
+        </div>
+
+        `
+    )
+    .join("");
+
+}
+
+
+/* =========================================================
+   ACTIVITIES
 ========================================================= */
 
 async function loadActivities(){
+
+    const data =
+    await loadJSON(
+        "data/activity.json"
+    );
+
 
     const box =
     document.getElementById(
@@ -3527,427 +4200,271 @@ async function loadActivities(){
     );
 
 
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "activities"
-        )
-
-        .select("*")
-
-        .order(
-            "date",
-            {
-                ascending:true,
-                nullsFirst:false
-            }
-        )
-
-        .limit(5);
-
-
-        if(error)
-            throw error;
-
-
-        const activities =
-        data || [];
-
-
-        if(
-            activities.length === 0
-        ){
-
-            box.innerHTML = `
-
-            <div class="empty">
-
-                <i class="fa-solid fa-calendar-days"></i>
-
-                ยังไม่มีข้อมูลกิจกรรม
-
-            </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        box.innerHTML =
-        activities.map(
-            item => `
-
-            <div class="activity">
-
-                <div class="activity-icon">
-
-                    <i class="fa-solid fa-calendar-check"></i>
-
-                </div>
-
-                <div>
-
-                    <div class="activity-title">
-
-                        ${escapeHTML(
-                            item.title ||
-                            item.name ||
-                            "กิจกรรม"
-                        )}
-
-                    </div>
-
-                    <div class="activity-meta">
-
-                        ${
-                            item.date
-                            ?
-                            formatDate(
-                                item.date
-                            )
-                            :
-                            "-"
-                        }
-
-                        ·
-
-                        ${escapeHTML(
-                            item.location ||
-                            "-"
-                        )}
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            `
-        ).join("");
-
-    }
-    catch(error){
+    if(
+        !data.length
+    ){
 
         box.innerHTML = `
 
-        <div class="empty">
+        <div class="activity">
 
-            <i class="fa-solid fa-calendar-days"></i>
+            <div
+            class="activity-icon activity-blue">
 
-            ยังไม่มีข้อมูลกิจกรรม
+                <i class="fa-solid fa-calendar"></i>
+
+            </div>
+
+            <div>
+
+                <div class="activity-title">
+                    ยังไม่มีข้อมูลกิจกรรม
+                </div>
+
+                <div class="activity-place">
+                    กรุณาเพิ่มข้อมูลกิจกรรม
+                </div>
+
+            </div>
+
+            <div class="activity-time">
+                --
+            </div>
 
         </div>
 
         `;
 
+        return;
+
     }
+
+
+    const colors = [
+        "activity-blue",
+        "activity-green",
+        "activity-orange"
+    ];
+
+
+    box.innerHTML =
+    data
+    .slice(0,4)
+    .map(
+        (item,index) => `
+
+        <div class="activity">
+
+            <div
+            class="activity-icon
+            ${colors[index % colors.length]}">
+
+                <i class="fa-solid fa-calendar-check"></i>
+
+            </div>
+
+
+            <div>
+
+                <div class="activity-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        item.name ||
+                        "กิจกรรม"
+                    )}
+
+                </div>
+
+
+                <div class="activity-place">
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    ${escapeHTML(
+                        item.location ||
+                        "บ้านร่องเข็ม"
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="activity-time">
+
+                ${escapeHTML(
+                    item.time ||
+                    "--"
+                )}
+
+            </div>
+
+        </div>
+
+        `
+    )
+    .join("");
 
 }
 
 
 /* =========================================================
-   LOAD PROJECTS
+   PM2.5
 ========================================================= */
 
-async function loadProjects(){
+async function loadPM25(){
 
-    const box =
-    document.getElementById(
-        "projectList"
+    const data =
+    await loadJSON(
+        "data/environment.json"
     );
 
 
-    try{
+    if(
+        !data.length
+    ){
 
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "projects"
-        )
-
-        .select("*")
-
-        .order(
-            "created_at",
-            {
-                ascending:false,
-                nullsFirst:false
-            }
-        )
-
-        .limit(5);
-
-
-        if(error)
-            throw error;
-
-
-        const projects =
-        data || [];
-
-
-        if(
-            projects.length === 0
-        ){
-
-            box.innerHTML = `
-
-            <div class="empty">
-
-                <i class="fa-solid fa-diagram-project"></i>
-
-                ยังไม่มีข้อมูลโครงการ
-
-            </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        box.innerHTML =
-        projects.map(
-            item => `
-
-            <div class="activity">
-
-                <div class="activity-icon">
-
-                    <i class="fa-solid fa-diagram-project"></i>
-
-                </div>
-
-                <div>
-
-                    <div class="activity-title">
-
-                        ${escapeHTML(
-                            item.name ||
-                            item.title ||
-                            item.project_name ||
-                            "โครงการ"
-                        )}
-
-                    </div>
-
-                    <div class="activity-meta">
-
-                        ${escapeHTML(
-                            item.status ||
-                            "ไม่ระบุสถานะ"
-                        )}
-
-                        ·
-
-                        ${
-                            item.budget
-                            ?
-                            Number(
-                                item.budget
-                            ).toLocaleString(
-                                "th-TH"
-                            ) +
-                            " บาท"
-                            :
-                            "ไม่ระบุงบประมาณ"
-                        }
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            `
-        ).join("");
-
-    }
-    catch(error){
-
-        box.innerHTML = `
-
-        <div class="empty">
-
-            <i class="fa-solid fa-diagram-project"></i>
-
-            ยังไม่มีข้อมูลโครงการ
-
-        </div>
-
-        `;
+        return;
 
     }
 
-}
 
+    const item =
+    data.find(
+        row => {
 
-/* =========================================================
-   LOAD PM2.5
-========================================================= */
+            const text =
+            String(
+                row.type ||
+                row.name ||
+                row.parameter ||
+                ""
+            ).toLowerCase();
 
-async function loadPM(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "environment"
-        )
-
-        .select("*")
-
-        .eq(
-            "type",
-            "PM2.5"
-        )
-
-        .order(
-            "recorded_at",
-            {
-                ascending:false,
-                nullsFirst:false
-            }
-        )
-
-        .limit(1);
-
-
-        if(error)
-            throw error;
-
-
-        if(
-            !data ||
-            data.length === 0
-        ){
-
-            return;
+            return (
+                text.includes("pm2.5") ||
+                text.includes("pm25")
+            );
 
         }
+    );
 
 
-        const item =
-        data[0];
+    if(!item){
+
+        return;
+
+    }
 
 
-        const value =
+    const value =
+    Number(
         item.value ??
         item.pm25 ??
-        item.pm2_5;
+        item.pm2_5
+    );
 
 
-        if(
-            value === null ||
-            value === undefined
-        ){
+    if(
+        !Number.isFinite(value)
+    ){
 
-            return;
-
-        }
-
-
-        document.getElementById(
-            "pmValue"
-        ).textContent =
-        Number(value)
-        .toLocaleString(
-            "th-TH",
-            {
-                maximumFractionDigits:1
-            }
-        );
-
-
-        let status =
-        "คุณภาพอากาศ";
-
-
-        if(Number(value) <= 15)
-            status =
-            "คุณภาพอากาศดี";
-
-
-        else if(Number(value) <= 25)
-            status =
-            "เริ่มเฝ้าระวัง";
-
-
-        else if(Number(value) <= 37.5)
-            status =
-            "ควรเฝ้าระวัง";
-
-
-        else
-            status =
-            "ค่าฝุ่นสูง";
-
-
-        document.getElementById(
-            "pmStatus"
-        ).innerHTML = `
-
-        <i class="fa-solid fa-wind"></i>
-
-        ${status}
-
-        `;
-
-
-        document.getElementById(
-            "pmUpdate"
-        ).textContent =
-        item.recorded_at
-        ?
-        "อัปเดต " +
-        formatDate(
-            item.recorded_at
-        )
-        :
-        "มีข้อมูล PM2.5";
+        return;
 
     }
-    catch(error){
 
-        console.log(
-            "PM2.5:",
-            error.message
-        );
 
-    }
+    document.getElementById(
+        "pmValue"
+    ).textContent =
+    value.toLocaleString(
+        "th-TH"
+    );
+
+
+    let status =
+    "คุณภาพอากาศดี";
+
+
+    if(value > 25)
+        status =
+        "เริ่มมีผลกระทบ";
+
+
+    if(value > 37)
+        status =
+        "ปานกลาง";
+
+
+    if(value > 50)
+        status =
+        "ควรเฝ้าระวัง";
+
+
+    if(value > 90)
+        status =
+        "มีผลกระทบต่อสุขภาพ";
+
+
+    document.getElementById(
+        "pmGood"
+    ).textContent =
+    status;
+
+
+    document.getElementById(
+        "pmUpdate"
+    ).textContent =
+    item.recorded_at
+    ?
+    "อัปเดต " +
+    item.recorded_at
+    :
+    "ข้อมูลจากไฟล์จริง";
 
 }
 
 
 /* =========================================================
-   WEATHER
+   AI DEMO
 ========================================================= */
 
-async function loadWeather(){
+function askAI(
+    question
+){
 
-    /*
-     * ยังไม่ใส่ค่าปลอม
-     * เมื่อเชื่อม API สภาพอากาศจริง
-     * สามารถนำข้อมูลมาแสดงตรงนี้ได้
-     */
+    document.getElementById(
+        "aiInput"
+    ).value =
+    question;
+
+}
+
+
+function sendAI(){
+
+    const input =
+    document.getElementById(
+        "aiInput"
+    );
+
+
+    const question =
+    input.value.trim();
+
+
+    if(!question){
+
+        return;
+
+    }
+
+
+    alert(
+        "ระบบ AI จะเชื่อมกับฐานข้อมูลหมู่บ้านเพื่อค้นหาคำตอบ:\n\n" +
+        question
+    );
 
 }
 
@@ -3956,11 +4473,11 @@ async function loadWeather(){
    INIT
 ========================================================= */
 
-async function initDashboard(){
+async function init(){
 
     await Promise.allSettled([
 
-        loadPopulation(),
+        loadCitizens(),
 
         loadHouseholds(),
 
@@ -3968,54 +4485,20 @@ async function initDashboard(){
 
         loadVulnerable(),
 
-        loadNews(),
+        loadAnnouncements(),
 
         loadActivities(),
 
-        loadProjects(),
-
-        loadPM(),
-
-        loadWeather()
+        loadPM25()
 
     ]);
 
 }
 
 
-initDashboard();
-
-
-/* =========================================================
-   AUTO REFRESH
-========================================================= */
-
-setInterval(
-    () => {
-
-        loadPopulation();
-
-        loadHouseholds();
-
-        loadElderly();
-
-        loadVulnerable();
-
-        loadNews();
-
-        loadActivities();
-
-        loadProjects();
-
-        loadPM();
-
-    },
-    300000
-);
+init();
 
 </script>
 
-
 </body>
-
 </html>
