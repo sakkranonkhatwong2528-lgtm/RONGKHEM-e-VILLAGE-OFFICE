@@ -564,7 +564,7 @@
                     value="${escapeHTML(
                         settings.name ||
                         leader.name ||
-                        "นายศักรนนท์ ขัติ์วงศ์"
+                        "นายศักรนนทน์ ขัติย์วงศ์"
                     )}">
             </label>
 
