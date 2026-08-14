@@ -20,7 +20,7 @@ window.RONGKHEM_DATA = {
 
     /* ข้อมูลผู้ใหญ่บ้าน */
     leader: {
-        name: "นายศักรนนท์ ขัติ์วงศ์",
+        name: "นายศักรนนทน์ ขัติย์วงศ์",
         role: "ผู้ใหญ่บ้าน หมู่ที่ 6",
         phone: "080-1202529",
         line: "rongkhem.village",
