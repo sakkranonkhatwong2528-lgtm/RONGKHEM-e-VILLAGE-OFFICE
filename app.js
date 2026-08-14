@@ -7,29 +7,24 @@
 
     "use strict";
 
-
     /* =====================================================
-       DATA / CONFIG
+       DATA
     ===================================================== */
 
-    const DATA =
-        window.RONGKHEM_DATA || {};
+    const DATA = window.RONGKHEM_DATA || {};
+    const CONFIG = window.RONGKHEM_CONFIG || {};
 
-    const CONFIG =
-        window.RONGKHEM_CONFIG || {};
+    const population = DATA.population || {};
+    const households = DATA.households || {};
+    const survey = DATA.survey || {};
+    const leader = DATA.leader || {};
 
-
-    const population =
-        DATA.population || {};
-
-    const households =
-        DATA.households || {};
-
-    const survey =
-        DATA.survey || {};
-
-    const leader =
-        DATA.leader || {};
+    const NEWS_KEY = "RONGKHEM_NEWS";
+    const ACTIVITY_KEY = "RONGKHEM_ACTIVITY";
+    const COMPLAINT_KEY = "RONGKHEM_COMPLAINT";
+    const SETTINGS_KEY = "RONGKHEM_SETTINGS";
+    const LEADER_PHOTO_KEY = "RONGKHEM_LEADER_PHOTO";
+    const HERO_IMAGE_KEY = "RONGKHEM_HERO_IMAGE";
 
 
     /* =====================================================
@@ -40,22 +35,34 @@
         return document.getElementById(id);
     }
 
-
     function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, function (char) {
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            }[char];
+        });
+    }
 
-        return String(value ?? "")
-            .replace(/[&<>"']/g, function (char) {
+    function getStorage(key) {
+        try {
+            return JSON.parse(
+                localStorage.getItem(key) || "[]"
+            );
+        } catch (error) {
+            console.error(error);
+            return [];
+        }
+    }
 
-                return {
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
-                }[char];
-
-            });
-
+    function setStorage(key, value) {
+        localStorage.setItem(
+            key,
+            JSON.stringify(value)
+        );
     }
 
 
@@ -65,18 +72,12 @@
 
     function updateClock() {
 
-        const clock =
-            $("clock");
+        const clock = $("clock");
+        const date = $("date");
 
-        const date =
-            $("date");
-
-        const now =
-            new Date();
-
+        const now = new Date();
 
         if (clock) {
-
             clock.textContent =
                 now.toLocaleTimeString(
                     "th-TH",
@@ -87,12 +88,9 @@
                         second: "2-digit"
                     }
                 );
-
         }
 
-
         if (date) {
-
             date.textContent =
                 now.toLocaleDateString(
                     "th-TH",
@@ -103,9 +101,7 @@
                         year: "numeric"
                     }
                 );
-
         }
-
     }
 
 
@@ -115,60 +111,56 @@
 
     function loadDashboardData() {
 
-        const map = {
+        /*
+         * รองรับทั้ง ID ที่มีอยู่ในหน้าเดิม
+         * และ ID ที่อาจเพิ่มภายหลัง
+         */
+
+        const values = {
 
             populationTotal:
-                population.total,
+                population.total ?? 960,
 
             populationMale:
-                population.male,
+                population.male ?? 471,
 
             populationFemale:
-                population.female,
+                population.female ?? 489,
 
             householdsTotal:
-                households.total,
+                households.total ?? 352,
 
             elderlyTotal:
-                survey.elderly60Plus,
+                survey.elderly60Plus ?? 92,
 
             elderlyPercent:
-                survey.elderlyPercent,
+                survey.elderlyPercent ?? 45.5,
 
             vulnerableTotal:
-                survey.vulnerableSelections,
+                survey.vulnerableSelections ?? 95,
 
             disabledTotal:
-                survey.disabled,
+                survey.disabled ?? 3,
 
             chronicTotal:
-                survey.chronicDisease,
+                survey.chronicDisease ?? 1,
 
             surveyTotal:
-                survey.respondents,
+                survey.respondents ?? 202,
 
             surveyHouseholds:
-                survey.households
-
+                survey.households ?? 202
         };
 
+        Object.keys(values).forEach(function (id) {
 
-        Object.keys(map).forEach(
-            function (id) {
+            const element = $(id);
 
-                const element =
-                    $(id);
-
-                if (element) {
-
-                    element.textContent =
-                        map[id] ?? 0;
-
-                }
-
+            if (element) {
+                element.textContent = values[id];
             }
-        );
 
+        });
     }
 
 
@@ -178,53 +170,14 @@
 
     function loadLeader() {
 
-        const name =
-            $("leaderName");
+        const name = $("leaderName");
 
-
-        if (
-            name &&
-            leader.name
-        ) {
+        if (name) {
 
             name.textContent =
-                leader.name;
-
+                leader.name ||
+                "นายศักรนนท์ ขัติ์วงศ์";
         }
-
-    }
-
-
-    /* =====================================================
-       LOCAL STORAGE
-    ===================================================== */
-
-    function getStorage(key) {
-
-        try {
-
-            return JSON.parse(
-                localStorage.getItem(key) || "[]"
-            );
-
-        } catch (error) {
-
-            console.error(error);
-
-            return [];
-
-        }
-
-    }
-
-
-    function setStorage(key, value) {
-
-        localStorage.setItem(
-            key,
-            JSON.stringify(value)
-        );
-
     }
 
 
@@ -232,35 +185,38 @@
        NEWS
     ===================================================== */
 
-    const NEWS_KEY =
-        "RONGKHEM_NEWS";
-
-
     function loadNews() {
 
-        const container =
-            $("newsList");
+        const container = $("newsList");
 
         if (!container) return;
 
+        const news = getStorage(NEWS_KEY);
 
-        const news =
-            getStorage(NEWS_KEY);
+        if (!news.length) {
 
+            container.className = "empty";
 
-        if (!news.length) return;
+            container.innerHTML = `
+                <span class="emptyIcon">📣</span>
+                ยังไม่มีข้อมูลประกาศ<br>
+                ระบบพร้อมรับข้อมูลที่เพิ่มภายหลัง<br>
+                <button
+                    class="add"
+                    onclick="openManager('news')">
+                    ＋ เพิ่มประกาศ
+                </button>
+            `;
 
+            return;
+        }
 
         container.className = "";
 
-
         container.innerHTML =
-            news
-                .slice(0, 10)
-                .map(function (item) {
+            news.slice(0, 10).map(function (item) {
 
-                    return `
-
+                return `
                     <div class="alert">
 
                         <b>
@@ -270,7 +226,9 @@
 
                         <small>
                             ${escapeHTML(item.date || "")}
-                            ${item.time ? " " + escapeHTML(item.time) : ""}
+                            ${item.time
+                                ? " " + escapeHTML(item.time)
+                                : ""}
                         </small>
 
                         ${
@@ -284,12 +242,9 @@
                         }
 
                     </div>
+                `;
 
-                    `;
-
-                })
-                .join("");
-
+            }).join("");
     }
 
 
@@ -297,35 +252,40 @@
        ACTIVITY
     ===================================================== */
 
-    const ACTIVITY_KEY =
-        "RONGKHEM_ACTIVITY";
-
-
     function loadActivities() {
 
-        const container =
-            $("activityList");
+        const container = $("activityList");
 
         if (!container) return;
-
 
         const activities =
             getStorage(ACTIVITY_KEY);
 
+        if (!activities.length) {
 
-        if (!activities.length) return;
+            container.className = "empty";
 
+            container.innerHTML = `
+                <span class="emptyIcon">🗓️</span>
+                ยังไม่มีข้อมูลกิจกรรม<br>
+                กรุณาเพิ่มข้อมูลกิจกรรมภายหลัง<br>
+                <button
+                    class="add"
+                    onclick="openManager('activity')">
+                    ＋ เพิ่มกิจกรรม
+                </button>
+            `;
+
+            return;
+        }
 
         container.className = "";
 
-
         container.innerHTML =
-            activities
-                .slice(0, 10)
-                .map(function (item) {
+            activities.slice(0, 10)
+            .map(function (item) {
 
-                    return `
-
+                return `
                     <div class="alert">
 
                         <b>
@@ -335,7 +295,9 @@
 
                         <small>
                             ${escapeHTML(item.date || "")}
-                            ${item.time ? " " + escapeHTML(item.time) : ""}
+                            ${item.time
+                                ? " " + escapeHTML(item.time)
+                                : ""}
                         </small>
 
                         ${
@@ -349,45 +311,34 @@
                         }
 
                     </div>
+                `;
 
-                    `;
-
-                })
-                .join("");
-
+            }).join("");
     }
 
 
     /* =====================================================
-       COMPLAINT
+       COMPLAINT / ALERT
     ===================================================== */
-
-    const COMPLAINT_KEY =
-        "RONGKHEM_COMPLAINT";
-
 
     function loadComplaints() {
 
-        const container =
-            $("alertList");
+        const container = $("alertList");
 
         if (!container) return;
-
 
         const complaints =
             getStorage(COMPLAINT_KEY);
 
-
         if (!complaints.length) return;
 
+        const oldAlerts = container.innerHTML;
 
         container.innerHTML =
-            complaints
-                .slice(0, 10)
-                .map(function (item) {
+            complaints.slice(0, 10)
+            .map(function (item) {
 
-                    return `
-
+                return `
                     <div class="alert">
 
                         <b>
@@ -410,12 +361,9 @@
                         }
 
                     </div>
+                `;
 
-                    `;
-
-                })
-                .join("");
-
+            }).join("") + oldAlerts;
     }
 
 
@@ -425,412 +373,342 @@
 
     function openModal(html) {
 
-        const modal =
-            $("modal");
-
-        const box =
-            $("modalBox");
-
+        const modal = $("modal");
+        const box = $("modalBox");
 
         if (!modal || !box) return;
 
+        box.innerHTML = html;
 
-        box.innerHTML =
-            html;
-
-        modal.classList.add(
-            "show"
-        );
-
+        modal.classList.add("show");
     }
 
 
-    window.closeModal =
-        function () {
+    window.closeModal = function () {
 
-            const modal =
-                $("modal");
+        const modal = $("modal");
 
-            if (modal) {
-
-                modal.classList.remove(
-                    "show"
-                );
-
-            }
-
-        };
+        if (modal) {
+            modal.classList.remove("show");
+        }
+    };
 
 
     /* =====================================================
-       MANAGER
+       NEWS / ACTIVITY / ALERT MANAGER
     ===================================================== */
 
-    window.openManager =
-        function (type) {
+    window.openManager = function (type) {
 
-            let title =
-                "จัดการข้อมูล";
+        let title = "จัดการข้อมูล";
 
-            if (type === "news") {
+        if (type === "news") {
+            title = "📢 เพิ่มประกาศ";
+        }
 
-                title =
-                    "📢 เพิ่มประกาศ";
+        if (type === "activity") {
+            title = "📅 เพิ่มกิจกรรม";
+        }
 
-            }
+        if (type === "alert") {
+            title = "🚨 เพิ่มแจ้งเหตุ / ร้องเรียน";
+        }
 
-            if (type === "activity") {
+        openModal(`
 
-                title =
-                    "📅 เพิ่มกิจกรรม";
+            <h2>${title}</h2>
 
-            }
+            <label>
+                หัวข้อ
 
-            if (type === "alert") {
+                <input
+                    id="managerTitle"
+                    type="text"
+                    placeholder="กรอกหัวข้อ">
+            </label>
 
-                title =
-                    "🚨 เพิ่มแจ้งเหตุ / ร้องเรียน";
+            <label>
+                วันที่
 
-            }
+                <input
+                    id="managerDate"
+                    type="date">
+            </label>
 
+            <label>
+                เวลา
 
-            openModal(`
+                <input
+                    id="managerTime"
+                    type="time">
+            </label>
 
-                <h2>
-                    ${title}
-                </h2>
+            <label>
+                รายละเอียด
 
-                <label>
-                    หัวข้อ
+                <textarea
+                    id="managerDetail"
+                    placeholder="กรอกรายละเอียด">
+                </textarea>
+            </label>
 
-                    <input
-                        id="managerTitle"
-                        type="text"
-                        placeholder="กรอกหัวข้อ"
-                    >
+            <div class="actions">
 
-                </label>
+                <button
+                    class="btn gray"
+                    onclick="closeModal()">
+                    ปิด
+                </button>
 
+                <button
+                    class="btn green"
+                    onclick="saveManagerItem('${type}')">
+                    💾 บันทึก
+                </button>
 
-                <label>
-                    วันที่
+            </div>
+        `);
+    };
 
-                    <input
-                        id="managerDate"
-                        type="date"
-                    >
 
-                </label>
+    window.saveManagerItem = function (type) {
 
+        const title = $("managerTitle");
+        const date = $("managerDate");
+        const time = $("managerTime");
+        const detail = $("managerDetail");
 
-                <label>
-                    เวลา
+        if (!title || !title.value.trim()) {
 
-                    <input
-                        id="managerTime"
-                        type="time"
-                    >
+            alert("กรุณากรอกหัวข้อ");
 
-                </label>
+            return;
+        }
 
+        let key = NEWS_KEY;
 
-                <label>
-                    รายละเอียด
+        if (type === "activity") {
+            key = ACTIVITY_KEY;
+        }
 
-                    <textarea
-                        id="managerDetail"
-                        placeholder="รายละเอียด"
-                    ></textarea>
+        if (type === "alert") {
+            key = COMPLAINT_KEY;
+        }
 
-                </label>
+        const items = getStorage(key);
 
+        items.unshift({
 
-                <div class="actions">
+            id: Date.now(),
 
-                    <button
-                        class="btn gray"
-                        onclick="closeModal()">
+            title:
+                title.value.trim(),
 
-                        ปิด
+            date:
+                date
+                    ? date.value
+                    : "",
 
-                    </button>
+            time:
+                time
+                    ? time.value
+                    : "",
 
+            detail:
+                detail
+                    ? detail.value.trim()
+                    : "",
 
-                    <button
-                        class="btn green"
-                        onclick="saveManagerItem('${type}')">
+            createdAt:
+                new Date().toISOString()
+        });
 
-                        💾 บันทึก
+        setStorage(
+            key,
+            items
+        );
 
-                    </button>
+        closeModal();
 
-                </div>
+        loadNews();
+        loadActivities();
+        loadComplaints();
 
-            `);
-
-        };
-
-
-    window.saveManagerItem =
-        function (type) {
-
-            const title =
-                $("managerTitle");
-
-            const date =
-                $("managerDate");
-
-            const time =
-                $("managerTime");
-
-            const detail =
-                $("managerDetail");
-
-
-            if (
-                !title ||
-                !title.value.trim()
-            ) {
-
-                alert(
-                    "กรุณากรอกหัวข้อ"
-                );
-
-                return;
-
-            }
-
-
-            let key =
-                NEWS_KEY;
-
-
-            if (type === "activity") {
-
-                key =
-                    ACTIVITY_KEY;
-
-            }
-
-
-            if (type === "alert") {
-
-                key =
-                    COMPLAINT_KEY;
-
-            }
-
-
-            const items =
-                getStorage(key);
-
-
-            items.unshift({
-
-                id:
-                    Date.now(),
-
-                title:
-                    title.value.trim(),
-
-                date:
-                    date ? date.value : "",
-
-                time:
-                    time ? time.value : "",
-
-                detail:
-                    detail ? detail.value.trim() : "",
-
-                createdAt:
-                    new Date().toISOString()
-
-            });
-
-
-            setStorage(
-                key,
-                items
-            );
-
-
-            closeModal();
-
-
-            loadNews();
-
-            loadActivities();
-
-            loadComplaints();
-
-
-            alert(
-                "บันทึกข้อมูลเรียบร้อยแล้ว"
-            );
-
-        };
+        alert(
+            "บันทึกข้อมูลเรียบร้อยแล้ว"
+        );
+    };
 
 
     /* =====================================================
        SETTINGS
     ===================================================== */
 
-    window.openSettings =
-        function () {
+    window.openSettings = function () {
 
-            openModal(`
+        const settings =
+            getSettings();
 
-                <h2>
-                    ⚙️ ตั้งค่าระบบ
-                </h2>
+        openModal(`
 
+            <h2>
+                ⚙️ ตั้งค่าระบบ
+            </h2>
 
-                <label>
-                    ชื่อผู้ใหญ่บ้าน
+            <label>
+                ชื่อผู้ใหญ่บ้าน
 
-                    <input
-                        id="settingName"
-                        type="text"
-                        value="${escapeHTML(
-                            leader.name ||
-                            "นายศักรนนท์ ขัติ์วงศ์"
-                        )}"
-                    >
+                <input
+                    id="settingName"
+                    type="text"
+                    value="${escapeHTML(
+                        settings.name ||
+                        leader.name ||
+                        "นายศักรนนท์ ขัติ์วงศ์"
+                    )}">
+            </label>
 
-                </label>
+            <label>
+                เบอร์โทรศัพท์
 
+                <input
+                    id="settingPhone"
+                    type="text"
+                    value="${escapeHTML(
+                        settings.phone ||
+                        leader.phone ||
+                        "080-1202529"
+                    )}">
+            </label>
 
-                <label>
-                    เบอร์โทรศัพท์
+            <label>
+                LINE ID
 
-                    <input
-                        id="settingPhone"
-                        type="text"
-                        value="${escapeHTML(
-                            leader.phone ||
-                            "080-1202529"
-                        )}"
-                    >
+                <input
+                    id="settingLine"
+                    type="text"
+                    value="${escapeHTML(
+                        settings.line ||
+                        leader.line ||
+                        "rongkhem.village"
+                    )}">
+            </label>
 
-                </label>
+            <label>
+                รูปผู้ใหญ่บ้าน
 
+                <input
+                    id="leaderPhotoFile"
+                    type="file"
+                    accept="image/*">
+            </label>
 
-                <label>
-                    LINE ID
+            <div class="actions">
 
-                    <input
-                        id="settingLine"
-                        type="text"
-                        value="${escapeHTML(
-                            leader.line ||
-                            "rongkhem.village"
-                        )}"
-                    >
+                <button
+                    class="btn gray"
+                    onclick="closeModal()">
+                    ปิด
+                </button>
 
-                </label>
+                <button
+                    class="btn green"
+                    onclick="saveSettings()">
+                    💾 บันทึก
+                </button>
 
-
-                <label>
-                    รูปผู้ใหญ่บ้าน
-
-                    <input
-                        id="leaderPhotoFile"
-                        type="file"
-                        accept="image/*"
-                    >
-
-                </label>
-
-
-                <div class="actions">
-
-                    <button
-                        class="btn gray"
-                        onclick="closeModal()">
-
-                        ปิด
-
-                    </button>
-
-
-                    <button
-                        class="btn green"
-                        onclick="saveSettings()">
-
-                        💾 บันทึก
-
-                    </button>
-
-                </div>
-
-            `);
-
-        };
+            </div>
+        `);
+    };
 
 
-    window.saveSettings =
-        function () {
+    function getSettings() {
 
-            const name =
-                $("settingName")?.value.trim();
+        try {
 
-            const phone =
-                $("settingPhone")?.value.trim();
-
-            const line =
-                $("settingLine")?.value.trim();
-
-
-            const settings = {
-
-                name:
-                    name || leader.name,
-
-                phone:
-                    phone || leader.phone,
-
-                line:
-                    line || leader.line
-
-            };
-
-
-            localStorage.setItem(
-                "RONGKHEM_SETTINGS",
-                JSON.stringify(settings)
+            return JSON.parse(
+                localStorage.getItem(
+                    SETTINGS_KEY
+                ) || "{}"
             );
 
+        } catch (error) {
 
-            if ($("leaderName")) {
-
-                $("leaderName").textContent =
-                    settings.name;
-
-            }
+            return {};
+        }
+    }
 
 
-            const file =
-                $("leaderPhotoFile")
-                    ?.files?.[0];
+    function loadSettings() {
+
+        const settings =
+            getSettings();
+
+        if (
+            settings.name &&
+            $("leaderName")
+        ) {
+
+            $("leaderName").textContent =
+                settings.name;
+        }
+    }
 
 
-            if (file) {
+    window.saveSettings = function () {
 
-                saveLeaderPhoto(
-                    file
-                );
+        const name =
+            $("settingName")?.value.trim();
 
-            }
+        const phone =
+            $("settingPhone")?.value.trim();
 
+        const line =
+            $("settingLine")?.value.trim();
 
-            closeModal();
+        const settings = {
 
+            name:
+                name ||
+                leader.name ||
+                "นายศักรนนท์ ขัติ์วงศ์",
 
-            alert(
-                "บันทึกการตั้งค่าเรียบร้อยแล้ว"
-            );
+            phone:
+                phone ||
+                leader.phone ||
+                "080-1202529",
 
+            line:
+                line ||
+                leader.line ||
+                "rongkhem.village"
         };
+
+        localStorage.setItem(
+            SETTINGS_KEY,
+            JSON.stringify(settings)
+        );
+
+        if ($("leaderName")) {
+
+            $("leaderName").textContent =
+                settings.name;
+        }
+
+        const file =
+            $("leaderPhotoFile")
+                ?.files?.[0];
+
+        if (file) {
+            saveLeaderPhoto(file);
+        }
+
+        closeModal();
+
+        alert(
+            "บันทึกการตั้งค่าเรียบร้อยแล้ว"
+        );
+    };
 
 
     /* =====================================================
@@ -841,23 +719,17 @@
 
         if (!file) return;
 
-
-        if (
-            !file.type.startsWith("image/")
-        ) {
+        if (!file.type.startsWith("image/")) {
 
             alert(
                 "กรุณาเลือกไฟล์รูปภาพ"
             );
 
             return;
-
         }
-
 
         const reader =
             new FileReader();
-
 
         reader.onload =
             function (event) {
@@ -865,24 +737,19 @@
                 const image =
                     event.target.result;
 
-
                 localStorage.setItem(
-                    "RONGKHEM_LEADER_PHOTO",
+                    LEADER_PHOTO_KEY,
                     image
                 );
-
 
                 showLeaderPhoto(
                     image
                 );
-
             };
-
 
         reader.readAsDataURL(
             file
         );
-
     }
 
 
@@ -891,16 +758,19 @@
         const element =
             $("profilePic");
 
-
         if (!element) return;
 
-
         element.innerHTML =
-            `<img
+            `
+            <img
                 src="${image}"
                 alt="ผู้ใหญ่บ้าน"
-            >`;
-
+                style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                ">
+            `;
     }
 
 
@@ -908,18 +778,12 @@
 
         const image =
             localStorage.getItem(
-                "RONGKHEM_LEADER_PHOTO"
+                LEADER_PHOTO_KEY
             );
-
 
         if (image) {
-
-            showLeaderPhoto(
-                image
-            );
-
+            showLeaderPhoto(image);
         }
-
     }
 
 
@@ -928,105 +792,80 @@
        หมู่บ้านกองทุนแม่ของแผ่นดิน
     ===================================================== */
 
-    const HERO_IMAGE_KEY =
-        "RONGKHEM_HERO_IMAGE";
+    window.openHeroUpload = function () {
 
+        const input =
+            document.createElement(
+                "input"
+            );
 
-    window.openHeroUpload =
-        function () {
+        input.type =
+            "file";
 
-            const input =
-                document.createElement(
-                    "input"
-                );
+        input.accept =
+            "image/*";
 
+        input.onchange =
+            function () {
 
-            input.type =
-                "file";
+                const file =
+                    input.files &&
+                    input.files[0];
 
-            input.accept =
-                "image/*";
+                if (!file) return;
 
+                if (
+                    !file.type.startsWith(
+                        "image/"
+                    )
+                ) {
 
-            input.onchange =
-                function () {
-
-                    const file =
-                        input.files &&
-                        input.files[0];
-
-
-                    if (!file) return;
-
-
-                    if (
-                        !file.type.startsWith(
-                            "image/"
-                        )
-                    ) {
-
-                        alert(
-                            "กรุณาเลือกไฟล์รูปภาพ"
-                        );
-
-                        return;
-
-                    }
-
-
-                    if (
-                        file.size >
-                        10 * 1024 * 1024
-                    ) {
-
-                        alert(
-                            "รูปภาพต้องมีขนาดไม่เกิน 10 MB"
-                        );
-
-                        return;
-
-                    }
-
-
-                    const reader =
-                        new FileReader();
-
-
-                    reader.onload =
-                        function (event) {
-
-                            const image =
-                                event.target.result;
-
-
-                            localStorage.setItem(
-                                HERO_IMAGE_KEY,
-                                image
-                            );
-
-
-                            applyHeroImage(
-                                image
-                            );
-
-
-                            alert(
-                                "เปลี่ยนรูปภาพเรียบร้อยแล้ว"
-                            );
-
-                        };
-
-
-                    reader.readAsDataURL(
-                        file
+                    alert(
+                        "กรุณาเลือกไฟล์รูปภาพ"
                     );
 
-                };
+                    return;
+                }
 
+                if (
+                    file.size >
+                    10 * 1024 * 1024
+                ) {
 
-            input.click();
+                    alert(
+                        "รูปภาพต้องมีขนาดไม่เกิน 10 MB"
+                    );
 
-        };
+                    return;
+                }
+
+                const reader =
+                    new FileReader();
+
+                reader.onload =
+                    function (event) {
+
+                        const image =
+                            event.target.result;
+
+                        localStorage.setItem(
+                            HERO_IMAGE_KEY,
+                            image
+                        );
+
+                        applyHeroImage(
+                            image
+                        );
+
+                    };
+
+                reader.readAsDataURL(
+                    file
+                );
+            };
+
+        input.click();
+    };
 
 
     function applyHeroImage(image) {
@@ -1034,25 +873,19 @@
         const hero =
             $("heroBanner");
 
-
         if (!hero) return;
-
 
         hero.style.backgroundImage =
             `url("${image}")`;
 
-
         hero.style.backgroundSize =
             "cover";
-
 
         hero.style.backgroundPosition =
             "center";
 
-
         hero.style.backgroundRepeat =
             "no-repeat";
-
     }
 
 
@@ -1063,15 +896,12 @@
                 HERO_IMAGE_KEY
             );
 
-
         if (image) {
 
             applyHeroImage(
                 image
             );
-
         }
-
     }
 
 
@@ -1082,156 +912,115 @@
 
     async function loadWeather() {
 
-        const weatherConfig =
-            CONFIG.weather;
-
-
-        if (
-            !weatherConfig ||
-            weatherConfig.enabled === false
-        ) {
-
-            return;
-
-        }
-
+        const weather =
+            CONFIG.weather || {};
 
         const latitude =
-            weatherConfig.latitude;
-
+            weather.latitude ??
+            19.1920;
 
         const longitude =
-            weatherConfig.longitude;
-
+            weather.longitude ??
+            99.8780;
 
         const url =
             "https://api.open-meteo.com/v1/forecast" +
-
             `?latitude=${latitude}` +
-
             `&longitude=${longitude}` +
-
-            "&current=" +
-
-            "temperature_2m," +
-            "relative_humidity_2m," +
-            "precipitation," +
-            "wind_speed_10m," +
-            "weather_code" +
-
+            "&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m,weather_code" +
             "&hourly=precipitation_probability" +
-
             "&timezone=Asia%2FBangkok";
-
 
         try {
 
             const response =
                 await fetch(url);
 
-
             if (!response.ok) {
-
                 throw new Error(
                     "Weather API error"
                 );
-
             }
-
 
             const data =
                 await response.json();
 
-
             const current =
                 data.current;
-
 
             const temperature =
                 Math.round(
                     current.temperature_2m
                 );
 
-
             const humidity =
                 current.relative_humidity_2m;
-
 
             const wind =
                 Math.round(
                     current.wind_speed_10m
                 );
 
-
-            const weatherCode =
+            const code =
                 current.weather_code;
 
+            let rain =
+                null;
 
-            const precipitation =
+            if (
                 data.hourly &&
                 data.hourly.precipitation_probability
-                    ? data.hourly.precipitation_probability[0]
-                    : null;
+            ) {
 
+                rain =
+                    data.hourly
+                        .precipitation_probability[0];
+            }
 
             if ($("temp")) {
 
                 $("temp").textContent =
                     temperature + "°C";
-
             }
-
 
             if ($("topTemp")) {
 
                 $("topTemp").textContent =
                     temperature + "°C";
-
             }
-
 
             if ($("hum")) {
 
                 $("hum").textContent =
                     humidity + "%";
-
             }
-
 
             if ($("wind")) {
 
                 $("wind").textContent =
                     wind + " km/h";
-
             }
 
-
-            if (
-                $("weatherText")
-            ) {
+            if ($("weatherText")) {
 
                 $("weatherText").textContent =
                     weatherDescription(
-                        weatherCode
+                        code
                     );
-
             }
-
 
             const rainElement =
                 document.querySelector(
                     ".weather3 div:nth-child(2) b"
                 );
 
-
             if (
                 rainElement &&
-                precipitation !== null
+                rain !== null
             ) {
 
                 rainElement.textContent =
-                    precipitation + "%";
-
+                    rain + "%";
             }
 
         } catch (error) {
@@ -1241,16 +1030,12 @@
                 error
             );
 
-
             if ($("weatherText")) {
 
                 $("weatherText").textContent =
                     "ไม่สามารถโหลดข้อมูลสดได้";
-
             }
-
         }
-
     }
 
 
@@ -1292,14 +1077,11 @@
             return "ฝนตก";
         }
 
-        if (
-            code >= 95
-        ) {
+        if (code >= 95) {
             return "ฝนฟ้าคะนอง";
         }
 
         return "สภาพอากาศปัจจุบัน";
-
     }
 
 
@@ -1309,78 +1091,54 @@
 
     async function loadPM25() {
 
-        const pmConfig =
-            CONFIG.pm25;
-
-
-        if (
-            !pmConfig ||
-            pmConfig.enabled === false
-        ) {
-
-            return;
-
-        }
-
+        const pm =
+            CONFIG.pm25 || {};
 
         const latitude =
-            pmConfig.latitude;
-
+            pm.latitude ??
+            19.1920;
 
         const longitude =
-            pmConfig.longitude;
-
+            pm.longitude ??
+            99.8780;
 
         const url =
             "https://air-quality-api.open-meteo.com/v1/air-quality" +
-
             `?latitude=${latitude}` +
-
             `&longitude=${longitude}` +
-
             "&current=pm2_5" +
-
             "&timezone=Asia%2FBangkok";
-
 
         try {
 
             const response =
                 await fetch(url);
 
-
             if (!response.ok) {
 
                 throw new Error(
                     "PM2.5 API error"
                 );
-
             }
-
 
             const data =
                 await response.json();
-
 
             const value =
                 Number(
                     data.current.pm2_5
                 );
 
-
             if ($("pmv")) {
 
                 $("pmv").textContent =
                     value.toFixed(1);
-
             }
-
 
             if ($("pmStatus")) {
 
                 $("pmStatus").textContent =
                     getPM25Status(value);
-
             }
 
         } catch (error) {
@@ -1390,16 +1148,12 @@
                 error
             );
 
-
             if ($("pmStatus")) {
 
                 $("pmStatus").textContent =
                     "ไม่สามารถโหลดข้อมูลสดได้";
-
             }
-
         }
-
     }
 
 
@@ -1422,68 +1176,205 @@
         }
 
         return "มีผลกระทบ";
-
     }
 
 
     /* =====================================================
-       SETTINGS LOAD
+       AI ผู้ช่วยผู้ใหญ่บ้าน
     ===================================================== */
 
-    function loadSettings() {
+    window.askAI = function () {
 
-        try {
+        const box =
+            $("aiText");
 
-            const settings =
-                JSON.parse(
-                    localStorage.getItem(
-                        "RONGKHEM_SETTINGS"
-                    ) || "{}"
+        if (!box) return;
+
+        const question =
+            prompt(
+                "ถามข้อมูลบ้านร่องเข็มได้เลยครับ\n\n" +
+                "ตัวอย่าง:\n" +
+                "• ประชากรมีกี่คน?\n" +
+                "• มีกี่ครัวเรือน?\n" +
+                "• ผู้สูงอายุมีกี่คน?\n" +
+                "• ข้อมูลสำรวจมีเท่าไร?\n" +
+                "• ผู้พิการมีกี่คน?"
+            );
+
+        if (!question) return;
+
+        const q =
+            question
+                .toLowerCase()
+                .trim();
+
+        let answer =
+            "ขออภัยครับ ผมยังไม่มีข้อมูลคำถามนี้ใน Dashboard";
+
+
+        if (
+            q.includes("ประชากร") ||
+            q.includes("ประชาชน")
+        ) {
+
+            answer =
+                `บ้านร่องเข็มมีประชากร ${
+                    population.total ?? 960
+                } คน ` +
+                `แบ่งเป็นชาย ${
+                    population.male ?? 471
+                } คน ` +
+                `และหญิง ${
+                    population.female ?? 489
+                } คน`;
+        }
+
+
+        if (
+            q.includes("ครัวเรือน") ||
+            (
+                q.includes("บ้าน") &&
+                q.includes("หลัง")
+            )
+        ) {
+
+            answer =
+                `บ้านร่องเข็มมี ${
+                    households.total ?? 352
+                } ครัวเรือน`;
+        }
+
+
+        if (
+            q.includes("ผู้สูงอายุ") ||
+            q.includes("อายุ 60")
+        ) {
+
+            answer =
+                `ผู้สูงอายุอายุ 60 ปีขึ้นไปมี ${
+                    survey.elderly60Plus ?? 92
+                } คน ` +
+                `คิดเป็น ${
+                    survey.elderlyPercent ?? 45.5
+                }% ของผู้ตอบแบบสำรวจ`;
+        }
+
+
+        if (
+            q.includes("สำรวจ") ||
+            q.includes("ผู้ตอบ")
+        ) {
+
+            answer =
+                `มีผู้ตอบแบบสำรวจ ${
+                    survey.respondents ?? 202
+                } คน ` +
+                `จาก ${
+                    survey.households ?? 202
+                } ครัวเรือน`;
+        }
+
+
+        if (
+            q.includes("ผู้พิการ")
+        ) {
+
+            answer =
+                `ข้อมูลสำรวจระบุผู้พิการ ${
+                    survey.disabled ?? 3
+                } คน`;
+        }
+
+
+        if (
+            q.includes("โรคเรื้อรัง")
+        ) {
+
+            answer =
+                `ข้อมูลสำรวจระบุผู้มีโรคเรื้อรัง ${
+                    survey.chronicDisease ?? 1
+                } คน`;
+        }
+
+
+        if (
+            q.includes("กลุ่มเปราะบาง")
+        ) {
+
+            answer =
+                `ข้อมูลกลุ่มเปราะบางมี ${
+                    survey.vulnerableSelections ?? 95
+                } รายการ`;
+        }
+
+
+        box.innerHTML =
+            `
+            <b>🤖 ผู้ช่วย AI</b>
+            <br>
+            ${escapeHTML(answer)}
+            `;
+    };
+
+
+    /* =====================================================
+       NAVIGATION
+    ===================================================== */
+
+    function setupNavigation() {
+
+        document
+            .querySelectorAll(".nav")
+            .forEach(function (nav) {
+
+                nav.addEventListener(
+                    "click",
+                    function () {
+
+                        document
+                            .querySelectorAll(".nav")
+                            .forEach(
+                                function (item) {
+                                    item.classList.remove(
+                                        "active"
+                                    );
+                                }
+                            );
+
+                        nav.classList.add(
+                            "active"
+                        );
+                    }
                 );
-
-
-            if (
-                settings.name &&
-                $("leaderName")
-            ) {
-
-                $("leaderName").textContent =
-                    settings.name;
-
-            }
-
-        } catch (error) {
-
-            console.error(error);
-
-        }
-
+            });
     }
 
 
     /* =====================================================
-       MODAL BACKGROUND
+       MODAL CLICK
     ===================================================== */
 
-    document.addEventListener(
-        "click",
-        function (event) {
+    function setupModal() {
 
-            const modal =
-                $("modal");
+        const modal =
+            $("modal");
 
+        if (!modal) return;
 
-            if (
-                modal &&
-                event.target === modal
-            ) {
+        modal.addEventListener(
+            "click",
+            function (event) {
 
-                closeModal();
+                if (
+                    event.target ===
+                    modal
+                ) {
 
+                    window.closeModal();
+                }
             }
-
-        }
-    );
+        );
+    }
 
 
     /* =====================================================
@@ -1510,10 +1401,16 @@
 
         updateClock();
 
+        setupNavigation();
+
+        setupModal();
+
         loadWeather();
 
         loadPM25();
 
+
+        /* นาฬิกา */
 
         setInterval(
             updateClock,
@@ -1521,21 +1418,23 @@
         );
 
 
+        /* Weather Real-time */
+
         const weatherRefresh =
-            CONFIG.refresh?.weather ||
+            CONFIG.refresh?.weather ??
             300000;
-
-
-        const pmRefresh =
-            CONFIG.refresh?.pm25 ||
-            300000;
-
 
         setInterval(
             loadWeather,
             weatherRefresh
         );
 
+
+        /* PM2.5 Real-time */
+
+        const pmRefresh =
+            CONFIG.refresh?.pm25 ??
+            300000;
 
         setInterval(
             loadPM25,
@@ -1562,8 +1461,6 @@
     } else {
 
         init();
-
     }
-
 
 })();
