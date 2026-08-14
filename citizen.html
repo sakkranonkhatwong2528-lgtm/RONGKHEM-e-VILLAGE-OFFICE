@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RONGKHEM e-VILLAGE | ระบบประชาชน</title>
+
+<style>
+:root{
+    --bg:#07111f;
+    --card:#101f33;
+    --primary:#08a8ff;
+    --primary2:#006eff;
+    --green:#00df8a;
+    --yellow:#ffc83d;
+    --red:#ff5261;
+    --text:#f4f8ff;
+    --muted:#8fa1b8;
+    --border:rgba(255,255,255,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Noto Sans Thai","Segoe UI",Arial,sans-serif;
+    background:
+        radial-gradient(circle at 20% 0%,rgba(0,150,255,.14),transparent 30%),
+        #07111f;
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:250px;
+    background:linear-gradient(180deg,#0b1b2f,#071321);
+    border-right:1px solid var(--border);
+    padding:20px 14px;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px 22px;
+    border-bottom:1px solid var(--border);
+    margin-bottom:20px;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:15px;
+    background:linear-gradient(135deg,#007aff,#00c8ff);
+    font-size:25px;
+}
+
+.logo-title{
+    font-size:17px;
+    font-weight:800;
+}
+
+.logo-sub{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.menu-title{
+    color:#61748b;
+    font-size:10px;
+    font-weight:700;
+    padding:0 12px;
+    margin-bottom:8px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.menu button{
+    border:0;
+    background:transparent;
+    color:#aebdd0;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:.2s;
+}
+
+.menu button:hover,
+.menu button.active{
+    color:#fff;
+    background:rgba(0,150,255,.12);
+}
+
+.menu-icon{
+    width:25px;
+    font-size:19px;
+}
+
+.main{
+    margin-left:250px;
+    padding:22px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.page-title{
+    font-size:25px;
+    font-weight:800;
+}
+
+.page-sub{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.clock{
+    padding:10px 15px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:#62d5ff;
+    font-family:monospace;
+}
+
+.breadcrumb{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.breadcrumb span{
+    color:#58caff;
+}
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    padding:18px;
+    border-radius:18px;
+    background:linear-gradient(
+        145deg,
+        rgba(255,255,255,.055),
+        rgba(255,255,255,.018)
+    );
+    border:1px solid var(--border);
+}
+
+.summary-icon{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+}
+
+.summary-label{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+.card{
+    background:linear-gradient(
+        145deg,
+        rgba(18,36,58,.96),
+        rgba(8,20,34,.98)
+    );
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.card-icon{
+    width:43px;
+    height:43px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:13px;
+    background:rgba(0,160,255,.1);
+    font-size:21px;
+}
+
+.card-title h2{
+    font-size:18px;
+}
+
+.card-title p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.add-btn{
+    border:0;
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary2)
+    );
+    color:#fff;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:13px 15px 13px 42px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:0;
+    background:rgba(0,0,0,.15);
+    color:#fff;
+}
+
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.filter{
+    min-width:170px;
+    padding:0 12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#0b1b2f;
+    color:#fff;
+    outline:0;
+}
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:1050px;
+}
+
+thead{
+    background:rgba(0,150,255,.06);
+}
+
+th{
+    color:#90a5bc;
+    font-size:11px;
+    font-weight:700;
+    padding:13px;
+    text-align:left;
+    border-bottom:1px solid var(--border);
+}
+
+td{
+    padding:13px;
+    font-size:12px;
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+tbody tr:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.person-id{
+    color:#55cfff;
+    font-weight:800;
+}
+
+.person-name{
+    font-weight:700;
+}
+
+.muted{
+    color:var(--muted);
+}
+
+.badge{
+    display:inline-block;
+    padding:5px 8px;
+    border-radius:20px;
+    font-size:9px;
+}
+
+.badge.green{
+    color:var(--green);
+    background:rgba(0,220,140,.08);
+}
+
+.badge.yellow{
+    color:var(--yellow);
+    background:rgba(255,190,40,.08);
+}
+
+.badge.red{
+    color:var(--red);
+    background:rgba(255,60,70,.08);
+}
+
+.actions{
+    display:flex;
+    gap:5px;
+}
+
+.action-btn{
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    width:32px;
+    height:32px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.action-btn:hover{
+    background:rgba(0,150,255,.12);
+}
+
+.action-btn.delete:hover{
+    background:rgba(255,60,70,.12);
+}
+
+.empty{
+    text-align:center;
+    padding:50px 20px;
+    color:#74869b;
+}
+
+.empty-icon{
+    font-size:45px;
+    margin-bottom:12px;
+}
+
+.pagination{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:15px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.page-buttons{
+    display:flex;
+    gap:5px;
+}
+
+.page-buttons button{
+    width:32px;
+    height:32px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(8px);
+    z-index:500;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:720px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:#102139;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:23px;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-head h2{
+    font-size:20px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:10px;
+    background:rgba(255,255,255,.06);
+    color:#fff;
+    cursor:pointer;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.form-group{
+    margin-bottom:13px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    color:#aab9cb;
+    font-size:11px;
+    margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.18);
+    color:#fff;
+    padding:12px;
+    border-radius:10px;
+    outline:0;
+}
+
+select option{
+    background:#102139;
+}
+
+textarea{
+    min-height:85px;
+    resize:vertical;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:5px;
+    border:0;
+    padding:13px;
+    border-radius:11px;
+    color:#fff;
+    background:linear-gradient(
+        135deg,
+        #008cff,
+        #0069ee
+    );
+    cursor:pointer;
+    font-weight:700;
+}
+
+@media(max-width:1100px){
+
+    .summary{
+        grid-template-columns:repeat(3,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:70px;
+        padding:15px 8px;
+    }
+
+    .logo-title,
+    .logo-sub,
+    .menu-title,
+    .menu-text{
+        display:none;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .menu button{
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:70px;
+    }
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        padding:12px;
+    }
+
+    .page-title{
+        font-size:20px;
+    }
+
+    .clock{
+        font-size:11px;
+        padding:8px;
+    }
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .toolbar{
+        flex-direction:column;
+    }
+
+    .filter{
+        height:43px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏛️
+        </div>
+
+        <div>
+
+            <div class="logo-title">
+                RONGKHEM
+            </div>
+
+            <div class="logo-sub">
+                e-VILLAGE OFFICE
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="menu-title">
+        MAIN MENU
+    </div>
+
+    <nav class="menu">
+
+        <button onclick="location.href='index.html'">
+            <span class="menu-icon">📊</span>
+            <span class="menu-text">หน้าแรก</span>
+        </button>
+
+        <button onclick="location.href='household.html'">
+            <span class="menu-icon">🏠</span>
+            <span class="menu-text">ครัวเรือน</span>
+        </button>
+
+        <button class="active">
+            <span class="menu-icon">👥</span>
+            <span class="menu-text">ประชาชน</span>
+        </button>
+
+        <button onclick="showComingSoon('ทำเนียบผู้นำ')">
+            <span class="menu-icon">👔</span>
+            <span class="menu-text">ทำเนียบผู้นำ</span>
+        </button>
+
+        <button onclick="showComingSoon('กิจกรรม')">
+            <span class="menu-icon">📸</span>
+            <span class="menu-text">กิจกรรม</span>
+        </button>
+
+        <button onclick="showComingSoon('รับเรื่องร้องเรียน')">
+            <span class="menu-icon">📝</span>
+            <span class="menu-text">ร้องเรียน</span>
+        </button>
+
+    </nav>
+
+</aside>
+
+
+<main class="main">
+
+<header class="topbar">
+
+    <div>
+
+        <div class="page-title">
+            ระบบจัดการประชาชน
+        </div>
+
+        <div class="page-sub">
+            RONGKHEM e-VILLAGE OFFICE |
+            ที่ทำการผู้ใหญ่บ้านออนไลน์
+        </div>
+
+    </div>
+
+    <div class="clock" id="clock">
+        08:05:56
+    </div>
+
+</header>
+
+
+<div class="breadcrumb">
+
+    หน้าแรก /
+    <span>ประชาชน</span>
+
+</div>
+
+
+<section class="summary">
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            👥
+        </div>
+
+        <div class="summary-number"
+             id="totalPeople">
+            648
+        </div>
+
+        <div class="summary-label">
+            ประชาชนทั้งหมด
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            👨
+        </div>
+
+        <div class="summary-number"
+             id="totalMale">
+            0
+        </div>
+
+        <div class="summary-label">
+            ชาย
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            👩
+        </div>
+
+        <div class="summary-number"
+             id="totalFemale">
+            0
+        </div>
+
+        <div class="summary-label">
+            หญิง
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            👴
+        </div>
+
+        <div class="summary-number"
+             id="totalElderly">
+            124
+        </div>
+
+        <div class="summary-label">
+            ผู้สูงอายุ
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            ♿
+        </div>
+
+        <div class="summary-number"
+             id="totalVulnerable">
+            0
+        </div>
+
+        <div class="summary-label">
+            กลุ่มเปราะบาง
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="card">
+
+<div class="card-header">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            👥
+        </div>
+
+        <div>
+
+            <h2>
+                ทะเบียนประชาชน
+            </h2>
+
+            <p>
+                ฐานข้อมูลประชาชนบ้านร่องเข็ม หมู่ที่ 6
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="add-btn"
+        onclick="openCitizenModal()"
+    >
+
+        + เพิ่มประชาชน
+
+    </button>
+
+</div>
+
+
+<div class="toolbar">
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔍
+        </span>
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="ค้นหาชื่อ เลขบัตร หรือเลขที่บ้าน..."
+            oninput="renderCitizens()"
+        >
+
+    </div>
+
+
+    <select
+        class="filter"
+        id="genderFilter"
+        onchange="renderCitizens()"
+    >
+
+        <option value="all">
+            เพศทั้งหมด
+        </option>
+
+        <option value="ชาย">
+            ชาย
+        </option>
+
+        <option value="หญิง">
+            หญิง
+        </option>
+
+    </select>
+
+
+    <select
+        class="filter"
+        id="ageFilter"
+        onchange="renderCitizens()"
+    >
+
+        <option value="all">
+            อายุทั้งหมด
+        </option>
+
+        <option value="elderly">
+            ผู้สูงอายุ 60+
+        </option>
+
+        <option value="adult">
+            อายุ 18-59
+        </option>
+
+        <option value="child">
+            ต่ำกว่า 18 ปี
+        </option>
+
+    </select>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+    <th>
+        รหัส
+    </th>
+
+    <th>
+        ชื่อ-นามสกุล
+    </th>
+
+    <th>
+        เพศ
+    </th>
+
+    <th>
+        อายุ
+    </th>
+
+    <th>
+        บ้านเลขที่
+    </th>
+
+    <th>
+        โทรศัพท์
+    </th>
+
+    <th>
+        สถานะ
+    </th>
+
+    <th>
+        จัดการ
+    </th>
+
+</tr>
+
+</thead>
+
+<tbody id="citizenTable">
+</tbody>
+
+</table>
+
+</div>
+
+
+<div class="pagination">
+
+    <div id="resultCount">
+        พบ 0 รายการ
+    </div>
+
+    <div class="page-buttons">
+
+        <button>‹</button>
+        <button>1</button>
+        <button>›</button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="card">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            💡
+        </div>
+
+        <div>
+
+            <h2>
+                หมายเหตุระบบ
+            </h2>
+
+            <p>
+
+                ข้อมูลประชาชนในเวอร์ชันนี้
+                เก็บไว้ในเบราว์เซอร์เครื่องนี้
+                และสามารถเปลี่ยนเป็นฐานข้อมูล Supabase
+                ในขั้นตอนถัดไป
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+    class="modal"
+    id="citizenModal"
+>
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+    <h2 id="modalTitle">
+        👥 เพิ่มประชาชน
+    </h2>
+
+    <button
+        class="close"
+        onclick="closeCitizenModal()"
+    >
+        ✕
+    </button>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>
+    เลขบัตรประชาชน
+</label>
+
+<input
+    id="citizenId"
+    type="text"
+    maxlength="13"
+    placeholder="เลขบัตรประชาชน 13 หลัก"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    ชื่อ-นามสกุล *
+</label>
+
+<input
+    id="citizenName"
+    type="text"
+    placeholder="ชื่อ-นามสกุล"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    เพศ *
+</label>
+
+<select id="citizenGender">
+
+    <option value="ชาย">
+        ชาย
+    </option>
+
+    <option value="หญิง">
+        หญิง
+    </option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    วันเกิด
+</label>
+
+<input
+    id="birthDate"
+    type="date"
+    onchange="calculateAge()"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    อายุ
+</label>
+
+<input
+    id="citizenAge"
+    type="number"
+    min="0"
+    readonly
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    บ้านเลขที่ *
+</label>
+
+<input
+    id="citizenHouse"
+    type="text"
+    placeholder="เช่น 123"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    เบอร์โทรศัพท์
+</label>
+
+<input
+    id="citizenPhone"
+    type="tel"
+    placeholder="08xxxxxxxx"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    กลุ่มเปราะบาง
+</label>
+
+<select id="citizenVulnerable">
+
+    <option value="ไม่มี">
+        ไม่มี
+    </option>
+
+    <option value="มี">
+        มี
+    </option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    สถานะ
+</label>
+
+<select id="citizenStatus">
+
+    <option value="ปกติ">
+        ปกติ
+    </option>
+
+    <option value="ย้ายออก">
+        ย้ายออก
+    </option>
+
+    <option value="เสียชีวิต">
+        เสียชีวิต
+    </option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    หมายเหตุ
+</label>
+
+<textarea
+    id="citizenNote"
+    placeholder="ข้อมูลเพิ่มเติม"
+></textarea>
+
+</div>
+
+
+</div>
+
+
+<button
+    class="save-btn"
+    onclick="saveCitizen()"
+>
+
+    💾 บันทึกข้อมูลประชาชน
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   CLOCK
+================================================== */
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock")
+        .textContent =
+        now.toLocaleTimeString(
+            "th-TH",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
+
+}
+
+updateClock();
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* ==================================================
+   STORAGE
+================================================== */
+
+let citizens =
+    JSON.parse(
+        localStorage.getItem(
+            "rongkhem_citizens"
+        ) || "[]"
+    );
+
+
+let editIndex = -1;
+
+
+/* ==================================================
+   SAMPLE DATA
+================================================== */
+
+if(citizens.length === 0){
+
+    citizens = [
+
+        {
+            citizenId:"0000000000001",
+            name:"ตัวอย่าง นายร่องเข็ม",
+            gender:"ชาย",
+            birthDate:"1970-01-01",
+            age:56,
+            house:"1",
+            phone:"08xxxxxxxx",
+            vulnerable:"ไม่มี",
+            status:"ปกติ",
+            note:""
+        },
+
+        {
+            citizenId:"0000000000002",
+            name:"ตัวอย่าง นางร่องเข็ม",
+            gender:"หญิง",
+            birthDate:"1960-01-01",
+            age:66,
+            house:"2",
+            phone:"08xxxxxxxx",
+            vulnerable:"ไม่มี",
+            status:"ปกติ",
+            note:""
+        },
+
+        {
+            citizenId:"0000000000003",
+            name:"ตัวอย่าง เด็กร่องเข็ม",
+            gender:"ชาย",
+            birthDate:"2012-01-01",
+            age:14,
+            house:"3",
+            phone:"",
+            vulnerable:"ไม่มี",
+            status:"ปกติ",
+            note:""
+        }
+
+    ];
+
+    localStorage.setItem(
+        "rongkhem_citizens",
+        JSON.stringify(citizens)
+    );
+
+}
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+function renderCitizens(){
+
+    const tbody =
+        document.getElementById(
+            "citizenTable"
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const gender =
+        document.getElementById(
+            "genderFilter"
+        ).value;
+
+
+    const ageFilter =
+        document.getElementById(
+            "ageFilter"
+        ).value;
+
+
+    const filtered =
+        citizens.filter(
+            person => {
+
+                const matchSearch =
+
+                    person.name
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    person.citizenId
+                    .includes(search)
+
+                    ||
+
+                    person.house
+                    .toLowerCase()
+                    .includes(search);
+
+
+                const matchGender =
+                    gender === "all" ||
+                    person.gender === gender;
+
+
+                let matchAge = true;
+
+
+                if(
+                    ageFilter === "elderly"
+                ){
+
+                    matchAge =
+                        person.age >= 60;
+
+                }
+
+
+                if(
+                    ageFilter === "adult"
+                ){
+
+                    matchAge =
+                        person.age >= 18 &&
+                        person.age < 60;
+
+                }
+
+
+                if(
+                    ageFilter === "child"
+                ){
+
+                    matchAge =
+                        person.age < 18;
+
+                }
+
+
+                return (
+                    matchSearch &&
+                    matchGender &&
+                    matchAge
+                );
+
+            }
+        );
+
+
+    if(filtered.length === 0){
+
+        tbody.innerHTML = `
+
+            <tr>
+
+                <td
+                    colspan="8"
+                    class="empty"
+                >
+
+                    <div class="empty-icon">
+                        👥
+                    </div>
+
+                    ไม่พบข้อมูลประชาชน
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }else{
+
+        tbody.innerHTML =
+            filtered.map(
+                person => {
+
+                    const index =
+                        citizens.indexOf(
+                            person
+                        );
+
+
+                    let ageBadge =
+                        "";
+
+                    if(person.age >= 60){
+
+                        ageBadge =
+                            `
+                            <span class="badge yellow">
+                                ผู้สูงอายุ
+                            </span>
+                            `;
+
+                    }else if(
+                        person.age < 18
+                    ){
+
+                        ageBadge =
+                            `
+                            <span class="badge green">
+                                เด็ก/เยาวชน
+                            </span>
+                            `;
+
+                    }else{
+
+                        ageBadge =
+                            `
+                            <span class="badge green">
+                                ประชาชน
+                            </span>
+                            `;
+
+                    }
+
+
+                    return `
+
+                    <tr>
+
+                        <td>
+
+                            <span
+                                class="person-id"
+                            >
+                                RK-${String(
+                                    index + 1
+                                ).padStart(
+                                    4,
+                                    "0"
+                                )}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <div
+                                class="person-name"
+                            >
+                                ${escapeHTML(
+                                    person.name
+                                )}
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${escapeHTML(
+                                person.gender
+                            )}
+                        </td>
+
+
+                        <td>
+                            ${person.age || 0}
+                            ปี
+                        </td>
+
+
+                        <td>
+
+                            บ้านเลขที่
+                            ${escapeHTML(
+                                person.house
+                            )}
+
+                        </td>
+
+
+                        <td class="muted">
+
+                            ${
+                                person.phone
+                                ?
+                                escapeHTML(
+                                    person.phone
+                                )
+                                :
+                                "-"
+                            }
+
+                        </td>
+
+
+                        <td>
+
+                            ${ageBadge}
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="actions">
+
+                                <button
+                                    class="action-btn"
+                                    onclick="
+                                        editCitizen(
+                                            ${index}
+                                        )
+                                    "
+                                >
+                                    ✏️
+                                </button>
+
+
+                                <button
+                                    class="
+                                        action-btn
+                                        delete
+                                    "
+                                    onclick="
+                                        deleteCitizen(
+                                            ${index}
+                                        )
+                                    "
+                                >
+                                    🗑️
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    document.getElementById(
+        "resultCount"
+    ).textContent =
+        `พบ ${filtered.length} รายการ`;
+
+
+    updateSummary();
+
+}
+
+
+/* ==================================================
+   SUMMARY
+================================================== */
+
+function updateSummary(){
+
+    const active =
+        citizens.filter(
+            p =>
+                p.status !== "เสียชีวิต" &&
+                p.status !== "ย้ายออก"
+        );
+
+
+    const male =
+        active.filter(
+            p => p.gender === "ชาย"
+        ).length;
+
+
+    const female =
+        active.filter(
+            p => p.gender === "หญิง"
+        ).length;
+
+
+    const elderly =
+        active.filter(
+            p => Number(p.age) >= 60
+        ).length;
+
+
+    const vulnerable =
+        active.filter(
+            p => p.vulnerable === "มี"
+        ).length;
+
+
+    document.getElementById(
+        "totalPeople"
+    ).textContent =
+        active.length;
+
+
+    document.getElementById(
+        "totalMale"
+    ).textContent =
+        male;
+
+
+    document.getElementById(
+        "totalFemale"
+    ).textContent =
+        female;
+
+
+    document.getElementById(
+        "totalElderly"
+    ).textContent =
+        elderly;
+
+
+    document.getElementById(
+        "totalVulnerable"
+    ).textContent =
+        vulnerable;
+
+}
+
+
+/* ==================================================
+   MODAL
+================================================== */
+
+function openCitizenModal(){
+
+    editIndex = -1;
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "👥 เพิ่มประชาชน";
+
+    clearForm();
+
+    document.getElementById(
+        "citizenModal"
+    ).classList.add("show");
+
+}
+
+
+function closeCitizenModal(){
+
+    document.getElementById(
+        "citizenModal"
+    ).classList.remove("show");
+
+}
+
+
+function clearForm(){
+
+    document.getElementById(
+        "citizenId"
+    ).value = "";
+
+    document.getElementById(
+        "citizenName"
+    ).value = "";
+
+    document.getElementById(
+        "citizenGender"
+    ).value = "ชาย";
+
+    document.getElementById(
+        "birthDate"
+    ).value = "";
+
+    document.getElementById(
+        "citizenAge"
+    ).value = "";
+
+    document.getElementById(
+        "citizenHouse"
+    ).value = "";
+
+    document.getElementById(
+        "citizenPhone"
+    ).value = "";
+
+    document.getElementById(
+        "citizenVulnerable"
+    ).value = "ไม่มี";
+
+    document.getElementById(
+        "citizenStatus"
+    ).value = "ปกติ";
+
+    document.getElementById(
+        "citizenNote"
+    ).value = "";
+
+}
+
+
+/* ==================================================
+   AGE
+================================================== */
+
+function calculateAge(){
+
+    const value =
+        document.getElementById(
+            "birthDate"
+        ).value;
+
+
+    if(!value){
+
+        document.getElementById(
+            "citizenAge"
+        ).value = "";
+
+        return;
+
+    }
+
+
+    const birth =
+        new Date(value);
+
+
+    const today =
+        new Date();
+
+
+    let age =
+        today.getFullYear()
+        -
+        birth.getFullYear();
+
+
+    const month =
+        today.getMonth()
+        -
+        birth.getMonth();
+
+
+    if(
+        month < 0 ||
+        (
+            month === 0 &&
+            today.getDate()
+            <
+            birth.getDate()
+        )
+    ){
+
+        age--;
+
+    }
+
+
+    document.getElementById(
+        "citizenAge"
+    ).value =
+        Math.max(age,0);
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveCitizen(){
+
+    const data = {
+
+        citizenId:
+            document.getElementById(
+                "citizenId"
+            ).value.trim(),
+
+        name:
+            document.getElementById(
+                "citizenName"
+            ).value.trim(),
+
+        gender:
+            document.getElementById(
+                "citizenGender"
+            ).value,
+
+        birthDate:
+            document.getElementById(
+                "birthDate"
+            ).value,
+
+        age:
+            Number(
+                document.getElementById(
+                    "citizenAge"
+                ).value
+            ) || 0,
+
+        house:
+            document.getElementById(
+                "citizenHouse"
+            ).value.trim(),
+
+        phone:
+            document.getElementById(
+                "citizenPhone"
+            ).value.trim(),
+
+        vulnerable:
+            document.getElementById(
+                "citizenVulnerable"
+            ).value,
+
+        status:
+            document.getElementById(
+                "citizenStatus"
+            ).value,
+
+        note:
+            document.getElementById(
+                "citizenNote"
+            ).value.trim()
+
+    };
+
+
+    if(
+        !data.name ||
+        !data.house
+    ){
+
+        alert(
+            "กรุณากรอกชื่อและบ้านเลขที่"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        editIndex === -1
+    ){
+
+        if(
+            data.citizenId &&
+            citizens.some(
+                p =>
+                    p.citizenId ===
+                    data.citizenId
+            )
+        ){
+
+            alert(
+                "เลขบัตรประชาชนนี้มีอยู่แล้ว"
+            );
+
+            return;
+
+        }
+
+
+        citizens.push(data);
+
+        alert(
+            "เพิ่มข้อมูลประชาชนเรียบร้อยแล้ว"
+        );
+
+    }else{
+
+        citizens[
+            editIndex
+        ] = data;
+
+        alert(
+            "แก้ไขข้อมูลประชาชนเรียบร้อยแล้ว"
+        );
+
+    }
+
+
+    localStorage.setItem(
+        "rongkhem_citizens",
+        JSON.stringify(
+            citizens
+        )
+    );
+
+
+    closeCitizenModal();
+
+    renderCitizens();
+
+}
+
+
+/* ==================================================
+   EDIT
+================================================== */
+
+function editCitizen(index){
+
+    const person =
+        citizens[index];
+
+
+    if(!person) return;
+
+
+    editIndex =
+        index;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "✏️ แก้ไขข้อมูลประชาชน";
+
+
+    document.getElementById(
+        "citizenId"
+    ).value =
+        person.citizenId || "";
+
+
+    document.getElementById(
+        "citizenName"
+    ).value =
+        person.name;
+
+
+    document.getElementById(
+        "citizenGender"
+    ).value =
+        person.gender;
+
+
+    document.getElementById(
+        "birthDate"
+    ).value =
+        person.birthDate || "";
+
+
+    document.getElementById(
+        "citizenAge"
+    ).value =
+        person.age || 0;
+
+
+    document.getElementById(
+        "citizenHouse"
+    ).value =
+        person.house;
+
+
+    document.getElementById(
+        "citizenPhone"
+    ).value =
+        person.phone || "";
+
+
+    document.getElementById(
+        "citizenVulnerable"
+    ).value =
+        person.vulnerable || "ไม่มี";
+
+
+    document.getElementById(
+        "citizenStatus"
+    ).value =
+        person.status || "ปกติ";
+
+
+    document.getElementById(
+        "citizenNote"
+    ).value =
+        person.note || "";
+
+
+    document.getElementById(
+        "citizenModal"
+    ).classList.add("show");
+
+}
+
+
+/* ==================================================
+   DELETE
+================================================== */
+
+function deleteCitizen(index){
+
+    const person =
+        citizens[index];
+
+
+    if(!person) return;
+
+
+    if(
+        !confirm(
+            `ต้องการลบข้อมูล ${person.name} หรือไม่?`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    citizens.splice(
+        index,
+        1
+    );
+
+
+    localStorage.setItem(
+        "rongkhem_citizens",
+        JSON.stringify(
+            citizens
+        )
+    );
+
+
+    renderCitizens();
+
+
+    alert(
+        "ลบข้อมูลประชาชนเรียบร้อยแล้ว"
+    );
+
+}
+
+
+/* ==================================================
+   SECURITY
+================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* ==================================================
+   COMING SOON
+================================================== */
+
+function showComingSoon(name){
+
+    alert(
+        `🏛️ RONGKHEM e-VILLAGE
+
+ระบบ "${name}"
+จะเชื่อมต่อในขั้นตอนถัดไปครับ`
+    );
+
+}
+
+
+/* ==================================================
+   CLOSE MODAL
+================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.classList
+            .contains("modal")
+        ){
+
+            closeCitizenModal();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   INITIALIZE
+================================================== */
+
+renderCitizens();
+
+</script>
+
+</body>
+</html>
