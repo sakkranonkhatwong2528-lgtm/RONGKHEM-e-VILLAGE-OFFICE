@@ -4,20 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONGKHEM e-VILLAGE | ทำเนียบผู้นำ</title>
+<title>ทำเนียบผู้นำชุมชน | RONGKHEM e-VILLAGE</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
-    --bg:#07111f;
-    --card:#101f33;
-    --primary:#08a8ff;
-    --primary2:#006eff;
-    --green:#00df8a;
-    --yellow:#ffc83d;
-    --red:#ff5261;
-    --text:#f4f8ff;
-    --muted:#8fa1b8;
-    --border:rgba(255,255,255,.08);
+    --bg:#03101a;
+    --panel:rgba(4,29,43,.94);
+    --border:rgba(112,190,220,.24);
+    --text:#fff;
+    --muted:#9db5be;
+    --green:#4cff70;
+    --cyan:#45e8ff;
+    --purple:#d78cff;
+    --orange:#ffb53d;
+    --red:#ff5d5d;
+    --sidebar:260px;
 }
 
 *{
@@ -27,437 +34,819 @@
 }
 
 body{
-    font-family:"Noto Sans Thai","Segoe UI",Arial,sans-serif;
-    background:
-        radial-gradient(circle at 20% 0%,rgba(0,150,255,.14),transparent 30%),
-        radial-gradient(circle at 100% 20%,rgba(0,220,160,.06),transparent 25%),
-        #07111f;
-    color:var(--text);
     min-height:100vh;
+    font-family:"Prompt","Kanit",sans-serif;
+    color:var(--text);
+
+    background:
+    linear-gradient(
+        rgba(0,12,20,.91),
+        rgba(0,12,20,.97)
+    ),
+    url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
+    center/cover fixed no-repeat;
 }
 
-button,input,select,textarea{
+button,input,select{
     font-family:inherit;
 }
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+SIDEBAR
+========================================================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
     bottom:0;
-    width:250px;
-    background:linear-gradient(180deg,#0b1b2f,#071321);
-    border-right:1px solid var(--border);
+    width:var(--sidebar);
     padding:20px 14px;
-    z-index:100;
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(1,18,30,.99),
+        rgba(1,10,18,.98)
+    );
+
+    border-right:1px solid rgba(120,201,230,.18);
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.sidebar-brand{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    padding:5px 9px 20px;
+    margin-bottom:13px;
+    border-bottom:1px solid rgba(255,255,255,.09);
 }
 
 .logo{
+    width:54px;
+    height:54px;
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:8px 10px 22px;
-    border-bottom:1px solid var(--border);
-    margin-bottom:20px;
-}
-
-.logo-icon{
-    width:48px;
-    height:48px;
-    display:flex;
     justify-content:center;
-    align-items:center;
     border-radius:15px;
-    background:linear-gradient(135deg,#007aff,#00c8ff);
-    font-size:25px;
+    font-size:29px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(255,188,49,.17),
+        rgba(4,38,51,.4)
+    );
+
+    border:1px solid rgba(255,190,54,.27);
 }
 
-.logo-title{
+.brand-title{
+    font-family:"Kanit";
     font-size:17px;
-    font-weight:800;
+    line-height:1.1;
 }
 
-.logo-sub{
+.brand-title span{
+    color:#b6ff43;
+}
+
+.brand-sub{
+    color:#9eb8c2;
     font-size:10px;
-    color:var(--muted);
     margin-top:3px;
-}
-
-.menu-title{
-    color:#61748b;
-    font-size:10px;
-    font-weight:700;
-    padding:0 12px;
-    margin-bottom:8px;
 }
 
 .menu{
     display:flex;
     flex-direction:column;
-    gap:5px;
+    gap:4px;
 }
 
-.menu button{
-    border:0;
-    background:transparent;
-    color:#aebdd0;
-    padding:12px;
-    border-radius:12px;
-    cursor:pointer;
-    text-align:left;
+.menu a{
     display:flex;
     align-items:center;
     gap:12px;
+    padding:12px 13px;
+
+    color:#d6e3e8;
+    text-decoration:none;
+    border-radius:12px;
+    font-size:13px;
+    border:1px solid transparent;
     transition:.2s;
 }
 
-.menu button:hover,
-.menu button.active{
+.menu a:hover{
+    background:rgba(51,205,104,.08);
+    border-color:rgba(65,231,108,.14);
+    transform:translateX(2px);
+}
+
+.menu a.active{
+    background:
+    linear-gradient(
+        100deg,
+        rgba(31,190,75,.42),
+        rgba(19,90,52,.22)
+    );
+
+    border-color:rgba(84,238,106,.7);
     color:#fff;
-    background:rgba(0,150,255,.12);
 }
 
-.menu-icon{
-    width:25px;
-    font-size:19px;
+.icon{
+    width:28px;
+    text-align:center;
+    font-size:20px;
 }
 
-.main{
-    margin-left:250px;
-    padding:22px;
+.contact{
+    margin-top:18px;
+    padding:14px;
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(7,40,55,.9),
+        rgba(3,22,33,.9)
+    );
+
+    border:1px solid rgba(116,196,219,.23);
 }
+
+.contact h3{
+    font-family:"Kanit";
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.contact p{
+    color:#b7cbd3;
+    font-size:10px;
+    margin:7px 0;
+}
+
+
+/* =========================================================
+TOPBAR
+========================================================= */
 
 .topbar{
+    position:fixed;
+    left:var(--sidebar);
+    right:0;
+    top:0;
+    height:78px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    background:rgba(3,22,35,.91);
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+    z-index:900;
 }
 
 .page-title{
-    font-size:25px;
-    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
-.page-sub{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
+.big-icon{
+    width:44px;
+    height:44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    background:rgba(215,140,255,.08);
+
+    border:1px solid rgba(215,140,255,.25);
+
+    font-size:24px;
+}
+
+.page-title h1{
+    font-family:"Kanit";
+    font-size:21px;
+    font-weight:500;
+}
+
+.page-title p{
+    color:#8ea7b1;
+    font-size:10px;
 }
 
 .clock{
-    padding:10px 15px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:#62d5ff;
-    font-family:monospace;
+    text-align:right;
 }
 
-.breadcrumb{
-    color:var(--muted);
+.time{
+    font-family:"Kanit";
+    font-size:25px;
+}
+
+.today{
+    color:#8ea7b1;
+    font-size:10px;
+}
+
+.mobile-button{
+    display:none;
+
+    width:42px;
+    height:42px;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    font-size:20px;
+}
+
+
+/* =========================================================
+MAIN
+========================================================= */
+
+.main{
+    margin-left:var(--sidebar);
+    padding-top:78px;
+    min-height:100vh;
+}
+
+.content{
+    max-width:1550px;
+    margin:auto;
+    padding:25px;
+}
+
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero{
+
+    position:relative;
+
+    min-height:190px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:28px;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        90deg,
+        rgba(2,25,38,.96),
+        rgba(3,25,38,.35)
+    ),
+    url("https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=85")
+    center/cover;
+
+    border:1px solid rgba(150,210,230,.18);
+
+    box-shadow:
+    0 18px 50px rgba(0,0,0,.35);
+
+    margin-bottom:20px;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero h2{
+    font-family:"Kanit";
+    font-size:34px;
+    font-weight:500;
+}
+
+.hero p{
+    margin-top:6px;
+    color:#b5cbd2;
     font-size:12px;
-    margin-bottom:18px;
 }
 
-.breadcrumb span{
-    color:#58caff;
+.hero-badge{
+    display:inline-flex;
+    margin-top:16px;
+    padding:7px 13px;
+
+    border-radius:30px;
+
+    background:rgba(215,140,255,.12);
+
+    border:1px solid rgba(215,140,255,.35);
+
+    color:#e7baff;
+
+    font-size:10px;
 }
+
+
+/* =========================================================
+SUMMARY
+========================================================= */
 
 .summary{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:20px;
+    grid-template-columns:repeat(5,1fr);
+    gap:14px;
+    margin-bottom:18px;
 }
 
 .summary-card{
-    padding:18px;
-    border-radius:18px;
-    background:linear-gradient(
+    padding:17px;
+
+    border-radius:17px;
+
+    background:
+    linear-gradient(
         145deg,
-        rgba(255,255,255,.055),
-        rgba(255,255,255,.018)
+        rgba(5,36,51,.92),
+        rgba(2,20,30,.91)
     );
+
     border:1px solid var(--border);
+
+    box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 
 .summary-icon{
-    font-size:24px;
-    margin-bottom:8px;
+    font-size:25px;
 }
 
-.summary-number{
-    font-size:27px;
-    font-weight:800;
-}
-
-.summary-label{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
-
-.card{
-    background:linear-gradient(
-        145deg,
-        rgba(18,36,58,.96),
-        rgba(8,20,34,.98)
-    );
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.card-icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:13px;
-    background:rgba(0,160,255,.1);
-    font-size:21px;
-}
-
-.card-title h2{
-    font-size:18px;
-}
-
-.card-title p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:3px;
-}
-
-.add-btn{
-    border:0;
-    background:linear-gradient(
-        135deg,
-        var(--primary),
-        var(--primary2)
-    );
-    color:#fff;
-    border-radius:10px;
-    padding:10px 15px;
-    cursor:pointer;
-    font-weight:700;
-}
-
-.toolbar{
-    display:flex;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.search-box{
-    flex:1;
-    position:relative;
-}
-
-.search-box input{
-    width:100%;
-    padding:13px 15px 13px 42px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    outline:0;
-    background:rgba(0,0,0,.15);
-    color:#fff;
-}
-
-.search-icon{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
-}
-
-.filter{
-    min-width:180px;
-    padding:0 12px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:#0b1b2f;
-    color:#fff;
-    outline:0;
-}
-
-.leader-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-}
-
-.leader-card{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.035);
-    border-radius:18px;
-    overflow:hidden;
-    transition:.2s;
-}
-
-.leader-card:hover{
-    transform:translateY(-3px);
-    background:rgba(0,150,255,.06);
-}
-
-.leader-cover{
-    height:105px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,120,255,.22),
-            rgba(0,220,170,.08)
-        );
-    position:relative;
-}
-
-.leader-photo{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    object-fit:cover;
-    position:absolute;
-    left:50%;
-    bottom:-50px;
-    transform:translateX(-50%);
-    border:5px solid #102139;
-    background:#16304c;
-}
-
-.leader-placeholder{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    position:absolute;
-    left:50%;
-    bottom:-50px;
-    transform:translateX(-50%);
-    border:5px solid #102139;
-    background:
-        linear-gradient(
-            135deg,
-            #087cff,
-            #00c9ff
-        );
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:42px;
-}
-
-.leader-body{
-    padding:60px 16px 16px;
-    text-align:center;
-}
-
-.leader-name{
-    font-size:16px;
-    font-weight:800;
-}
-
-.leader-position{
-    color:#5bcaff;
-    font-size:12px;
+.summary-title{
+    color:#94adb7;
+    font-size:10px;
     margin-top:5px;
 }
 
-.leader-phone{
-    color:var(--muted);
+.summary-number{
+    font-family:"Kanit";
+    font-size:28px;
+    line-height:1.1;
+    margin-top:2px;
+}
+
+.summary-card.green{
+    border-color:rgba(76,255,112,.28);
+}
+
+.summary-card.purple{
+    border-color:rgba(215,140,255,.28);
+}
+
+.summary-card.orange{
+    border-color:rgba(255,181,61,.28);
+}
+
+.summary-card.cyan{
+    border-color:rgba(69,232,255,.28);
+}
+
+.summary-card.red{
+    border-color:rgba(255,93,93,.28);
+}
+
+
+/* =========================================================
+TOOLBAR
+========================================================= */
+
+.toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:16px;
+
+    margin-bottom:18px;
+
+    border-radius:17px;
+
+    background:rgba(4,29,43,.88);
+
+    border:1px solid var(--border);
+}
+
+.search-area{
+    display:flex;
+    gap:8px;
+    flex:1;
+    max-width:780px;
+}
+
+.search{
+    flex:1;
+    min-width:0;
+
+    padding:12px 15px;
+
+    border-radius:11px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.045);
+
+    color:#fff;
+
+    outline:none;
+
+    font-size:12px;
+}
+
+.search:focus{
+    border-color:rgba(69,232,255,.55);
+}
+
+.filter{
+
+    padding:12px 14px;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.045);
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    outline:none;
+
     font-size:11px;
-    margin-top:8px;
 }
 
-.leader-status{
-    margin-top:10px;
+.filter option{
+    background:#071c28;
 }
 
-.badge{
-    display:inline-block;
-    padding:5px 9px;
+.btn{
+
+    border:0;
+
+    padding:11px 17px;
+
+    border-radius:11px;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    color:#02150a;
+
+    background:#48dc68;
+
+    box-shadow:0 7px 20px rgba(72,220,104,.13);
+}
+
+.btn:hover{
+    filter:brightness(1.08);
+}
+
+
+/* =========================================================
+LEADER GRID
+========================================================= */
+
+.leader-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:18px;
+}
+
+.leader-card{
+
+    position:relative;
+
+    overflow:hidden;
+
     border-radius:20px;
+
+    background:
+    linear-gradient(
+        145deg,
+        rgba(4,31,45,.96),
+        rgba(2,18,29,.94)
+    );
+
+    border:1px solid var(--border);
+
+    box-shadow:
+    0 15px 45px rgba(0,0,0,.3);
+
+    transition:.25s;
+}
+
+.leader-card:hover{
+
+    transform:translateY(-4px);
+
+    border-color:rgba(90,220,130,.4);
+
+    box-shadow:
+    0 20px 55px rgba(0,0,0,.4);
+}
+
+.leader-card.featured{
+
+    grid-column:span 2;
+
+    min-height:310px;
+
+    display:flex;
+}
+
+.leader-cover{
+
+    height:115px;
+
+    background:
+    linear-gradient(
+        135deg,
+        rgba(23,105,63,.9),
+        rgba(5,47,62,.95)
+    );
+
+    position:relative;
+}
+
+.featured .leader-cover{
+
+    width:40%;
+
+    height:auto;
+
+    min-height:310px;
+}
+
+.leader-cover::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+    radial-gradient(
+        circle at 70% 30%,
+        rgba(100,255,147,.22),
+        transparent 30%
+    );
+}
+
+.leader-photo{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:-48px;
+
+    transform:translateX(-50%);
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:52px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #dce7e9,
+        #647d86
+    );
+
+    border:4px solid #082331;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.35);
+
+    z-index:3;
+}
+
+.featured .leader-photo{
+
+    left:50%;
+
+    bottom:50%;
+
+    transform:translate(-50%,50%);
+
+    width:145px;
+    height:145px;
+
+    font-size:74px;
+}
+
+.leader-body{
+
+    padding:60px 20px 20px;
+
+    text-align:center;
+}
+
+.featured .leader-body{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    text-align:left;
+
+    padding:28px;
+}
+
+.leader-role{
+
+    display:inline-flex;
+
+    padding:5px 9px;
+
+    border-radius:8px;
+
+    color:#7eff99;
+
+    background:rgba(72,220,104,.1);
+
+    border:1px solid rgba(72,220,104,.22);
+
     font-size:9px;
 }
 
-.badge.green{
-    color:var(--green);
-    background:rgba(0,220,140,.08);
+.leader-name{
+
+    margin-top:9px;
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+    font-weight:500;
 }
 
-.badge.yellow{
-    color:var(--yellow);
-    background:rgba(255,190,40,.08);
+.featured .leader-name{
+
+    font-size:28px;
 }
 
-.badge.red{
-    color:var(--red);
-    background:rgba(255,60,70,.08);
+.leader-position{
+
+    margin-top:2px;
+
+    color:#86a0aa;
+
+    font-size:10px;
+}
+
+.leader-desc{
+
+    margin-top:12px;
+
+    color:#a8bdc4;
+
+    font-size:10px;
+
+    line-height:1.7;
+}
+
+.leader-contact{
+
+    margin-top:15px;
+
+    padding-top:13px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+
+    color:#8ea8b1;
+
+    font-size:9px;
+
+    line-height:1.8;
 }
 
 .leader-actions{
+
     display:flex;
-    gap:7px;
-    margin-top:14px;
+
+    justify-content:center;
+
+    gap:6px;
+
+    margin-top:13px;
 }
 
-.action-btn{
-    flex:1;
-    border:1px solid var(--border);
+.featured .leader-actions{
+
+    justify-content:flex-start;
+}
+
+.action{
+
+    padding:7px 10px;
+
+    border-radius:8px;
+
+    border:1px solid rgba(255,255,255,.1);
+
     background:rgba(255,255,255,.04);
-    color:#fff;
-    padding:8px;
-    border-radius:9px;
-    cursor:pointer;
-    font-size:11px;
+
+    color:#dce8ec;
+
+    font-size:9px;
 }
 
-.action-btn:hover{
-    background:rgba(0,150,255,.12);
+.action:hover{
+
+    background:rgba(69,232,255,.08);
+
+    border-color:rgba(69,232,255,.25);
 }
 
-.action-btn.delete:hover{
-    background:rgba(255,60,70,.12);
+.action.green{
+
+    background:rgba(72,220,104,.08);
+
+    color:#8df19e;
+
+    border-color:rgba(72,220,104,.2);
 }
 
-.empty{
-    grid-column:1/-1;
-    text-align:center;
-    padding:60px 20px;
-    color:#74869b;
-    border:1px dashed var(--border);
-    border-radius:16px;
-}
 
-.empty-icon{
-    font-size:48px;
-    margin-bottom:12px;
-}
+/* =========================================================
+MODAL
+========================================================= */
 
 .modal{
+
     position:fixed;
+
     inset:0;
+
     display:none;
-    justify-content:center;
+
     align-items:center;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(8px);
-    z-index:500;
+
+    justify-content:center;
+
     padding:20px;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(8px);
+
+    z-index:3000;
 }
 
 .modal.show{
@@ -465,703 +854,1607 @@ button,input,select,textarea{
 }
 
 .modal-box{
-    width:100%;
-    max-width:700px;
+
+    width:min(650px,100%);
+
     max-height:90vh;
+
     overflow-y:auto;
-    background:#102139;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:23px;
-    box-shadow:0 25px 80px rgba(0,0,0,.5);
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #082a3a,
+        #031721
+    );
+
+    border:1px solid rgba(100,210,235,.28);
+
+    box-shadow:
+    0 25px 80px rgba(0,0,0,.6);
 }
 
 .modal-head{
+
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
-    margin-bottom:20px;
+
+    justify-content:space-between;
+
+    padding:18px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.modal-head h2{
-    font-size:20px;
+.modal-head h3{
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+    font-weight:500;
 }
 
 .close{
-    width:36px;
-    height:36px;
-    border:0;
-    border-radius:10px;
-    background:rgba(255,255,255,.06);
+
+    width:34px;
+    height:34px;
+
+    border-radius:9px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.05);
+
     color:#fff;
-    cursor:pointer;
+
+    font-size:18px;
 }
 
-.form-grid{
+.form{
+
+    padding:20px;
+
     display:grid;
+
     grid-template-columns:repeat(2,1fr);
-    gap:12px;
+
+    gap:14px;
 }
 
 .form-group{
-    margin-bottom:13px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
 }
 
 .form-group.full{
     grid-column:1/-1;
 }
 
-label{
-    display:block;
-    color:#aab9cb;
+.form-group label{
+
+    color:#9bb4bd;
+
+    font-size:10px;
+}
+
+.form-group input,
+.form-group select{
+
+    padding:11px;
+
+    border-radius:9px;
+
+    background:rgba(255,255,255,.045);
+
+    color:#fff;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    outline:none;
+
     font-size:11px;
-    margin-bottom:6px;
 }
 
-input,
-select,
-textarea{
-    width:100%;
-    border:1px solid var(--border);
-    background:rgba(0,0,0,.18);
-    color:#fff;
-    padding:12px;
-    border-radius:10px;
-    outline:0;
+.form-group select option{
+    background:#06202e;
 }
 
-select option{
-    background:#102139;
+.modal-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    padding:0 20px 20px;
 }
 
-textarea{
-    min-height:90px;
-    resize:vertical;
+.btn-cancel{
+
+    color:#d5e0e4;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.1);
 }
 
-.save-btn{
-    width:100%;
-    margin-top:5px;
-    border:0;
-    padding:13px;
-    border-radius:11px;
-    color:#fff;
-    background:linear-gradient(
-        135deg,
-        #008cff,
-        #0069ee
-    );
-    cursor:pointer;
-    font-weight:700;
-}
 
-@media(max-width:1100px){
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    :root{
+        --sidebar:230px;
+    }
+
+    .summary{
+        grid-template-columns:repeat(3,1fr);
+    }
 
     .leader-grid{
         grid-template-columns:repeat(2,1fr);
     }
-
-    .summary{
-        grid-template-columns:repeat(2,1fr);
-    }
 }
 
-@media(max-width:900px){
+@media(max-width:1000px){
 
     .sidebar{
-        width:70px;
-        padding:15px 8px;
+
+        transform:translateX(-100%);
+
+        transition:.3s;
     }
 
-    .logo-title,
-    .logo-sub,
-    .menu-title,
-    .menu-text{
-        display:none;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
-    .logo{
-        justify-content:center;
-    }
-
-    .menu button{
-        justify-content:center;
-    }
-
-    .main{
-        margin-left:70px;
-    }
-}
-
-@media(max-width:600px){
-
-    .sidebar{
-        display:none;
+    .topbar{
+        left:0;
     }
 
     .main{
         margin-left:0;
-        padding:12px;
     }
 
-    .topbar{
-        align-items:flex-start;
+    .mobile-button{
+        display:block;
     }
 
-    .page-title{
-        font-size:20px;
+    .page-title p{
+        display:none;
     }
 
-    .clock{
-        font-size:11px;
-        padding:8px;
+    .leader-card.featured{
+        grid-column:span 2;
+    }
+}
+
+@media(max-width:750px){
+
+    .content{
+        padding:13px;
     }
 
     .summary{
         grid-template-columns:repeat(2,1fr);
     }
 
+    .toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .search-area{
+        max-width:none;
+        flex-direction:column;
+    }
+
+    .hero h2{
+        font-size:26px;
+    }
+
     .leader-grid{
         grid-template-columns:1fr;
     }
 
-    .toolbar{
-        flex-direction:column;
+    .leader-card.featured{
+        grid-column:auto;
+        display:block;
     }
 
-    .filter{
-        height:43px;
+    .featured .leader-cover{
+        width:auto;
+        height:150px;
+        min-height:150px;
     }
 
-    .form-grid{
+    .featured .leader-photo{
+
+        left:50%;
+
+        bottom:-55px;
+
+        transform:translateX(-50%);
+
+        width:110px;
+        height:110px;
+
+        font-size:57px;
+    }
+
+    .featured .leader-body{
+        text-align:center;
+        padding:70px 20px 20px;
+    }
+
+    .featured .leader-actions{
+        justify-content:center;
+    }
+
+    .clock{
+        display:none;
+    }
+
+    .page-title h1{
+        font-size:17px;
+    }
+}
+
+@media(max-width:480px){
+
+    .summary{
         grid-template-columns:1fr;
     }
 
-    .form-group.full{
-        grid-column:auto;
+    .page-title .big-icon{
+        width:38px;
+        height:38px;
     }
+
+    .hero{
+        min-height:160px;
+        padding:20px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    .leader-name{
+        font-size:19px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- ==================================================
-     SIDEBAR
-================================================== -->
 
-<aside class="sidebar">
+<!-- =========================================================
+SIDEBAR
+========================================================= -->
 
-    <div class="logo">
+<aside class="sidebar" id="sidebar">
 
-        <div class="logo-icon">
+    <div class="sidebar-brand">
+
+        <div class="logo">
             🏛️
         </div>
 
         <div>
 
-            <div class="logo-title">
-                RONGKHEM
+            <div class="brand-title">
+                RONGKHEM <span>e-VILLAGE</span>
             </div>
 
-            <div class="logo-sub">
-                e-VILLAGE OFFICE
+            <div class="brand-sub">
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
             </div>
 
         </div>
 
     </div>
 
-    <div class="menu-title">
-        MAIN MENU
-    </div>
 
     <nav class="menu">
 
-        <button onclick="location.href='index.html'">
-            <span class="menu-icon">📊</span>
-            <span class="menu-text">หน้าแรก</span>
-        </button>
+        <a href="index.html">
+            <span class="icon">🏠</span>
+            หน้าหลัก
+        </a>
 
-        <button onclick="location.href='household.html'">
-            <span class="menu-icon">🏠</span>
-            <span class="menu-text">ครัวเรือน</span>
-        </button>
+        <a href="citizen.html">
+            <span class="icon">👥</span>
+            ข้อมูลประชาชน
+        </a>
 
-        <button onclick="location.href='citizen.html'">
-            <span class="menu-icon">👥</span>
-            <span class="menu-text">ประชาชน</span>
-        </button>
+        <a href="household.html">
+            <span class="icon">🏠</span>
+            ข้อมูลครัวเรือน
+        </a>
 
-        <button class="active">
-            <span class="menu-icon">👔</span>
-            <span class="menu-text">ทำเนียบผู้นำ</span>
-        </button>
+        <a href="leader.html" class="active">
+            <span class="icon">👔</span>
+            ผู้นำชุมชน
+        </a>
 
-        <button onclick="showComingSoon('กิจกรรมหมู่บ้าน')">
-            <span class="menu-icon">📸</span>
-            <span class="menu-text">กิจกรรม</span>
-        </button>
+        <a href="news.html">
+            <span class="icon">📢</span>
+            ข่าวประชาสัมพันธ์
+        </a>
 
-        <button onclick="showComingSoon('รับเรื่องร้องเรียน')">
-            <span class="menu-icon">📝</span>
-            <span class="menu-text">ร้องเรียน</span>
-        </button>
+        <a href="activity.html">
+            <span class="icon">📅</span>
+            กิจกรรม / ปฏิทิน
+        </a>
+
+        <a href="incident.html">
+            <span class="icon">🚨</span>
+            แจ้งเหตุ / ร้องเรียน
+        </a>
+
+        <a href="service.html">
+            <span class="icon">🤝</span>
+            บริการประชาชน
+        </a>
+
+        <a href="project.html">
+            <span class="icon">🏗️</span>
+            โครงการพัฒนาหมู่บ้าน
+        </a>
+
+        <a href="environment.html">
+            <span class="icon">🌱</span>
+            สิ่งแวดล้อม / PM2.5
+        </a>
+
+        <a href="wetland.html">
+            <span class="icon">💧</span>
+            แหล่งซับน้ำจำ
+        </a>
+
+        <a href="rice.html">
+            <span class="icon">🍚</span>
+            กลุ่มข้าวสาร
+        </a>
+
+        <a href="statistics.html">
+            <span class="icon">📊</span>
+            สถิติหมู่บ้าน
+        </a>
+
+        <a href="admin.html">
+            <span class="icon">⚙️</span>
+            ตั้งค่าระบบ
+        </a>
 
     </nav>
+
+
+    <div class="contact">
+
+        <h3>
+            ที่ทำการผู้ใหญ่บ้าน
+        </h3>
+
+        <p>📞 โทร. 088-888-8888</p>
+
+        <p>🟢 LINE ID: rongkhem.village</p>
+
+        <p>🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.</p>
+
+    </div>
 
 </aside>
 
 
-<!-- ==================================================
-     MAIN
-================================================== -->
-
-<main class="main">
+<!-- =========================================================
+TOPBAR
+========================================================= -->
 
 <header class="topbar">
 
-    <div>
+    <div class="page-title">
 
-        <div class="page-title">
-            ทำเนียบผู้นำและคณะกรรมการหมู่บ้าน
+        <button
+            class="mobile-button"
+            id="mobileButton"
+        >
+            ☰
+        </button>
+
+        <div class="big-icon">
+            👔
         </div>
 
-        <div class="page-sub">
-            RONGKHEM e-VILLAGE OFFICE |
-            ที่ทำการผู้ใหญ่บ้านออนไลน์
+        <div>
+
+            <h1>
+                ทำเนียบผู้นำชุมชน
+            </h1>
+
+            <p>
+                ผู้นำหมู่บ้านร่องเข็ม หมู่ที่ 6
+            </p>
+
         </div>
 
     </div>
 
-    <div class="clock" id="clock">
-        08:05:56
+
+    <div class="clock">
+
+        <div
+            class="time"
+            id="time"
+        >
+            00:00:00
+        </div>
+
+        <div
+            class="today"
+            id="today"
+        >
+            กำลังโหลด...
+        </div>
+
     </div>
 
 </header>
 
 
-<div class="breadcrumb">
+<!-- =========================================================
+MAIN
+========================================================= -->
 
-    หน้าแรก /
-    <span>ทำเนียบผู้นำ</span>
+<main class="main">
 
-</div>
-
-
-<!-- ==================================================
-     SUMMARY
-================================================== -->
-
-<section class="summary">
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            👔
-        </div>
-
-        <div
-            class="summary-number"
-            id="totalLeaders"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            ผู้นำทั้งหมด
-        </div>
-
-    </div>
+<div class="content">
 
 
-    <div class="summary-card">
+    <!-- HERO -->
 
-        <div class="summary-icon">
-            🏛️
-        </div>
+    <section class="hero">
 
-        <div
-            class="summary-number"
-            id="totalCommittee"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            คณะกรรมการ
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            👨‍💼
-        </div>
-
-        <div
-            class="summary-number"
-            id="totalOfficial"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            ผู้นำฝ่ายปกครอง
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            🟢
-        </div>
-
-        <div
-            class="summary-number"
-            id="totalActive"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            ปฏิบัติหน้าที่
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     LEADERS
-================================================== -->
-
-<section class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            👔
-        </div>
-
-        <div>
+        <div class="hero-content">
 
             <h2>
-                ทำเนียบผู้นำบ้านร่องเข็ม
+                ทำเนียบผู้นำชุมชนบ้านร่องเข็ม
             </h2>
 
             <p>
-                ผู้ใหญ่บ้าน ผู้ช่วยผู้ใหญ่บ้าน
-                คณะกรรมการ และผู้นำชุมชน
+                ร่วมกันดูแล พัฒนา และขับเคลื่อนชุมชน
+                เพื่อคุณภาพชีวิตที่ดีของประชาชน
             </p>
+
+            <div class="hero-badge">
+                🏛️ ฝ่ายปกครองและคณะกรรมการหมู่บ้าน
+            </div>
 
         </div>
 
-    </div>
+    </section>
 
 
-    <button
-        class="add-btn"
-        onclick="openLeaderModal()"
-    >
+    <!-- SUMMARY -->
 
-        + เพิ่มผู้นำใหม่
-
-    </button>
-
-</div>
+    <section class="summary">
 
 
-<div class="toolbar">
+        <div class="summary-card green">
 
-    <div class="search-box">
+            <div class="summary-icon">
+                👔
+            </div>
 
-        <span class="search-icon">
-            🔍
-        </span>
+            <div class="summary-title">
+                ผู้ใหญ่บ้าน
+            </div>
 
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="ค้นหาชื่อผู้นำ..."
-            oninput="renderLeaders()"
+            <div class="summary-number">
+                1
+            </div>
+
+        </div>
+
+
+        <div class="summary-card cyan">
+
+            <div class="summary-icon">
+                👨‍💼
+            </div>
+
+            <div class="summary-title">
+                ผู้ช่วยผู้ใหญ่บ้าน
+            </div>
+
+            <div
+                class="summary-number"
+                id="assistantCount"
+            >
+                2
+            </div>
+
+        </div>
+
+
+        <div class="summary-card purple">
+
+            <div class="summary-icon">
+                🏛️
+            </div>
+
+            <div class="summary-title">
+                คณะกรรมการหมู่บ้าน
+            </div>
+
+            <div
+                class="summary-number"
+                id="committeeCount"
+            >
+                12
+            </div>
+
+        </div>
+
+
+        <div class="summary-card orange">
+
+            <div class="summary-icon">
+                🛡️
+            </div>
+
+            <div class="summary-title">
+                ชรบ.
+            </div>
+
+            <div
+                class="summary-number"
+                id="securityCount"
+            >
+                18
+            </div>
+
+        </div>
+
+
+        <div class="summary-card red">
+
+            <div class="summary-icon">
+                🩺
+            </div>
+
+            <div class="summary-title">
+                อสม.
+            </div>
+
+            <div
+                class="summary-number"
+                id="healthCount"
+            >
+                24
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <section class="toolbar">
+
+        <div class="search-area">
+
+            <input
+                type="search"
+                id="searchInput"
+                class="search"
+                placeholder="🔎 ค้นหาชื่อผู้นำ หรือตำแหน่ง..."
+            >
+
+
+            <select
+                class="filter"
+                id="roleFilter"
+            >
+
+                <option value="">
+                    ตำแหน่งทั้งหมด
+                </option>
+
+                <option value="ผู้ใหญ่บ้าน">
+                    ผู้ใหญ่บ้าน
+                </option>
+
+                <option value="ผู้ช่วยผู้ใหญ่บ้าน">
+                    ผู้ช่วยผู้ใหญ่บ้าน
+                </option>
+
+                <option value="คณะกรรมการหมู่บ้าน">
+                    คณะกรรมการหมู่บ้าน
+                </option>
+
+                <option value="ชรบ.">
+                    ชรบ.
+                </option>
+
+                <option value="อสม.">
+                    อสม.
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="btn"
+            id="addButton"
         >
+            ＋ เพิ่มผู้นำ
+        </button>
 
-    </div>
+    </section>
 
 
-    <select
-        class="filter"
-        id="positionFilter"
-        onchange="renderLeaders()"
-    >
+    <!-- LEADERS -->
 
-        <option value="all">
-            ทุกตำแหน่ง
-        </option>
+    <section
+        class="leader-grid"
+        id="leaderGrid"
+    ></section>
 
-        <option value="ผู้ใหญ่บ้าน">
-            ผู้ใหญ่บ้าน
-        </option>
-
-        <option value="ผู้ช่วยผู้ใหญ่บ้าน">
-            ผู้ช่วยผู้ใหญ่บ้าน
-        </option>
-
-        <option value="คณะกรรมการหมู่บ้าน">
-            คณะกรรมการหมู่บ้าน
-        </option>
-
-        <option value="ผู้นำชุมชน">
-            ผู้นำชุมชน
-        </option>
-
-    </select>
 
 </div>
-
-
-<div
-    class="leader-grid"
-    id="leaderGrid"
-></div>
-
-</section>
-
-
-<section class="card">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            💡
-        </div>
-
-        <div>
-
-            <h2>
-                ระบบทำเนียบผู้นำ
-            </h2>
-
-            <p>
-                สามารถเพิ่มข้อมูล แก้ไขข้อมูล
-                และจัดการรายชื่อผู้นำได้จากหน้านี้
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
 
 </main>
 
 
-<!-- ==================================================
-     MODAL
-================================================== -->
+<!-- =========================================================
+MODAL
+========================================================= -->
 
 <div
     class="modal"
-    id="leaderModal"
+    id="modal"
 >
 
-<div class="modal-box">
-
-<div class="modal-head">
-
-    <h2 id="modalTitle">
-        👔 เพิ่มผู้นำใหม่
-    </h2>
-
-    <button
-        class="close"
-        onclick="closeLeaderModal()"
-    >
-        ✕
-    </button>
-
-</div>
+    <div class="modal-box">
 
 
-<div class="form-grid">
+        <div class="modal-head">
+
+            <h3 id="modalTitle">
+                เพิ่มผู้นำชุมชน
+            </h3>
+
+            <button
+                class="close"
+                id="closeModal"
+            >
+                ×
+            </button>
+
+        </div>
 
 
-<div class="form-group">
+        <form
+            class="form"
+            id="leaderForm"
+        >
 
-<label>
-    ชื่อ-นามสกุล *
-</label>
-
-<input
-    id="leaderName"
-    type="text"
-    placeholder="เช่น นาย........"
-/>
-
-</div>
+            <input
+                type="hidden"
+                id="editId"
+            >
 
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>
-    ตำแหน่ง *
-</label>
+                <label>
+                    คำนำหน้า
+                </label>
 
-<select id="leaderPosition">
+                <select id="prefix">
 
-    <option value="ผู้ใหญ่บ้าน">
-        ผู้ใหญ่บ้าน
-    </option>
+                    <option>
+                        นาย
+                    </option>
 
-    <option value="ผู้ช่วยผู้ใหญ่บ้าน">
-        ผู้ช่วยผู้ใหญ่บ้าน
-    </option>
+                    <option>
+                        นาง
+                    </option>
 
-    <option value="คณะกรรมการหมู่บ้าน">
-        คณะกรรมการหมู่บ้าน
-    </option>
+                    <option>
+                        นางสาว
+                    </option>
 
-    <option value="ผู้นำชุมชน">
-        ผู้นำชุมชน
-    </option>
+                </select>
 
-</select>
-
-</div>
+            </div>
 
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>
-    เบอร์โทรศัพท์
-</label>
+                <label>
+                    ชื่อ
+                </label>
 
-<input
-    id="leaderPhone"
-    type="tel"
-    placeholder="08xxxxxxxx"
-/>
+                <input
+                    id="firstName"
+                    required
+                >
 
-</div>
-
-
-<div class="form-group">
-
-<label>
-    วันที่เริ่มปฏิบัติหน้าที่
-</label>
-
-<input
-    id="leaderStart"
-    type="date"
-/>
-
-</div>
+            </div>
 
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>
-    สถานะ
-</label>
+                <label>
+                    นามสกุล
+                </label>
 
-<select id="leaderStatus">
+                <input
+                    id="lastName"
+                    required
+                >
 
-    <option value="ปฏิบัติหน้าที่">
-        ปฏิบัติหน้าที่
-    </option>
-
-    <option value="พัก/ลา">
-        พัก/ลา
-    </option>
-
-    <option value="พ้นหน้าที่">
-        พ้นหน้าที่
-    </option>
-
-</select>
-
-</div>
+            </div>
 
 
-<div class="form-group">
+            <div class="form-group">
 
-<label>
-    URL รูปภาพ
-</label>
+                <label>
+                    ตำแหน่ง
+                </label>
 
-<input
-    id="leaderImage"
-    type="url"
-    placeholder="https://..."
-/>
+                <select id="role">
 
-</div>
+                    <option>
+                        ผู้ใหญ่บ้าน
+                    </option>
+
+                    <option>
+                        ผู้ช่วยผู้ใหญ่บ้าน
+                    </option>
+
+                    <option>
+                        คณะกรรมการหมู่บ้าน
+                    </option>
+
+                    <option>
+                        ชรบ.
+                    </option>
+
+                    <option>
+                        อสม.
+                    </option>
+
+                </select>
+
+            </div>
 
 
-<div class="form-group full">
+            <div class="form-group">
 
-<label>
-    หน้าที่ / ความรับผิดชอบ
-</label>
+                <label>
+                    โทรศัพท์
+                </label>
 
-<textarea
-    id="leaderDuty"
-    placeholder="ระบุหน้าที่หรือความรับผิดชอบ"
-></textarea>
+                <input
+                    id="phone"
+                    placeholder="08x-xxx-xxxx"
+                >
 
-</div>
-
-
-</div>
+            </div>
 
 
-<button
-    class="save-btn"
-    onclick="saveLeader()"
->
+            <div class="form-group">
 
-    💾 บันทึกข้อมูลผู้นำ
+                <label>
+                    หน้าที่รับผิดชอบ
+                </label>
 
-</button>
+                <input
+                    id="duty"
+                    placeholder="เช่น ฝ่ายปกครอง"
+                >
 
-</div>
+            </div>
+
+
+            <div class="form-group full">
+
+                <label>
+                    รายละเอียด
+                </label>
+
+                <input
+                    id="description"
+                    placeholder="ข้อมูลเพิ่มเติม"
+                >
+
+            </div>
+
+        </form>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="btn btn-cancel"
+                id="cancelButton"
+            >
+                ยกเลิก
+            </button>
+
+            <button
+                class="btn"
+                id="saveButton"
+            >
+                💾 บันทึกข้อมูล
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
 
 <script>
 
-/* ==================================================
-   CLOCK
-================================================== */
+/* =========================================================
+DATA
+========================================================= */
+
+let leaders = [
+
+{
+    id:1,
+    prefix:"นาย",
+    firstName:"ศักรนนท์",
+    lastName:"ขัติย์วงศ์",
+    role:"ผู้ใหญ่บ้าน",
+    phone:"088-888-8888",
+    duty:"ฝ่ายปกครอง",
+    description:"ผู้นำชุมชนและผู้ประสานงานหลักของหมู่บ้าน",
+    featured:true
+},
+
+{
+    id:2,
+    prefix:"นาย",
+    firstName:"สมชาย",
+    lastName:"ใจดี",
+    role:"ผู้ช่วยผู้ใหญ่บ้าน",
+    phone:"089-111-1111",
+    duty:"ฝ่ายปกครอง",
+    description:"ช่วยปฏิบัติหน้าที่ด้านการปกครองและงานประชาสัมพันธ์"
+},
+
+{
+    id:3,
+    prefix:"นาย",
+    firstName:"ประเสริฐ",
+    lastName:"คำดี",
+    role:"ผู้ช่วยผู้ใหญ่บ้าน",
+    phone:"089-222-2222",
+    duty:"ฝ่ายรักษาความสงบ",
+    description:"ประสานงานด้านความปลอดภัยและดูแลความสงบเรียบร้อย"
+},
+
+{
+    id:4,
+    prefix:"นาง",
+    firstName:"สมศรี",
+    lastName:"ใจดี",
+    role:"คณะกรรมการหมู่บ้าน",
+    phone:"089-333-3333",
+    duty:"ฝ่ายพัฒนาสตรี",
+    description:"ส่งเสริมการมีส่วนร่วมของสตรีและครอบครัว"
+},
+
+{
+    id:5,
+    prefix:"นาย",
+    firstName:"วิชัย",
+    lastName:"แสนดี",
+    role:"คณะกรรมการหมู่บ้าน",
+    phone:"089-444-4444",
+    duty:"ฝ่ายพัฒนา",
+    description:"ร่วมวางแผนและติดตามโครงการพัฒนาหมู่บ้าน"
+},
+
+{
+    id:6,
+    prefix:"นาย",
+    firstName:"บุญมี",
+    lastName:"คำปัน",
+    role:"ชรบ.",
+    phone:"089-555-5555",
+    duty:"รักษาความปลอดภัย",
+    description:"ดูแลความปลอดภัยและสนับสนุนงานฝ่ายปกครอง"
+},
+
+{
+    id:7,
+    prefix:"นาง",
+    firstName:"จันทร์เพ็ญ",
+    lastName:"บุญมา",
+    role:"อสม.",
+    phone:"089-666-6666",
+    duty:"สาธารณสุข",
+    description:"ดูแลและประสานงานด้านสุขภาพของประชาชน"
+},
+
+{
+    id:8,
+    prefix:"นาง",
+    firstName:"มาลี",
+    lastName:"วงศ์คำ",
+    role:"อสม.",
+    phone:"089-777-7777",
+    duty:"สาธารณสุข",
+    description:"ส่งเสริมสุขภาพและป้องกันโรคในชุมชน"
+}
+
+];
+
+
+/* =========================================================
+ELEMENTS
+========================================================= */
+
+const grid =
+document.getElementById(
+    "leaderGrid"
+);
+
+const search =
+document.getElementById(
+    "searchInput"
+);
+
+const roleFilter =
+document.getElementById(
+    "roleFilter"
+);
+
+const modal =
+document.getElementById(
+    "modal"
+);
+
+const form =
+document.getElementById(
+    "leaderForm"
+);
+
+
+/* =========================================================
+ICON
+========================================================= */
+
+function roleIcon(role){
+
+    if(role === "ผู้ใหญ่บ้าน"){
+        return "👔";
+    }
+
+    if(role === "ผู้ช่วยผู้ใหญ่บ้าน"){
+        return "👨‍💼";
+    }
+
+    if(role === "คณะกรรมการหมู่บ้าน"){
+        return "🏛️";
+    }
+
+    if(role === "ชรบ."){
+        return "🛡️";
+    }
+
+    if(role === "อสม."){
+        return "🩺";
+    }
+
+    return "👤";
+
+}
+
+
+/* =========================================================
+RENDER
+========================================================= */
+
+function renderLeaders(){
+
+    const keyword =
+        search.value
+        .trim()
+        .toLowerCase();
+
+    const role =
+        roleFilter.value;
+
+
+    const filtered =
+        leaders.filter(person => {
+
+            const text =
+            (
+                person.prefix +
+                person.firstName +
+                " " +
+                person.lastName +
+                " " +
+                person.role +
+                " " +
+                person.duty
+            ).toLowerCase();
+
+
+            return (
+                (!keyword || text.includes(keyword)) &&
+                (!role || person.role === role)
+            );
+
+        });
+
+
+    grid.innerHTML = "";
+
+
+    filtered.forEach(person => {
+
+        const card =
+            document.createElement("article");
+
+
+        card.className =
+            "leader-card" +
+            (
+                person.featured
+                ? " featured"
+                : ""
+            );
+
+
+        card.innerHTML = `
+
+            <div class="leader-cover">
+
+                <div class="leader-photo">
+                    ${roleIcon(person.role)}
+                </div>
+
+            </div>
+
+
+            <div class="leader-body">
+
+                <div class="leader-role">
+                    ${person.role}
+                </div>
+
+
+                <div class="leader-name">
+                    ${person.prefix}${person.firstName}
+                    ${person.lastName}
+                </div>
+
+
+                <div class="leader-position">
+                    ${person.duty}
+                </div>
+
+
+                <div class="leader-desc">
+                    ${person.description}
+                </div>
+
+
+                <div class="leader-contact">
+
+                    📞 ${person.phone || "ไม่ระบุ"}
+
+                </div>
+
+
+                <div class="leader-actions">
+
+                    <button
+                        class="action green"
+                        onclick="callLeader('${person.phone || ""}')"
+                    >
+                        📞 ติดต่อ
+                    </button>
+
+                    <button
+                        class="action"
+                        onclick="editLeader(${person.id})"
+                    >
+                        ✏️ แก้ไข
+                    </button>
+
+                    <button
+                        class="action"
+                        onclick="deleteLeader(${person.id})"
+                    >
+                        🗑️ ลบ
+                    </button>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =========================================================
+SUMMARY
+========================================================= */
+
+function updateSummary(){
+
+    const assistant =
+        leaders.filter(
+            x => x.role === "ผู้ช่วยผู้ใหญ่บ้าน"
+        ).length;
+
+
+    const committee =
+        leaders.filter(
+            x => x.role === "คณะกรรมการหมู่บ้าน"
+        ).length;
+
+
+    const security =
+        leaders.filter(
+            x => x.role === "ชรบ."
+        ).length;
+
+
+    const health =
+        leaders.filter(
+            x => x.role === "อสม."
+        ).length;
+
+
+    document.getElementById(
+        "assistantCount"
+    ).textContent =
+        assistant;
+
+
+    document.getElementById(
+        "committeeCount"
+    ).textContent =
+        committee;
+
+
+    document.getElementById(
+        "securityCount"
+    ).textContent =
+        security;
+
+
+    document.getElementById(
+        "healthCount"
+    ).textContent =
+        health;
+
+}
+
+
+/* =========================================================
+ADD
+========================================================= */
+
+document
+.getElementById("addButton")
+.addEventListener(
+    "click",
+    () => {
+
+        form.reset();
+
+        document.getElementById(
+            "editId"
+        ).value = "";
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "เพิ่มผู้นำชุมชน";
+
+        modal.classList.add("show");
+
+    }
+);
+
+
+/* =========================================================
+CLOSE
+========================================================= */
+
+function closeModal(){
+
+    modal.classList.remove("show");
+
+}
+
+
+document
+.getElementById("closeModal")
+.addEventListener(
+    "click",
+    closeModal
+);
+
+
+document
+.getElementById("cancelButton")
+.addEventListener(
+    "click",
+    closeModal
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === modal){
+
+            closeModal();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+SAVE
+========================================================= */
+
+document
+.getElementById("saveButton")
+.addEventListener(
+    "click",
+    saveLeader
+);
+
+
+function saveLeader(){
+
+    if(!form.checkValidity()){
+
+        form.reportValidity();
+
+        return;
+
+    }
+
+
+    const id =
+        document.getElementById(
+            "editId"
+        ).value;
+
+
+    const person = {
+
+        id:
+            id
+            ? Number(id)
+            : Date.now(),
+
+        prefix:
+            document.getElementById(
+                "prefix"
+            ).value,
+
+        firstName:
+            document.getElementById(
+                "firstName"
+            ).value.trim(),
+
+        lastName:
+            document.getElementById(
+                "lastName"
+            ).value.trim(),
+
+        role:
+            document.getElementById(
+                "role"
+            ).value,
+
+        phone:
+            document.getElementById(
+                "phone"
+            ).value.trim(),
+
+        duty:
+            document.getElementById(
+                "duty"
+            ).value.trim(),
+
+        description:
+            document.getElementById(
+                "description"
+            ).value.trim(),
+
+        featured:false
+
+    };
+
+
+    if(id){
+
+        const index =
+            leaders.findIndex(
+                x => x.id === Number(id)
+            );
+
+
+        if(index !== -1){
+
+            person.featured =
+                leaders[index].featured || false;
+
+            leaders[index] =
+                person;
+
+        }
+
+    }else{
+
+        leaders.push(person);
+
+    }
+
+
+    closeModal();
+
+    renderLeaders();
+
+    updateSummary();
+
+}
+
+
+/* =========================================================
+EDIT
+========================================================= */
+
+function editLeader(id){
+
+    const person =
+        leaders.find(
+            x => x.id === id
+        );
+
+
+    if(!person){
+        return;
+    }
+
+
+    document.getElementById(
+        "editId"
+    ).value =
+        person.id;
+
+
+    document.getElementById(
+        "prefix"
+    ).value =
+        person.prefix;
+
+
+    document.getElementById(
+        "firstName"
+    ).value =
+        person.firstName;
+
+
+    document.getElementById(
+        "lastName"
+    ).value =
+        person.lastName;
+
+
+    document.getElementById(
+        "role"
+    ).value =
+        person.role;
+
+
+    document.getElementById(
+        "phone"
+    ).value =
+        person.phone || "";
+
+
+    document.getElementById(
+        "duty"
+    ).value =
+        person.duty || "";
+
+
+    document.getElementById(
+        "description"
+    ).value =
+        person.description || "";
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "แก้ไขข้อมูลผู้นำชุมชน";
+
+
+    modal.classList.add("show");
+
+}
+
+
+/* =========================================================
+DELETE
+========================================================= */
+
+function deleteLeader(id){
+
+    const person =
+        leaders.find(
+            x => x.id === id
+        );
+
+
+    if(!person){
+        return;
+    }
+
+
+    if(person.featured){
+
+        alert(
+            "ไม่สามารถลบผู้ใหญ่บ้านจากหน้า Dashboard นี้ได้"
+        );
+
+        return;
+
+    }
+
+
+    const confirmed =
+        confirm(
+            `ต้องการลบ ${person.prefix}${person.firstName} ${person.lastName} หรือไม่?`
+        );
+
+
+    if(!confirmed){
+        return;
+    }
+
+
+    leaders =
+        leaders.filter(
+            x => x.id !== id
+        );
+
+
+    renderLeaders();
+
+    updateSummary();
+
+}
+
+
+/* =========================================================
+CALL
+========================================================= */
+
+function callLeader(phone){
+
+    if(!phone){
+
+        alert(
+            "ยังไม่ได้ระบุหมายเลขโทรศัพท์"
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "tel:" +
+        phone;
+
+}
+
+
+/* =========================================================
+FILTER
+========================================================= */
+
+search.addEventListener(
+    "input",
+    renderLeaders
+);
+
+roleFilter.addEventListener(
+    "change",
+    renderLeaders
+);
+
+
+/* =========================================================
+CLOCK
+========================================================= */
 
 function updateClock(){
 
     const now =
         new Date();
 
+
     document.getElementById(
-        "clock"
+        "time"
     ).textContent =
         now.toLocaleTimeString(
             "th-TH",
             {
                 hour:"2-digit",
                 minute:"2-digit",
-                second:"2-digit"
+                second:"2-digit",
+                hour12:false
+            }
+        );
+
+
+    document.getElementById(
+        "today"
+    ).textContent =
+        now.toLocaleDateString(
+            "th-TH",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
             }
         );
 
 }
+
 
 updateClock();
 
@@ -1171,704 +2464,31 @@ setInterval(
 );
 
 
-/* ==================================================
-   STORAGE
-================================================== */
-
-let leaders =
-    JSON.parse(
-        localStorage.getItem(
-            "rongkhem_leaders"
-        ) || "[]"
-    );
-
-
-let editIndex = -1;
-
-
-/* ==================================================
-   RENDER
-================================================== */
-
-function renderLeaders(){
-
-    const grid =
-        document.getElementById(
-            "leaderGrid"
-        );
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
-
-
-    const position =
-        document.getElementById(
-            "positionFilter"
-        ).value;
-
-
-    const filtered =
-        leaders.filter(
-            leader => {
-
-                const matchSearch =
-                    leader.name
-                    .toLowerCase()
-                    .includes(search);
-
-
-                const matchPosition =
-                    position === "all" ||
-                    leader.position === position;
-
-
-                return (
-                    matchSearch &&
-                    matchPosition
-                );
-
-            }
-        );
-
-
-    if(filtered.length === 0){
-
-        grid.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    👔
-                </div>
-
-                ยังไม่มีข้อมูลทำเนียบผู้นำ
-
-                <br><br>
-
-                คลิก
-                <strong>
-                    + เพิ่มผู้นำใหม่
-                </strong>
-
-                เพื่อเริ่มบันทึกข้อมูล
-
-            </div>
-
-        `;
-
-    }else{
-
-        grid.innerHTML =
-            filtered.map(
-                leader => {
-
-                    const index =
-                        leaders.indexOf(
-                            leader
-                        );
-
-
-                    const image =
-                        leader.image || "";
-
-
-                    let statusClass =
-                        "green";
-
-
-                    if(
-                        leader.status ===
-                        "พัก/ลา"
-                    ){
-
-                        statusClass =
-                            "yellow";
-
-                    }
-
-
-                    if(
-                        leader.status ===
-                        "พ้นหน้าที่"
-                    ){
-
-                        statusClass =
-                            "red";
-
-                    }
-
-
-                    return `
-
-                    <div
-                        class="leader-card"
-                    >
-
-                        <div
-                            class="leader-cover"
-                        >
-
-                            ${
-                                image
-
-                                ?
-
-                                `
-                                <img
-                                    class="leader-photo"
-                                    src="${escapeHTML(
-                                        image
-                                    )}"
-                                    alt="รูปผู้นำ"
-                                    onerror="
-                                        this.style.display='none';
-                                        this.nextElementSibling.style.display='flex';
-                                    "
-                                >
-
-                                <div
-                                    class="leader-placeholder"
-                                    style="display:none;"
-                                >
-                                    👔
-                                </div>
-                                `
-
-                                :
-
-                                `
-                                <div
-                                    class="leader-placeholder"
-                                >
-                                    👔
-                                </div>
-                                `
-                            }
-
-                        </div>
-
-
-                        <div
-                            class="leader-body"
-                        >
-
-                            <div
-                                class="leader-name"
-                            >
-
-                                ${escapeHTML(
-                                    leader.name
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="leader-position"
-                            >
-
-                                ${escapeHTML(
-                                    leader.position
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="leader-phone"
-                            >
-
-                                ${
-                                    leader.phone
-                                    ?
-                                    "📞 " +
-                                    escapeHTML(
-                                        leader.phone
-                                    )
-                                    :
-                                    "📞 ไม่ระบุเบอร์โทร"
-                                }
-
-                            </div>
-
-
-                            <div
-                                class="leader-status"
-                            >
-
-                                <span
-                                    class="
-                                        badge
-                                        ${statusClass}
-                                    "
-                                >
-
-                                    ${escapeHTML(
-                                        leader.status
-                                    )}
-
-                                </span>
-
-                            </div>
-
-
-                            <div
-                                class="leader-actions"
-                            >
-
-                                <button
-                                    class="action-btn"
-                                    onclick="
-                                        editLeader(
-                                            ${index}
-                                        )
-                                    "
-                                >
-
-                                    ✏️ แก้ไข
-
-                                </button>
-
-
-                                <button
-                                    class="
-                                        action-btn
-                                        delete
-                                    "
-                                    onclick="
-                                        deleteLeader(
-                                            ${index}
-                                        )
-                                    "
-                                >
-
-                                    🗑️ ลบ
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                    `;
-
-                }
-            ).join("");
-
-    }
-
-
-    updateSummary();
-
-}
-
-
-/* ==================================================
-   SUMMARY
-================================================== */
-
-function updateSummary(){
-
-    const active =
-        leaders.filter(
-            l =>
-                l.status !==
-                "พ้นหน้าที่"
-        );
-
-
-    const committee =
-        leaders.filter(
-            l =>
-                l.position ===
-                "คณะกรรมการหมู่บ้าน"
-        );
-
-
-    const official =
-        leaders.filter(
-            l =>
-                l.position ===
-                    "ผู้ใหญ่บ้าน"
-                ||
-                l.position ===
-                    "ผู้ช่วยผู้ใหญ่บ้าน"
-        );
-
-
-    document.getElementById(
-        "totalLeaders"
-    ).textContent =
-        leaders.length;
-
-
-    document.getElementById(
-        "totalCommittee"
-    ).textContent =
-        committee.length;
-
-
-    document.getElementById(
-        "totalOfficial"
-    ).textContent =
-        official.length;
-
-
-    document.getElementById(
-        "totalActive"
-    ).textContent =
-        active.length;
-
-}
-
-
-/* ==================================================
-   MODAL
-================================================== */
-
-function openLeaderModal(){
-
-    editIndex = -1;
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "👔 เพิ่มผู้นำใหม่";
-
-    clearForm();
-
-    document.getElementById(
-        "leaderModal"
-    ).classList.add("show");
-
-}
-
-
-function closeLeaderModal(){
-
-    document.getElementById(
-        "leaderModal"
-    ).classList.remove("show");
-
-}
-
-
-function clearForm(){
-
-    document.getElementById(
-        "leaderName"
-    ).value = "";
-
-    document.getElementById(
-        "leaderPosition"
-    ).value =
-        "ผู้ใหญ่บ้าน";
-
-    document.getElementById(
-        "leaderPhone"
-    ).value = "";
-
-    document.getElementById(
-        "leaderStart"
-    ).value = "";
-
-    document.getElementById(
-        "leaderStatus"
-    ).value =
-        "ปฏิบัติหน้าที่";
-
-    document.getElementById(
-        "leaderImage"
-    ).value = "";
-
-    document.getElementById(
-        "leaderDuty"
-    ).value = "";
-
-}
-
-
-/* ==================================================
-   SAVE
-================================================== */
-
-function saveLeader(){
-
-    const data = {
-
-        name:
-            document.getElementById(
-                "leaderName"
-            ).value.trim(),
-
-        position:
-            document.getElementById(
-                "leaderPosition"
-            ).value,
-
-        phone:
-            document.getElementById(
-                "leaderPhone"
-            ).value.trim(),
-
-        start:
-            document.getElementById(
-                "leaderStart"
-            ).value,
-
-        status:
-            document.getElementById(
-                "leaderStatus"
-            ).value,
-
-        image:
-            document.getElementById(
-                "leaderImage"
-            ).value.trim(),
-
-        duty:
-            document.getElementById(
-                "leaderDuty"
-            ).value.trim()
-
-    };
-
-
-    if(!data.name){
-
-        alert(
-            "กรุณากรอกชื่อ-นามสกุล"
-        );
-
-        return;
-
-    }
-
-
-    if(editIndex === -1){
-
-        leaders.push(data);
-
-        alert(
-            "เพิ่มข้อมูลผู้นำเรียบร้อยแล้ว"
-        );
-
-    }else{
-
-        leaders[
-            editIndex
-        ] = data;
-
-        alert(
-            "แก้ไขข้อมูลผู้นำเรียบร้อยแล้ว"
-        );
-
-    }
-
-
-    localStorage.setItem(
-        "rongkhem_leaders",
-        JSON.stringify(
-            leaders
-        )
-    );
-
-
-    closeLeaderModal();
-
-    renderLeaders();
-
-}
-
-
-/* ==================================================
-   EDIT
-================================================== */
-
-function editLeader(index){
-
-    const leader =
-        leaders[index];
-
-
-    if(!leader) return;
-
-
-    editIndex =
-        index;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "✏️ แก้ไขข้อมูลผู้นำ";
-
-
-    document.getElementById(
-        "leaderName"
-    ).value =
-        leader.name;
-
-
-    document.getElementById(
-        "leaderPosition"
-    ).value =
-        leader.position;
-
-
-    document.getElementById(
-        "leaderPhone"
-    ).value =
-        leader.phone || "";
-
-
-    document.getElementById(
-        "leaderStart"
-    ).value =
-        leader.start || "";
-
-
-    document.getElementById(
-        "leaderStatus"
-    ).value =
-        leader.status ||
-        "ปฏิบัติหน้าที่";
-
-
-    document.getElementById(
-        "leaderImage"
-    ).value =
-        leader.image || "";
-
-
-    document.getElementById(
-        "leaderDuty"
-    ).value =
-        leader.duty || "";
-
-
-    document.getElementById(
-        "leaderModal"
-    ).classList.add("show");
-
-}
-
-
-/* ==================================================
-   DELETE
-================================================== */
-
-function deleteLeader(index){
-
-    const leader =
-        leaders[index];
-
-
-    if(!leader) return;
-
-
-    if(
-        !confirm(
-            `ต้องการลบ ${leader.name} ออกจากทำเนียบผู้นำหรือไม่?`
-        )
-    ){
-
-        return;
-
-    }
-
-
-    leaders.splice(
-        index,
-        1
-    );
-
-
-    localStorage.setItem(
-        "rongkhem_leaders",
-        JSON.stringify(
-            leaders
-        )
-    );
-
-
-    renderLeaders();
-
-
-    alert(
-        "ลบข้อมูลผู้นำเรียบร้อยแล้ว"
-    );
-
-}
-
-
-/* ==================================================
-   SECURITY
-================================================== */
-
-function escapeHTML(value){
-
-    return String(
-        value ?? ""
-    )
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* ==================================================
-   COMING SOON
-================================================== */
-
-function showComingSoon(name){
-
-    alert(
-        `🏛️ RONGKHEM e-VILLAGE
-
-ระบบ "${name}"
-จะเชื่อมต่อในขั้นตอนถัดไปครับ`
-    );
-
-}
-
-
-/* ==================================================
-   CLOSE MODAL
-================================================== */
-
-document.addEventListener(
+/* =========================================================
+MOBILE
+========================================================= */
+
+document
+.getElementById("mobileButton")
+.addEventListener(
     "click",
-    function(event){
+    () => {
 
-        if(
-            event.target.classList
-            .contains("modal")
-        ){
-
-            closeLeaderModal();
-
-        }
+        document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
     }
 );
 
 
-/* ==================================================
-   INITIALIZE
-================================================== */
+/* =========================================================
+START
+========================================================= */
 
 renderLeaders();
+
+updateSummary();
 
 </script>
 
