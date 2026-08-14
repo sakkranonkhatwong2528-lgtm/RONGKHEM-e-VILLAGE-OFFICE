@@ -32,28 +32,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 :root{
 
     --bg:#07111f;
-
     --card:rgba(15,29,48,.88);
-
     --border:rgba(255,255,255,.08);
 
     --text:#f8fafc;
-
     --muted:#94a3b8;
 
     --cyan:#22d3ee;
-
     --blue:#38bdf8;
-
     --green:#22c55e;
-
     --yellow:#facc15;
-
+    --orange:#fb923c;
     --red:#fb7185;
-
     --purple:#a78bfa;
-
-    --radius:22px;
 
 }
 
@@ -79,13 +70,13 @@ body{
 
     radial-gradient(
         circle at 10% 0%,
-        rgba(34,211,238,.10),
+        rgba(34,211,238,.09),
         transparent 30%
     ),
 
     radial-gradient(
         circle at 90% 20%,
-        rgba(59,130,246,.10),
+        rgba(59,130,246,.09),
         transparent 30%
     ),
 
@@ -139,9 +130,9 @@ HEADER
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    justify-content:space-between;
 
     gap:20px;
 
@@ -176,7 +167,7 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #0284c7,
+        #0369a1,
         #22d3ee
     );
 
@@ -200,8 +191,7 @@ HEADER
 
 .back{
 
-    padding:
-    9px 14px;
+    padding:9px 14px;
 
     border-radius:12px;
 
@@ -258,8 +248,7 @@ TITLE
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
@@ -278,12 +267,83 @@ TITLE
 
 
 /* =====================================================
+STATS
+===================================================== */
+
+.stats{
+
+    margin-top:22px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
+}
+
+.stat{
+
+    padding:22px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.stat-icon{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.stat-value{
+
+    margin-top:12px;
+
+    font-family:"Kanit";
+
+    font-size:34px;
+
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+/* =====================================================
 FILTER
 ===================================================== */
 
-.filter-panel{
+.control{
 
-    margin-top:22px;
+    margin-top:20px;
 
     padding:18px;
 
@@ -301,26 +361,25 @@ FILTER
 
     display:flex;
 
-    gap:10px;
-
     flex-wrap:wrap;
+
+    gap:9px;
 
 }
 
 .filter{
 
-    padding:
-    10px 15px;
+    padding:9px 14px;
 
-    border-radius:12px;
+    border-radius:11px;
 
     border:
     1px solid var(--border);
 
-    color:#cbd5e1;
-
     background:
     rgba(255,255,255,.04);
+
+    color:#cbd5e1;
 
     cursor:pointer;
 
@@ -332,11 +391,11 @@ FILTER
 
     color:white;
 
-    border-color:
-    rgba(34,211,238,.3);
-
     background:
     rgba(34,211,238,.10);
+
+    border-color:
+    rgba(34,211,238,.30);
 
 }
 
@@ -356,8 +415,7 @@ FILTER
 
     min-width:0;
 
-    padding:
-    13px 15px;
+    padding:13px 15px;
 
     border-radius:13px;
 
@@ -377,8 +435,7 @@ FILTER
 
 .btn{
 
-    padding:
-    12px 17px;
+    padding:12px 17px;
 
     border:0;
 
@@ -401,6 +458,104 @@ FILTER
 
 
 /* =====================================================
+PINNED
+===================================================== */
+
+.pinned{
+
+    margin-top:20px;
+
+    padding:24px;
+
+    border-radius:23px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(14,116,144,.20),
+        rgba(15,29,48,.90)
+    );
+
+    border:
+    1px solid
+    rgba(34,211,238,.20);
+
+}
+
+.pinned-head{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.pinned-icon{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.10);
+
+}
+
+.pinned-label{
+
+    color:#fde68a;
+
+    font-size:10px;
+
+}
+
+.pinned-title{
+
+    margin-top:3px;
+
+    font-family:"Kanit";
+
+    font-size:22px;
+
+}
+
+.pinned-content{
+
+    margin-top:13px;
+
+    color:#cbd5e1;
+
+    font-size:12px;
+
+    line-height:1.9;
+
+}
+
+.pinned-date{
+
+    margin-top:12px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
 NEWS GRID
 ===================================================== */
 
@@ -413,7 +568,7 @@ NEWS GRID
     grid-template-columns:
     repeat(3,1fr);
 
-    gap:16px;
+    gap:15px;
 
 }
 
@@ -421,7 +576,7 @@ NEWS GRID
 
     overflow:hidden;
 
-    border-radius:22px;
+    border-radius:21px;
 
     background:
     var(--card);
@@ -445,34 +600,9 @@ NEWS GRID
 
 }
 
-.news-top{
+.news-image{
 
-    min-height:115px;
-
-    padding:20px;
-
-    display:flex;
-
-    align-items:flex-start;
-
-    justify-content:space-between;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(34,211,238,.09),
-        rgba(59,130,246,.04)
-    );
-
-}
-
-.news-icon{
-
-    width:48px;
-
-    height:48px;
-
-    border-radius:15px;
+    height:170px;
 
     display:flex;
 
@@ -480,44 +610,24 @@ NEWS GRID
 
     justify-content:center;
 
-    color:#67e8f9;
-
     background:
-    rgba(34,211,238,.10);
 
-}
+    radial-gradient(
+        circle at 30% 20%,
+        rgba(34,211,238,.16),
+        transparent 40%
+    ),
 
-.badge{
+    linear-gradient(
+        135deg,
+        #0b2034,
+        #10253b
+    );
 
-    padding:
-    5px 9px;
+    color:
+    rgba(34,211,238,.40);
 
-    border-radius:999px;
-
-    font-size:9px;
-
-    background:
-    rgba(34,211,238,.10);
-
-    color:#67e8f9;
-
-}
-
-.badge.urgent{
-
-    color:#fda4af;
-
-    background:
-    rgba(251,113,133,.10);
-
-}
-
-.badge.activity{
-
-    color:#86efac;
-
-    background:
-    rgba(34,197,94,.10);
+    font-size:43px;
 
 }
 
@@ -527,33 +637,79 @@ NEWS GRID
 
 }
 
+.news-meta{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.news-type{
+
+    padding:5px 9px;
+
+    border-radius:999px;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+    font-size:9px;
+
+}
+
+.news-date{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
 .news-title{
+
+    margin-top:12px;
 
     font-family:"Kanit";
 
     font-size:18px;
 
-    line-height:1.45;
+    line-height:1.4;
 
 }
 
-.news-summary{
+.news-content{
 
     margin-top:8px;
 
     color:var(--muted);
 
-    font-size:11px;
+    font-size:10px;
 
     line-height:1.8;
 
+    display:
+    -webkit-box;
+
+    -webkit-line-clamp:4;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
 }
 
-.news-meta{
+.news-footer{
 
     margin-top:15px;
 
-    padding-top:13px;
+    padding-top:12px;
 
     border-top:
     1px solid rgba(255,255,255,.06);
@@ -562,11 +718,150 @@ NEWS GRID
 
     justify-content:space-between;
 
-    gap:10px;
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+NOTICE PANEL
+===================================================== */
+
+.notice-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:16px;
+
+}
+
+.panel{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.panel-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.panel-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.panel-sub{
+
+    margin-top:2px;
 
     color:var(--muted);
 
     font-size:10px;
+
+}
+
+.notice-list{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.notice{
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.notice-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.notice-title{
+
+    font-size:11px;
+
+}
+
+.notice-badge{
+
+    padding:4px 8px;
+
+    border-radius:999px;
+
+    font-size:9px;
+
+}
+
+.notice-badge.urgent{
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.08);
+
+}
+
+.notice-badge.normal{
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.notice-meta{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:9px;
 
 }
 
@@ -580,17 +875,9 @@ EMPTY
     grid-column:
     1 / -1;
 
-    padding:60px 20px;
+    padding:55px 20px;
 
     text-align:center;
-
-    border-radius:22px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
 
     color:var(--muted);
 
@@ -605,16 +892,16 @@ EMPTY
     font-size:42px;
 
     color:
-    rgba(34,211,238,.30);
+    rgba(34,211,238,.28);
 
 }
 
 
 /* =====================================================
-ADMIN NOTE
+PRIVACY
 ===================================================== */
 
-.admin-note{
+.info-box{
 
     margin-top:20px;
 
@@ -622,20 +909,20 @@ ADMIN NOTE
 
     border-radius:20px;
 
-    background:
-    rgba(167,139,250,.06);
-
-    border:
-    1px solid
-    rgba(167,139,250,.15);
-
     display:flex;
 
     gap:14px;
 
+    background:
+    rgba(34,211,238,.05);
+
+    border:
+    1px solid
+    rgba(34,211,238,.13);
+
 }
 
-.admin-icon{
+.info-icon{
 
     width:43px;
 
@@ -643,28 +930,28 @@ ADMIN NOTE
 
     flex:none;
 
+    border-radius:13px;
+
     display:flex;
 
     align-items:center;
 
     justify-content:center;
 
-    border-radius:13px;
-
-    color:#c4b5fd;
+    color:#67e8f9;
 
     background:
-    rgba(167,139,250,.08);
+    rgba(34,211,238,.08);
 
 }
 
-.admin-note h3{
+.info-box h3{
 
     font-size:14px;
 
 }
 
-.admin-note p{
+.info-box p{
 
     margin-top:5px;
 
@@ -685,8 +972,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -708,7 +994,14 @@ FOOTER
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:1050px){
+@media(max-width:950px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
 
     .news-grid{
 
@@ -717,9 +1010,16 @@ RESPONSIVE
 
     }
 
+    .notice-grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
 }
 
-@media(max-width:650px){
+@media(max-width:620px){
 
     .container{
 
@@ -731,6 +1031,24 @@ RESPONSIVE
     .page-head h2{
 
         font-size:29px;
+
+    }
+
+    .stats{
+
+        gap:10px;
+
+    }
+
+    .stat{
+
+        padding:16px;
+
+    }
+
+    .stat-value{
+
+        font-size:28px;
 
     }
 
@@ -818,20 +1136,131 @@ TITLE
 <section class="page-head">
 
 <h2>
-ข่าวสารและประกาศ
+ข่าวสารและประกาศหมู่บ้าน
 </h2>
 
 <p>
-ประชาสัมพันธ์ข้อมูลข่าวสารจากที่ทำการผู้ใหญ่บ้านออนไลน์
+ศูนย์กลางประชาสัมพันธ์ข้อมูล ข่าวสาร และประกาศจากที่ทำการผู้ใหญ่บ้าน
 </p>
 
 <div class="source">
 
-<i class="fa-solid fa-database"></i>
+<i class="fa-solid fa-circle-info"></i>
 
-ข่าวสารจากฐานข้อมูลของหมู่บ้าน
+ข้อมูลข่าวสารจากระบบประชาสัมพันธ์หมู่บ้าน
 
 </div>
+
+</section>
+
+
+
+<!-- =====================================================
+STATS
+===================================================== -->
+
+<section class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-newspaper"></i>
+
+</div>
+
+<div
+id="totalNews"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ข่าวทั้งหมด
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-thumbtack"></i>
+
+</div>
+
+<div
+id="pinnedCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ประกาศปักหมุด
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+</div>
+
+<div
+id="noticeCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ประกาศ
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+</div>
+
+<div
+id="activityCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ข่าวกิจกรรม
+
+</div>
+
+</div>
+
 
 </section>
 
@@ -841,14 +1270,14 @@ TITLE
 FILTER
 ===================================================== -->
 
-<section class="filter-panel">
+<section class="control">
+
 
 <div class="filters">
 
 
 <button
 class="filter active"
-data-filter="all"
 onclick="setFilter('all',this)">
 
 ทั้งหมด
@@ -858,10 +1287,7 @@ onclick="setFilter('all',this)">
 
 <button
 class="filter"
-data-filter="ประกาศ"
 onclick="setFilter('ประกาศ',this)">
-
-<i class="fa-solid fa-bullhorn"></i>
 
 ประกาศ
 
@@ -870,22 +1296,16 @@ onclick="setFilter('ประกาศ',this)">
 
 <button
 class="filter"
-data-filter="ข่าวสาร"
-onclick="setFilter('ข่าวสาร',this)">
+onclick="setFilter('ข่าวประชาสัมพันธ์',this)">
 
-<i class="fa-solid fa-newspaper"></i>
-
-ข่าวสาร
+ประชาสัมพันธ์
 
 </button>
 
 
 <button
 class="filter"
-data-filter="กิจกรรม"
 onclick="setFilter('กิจกรรม',this)">
-
-<i class="fa-solid fa-calendar-check"></i>
 
 กิจกรรม
 
@@ -894,10 +1314,7 @@ onclick="setFilter('กิจกรรม',this)">
 
 <button
 class="filter"
-data-filter="แจ้งเตือน"
 onclick="setFilter('แจ้งเตือน',this)">
-
-<i class="fa-solid fa-triangle-exclamation"></i>
 
 แจ้งเตือน
 
@@ -928,6 +1345,60 @@ onclick="loadNews()">
 
 </div>
 
+
+</section>
+
+
+
+<!-- =====================================================
+PINNED
+===================================================== -->
+
+<section
+id="pinnedBox"
+class="pinned"
+style="display:none;">
+
+<div class="pinned-head">
+
+<div class="pinned-icon">
+
+<i class="fa-solid fa-thumbtack"></i>
+
+</div>
+
+<div>
+
+<div class="pinned-label">
+
+ประกาศสำคัญ
+
+</div>
+
+<div
+id="pinnedTitle"
+class="pinned-title">
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+id="pinnedContent"
+class="pinned-content">
+
+</div>
+
+
+<div
+id="pinnedDate"
+class="pinned-date">
+
+</div>
+
 </section>
 
 
@@ -953,28 +1424,122 @@ class="news-grid">
 
 
 <!-- =====================================================
-ADMIN NOTE
+NOTICE / RECENT
 ===================================================== -->
 
-<section class="admin-note">
+<section class="notice-grid">
 
-<div class="admin-icon">
 
-<i class="fa-solid fa-user-shield"></i>
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ประกาศล่าสุด
+</div>
+
+<div class="panel-sub">
+ประกาศจากที่ทำการผู้ใหญ่บ้าน
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-bullhorn"
+style="color:#67e8f9;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="noticeList"
+class="notice-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-bullhorn"></i>
+
+ยังไม่มีประกาศ
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ข่าวกิจกรรมล่าสุด
+</div>
+
+<div class="panel-sub">
+กิจกรรมและงานของชุมชน
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-calendar-days"
+style="color:#67e8f9;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="activityList"
+class="notice-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-calendar-days"></i>
+
+ยังไม่มีข่าวกิจกรรม
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+INFO
+===================================================== -->
+
+<section class="info-box">
+
+<div class="info-icon">
+
+<i class="fa-solid fa-circle-info"></i>
 
 </div>
 
 <div>
 
 <h3>
-สำหรับผู้ดูแลระบบ
+ศูนย์ประชาสัมพันธ์หมู่บ้าน
 </h3>
 
 <p>
 
-ข่าวประกาศจะถูกเพิ่ม แก้ไข และเผยแพร่จากระบบจัดการ
-โดยข้อมูลที่เผยแพร่ควรตรวจสอบข้อความ วันที่
-หน่วยงานผู้ออกประกาศ และเอกสารต้นฉบับก่อนทุกครั้ง
+ข่าวและประกาศที่แสดงในหน้านี้ควรมาจากข้อมูลที่ผู้ดูแลระบบบันทึกไว้จริง
+โดยควรระบุวันที่ ผู้ประกาศ และสถานะของประกาศให้ชัดเจน
+เพื่อให้ประชาชนตรวจสอบข้อมูลได้ง่าย
 
 </p>
 
@@ -997,6 +1562,7 @@ RONGKHEM e-VILLAGE
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
+
 
 <div>
 
@@ -1037,91 +1603,48 @@ supabase.createClient(
 STATE
 ===================================================== */
 
-let currentFilter = "all";
+let currentFilter =
+"all";
 
 
 /* =====================================================
 ESCAPE
 ===================================================== */
 
-function escapeHTML(
-    value
-){
+function escapeHTML(value){
 
     return String(
         value ?? ""
     )
 
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
 /* =====================================================
-ICON
+NUMBER
 ===================================================== */
 
-function getIcon(
-    type
-){
+function numberFormat(value){
 
-    switch(type){
+    if(
+        value === null ||
+        value === undefined
+    ){
 
-        case "ประกาศ":
-            return "fa-bullhorn";
-
-        case "กิจกรรม":
-            return "fa-calendar-check";
-
-        case "แจ้งเตือน":
-            return "fa-triangle-exclamation";
-
-        default:
-            return "fa-newspaper";
+        return "--";
 
     }
 
-}
-
-
-/* =====================================================
-BADGE
-===================================================== */
-
-function getBadgeClass(
-    type
-){
-
-    if(type === "แจ้งเตือน")
-        return "badge urgent";
-
-    if(type === "กิจกรรม")
-        return "badge activity";
-
-    return "badge";
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
 
 }
 
@@ -1156,15 +1679,11 @@ async function loadNews(){
 
         .select("*")
 
-        .eq(
-            "published",
-            true
-        )
-
         .order(
             "published_at",
             {
-                ascending:false
+                ascending:false,
+                nullsFirst:false
             }
         );
 
@@ -1175,7 +1694,7 @@ async function loadNews(){
 
             query =
             query.eq(
-                "category",
+                "type",
                 currentFilter
             );
 
@@ -1186,7 +1705,7 @@ async function loadNews(){
 
             query =
             query.or(
-                `title.ilike.%${keyword}%,summary.ilike.%${keyword}%`
+                `title.ilike.%${keyword}%,content.ilike.%${keyword}%`
             );
 
         }
@@ -1207,6 +1726,26 @@ async function loadNews(){
         );
 
 
+        updateStatistics(
+            data || []
+        );
+
+
+        loadPinned(
+            data || []
+        );
+
+
+        loadNoticeList(
+            data || []
+        );
+
+
+        loadActivityList(
+            data || []
+        );
+
+
     }catch(error){
 
         console.error(
@@ -1219,17 +1758,22 @@ async function loadNews(){
 
         <div class="empty">
 
-            <i class="fa-solid fa-database"></i>
+            <i class="fa-solid fa-newspaper"></i>
 
             ยังไม่มีข้อมูลข่าวสารในฐานข้อมูล
 
             <br>
 
-            กรุณาเพิ่มข่าวจากระบบผู้ดูแล
+            กรุณาเพิ่มข่าวจากระบบผู้ดูแลก่อนใช้งาน
 
         </div>
 
         `;
+
+
+        updateStatistics([]);
+
+        hidePinned();
 
     }
 
@@ -1237,7 +1781,7 @@ async function loadNews(){
 
 
 /* =====================================================
-RENDER
+RENDER NEWS
 ===================================================== */
 
 function renderNews(
@@ -1251,7 +1795,6 @@ function renderNews(
 
 
     if(
-        !news ||
         news.length === 0
     ){
 
@@ -1259,9 +1802,9 @@ function renderNews(
 
         <div class="empty">
 
-            <i class="fa-solid fa-inbox"></i>
+            <i class="fa-solid fa-newspaper"></i>
 
-            ไม่พบข่าวสารหรือประกาศ
+            ไม่พบข่าวหรือประกาศ
 
         </div>
 
@@ -1274,119 +1817,495 @@ function renderNews(
 
     grid.innerHTML =
     news.map(
-        item => {
+        item => `
 
-            const date =
-            item.published_at
-            ? new Date(
-                item.published_at
-            ).toLocaleDateString(
-                "th-TH",
-                {
-                    year:"numeric",
-                    month:"long",
-                    day:"numeric"
+        <article
+        class="news-card">
+
+
+            <div
+            class="news-image">
+
+                ${
+                    item.image_url
+                    ?
+                    `
+                    <img
+                    src="${escapeHTML(
+                        item.image_url
+                    )}"
+                    alt=""
+                    style="
+                    width:100%;
+                    height:100%;
+                    object-fit:cover;
+                    "
+                    >
+                    `
+                    :
+                    `
+                    <i
+                    class="fa-solid
+                    fa-bullhorn">
+                    </i>
+                    `
                 }
-            )
-            : "-";
+
+            </div>
 
 
-            return `
-
-            <article
-            class="news-card">
+            <div
+            class="news-body">
 
 
                 <div
-                class="news-top">
-
-                    <div
-                    class="news-icon">
-
-                        <i
-                        class="fa-solid
-                        ${getIcon(
-                            item.category
-                        )}">
-                        </i>
-
-                    </div>
+                class="news-meta">
 
 
                     <span
-                    class="${getBadgeClass(
-                        item.category
-                    )}">
+                    class="news-type">
 
                         ${escapeHTML(
-                            item.category ||
+                            item.type ||
                             "ข่าวสาร"
                         )}
 
                     </span>
 
+
+                    <span
+                    class="news-date">
+
+                        ${
+                            item.published_at
+                            ?
+                            formatDate(
+                                item.published_at
+                            )
+                            :
+                            "-"
+                        }
+
+                    </span>
+
+
                 </div>
 
 
                 <div
-                class="news-body">
+                class="news-title">
 
-
-                    <div
-                    class="news-title">
-
-                        ${escapeHTML(
-                            item.title
-                        )}
-
-                    </div>
-
-
-                    <div
-                    class="news-summary">
-
-                        ${escapeHTML(
-                            item.summary
-                        )}
-
-                    </div>
-
-
-                    <div
-                    class="news-meta">
-
-                        <span>
-
-                            <i
-                            class="fa-regular
-                            fa-calendar">
-                            </i>
-
-                            ${date}
-
-                        </span>
-
-
-                        <span>
-
-                            ${escapeHTML(
-                                item.author ||
-                                "ที่ทำการผู้ใหญ่บ้าน"
-                            )}
-
-                        </span>
-
-                    </div>
-
+                    ${escapeHTML(
+                        item.title ||
+                        "ไม่มีหัวข้อ"
+                    )}
 
                 </div>
 
-            </article>
 
-            `;
+                <div
+                class="news-content">
 
-        }
+                    ${escapeHTML(
+                        item.content ||
+                        "ไม่มีรายละเอียด"
+                    )}
+
+                </div>
+
+
+                <div
+                class="news-footer">
+
+                    <span>
+
+                        <i
+                        class="fa-solid fa-user">
+                        </i>
+
+                        ${
+                            escapeHTML(
+                                item.author ||
+                                "ที่ทำการผู้ใหญ่บ้าน"
+                            )
+                        }
+
+                    </span>
+
+
+                    ${
+                        item.pinned
+                        ?
+                        `
+                        <span
+                        style="color:#fde68a">
+
+                            <i
+                            class="fa-solid fa-thumbtack">
+                            </i>
+
+                            ปักหมุด
+
+                        </span>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+
+            </div>
+
+
+        </article>
+
+        `
     ).join("");
+
+}
+
+
+/* =====================================================
+PINNED
+===================================================== */
+
+function loadPinned(
+    news
+){
+
+    const pinned =
+    news.find(
+        item =>
+        item.pinned === true
+    );
+
+
+    if(!pinned){
+
+        hidePinned();
+
+        return;
+
+    }
+
+
+    const box =
+    document.getElementById(
+        "pinnedBox"
+    );
+
+
+    box.style.display =
+    "block";
+
+
+    document.getElementById(
+        "pinnedTitle"
+    ).textContent =
+    pinned.title ||
+    "ประกาศสำคัญ";
+
+
+    document.getElementById(
+        "pinnedContent"
+    ).textContent =
+    pinned.content ||
+    "";
+
+
+    document.getElementById(
+        "pinnedDate"
+    ).textContent =
+    pinned.published_at
+    ?
+    "ประกาศเมื่อ " +
+    formatDate(
+        pinned.published_at
+    )
+    :
+    "";
+
+}
+
+
+/* =====================================================
+HIDE PINNED
+===================================================== */
+
+function hidePinned(){
+
+    document.getElementById(
+        "pinnedBox"
+    ).style.display =
+    "none";
+
+}
+
+
+/* =====================================================
+STATISTICS
+===================================================== */
+
+function updateStatistics(
+    news
+){
+
+    const total =
+    news.length;
+
+
+    const pinned =
+    news.filter(
+        item =>
+        item.pinned === true
+    ).length;
+
+
+    const notice =
+    news.filter(
+        item =>
+        item.type === "ประกาศ"
+    ).length;
+
+
+    const activity =
+    news.filter(
+        item =>
+        item.type === "กิจกรรม"
+    ).length;
+
+
+    setValue(
+        "totalNews",
+        total
+    );
+
+    setValue(
+        "pinnedCount",
+        pinned
+    );
+
+    setValue(
+        "noticeCount",
+        notice
+    );
+
+    setValue(
+        "activityCount",
+        activity
+    );
+
+}
+
+
+/* =====================================================
+NOTICE LIST
+===================================================== */
+
+function loadNoticeList(
+    news
+){
+
+    const list =
+    document.getElementById(
+        "noticeList"
+    );
+
+
+    const notices =
+    news
+    .filter(
+        item =>
+        item.type === "ประกาศ" ||
+        item.type === "แจ้งเตือน"
+    )
+    .slice(0,6);
+
+
+    if(
+        notices.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    notices.map(
+        item => `
+
+        <div class="notice">
+
+            <div class="notice-top">
+
+                <div class="notice-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        "-"
+                    )}
+
+                </div>
+
+                <span
+                class="notice-badge
+                ${
+                    item.type === "แจ้งเตือน"
+                    ?
+                    "urgent"
+                    :
+                    "normal"
+                }">
+
+                    ${escapeHTML(
+                        item.type ||
+                        "ประกาศ"
+                    )}
+
+                </span>
+
+            </div>
+
+
+            <div class="notice-meta">
+
+                ${
+                    item.published_at
+                    ?
+                    formatDate(
+                        item.published_at
+                    )
+                    :
+                    "-"
+                }
+
+                ·
+
+                ${
+                    escapeHTML(
+                        item.author ||
+                        "ที่ทำการผู้ใหญ่บ้าน"
+                    )
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+ACTIVITY LIST
+===================================================== */
+
+function loadActivityList(
+    news
+){
+
+    const list =
+    document.getElementById(
+        "activityList"
+    );
+
+
+    const activities =
+    news
+    .filter(
+        item =>
+        item.type === "กิจกรรม"
+    )
+    .slice(0,6);
+
+
+    if(
+        activities.length === 0
+    ){
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    activities.map(
+        item => `
+
+        <div class="notice">
+
+            <div class="notice-top">
+
+                <div class="notice-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        "-"
+                    )}
+
+                </div>
+
+                <span
+                class="notice-badge normal">
+
+                    กิจกรรม
+
+                </span>
+
+            </div>
+
+
+            <div class="notice-meta">
+
+                ${
+                    item.published_at
+                    ?
+                    formatDate(
+                        item.published_at
+                    )
+                    :
+                    "-"
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+SET VALUE
+===================================================== */
+
+function setValue(
+    id,
+    value
+){
+
+    const element =
+    document.getElementById(
+        id
+    );
+
+
+    if(!element)
+        return;
+
+
+    element.textContent =
+    value > 0
+    ?
+    numberFormat(value)
+    :
+    "--";
 
 }
 
@@ -1427,7 +2346,48 @@ function setFilter(
 
 
 /* =====================================================
-ENTER
+DATE
+===================================================== */
+
+function formatDate(
+    value
+){
+
+    if(!value)
+        return "-";
+
+
+    const date =
+    new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return escapeHTML(
+            value
+        );
+
+    }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"long",
+            day:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+SEARCH
 ===================================================== */
 
 document
