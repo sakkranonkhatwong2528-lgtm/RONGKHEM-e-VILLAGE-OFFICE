@@ -1,70 +1,928 @@
 <!doctype html>
 <html lang="th">
+
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>RONGKHEM e-VILLAGE OFFICE</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
+
+
 <body>
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
 <header class="topbar">
- <div class="gov">🏛️</div><div class="brand"><b>RONGKHEM e-VILLAGE OFFICE</b><span>ที่ทำการผู้ใหญ่บ้านออนไลน์</span></div>
- <div class="online">● ระบบออนไลน์</div><div class="grow"></div>
- <div class="headClock"><b id="clock">--:--:--</b><small id="date">--</small></div>
- <div class="headWeather">🌤️<div><b id="topTemp">--°C</b><small>พะเยา</small></div></div>
- <div class="bell">🔔</div>
- <div class="profile"><div class="profilePic" id="profilePic">👨🏻‍💼</div><div><b>ผู้ใหญ่บ้าน</b><small id="leaderName">นายศักรนนท์ ขัติ์วงศ์</small></div></div>
+
+    <div class="gov">
+        🏛️
+    </div>
+
+    <div class="brand">
+        <b>RONGKHEM e-VILLAGE OFFICE</b>
+        <span>ที่ทำการผู้ใหญ่บ้านออนไลน์</span>
+    </div>
+
+    <div class="online">
+        ● ระบบออนไลน์
+    </div>
+
+    <div class="grow"></div>
+
+    <div class="headClock">
+        <b id="clock">--:--:--</b>
+        <small id="date">--</small>
+    </div>
+
+    <div class="headWeather">
+        🌤️
+
+        <div>
+            <b id="topTemp">--°C</b>
+            <small>พะเยา</small>
+        </div>
+    </div>
+
+    <div class="bell">
+        🔔
+    </div>
+
+    <div class="profile">
+
+        <div
+            class="profilePic"
+            id="profilePic">
+            👨🏻‍💼
+        </div>
+
+        <div>
+            <b>ผู้ใหญ่บ้าน</b>
+
+            <small id="leaderName">
+                นายศักรนนท์ ขัติ์วงศ์
+            </small>
+        </div>
+
+    </div>
+
 </header>
+
+
+<!-- =====================================================
+     MAIN SHELL
+===================================================== -->
+
 <div class="shell">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
 <aside class="sidebar">
-<a class="nav active" href="#home"><span class="ico">⌂</span>หน้าแรก<br>ศูนย์บัญชาการ</a>
-<a class="nav" href="#population"><span class="ico">👤</span>ข้อมูลประชาชน</a><a class="nav" href="#households"><span class="ico">🏠</span>ข้อมูลครัวเรือน</a>
-<a class="nav" href="#"><span class="ico">👥</span>ผู้นำชุมชน</a><a class="nav" href="#news"><span class="ico">📢</span>ข่าวประชาสัมพันธ์</a>
-<a class="nav" href="#activity"><span class="ico">▣</span>กิจกรรม / ปฏิทิน</a><a class="nav" href="#alert"><span class="ico">⚠</span>แจ้งเหตุ / ร้องเรียน</a>
-<a class="nav" href="#"><span class="ico">🤝</span>บริการประชาชน</a><a class="nav" href="#"><span class="ico">⌂</span>โครงการพัฒนาหมู่บ้าน</a>
-<a class="nav" href="#pm"><span class="ico">♧</span>สิ่งแวดล้อม / PM2.5</a><a class="nav" href="#"><span class="ico">♜</span>แหล่งซับน้ำจำ</a>
-<a class="nav" href="#"><span class="ico">♜</span>กลุ่มข้าวสาร</a><a class="nav" href="#"><span class="ico">▥</span>สถิติหมู่บ้าน</a>
-<a class="nav" href="#" onclick="openSettings();return false"><span class="ico">⚙</span>ตั้งค่าระบบ</a>
-<div class="contact"><h3>ที่ทำการผู้ใหญ่บ้าน</h3><div class="phone">📞 080-1202529</div>💬 rongkhem.village<br>📍 บ้านร่องเข็ม หมู่ที่ 6<br>ต.จำป่าหวาย อ.เมืองพะเยา<br>จ.พะเยา</div>
+
+    <a
+        class="nav active"
+        href="#home">
+
+        <span class="ico">⌂</span>
+
+        หน้าแรก
+        <br>
+        ศูนย์บัญชาการ
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#population">
+
+        <span class="ico">👤</span>
+
+        ข้อมูลประชาชน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#households">
+
+        <span class="ico">🏠</span>
+
+        ข้อมูลครัวเรือน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#">
+
+        <span class="ico">👥</span>
+
+        ผู้นำชุมชน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#news">
+
+        <span class="ico">📢</span>
+
+        ข่าวประชาสัมพันธ์
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#activity">
+
+        <span class="ico">▣</span>
+
+        กิจกรรม / ปฏิทิน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#alert">
+
+        <span class="ico">⚠</span>
+
+        แจ้งเหตุ / ร้องเรียน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#">
+
+        <span class="ico">🤝</span>
+
+        บริการประชาชน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#">
+
+        <span class="ico">⌂</span>
+
+        โครงการพัฒนาหมู่บ้าน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#pm">
+
+        <span class="ico">♧</span>
+
+        สิ่งแวดล้อม / PM2.5
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#">
+
+        <span class="ico">♜</span>
+
+        แหล่งซับน้ำจำ
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#">
+
+        <span class="ico">♜</span>
+
+        กลุ่มข้าวสาร
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#">
+
+        <span class="ico">▥</span>
+
+        สถิติหมู่บ้าน
+
+    </a>
+
+
+    <a
+        class="nav"
+        href="#"
+        onclick="openSettings();return false">
+
+        <span class="ico">⚙</span>
+
+        ตั้งค่าระบบ
+
+    </a>
+
+
+    <!-- CONTACT -->
+
+    <div class="contact">
+
+        <h3>
+            ที่ทำการผู้ใหญ่บ้าน
+        </h3>
+
+        <div class="phone">
+            📞 080-1202529
+        </div>
+
+        💬 rongkhem.village
+        <br>
+
+        📍 บ้านร่องเข็ม หมู่ที่ 6
+        <br>
+
+        ต.จำป่าหวาย อ.เมืองพะเยา
+        <br>
+
+        จ.พะเยา
+
+    </div>
+
 </aside>
-<main id="home">
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
 <main id="home">
 
-<section class="hero" id="heroBanner">
+
+<!-- =====================================================
+     HERO — กองทุนแม่ของแผ่นดิน
+===================================================== -->
+
+<section
+    class="hero"
+    id="heroBanner">
+
     <div class="heroShade"></div>
+
+
+    <!-- ปุ่มอยู่บนรูปโดยตรง -->
 
     <button
         type="button"
         class="heroUploadButton"
         onclick="openHeroUpload()">
+
         📷 เปลี่ยนรูป
+
     </button>
+
 </section>
 
+
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
+
 <div class="dashboard">
+
+
 <div>
-<div class="dashboard">
-<div>
-<section class="stats" id="population">
-<div class="metric"><div class="metricTop"><div class="metricIcon">👥</div><h3>ประชาชน</h3></div><div class="num">960 <small style="font-size:14px;color:#fff">คน</small></div><p>หญิง 489 คน　|　ชาย 471 คน</p></div>
-<div class="metric" id="households"><div class="metricTop"><div class="metricIcon">🏠</div><h3>ครัวเรือน</h3></div><div class="num">352 <small style="font-size:14px;color:#fff">ครัวเรือน</small></div><p>ข้อมูลที่ตรวจสอบแล้ว 352 หลัง</p></div>
-<div class="metric"><div class="metricTop"><div class="metricIcon">👴</div><h3>ผู้สูงอายุ</h3></div><div class="num">92 <small style="font-size:14px;color:#fff">คน</small></div><p>อายุ 60 ปีขึ้นไป<br>45.5% ของผู้ตอบแบบสำรวจ</p></div>
-<div class="metric"><div class="metricTop"><div class="metricIcon">👥</div><h3>กลุ่มเปราะบาง</h3></div><div class="num">95 <small style="font-size:14px;color:#fff">รายการ</small></div><p>ผู้พิการ 3 คน<br>โรคเรื้อรัง 1 คน</p></div>
-<div class="verified">✓ VERIFIED DATA · แบบสำรวจ <b>202 คน / 202 ครัวเรือน</b></div>
+
+
+<!-- =====================================================
+     VERIFIED STATISTICS
+===================================================== -->
+
+<section
+    class="stats"
+    id="population">
+
+
+    <!-- ประชาชน -->
+
+    <div class="metric">
+
+        <div class="metricTop">
+
+            <div class="metricIcon">
+                👥
+            </div>
+
+            <h3>
+                ประชาชน
+            </h3>
+
+        </div>
+
+
+        <div class="num">
+
+            960
+
+            <small
+                style="font-size:14px;color:#fff">
+
+                คน
+
+            </small>
+
+        </div>
+
+
+        <p>
+            หญิง 489 คน　
+            |　
+            ชาย 471 คน
+        </p>
+
+    </div>
+
+
+    <!-- ครัวเรือน -->
+
+    <div
+        class="metric"
+        id="households">
+
+        <div class="metricTop">
+
+            <div class="metricIcon">
+                🏠
+            </div>
+
+            <h3>
+                ครัวเรือน
+            </h3>
+
+        </div>
+
+
+        <div class="num">
+
+            352
+
+            <small
+                style="font-size:14px;color:#fff">
+
+                ครัวเรือน
+
+            </small>
+
+        </div>
+
+
+        <p>
+            ข้อมูลที่ตรวจสอบแล้ว
+            352 หลัง
+        </p>
+
+    </div>
+
+
+    <!-- ผู้สูงอายุ -->
+
+    <div class="metric">
+
+        <div class="metricTop">
+
+            <div class="metricIcon">
+                👴
+            </div>
+
+            <h3>
+                ผู้สูงอายุ
+            </h3>
+
+        </div>
+
+
+        <div class="num">
+
+            92
+
+            <small
+                style="font-size:14px;color:#fff">
+
+                คน
+
+            </small>
+
+        </div>
+
+
+        <p>
+
+            อายุ 60 ปีขึ้นไป
+
+            <br>
+
+            45.5%
+            ของผู้ตอบแบบสำรวจ
+
+        </p>
+
+    </div>
+
+
+    <!-- กลุ่มเปราะบาง -->
+
+    <div class="metric">
+
+        <div class="metricTop">
+
+            <div class="metricIcon">
+                👥
+            </div>
+
+            <h3>
+                กลุ่มเปราะบาง
+            </h3>
+
+        </div>
+
+
+        <div class="num">
+
+            95
+
+            <small
+                style="font-size:14px;color:#fff">
+
+                รายการ
+
+            </small>
+
+        </div>
+
+
+        <p>
+
+            ผู้พิการ 3 คน
+
+            <br>
+
+            โรคเรื้อรัง 1 คน
+
+        </p>
+
+    </div>
+
+
+    <!-- VERIFIED -->
+
+    <div class="verified">
+
+        ✓ VERIFIED DATA · แบบสำรวจ
+
+        <b>
+            202 คน / 202 ครัวเรือน
+        </b>
+
+    </div>
+
+
 </section>
+
+
+<!-- =====================================================
+     PANELS
+===================================================== -->
+
 <section class="panels">
-<div class="panel" id="news"><div class="panelHead"><h2>📢 ประกาศล่าสุด</h2><button class="view" onclick="openManager('news')">ดูทั้งหมด</button></div><div id="newsList" class="empty"><span class="emptyIcon">📣</span>ยังไม่มีข้อมูลประกาศ<br>ระบบพร้อมรับข้อมูลที่เพิ่มภายหลัง<br><button class="add" onclick="openManager('news')">＋ เพิ่มประกาศ</button></div></div>
-<div class="panel" id="activity"><div class="panelHead"><h2>📅 กิจกรรมวันนี้</h2><button class="view" onclick="openManager('activity')">ดูทั้งหมด</button></div><div id="activityList" class="empty"><span class="emptyIcon">🗓️</span>ยังไม่มีข้อมูลกิจกรรม<br>กรุณาเพิ่มข้อมูลกิจกรรมภายหลัง<br><button class="add" onclick="openManager('activity')">＋ เพิ่มกิจกรรม</button></div></div>
-<div class="panel" id="alert"><div class="panelHead"><h2>📋 แจ้งเตือน</h2><button class="view" onclick="openManager('alert')">ดูทั้งหมด</button></div><div id="alertList"><div class="alert"><b>👨‍👩‍👧 ประชุมประจำเดือนกำนันผู้ใหญ่บ้าน</b><small>15 ส.ค. 2569 09:00 น.</small></div><div class="alert"><b>🧹 โครงการ Big Cleaning Day</b><small>17 ส.ค. 2569 08:00 น.</small></div><div class="alert"><b>🌫️ รณรงค์ป้องกัน PM2.5</b><small>20 ส.ค. 2569 09:00 น.</small></div></div></div>
+
+
+    <!-- NEWS -->
+
+    <div
+        class="panel"
+        id="news">
+
+        <div class="panelHead">
+
+            <h2>
+                📢 ประกาศล่าสุด
+            </h2>
+
+            <button
+                class="view"
+                onclick="openManager('news')">
+
+                ดูทั้งหมด
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="newsList"
+            class="empty">
+
+            <span class="emptyIcon">
+                📣
+            </span>
+
+            ยังไม่มีข้อมูลประกาศ
+
+            <br>
+
+            ระบบพร้อมรับข้อมูลที่เพิ่มภายหลัง
+
+            <br>
+
+
+            <button
+                class="add"
+                onclick="openManager('news')">
+
+                ＋ เพิ่มประกาศ
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIVITY -->
+
+    <div
+        class="panel"
+        id="activity">
+
+        <div class="panelHead">
+
+            <h2>
+                📅 กิจกรรมวันนี้
+            </h2>
+
+            <button
+                class="view"
+                onclick="openManager('activity')">
+
+                ดูทั้งหมด
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="activityList"
+            class="empty">
+
+            <span class="emptyIcon">
+                🗓️
+            </span>
+
+            ยังไม่มีข้อมูลกิจกรรม
+
+            <br>
+
+            กรุณาเพิ่มข้อมูลกิจกรรมภายหลัง
+
+            <br>
+
+
+            <button
+                class="add"
+                onclick="openManager('activity')">
+
+                ＋ เพิ่มกิจกรรม
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ALERT -->
+
+    <div
+        class="panel"
+        id="alert">
+
+        <div class="panelHead">
+
+            <h2>
+                📋 แจ้งเตือน
+            </h2>
+
+            <button
+                class="view"
+                onclick="openManager('alert')">
+
+                ดูทั้งหมด
+
+            </button>
+
+        </div>
+
+
+        <div id="alertList">
+
+
+            <div class="alert">
+
+                <b>
+                    👨‍👩‍👧
+                    ประชุมประจำเดือนกำนันผู้ใหญ่บ้าน
+                </b>
+
+                <small>
+                    15 ส.ค. 2569 09:00 น.
+                </small>
+
+            </div>
+
+
+            <div class="alert">
+
+                <b>
+                    🧹
+                    โครงการ Big Cleaning Day
+                </b>
+
+                <small>
+                    17 ส.ค. 2569 08:00 น.
+                </small>
+
+            </div>
+
+
+            <div class="alert">
+
+                <b>
+                    🌫️
+                    รณรงค์ป้องกัน PM2.5
+                </b>
+
+                <small>
+                    20 ส.ค. 2569 09:00 น.
+                </small>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
 </section>
+
+
 </div>
+
+
+<!-- =====================================================
+     RIGHT SIDEBAR
+===================================================== -->
+
 <aside class="right">
-<div class="card"><div class="cardTitle">🌤️ สภาพอากาศ</div><div class="temp" id="temp">--°C</div><div id="weatherText">กำลังโหลด...</div><div class="weather3"><div>ความชื้น<b id="hum">--</b></div><div>โอกาสฝน<b>20%</b></div><div>ลม<b id="wind">--</b></div></div><div class="place">📍 พะเยา อ.เมืองพะเยา</div></div>
-<div class="card" id="pm"><div class="cardTitle">🌫️ PM2.5</div><div class="pmValue"><span id="pmv">--</span> <small style="font-size:14px">µg/m³</small></div><b id="pmStatus" class="pmGood">กำลังตรวจสอบ</b><div class="pmBar"></div><div class="pmLegend"><span>0-25</span><span>26-37</span><span>38-50</span><span>51-90</span><span>91+</span></div></div>
-<div class="card"><div class="cardTitle">🤖 AI ผู้ช่วยผู้ใหญ่บ้าน</div><div class="aiBox" id="aiText">สวัสดีครับ! ผมคือผู้ช่วย AI<br>ผู้ช่วยค้นข้อมูลจาก Dashboard</div><button class="ask" onclick="askAI()">ถามข้อมูลเลย</button></div>
+
+
+    <!-- WEATHER -->
+
+    <div class="card">
+
+        <div class="cardTitle">
+            🌤️ สภาพอากาศ
+        </div>
+
+
+        <div
+            class="temp"
+            id="temp">
+
+            --°C
+
+        </div>
+
+
+        <div id="weatherText">
+            กำลังโหลด...
+        </div>
+
+
+        <div class="weather3">
+
+
+            <div>
+
+                ความชื้น
+
+                <b id="hum">
+                    --
+                </b>
+
+            </div>
+
+
+            <div>
+
+                โอกาสฝน
+
+                <b>
+                    20%
+                </b>
+
+            </div>
+
+
+            <div>
+
+                ลม
+
+                <b id="wind">
+                    --
+                </b>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="place">
+
+            📍 พะเยา อ.เมืองพะเยา
+
+        </div>
+
+    </div>
+
+
+    <!-- PM2.5 -->
+
+    <div
+        class="card"
+        id="pm">
+
+        <div class="cardTitle">
+
+            🌫️ PM2.5
+
+        </div>
+
+
+        <div class="pmValue">
+
+            <span id="pmv">
+                --
+            </span>
+
+            <small
+                style="font-size:14px">
+
+                µg/m³
+
+            </small>
+
+        </div>
+
+
+        <b
+            id="pmStatus"
+            class="pmGood">
+
+            กำลังตรวจสอบ
+
+        </b>
+
+
+        <div class="pmBar"></div>
+
+
+        <div class="pmLegend">
+
+            <span>0-25</span>
+
+            <span>26-37</span>
+
+            <span>38-50</span>
+
+            <span>51-90</span>
+
+            <span>91+</span>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI -->
+
+    <div class="card">
+
+        <div class="cardTitle">
+
+            🤖 AI ผู้ช่วยผู้ใหญ่บ้าน
+
+        </div>
+
+
+        <div
+            class="aiBox"
+            id="aiText">
+
+            สวัสดีครับ!
+            ผมคือผู้ช่วย AI
+
+            <br>
+
+            ผู้ช่วยค้นข้อมูลจาก Dashboard
+
+        </div>
+
+
+        <button
+            class="ask"
+            onclick="askAI()">
+
+            ถามข้อมูลเลย
+
+        </button>
+
+    </div>
+
+
 </aside>
+
+
 </div>
-<footer class="footer">© 2026 RONGKHEM e-VILLAGE OFFICE | ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา</footer>
-</main></div>
-<div class="modal" id="modal"><div class="modalBox" id="modalBox"></div></div>
-<script src="data.js"></script><script src="config.js"></script><script src="app.js"></script>
-</body></html>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+© 2026 RONGKHEM e-VILLAGE OFFICE
+|
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+บ้านร่องเข็ม หมู่ที่ 6
+ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา
+
+</footer>
+
+
+</main>
+
+
+</div>
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+    class="modal"
+    id="modal">
+
+    <div
+        class="modalBox"
+        id="modalBox">
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="data.js"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+
+
+</body>
+</html>
