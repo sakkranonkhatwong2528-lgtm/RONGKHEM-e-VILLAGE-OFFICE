@@ -1,0 +1,3646 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+กลุ่มข้าวสาร | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+ROOT
+===================================================== */
+
+:root{
+
+--bg:#03101a;
+--panel:rgba(4,29,43,.94);
+--border:rgba(112,190,220,.24);
+
+--text:#ffffff;
+--muted:#9db5be;
+
+--green:#4cff70;
+--cyan:#45e8ff;
+--purple:#d78cff;
+--orange:#ffb53d;
+--red:#ff5d5d;
+
+--sidebar:260px;
+
+}
+
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+
+box-sizing:border-box;
+margin:0;
+padding:0;
+
+}
+
+
+body{
+
+min-height:100vh;
+
+font-family:
+"Prompt",
+"Kanit",
+sans-serif;
+
+color:var(--text);
+
+background:
+
+linear-gradient(
+rgba(0,12,20,.94),
+rgba(0,12,20,.98)
+),
+
+url("https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?auto=format&fit=crop&w=2200&q=85")
+center/cover fixed no-repeat;
+
+}
+
+
+button,
+input,
+select,
+textarea{
+
+font-family:inherit;
+
+}
+
+
+button{
+
+cursor:pointer;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+top:0;
+bottom:0;
+
+width:var(--sidebar);
+
+padding:20px 14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(1,18,30,.99),
+rgba(1,10,18,.98)
+);
+
+border-right:
+1px solid
+rgba(120,201,230,.18);
+
+z-index:1000;
+
+overflow-y:auto;
+
+}
+
+
+.sidebar-brand{
+
+display:flex;
+align-items:center;
+
+gap:11px;
+
+padding:
+5px
+9px
+20px;
+
+margin-bottom:13px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.09);
+
+}
+
+
+.logo{
+
+width:54px;
+height:54px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:15px;
+
+font-size:29px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,188,49,.17),
+rgba(4,38,51,.4)
+);
+
+border:
+1px solid
+rgba(255,190,54,.27);
+
+}
+
+
+.brand-title{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1.1;
+
+}
+
+
+.brand-title span{
+
+color:#b6ff43;
+
+}
+
+
+.brand-sub{
+
+color:#9eb8c2;
+
+font-size:10px;
+
+margin-top:3px;
+
+}
+
+
+.menu{
+
+display:flex;
+flex-direction:column;
+
+gap:4px;
+
+}
+
+
+.menu a{
+
+display:flex;
+align-items:center;
+
+gap:12px;
+
+padding:
+12px
+13px;
+
+color:#d6e3e8;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:13px;
+
+border:
+1px solid
+transparent;
+
+transition:.2s;
+
+}
+
+
+.menu a:hover{
+
+background:
+rgba(51,205,104,.08);
+
+border-color:
+rgba(65,231,108,.14);
+
+transform:
+translateX(2px);
+
+}
+
+
+.menu a.active{
+
+background:
+
+linear-gradient(
+100deg,
+rgba(31,190,75,.42),
+rgba(19,90,52,.22)
+);
+
+border-color:
+rgba(84,238,106,.7);
+
+color:#ffffff;
+
+}
+
+
+.icon{
+
+width:28px;
+
+text-align:center;
+
+font-size:20px;
+
+}
+
+
+.contact{
+
+margin-top:18px;
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(7,40,55,.9),
+rgba(3,22,33,.9)
+);
+
+border:
+1px solid
+rgba(116,196,219,.23);
+
+}
+
+
+.contact h3{
+
+font-family:"Kanit";
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+
+.contact p{
+
+color:#b7cbd3;
+
+font-size:10px;
+
+margin:7px 0;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+position:fixed;
+
+left:var(--sidebar);
+right:0;
+top:0;
+
+height:78px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 25px;
+
+background:
+rgba(3,22,35,.91);
+
+backdrop-filter:
+blur(18px);
+
+border-bottom:
+1px solid
+var(--border);
+
+z-index:900;
+
+}
+
+
+.page-title{
+
+display:flex;
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.big-icon{
+
+width:44px;
+height:44px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(255,181,61,.08);
+
+border:
+1px solid
+rgba(255,181,61,.25);
+
+font-size:24px;
+
+}
+
+
+.page-title h1{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+font-weight:500;
+
+}
+
+
+.page-title p{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.clock{
+
+text-align:right;
+
+}
+
+
+.time{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.today{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.mobile-button{
+
+display:none;
+
+width:42px;
+height:42px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color:#ffffff;
+
+font-size:20px;
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.main{
+
+margin-left:var(--sidebar);
+
+padding-top:78px;
+
+min-height:100vh;
+
+}
+
+
+.content{
+
+max-width:1550px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+
+/* =====================================================
+HERO
+===================================================== */
+
+.hero{
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:20px;
+
+padding:25px;
+
+margin-bottom:18px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(92,65,15,.42),
+rgba(4,31,43,.96)
+);
+
+border:
+1px solid
+rgba(255,181,61,.22);
+
+}
+
+
+.hero-left{
+
+max-width:760px;
+
+}
+
+
+.hero-tag{
+
+display:inline-flex;
+
+padding:
+6px
+10px;
+
+border-radius:7px;
+
+background:
+rgba(255,181,61,.1);
+
+border:
+1px solid
+rgba(255,181,61,.2);
+
+color:#ffd38d;
+
+font-size:8px;
+
+}
+
+
+.hero h2{
+
+font-family:"Kanit";
+
+font-size:28px;
+
+font-weight:500;
+
+margin-top:9px;
+
+}
+
+
+.hero p{
+
+color:#a2b8c0;
+
+font-size:10px;
+
+line-height:1.8;
+
+margin-top:5px;
+
+}
+
+
+.hero-icon{
+
+font-size:75px;
+
+filter:
+drop-shadow(
+0 10px 20px
+rgba(255,181,61,.15)
+);
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+.summary{
+
+display:grid;
+
+grid-template-columns:
+repeat(5,1fr);
+
+gap:14px;
+
+margin-bottom:18px;
+
+}
+
+
+.summary-card{
+
+padding:18px;
+
+border-radius:17px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(5,36,51,.92),
+rgba(2,20,30,.91)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 40px
+rgba(0,0,0,.25);
+
+}
+
+
+.summary-icon{
+
+font-size:25px;
+
+}
+
+
+.summary-title{
+
+color:#94adb7;
+
+font-size:10px;
+
+margin-top:6px;
+
+}
+
+
+.summary-number{
+
+font-family:"Kanit";
+
+font-size:29px;
+
+line-height:1.1;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+TOOLS
+===================================================== */
+
+.toolbar{
+
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+gap:12px;
+
+padding:16px;
+
+margin-bottom:18px;
+
+border-radius:17px;
+
+background:
+rgba(4,29,43,.88);
+
+border:
+1px solid
+var(--border);
+
+}
+
+
+.search{
+
+flex:1;
+
+padding:
+12px
+15px;
+
+border-radius:11px;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+background:
+rgba(255,255,255,.045);
+
+color:#fff;
+
+outline:none;
+
+font-size:11px;
+
+}
+
+
+.search:focus{
+
+border-color:
+rgba(69,232,255,.55);
+
+}
+
+
+.toolbar-buttons{
+
+display:flex;
+
+gap:8px;
+
+}
+
+
+.btn{
+
+border:0;
+
+padding:
+10px
+14px;
+
+border-radius:10px;
+
+font-size:9px;
+
+font-weight:500;
+
+}
+
+
+.btn-green{
+
+background:#48dc68;
+
+color:#02150a;
+
+}
+
+
+.btn-orange{
+
+background:
+rgba(255,181,61,.1);
+
+color:#ffd38d;
+
+border:
+1px solid
+rgba(255,181,61,.2);
+
+}
+
+
+/* =====================================================
+MAIN GRID
+===================================================== */
+
+.main-grid{
+
+display:grid;
+
+grid-template-columns:
+1.35fr
+.65fr;
+
+gap:18px;
+
+}
+
+
+/* =====================================================
+PANEL
+===================================================== */
+
+.panel{
+
+border-radius:19px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.27);
+
+overflow:hidden;
+
+}
+
+
+.panel-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+17px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.07);
+
+}
+
+
+.panel-head h2{
+
+font-family:"Kanit";
+
+font-size:18px;
+
+font-weight:500;
+
+}
+
+
+.panel-head span{
+
+color:#718d97;
+
+font-size:8px;
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+.table-wrap{
+
+overflow-x:auto;
+
+}
+
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+min-width:800px;
+
+}
+
+
+th{
+
+padding:
+12px
+14px;
+
+text-align:left;
+
+font-size:8px;
+
+color:#7895a0;
+
+font-weight:400;
+
+background:
+rgba(255,255,255,.025);
+
+}
+
+
+td{
+
+padding:
+13px
+14px;
+
+font-size:9px;
+
+color:#c4d4d9;
+
+border-top:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.member-name{
+
+font-weight:500;
+
+color:#e2ecef;
+
+}
+
+
+.status{
+
+display:inline-flex;
+
+padding:
+5px
+8px;
+
+border-radius:6px;
+
+font-size:7px;
+
+}
+
+
+.status-ok{
+
+color:#8ef49b;
+
+background:
+rgba(72,220,104,.09);
+
+}
+
+
+.status-wait{
+
+color:#ffd38e;
+
+background:
+rgba(255,181,61,.09);
+
+}
+
+
+.action-btn{
+
+padding:
+5px
+8px;
+
+border-radius:6px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid
+rgba(255,255,255,.08);
+
+color:#c8d8dc;
+
+font-size:7px;
+
+}
+
+
+/* =====================================================
+STOCK
+===================================================== */
+
+.stock{
+
+padding:20px;
+
+}
+
+
+.stock-main{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+
+.stock-icon{
+
+width:70px;
+height:70px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:18px;
+
+background:
+rgba(255,181,61,.08);
+
+border:
+1px solid
+rgba(255,181,61,.18);
+
+font-size:35px;
+
+}
+
+
+.stock-number{
+
+font-family:"Kanit";
+
+font-size:40px;
+
+line-height:1;
+
+}
+
+
+.stock-unit{
+
+font-size:8px;
+
+color:#78949e;
+
+}
+
+
+.stock-bar{
+
+height:10px;
+
+margin-top:18px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.06);
+
+overflow:hidden;
+
+}
+
+
+.stock-fill{
+
+height:100%;
+
+width:72%;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+90deg,
+#d38a20,
+#ffd15d
+);
+
+}
+
+
+.stock-scale{
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:7px;
+
+color:#667f89;
+
+margin-top:5px;
+
+}
+
+
+.stock-warning{
+
+margin-top:16px;
+
+padding:12px;
+
+border-radius:10px;
+
+background:
+rgba(72,220,104,.06);
+
+border:
+1px solid
+rgba(72,220,104,.14);
+
+font-size:8px;
+
+line-height:1.7;
+
+color:#91eca0;
+
+}
+
+
+/* =====================================================
+FUNERAL
+===================================================== */
+
+.funeral-list{
+
+padding:10px;
+
+}
+
+
+.funeral-item{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:12px;
+
+border-radius:11px;
+
+transition:.2s;
+
+}
+
+
+.funeral-item:hover{
+
+background:
+rgba(255,255,255,.035);
+
+}
+
+
+.funeral-icon{
+
+width:42px;
+height:42px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:11px;
+
+background:
+rgba(255,93,93,.08);
+
+border:
+1px solid
+rgba(255,93,93,.15);
+
+font-size:20px;
+
+}
+
+
+.funeral-info{
+
+flex:1;
+
+}
+
+
+.funeral-name{
+
+font-size:10px;
+
+}
+
+
+.funeral-date{
+
+font-size:7px;
+
+color:#708b95;
+
+margin-top:3px;
+
+}
+
+
+.funeral-amount{
+
+text-align:right;
+
+font-family:"Kanit";
+
+font-size:16px;
+
+color:#ffd36e;
+
+}
+
+
+.funeral-unit{
+
+display:block;
+
+font-family:"Prompt";
+
+font-size:7px;
+
+color:#708b95;
+
+}
+
+
+/* =====================================================
+DELINQUENT
+===================================================== */
+
+.delinq{
+
+margin-top:18px;
+
+}
+
+
+.delinq-list{
+
+padding:8px 15px 15px;
+
+}
+
+
+.delinq-item{
+
+display:grid;
+
+grid-template-columns:
+40px
+1fr
+70px;
+
+align-items:center;
+
+gap:10px;
+
+padding:12px 4px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.delinq-item:last-child{
+
+border-bottom:0;
+
+}
+
+
+.avatar{
+
+width:34px;
+height:34px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:10px;
+
+background:
+rgba(255,181,61,.08);
+
+font-size:15px;
+
+}
+
+
+.delinq-name{
+
+font-size:9px;
+
+}
+
+
+.delinq-sub{
+
+font-size:7px;
+
+color:#708b95;
+
+margin-top:3px;
+
+}
+
+
+.delinq-count{
+
+text-align:right;
+
+color:#ffca69;
+
+font-size:8px;
+
+}
+
+
+/* =====================================================
+REPORT
+===================================================== */
+
+.report{
+
+margin-top:18px;
+
+}
+
+
+.report-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:12px;
+
+padding:18px;
+
+}
+
+
+.report-card{
+
+padding:15px;
+
+border-radius:13px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.07);
+
+}
+
+
+.report-icon{
+
+font-size:23px;
+
+}
+
+
+.report-label{
+
+font-size:8px;
+
+color:#78949e;
+
+margin-top:8px;
+
+}
+
+
+.report-value{
+
+font-family:"Kanit";
+
+font-size:22px;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+MODAL
+===================================================== */
+
+.modal{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+align-items:center;
+justify-content:center;
+
+padding:20px;
+
+background:
+rgba(0,0,0,.72);
+
+backdrop-filter:
+blur(8px);
+
+z-index:3000;
+
+}
+
+
+.modal.show{
+
+display:flex;
+
+}
+
+
+.modal-box{
+
+width:min(700px,100%);
+
+max-height:90vh;
+
+overflow-y:auto;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+145deg,
+#082a3a,
+#031721
+);
+
+border:
+1px solid
+rgba(100,210,235,.28);
+
+box-shadow:
+0 25px 80px
+rgba(0,0,0,.6);
+
+}
+
+
+.modal-head{
+
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+padding:
+18px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+
+.modal-head h3{
+
+font-family:"Kanit";
+
+font-size:19px;
+
+font-weight:500;
+
+}
+
+
+.close{
+
+width:34px;
+height:34px;
+
+border-radius:9px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background:
+rgba(255,255,255,.05);
+
+color:#fff;
+
+font-size:18px;
+
+}
+
+
+.form{
+
+padding:20px;
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:14px;
+
+}
+
+
+.form-group{
+
+display:flex;
+
+flex-direction:column;
+
+gap:5px;
+
+}
+
+
+.form-group.full{
+
+grid-column:1/-1;
+
+}
+
+
+.form-group label{
+
+color:#9bb4bd;
+
+font-size:10px;
+
+}
+
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+padding:11px;
+
+border-radius:9px;
+
+background:
+rgba(255,255,255,.045);
+
+color:#fff;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+outline:none;
+
+font-size:11px;
+
+}
+
+
+.form-group textarea{
+
+min-height:90px;
+
+resize:vertical;
+
+}
+
+
+.form-group select option{
+
+background:#06202e;
+
+}
+
+
+.modal-actions{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:8px;
+
+padding:
+0
+20px
+20px;
+
+}
+
+
+.btn-cancel{
+
+color:#d5e0e4;
+
+background:
+rgba(255,255,255,.07);
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1250px){
+
+:root{
+--sidebar:230px;
+}
+
+.summary{
+
+grid-template-columns:
+repeat(3,1fr);
+
+}
+
+.main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:1000px){
+
+.sidebar{
+
+transform:
+translateX(-100%);
+
+transition:.3s;
+
+}
+
+.sidebar.open{
+
+transform:
+translateX(0);
+
+}
+
+.topbar{
+
+left:0;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.mobile-button{
+
+display:block;
+
+}
+
+.page-title p{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:750px){
+
+.content{
+
+padding:13px;
+
+}
+
+.summary{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.toolbar{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+.toolbar-buttons{
+
+display:grid;
+
+grid-template-columns:
+1fr
+1fr;
+
+}
+
+.report-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.hero-icon{
+
+display:none;
+
+}
+
+.clock{
+
+display:none;
+
+}
+
+.form{
+
+grid-template-columns:1fr;
+
+}
+
+.form-group.full{
+
+grid-column:auto;
+
+}
+
+}
+
+
+@media(max-width:480px){
+
+.summary{
+
+grid-template-columns:1fr;
+
+}
+
+.report-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.page-title h1{
+
+font-size:17px;
+
+}
+
+.hero h2{
+
+font-size:22px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<aside
+class="sidebar"
+id="sidebar"
+>
+
+<div class="sidebar-brand">
+
+<div class="logo">
+🏛️
+</div>
+
+<div>
+
+<div class="brand-title">
+RONGKHEM <span>e-VILLAGE</span>
+</div>
+
+<div class="brand-sub">
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="menu">
+
+<a href="index.html">
+<span class="icon">🏠</span>
+หน้าหลัก
+</a>
+
+<a href="citizen.html">
+<span class="icon">👥</span>
+ข้อมูลประชาชน
+</a>
+
+<a href="household.html">
+<span class="icon">🏠</span>
+ข้อมูลครัวเรือน
+</a>
+
+<a href="leader.html">
+<span class="icon">👔</span>
+ผู้นำชุมชน
+</a>
+
+<a href="news.html">
+<span class="icon">📢</span>
+ข่าวประชาสัมพันธ์
+</a>
+
+<a href="activity.html">
+<span class="icon">📅</span>
+กิจกรรม / ปฏิทิน
+</a>
+
+<a href="incident.html">
+<span class="icon">🚨</span>
+แจ้งเหตุ / ร้องเรียน
+</a>
+
+<a href="service.html">
+<span class="icon">🤝</span>
+บริการประชาชน
+</a>
+
+<a href="project.html">
+<span class="icon">🏗️</span>
+โครงการพัฒนาหมู่บ้าน
+</a>
+
+<a href="environment.html">
+<span class="icon">🌱</span>
+สิ่งแวดล้อม / PM2.5
+</a>
+
+<a href="wetland.html">
+<span class="icon">💧</span>
+แหล่งซับน้ำจำ
+</a>
+
+<a
+href="rice.html"
+class="active"
+>
+<span class="icon">🍚</span>
+กลุ่มข้าวสาร
+</a>
+
+<a href="statistics.html">
+<span class="icon">📊</span>
+สถิติหมู่บ้าน
+</a>
+
+<a href="admin.html">
+<span class="icon">⚙️</span>
+ตั้งค่าระบบ
+</a>
+
+</nav>
+
+
+<div class="contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+📞 โทร. 088-888-8888
+</p>
+
+<p>
+🟢 LINE ID: rongkhem.village
+</p>
+
+<p>
+🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
+</p>
+
+</div>
+
+</aside>
+
+
+<!-- =====================================================
+TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+<div class="page-title">
+
+<button
+class="mobile-button"
+id="mobileButton"
+>
+☰
+</button>
+
+<div class="big-icon">
+🍚
+</div>
+
+<div>
+
+<h1>
+ศูนย์บริหารจัดการกลุ่มข้าวสาร
+</h1>
+
+<p>
+ระบบบริหารสมาชิกและข้าวสารช่วยเหลืองานศพ บ้านร่องเข็ม
+</p>
+
+</div>
+
+</div>
+
+
+<div class="clock">
+
+<div
+class="time"
+id="time"
+>
+00:00:00
+</div>
+
+<div
+class="today"
+id="today"
+>
+กำลังโหลด...
+</div>
+
+</div>
+
+</header>
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main">
+
+<div class="content">
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-left">
+
+<div class="hero-tag">
+🍚 กลุ่มข้าวสารเพื่อช่วยเหลืองานศพชุมชน
+</div>
+
+<h2>
+ระบบกลุ่มข้าวสารบ้านร่องเข็ม
+</h2>
+
+<p>
+บริหารสมาชิก การส่งข้าวสาร สต็อกข้าว
+งานศพ และประวัติการช่วยเหลืออย่างเป็นระบบ
+เพื่อให้คณะกรรมการตรวจสอบข้อมูลได้ง่าย
+และประชาชนได้รับทราบข้อมูลอย่างโปร่งใส
+</p>
+
+</div>
+
+<div class="hero-icon">
+🍚
+</div>
+
+</section>
+
+
+<!-- SUMMARY -->
+
+<section class="summary">
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+👥
+</div>
+
+<div class="summary-title">
+สมาชิกทั้งหมด
+</div>
+
+<div
+class="summary-number"
+id="totalMembers"
+>
+192
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+✅
+</div>
+
+<div class="summary-title">
+ส่งข้าวสารแล้ว
+</div>
+
+<div
+class="summary-number"
+id="sentMembers"
+style="color:#72ef8b"
+>
+182
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+⏳
+</div>
+
+<div class="summary-title">
+ค้างส่ง
+</div>
+
+<div
+class="summary-number"
+id="pendingMembers"
+style="color:#ffd16a"
+>
+10
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+🍚
+</div>
+
+<div class="summary-title">
+สต็อกปัจจุบัน
+</div>
+
+<div
+class="summary-number"
+id="stockNumber"
+style="color:#ffd16a"
+>
+147
+</div>
+
+</div>
+
+
+<div class="summary-card">
+
+<div class="summary-icon">
+⚰️
+</div>
+
+<div class="summary-title">
+งานศพปีนี้
+</div>
+
+<div
+class="summary-number"
+id="funeralCount"
+>
+8
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- TOOLBAR -->
+
+<section class="toolbar">
+
+
+<input
+type="search"
+class="search"
+id="search"
+placeholder="🔎 ค้นหาสมาชิก เลขที่สมาชิก หรือสถานะ..."
+>
+
+
+<div class="toolbar-buttons">
+
+
+<button
+class="btn btn-orange"
+onclick="openFuneral()"
+>
+⚰️ เพิ่มงานศพ
+</button>
+
+
+<button
+class="btn btn-green"
+onclick="openMember()"
+>
+＋ เพิ่มสมาชิก
+</button>
+
+
+</div>
+
+
+</section>
+
+
+<!-- MAIN GRID -->
+
+<section class="main-grid">
+
+
+<!-- MEMBERS -->
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+👥 สมาชิกกลุ่มข้าวสาร
+</h2>
+
+<span>
+192 ครัวเรือน
+</span>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+สมาชิก
+</th>
+
+<th>
+บ้านเลขที่
+</th>
+
+<th>
+สถานะ
+</th>
+
+<th>
+ครั้งค้างส่ง
+</th>
+
+<th>
+ดำเนินการ
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="memberTable"
+></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT -->
+
+<div>
+
+
+<!-- STOCK -->
+
+<div class="panel">
+
+<div class="panel-head">
+
+<h2>
+📦 สต็อกข้าวสาร
+</h2>
+
+<span>
+คลังปัจจุบัน
+</span>
+
+</div>
+
+
+<div class="stock">
+
+<div class="stock-main">
+
+<div class="stock-icon">
+🍚
+</div>
+
+<div>
+
+<div
+class="stock-number"
+id="stockBig"
+>
+147
+</div>
+
+<div class="stock-unit">
+กระสอบ
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stock-bar">
+
+<div
+class="stock-fill"
+id="stockFill"
+></div>
+
+</div>
+
+
+<div class="stock-scale">
+
+<span>
+0
+</span>
+
+<span>
+100
+</span>
+
+<span>
+200
+</span>
+
+<span>
+250 กระสอบ
+</span>
+
+</div>
+
+
+<div class="stock-warning">
+
+🟢 สต็อกอยู่ในระดับเพียงพอ
+สำหรับการช่วยเหลืองานศพในระยะปัจจุบัน
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FUNERAL -->
+
+<div class="panel"
+style="margin-top:18px;"
+>
+
+<div class="panel-head">
+
+<h2>
+⚰️ งานศพล่าสุด
+</h2>
+
+<span>
+รายการล่าสุด
+</span>
+
+</div>
+
+
+<div
+class="funeral-list"
+id="funeralList"
+></div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- DELINQUENT -->
+
+<section class="panel delinq">
+
+<div class="panel-head">
+
+<h2>
+⚠️ สมาชิกค้างส่ง
+</h2>
+
+<span>
+ต้องติดตาม
+</span>
+
+</div>
+
+
+<div
+class="delinq-list"
+id="delinqList"
+></div>
+
+</section>
+
+
+<!-- REPORT -->
+
+<section class="panel report">
+
+<div class="panel-head">
+
+<h2>
+📊 สรุปการดำเนินงาน
+</h2>
+
+<span>
+ปี 2569
+</span>
+
+</div>
+
+
+<div class="report-grid">
+
+
+<div class="report-card">
+
+<div class="report-icon">
+🍚
+</div>
+
+<div class="report-label">
+ข้าวสารที่รับเข้าทั้งหมด
+</div>
+
+<div class="report-value">
+276
+</div>
+
+<div class="report-label">
+กระสอบ
+</div>
+
+</div>
+
+
+<div class="report-card">
+
+<div class="report-icon">
+📦
+</div>
+
+<div class="report-label">
+จ่ายช่วยเหลืองานศพ
+</div>
+
+<div class="report-value">
+129
+</div>
+
+<div class="report-label">
+กระสอบ
+</div>
+
+</div>
+
+
+<div class="report-card">
+
+<div class="report-icon">
+👥
+</div>
+
+<div class="report-label">
+สมาชิกส่งตรงเวลา
+</div>
+
+<div class="report-value">
+94.8%
+</div>
+
+<div class="report-label">
+ของสมาชิกทั้งหมด
+</div>
+
+</div>
+
+
+<div class="report-card">
+
+<div class="report-icon">
+⚰️
+</div>
+
+<div class="report-label">
+ครัวเรือนที่ได้รับการช่วยเหลือ
+</div>
+
+<div class="report-value">
+8
+</div>
+
+<div class="report-label">
+งาน
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+MEMBER MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="memberModal"
+>
+
+<div class="modal-box">
+
+
+<div class="modal-head">
+
+<h3>
+เพิ่มสมาชิกกลุ่มข้าวสาร
+</h3>
+
+<button
+class="close"
+onclick="closeMember()"
+>
+×
+</button>
+
+</div>
+
+
+<form
+class="form"
+id="memberForm"
+>
+
+
+<div class="form-group">
+
+<label>
+ชื่อ - นามสกุล
+</label>
+
+<input
+id="memberName"
+required
+placeholder="ชื่อสมาชิก"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+บ้านเลขที่
+</label>
+
+<input
+id="houseNumber"
+required
+placeholder="เช่น 126"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+สถานะ
+</label>
+
+<select id="memberStatus">
+
+<option>
+ส่งแล้ว
+</option>
+
+<option>
+ค้างส่ง
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+จำนวนครั้งค้างส่ง
+</label>
+
+<input
+type="number"
+id="missed"
+min="0"
+value="0"
+>
+
+</div>
+
+
+</form>
+
+
+<div class="modal-actions">
+
+<button
+class="btn btn-cancel"
+onclick="closeMember()"
+>
+ยกเลิก
+</button>
+
+<button
+class="btn btn-green"
+onclick="saveMember()"
+>
+💾 บันทึกสมาชิก
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+FUNERAL MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="funeralModal"
+>
+
+<div class="modal-box">
+
+
+<div class="modal-head">
+
+<h3>
+เพิ่มรายการงานศพ
+</h3>
+
+<button
+class="close"
+onclick="closeFuneral()"
+>
+×
+</button>
+
+</div>
+
+
+<form
+class="form"
+id="funeralForm"
+>
+
+
+<div class="form-group full">
+
+<label>
+ชื่อผู้เสียชีวิต
+</label>
+
+<input
+id="deceased"
+required
+placeholder="นาย / นาง / นางสาว ..."
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+วันที่ฌาปนกิจ
+</label>
+
+<input
+type="date"
+id="funeralDate"
+required
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+จำนวนข้าวสารที่จ่าย
+</label>
+
+<input
+type="number"
+id="riceAmount"
+value="1"
+min="1"
+required
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+หมายเหตุ
+</label>
+
+<textarea
+id="funeralNote"
+placeholder="รายละเอียดเพิ่มเติม"
+></textarea>
+
+</div>
+
+
+</form>
+
+
+<div class="modal-actions">
+
+<button
+class="btn btn-cancel"
+onclick="closeFuneral()"
+>
+ยกเลิก
+</button>
+
+<button
+class="btn btn-green"
+onclick="saveFuneral()"
+>
+💾 บันทึกงานศพ
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+DATA
+===================================================== */
+
+let members = [
+
+{
+id:1,
+name:"สมชาย ใจดี",
+house:"12",
+status:"ส่งแล้ว",
+missed:0
+},
+
+{
+id:2,
+name:"มาลี วงศ์คำ",
+house:"18",
+status:"ส่งแล้ว",
+missed:0
+},
+
+{
+id:3,
+name:"ประเสริฐ คำดี",
+house:"25",
+status:"ค้างส่ง",
+missed:1
+},
+
+{
+id:4,
+name:"จันทร์เพ็ญ บุญมา",
+house:"31",
+status:"ส่งแล้ว",
+missed:0
+},
+
+{
+id:5,
+name:"บุญมี คำปัน",
+house:"42",
+status:"ค้างส่ง",
+missed:2
+},
+
+{
+id:6,
+name:"วิชัย แสนดี",
+house:"56",
+status:"ส่งแล้ว",
+missed:0
+},
+
+{
+id:7,
+name:"สุพัตรา ใจมั่น",
+house:"67",
+status:"ส่งแล้ว",
+missed:0
+},
+
+{
+id:8,
+name:"ธนวัฒน์ คำปัน",
+house:"74",
+status:"ค้างส่ง",
+missed:3
+},
+
+{
+id:9,
+name:"กิตติศักดิ์ นามจิตต์",
+house:"82",
+status:"ส่งแล้ว",
+missed:0
+},
+
+{
+id:10,
+name:"สมพร ใฝ่ใจ",
+house:"91",
+status:"ค้างส่ง",
+missed:1
+}
+
+];
+
+
+let funerals = [
+
+{
+name:"นายเกษมสุข ใฝ่ใจ",
+date:"25/07/2569",
+amount:1
+},
+
+{
+name:"นายบูรณพิภพ ผัดดี",
+date:"08/07/2569",
+amount:1
+},
+
+{
+name:"นางธิดา นามจิตต์",
+date:"02/07/2569",
+amount:1
+}
+
+];
+
+
+let stock = 147;
+
+
+/* =====================================================
+ELEMENTS
+===================================================== */
+
+const memberTable =
+document.getElementById(
+"memberTable"
+);
+
+const search =
+document.getElementById(
+"search"
+);
+
+
+/* =====================================================
+RENDER MEMBERS
+===================================================== */
+
+function renderMembers(){
+
+const keyword =
+search.value
+.trim()
+.toLowerCase();
+
+
+const data =
+members.filter(
+member => {
+
+const text =
+(
+member.name +
+" " +
+member.house +
+" " +
+member.status
+).toLowerCase();
+
+return (
+!keyword ||
+text.includes(keyword)
+);
+
+}
+);
+
+
+memberTable.innerHTML = "";
+
+
+data.forEach(
+member => {
+
+const row =
+document.createElement("tr");
+
+
+const statusClass =
+member.status === "ส่งแล้ว"
+?
+"status-ok"
+:
+"status-wait";
+
+
+row.innerHTML = `
+
+<td>
+
+<div class="member-name">
+${member.name}
+</div>
+
+</td>
+
+<td>
+${member.house}
+</td>
+
+<td>
+
+<span
+class="status ${statusClass}"
+>
+${member.status}
+</span>
+
+</td>
+
+<td>
+
+<span
+style="
+color:${member.missed>=2
+?'#ffbd63'
+:'#9db5be'}"
+>
+${member.missed} ครั้ง
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="toggleMember(${member.id})"
+>
+เปลี่ยนสถานะ
+</button>
+
+</td>
+
+`;
+
+
+memberTable.appendChild(row);
+
+}
+);
+
+}
+
+
+/* =====================================================
+DELINQUENT
+===================================================== */
+
+function renderDelinquent(){
+
+const container =
+document.getElementById(
+"delinqList"
+);
+
+
+const data =
+members
+.filter(
+x => x.status === "ค้างส่ง"
+)
+.sort(
+(a,b) =>
+b.missed-a.missed
+);
+
+
+container.innerHTML = "";
+
+
+data.forEach(
+member => {
+
+const item =
+document.createElement("div");
+
+item.className =
+"delinq-item";
+
+
+let warning =
+member.missed >= 2
+?
+"⚠️ ควรติดตาม"
+:
+"รอติดตาม";
+
+
+item.innerHTML = `
+
+<div class="avatar">
+👤
+</div>
+
+<div>
+
+<div class="delinq-name">
+${member.name}
+</div>
+
+<div class="delinq-sub">
+บ้านเลขที่ ${member.house}
+</div>
+
+</div>
+
+<div class="delinq-count">
+${member.missed} ครั้ง
+<br>
+<span
+style="font-size:7px;color:#7d949d"
+>
+${warning}
+</span>
+</div>
+
+`;
+
+container.appendChild(item);
+
+}
+);
+
+}
+
+
+/* =====================================================
+TOGGLE MEMBER
+===================================================== */
+
+function toggleMember(id){
+
+const member =
+members.find(
+x => x.id === id
+);
+
+
+if(!member)
+return;
+
+
+if(member.status === "ส่งแล้ว"){
+
+member.status =
+"ค้างส่ง";
+
+member.missed++;
+
+}else{
+
+member.status =
+"ส่งแล้ว";
+
+}
+
+
+renderAll();
+
+}
+
+
+/* =====================================================
+FUNERAL LIST
+===================================================== */
+
+function renderFunerals(){
+
+const container =
+document.getElementById(
+"funeralList"
+);
+
+
+container.innerHTML = "";
+
+
+funerals
+.slice(0,5)
+.forEach(
+funeral => {
+
+const item =
+document.createElement("div");
+
+
+item.className =
+"funeral-item";
+
+
+item.innerHTML = `
+
+<div class="funeral-icon">
+⚰️
+</div>
+
+<div class="funeral-info">
+
+<div class="funeral-name">
+${funeral.name}
+</div>
+
+<div class="funeral-date">
+ฌาปนกิจ ${funeral.date}
+</div>
+
+</div>
+
+<div class="funeral-amount">
+
+${funeral.amount}
+
+<span class="funeral-unit">
+กระสอบ
+</span>
+
+</div>
+
+`;
+
+container.appendChild(item);
+
+}
+);
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+function updateSummary(){
+
+const sent =
+members.filter(
+x => x.status === "ส่งแล้ว"
+).length;
+
+
+const pending =
+members.filter(
+x => x.status === "ค้างส่ง"
+).length;
+
+
+document.getElementById(
+"totalMembers"
+).textContent =
+192;
+
+
+document.getElementById(
+"sentMembers"
+).textContent =
+Math.max(
+0,
+182 - Math.max(0,pending-10)
+);
+
+
+document.getElementById(
+"pendingMembers"
+).textContent =
+10 + Math.max(
+0,
+pending-3
+);
+
+
+document.getElementById(
+"stockNumber"
+).textContent =
+stock;
+
+
+document.getElementById(
+"stockBig"
+).textContent =
+stock;
+
+
+document.getElementById(
+"funeralCount"
+).textContent =
+8;
+
+
+const fill =
+Math.min(
+100,
+(stock/250)*100
+);
+
+
+document.getElementById(
+"stockFill"
+).style.width =
+fill+"%";
+
+}
+
+
+/* =====================================================
+ADD MEMBER
+===================================================== */
+
+function openMember(){
+
+document
+.getElementById(
+"memberForm"
+)
+.reset();
+
+
+document
+.getElementById(
+"memberModal"
+)
+.classList.add("show");
+
+}
+
+
+function closeMember(){
+
+document
+.getElementById(
+"memberModal"
+)
+.classList.remove("show");
+
+}
+
+
+function saveMember(){
+
+const form =
+document.getElementById(
+"memberForm"
+);
+
+
+if(!form.checkValidity()){
+
+form.reportValidity();
+
+return;
+
+}
+
+
+const member = {
+
+id:
+Date.now(),
+
+name:
+document.getElementById(
+"memberName"
+).value.trim(),
+
+house:
+document.getElementById(
+"houseNumber"
+).value.trim(),
+
+status:
+document.getElementById(
+"memberStatus"
+).value,
+
+missed:
+Number(
+document.getElementById(
+"missed"
+).value
+)
+
+};
+
+
+members.push(member);
+
+closeMember();
+
+renderAll();
+
+}
+
+
+/* =====================================================
+ADD FUNERAL
+===================================================== */
+
+function openFuneral(){
+
+document
+.getElementById(
+"funeralForm"
+)
+.reset();
+
+
+document
+.getElementById(
+"riceAmount"
+).value = 1;
+
+
+document
+.getElementById(
+"funeralModal"
+)
+.classList.add("show");
+
+}
+
+
+function closeFuneral(){
+
+document
+.getElementById(
+"funeralModal"
+)
+.classList.remove("show");
+
+}
+
+
+function saveFuneral(){
+
+const form =
+document.getElementById(
+"funeralForm"
+);
+
+
+if(!form.checkValidity()){
+
+form.reportValidity();
+
+return;
+
+}
+
+
+const date =
+new Date(
+document.getElementById(
+"funeralDate"
+).value
+);
+
+
+const buddhistYear =
+date.getFullYear()+543;
+
+
+const formatted =
+String(
+date.getDate()
+).padStart(2,"0")
++
+"/"
++
+String(
+date.getMonth()+1
+).padStart(2,"0")
++
+"/"
++
+buddhistYear;
+
+
+const amount =
+Number(
+document.getElementById(
+"riceAmount"
+).value
+);
+
+
+const funeral = {
+
+name:
+document.getElementById(
+"deceased"
+).value.trim(),
+
+date:
+formatted,
+
+amount:
+amount
+
+};
+
+
+funerals.unshift(
+funeral
+);
+
+
+stock =
+Math.max(
+0,
+stock-amount
+);
+
+
+closeFuneral();
+
+renderAll();
+
+}
+
+
+/* =====================================================
+SEARCH
+===================================================== */
+
+search.addEventListener(
+"input",
+renderMembers
+);
+
+
+/* =====================================================
+CLOCK
+===================================================== */
+
+function updateClock(){
+
+const now =
+new Date();
+
+
+document.getElementById(
+"time"
+).textContent =
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}
+);
+
+
+document.getElementById(
+"today"
+).textContent =
+now.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+document
+.getElementById(
+"mobileButton"
+)
+.addEventListener(
+"click",
+() => {
+
+document
+.getElementById(
+"sidebar"
+)
+.classList.toggle(
+"open"
+);
+
+}
+);
+
+
+/* =====================================================
+MODAL BACKGROUND
+===================================================== */
+
+document
+.getElementById(
+"memberModal"
+)
+.addEventListener(
+"click",
+e => {
+
+if(
+e.target ===
+document.getElementById(
+"memberModal"
+)
+){
+
+closeMember();
+
+}
+
+}
+);
+
+
+document
+.getElementById(
+"funeralModal"
+)
+.addEventListener(
+"click",
+e => {
+
+if(
+e.target ===
+document.getElementById(
+"funeralModal"
+)
+){
+
+closeFuneral();
+
+}
+
+}
+);
+
+
+/* =====================================================
+RENDER ALL
+===================================================== */
+
+function renderAll(){
+
+renderMembers();
+
+renderDelinquent();
+
+renderFunerals();
+
+updateSummary();
+
+}
+
+
+renderAll();
+
+</script>
+
+</body>
+</html>
