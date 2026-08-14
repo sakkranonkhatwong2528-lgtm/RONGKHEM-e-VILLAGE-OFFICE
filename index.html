@@ -15,7 +15,7 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 .header{grid-column:1/-1;display:grid;grid-template-columns:1fr auto 330px;align-items:center;gap:22px;padding:14px 18px 14px 28px;background:linear-gradient(90deg,rgba(2,15,27,.98),rgba(9,29,45,.88),rgba(2,13,24,.98));border-bottom:1px solid var(--line)}
 .brand{display:flex;align-items:center;gap:17px}.logo{font-size:55px}.brand h1{font:600 29px Kanit;margin:0}.brand h2{font:500 21px Kanit;margin:0}.brand p{font-size:11px;color:#d3dee6;margin:2px 0 0}
 .clockbox{text-align:right}.clock{font:500 43px Kanit;line-height:1}.date{font-size:12px;margin-top:4px}.day{font-size:11px;color:#d2dce4;margin-top:3px}
-.user{display:flex;align-items:center;gap:12px;padding:9px 13px;border:1px solid var(--line);border-radius:14px;background:rgba(13,35,52,.85)}.avatar{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;background:#b9c8d2;color:#314454;font-size:32px}.user-name{font:500 16px Kanit}.user-role{font-size:11px}.online{font-size:10px;color:#55df76;margin-top:4px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 9px #22c55e;margin-right:4px}
+.user{display:flex;align-items:center;gap:12px;padding:9px 13px;border:1px solid var(--line);border-radius:14px;background:rgba(13,35,52,.85)}.avatar{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;position:relative;overflow:hidden;cursor:pointer;background:#b9c8d2;color:#314454;font-size:32px}.user-name{font:500 16px Kanit}.user-role{font-size:11px}.online{font-size:10px;color:#55df76;margin-top:4px}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 9px #22c55e;margin-right:4px}
 .sidebar{padding:12px 10px;background:linear-gradient(180deg,#031522,#020b14);border-right:1px solid var(--line)}.menu{display:flex;flex-direction:column;gap:3px}.menu a{display:flex;align-items:center;gap:11px;min-height:43px;padding:7px 11px;border-radius:10px;color:#e9f1f6;text-decoration:none;font:400 12px Kanit;border:1px solid transparent}.menu a:hover{background:rgba(255,255,255,.04)}.menu a.active{background:linear-gradient(135deg,#176737,#0b472a);border-color:rgba(100,240,130,.3)}.mi{width:27px;text-align:center;font-size:17px}.sub{display:block;color:#b9c9d2;font:8px Prompt;margin-top:1px}.contact{margin-top:14px;padding:12px;border:1px solid var(--line);border-radius:11px;background:rgba(7,26,40,.8)}.contact h3{font:500 14px Kanit;text-align:center;margin:0 0 6px}.contact p{font-size:8px;line-height:1.9;color:#d0dbe2;margin:0}
 .content{position:relative;padding:14px;overflow:auto;background:linear-gradient(rgba(1,10,17,.3),rgba(1,10,17,.5)),url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=85") center/cover fixed}.content:before{content:"";position:fixed;inset:125px 0 0 225px;background:linear-gradient(90deg,rgba(1,12,20,.55),rgba(1,12,20,.22));pointer-events:none}.dashboard{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:13px}.hero{min-height:455px;border:1px solid rgba(150,225,250,.24);border-radius:16px;overflow:hidden;position:relative;padding:17px 20px;background:linear-gradient(90deg,rgba(1,14,24,.55),rgba(1,14,24,.12)),url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=85") center/cover}.hero h2{font:600 29px Kanit;margin:0}.quote{font:400 17px Kanit;color:#facc15}.tag{display:inline-block;margin-top:9px;padding:5px 9px;border:1px solid rgba(80,230,120,.25);border-radius:8px;background:rgba(25,140,60,.16);font-size:9px}.kpis{position:absolute;left:15px;right:15px;bottom:42px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.kpiwrap{text-align:center}.kpi{width:145px;height:145px;margin:auto;transform:rotate(45deg);border-radius:17px;background:rgba(5,24,31,.84);display:grid;place-items:center}.kpi.green{border:1.5px solid #7df16c}.kpi.cyan{border:1.5px solid var(--cyan)}.kpi.purple{border:1.5px solid var(--purple)}.kpi.orange{border:1.5px solid #ffc25a}.kpiin{transform:rotate(-45deg);text-align:center}.kpi i{font-size:30px}.kpititle{font:500 15px Kanit}.num{font:600 30px Kanit;line-height:1}.unit{font-size:9px}.detail{width:142px;margin:12px auto 0;padding:6px;border:1px solid rgba(180,220,235,.16);border-radius:8px;background:rgba(4,20,29,.84);font-size:8px;line-height:1.65}.verified{margin-top:10px;padding:7px 10px;text-align:center;font-size:8px;color:#bcefc9}.panel{border:1px solid var(--line);border-radius:13px;background:var(--panel);overflow:hidden}.panel h3{font:500 17px Kanit;margin:0;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.07)}.panelbody{padding:12px 14px}.right{display:flex;flex-direction:column;gap:13px}.weather{min-height:245px}.weather-main{display:flex;align-items:center;gap:12px}.weather-icon{font-size:48px}.temp{font:500 40px Kanit}.weather-text{font:12px Kanit}.weather-data{display:grid;grid-template-columns:repeat(3,1fr);margin-top:13px;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)}.wi{text-align:center;padding:8px 2px;border-right:1px solid rgba(255,255,255,.07);font-size:8px}.wi:last-child{border:0}.wi b{display:block;font:500 13px Kanit}.pm{min-height:205px}.pmrow{display:flex;align-items:center;gap:12px}.face{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#83d13b;font-size:29px}.pmnum{font:500 36px Kanit}.pmstatus{color:#a7e46d;font:500 13px Kanit}.scale{height:8px;margin-top:13px;border-radius:8px;background:linear-gradient(90deg,#55c83a 0 25%,#e5d33b 25% 45%,#f39a2e 45% 65%,#eb5a2b 65% 82%,#a6284e 82%)}.scale-label{display:flex;justify-content:space-between;font-size:7px;color:#aebbc4;margin-top:4px}.lower{display:grid;grid-template-columns:1.35fr 1fr .82fr;gap:13px;margin-top:13px}.announcement,.ai,.activities{min-height:280px}.row{display:grid;grid-template-columns:38px 1fr auto;gap:9px;padding:9px 13px;border-bottom:1px solid rgba(255,255,255,.06)}.ico{width:33px;height:33px;border-radius:7px;display:grid;place-items:center;background:#2474b8}.rowtitle{font:500 9px Kanit}.rowtext{font-size:7px;color:#afbec8;margin-top:2px}.date{font-size:7px}.aihead{display:flex;gap:10px;padding:12px}.robot{width:54px;height:54px;border-radius:17px;display:grid;place-items:center;background:#c6d4dc;color:#244458;font-size:29px}.aititle{font:500 15px Kanit}.aisub{font-size:7px;color:#b9c7d0}.aimsg{margin:0 13px 8px;padding:9px;border-radius:9px;background:rgba(25,55,76,.6);font-size:8px;line-height:1.6}.questions{padding:0 13px;display:flex;flex-direction:column;gap:5px}.q{padding:7px 9px;border:1px solid var(--line);border-radius:7px;background:rgba(8,27,40,.8);color:#e2ebf0;text-align:left;font-size:7px;cursor:pointer}.aiinput{display:flex;gap:5px;padding:8px 13px}.aiinput input{min-width:0;flex:1;border:0;border-radius:7px;padding:7px;font-size:8px}.aiinput button{border:0;border-radius:7px;width:35px;background:#43a83d;color:white}.statbar{margin-top:13px;display:grid;grid-template-columns:2fr 1fr;gap:13px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:9px}.stat{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);border-radius:8px;background:rgba(8,28,42,.8)}.si{font-size:20px}.st{font-size:7px;color:#b8c7d0}.sv{font:500 21px Kanit}.contacts{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:9px}.ct{padding:8px;border:1px solid var(--line);border-radius:8px;background:rgba(8,28,42,.8)}.ct i{font-size:17px}.ctl{font-size:7px;color:#b8c7d0}.ctv{font-size:8px;margin-top:2px}
 .mobile{display:none;position:fixed;z-index:20;top:10px;left:10px;width:40px;height:40px;border:1px solid var(--line);border-radius:9px;background:#071522;color:white}
@@ -31,7 +31,11 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 <header class="header">
   <div class="brand"><div class="logo">🏛️</div><div><h1>RONGKHEM e-VILLAGE</h1><h2>ที่ทำการผู้ใหญ่บ้านออนไลน์</h2><p>บ้านร่องเข็ม หมู่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p></div></div>
   <div class="clockbox"><div id="clock" class="clock">--:--:--</div><div id="date" class="date">กำลังโหลดวันที่...</div><div id="day" class="day"></div></div>
-  <div class="user"><div class="avatar">👨🏻‍💼</div><div><div class="user-name" id="leaderName">นายศักรนนทน์ ขัติย์วงศ์</div><div class="user-role" id="leaderRole">ผู้ใหญ่บ้าน หมู่ที่ 6</div><div class="online"><span class="dot"></span>ออนไลน์</div></div></div>
+  <div class="user"><div class="avatar" id="leaderAvatar" title="กดเพื่อเปลี่ยนรูปผู้ใหญ่บ้าน">
+  <img id="leaderPhoto" alt="รูปผู้ใหญ่บ้าน" style="display:none;width:100%;height:100%;object-fit:cover;border-radius:50%;">
+  <span id="leaderAvatarFallback">👨🏻‍💼</span>
+  <input id="leaderPhotoInput" type="file" accept="image/*" style="display:none;">
+</div><div><div class="user-name" id="leaderName">นายศักรนนทน์ ขัติย์วงศ์</div><div class="user-role" id="leaderRole">ผู้ใหญ่บ้าน หมู่ที่ 6</div><div class="online"><span class="dot"></span>ออนไลน์</div><div style="font-size:8px;color:#9fb2bd;margin-top:2px">กดรูปเพื่อเปลี่ยนภาพ</div></div></div>
 </header>
 
 <aside class="sidebar" id="sidebar">
@@ -142,8 +146,43 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 </main>
 </div>
 
-<script src="data.js"></script>
 <script>
+/* =========================================================
+   RONGKHEM e-VILLAGE — VERIFIED DATA
+   ฝังข้อมูลไว้ในหน้า Dashboard เพื่อไม่ให้ขึ้น -- หาก data.js หาย
+   ========================================================= */
+const DEFAULT_RONGKHEM_DATA = {
+  village:{
+    name:"บ้านร่องเข็ม", villageNo:6,
+    subdistrict:"จำป่าหวาย", district:"เมืองพะเยา", province:"พะเยา"
+  },
+  leader:{
+    name:"นายศักรนนทน์ ขัติย์วงศ์",
+    role:"ผู้ใหญ่บ้าน หมู่ที่ 6",
+    phone:"088-888-8888",
+    line:"rongkhem.village"
+  },
+  population:{total:960,male:471,female:489},
+  households:{total:352},
+  survey:{
+    respondents:202, households:202,
+    elderly60Plus:92, elderlyPercent:45.5,
+    disabled:3, chronicDisease:1, vulnerableSelections:95
+  },
+  verified:true,
+  source:"VERIFIED DATA BUILD"
+};
+
+let RONGKHEM_DATA = (() => {
+  try {
+    const saved = localStorage.getItem("RONGKHEM_DASHBOARD_DATA");
+    if (saved) return {...DEFAULT_RONGKHEM_DATA, ...JSON.parse(saved)};
+  } catch(e) { console.warn("อ่านข้อมูลในเครื่องไม่ได้", e); }
+  return DEFAULT_RONGKHEM_DATA;
+})();
+
+window.RONGKHEM_DATA = RONGKHEM_DATA;
+
 const D=RONGKHEM_DATA;
 const nf=n=>Number(n).toLocaleString("th-TH");
 function render(){
@@ -179,6 +218,140 @@ document.querySelectorAll(".q").forEach(b=>b.onclick=()=>{document.getElementByI
 document.getElementById("aiForm").onsubmit=e=>{e.preventDefault();document.getElementById("aiReply").textContent=ai(document.getElementById("aiInput").value);document.getElementById("aiInput").value=""};
 document.getElementById("mobile").onclick=()=>document.getElementById("sidebar").classList.toggle("open");
 render();clock();setInterval(clock,1000);
+
+/* =========================================================
+   ระบบแก้ไขข้อมูล Dashboard
+   บันทึกในเครื่องด้วย localStorage
+   ========================================================= */
+const settingsLink = document.getElementById("settingsLink");
+const editPanel = document.getElementById("editPanel");
+const closeEdit = document.getElementById("closeEdit");
+const saveEdit = document.getElementById("saveEdit");
+const editMsg = document.getElementById("editMsg");
+
+function openEditor(){
+  if(!editPanel) return;
+  document.getElementById("edTotal").value=D.population.total;
+  document.getElementById("edMale").value=D.population.male;
+  document.getElementById("edFemale").value=D.population.female;
+  document.getElementById("edHouse").value=D.households.total;
+  document.getElementById("edElderly").value=D.survey.elderly60Plus;
+  document.getElementById("edPct").value=D.survey.elderlyPercent;
+  document.getElementById("edDisabled").value=D.survey.disabled;
+  document.getElementById("edChronic").value=D.survey.chronicDisease;
+  document.getElementById("edVuln").value=D.survey.vulnerableSelections;
+  document.getElementById("edSurvey").value=D.survey.respondents;
+  editPanel.style.display="block";
+}
+
+if(settingsLink) settingsLink.addEventListener("click", function(e){
+  e.preventDefault();
+  openEditor();
+});
+
+if(closeEdit) closeEdit.addEventListener("click", function(){
+  editPanel.style.display="none";
+});
+
+if(editPanel) editPanel.addEventListener("click", function(e){
+  if(e.target === editPanel) editPanel.style.display="none";
+});
+
+if(saveEdit) saveEdit.addEventListener("click", function(){
+
+  const n = id => Number(document.getElementById(id).value || 0);
+
+  D.population.total = n("edTotal");
+  D.population.male = n("edMale");
+  D.population.female = n("edFemale");
+
+  D.households.total = n("edHouse");
+
+  D.survey.elderly60Plus = n("edElderly");
+  D.survey.elderlyPercent = n("edPct");
+  D.survey.disabled = n("edDisabled");
+  D.survey.chronicDisease = n("edChronic");
+  D.survey.vulnerableSelections = n("edVuln");
+  D.survey.respondents = n("edSurvey");
+
+  try {
+    localStorage.setItem(
+      "RONGKHEM_DASHBOARD_DATA",
+      JSON.stringify(D)
+    );
+
+    editMsg.textContent =
+      "✓ บันทึกข้อมูลสำเร็จ ข้อมูล Dashboard ถูกอัปเดตแล้ว";
+
+    render();
+
+  } catch(e) {
+    editMsg.textContent =
+      "ไม่สามารถบันทึกข้อมูลในเครื่องได้";
+  }
+});
+
+/* =========================================================
+   อัปโหลดรูปผู้ใหญ่บ้าน
+   เก็บรูปไว้ในเครื่องด้วย localStorage
+   ========================================================= */
+(function(){
+  const avatar = document.getElementById("leaderAvatar");
+  const input = document.getElementById("leaderPhotoInput");
+  const photo = document.getElementById("leaderPhoto");
+  const fallback = document.getElementById("leaderAvatarFallback");
+
+  if(!avatar || !input || !photo || !fallback) return;
+
+  function showPhoto(src){
+    photo.src = src;
+    photo.style.display = "block";
+    fallback.style.display = "none";
+  }
+
+  try{
+    const savedPhoto = localStorage.getItem("RONGKHEM_LEADER_PHOTO");
+    if(savedPhoto) showPhoto(savedPhoto);
+  }catch(e){
+    console.warn("ไม่สามารถอ่านรูปผู้ใหญ่บ้านจากเครื่องได้", e);
+  }
+
+  avatar.addEventListener("click", function(){
+    input.click();
+  });
+
+  input.addEventListener("change", function(){
+    const file = input.files && input.files[0];
+    if(!file) return;
+
+    if(!file.type.startsWith("image/")){
+      alert("กรุณาเลือกไฟล์รูปภาพ");
+      input.value = "";
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+      const src = e.target.result;
+      showPhoto(src);
+
+      try{
+        localStorage.setItem("RONGKHEM_LEADER_PHOTO", src);
+      }catch(err){
+        alert("รูปใหญ่เกินกว่าที่เบราว์เซอร์จะเก็บไว้ได้ กรุณาใช้รูป JPG/PNG ขนาดเล็กลง");
+      }
+    };
+
+    reader.readAsDataURL(file);
+  });
+})();
+
+/* เปิด/ปิดด้วยปุ่ม ESC */
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && editPanel)
+    editPanel.style.display="none";
+});
 </script>
 
 <style>
