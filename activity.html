@@ -1,1087 +1,2527 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONGKHEM e-VILLAGE | กิจกรรมหมู่บ้าน</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+กิจกรรมและปฏิทิน | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
 
 <style>
 
+/* =====================================================
+ROOT
+===================================================== */
+
 :root{
-    --bg:#07111f;
-    --card:#101f33;
-    --primary:#08a8ff;
-    --primary2:#006eff;
-    --green:#00df8a;
-    --yellow:#ffc83d;
-    --red:#ff5261;
-    --text:#f4f8ff;
-    --muted:#8fa1b8;
-    --border:rgba(255,255,255,.08);
+
+--bg:#03101a;
+
+--panel:rgba(4,29,43,.94);
+
+--border:rgba(112,190,220,.24);
+
+--text:#fff;
+
+--muted:#9db5be;
+
+--green:#4cff70;
+
+--cyan:#45e8ff;
+
+--purple:#d78cff;
+
+--orange:#ffb53d;
+
+--red:#ff5d5d;
+
+--sidebar:260px;
+
 }
+
+
+/* =====================================================
+RESET
+===================================================== */
 
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+
+box-sizing:border-box;
+
+margin:0;
+
+padding:0;
+
 }
 
+
 body{
-    font-family:"Noto Sans Thai","Segoe UI",Arial,sans-serif;
-    background:
-        radial-gradient(
-            circle at 20% 0%,
-            rgba(0,150,255,.14),
-            transparent 30%
-        ),
-        #07111f;
-    color:var(--text);
-    min-height:100vh;
+
+min-height:100vh;
+
+font-family:
+"Prompt",
+"Kanit",
+sans-serif;
+
+color:var(--text);
+
+background:
+
+linear-gradient(
+rgba(0,12,20,.92),
+rgba(0,12,20,.97)
+),
+
+url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
+center/cover fixed no-repeat;
+
 }
+
 
 button,
 input,
 select,
 textarea{
-    font-family:inherit;
+
+font-family:inherit;
+
 }
 
-/* ================= SIDEBAR ================= */
+
+button{
+
+cursor:pointer;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
 
 .sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    width:250px;
-    background:
-        linear-gradient(
-            180deg,
-            #0b1b2f,
-            #071321
-        );
-    border-right:1px solid var(--border);
-    padding:20px 14px;
-    z-index:100;
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+width:var(--sidebar);
+
+padding:20px 14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(1,18,30,.99),
+rgba(1,10,18,.98)
+);
+
+border-right:
+1px solid
+rgba(120,201,230,.18);
+
+z-index:1000;
+
+overflow-y:auto;
+
 }
+
+
+.sidebar-brand{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:
+5px
+9px
+20px;
+
+margin-bottom:13px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.09);
+
+}
+
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:8px 10px 22px;
-    border-bottom:1px solid var(--border);
-    margin-bottom:20px;
+
+width:54px;
+
+height:54px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:15px;
+
+font-size:29px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,188,49,.17),
+rgba(4,38,51,.4)
+);
+
+border:
+1px solid
+rgba(255,190,54,.27);
+
 }
 
-.logo-icon{
-    width:48px;
-    height:48px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:15px;
-    background:
-        linear-gradient(
-            135deg,
-            #007aff,
-            #00c8ff
-        );
-    font-size:25px;
+
+.brand-title{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1.1;
+
 }
 
-.logo-title{
-    font-size:17px;
-    font-weight:800;
+
+.brand-title span{
+
+color:#b6ff43;
+
 }
 
-.logo-sub{
-    font-size:10px;
-    color:var(--muted);
-    margin-top:3px;
+
+.brand-sub{
+
+color:#9eb8c2;
+
+font-size:10px;
+
+margin-top:3px;
+
 }
 
-.menu-title{
-    color:#61748b;
-    font-size:10px;
-    font-weight:700;
-    padding:0 12px;
-    margin-bottom:8px;
-}
 
 .menu{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:4px;
+
 }
 
-.menu button{
-    border:0;
-    background:transparent;
-    color:#aebdd0;
-    padding:12px;
-    border-radius:12px;
-    cursor:pointer;
-    text-align:left;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    transition:.2s;
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:
+12px
+13px;
+
+color:#d6e3e8;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:13px;
+
+border:
+1px solid
+transparent;
+
+transition:.2s;
+
 }
 
-.menu button:hover,
-.menu button.active{
-    color:#fff;
-    background:rgba(0,150,255,.12);
+
+.menu a:hover{
+
+background:
+rgba(51,205,104,.08);
+
+border-color:
+rgba(65,231,108,.14);
+
+transform:
+translateX(2px);
+
 }
 
-.menu-icon{
-    width:25px;
-    font-size:19px;
+
+.menu a.active{
+
+background:
+
+linear-gradient(
+100deg,
+rgba(31,190,75,.42),
+rgba(19,90,52,.22)
+);
+
+border-color:
+rgba(84,238,106,.7);
+
+color:#fff;
+
 }
 
-/* ================= MAIN ================= */
+
+.icon{
+
+width:28px;
+
+text-align:center;
+
+font-size:20px;
+
+}
+
+
+.contact{
+
+margin-top:18px;
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(7,40,55,.9),
+rgba(3,22,33,.9)
+);
+
+border:
+1px solid
+rgba(116,196,219,.23);
+
+}
+
+
+.contact h3{
+
+font-family:"Kanit";
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+
+.contact p{
+
+color:#b7cbd3;
+
+font-size:10px;
+
+margin:7px 0;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+position:fixed;
+
+left:var(--sidebar);
+
+right:0;
+
+top:0;
+
+height:78px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 25px;
+
+background:
+rgba(3,22,35,.91);
+
+backdrop-filter:
+blur(18px);
+
+border-bottom:
+1px solid
+var(--border);
+
+z-index:900;
+
+}
+
+
+.page-title{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.big-icon{
+
+width:44px;
+
+height:44px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(69,232,255,.08);
+
+border:
+1px solid
+rgba(69,232,255,.25);
+
+font-size:24px;
+
+}
+
+
+.page-title h1{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+font-weight:500;
+
+}
+
+
+.page-title p{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.clock{
+
+text-align:right;
+
+}
+
+
+.time{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.today{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.mobile-button{
+
+display:none;
+
+width:42px;
+
+height:42px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color:#fff;
+
+font-size:20px;
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
 
 .main{
-    margin-left:250px;
-    padding:22px;
+
+margin-left:var(--sidebar);
+
+padding-top:78px;
+
+min-height:100vh;
+
+}
+
+
+.content{
+
+max-width:1550px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+.summary{
+
+display:grid;
+
+grid-template-columns:
+repeat(5,1fr);
+
+gap:14px;
+
+margin-bottom:18px;
+
+}
+
+
+.summary-card{
+
+padding:18px;
+
+border-radius:17px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(5,36,51,.92),
+rgba(2,20,30,.91)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 40px
+rgba(0,0,0,.25);
+
+}
+
+
+.summary-icon{
+
+font-size:25px;
+
+}
+
+
+.summary-title{
+
+color:#94adb7;
+
+font-size:10px;
+
+margin-top:6px;
+
+}
+
+
+.summary-number{
+
+font-family:"Kanit";
+
+font-size:29px;
+
+line-height:1.1;
+
+margin-top:2px;
+
+}
+
+
+.green{
+
+border-color:
+rgba(76,255,112,.28);
+
+}
+
+
+.cyan{
+
+border-color:
+rgba(69,232,255,.28);
+
+}
+
+
+.orange{
+
+border-color:
+rgba(255,181,61,.28);
+
+}
+
+
+.purple{
+
+border-color:
+rgba(215,140,255,.28);
+
+}
+
+
+.red{
+
+border-color:
+rgba(255,93,93,.28);
+
+}
+
+
+/* =====================================================
+TOOLBAR
+===================================================== */
+
+.toolbar{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:12px;
+
+padding:16px;
+
+margin-bottom:18px;
+
+border-radius:17px;
+
+background:
+rgba(4,29,43,.88);
+
+border:
+1px solid
+var(--border);
+
+}
+
+
+.search-area{
+
+display:flex;
+
+gap:8px;
+
+flex:1;
+
+max-width:850px;
+
+}
+
+
+.search{
+
+flex:1;
+
+padding:
+12px
+15px;
+
+border-radius:11px;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+background:
+rgba(255,255,255,.045);
+
+color:#fff;
+
+outline:none;
+
+font-size:12px;
+
+}
+
+
+.search:focus{
+
+border-color:
+rgba(69,232,255,.55);
+
+}
+
+
+.filter{
+
+padding:
+12px
+14px;
+
+border-radius:11px;
+
+background:
+rgba(255,255,255,.045);
+
+color:#fff;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+outline:none;
+
+font-size:11px;
+
+}
+
+
+.filter option{
+
+background:#071c28;
+
+}
+
+
+.btn{
+
+border:0;
+
+padding:
+11px
+17px;
+
+border-radius:11px;
+
+font-size:11px;
+
+font-weight:500;
+
+color:#02150a;
+
+background:#48dc68;
+
+box-shadow:
+0 7px 20px
+rgba(72,220,104,.13);
+
+}
+
+
+.btn:hover{
+
+filter:brightness(1.08);
+
+}
+
+
+/* =====================================================
+LAYOUT
+===================================================== */
+
+.calendar-layout{
+
+display:grid;
+
+grid-template-columns:
+1.45fr
+.75fr;
+
+gap:18px;
+
+}
+
+
+/* =====================================================
+CALENDAR
+===================================================== */
+
+.calendar-panel{
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+border-radius:20px;
+
+overflow:hidden;
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.28);
+
+}
+
+
+.calendar-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+18px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+
+.month-title{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+}
+
+
+.month-actions{
+
+display:flex;
+
+gap:6px;
+
+}
+
+
+.month-btn{
+
+width:35px;
+
+height:35px;
+
+border-radius:9px;
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+color:#fff;
+
+}
+
+
+.month-btn:hover{
+
+background:
+rgba(69,232,255,.1);
+
+}
+
+
+.weekdays{
+
+display:grid;
+
+grid-template-columns:
+repeat(7,1fr);
+
+background:
+rgba(255,255,255,.025);
+
+}
+
+
+.weekday{
+
+padding:12px 5px;
+
+text-align:center;
+
+color:#7e99a4;
+
+font-size:10px;
+
+}
+
+
+.calendar{
+
+display:grid;
+
+grid-template-columns:
+repeat(7,1fr);
+
+}
+
+
+.day{
+
+min-height:100px;
+
+padding:7px;
+
+border-right:
+1px solid
+rgba(255,255,255,.055);
+
+border-bottom:
+1px solid
+rgba(255,255,255,.055);
+
+background:
+rgba(255,255,255,.008);
+
+transition:.2s;
+
+}
+
+
+.day:hover{
+
+background:
+rgba(69,232,255,.035);
+
+}
+
+
+.day.other{
+
+opacity:.3;
+
+}
+
+
+.day.today{
+
+background:
+rgba(72,220,104,.06);
+
+}
+
+
+.day-number{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+font-size:10px;
+
+color:#8ea9b3;
+
+}
+
+
+.today .day-number span:first-child{
+
+width:23px;
+
+height:23px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:50%;
+
+background:#2cae55;
+
+color:#fff;
+
+}
+
+
+.event{
+
+margin-top:5px;
+
+padding:
+4px
+5px;
+
+border-radius:5px;
+
+font-size:8px;
+
+line-height:1.35;
+
+cursor:pointer;
+
+overflow:hidden;
+
+white-space:nowrap;
+
+text-overflow:ellipsis;
+
+}
+
+
+.event:hover{
+
+filter:brightness(1.15);
+
+}
+
+
+.event-meeting{
+
+background:
+rgba(72,220,104,.15);
+
+border-left:
+3px solid
+#48dc68;
+
+color:#9af6a7;
+
+}
+
+
+.event-community{
+
+background:
+rgba(255,181,61,.14);
+
+border-left:
+3px solid
+#ffb53d;
+
+color:#ffd78f;
+
+}
+
+
+.event-government{
+
+background:
+rgba(69,232,255,.13);
+
+border-left:
+3px solid
+#45e8ff;
+
+color:#9beeff;
+
+}
+
+
+.event-health{
+
+background:
+rgba(215,140,255,.13);
+
+border-left:
+3px solid
+#d78cff;
+
+color:#e6bdff;
+
+}
+
+
+/* =====================================================
+UPCOMING
+===================================================== */
+
+.side-panel{
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+
+.side-card{
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+.side-head{
+
+padding:
+17px
+18px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+
+.side-head h2{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+font-weight:500;
+
+}
+
+
+.side-count{
+
+font-size:9px;
+
+color:#78eaff;
+
+}
+
+
+.event-list{
+
+padding:8px;
+
+}
+
+
+.upcoming{
+
+display:flex;
+
+gap:11px;
+
+padding:12px;
+
+border-radius:12px;
+
+transition:.2s;
+
+}
+
+
+.upcoming:hover{
+
+background:
+rgba(255,255,255,.035);
+
+}
+
+
+.date-box{
+
+width:45px;
+
+height:48px;
+
+flex-shrink:0;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:10px;
+
+background:
+rgba(69,232,255,.07);
+
+border:
+1px solid
+rgba(69,232,255,.15);
+
+}
+
+
+.date-box strong{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1;
+
+}
+
+
+.date-box span{
+
+font-size:7px;
+
+color:#7fa0ab;
+
+margin-top:3px;
+
+}
+
+
+.upcoming-info{
+
+min-width:0;
+
+}
+
+
+.upcoming-title{
+
+font-size:11px;
+
+font-weight:500;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+
+}
+
+
+.upcoming-meta{
+
+margin-top:4px;
+
+font-size:8px;
+
+color:#78939d;
+
+}
+
+
+.type-badge{
+
+display:inline-flex;
+
+margin-top:5px;
+
+padding:
+3px
+7px;
+
+border-radius:5px;
+
+font-size:7px;
+
+}
+
+
+.type-meeting{
+
+background:
+rgba(72,220,104,.1);
+
+color:#8ef59d;
+
+}
+
+
+.type-community{
+
+background:
+rgba(255,181,61,.1);
+
+color:#ffd18a;
+
+}
+
+
+.type-government{
+
+background:
+rgba(69,232,255,.1);
+
+color:#8feeff;
+
+}
+
+
+.type-health{
+
+background:
+rgba(215,140,255,.1);
+
+color:#e0b2ff;
+
+}
+
+
+/* =====================================================
+TODAY
+===================================================== */
+
+.today-box{
+
+padding:17px;
+
+margin:10px;
+
+border-radius:14px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(31,190,75,.13),
+rgba(69,232,255,.06)
+);
+
+border:
+1px solid
+rgba(72,220,104,.18);
+
+}
+
+
+.today-label{
+
+font-size:8px;
+
+color:#7c9ca6;
+
+}
+
+
+.today-title{
+
+font-family:"Kanit";
+
+font-size:19px;
+
+margin-top:3px;
+
+}
+
+
+.today-desc{
+
+font-size:9px;
+
+color:#8faab4;
+
+margin-top:5px;
+
+line-height:1.5;
+
+}
+
+
+/* =====================================================
+MODAL
+===================================================== */
+
+.modal{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+background:
+rgba(0,0,0,.72);
+
+backdrop-filter:
+blur(8px);
+
+z-index:3000;
+
+}
+
+
+.modal.show{
+
+display:flex;
+
+}
+
+
+.modal-box{
+
+width:min(700px,100%);
+
+max-height:90vh;
+
+overflow-y:auto;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+145deg,
+#082a3a,
+#031721
+);
+
+border:
+1px solid
+rgba(100,210,235,.28);
+
+box-shadow:
+0 25px 80px
+rgba(0,0,0,.6);
+
+}
+
+
+.modal-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+18px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+
+.modal-head h3{
+
+font-family:"Kanit";
+
+font-size:19px;
+
+font-weight:500;
+
+}
+
+
+.close{
+
+width:34px;
+
+height:34px;
+
+border-radius:9px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background:
+rgba(255,255,255,.05);
+
+color:#fff;
+
+font-size:18px;
+
+}
+
+
+.form{
+
+padding:20px;
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:14px;
+
+}
+
+
+.form-group{
+
+display:flex;
+
+flex-direction:column;
+
+gap:5px;
+
+}
+
+
+.form-group.full{
+
+grid-column:1/-1;
+
+}
+
+
+.form-group label{
+
+color:#9bb4bd;
+
+font-size:10px;
+
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+padding:11px;
+
+border-radius:9px;
+
+background:
+rgba(255,255,255,.045);
+
+color:#fff;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+outline:none;
+
+font-size:11px;
+
+}
+
+
+.form-group textarea{
+
+min-height:90px;
+
+resize:vertical;
+
+}
+
+
+.form-group select option{
+
+background:#06202e;
+
+}
+
+
+.modal-actions{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:8px;
+
+padding:
+0 20px
+20px;
+
+}
+
+
+.btn-cancel{
+
+color:#d5e0e4;
+
+background:
+rgba(255,255,255,.07);
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1200px){
+
+:root{
+
+--sidebar:230px;
+
+}
+
+.summary{
+
+grid-template-columns:
+repeat(3,1fr);
+
+}
+
+.calendar-layout{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:1000px){
+
+.sidebar{
+
+transform:
+translateX(-100%);
+
+transition:.3s;
+
+}
+
+.sidebar.open{
+
+transform:
+translateX(0);
+
 }
 
 .topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
+
+left:0;
+
 }
 
-.page-title{
-    font-size:25px;
-    font-weight:800;
+.main{
+
+margin-left:0;
+
 }
 
-.page-sub{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
+.mobile-button{
+
+display:block;
+
 }
 
-.clock{
-    padding:10px 15px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:#62d5ff;
-    font-family:monospace;
+.page-title p{
+
+display:none;
+
 }
 
-.breadcrumb{
-    color:var(--muted);
-    font-size:12px;
-    margin-bottom:18px;
 }
 
-.breadcrumb span{
-    color:#58caff;
-}
 
-/* ================= SUMMARY ================= */
+@media(max-width:750px){
+
+.content{
+
+padding:13px;
+
+}
 
 .summary{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:20px;
+
+grid-template-columns:
+repeat(2,1fr);
+
 }
-
-.summary-card{
-    padding:18px;
-    border-radius:18px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.018)
-        );
-    border:1px solid var(--border);
-}
-
-.summary-icon{
-    font-size:24px;
-    margin-bottom:8px;
-}
-
-.summary-number{
-    font-size:27px;
-    font-weight:800;
-}
-
-.summary-label{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
-
-/* ================= CARD ================= */
-
-.card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,36,58,.96),
-            rgba(8,20,34,.98)
-        );
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.card-icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:13px;
-    background:rgba(0,160,255,.1);
-    font-size:21px;
-}
-
-.card-title h2{
-    font-size:18px;
-}
-
-.card-title p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:3px;
-}
-
-.add-btn{
-    border:0;
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
-    color:#fff;
-    border-radius:10px;
-    padding:10px 15px;
-    cursor:pointer;
-    font-weight:700;
-}
-
-/* ================= TOOLBAR ================= */
 
 .toolbar{
-    display:flex;
-    gap:10px;
-    margin-bottom:18px;
+
+flex-direction:column;
+
+align-items:stretch;
+
 }
 
-.search-box{
-    flex:1;
-    position:relative;
+.search-area{
+
+max-width:none;
+
+flex-direction:column;
+
 }
 
-.search-box input{
-    width:100%;
-    padding:13px 15px 13px 42px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    outline:0;
-    background:rgba(0,0,0,.15);
-    color:#fff;
+.day{
+
+min-height:78px;
+
 }
 
-.search-icon{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
+.event{
+
+font-size:7px;
+
 }
 
-.filter{
-    min-width:180px;
-    padding:0 12px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:#0b1b2f;
-    color:#fff;
-    outline:0;
-}
+.form{
 
-/* ================= ACTIVITY GRID ================= */
+grid-template-columns:1fr;
 
-.activity-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-}
-
-.activity-card{
-    background:rgba(255,255,255,.035);
-    border:1px solid var(--border);
-    border-radius:17px;
-    overflow:hidden;
-    transition:.25s;
-}
-
-.activity-card:hover{
-    transform:translateY(-4px);
-    border-color:rgba(0,170,255,.25);
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.25);
-}
-
-.activity-image{
-    width:100%;
-    height:210px;
-    object-fit:cover;
-    display:block;
-    cursor:pointer;
-    background:
-        linear-gradient(
-            135deg,
-            #12314d,
-            #071321
-        );
-}
-
-.activity-image-placeholder{
-    width:100%;
-    height:210px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:55px;
-    background:
-        linear-gradient(
-            135deg,
-            #12314d,
-            #0b1b2f
-        );
-}
-
-.activity-body{
-    padding:16px;
-}
-
-.activity-title{
-    font-size:16px;
-    font-weight:800;
-    line-height:1.45;
-}
-
-.activity-date{
-    color:#55cfff;
-    font-size:10px;
-    margin-top:7px;
-}
-
-.activity-description{
-    color:#9caec2;
-    font-size:11px;
-    line-height:1.7;
-    margin-top:9px;
-    min-height:38px;
-}
-
-.activity-footer{
-    display:flex;
-    justify-content:space-between;
-    gap:7px;
-    margin-top:14px;
-}
-
-.activity-btn{
-    flex:1;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:#fff;
-    padding:8px;
-    border-radius:9px;
-    cursor:pointer;
-    font-size:11px;
-}
-
-.activity-btn:hover{
-    background:rgba(0,150,255,.12);
-}
-
-.activity-btn.delete:hover{
-    background:rgba(255,60,70,.12);
-}
-
-.empty{
-    grid-column:1/-1;
-    text-align:center;
-    padding:60px 20px;
-    color:#74869b;
-    border:1px dashed var(--border);
-    border-radius:16px;
-}
-
-.empty-icon{
-    font-size:50px;
-    margin-bottom:12px;
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(8px);
-    z-index:500;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:720px;
-    max-height:90vh;
-    overflow-y:auto;
-    background:#102139;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:23px;
-    box-shadow:0 25px 80px rgba(0,0,0,.5);
-}
-
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.modal-head h2{
-    font-size:20px;
-}
-
-.close{
-    width:36px;
-    height:36px;
-    border:0;
-    border-radius:10px;
-    background:rgba(255,255,255,.06);
-    color:#fff;
-    cursor:pointer;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.form-group{
-    margin-bottom:13px;
 }
 
 .form-group.full{
-    grid-column:1/-1;
+
+grid-column:auto;
+
 }
 
-label{
-    display:block;
-    color:#aab9cb;
-    font-size:11px;
-    margin-bottom:6px;
+.clock{
+
+display:none;
+
 }
 
-input,
-select,
-textarea{
-    width:100%;
-    border:1px solid var(--border);
-    background:rgba(0,0,0,.18);
-    color:#fff;
-    padding:12px;
-    border-radius:10px;
-    outline:0;
+.page-title h1{
+
+font-size:17px;
+
 }
 
-select option{
-    background:#102139;
 }
 
-textarea{
-    min-height:100px;
-    resize:vertical;
+
+@media(max-width:480px){
+
+.summary{
+
+grid-template-columns:1fr;
+
 }
 
-.save-btn{
-    width:100%;
-    margin-top:5px;
-    border:0;
-    padding:13px;
-    border-radius:11px;
-    color:#fff;
-    background:
-        linear-gradient(
-            135deg,
-            #008cff,
-            #0069ee
-        );
-    cursor:pointer;
-    font-weight:700;
+.page-title .big-icon{
+
+width:38px;
+
+height:38px;
+
 }
 
-/* ================= IMAGE VIEWER ================= */
+.weekday{
 
-.image-viewer{
-    position:fixed;
-    inset:0;
-    display:none;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,.92);
-    z-index:1000;
-    padding:20px;
+font-size:8px;
+
+padding:9px 2px;
+
 }
 
-.image-viewer.show{
-    display:flex;
+.day{
+
+padding:4px;
+
+min-height:65px;
+
 }
 
-.viewer-image{
-    max-width:95vw;
-    max-height:85vh;
-    object-fit:contain;
-    border-radius:12px;
+.day-number{
+
+font-size:8px;
+
 }
 
-.viewer-close{
-    position:absolute;
-    top:20px;
-    right:25px;
-    width:45px;
-    height:45px;
-    border:0;
-    border-radius:50%;
-    background:rgba(255,255,255,.12);
-    color:#fff;
-    font-size:22px;
-    cursor:pointer;
+.event{
+
+padding:3px;
+
+font-size:6px;
+
 }
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1100px){
-
-    .activity-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .summary{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:900px){
-
-    .sidebar{
-        width:70px;
-        padding:15px 8px;
-    }
-
-    .logo-title,
-    .logo-sub,
-    .menu-title,
-    .menu-text{
-        display:none;
-    }
-
-    .logo{
-        justify-content:center;
-    }
-
-    .menu button{
-        justify-content:center;
-    }
-
-    .main{
-        margin-left:70px;
-    }
-}
-
-@media(max-width:600px){
-
-    .sidebar{
-        display:none;
-    }
-
-    .main{
-        margin-left:0;
-        padding:12px;
-    }
-
-    .topbar{
-        align-items:flex-start;
-    }
-
-    .page-title{
-        font-size:20px;
-    }
-
-    .clock{
-        font-size:11px;
-        padding:8px;
-    }
-
-    .summary{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .toolbar{
-        flex-direction:column;
-    }
-
-    .filter{
-        height:43px;
-    }
-
-    .activity-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full{
-        grid-column:auto;
-    }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- ==================================================
-     SIDEBAR
-================================================== -->
 
-<aside class="sidebar">
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
 
-    <div class="logo">
+<aside
+class="sidebar"
+id="sidebar"
+>
 
-        <div class="logo-icon">
-            🏛️
-        </div>
+<div class="sidebar-brand">
 
-        <div>
+<div class="logo">
+🏛️
+</div>
 
-            <div class="logo-title">
-                RONGKHEM
-            </div>
+<div>
 
-            <div class="logo-sub">
-                e-VILLAGE OFFICE
-            </div>
+<div class="brand-title">
 
-        </div>
+RONGKHEM
+<span>e-VILLAGE</span>
 
-    </div>
+</div>
 
+<div class="brand-sub">
 
-    <div class="menu-title">
-        MAIN MENU
-    </div>
+ที่ทำการผู้ใหญ่บ้านออนไลน์
 
+</div>
 
-    <nav class="menu">
+</div>
 
-        <button onclick="location.href='index.html'">
-
-            <span class="menu-icon">
-                📊
-            </span>
-
-            <span class="menu-text">
-                หน้าแรก
-            </span>
-
-        </button>
+</div>
 
 
-        <button onclick="location.href='household.html'">
-
-            <span class="menu-icon">
-                🏠
-            </span>
-
-            <span class="menu-text">
-                ครัวเรือน
-            </span>
-
-        </button>
+<nav class="menu">
 
 
-        <button onclick="location.href='citizen.html'">
+<a href="index.html">
 
-            <span class="menu-icon">
-                👥
-            </span>
+<span class="icon">
+🏠
+</span>
 
-            <span class="menu-text">
-                ประชาชน
-            </span>
+หน้าหลัก
 
-        </button>
+</a>
 
 
-        <button onclick="location.href='leader.html'">
+<a href="citizen.html">
 
-            <span class="menu-icon">
-                👔
-            </span>
+<span class="icon">
+👥
+</span>
 
-            <span class="menu-text">
-                ทำเนียบผู้นำ
-            </span>
+ข้อมูลประชาชน
 
-        </button>
+</a>
 
 
-        <button class="active">
+<a href="household.html">
 
-            <span class="menu-icon">
-                📸
-            </span>
+<span class="icon">
+🏠
+</span>
 
-            <span class="menu-text">
-                ภาพกิจกรรม
-            </span>
+ข้อมูลครัวเรือน
 
-        </button>
+</a>
 
 
-        <button onclick="location.href='complaint.html'">
+<a href="leader.html">
 
-            <span class="menu-icon">
-                📝
-            </span>
+<span class="icon">
+👔
+</span>
 
-            <span class="menu-text">
-                รับเรื่องร้องเรียน
-            </span>
+ผู้นำชุมชน
 
-        </button>
+</a>
 
-    </nav>
+
+<a href="news.html">
+
+<span class="icon">
+📢
+</span>
+
+ข่าวประชาสัมพันธ์
+
+</a>
+
+
+<a
+href="activity.html"
+class="active"
+>
+
+<span class="icon">
+📅
+</span>
+
+กิจกรรม / ปฏิทิน
+
+</a>
+
+
+<a href="incident.html">
+
+<span class="icon">
+🚨
+</span>
+
+แจ้งเหตุ / ร้องเรียน
+
+</a>
+
+
+<a href="service.html">
+
+<span class="icon">
+🤝
+</span>
+
+บริการประชาชน
+
+</a>
+
+
+<a href="project.html">
+
+<span class="icon">
+🏗️
+</span>
+
+โครงการพัฒนาหมู่บ้าน
+
+</a>
+
+
+<a href="environment.html">
+
+<span class="icon">
+🌱
+</span>
+
+สิ่งแวดล้อม / PM2.5
+
+</a>
+
+
+<a href="wetland.html">
+
+<span class="icon">
+💧
+</span>
+
+แหล่งซับน้ำจำ
+
+</a>
+
+
+<a href="rice.html">
+
+<span class="icon">
+🍚
+</span>
+
+กลุ่มข้าวสาร
+
+</a>
+
+
+<a href="statistics.html">
+
+<span class="icon">
+📊
+</span>
+
+สถิติหมู่บ้าน
+
+</a>
+
+
+<a href="admin.html">
+
+<span class="icon">
+⚙️
+</span>
+
+ตั้งค่าระบบ
+
+</a>
+
+
+</nav>
+
+
+<div class="contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+📞 โทร. 088-888-8888
+</p>
+
+<p>
+🟢 LINE ID: rongkhem.village
+</p>
+
+<p>
+🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
+</p>
+
+</div>
 
 </aside>
 
 
-<!-- ==================================================
-     MAIN
-================================================== -->
-
-<main class="main">
+<!-- =====================================================
+TOPBAR
+===================================================== -->
 
 <header class="topbar">
 
-    <div>
 
-        <div class="page-title">
-            ข่าวสารและภาพกิจกรรมหมู่บ้าน
-        </div>
-
-        <div class="page-sub">
-            RONGKHEM e-VILLAGE OFFICE |
-            ที่ทำการผู้ใหญ่บ้านออนไลน์
-        </div>
-
-    </div>
+<div class="page-title">
 
 
-    <div
-        class="clock"
-        id="clock"
-    >
-        08:05:56
-    </div>
+<button
+class="mobile-button"
+id="mobileButton"
+>
+☰
+</button>
+
+
+<div class="big-icon">
+📅
+</div>
+
+
+<div>
+
+<h1>
+กิจกรรม / ปฏิทินหมู่บ้าน
+</h1>
+
+<p>
+ศูนย์กลางกำหนดการและกิจกรรม บ้านร่องเข็ม หมู่ที่ 6
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="clock">
+
+<div
+class="time"
+id="time"
+>
+00:00:00
+</div>
+
+<div
+class="today"
+id="today"
+>
+กำลังโหลด...
+</div>
+
+</div>
+
 
 </header>
 
 
-<div class="breadcrumb">
+<!-- =====================================================
+MAIN
+===================================================== -->
 
-    หน้าแรก /
-    <span>
-        ภาพกิจกรรม
-    </span>
+<main class="main">
+
+<div class="content">
+
+
+<!-- SUMMARY -->
+
+<section class="summary">
+
+
+<div class="summary-card green">
+
+<div class="summary-icon">
+📅
+</div>
+
+<div class="summary-title">
+กิจกรรมทั้งหมด
+</div>
+
+<div
+class="summary-number"
+id="totalEvents"
+>
+12
+</div>
 
 </div>
 
 
-<!-- ==================================================
-     SUMMARY
-================================================== -->
+<div class="summary-card cyan">
 
-<section class="summary">
+<div class="summary-icon">
+📌
+</div>
 
-    <div class="summary-card">
+<div class="summary-title">
+กิจกรรมเดือนนี้
+</div>
 
-        <div class="summary-icon">
-            📸
-        </div>
+<div
+class="summary-number"
+id="monthEvents"
+>
+8
+</div>
 
-        <div
-            class="summary-number"
-            id="totalActivities"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            กิจกรรมทั้งหมด
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="summary-card">
+<div class="summary-card orange">
 
-        <div class="summary-icon">
-            📅
-        </div>
+<div class="summary-icon">
+🏘️
+</div>
 
-        <div
-            class="summary-number"
-            id="thisMonth"
-        >
-            0
-        </div>
+<div class="summary-title">
+กิจกรรมชุมชน
+</div>
 
-        <div class="summary-label">
-            กิจกรรมเดือนนี้
-        </div>
+<div
+class="summary-number"
+id="communityEvents"
+>
+4
+</div>
 
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            🏡
-        </div>
-
-        <div
-            class="summary-number"
-            id="communityActivities"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            กิจกรรมชุมชน
-        </div>
-
-    </div>
+</div>
 
 
-    <div class="summary-card">
+<div class="summary-card purple">
 
-        <div class="summary-icon">
-            🌱
-        </div>
+<div class="summary-icon">
+🩺
+</div>
 
-        <div
-            class="summary-number"
-            id="volunteerActivities"
-        >
-            0
-        </div>
+<div class="summary-title">
+กิจกรรมสุขภาพ
+</div>
 
-        <div class="summary-label">
-            จิตอาสา
-        </div>
+<div
+class="summary-number"
+id="healthEvents"
+>
+2
+</div>
 
-    </div>
+</div>
+
+
+<div class="summary-card red">
+
+<div class="summary-icon">
+⏰
+</div>
+
+<div class="summary-title">
+วันนี้
+</div>
+
+<div
+class="summary-number"
+id="todayEvents"
+>
+1
+</div>
+
+</div>
+
 
 </section>
 
 
-<!-- ==================================================
-     ACTIVITIES
-================================================== -->
+<!-- TOOLBAR -->
 
-<section class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            📸
-        </div>
-
-        <div>
-
-            <h2>
-                ภาพกิจกรรมหมู่บ้าน
-            </h2>
-
-            <p>
-                ข่าวสาร ประชาสัมพันธ์
-                และกิจกรรมของบ้านร่องเข็ม
-            </p>
-
-        </div>
-
-    </div>
+<section class="toolbar">
 
 
-    <button
-        class="add-btn"
-        onclick="openActivityModal()"
-    >
+<div class="search-area">
 
-        + เพิ่มกิจกรรมใหม่
 
-    </button>
+<input
+type="search"
+id="searchInput"
+class="search"
+placeholder="🔎 ค้นหากิจกรรม..."
+>
+
+
+<select
+class="filter"
+id="typeFilter"
+>
+
+<option value="">
+ประเภททั้งหมด
+</option>
+
+<option value="ประชุม">
+🟢 ประชุม
+</option>
+
+<option value="ชุมชน">
+🟠 ชุมชน
+</option>
+
+<option value="ราชการ">
+🔵 ราชการ
+</option>
+
+<option value="สุขภาพ">
+🟣 สุขภาพ
+</option>
+
+</select>
+
 
 </div>
 
 
-<div class="toolbar">
+<button
+class="btn"
+id="addButton"
+>
 
-    <div class="search-box">
+＋ เพิ่มกิจกรรม
 
-        <span class="search-icon">
-            🔍
-        </span>
-
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="ค้นหากิจกรรม..."
-            oninput="renderActivities()"
-        >
-
-    </div>
+</button>
 
 
-    <select
-        class="filter"
-        id="categoryFilter"
-        onchange="renderActivities()"
-    >
+</section>
 
-        <option value="all">
-            ทุกประเภท
-        </option>
 
-        <option value="ชุมชน">
-            ชุมชน
-        </option>
+<!-- CALENDAR -->
 
-        <option value="จิตอาสา">
-            จิตอาสา
-        </option>
+<section class="calendar-layout">
 
-        <option value="ประชุม">
-            ประชุม
-        </option>
 
-        <option value="ประเพณี">
-            ประเพณี
-        </option>
+<div class="calendar-panel">
 
-        <option value="ประชาสัมพันธ์">
-            ประชาสัมพันธ์
-        </option>
 
-        <option value="อื่น ๆ">
-            อื่น ๆ
-        </option>
+<div class="calendar-head">
 
-    </select>
+
+<div
+class="month-title"
+id="monthTitle"
+>
+กำลังโหลด...
+</div>
+
+
+<div class="month-actions">
+
+
+<button
+class="month-btn"
+id="prevMonth"
+>
+‹
+</button>
+
+
+<button
+class="month-btn"
+id="todayButton"
+>
+วันนี้
+</button>
+
+
+<button
+class="month-btn"
+id="nextMonth"
+>
+›
+</button>
+
+
+</div>
+
+
+</div>
+
+
+<div class="weekdays">
+
+<div class="weekday">
+อา
+</div>
+
+<div class="weekday">
+จ
+</div>
+
+<div class="weekday">
+อ
+</div>
+
+<div class="weekday">
+พ
+</div>
+
+<div class="weekday">
+พฤ
+</div>
+
+<div class="weekday">
+ศ
+</div>
+
+<div class="weekday">
+ส
+</div>
 
 </div>
 
 
 <div
-    class="activity-grid"
-    id="activityGrid"
+class="calendar"
+id="calendar"
 ></div>
 
+
+</div>
+
+
+<!-- SIDE -->
+
+<div class="side-panel">
+
+
+<div class="side-card">
+
+
+<div class="side-head">
+
+<h2>
+📅 กิจกรรมที่กำลังจะมาถึง
+</h2>
+
+<span
+class="side-count"
+id="upcomingCount"
+>
+0 รายการ
+</span>
+
+</div>
+
+
+<div
+class="event-list"
+id="upcomingList"
+></div>
+
+
+</div>
+
+
+<div class="side-card">
+
+
+<div class="side-head">
+
+<h2>
+📍 วันนี้
+</h2>
+
+</div>
+
+
+<div class="today-box">
+
+<div class="today-label">
+วันที่ปัจจุบัน
+</div>
+
+<div
+class="today-title"
+id="todayTitle"
+>
+-
+</div>
+
+<div
+class="today-desc"
+id="todayDesc"
+>
+กำลังตรวจสอบกิจกรรม...
+</div>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
 </section>
+
+
+</div>
 
 </main>
 
 
-<!-- ==================================================
-     ADD / EDIT MODAL
-================================================== -->
+<!-- =====================================================
+MODAL
+===================================================== -->
 
 <div
-    class="modal"
-    id="activityModal"
+class="modal"
+id="modal"
 >
+
 
 <div class="modal-box">
 
+
 <div class="modal-head">
 
-    <h2 id="modalTitle">
-        📸 เพิ่มกิจกรรมใหม่
-    </h2>
+<h3
+id="modalTitle"
+>
+เพิ่มกิจกรรม
+</h3>
 
-    <button
-        class="close"
-        onclick="closeActivityModal()"
-    >
-        ✕
-    </button>
+
+<button
+class="close"
+id="closeModal"
+>
+×
+</button>
+
 
 </div>
 
 
-<div class="form-grid">
+<form
+class="form"
+id="eventForm"
+>
+
+
+<input
+type="hidden"
+id="editId"
+>
 
 
 <div class="form-group full">
 
 <label>
-    ชื่อกิจกรรม *
+ชื่อกิจกรรม
 </label>
 
 <input
-    id="activityTitle"
-    type="text"
-    placeholder="เช่น กิจกรรมจิตอาสาพัฒนาทำความสะอาดลำห้วย"
-/>
+id="title"
+required
+placeholder="เช่น ประชุมประจำเดือน"
+>
 
 </div>
 
@@ -1089,13 +2529,14 @@ textarea{
 <div class="form-group">
 
 <label>
-    วันที่จัดกิจกรรม *
+วันที่
 </label>
 
 <input
-    id="activityDate"
-    type="date"
-/>
+type="date"
+id="date"
+required
+>
 
 </div>
 
@@ -1103,51 +2544,57 @@ textarea{
 <div class="form-group">
 
 <label>
-    ประเภทกิจกรรม
+เวลา
 </label>
 
-<select id="activityCategory">
+<input
+type="time"
+id="timeInput"
+value="07:00"
+>
 
-    <option value="ชุมชน">
-        ชุมชน
-    </option>
+</div>
 
-    <option value="จิตอาสา">
-        จิตอาสา
-    </option>
 
-    <option value="ประชุม">
-        ประชุม
-    </option>
+<div class="form-group">
 
-    <option value="ประเพณี">
-        ประเพณี
-    </option>
+<label>
+ประเภท
+</label>
 
-    <option value="ประชาสัมพันธ์">
-        ประชาสัมพันธ์
-    </option>
+<select id="type">
 
-    <option value="อื่น ๆ">
-        อื่น ๆ
-    </option>
+<option value="ประชุม">
+🟢 ประชุม
+</option>
+
+<option value="ชุมชน">
+🟠 ชุมชน
+</option>
+
+<option value="ราชการ">
+🔵 ราชการ
+</option>
+
+<option value="สุขภาพ">
+🟣 สุขภาพ
+</option>
 
 </select>
 
 </div>
 
 
-<div class="form-group full">
+<div class="form-group">
 
 <label>
-    URL รูปภาพ
+สถานที่
 </label>
 
 <input
-    id="activityImage"
-    type="url"
-    placeholder="https://..."
-/>
+id="location"
+placeholder="เช่น อาคารเอนกประสงค์ หมู่ 6"
+>
 
 </div>
 
@@ -1155,977 +2602,1221 @@ textarea{
 <div class="form-group full">
 
 <label>
-    รายละเอียดกิจกรรม *
+รายละเอียด
 </label>
 
 <textarea
-    id="activityDescription"
-    placeholder="เขียนรายละเอียดกิจกรรม..."
+id="description"
+placeholder="รายละเอียดกิจกรรม..."
 ></textarea>
 
 </div>
 
 
-<div class="form-group">
-
-<label>
-    สถานที่
-</label>
-
-<input
-    id="activityLocation"
-    type="text"
-    placeholder="เช่น บ้านร่องเข็ม หมู่ 6"
-/>
-
-</div>
+</form>
 
 
-<div class="form-group">
-
-<label>
-    ผู้จัดกิจกรรม
-</label>
-
-<input
-    id="activityOrganizer"
-    type="text"
-    placeholder="เช่น ผู้นำหมู่บ้าน / ชาวบ้าน"
-/>
-
-</div>
-
-
-</div>
+<div class="modal-actions">
 
 
 <button
-    class="save-btn"
-    onclick="saveActivity()"
+class="btn btn-cancel"
+id="cancelButton"
 >
-
-    💾 บันทึกกิจกรรม
-
+ยกเลิก
 </button>
 
-</div>
-
-</div>
-
-
-<!-- ==================================================
-     IMAGE VIEWER
-================================================== -->
-
-<div
-    class="image-viewer"
-    id="imageViewer"
-    onclick="closeImageViewer()"
->
 
 <button
-    class="viewer-close"
-    onclick="closeImageViewer()"
+class="btn"
+id="saveButton"
 >
-    ✕
+💾 บันทึกกิจกรรม
 </button>
 
 
-<img
-    id="viewerImage"
-    class="viewer-image"
-    src=""
-    alt="ภาพกิจกรรม"
-    onclick="event.stopPropagation()"
-/>
+</div>
+
+
+</div>
 
 </div>
 
 
 <script>
 
-/* ==================================================
-   CLOCK
-================================================== */
+/* =====================================================
+DATA
+===================================================== */
+
+let events = [
+
+{
+id:1,
+title:"ประชุมประจำเดือนหมู่บ้าน",
+date:"2026-08-15",
+time:"07:00",
+type:"ประชุม",
+location:"อาคารเอนกประสงค์ หมู่ที่ 6",
+description:"ประชุมชี้แจงข่าวสารราชการและรับฟังความคิดเห็นประชาชน"
+},
+
+{
+id:2,
+title:"กิจกรรมพัฒนาหมู่บ้าน",
+date:"2026-08-17",
+time:"08:00",
+type:"ชุมชน",
+location:"ศาลาประชาคม",
+description:"ร่วมกันทำความสะอาดและปรับปรุงพื้นที่สาธารณะ"
+},
+
+{
+id:3,
+title:"ประชุมคณะกรรมการหมู่บ้าน",
+date:"2026-08-19",
+time:"18:00",
+type:"ประชุม",
+location:"ที่ทำการผู้ใหญ่บ้าน",
+description:"ติดตามงานและวางแผนการดำเนินงานประจำเดือน"
+},
+
+{
+id:4,
+title:"ตรวจสุขภาพประชาชน",
+date:"2026-08-21",
+time:"09:00",
+type:"สุขภาพ",
+location:"ศาลาประชาคม",
+description:"ตรวจสุขภาพเบื้องต้นโดยทีม อสม."
+},
+
+{
+id:5,
+title:"กิจกรรมกำจัดลูกน้ำยุงลาย",
+date:"2026-08-23",
+time:"08:30",
+type:"สุขภาพ",
+location:"พื้นที่หมู่บ้าน",
+description:"รณรงค์ป้องกันโรคไข้เลือดออก"
+},
+
+{
+id:6,
+title:"ประชุมฝ่ายปกครอง",
+date:"2026-08-25",
+time:"18:00",
+type:"ราชการ",
+location:"ที่ทำการผู้ใหญ่บ้าน",
+description:"ติดตามสถานการณ์และภารกิจฝ่ายปกครอง"
+},
+
+{
+id:7,
+title:"กิจกรรมจิตอาสาพัฒนาชุมชน",
+date:"2026-08-27",
+time:"08:00",
+type:"ชุมชน",
+location:"พื้นที่สาธารณะ",
+description:"กิจกรรมจิตอาสาพัฒนาพื้นที่หมู่บ้าน"
+},
+
+{
+id:8,
+title:"ประชุมเตรียมงานหมู่บ้าน",
+date:"2026-08-29",
+time:"19:00",
+type:"ประชุม",
+location:"อาคารเอนกประสงค์",
+description:"เตรียมความพร้อมกิจกรรมของหมู่บ้าน"
+},
+
+{
+id:9,
+title:"ประชุมหน่วยงานราชการ",
+date:"2026-09-02",
+time:"10:00",
+type:"ราชการ",
+location:"ที่ว่าการอำเภอ",
+description:"ประชุมประสานงานราชการ"
+},
+
+{
+id:10,
+title:"กิจกรรมชุมชนสัมพันธ์",
+date:"2026-09-05",
+time:"08:00",
+type:"ชุมชน",
+location:"หมู่บ้านร่องเข็ม",
+description:"ส่งเสริมความสามัคคีของประชาชน"
+}
+
+];
+
+
+/* =====================================================
+ELEMENTS
+===================================================== */
+
+const calendar =
+document.getElementById("calendar");
+
+const monthTitle =
+document.getElementById("monthTitle");
+
+const search =
+document.getElementById("searchInput");
+
+const typeFilter =
+document.getElementById("typeFilter");
+
+const modal =
+document.getElementById("modal");
+
+const form =
+document.getElementById("eventForm");
+
+
+let currentDate =
+new Date();
+
+
+/* =====================================================
+HELPERS
+===================================================== */
+
+function pad(value){
+
+return String(value).padStart(2,"0");
+
+}
+
+
+function dateKey(date){
+
+return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
+
+}
+
+
+function typeClass(type){
+
+if(type==="ประชุม")
+return "event-meeting";
+
+if(type==="ชุมชน")
+return "event-community";
+
+if(type==="ราชการ")
+return "event-government";
+
+return "event-health";
+
+}
+
+
+function typeBadge(type){
+
+if(type==="ประชุม")
+return "type-meeting";
+
+if(type==="ชุมชน")
+return "type-community";
+
+if(type==="ราชการ")
+return "type-government";
+
+return "type-health";
+
+}
+
+
+function monthName(date){
+
+return date.toLocaleDateString(
+"th-TH",
+{
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+/* =====================================================
+FILTER
+===================================================== */
+
+function filteredEvents(){
+
+const keyword =
+search.value.trim().toLowerCase();
+
+const type =
+typeFilter.value;
+
+return events.filter(event=>{
+
+const text =
+(
+event.title+
+" "+
+event.description+
+" "+
+event.location
+).toLowerCase();
+
+return (
+
+(!keyword || text.includes(keyword))
+
+&&
+
+(!type || event.type===type)
+
+);
+
+});
+
+}
+
+
+/* =====================================================
+RENDER CALENDAR
+===================================================== */
+
+function renderCalendar(){
+
+const year =
+currentDate.getFullYear();
+
+const month =
+currentDate.getMonth();
+
+
+monthTitle.textContent =
+monthName(currentDate);
+
+
+calendar.innerHTML="";
+
+
+const first =
+new Date(year,month,1);
+
+
+const last =
+new Date(year,month+1,0);
+
+
+const startDay =
+first.getDay();
+
+
+const days =
+last.getDate();
+
+
+const previousLast =
+new Date(year,month,0).getDate();
+
+
+const visible =
+filteredEvents();
+
+
+for(
+let i=0;
+i<startDay;
+i++
+){
+
+const day =
+document.createElement("div");
+
+day.className =
+"day other";
+
+day.innerHTML=`
+<div class="day-number">
+<span>
+${previousLast-startDay+i+1}
+</span>
+</div>
+`;
+
+calendar.appendChild(day);
+
+}
+
+
+for(
+let dayNumber=1;
+dayNumber<=days;
+dayNumber++
+){
+
+const day =
+document.createElement("div");
+
+const date =
+new Date(
+year,
+month,
+dayNumber
+);
+
+
+const key =
+dateKey(date);
+
+
+const today =
+new Date();
+
+
+const isToday =
+key===dateKey(today);
+
+
+day.className =
+"day"+
+(isToday ? " today":"");
+
+
+let html=`
+
+<div class="day-number">
+
+<span>
+${dayNumber}
+</span>
+
+</div>
+
+`;
+
+
+const dayEvents =
+visible.filter(
+event =>
+event.date===key
+);
+
+
+dayEvents.forEach(event=>{
+
+html+=`
+
+<div
+class="event ${typeClass(event.type)}"
+onclick="showEvent(${event.id})"
+title="${event.title}"
+>
+
+${event.time}
+ ${event.title}
+
+</div>
+
+`;
+
+});
+
+
+day.innerHTML=html;
+
+calendar.appendChild(day);
+
+}
+
+
+const totalCells =
+startDay+days;
+
+const remaining =
+totalCells<=35
+?35-totalCells
+:42-totalCells;
+
+
+for(
+let i=1;
+i<=remaining;
+i++
+){
+
+const day =
+document.createElement("div");
+
+day.className =
+"day other";
+
+day.innerHTML=`
+
+<div class="day-number">
+<span>${i}</span>
+</div>
+
+`;
+
+calendar.appendChild(day);
+
+}
+
+}
+
+
+/* =====================================================
+UPCOMING
+===================================================== */
+
+function renderUpcoming(){
+
+const list =
+document.getElementById(
+"upcomingList"
+);
+
+list.innerHTML="";
+
+
+const today =
+new Date();
+
+today.setHours(0,0,0,0);
+
+
+const upcoming =
+events
+.filter(event=>{
+
+const date =
+new Date(
+event.date+"T00:00:00"
+);
+
+return date>=today;
+
+})
+.sort(
+(a,b)=>
+new Date(a.date)-
+new Date(b.date)
+)
+.slice(0,6);
+
+
+document.getElementById(
+"upcomingCount"
+).textContent =
+upcoming.length+
+" รายการ";
+
+
+upcoming.forEach(event=>{
+
+const date =
+new Date(
+event.date+"T00:00:00"
+);
+
+
+const item =
+document.createElement("div");
+
+item.className =
+"upcoming";
+
+
+item.innerHTML=`
+
+<div class="date-box">
+
+<strong>
+${date.getDate()}
+</strong>
+
+<span>
+${date.toLocaleDateString(
+"th-TH",
+{month:"short"}
+)}
+</span>
+
+</div>
+
+
+<div class="upcoming-info">
+
+<div class="upcoming-title">
+
+${event.title}
+
+</div>
+
+
+<div class="upcoming-meta">
+
+🕐 ${event.time}
+&nbsp; • &nbsp;
+📍 ${event.location}
+
+</div>
+
+
+<div class="type-badge ${typeBadge(event.type)}">
+
+${event.type}
+
+</div>
+
+</div>
+
+`;
+
+
+item.onclick =
+()=>showEvent(event.id);
+
+
+list.appendChild(item);
+
+});
+
+}
+
+
+/* =====================================================
+TODAY
+===================================================== */
+
+function renderToday(){
+
+const today =
+new Date();
+
+const key =
+dateKey(today);
+
+
+const todayEvents =
+events.filter(
+event=>event.date===key
+);
+
+
+document.getElementById(
+"todayTitle"
+).textContent =
+today.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+
+if(todayEvents.length){
+
+document.getElementById(
+"todayDesc"
+).textContent =
+`วันนี้มีกิจกรรม ${todayEvents.length} รายการ`;
+
+}else{
+
+document.getElementById(
+"todayDesc"
+).textContent =
+"วันนี้ไม่มีกิจกรรมที่กำหนดไว้";
+
+}
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+function updateSummary(){
+
+const now =
+new Date();
+
+
+const month =
+now.getMonth();
+
+const year =
+now.getFullYear();
+
+
+const monthEvents =
+events.filter(event=>{
+
+const date =
+new Date(
+event.date+"T00:00:00"
+);
+
+return(
+date.getMonth()===month &&
+date.getFullYear()===year
+);
+
+}).length;
+
+
+const todayKey =
+dateKey(now);
+
+
+const todayEvents =
+events.filter(
+event=>event.date===todayKey
+).length;
+
+
+const community =
+events.filter(
+event=>event.type==="ชุมชน"
+).length;
+
+
+const health =
+events.filter(
+event=>event.type==="สุขภาพ"
+).length;
+
+
+document.getElementById(
+"totalEvents"
+).textContent =
+events.length;
+
+
+document.getElementById(
+"monthEvents"
+).textContent =
+monthEvents;
+
+
+document.getElementById(
+"communityEvents"
+).textContent =
+community;
+
+
+document.getElementById(
+"healthEvents"
+).textContent =
+health;
+
+
+document.getElementById(
+"todayEvents"
+).textContent =
+todayEvents;
+
+}
+
+
+/* =====================================================
+EVENT DETAIL
+===================================================== */
+
+function showEvent(id){
+
+const event =
+events.find(
+x=>x.id===id
+);
+
+
+if(!event)
+return;
+
+
+alert(
+
+"📅 "+event.title+
+
+"\n\n"+
+"วันที่: "+event.date+
+
+"\nเวลา: "+event.time+
+
+"\nประเภท: "+event.type+
+
+"\nสถานที่: "+event.location+
+
+"\n\n"+
+event.description
+
+);
+
+}
+
+
+/* =====================================================
+ADD
+===================================================== */
+
+document
+.getElementById("addButton")
+.addEventListener(
+"click",
+()=>{
+
+form.reset();
+
+document.getElementById(
+"editId"
+).value="";
+
+
+document.getElementById(
+"date"
+).value=
+dateKey(new Date());
+
+
+document.getElementById(
+"timeInput"
+).value="07:00";
+
+
+document.getElementById(
+"modalTitle"
+).textContent=
+"เพิ่มกิจกรรม";
+
+
+modal.classList.add("show");
+
+}
+);
+
+
+/* =====================================================
+CLOSE
+===================================================== */
+
+function closeModal(){
+
+modal.classList.remove(
+"show"
+);
+
+}
+
+
+document
+.getElementById("closeModal")
+.addEventListener(
+"click",
+closeModal
+);
+
+
+document
+.getElementById("cancelButton")
+.addEventListener(
+"click",
+closeModal
+);
+
+
+modal.addEventListener(
+"click",
+event=>{
+
+if(event.target===modal){
+
+closeModal();
+
+}
+
+}
+);
+
+
+/* =====================================================
+SAVE
+===================================================== */
+
+document
+.getElementById("saveButton")
+.addEventListener(
+"click",
+saveEvent
+);
+
+
+function saveEvent(){
+
+if(!form.checkValidity()){
+
+form.reportValidity();
+
+return;
+
+}
+
+
+const id =
+document.getElementById(
+"editId"
+).value;
+
+
+const eventData={
+
+id:
+id
+?Number(id)
+:Date.now(),
+
+title:
+document.getElementById(
+"title"
+).value.trim(),
+
+date:
+document.getElementById(
+"date"
+).value,
+
+time:
+document.getElementById(
+"timeInput"
+).value,
+
+type:
+document.getElementById(
+"type"
+).value,
+
+location:
+document.getElementById(
+"location"
+).value.trim(),
+
+description:
+document.getElementById(
+"description"
+).value.trim()
+
+};
+
+
+if(id){
+
+const index =
+events.findIndex(
+x=>x.id===Number(id)
+);
+
+
+if(index!==-1){
+
+events[index]=eventData;
+
+}
+
+}else{
+
+events.push(
+eventData
+);
+
+}
+
+
+closeModal();
+
+renderAll();
+
+}
+
+
+/* =====================================================
+EDIT
+===================================================== */
+
+function editEvent(id){
+
+const event =
+events.find(
+x=>x.id===id
+);
+
+
+if(!event)
+return;
+
+
+document.getElementById(
+"editId"
+).value=
+event.id;
+
+
+document.getElementById(
+"title"
+).value=
+event.title;
+
+
+document.getElementById(
+"date"
+).value=
+event.date;
+
+
+document.getElementById(
+"timeInput"
+).value=
+event.time;
+
+
+document.getElementById(
+"type"
+).value=
+event.type;
+
+
+document.getElementById(
+"location"
+).value=
+event.location;
+
+
+document.getElementById(
+"description"
+).value=
+event.description;
+
+
+document.getElementById(
+"modalTitle"
+).textContent=
+"แก้ไขกิจกรรม";
+
+
+modal.classList.add(
+"show"
+);
+
+}
+
+
+/* =====================================================
+DELETE
+===================================================== */
+
+function deleteEvent(id){
+
+const event =
+events.find(
+x=>x.id===id
+);
+
+
+if(!event)
+return;
+
+
+const confirmDelete =
+confirm(
+`ต้องการลบกิจกรรม "${event.title}" หรือไม่?`
+);
+
+
+if(!confirmDelete)
+return;
+
+
+events=
+events.filter(
+x=>x.id!==id
+);
+
+
+renderAll();
+
+}
+
+
+/* =====================================================
+KEYBOARD / FILTER
+===================================================== */
+
+search.addEventListener(
+"input",
+renderCalendar
+);
+
+search.addEventListener(
+"input",
+renderUpcoming
+);
+
+
+typeFilter.addEventListener(
+"change",
+renderCalendar
+);
+
+typeFilter.addEventListener(
+"change",
+renderUpcoming
+);
+
+
+/* =====================================================
+MONTH NAVIGATION
+===================================================== */
+
+document
+.getElementById("prevMonth")
+.addEventListener(
+"click",
+()=>{
+
+currentDate.setMonth(
+currentDate.getMonth()-1
+);
+
+renderCalendar();
+
+}
+);
+
+
+document
+.getElementById("nextMonth")
+.addEventListener(
+"click",
+()=>{
+
+currentDate.setMonth(
+currentDate.getMonth()+1
+);
+
+renderCalendar();
+
+}
+);
+
+
+document
+.getElementById("todayButton")
+.addEventListener(
+"click",
+()=>{
+
+currentDate =
+new Date();
+
+renderCalendar();
+
+}
+);
+
+
+/* =====================================================
+CLOCK
+===================================================== */
 
 function updateClock(){
 
-    const now =
-        new Date();
+const now =
+new Date();
 
-    document.getElementById(
-        "clock"
-    ).textContent =
-        now.toLocaleTimeString(
-            "th-TH",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                second:"2-digit"
-            }
-        );
+
+document.getElementById(
+"time"
+).textContent=
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}
+);
+
+
+document.getElementById(
+"today"
+).textContent=
+now.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
 
 }
+
 
 updateClock();
 
 setInterval(
-    updateClock,
-    1000
+updateClock,
+1000
 );
 
 
-/* ==================================================
-   STORAGE
-================================================== */
+/* =====================================================
+MOBILE MENU
+===================================================== */
 
-let activities =
-    JSON.parse(
-        localStorage.getItem(
-            "rongkhem_activities"
-        ) || "[]"
-    );
+document
+.getElementById("mobileButton")
+.addEventListener(
+"click",
+()=>{
 
-
-let editIndex = -1;
-
-
-/* ==================================================
-   SAMPLE ACTIVITY
-================================================== */
-
-if(
-    activities.length === 0
-){
-
-    activities = [
-
-        {
-            title:
-                "กิจกรรมจิตอาสาพัฒนาทำความสะอาดลำห้วย",
-
-            date:
-                "2026-08-10",
-
-            category:
-                "จิตอาสา",
-
-            image:
-                "",
-
-            description:
-                "ชาวบ้านร่องเข็มร่วมใจกันทำความสะอาดและกำจัดวัชพืช เพื่อเปิดทางน้ำไหลและดูแลพื้นที่ส่วนรวมของชุมชน",
-
-            location:
-                "บ้านร่องเข็ม หมู่ 6",
-
-            organizer:
-                "ผู้นำหมู่บ้านและประชาชนบ้านร่องเข็ม"
-
-        }
-
-    ];
-
-
-    localStorage.setItem(
-        "rongkhem_activities",
-        JSON.stringify(
-            activities
-        )
-    );
+document
+.getElementById("sidebar")
+.classList.toggle(
+"open"
+);
 
 }
-
-
-/* ==================================================
-   RENDER
-================================================== */
-
-function renderActivities(){
-
-    const grid =
-        document.getElementById(
-            "activityGrid"
-        );
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
-
-
-    const category =
-        document.getElementById(
-            "categoryFilter"
-        ).value;
-
-
-    const filtered =
-        activities.filter(
-            activity => {
-
-                const matchSearch =
-
-                    activity.title
-                    .toLowerCase()
-                    .includes(search)
-
-                    ||
-
-                    activity.description
-                    .toLowerCase()
-                    .includes(search);
-
-
-                const matchCategory =
-                    category === "all" ||
-                    activity.category === category;
-
-
-                return (
-                    matchSearch &&
-                    matchCategory
-                );
-
-            }
-        );
-
-
-    if(
-        filtered.length === 0
-    ){
-
-        grid.innerHTML = `
-
-            <div class="empty">
-
-                <div class="empty-icon">
-                    📸
-                </div>
-
-                ไม่พบกิจกรรม
-
-                <br><br>
-
-                คลิก
-                <strong>
-                    + เพิ่มกิจกรรมใหม่
-                </strong>
-                เพื่อเริ่มบันทึก
-
-            </div>
-
-        `;
-
-    }else{
-
-        grid.innerHTML =
-            filtered.map(
-                activity => {
-
-                    const index =
-                        activities.indexOf(
-                            activity
-                        );
-
-
-                    const image =
-                        activity.image || "";
-
-
-                    return `
-
-                    <article
-                        class="activity-card"
-                    >
-
-                        ${
-                            image
-
-                            ?
-
-                            `
-                            <img
-                                class="activity-image"
-                                src="${escapeHTML(
-                                    image
-                                )}"
-                                alt="${escapeHTML(
-                                    activity.title
-                                )}"
-                                onclick="
-                                    openImageViewer(
-                                        '${escapeAttribute(
-                                            image
-                                        )}'
-                                    )
-                                "
-                                onerror="
-                                    this.style.display='none';
-                                    this.nextElementSibling.style.display='flex';
-                                "
-                            >
-
-                            <div
-                                class="
-                                    activity-image-placeholder
-                                "
-                                style="display:none"
-                            >
-                                📸
-                            </div>
-                            `
-
-                            :
-
-                            `
-                            <div
-                                class="
-                                    activity-image-placeholder
-                                "
-                            >
-                                📸
-                            </div>
-                            `
-                        }
-
-
-                        <div class="activity-body">
-
-                            <div
-                                class="activity-title"
-                            >
-
-                                ${escapeHTML(
-                                    activity.title
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="activity-date"
-                            >
-
-                                📅
-                                ${formatThaiDate(
-                                    activity.date
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="activity-description"
-                            >
-
-                                ${escapeHTML(
-                                    activity.description
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="activity-date"
-                            >
-
-                                🏷️
-                                ${escapeHTML(
-                                    activity.category
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="activity-footer"
-                            >
-
-                                <button
-                                    class="activity-btn"
-                                    onclick="
-                                        editActivity(
-                                            ${index}
-                                        )
-                                    "
-                                >
-
-                                    ✏️ แก้ไข
-
-                                </button>
-
-
-                                <button
-                                    class="
-                                        activity-btn
-                                        delete
-                                    "
-                                    onclick="
-                                        deleteActivity(
-                                            ${index}
-                                        )
-                                    "
-                                >
-
-                                    🗑️ ลบ
-
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                    </article>
-
-                    `;
-
-                }
-            ).join("");
-
-    }
-
-
-    updateSummary();
-
-}
-
-
-/* ==================================================
-   SUMMARY
-================================================== */
-
-function updateSummary(){
-
-    const total =
-        activities.length;
-
-
-    const now =
-        new Date();
-
-
-    const month =
-        now.getMonth();
-
-
-    const year =
-        now.getFullYear();
-
-
-    const thisMonth =
-        activities.filter(
-            a => {
-
-                const date =
-                    new Date(
-                        a.date
-                    );
-
-                return (
-                    date.getMonth()
-                    ===
-                    month
-                    &&
-                    date.getFullYear()
-                    ===
-                    year
-                );
-
-            }
-        ).length;
-
-
-    const community =
-        activities.filter(
-            a =>
-                a.category ===
-                "ชุมชน"
-        ).length;
-
-
-    const volunteer =
-        activities.filter(
-            a =>
-                a.category ===
-                "จิตอาสา"
-        ).length;
-
-
-    document.getElementById(
-        "totalActivities"
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        "thisMonth"
-    ).textContent =
-        thisMonth;
-
-
-    document.getElementById(
-        "communityActivities"
-    ).textContent =
-        community;
-
-
-    document.getElementById(
-        "volunteerActivities"
-    ).textContent =
-        volunteer;
-
-}
-
-
-/* ==================================================
-   MODAL
-================================================== */
-
-function openActivityModal(){
-
-    editIndex = -1;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "📸 เพิ่มกิจกรรมใหม่";
-
-
-    clearForm();
-
-
-    document.getElementById(
-        "activityDate"
-    ).value =
-        new Date()
-        .toISOString()
-        .slice(0,10);
-
-
-    document.getElementById(
-        "activityModal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-function closeActivityModal(){
-
-    document.getElementById(
-        "activityModal"
-    ).classList.remove(
-        "show"
-    );
-
-}
-
-
-function clearForm(){
-
-    document.getElementById(
-        "activityTitle"
-    ).value = "";
-
-
-    document.getElementById(
-        "activityDate"
-    ).value = "";
-
-
-    document.getElementById(
-        "activityCategory"
-    ).value =
-        "ชุมชน";
-
-
-    document.getElementById(
-        "activityImage"
-    ).value = "";
-
-
-    document.getElementById(
-        "activityDescription"
-    ).value = "";
-
-
-    document.getElementById(
-        "activityLocation"
-    ).value = "";
-
-
-    document.getElementById(
-        "activityOrganizer"
-    ).value = "";
-
-}
-
-
-/* ==================================================
-   SAVE
-================================================== */
-
-function saveActivity(){
-
-    const data = {
-
-        title:
-            document.getElementById(
-                "activityTitle"
-            ).value.trim(),
-
-        date:
-            document.getElementById(
-                "activityDate"
-            ).value,
-
-        category:
-            document.getElementById(
-                "activityCategory"
-            ).value,
-
-        image:
-            document.getElementById(
-                "activityImage"
-            ).value.trim(),
-
-        description:
-            document.getElementById(
-                "activityDescription"
-            ).value.trim(),
-
-        location:
-            document.getElementById(
-                "activityLocation"
-            ).value.trim(),
-
-        organizer:
-            document.getElementById(
-                "activityOrganizer"
-            ).value.trim()
-
-    };
-
-
-    if(
-        !data.title ||
-        !data.date ||
-        !data.description
-    ){
-
-        alert(
-            "กรุณากรอกชื่อกิจกรรม วันที่ และรายละเอียด"
-        );
-
-        return;
-
-    }
-
-
-    if(
-        editIndex === -1
-    ){
-
-        activities.push(
-            data
-        );
-
-        alert(
-            "เพิ่มกิจกรรมเรียบร้อยแล้ว"
-        );
-
-    }else{
-
-        activities[
-            editIndex
-        ] = data;
-
-        alert(
-            "แก้ไขกิจกรรมเรียบร้อยแล้ว"
-        );
-
-    }
-
-
-    localStorage.setItem(
-        "rongkhem_activities",
-        JSON.stringify(
-            activities
-        )
-    );
-
-
-    closeActivityModal();
-
-    renderActivities();
-
-}
-
-
-/* ==================================================
-   EDIT
-================================================== */
-
-function editActivity(index){
-
-    const activity =
-        activities[index];
-
-
-    if(!activity) return;
-
-
-    editIndex =
-        index;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "✏️ แก้ไขกิจกรรม";
-
-
-    document.getElementById(
-        "activityTitle"
-    ).value =
-        activity.title;
-
-
-    document.getElementById(
-        "activityDate"
-    ).value =
-        activity.date;
-
-
-    document.getElementById(
-        "activityCategory"
-    ).value =
-        activity.category;
-
-
-    document.getElementById(
-        "activityImage"
-    ).value =
-        activity.image || "";
-
-
-    document.getElementById(
-        "activityDescription"
-    ).value =
-        activity.description;
-
-
-    document.getElementById(
-        "activityLocation"
-    ).value =
-        activity.location || "";
-
-
-    document.getElementById(
-        "activityOrganizer"
-    ).value =
-        activity.organizer || "";
-
-
-    document.getElementById(
-        "activityModal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-/* ==================================================
-   DELETE
-================================================== */
-
-function deleteActivity(index){
-
-    const activity =
-        activities[index];
-
-
-    if(!activity) return;
-
-
-    if(
-        !confirm(
-            `ต้องการลบกิจกรรม "${activity.title}" หรือไม่?`
-        )
-    ){
-
-        return;
-
-    }
-
-
-    activities.splice(
-        index,
-        1
-    );
-
-
-    localStorage.setItem(
-        "rongkhem_activities",
-        JSON.stringify(
-            activities
-        )
-    );
-
-
-    renderActivities();
-
-
-    alert(
-        "ลบกิจกรรมเรียบร้อยแล้ว"
-    );
-
-}
-
-
-/* ==================================================
-   IMAGE VIEWER
-================================================== */
-
-function openImageViewer(url){
-
-    if(!url) return;
-
-
-    document.getElementById(
-        "viewerImage"
-    ).src =
-        url;
-
-
-    document.getElementById(
-        "imageViewer"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-function closeImageViewer(){
-
-    document.getElementById(
-        "imageViewer"
-    ).classList.remove(
-        "show"
-    );
-
-
-    document.getElementById(
-        "viewerImage"
-    ).src = "";
-
-}
-
-
-/* ==================================================
-   DATE
-================================================== */
-
-function formatThaiDate(dateString){
-
-    if(!dateString)
-        return "-";
-
-
-    const date =
-        new Date(
-            dateString
-        );
-
-
-    if(
-        Number.isNaN(
-            date.getTime()
-        )
-    ){
-
-        return dateString;
-
-    }
-
-
-    return date.toLocaleDateString(
-        "th-TH",
-        {
-            day:"numeric",
-            month:"short",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-/* ==================================================
-   SECURITY
-================================================== */
-
-function escapeHTML(value){
-
-    return String(
-        value ?? ""
-    )
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-function escapeAttribute(value){
-
-    return String(
-        value ?? ""
-    )
-    .replaceAll("\\","\\\\")
-    .replaceAll("'","\\'")
-    .replaceAll("\n","\\n")
-    .replaceAll("\r","\\r");
-
-}
-
-
-/* ==================================================
-   CLOSE MODALS
-================================================== */
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target.classList
-            .contains("modal")
-        ){
-
-            closeActivityModal();
-
-        }
-
-    }
 );
 
 
-/* ==================================================
-   INITIALIZE
-================================================== */
+/* =====================================================
+RENDER ALL
+===================================================== */
 
-renderActivities();
+function renderAll(){
+
+renderCalendar();
+
+renderUpcoming();
+
+renderToday();
+
+updateSummary();
+
+}
+
+
+renderAll();
 
 </script>
 
