@@ -126,18 +126,34 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 <div class="panel weather">
 <h3>🌤️ สภาพอากาศ</h3>
 <div class="panelbody">
-<div class="weather-main"><div class="weather-icon">☁️</div><div><div><span class="temp">--</span> °C</div><div class="weather-text">ยังไม่มีข้อมูลสภาพอากาศ</div></div></div>
-<div class="weather-data"><div class="wi">ความชื้น<b>--</b></div><div class="wi">โอกาสฝน<b>--</b></div><div class="wi">ลม<b>--</b></div></div>
-<div style="font-size:8px;color:#aebbc4;margin-top:9px">📍 พะเยา อ.เมืองพะเยา · ยังไม่มีข้อมูลสด</div>
+<div class="weather-main">
+  <div class="weather-icon" id="weatherIcon">☁️</div>
+  <div>
+    <div><span class="temp" id="weatherTemp">--</span> °C</div>
+    <div class="weather-text" id="weatherText">กำลังโหลดข้อมูลสด...</div>
+  </div>
+</div>
+<div class="weather-data">
+  <div class="wi">ความชื้น<b id="weatherHumidity">--</b></div>
+  <div class="wi">โอกาสฝน<b id="weatherRain">--</b></div>
+  <div class="wi">ลม<b id="weatherWind">--</b></div>
+</div>
+<div style="font-size:8px;color:#aebbc4;margin-top:9px">
+  📍 พะเยา อ.เมืองพะเยา · <span id="weatherUpdated">กำลังอัปเดต</span>
+</div>
+<div style="font-size:8px;color:#718b95;margin-top:5px">
+  ข้อมูลพยากรณ์สดจาก Open-Meteo · อัปเดตอัตโนมัติทุก 5 นาที
+</div>
 </div>
 </div>
 
 <div class="panel pm" id="pm25">
 <h3>🌫️ PM2.5</h3>
 <div class="panelbody">
-<div class="pmrow"><div class="face">😊</div><div><div class="pmnum" id="pmValue">-- <small style="font-size:9px">µg/m³</small></div><div class="pmstatus" id="pmStatus">ยังไม่มีข้อมูล</div></div></div>
+<div class="pmrow"><div class="face">😊</div><div><div class="pmnum" id="pmValue">-- <small style="font-size:9px">µg/m³</small></div><div class="pmstatus" id="pmStatus">กำลังโหลดข้อมูลสด...</div></div></div>
 <div class="scale"></div>
 <div class="scale-label"><span>0-25<br>ดีมาก</span><span>26-37<br>ดี</span><span>38-50<br>ปานกลาง</span><span>51-90<br>เริ่มมีผล</span><span>91+<br>มีผล</span></div>
+<div style="font-size:8px;color:#718b95;margin-top:6px">อัปเดต: <span id="pmUpdated">กำลังตรวจสอบ</span></div>
 </div>
 </div>
 
@@ -385,5 +401,147 @@ document.addEventListener("keydown", function(e){
   <div id="editMsg" style="font-size:10px;color:#65e88a;margin-top:8px"></div>
  </div>
 </div>
+
+<script>
+/* =========================================================
+   RONGKHEM e-VILLAGE — LIVE WEATHER + PM2.5
+   พิกัดจำป่าหวายใกล้บ้านร่องเข็ม
+   ========================================================= */
+(function(){
+  "use strict";
+
+  const LAT = 19.0446;
+  const LON = 99.9765;
+  const TZ = "Asia/Bangkok";
+  const REFRESH_MS = 5 * 60 * 1000;
+
+  const $ = id => document.getElementById(id);
+
+  function weatherIcon(code, isDay){
+    if(code === 0) return isDay ? "☀️" : "🌙";
+    if([1,2].includes(code)) return isDay ? "🌤️" : "☁️";
+    if(code === 3) return "☁️";
+    if([45,48].includes(code)) return "🌫️";
+    if([51,53,55,56,57].includes(code)) return "🌦️";
+    if([61,63,65,66,67].includes(code)) return "🌧️";
+    if([71,73,75,77].includes(code)) return "🌨️";
+    if([80,81,82].includes(code)) return "🌦️";
+    if([95,96,99].includes(code)) return "⛈️";
+    return "🌤️";
+  }
+
+  function weatherText(code){
+    const map={
+      0:"ท้องฟ้าแจ่มใส",
+      1:"มีเมฆเล็กน้อย",
+      2:"มีเมฆบางส่วน",
+      3:"เมฆมาก",
+      45:"มีหมอก",
+      48:"หมอกเกาะตัว",
+      51:"ฝนปรอยเล็กน้อย",
+      53:"ฝนปรอย",
+      55:"ฝนปรอยหนัก",
+      61:"ฝนเล็กน้อย",
+      63:"ฝนปานกลาง",
+      65:"ฝนตกหนัก",
+      80:"ฝนซู่เล็กน้อย",
+      81:"ฝนซู่",
+      82:"ฝนซู่หนัก",
+      95:"พายุฝนฟ้าคะนอง",
+      96:"พายุฝนฟ้าคะนองและลูกเห็บ",
+      99:"พายุฝนฟ้าคะนองและลูกเห็บ"
+    };
+    return map[code] || "สภาพอากาศปัจจุบัน";
+  }
+
+  function fmtTime(iso){
+    if(!iso) return "--";
+    const d=new Date(iso);
+    return d.toLocaleTimeString("th-TH",{hour:"2-digit",minute:"2-digit"});
+  }
+
+  async function loadWeather(){
+    const url =
+      "https://api.open-meteo.com/v1/forecast" +
+      "?latitude="+LAT+
+      "&longitude="+LON+
+      "&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,is_day" +
+      "&hourly=precipitation_probability" +
+      "&forecast_hours=2" +
+      "&timezone="+encodeURIComponent(TZ);
+
+    try{
+      const r=await fetch(url,{cache:"no-store"});
+      if(!r.ok) throw new Error("Weather HTTP "+r.status);
+      const d=await r.json();
+      const c=d.current;
+
+      $("weatherTemp").textContent=Number(c.temperature_2m).toFixed(1);
+      $("weatherHumidity").textContent=Math.round(c.relative_humidity_2m)+" %";
+      $("weatherWind").textContent=Math.round(c.wind_speed_10m)+" km/h";
+      $("weatherIcon").textContent=weatherIcon(c.weather_code,c.is_day);
+      $("weatherText").textContent=weatherText(c.weather_code);
+
+      let rain="--";
+      if(d.hourly && Array.isArray(d.hourly.precipitation_probability)){
+        rain=(d.hourly.precipitation_probability[0] ?? 0)+" %";
+      }
+      $("weatherRain").textContent=rain;
+      $("weatherUpdated").textContent="อัปเดต "+fmtTime(c.time);
+
+    }catch(e){
+      console.error("Live weather:",e);
+      $("weatherText").textContent="เชื่อมต่อข้อมูลสภาพอากาศไม่ได้";
+      $("weatherUpdated").textContent="รอการเชื่อมต่อ";
+    }
+  }
+
+  function pmLevel(v){
+    if(v <= 25) return ["😊","ดีมาก"];
+    if(v <= 37) return ["🙂","ดี"];
+    if(v <= 50) return ["😐","ปานกลาง"];
+    if(v <= 90) return ["😷","เริ่มมีผล"];
+    return ["🚨","มีผลกระทบ"];
+  }
+
+  async function loadPM25(){
+    const url =
+      "https://air-quality-api.open-meteo.com/v1/air-quality" +
+      "?latitude="+LAT+
+      "&longitude="+LON+
+      "&current=pm2_5" +
+      "&timezone="+encodeURIComponent(TZ);
+
+    try{
+      const r=await fetch(url,{cache:"no-store"});
+      if(!r.ok) throw new Error("PM HTTP "+r.status);
+      const d=await r.json();
+      const v=Number(d.current.pm2_5);
+
+      if(!Number.isFinite(v)) throw new Error("ไม่มีค่า PM2.5");
+
+      $("pmValue").innerHTML=v.toFixed(1)+' <small style="font-size:9px">µg/m³</small>';
+
+      const [face,status]=pmLevel(v);
+      const faceEl=document.querySelector("#pm25 .face");
+      if(faceEl) faceEl.textContent=face;
+      $("pmStatus").textContent=status+" · PM2.5 ปัจจุบัน";
+      $("pmUpdated").textContent="อัปเดต "+fmtTime(d.current.time);
+
+    }catch(e){
+      console.error("Live PM2.5:",e);
+      $("pmStatus").textContent="เชื่อมต่อข้อมูล PM2.5 ไม่ได้";
+      $("pmUpdated").textContent="รอการเชื่อมต่อ";
+    }
+  }
+
+  async function refreshLive(){
+    await Promise.allSettled([loadWeather(),loadPM25()]);
+  }
+
+  refreshLive();
+  setInterval(refreshLive,REFRESH_MS);
+})();
+</script>
 </body>
 </html>
