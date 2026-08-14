@@ -1,0 +1,2725 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+สิ่งแวดล้อม / PM2.5 | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+ROOT
+===================================================== */
+
+:root{
+
+--bg:#03101a;
+
+--panel:rgba(4,29,43,.94);
+
+--border:rgba(112,190,220,.24);
+
+--text:#ffffff;
+
+--muted:#9db5be;
+
+--green:#4cff70;
+
+--cyan:#45e8ff;
+
+--purple:#d78cff;
+
+--orange:#ffb53d;
+
+--red:#ff5d5d;
+
+--sidebar:260px;
+
+}
+
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+
+box-sizing:border-box;
+
+margin:0;
+
+padding:0;
+
+}
+
+
+body{
+
+min-height:100vh;
+
+font-family:
+"Prompt",
+"Kanit",
+sans-serif;
+
+color:var(--text);
+
+background:
+
+linear-gradient(
+rgba(0,12,20,.92),
+rgba(0,12,20,.97)
+),
+
+url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
+center/cover fixed no-repeat;
+
+}
+
+
+button,
+input,
+select{
+
+font-family:inherit;
+
+}
+
+
+button{
+
+cursor:pointer;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+width:var(--sidebar);
+
+padding:20px 14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(1,18,30,.99),
+rgba(1,10,18,.98)
+);
+
+border-right:
+1px solid
+rgba(120,201,230,.18);
+
+z-index:1000;
+
+overflow-y:auto;
+
+}
+
+
+.sidebar-brand{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:
+5px
+9px
+20px;
+
+margin-bottom:13px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.09);
+
+}
+
+
+.logo{
+
+width:54px;
+
+height:54px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:15px;
+
+font-size:29px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,188,49,.17),
+rgba(4,38,51,.4)
+);
+
+border:
+1px solid
+rgba(255,190,54,.27);
+
+}
+
+
+.brand-title{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1.1;
+
+}
+
+
+.brand-title span{
+
+color:#b6ff43;
+
+}
+
+
+.brand-sub{
+
+color:#9eb8c2;
+
+font-size:10px;
+
+margin-top:3px;
+
+}
+
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:4px;
+
+}
+
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:
+12px
+13px;
+
+color:#d6e3e8;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:13px;
+
+border:
+1px solid
+transparent;
+
+transition:.2s;
+
+}
+
+
+.menu a:hover{
+
+background:
+rgba(51,205,104,.08);
+
+border-color:
+rgba(65,231,108,.14);
+
+transform:
+translateX(2px);
+
+}
+
+
+.menu a.active{
+
+background:
+
+linear-gradient(
+100deg,
+rgba(31,190,75,.42),
+rgba(19,90,52,.22)
+);
+
+border-color:
+rgba(84,238,106,.7);
+
+color:#ffffff;
+
+}
+
+
+.icon{
+
+width:28px;
+
+text-align:center;
+
+font-size:20px;
+
+}
+
+
+.contact{
+
+margin-top:18px;
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(7,40,55,.9),
+rgba(3,22,33,.9)
+);
+
+border:
+1px solid
+rgba(116,196,219,.23);
+
+}
+
+
+.contact h3{
+
+font-family:"Kanit";
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+
+.contact p{
+
+color:#b7cbd3;
+
+font-size:10px;
+
+margin:7px 0;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+position:fixed;
+
+left:var(--sidebar);
+
+right:0;
+
+top:0;
+
+height:78px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 25px;
+
+background:
+rgba(3,22,35,.91);
+
+backdrop-filter:
+blur(18px);
+
+border-bottom:
+1px solid
+var(--border);
+
+z-index:900;
+
+}
+
+
+.page-title{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.big-icon{
+
+width:44px;
+
+height:44px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(69,232,255,.08);
+
+border:
+1px solid
+rgba(69,232,255,.25);
+
+font-size:24px;
+
+}
+
+
+.page-title h1{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+font-weight:500;
+
+}
+
+
+.page-title p{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.clock{
+
+text-align:right;
+
+}
+
+
+.time{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.today{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.mobile-button{
+
+display:none;
+
+width:42px;
+
+height:42px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color:#ffffff;
+
+font-size:20px;
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.main{
+
+margin-left:var(--sidebar);
+
+padding-top:78px;
+
+min-height:100vh;
+
+}
+
+
+.content{
+
+max-width:1550px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+
+/* =====================================================
+STATUS HEADER
+===================================================== */
+
+.status-header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:20px;
+
+padding:20px 22px;
+
+margin-bottom:18px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+110deg,
+rgba(8,57,66,.95),
+rgba(3,29,41,.95)
+);
+
+border:
+1px solid
+rgba(72,220,104,.22);
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.25);
+
+}
+
+
+.status-main{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+.status-light{
+
+width:16px;
+
+height:16px;
+
+border-radius:50%;
+
+background:#48dc68;
+
+box-shadow:
+0 0 18px
+rgba(72,220,104,.8);
+
+animation:pulse 2s infinite;
+
+}
+
+
+@keyframes pulse{
+
+0%,100%{
+box-shadow:0 0 8px rgba(72,220,104,.5);
+}
+
+50%{
+box-shadow:0 0 25px rgba(72,220,104,.9);
+}
+
+}
+
+
+.status-title{
+
+font-family:"Kanit";
+
+font-size:19px;
+
+}
+
+
+.status-sub{
+
+font-size:9px;
+
+color:#8da9b3;
+
+margin-top:3px;
+
+}
+
+
+.update{
+
+text-align:right;
+
+font-size:8px;
+
+color:#78949e;
+
+}
+
+
+.update strong{
+
+display:block;
+
+color:#8ff49b;
+
+font-family:"Kanit";
+
+font-size:11px;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+AIR CARDS
+===================================================== */
+
+.air-grid{
+
+display:grid;
+
+grid-template-columns:
+1.5fr
+repeat(4,1fr);
+
+gap:15px;
+
+margin-bottom:18px;
+
+}
+
+
+.air-card{
+
+padding:20px;
+
+border-radius:18px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 40px
+rgba(0,0,0,.25);
+
+}
+
+
+.pm-card{
+
+position:relative;
+
+overflow:hidden;
+
+background:
+
+radial-gradient(
+circle at 85% 15%,
+rgba(72,220,104,.13),
+transparent 35%
+),
+
+linear-gradient(
+145deg,
+rgba(4,38,49,.98),
+rgba(2,18,29,.96)
+);
+
+}
+
+
+.pm-label{
+
+color:#83a1aa;
+
+font-size:9px;
+
+}
+
+
+.pm-number{
+
+font-family:"Kanit";
+
+font-size:56px;
+
+line-height:1;
+
+margin-top:8px;
+
+color:#70ef88;
+
+}
+
+
+.pm-unit{
+
+color:#8faab4;
+
+font-size:9px;
+
+}
+
+
+.aqi{
+
+display:inline-flex;
+
+margin-top:10px;
+
+padding:
+5px
+9px;
+
+border-radius:7px;
+
+font-size:8px;
+
+color:#8ff49b;
+
+background:
+rgba(72,220,104,.1);
+
+border:
+1px solid
+rgba(72,220,104,.2);
+
+}
+
+
+.air-icon{
+
+font-size:25px;
+
+}
+
+
+.air-label{
+
+color:#78949e;
+
+font-size:9px;
+
+margin-top:9px;
+
+}
+
+
+.air-value{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+margin-top:2px;
+
+}
+
+
+.air-sub{
+
+color:#67838e;
+
+font-size:8px;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+MAIN GRID
+===================================================== */
+
+.main-grid{
+
+display:grid;
+
+grid-template-columns:
+1.45fr
+.75fr;
+
+gap:18px;
+
+}
+
+
+/* =====================================================
+CHART
+===================================================== */
+
+.panel{
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.27);
+
+overflow:hidden;
+
+}
+
+
+.panel-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+17px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.07);
+
+}
+
+
+.panel-head h2{
+
+font-family:"Kanit";
+
+font-size:18px;
+
+font-weight:500;
+
+}
+
+
+.panel-head span{
+
+font-size:8px;
+
+color:#718d97;
+
+}
+
+
+.chart-area{
+
+height:330px;
+
+padding:20px;
+
+position:relative;
+
+}
+
+
+canvas{
+
+width:100% !important;
+
+height:100% !important;
+
+}
+
+
+/* =====================================================
+RIGHT PANELS
+===================================================== */
+
+.risk-list{
+
+padding:10px;
+
+}
+
+
+.risk-item{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:12px;
+
+border-radius:12px;
+
+transition:.2s;
+
+}
+
+
+.risk-item:hover{
+
+background:
+rgba(255,255,255,.035);
+
+}
+
+
+.risk-icon{
+
+width:40px;
+
+height:40px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:10px;
+
+background:
+rgba(255,181,61,.08);
+
+border:
+1px solid
+rgba(255,181,61,.15);
+
+font-size:20px;
+
+}
+
+
+.risk-info{
+
+flex:1;
+
+}
+
+
+.risk-title{
+
+font-size:10px;
+
+}
+
+
+.risk-desc{
+
+font-size:8px;
+
+color:#718d97;
+
+margin-top:3px;
+
+}
+
+
+.risk-level{
+
+font-size:8px;
+
+color:#ffd38d;
+
+}
+
+
+/* =====================================================
+ANNOUNCEMENT
+===================================================== */
+
+.announcement{
+
+margin-top:18px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(106,52,15,.32),
+rgba(4,28,40,.97)
+);
+
+border:
+1px solid
+rgba(255,181,61,.22);
+
+}
+
+
+.announcement-top{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+}
+
+
+.announcement-icon{
+
+width:43px;
+
+height:43px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(255,181,61,.1);
+
+font-size:22px;
+
+}
+
+
+.announcement h2{
+
+font-family:"Kanit";
+
+font-size:18px;
+
+font-weight:500;
+
+}
+
+
+.announcement p{
+
+color:#9db5be;
+
+font-size:9px;
+
+line-height:1.8;
+
+margin-top:12px;
+
+}
+
+
+.warning{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:10px;
+
+margin-top:14px;
+
+}
+
+
+.warning-item{
+
+padding:12px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.035);
+
+border:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+.warning-item strong{
+
+font-size:9px;
+
+display:block;
+
+}
+
+
+.warning-item span{
+
+font-size:8px;
+
+color:#78949e;
+
+display:block;
+
+margin-top:4px;
+
+}
+
+
+/* =====================================================
+FORECAST
+===================================================== */
+
+.forecast{
+
+margin-top:18px;
+
+}
+
+
+.forecast-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(7,1fr);
+
+}
+
+
+.forecast-day{
+
+padding:16px 8px;
+
+text-align:center;
+
+border-right:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.forecast-day:last-child{
+
+border-right:0;
+
+}
+
+
+.forecast-date{
+
+font-size:8px;
+
+color:#78949e;
+
+}
+
+
+.forecast-icon{
+
+font-size:25px;
+
+margin:10px 0;
+
+}
+
+
+.forecast-pm{
+
+font-family:"Kanit";
+
+font-size:18px;
+
+}
+
+
+.forecast-unit{
+
+font-size:7px;
+
+color:#718d97;
+
+}
+
+
+.forecast-temp{
+
+font-size:8px;
+
+color:#a8bec6;
+
+margin-top:5px;
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1250px){
+
+:root{
+--sidebar:230px;
+}
+
+.air-grid{
+
+grid-template-columns:
+repeat(3,1fr);
+
+}
+
+.pm-card{
+
+grid-column:
+span 3;
+
+}
+
+.main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:1000px){
+
+.sidebar{
+
+transform:
+translateX(-100%);
+
+transition:.3s;
+
+}
+
+.sidebar.open{
+
+transform:
+translateX(0);
+
+}
+
+.topbar{
+
+left:0;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.mobile-button{
+
+display:block;
+
+}
+
+.page-title p{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:750px){
+
+.content{
+
+padding:13px;
+
+}
+
+.air-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.pm-card{
+
+grid-column:
+span 2;
+
+}
+
+.status-header{
+
+align-items:flex-start;
+
+flex-direction:column;
+
+}
+
+.update{
+
+text-align:left;
+
+}
+
+.warning{
+
+grid-template-columns:1fr;
+
+}
+
+.forecast-grid{
+
+grid-template-columns:
+repeat(4,1fr);
+
+}
+
+.forecast-day{
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+.clock{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:480px){
+
+.air-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.pm-card{
+
+grid-column:auto;
+
+}
+
+.forecast-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.pm-number{
+
+font-size:48px;
+
+}
+
+.page-title h1{
+
+font-size:17px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<aside
+class="sidebar"
+id="sidebar"
+>
+
+<div class="sidebar-brand">
+
+<div class="logo">
+🏛️
+</div>
+
+<div>
+
+<div class="brand-title">
+
+RONGKHEM
+<span>e-VILLAGE</span>
+
+</div>
+
+<div class="brand-sub">
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="menu">
+
+
+<a href="index.html">
+
+<span class="icon">🏠</span>
+หน้าหลัก
+
+</a>
+
+
+<a href="citizen.html">
+
+<span class="icon">👥</span>
+ข้อมูลประชาชน
+
+</a>
+
+
+<a href="household.html">
+
+<span class="icon">🏠</span>
+ข้อมูลครัวเรือน
+
+</a>
+
+
+<a href="leader.html">
+
+<span class="icon">👔</span>
+ผู้นำชุมชน
+
+</a>
+
+
+<a href="news.html">
+
+<span class="icon">📢</span>
+ข่าวประชาสัมพันธ์
+
+</a>
+
+
+<a href="activity.html">
+
+<span class="icon">📅</span>
+กิจกรรม / ปฏิทิน
+
+</a>
+
+
+<a href="incident.html">
+
+<span class="icon">🚨</span>
+แจ้งเหตุ / ร้องเรียน
+
+</a>
+
+
+<a href="service.html">
+
+<span class="icon">🤝</span>
+บริการประชาชน
+
+</a>
+
+
+<a href="project.html">
+
+<span class="icon">🏗️</span>
+โครงการพัฒนาหมู่บ้าน
+
+</a>
+
+
+<a
+href="environment.html"
+class="active"
+>
+
+<span class="icon">🌱</span>
+สิ่งแวดล้อม / PM2.5
+
+</a>
+
+
+<a href="wetland.html">
+
+<span class="icon">💧</span>
+แหล่งซับน้ำจำ
+
+</a>
+
+
+<a href="rice.html">
+
+<span class="icon">🍚</span>
+กลุ่มข้าวสาร
+
+</a>
+
+
+<a href="statistics.html">
+
+<span class="icon">📊</span>
+สถิติหมู่บ้าน
+
+</a>
+
+
+<a href="admin.html">
+
+<span class="icon">⚙️</span>
+ตั้งค่าระบบ
+
+</a>
+
+
+</nav>
+
+
+<div class="contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+📞 โทร. 088-888-8888
+</p>
+
+<p>
+🟢 LINE ID: rongkhem.village
+</p>
+
+<p>
+🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
+</p>
+
+</div>
+
+</aside>
+
+
+<!-- =====================================================
+TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+
+<div class="page-title">
+
+
+<button
+class="mobile-button"
+id="mobileButton"
+>
+☰
+</button>
+
+
+<div class="big-icon">
+🌱
+</div>
+
+
+<div>
+
+<h1>
+ศูนย์สิ่งแวดล้อม / PM2.5
+</h1>
+
+<p>
+ระบบเฝ้าระวังคุณภาพอากาศและสิ่งแวดล้อม บ้านร่องเข็ม
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="clock">
+
+<div
+class="time"
+id="time"
+>
+00:00:00
+</div>
+
+<div
+class="today"
+id="today"
+>
+กำลังโหลด...
+</div>
+
+</div>
+
+
+</header>
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main">
+
+<div class="content">
+
+
+<!-- STATUS -->
+
+<section class="status-header">
+
+
+<div class="status-main">
+
+<div class="status-light"></div>
+
+<div>
+
+<div class="status-title">
+สถานการณ์คุณภาพอากาศ
+</div>
+
+<div class="status-sub">
+บ้านร่องเข็ม หมู่ที่ 6 • ระบบเฝ้าระวังสิ่งแวดล้อม
+</div>
+
+</div>
+
+</div>
+
+
+<div class="update">
+
+อัปเดตล่าสุด
+
+<strong id="updateTime">
+กำลังโหลด...
+</strong>
+
+</div>
+
+
+</section>
+
+
+<!-- AIR CARDS -->
+
+<section class="air-grid">
+
+
+<div class="air-card pm-card">
+
+<div class="pm-label">
+PM2.5 ปัจจุบัน
+</div>
+
+<div
+class="pm-number"
+id="pm25"
+>
+18
+</div>
+
+<div class="pm-unit">
+µg/m³
+</div>
+
+<div class="aqi">
+🟢 คุณภาพอากาศดี
+</div>
+
+</div>
+
+
+<div class="air-card">
+
+<div class="air-icon">
+🌡️
+</div>
+
+<div class="air-label">
+อุณหภูมิ
+</div>
+
+<div
+class="air-value"
+id="temperature"
+>
+27°
+</div>
+
+<div class="air-sub">
+องศาเซลเซียส
+</div>
+
+</div>
+
+
+<div class="air-card">
+
+<div class="air-icon">
+💧
+</div>
+
+<div class="air-label">
+ความชื้น
+</div>
+
+<div
+class="air-value"
+id="humidity"
+>
+78%
+</div>
+
+<div class="air-sub">
+Relative Humidity
+</div>
+
+</div>
+
+
+<div class="air-card">
+
+<div class="air-icon">
+🌬️
+</div>
+
+<div class="air-label">
+ความเร็วลม
+</div>
+
+<div
+class="air-value"
+id="wind"
+>
+8
+</div>
+
+<div class="air-sub">
+km/h
+</div>
+
+</div>
+
+
+<div class="air-card">
+
+<div class="air-icon">
+☁️
+</div>
+
+<div class="air-label">
+สภาพอากาศ
+</div>
+
+<div
+class="air-value"
+id="weather"
+>
+มีเมฆ
+</div>
+
+<div class="air-sub">
+วันนี้
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- MAIN GRID -->
+
+<section class="main-grid">
+
+
+<!-- CHART -->
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+📊 PM2.5 ย้อนหลัง 24 ชั่วโมง
+</h2>
+
+<span>
+หน่วย µg/m³
+</span>
+
+</div>
+
+
+<div class="chart-area">
+
+<canvas
+id="pmChart"
+></canvas>
+
+</div>
+
+
+</div>
+
+
+<!-- RISK -->
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+🔥 จุดเสี่ยงในพื้นที่
+</h2>
+
+<span>
+วันนี้
+</span>
+
+</div>
+
+
+<div class="risk-list">
+
+
+<div class="risk-item">
+
+<div class="risk-icon">
+🔥
+</div>
+
+<div class="risk-info">
+
+<div class="risk-title">
+พื้นที่เกษตรด้านท้ายหมู่บ้าน
+</div>
+
+<div class="risk-desc">
+พบควัน / ต้องเฝ้าระวัง
+</div>
+
+</div>
+
+<div class="risk-level">
+เฝ้าระวัง
+</div>
+
+</div>
+
+
+<div class="risk-item">
+
+<div class="risk-icon">
+🌫️
+</div>
+
+<div class="risk-info">
+
+<div class="risk-title">
+พื้นที่ริมถนนสายหลัก
+</div>
+
+<div class="risk-desc">
+ฝุ่นจากการสัญจร
+</div>
+
+</div>
+
+<div class="risk-level">
+ปานกลาง
+</div>
+
+</div>
+
+
+<div class="risk-item">
+
+<div class="risk-icon">
+🏭
+</div>
+
+<div class="risk-info">
+
+<div class="risk-title">
+พื้นที่เผาเศษวัสดุ
+</div>
+
+<div class="risk-desc">
+ตรวจสอบเป็นระยะ
+</div>
+
+</div>
+
+<div class="risk-level">
+เฝ้าระวัง
+</div>
+
+</div>
+
+
+<div class="risk-item">
+
+<div class="risk-icon">
+🌳
+</div>
+
+<div class="risk-info">
+
+<div class="risk-title">
+พื้นที่ป่าและแนวเขา
+</div>
+
+<div class="risk-desc">
+ไม่มีเหตุผิดปกติ
+</div>
+
+</div>
+
+<div
+class="risk-level"
+style="color:#8ff49b"
+>
+ปกติ
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- ANNOUNCEMENT -->
+
+<section class="announcement">
+
+
+<div class="announcement-top">
+
+
+<div class="announcement-icon">
+📢
+</div>
+
+
+<div>
+
+<h2>
+ประกาศเฝ้าระวังการเผาและฝุ่น PM2.5
+</h2>
+
+</div>
+
+
+</div>
+
+
+<p>
+
+ขอความร่วมมือประชาชนบ้านร่องเข็ม
+งดการเผาในที่โล่ง ลดการเผาเศษวัสดุทางการเกษตร
+และหากพบเห็นเหตุไฟไหม้หรือการเผาที่อาจก่อให้เกิด
+ผลกระทบต่อชุมชน ขอให้แจ้งที่ทำการผู้ใหญ่บ้านโดยเร็ว
+
+</p>
+
+
+<div class="warning">
+
+
+<div class="warning-item">
+
+<strong>
+🔥 งดเผาในที่โล่ง
+</strong>
+
+<span>
+ลดควันและฝุ่น PM2.5
+</span>
+
+</div>
+
+
+<div class="warning-item">
+
+<strong>
+😷 ป้องกันสุขภาพ
+</strong>
+
+<span>
+สวมหน้ากากเมื่อค่าฝุ่นสูง
+</span>
+
+</div>
+
+
+<div class="warning-item">
+
+<strong>
+📞 พบเหตุแจ้งทันที
+</strong>
+
+<span>
+แจ้งผู้นำชุมชนหรือฝ่ายปกครอง
+</span>
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+<!-- FORECAST -->
+
+<section class="panel forecast">
+
+
+<div class="panel-head">
+
+<h2>
+🌤️ แนวโน้มคุณภาพอากาศ
+</h2>
+
+<span>
+7 วัน
+</span>
+
+</div>
+
+
+<div
+class="forecast-grid"
+id="forecast"
+></div>
+
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+DATA
+===================================================== */
+
+const pmHistory=[
+
+16,18,20,22,24,26,
+
+28,25,23,21,20,18,
+
+17,19,22,24,21,20,
+
+18,17,16,17,18,18
+
+];
+
+
+const forecastData=[
+
+{
+day:"วันนี้",
+icon:"🌤️",
+pm:18,
+temp:"27°"
+},
+
+{
+day:"เสาร์",
+icon:"🌥️",
+pm:21,
+temp:"28°"
+},
+
+{
+day:"อาทิตย์",
+icon:"🌦️",
+pm:24,
+temp:"29°"
+},
+
+{
+day:"จันทร์",
+icon:"☁️",
+pm:27,
+temp:"28°"
+},
+
+{
+day:"อังคาร",
+icon:"🌤️",
+pm:23,
+temp:"29°"
+},
+
+{
+day:"พุธ",
+icon:"🌧️",
+pm:19,
+temp:"27°"
+},
+
+{
+day:"พฤหัสฯ",
+icon:"🌤️",
+pm:17,
+temp:"28°"
+}
+
+];
+
+
+/* =====================================================
+CLOCK
+===================================================== */
+
+function updateClock(){
+
+const now=
+new Date();
+
+
+document.getElementById(
+"time"
+).textContent=
+
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}
+);
+
+
+document.getElementById(
+"today"
+).textContent=
+
+now.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+
+document.getElementById(
+"updateTime"
+).textContent=
+
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =====================================================
+CANVAS CHART
+===================================================== */
+
+function drawChart(){
+
+const canvas=
+document.getElementById(
+"pmChart"
+);
+
+const ctx=
+canvas.getContext("2d");
+
+
+const rect=
+canvas.getBoundingClientRect();
+
+
+const dpr=
+window.devicePixelRatio||1;
+
+
+canvas.width=
+rect.width*dpr;
+
+canvas.height=
+rect.height*dpr;
+
+
+ctx.scale(dpr,dpr);
+
+
+const width=
+rect.width;
+
+const height=
+rect.height;
+
+
+const padding={
+top:20,
+right:20,
+bottom:35,
+left:40
+};
+
+
+const chartWidth=
+width-
+padding.left-
+padding.right;
+
+
+const chartHeight=
+height-
+padding.top-
+padding.bottom;
+
+
+const max=
+40;
+
+const min=
+0;
+
+
+/* GRID */
+
+ctx.font="10px Prompt";
+
+ctx.textAlign="right";
+
+ctx.textBaseline="middle";
+
+ctx.fillStyle="#607b86";
+
+
+for(
+let value=0;
+value<=40;
+value+=10
+){
+
+const y=
+padding.top+
+chartHeight-
+(
+(value-min)/
+(max-min)
+)*chartHeight;
+
+
+ctx.strokeStyle=
+"rgba(255,255,255,.06)";
+
+ctx.lineWidth=1;
+
+ctx.beginPath();
+
+ctx.moveTo(
+padding.left,
+y
+);
+
+ctx.lineTo(
+width-padding.right,
+y
+);
+
+ctx.stroke();
+
+
+ctx.fillText(
+value,
+padding.left-8,
+y
+);
+
+}
+
+
+/* AREA */
+
+const points=[];
+
+
+pmHistory.forEach(
+(value,index)=>{
+
+const x=
+padding.left+
+(index/(pmHistory.length-1))
+*chartWidth;
+
+
+const y=
+padding.top+
+chartHeight-
+(
+(value-min)/
+(max-min)
+)*chartHeight;
+
+
+points.push({x,y});
+
+}
+);
+
+
+/* AREA FILL */
+
+ctx.beginPath();
+
+ctx.moveTo(
+points[0].x,
+padding.top+chartHeight
+);
+
+points.forEach(
+p=>ctx.lineTo(
+p.x,
+p.y
+)
+);
+
+ctx.lineTo(
+points[points.length-1].x,
+padding.top+chartHeight
+);
+
+ctx.closePath();
+
+ctx.fillStyle=
+"rgba(69,232,255,.08)";
+
+ctx.fill();
+
+
+/* LINE */
+
+ctx.beginPath();
+
+points.forEach(
+(p,index)=>{
+
+if(index===0)
+ctx.moveTo(p.x,p.y);
+
+else
+ctx.lineTo(p.x,p.y);
+
+}
+);
+
+ctx.strokeStyle=
+"#45e8ff";
+
+ctx.lineWidth=2.5;
+
+ctx.stroke();
+
+
+/* POINTS */
+
+points.forEach(
+p=>{
+
+ctx.beginPath();
+
+ctx.arc(
+p.x,
+p.y,
+3,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle=
+"#45e8ff";
+
+ctx.fill();
+
+}
+);
+
+
+/* X LABELS */
+
+ctx.textAlign="center";
+
+ctx.textBaseline="top";
+
+ctx.fillStyle="#607b86";
+
+
+for(
+let i=0;
+i<24;
+i+=4
+){
+
+const x=
+padding.left+
+(i/(pmHistory.length-1))
+*chartWidth;
+
+
+ctx.fillText(
+String(i).padStart(2,"0")+" น.",
+x,
+height-20
+);
+
+}
+
+}
+
+
+window.addEventListener(
+"resize",
+drawChart
+);
+
+setTimeout(
+drawChart,
+100
+);
+
+
+/* =====================================================
+FORECAST
+===================================================== */
+
+function renderForecast(){
+
+const container=
+document.getElementById(
+"forecast"
+);
+
+
+container.innerHTML="";
+
+
+forecastData.forEach(
+item=>{
+
+const div=
+document.createElement(
+"div"
+);
+
+
+div.className=
+"forecast-day";
+
+
+div.innerHTML=`
+
+<div class="forecast-date">
+${item.day}
+</div>
+
+<div class="forecast-icon">
+${item.icon}
+</div>
+
+<div class="forecast-pm">
+${item.pm}
+</div>
+
+<div class="forecast-unit">
+PM2.5
+</div>
+
+<div class="forecast-temp">
+🌡️ ${item.temp}
+</div>
+
+`;
+
+
+container.appendChild(div);
+
+}
+);
+
+}
+
+
+renderForecast();
+
+
+/* =====================================================
+SIMULATED SENSOR UPDATE
+===================================================== */
+
+function updateAir(){
+
+const pm=
+Math.max(
+10,
+Math.min(
+45,
+18+
+Math.round(
+(Math.random()-.5)*4
+)
+)
+);
+
+
+document.getElementById(
+"pm25"
+).textContent=
+pm;
+
+
+if(pm<=15){
+
+document.querySelector(
+".aqi"
+).innerHTML=
+"🟢 คุณภาพอากาศดี";
+
+document.querySelector(
+".pm-number"
+).style.color=
+"#70ef88";
+
+}
+
+else if(pm<=25){
+
+document.querySelector(
+".aqi"
+).innerHTML=
+"🟢 คุณภาพอากาศดี";
+
+document.querySelector(
+".pm-number"
+).style.color=
+"#70ef88";
+
+}
+
+else if(pm<=37){
+
+document.querySelector(
+".aqi"
+).innerHTML=
+"🟡 เริ่มมีผลกระทบ";
+
+document.querySelector(
+".pm-number"
+).style.color=
+"#ffd15c";
+
+}
+
+else{
+
+document.querySelector(
+".aqi"
+).innerHTML=
+"🔴 มีผลกระทบต่อสุขภาพ";
+
+document.querySelector(
+".pm-number"
+).style.color=
+"#ff6b6b";
+
+}
+
+}
+
+
+updateAir();
+
+setInterval(
+updateAir,
+15000
+);
+
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+document
+.getElementById(
+"mobileButton"
+)
+.addEventListener(
+"click",
+()=>{
+
+document
+.getElementById(
+"sidebar"
+)
+.classList.toggle(
+"open"
+);
+
+}
+);
+
+</script>
+
+</body>
+
+</html>
