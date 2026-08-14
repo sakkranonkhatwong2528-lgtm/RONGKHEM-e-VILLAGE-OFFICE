@@ -829,3 +829,1515 @@ main{
   }
 
 }
+/* =========================================================
+   RONGKHEM e-VILLAGE OFFICE
+   UNIVERSAL MANAGER CSS
+   ========================================================= */
+
+/* ---------- Modal ---------- */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 15, 35, 0.78);
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modalBox {
+    width: min(980px, 100%);
+
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    border: 1px solid rgba(90, 180, 255, 0.28);
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #062b55,
+            #031b36
+        );
+
+    color: #fff;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .55);
+
+    animation:
+        managerOpen .18s ease-out;
+}
+
+@keyframes managerOpen {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* ---------- Manager ---------- */
+
+.manager {
+    padding: 24px;
+}
+
+.managerHeader {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+}
+
+.managerHeader h2 {
+    margin: 0;
+
+    font-size: 23px;
+
+    font-weight: 800;
+}
+
+.managerHeader p {
+    margin: 6px 0 0;
+
+    color: #a9c5df;
+
+    font-size: 14px;
+}
+
+
+/* ---------- Form ---------- */
+
+.formGrid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.formGroup {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    margin-bottom: 15px;
+}
+
+.formGroup label {
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #d9ebff;
+}
+
+.formGroup input,
+.formGroup textarea,
+.manager input,
+.manager textarea {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid
+        rgba(130,190,240,.25);
+
+    border-radius: 9px;
+
+    outline: none;
+
+    background:
+        rgba(0, 20, 45, .75);
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    transition:
+        border-color .2s,
+        box-shadow .2s,
+        background .2s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+
+    border-color: #2196f3;
+
+    background:
+        rgba(0, 35, 70, .9);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(33,150,243,.14);
+}
+
+.formGroup textarea {
+
+    min-height: 130px;
+
+    resize: vertical;
+
+    line-height: 1.7;
+}
+
+.formGroup small {
+
+    color: #8faeca;
+
+    font-size: 12px;
+}
+
+
+/* ---------- Current Image ---------- */
+
+.currentImage {
+
+    margin:
+        8px 0 20px;
+
+    padding: 14px;
+
+    border:
+        1px solid
+        rgba(120,190,245,.18);
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,20,45,.55);
+}
+
+.currentImage > div {
+
+    margin-bottom: 10px;
+
+    color: #a9c5df;
+
+    font-size: 13px;
+}
+
+.currentImage img {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 300px;
+
+    object-fit: cover;
+
+    border-radius: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+/* ---------- Manager List ---------- */
+
+.managerList {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.managerItem {
+
+    display: grid;
+
+    grid-template-columns:
+        100px minmax(0,1fr) auto;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px;
+
+    border:
+        1px solid
+        rgba(110,190,245,.16);
+
+    border-radius: 12px;
+
+    background:
+        rgba(0, 25, 52, .72);
+
+    transition:
+        transform .18s,
+        background .18s,
+        border-color .18s;
+}
+
+.managerItem:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(0, 42, 82, .85);
+
+    border-color:
+        rgba(70,180,255,.35);
+}
+
+
+/* ---------- Thumbnail ---------- */
+
+.managerThumb {
+
+    width: 100px;
+
+    height: 78px;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 9px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #08477d,
+            #052c52
+        );
+
+    color: #8bd0ff;
+
+    font-size: 32px;
+}
+
+.managerThumb img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* ---------- Manager Content ---------- */
+
+.managerContent {
+
+    min-width: 0;
+}
+
+.managerContent h3 {
+
+    margin: 0 0 7px;
+
+    font-size: 16px;
+
+    color: #fff;
+
+    word-break: break-word;
+}
+
+.managerContent p {
+
+    margin: 8px 0 0;
+
+    color: #b9cfe3;
+
+    font-size: 13px;
+
+    line-height: 1.65;
+
+    white-space: pre-line;
+}
+
+.managerMeta {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px 15px;
+
+    color: #9fc0dc;
+
+    font-size: 12px;
+}
+
+.managerMeta b {
+
+    color: #d5eaff;
+}
+
+
+/* ---------- Buttons ---------- */
+
+.btn {
+
+    border: 0;
+
+    border-radius: 8px;
+
+    padding: 9px 13px;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform .15s,
+        filter .15s,
+        box-shadow .15s;
+}
+
+.btn:hover {
+
+    filter: brightness(1.12);
+
+    transform:
+        translateY(-1px);
+}
+
+.btn:active {
+
+    transform:
+        translateY(0);
+}
+
+.btn.green {
+
+    background:
+        linear-gradient(
+            135deg,
+            #08a85b,
+            #087e4b
+        );
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,160,90,.18);
+}
+
+.btn.blue {
+
+    background:
+        linear-gradient(
+            135deg,
+            #168ce5,
+            #0867b3
+        );
+}
+
+.btn.red {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e74c4c,
+            #b92e38
+        );
+}
+
+.btn.gray {
+
+    background:
+        #40556a;
+}
+
+
+/* ---------- Manager Actions ---------- */
+
+.managerActions {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    min-width: 82px;
+}
+
+.managerFooter {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 18px;
+
+    margin-top: 20px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,.10);
+}
+
+
+/* ---------- Empty ---------- */
+
+.emptyManager {
+
+    text-align: center;
+
+    padding: 55px 20px;
+
+    border:
+        1px dashed
+        rgba(110,190,245,.25);
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,20,45,.4);
+}
+
+.emptyManagerIcon {
+
+    font-size: 48px;
+
+    margin-bottom: 10px;
+}
+
+.emptyManager h3 {
+
+    margin: 0;
+
+    font-size: 18px;
+}
+
+.emptyManager p {
+
+    margin: 7px 0 0;
+
+    color: #8eabc5;
+
+    font-size: 13px;
+}
+
+
+/* ---------- Dashboard Manage ---------- */
+
+.dashboardManage {
+
+    float: right;
+
+    position: relative;
+
+    z-index: 5;
+
+    margin: -5px 0 5px;
+}
+
+
+/* ---------- Public Data ---------- */
+
+.publicDataList {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    padding: 5px 0;
+}
+
+.publicItem {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(0,30,60,.35);
+
+    border:
+        1px solid
+        rgba(120,190,240,.10);
+}
+
+.publicItem img {
+
+    width: 58px;
+
+    height: 45px;
+
+    object-fit: cover;
+
+    border-radius: 6px;
+
+    flex-shrink: 0;
+}
+
+.publicItemIcon {
+
+    width: 58px;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 6px;
+
+    background:
+        #073b6b;
+
+    font-size: 22px;
+
+    flex-shrink: 0;
+}
+
+.publicItem > div:last-child {
+
+    min-width: 0;
+}
+
+.publicItem b {
+
+    display: block;
+
+    font-size: 13px;
+
+    color: #fff;
+}
+
+.publicItem small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #8eabc5;
+
+    font-size: 11px;
+}
+
+.publicItem p {
+
+    margin: 4px 0 0;
+
+    color: #adc4d9;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .modal {
+
+        padding: 8px;
+
+        align-items: flex-start;
+    }
+
+    .modalBox {
+
+        max-height: 96vh;
+
+        border-radius: 13px;
+    }
+
+    .manager {
+
+        padding: 16px;
+    }
+
+    .managerHeader {
+
+        align-items: flex-start;
+
+        flex-direction: column;
+    }
+
+    .formGrid {
+
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+    .managerItem {
+
+        grid-template-columns:
+            70px minmax(0,1fr);
+
+        align-items: start;
+    }
+
+    .managerThumb {
+
+        width: 70px;
+
+        height: 65px;
+    }
+
+    .managerActions {
+
+        grid-column: 1 / -1;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        width: 100%;
+
+        margin-top: 4px;
+    }
+
+    .managerActions .btn {
+
+        width: 100%;
+    }
+
+    .managerFooter {
+
+        position: sticky;
+
+        bottom: 0;
+
+        background:
+            #031b36;
+
+        padding-bottom: 5px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+
+    .managerHeader h2 {
+
+        font-size: 19px;
+    }
+
+    .managerHeader p {
+
+        font-size: 12px;
+    }
+
+    .btn {
+
+        padding: 9px 10px;
+
+        font-size: 12px;
+    }
+
+    .managerItem {
+
+        padding: 10px;
+
+        gap: 10px;
+    }
+
+    .managerContent h3 {
+
+        font-size: 14px;
+    }
+
+    .managerMeta {
+
+        display: block;
+
+        line-height: 1.7;
+    }
+
+}
+/* =========================================================
+   RONGKHEM e-VILLAGE OFFICE
+   STYLE.CSS — ส่วนที่ 2
+   HERO / UPLOAD / ADMIN CONTROLS
+   ========================================================= */
+
+
+/* =========================================================
+   HERO BANNER
+   ========================================================= */
+
+.hero {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 320px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #063d69,
+            #021c35
+        );
+
+    background-size: cover;
+
+    background-position: center;
+
+    border-radius: 0 0 18px 18px;
+
+    box-shadow:
+        0 8px 30px
+        rgba(0,0,0,.25);
+}
+
+
+/* ชั้นมืดบนภาพ */
+
+.heroShade {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,20,45,.72),
+            rgba(0,20,45,.18),
+            rgba(0,20,45,.35)
+        );
+}
+
+
+/* ปุ่มเปลี่ยนรูป */
+
+.heroUploadButton {
+
+    position: absolute;
+
+    right: 22px;
+
+    bottom: 20px;
+
+    z-index: 20;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 11px 17px;
+
+    border: 1px solid
+        rgba(255,255,255,.28);
+
+    border-radius: 10px;
+
+    background:
+        rgba(0,0,0,.62);
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 5px 20px
+        rgba(0,0,0,.25);
+
+    transition:
+        .2s ease;
+}
+
+.heroUploadButton:hover {
+
+    background:
+        rgba(0,100,190,.9);
+
+    border-color:
+        rgba(255,255,255,.5);
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   HERO IMAGE POSITION
+   ========================================================= */
+
+#heroBanner {
+
+    background-size: cover;
+
+    background-repeat: no-repeat;
+
+    background-position: center center;
+}
+
+
+/* =========================================================
+   ADMIN BADGE
+   ========================================================= */
+
+.adminBadge {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    padding: 4px 8px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(0,150,255,.12);
+
+    border:
+        1px solid
+        rgba(80,190,255,.25);
+
+    color: #8dd6ff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   UPLOAD PREVIEW
+   ========================================================= */
+
+.uploadPreview {
+
+    width: 100%;
+
+    min-height: 180px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    margin-top: 10px;
+
+    border:
+        1px dashed
+        rgba(100,190,255,.35);
+
+    border-radius: 12px;
+
+    background:
+        rgba(0,20,45,.5);
+}
+
+.uploadPreview img {
+
+    display: block;
+
+    width: 100%;
+
+    max-height: 320px;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   IMAGE DELETE
+   ========================================================= */
+
+.imageDeleteButton {
+
+    margin-top: 10px;
+
+    padding: 8px 12px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        #c73742;
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.imageDeleteButton:hover {
+
+    background:
+        #e04752;
+}
+
+
+/* =========================================================
+   ALERT ITEMS
+   ========================================================= */
+
+.alert {
+
+    position: relative;
+
+    padding: 12px 14px;
+
+    margin-bottom: 8px;
+
+    border-left:
+        4px solid
+        #168ce5;
+
+    border-radius: 8px;
+
+    background:
+        rgba(0,30,60,.5);
+}
+
+.alert b {
+
+    display: block;
+
+    color: #fff;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.alert small {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #91abc2;
+
+    font-size: 11px;
+}
+
+.alert p {
+
+    margin: 7px 0 0;
+
+    color: #b8ccdd;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   ADD BUTTON
+   ========================================================= */
+
+.add {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-top: 12px;
+
+    padding: 8px 13px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #087ed0,
+            #075b9c
+        );
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        .2s ease;
+}
+
+.add:hover {
+
+    filter: brightness(1.15);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   VIEW BUTTON
+   ========================================================= */
+
+.view {
+
+    padding: 7px 11px;
+
+    border:
+        1px solid
+        rgba(100,190,255,.2);
+
+    border-radius: 7px;
+
+    background:
+        rgba(0,100,180,.15);
+
+    color: #8fd5ff;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.view:hover {
+
+    background:
+        rgba(0,120,210,.3);
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   CARD MANAGEMENT
+   ========================================================= */
+
+.card {
+
+    position: relative;
+}
+
+
+/* ปุ่มจัดการบน Card */
+
+.cardManageButton {
+
+    position: absolute;
+
+    top: 12px;
+
+    right: 12px;
+
+    z-index: 5;
+
+    padding: 6px 9px;
+
+    border: 0;
+
+    border-radius: 6px;
+
+    background:
+        rgba(0,100,180,.2);
+
+    color: #8dd5ff;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+.cardManageButton:hover {
+
+    background:
+        rgba(0,120,220,.45);
+
+    color: #fff;
+}
+
+
+/* =========================================================
+   VERIFIED
+   ========================================================= */
+
+.verified {
+
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(0,160,100,.08);
+
+    border:
+        1px solid
+        rgba(0,190,120,.18);
+
+    color: #82dcb2;
+
+    font-size: 11px;
+
+    text-align: center;
+}
+
+
+/* =========================================================
+   PM BAR
+   ========================================================= */
+
+.pmBar {
+
+    position: relative;
+
+    width: 100%;
+
+    height: 9px;
+
+    margin-top: 15px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #32c46b 0%,
+            #78c842 20%,
+            #e0c43a 40%,
+            #ef8639 60%,
+            #d53b3b 100%
+        );
+}
+
+
+/* =========================================================
+   PM STATUS
+   ========================================================= */
+
+.pmGood {
+
+    display: inline-block;
+
+    margin-top: 6px;
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(30,190,100,.12);
+
+    color: #6fe49f;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   AI BOX
+   ========================================================= */
+
+.aiBox {
+
+    min-height: 70px;
+
+    padding: 12px;
+
+    border:
+        1px solid
+        rgba(80,180,255,.14);
+
+    border-radius: 9px;
+
+    background:
+        rgba(0,30,60,.45);
+
+    color: #c6dbed;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.aiBox b {
+
+    color: #7ed2ff;
+}
+
+
+/* =========================================================
+   AI BUTTON
+   ========================================================= */
+
+.ask {
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 10px;
+
+    border: 0;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #008ee8,
+            #0062a9
+        );
+
+    color: #fff;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0,120,220,.18);
+}
+
+.ask:hover {
+
+    filter: brightness(1.12);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================================
+   WEATHER
+   ========================================================= */
+
+.weather3 {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+    margin-top: 15px;
+}
+
+.weather3 > div {
+
+    padding: 9px 5px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(0,30,60,.4);
+
+    color: #8eaac0;
+
+    font-size: 10px;
+
+    text-align: center;
+}
+
+.weather3 b {
+
+    display: block;
+
+    margin-top: 4px;
+
+    color: #fff;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE HERO
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .hero {
+
+        min-height: 230px;
+
+        border-radius:
+            0 0 12px 12px;
+    }
+
+    .heroUploadButton {
+
+        right: 12px;
+
+        bottom: 12px;
+
+        padding: 9px 12px;
+
+        font-size: 12px;
+    }
+
+    .weather3 {
+
+        gap: 5px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .hero {
+
+        min-height: 190px;
+    }
+
+    .heroUploadButton {
+
+        right: 8px;
+
+        bottom: 8px;
+
+        padding: 8px 10px;
+    }
+
+    .weather3 > div {
+
+        padding:
+            7px 3px;
+
+        font-size: 9px;
+    }
+
+    .weather3 b {
+
+        font-size: 11px;
+    }
+
+}
