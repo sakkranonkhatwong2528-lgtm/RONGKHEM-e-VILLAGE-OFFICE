@@ -17,6 +17,15 @@ body{background:linear-gradient(180deg,#052e5d,#031e3f)}
 .clockbox{min-width:125px;text-align:right;border-left:1px solid rgba(255,255,255,.14);padding-left:22px}.clock{font:500 26px Kanit;line-height:1}.date{font-size:11px}.weather-mini{display:flex;align-items:center;gap:8px;padding:0 20px;border-left:1px solid rgba(255,255,255,.14);border-right:1px solid rgba(255,255,255,.14)}.weather-mini .wi{font-size:28px}.weather-mini b{font:500 21px Kanit}.weather-mini small{display:block;font-size:10px;color:#d6e5f2}.top-actions{display:flex;align-items:center;gap:17px}.bell{position:relative;font-size:27px}.badge{position:absolute;right:-8px;top:-9px;width:20px;height:20px;border-radius:50%;background:#ef4444;display:grid;place-items:center;font-size:10px;font-weight:700}.user{display:flex;align-items:center;gap:10px;padding-left:5px}.avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;background:#d8e3ee;display:grid;place-items:center;font-size:24px;cursor:pointer;border:2px solid rgba(255,255,255,.55)}.avatar img{width:100%;height:100%;object-fit:cover}.user-name{font:500 13px Kanit}.user-role{font-size:9px;color:#d8e5f2}.chev{font-size:14px}
 .sidebar{grid-row:2/3;padding:15px 12px 12px;background:linear-gradient(180deg,#063a76,#042a56);border-right:1px solid rgba(255,255,255,.1);overflow:auto}.menu{display:flex;flex-direction:column;gap:4px}.menu a{display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 11px;border-radius:9px;color:#f1f7ff;font:400 13px Kanit;border:1px solid transparent}.menu a:hover{background:rgba(255,255,255,.07)}.menu a.active{background:linear-gradient(135deg,#0c70dd,#0755b6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}.mi{width:25px;text-align:center;font-size:18px;color:#eaf5ff}.sub{display:block;color:#c2d5e9;font-size:9px;line-height:1.1}.contact{margin-top:13px;padding:13px;border:1px solid var(--line);border-radius:10px;background:rgba(3,30,61,.55)}.contact h3{text-align:center;font:400 14px Kanit;margin:0 0 9px}.contact p{font-size:11px;line-height:1.8;color:#d8e5f1;margin:0}
 .content{grid-column:2;grid-row:2;position:relative;padding:10px 14px 14px;overflow:auto;background:linear-gradient(180deg,#06376d,#052b58)}.content:before{content:"";position:fixed;inset:78px 0 42px 240px;pointer-events:none;background:radial-gradient(circle at 80% 10%,rgba(30,131,232,.16),transparent 34%)}.wrap{position:relative;z-index:1;max-width:1500px;margin:auto}.hero-banner{width:100%;height:280px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.18);box-shadow:var(--shadow);background:#0753a8}.hero-banner img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.hero-banner{position:relative;isolation:isolate}
+.hero-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.08));pointer-events:none;z-index:1}
+.hero-upload{position:absolute;right:14px;bottom:14px;z-index:5;display:flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:10px;padding:10px 14px;background:rgba(4,40,83,.88);color:#fff;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
+.hero-upload:hover{background:#0865c5;transform:translateY(-1px)}
+.hero-upload.secondary{background:rgba(30,50,75,.78);font-weight:600}
+.hero-upload input{display:none}
+.hero-upload-help{position:absolute;left:14px;bottom:14px;z-index:5;color:#fff;background:rgba(3,33,67,.55);padding:7px 10px;border-radius:8px;font-size:11px;backdrop-filter:blur(6px)}
+@media(max-width:700px){.hero-upload{right:8px;bottom:8px;padding:8px 10px;font-size:12px}.hero-upload-help{display:none}}
+
 .dashboard-grid{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:10px;margin-top:10px}.maincol{min-width:0}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi{min-height:165px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,rgba(5,55,105,.96),rgba(4,40,78,.96));box-shadow:var(--shadow);padding:15px 16px}.kpi-top{display:flex;align-items:center;gap:13px}.kpi-icon{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;font-size:30px;flex:none}.green{background:#12bf7d}.blue{background:#1483e8}.orange{background:#ff9514}.purple{background:#7540dc}.kpi h3{font:500 17px Kanit;margin:0}.num{font:600 38px Kanit;line-height:1;margin-top:5px}.unit{font-size:11px}.detail{text-align:center;margin-top:20px;font-size:12px;line-height:1.65}.verify{margin:10px 0;background:linear-gradient(90deg,#0758b8,#0750a5);border:1px solid rgba(255,255,255,.1);border-radius:8px;text-align:center;padding:12px;font-size:15px;box-shadow:var(--shadow)}
 .lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.panel{background:linear-gradient(180deg,rgba(4,48,91,.98),rgba(3,39,75,.98));border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}.panel-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid rgba(255,255,255,.08);font:500 16px Kanit}.panel-head button{background:#0756aa;border:0;color:#fff;border-radius:7px;padding:6px 11px;font-size:10px}.panel-body{padding:12px}.empty{min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#d5e4f0;font-size:13px}.empty .big{font-size:53px;opacity:.95;margin-bottom:12px}.add{margin-top:15px;background:#0769d6;color:#fff;border:0;border-radius:7px;padding:9px 16px;font-size:11px}.alert-item{background:rgba(19,72,129,.7);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:12px}.alert-item b{font:500 13px Kanit}.alert-item small{display:block;margin-top:3px;color:#d3e3f1}.ai-card .robotline{display:flex;align-items:center;gap:10px;margin-bottom:9px}.robot{width:49px;height:49px;border-radius:14px;background:#e9f1f7;color:#31526b;display:grid;place-items:center;font-size:27px}.ai-title{font:500 15px Kanit}.ai-sub{font-size:9px;color:#c0d2e2}.aimsg{background:#f1f6fa;color:#14324d;border-radius:12px;padding:11px;font-size:11px;line-height:1.55;min-height:65px}.ai-btn{width:100%;margin-top:8px;background:#0868d2;color:#fff;border:0;border-radius:9px;padding:10px;font-size:11px}
 .rightcol{display:flex;flex-direction:column;gap:10px}.weather-card,.pm-card{padding-bottom:8px}.weather-main{display:flex;align-items:center;gap:10px;padding:12px}.weather-big{font-size:38px}.temp{font:500 32px Kanit}.weather-text{font-size:10px}.weather-data{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}.wd{text-align:center;padding:8px 2px;border-right:1px solid rgba(255,255,255,.08);font-size:8px}.wd:last-child{border:0}.wd b{display:block;font:500 13px Kanit;margin-top:2px}.locationline{padding:8px 12px;font-size:8px;color:#c5d8e8}.pm-main{display:flex;align-items:center;gap:10px;padding:12px}.pm-face{width:49px;height:49px;border-radius:50%;background:#17bd79;display:grid;place-items:center;font-size:25px}.pm-num{font:500 34px Kanit}.pm-status{font-size:11px;color:#b5edcf}.pm-scale{height:7px;margin:0 12px 7px;border-radius:10px;background:linear-gradient(90deg,#0bc17a 0 25%,#e7db35 25% 45%,#f3982e 45% 65%,#e15a37 65% 82%,#9c2850 82%)}.pm-label{display:flex;justify-content:space-between;padding:0 12px;font-size:7px;color:#c2d0dc}.updated{padding:8px 12px;font-size:8px;color:#a9bdce}
@@ -52,7 +61,15 @@ body{background:linear-gradient(180deg,#052e5d,#031e3f)}
 <a data-module="settings"><span class="mi">⚙</span><span>ตั้งค่าระบบ</span></a>
 </nav><div class="contact"><h3>ที่ทำการผู้ใหญ่บ้าน</h3><p>📞 080-1202529<br>🟢 rongkhem.village<br>📍 บ้านร่องเข็ม หมู่ที่ 6<br>ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา</p></div></aside>
 <main class="content"><div class="wrap" id="homeView">
-<div class="hero-banner"><img src="fund-mother-banner.png" alt="หมู่บ้านกองทุนแม่ของแผ่นดิน บ้านร่องเข็ม หมู่ที่ 6"></div>
+<div class="hero-banner" id="heroBanner">
+<img id="heroBannerImage" src="fund-mother-banner.png" alt="หมู่บ้านกองทุนแม่ของแผ่นดิน บ้านร่องเข็ม หมู่ที่ 6">
+<label class="hero-upload" title="อัปโหลดรูปใหม่ให้แบนเนอร์">
+📷 เปลี่ยนรูป
+<input id="heroImageInput" type="file" accept="image/*">
+</label>
+<button type="button" class="hero-upload secondary" id="heroResetButton" title="กลับไปใช้ภาพแบนเนอร์เดิม">↺ รูปเดิม</button>
+<div class="hero-upload-help">อัปโหลดภาพใหม่ได้ทันที • ระบบจำภาพไว้ในเครื่อง</div>
+</div>
 <div class="dashboard-grid"><div class="maincol">
 <div class="kpis">
 <div class="kpi"><div class="kpi-top"><div class="kpi-icon green">👥</div><div><h3>ประชาชน</h3><div class="num">960 <span class="unit">คน</span></div></div></div><div class="detail">หญิง 489 คน &nbsp;|&nbsp; ชาย 471 คน</div></div>
@@ -117,6 +134,65 @@ function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;',
 async function loadLive(){const lat=19.0446,lon=99.9765,tz='Asia/Bangkok';try{const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,is_day&hourly=precipitation_probability&forecast_hours=2&timezone=${encodeURIComponent(tz)}`;const d=await fetch(u,{cache:'no-store'}).then(r=>r.json()),c=d.current;const icon=code=>code===0?(c.is_day?'☀️':'🌙'):[1,2].includes(code)?'🌤️':code===3?'☁️':[45,48].includes(code)?'🌫️':[51,53,55,56,57].includes(code)?'🌦️':[61,63,65,80,81,82].includes(code)?'🌧️':[95,96,99].includes(code)?'⛈️':'🌤️';const text=code=>({0:'ท้องฟ้าแจ่มใส',1:'มีเมฆเล็กน้อย',2:'มีเมฆบางส่วน',3:'เมฆมาก',45:'มีหมอก',51:'ฝนปรอย',61:'ฝนเล็กน้อย',63:'ฝนปานกลาง',65:'ฝนตกหนัก',95:'พายุฝนฟ้าคะนอง'}[code]||'สภาพอากาศปัจจุบัน');$('weatherIcon').textContent=icon(c.weather_code);$('miniIcon').textContent=icon(c.weather_code);$('weatherTemp').textContent=Number(c.temperature_2m).toFixed(0);$('miniTemp').textContent=Number(c.temperature_2m).toFixed(0)+'°C';$('weatherText').textContent=text(c.weather_code);$('weatherHumidity').textContent=Math.round(c.relative_humidity_2m)+'%';$('weatherWind').textContent=Math.round(c.wind_speed_10m)+' km/h';$('weatherRain').textContent=(d.hourly?.precipitation_probability?.[0]??0)+'%';const tm=new Date(c.time).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});$('weatherUpdated').textContent='อัปเดต '+tm}catch(e){console.warn(e)}}
 async function loadPM(){try{const u='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.0446&longitude=99.9765&current=pm2_5&timezone=Asia%2FBangkok';const d=await fetch(u,{cache:'no-store'}).then(r=>r.json()),v=Number(d.current.pm2_5);$('pmValue').textContent=v.toFixed(0);let face='😊',status='ดีมาก';if(v>25&&v<=37){face='🙂';status='ดี'}else if(v<=50&&v>37){face='😐';status='ปานกลาง'}else if(v<=90){face='😷';status='เริ่มมีผล'}else if(v>90){face='🚨';status='มีผลกระทบ'}$('pmFace').textContent=face;$('pmStatus').textContent=status;const tm=new Date(d.current.time).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});$('pmUpdated').textContent=tm}catch(e){console.warn(e)}}
 loadLive();loadPM();setInterval(loadLive,300000);setInterval(loadPM,300000);
+
+/* =========================================================
+   HERO BANNER UPLOAD
+   อัปโหลดรูปแบนเนอร์ได้โดยตรงจากหน้าเว็บ
+   ========================================================= */
+(function initHeroBannerUpload(){
+  const input = document.getElementById('heroImageInput');
+  const image = document.getElementById('heroBannerImage');
+  const reset = document.getElementById('heroResetButton');
+  if(!input || !image) return;
+
+  const DEFAULT_HERO = 'fund-mother-banner.png';
+  const STORAGE_KEY = 'RONGKHEM_HERO_BANNER_IMAGE';
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if(saved) image.src = saved;
+  } catch(e) { console.warn('ไม่สามารถอ่านรูปแบนเนอร์ที่บันทึกไว้', e); }
+
+  input.addEventListener('change', function(e){
+    const file = e.target.files && e.target.files[0];
+    if(!file) return;
+    if(!file.type.startsWith('image/')){
+      alert('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+      input.value = '';
+      return;
+    }
+    if(file.size > 4 * 1024 * 1024){
+      alert('รูปใหญ่เกิน 4 MB กรุณาเลือกรูปที่มีขนาดเล็กลง');
+      input.value = '';
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = function(ev){
+      const dataUrl = ev.target.result;
+      image.src = dataUrl;
+      try {
+        localStorage.setItem(STORAGE_KEY, dataUrl);
+        localStorage.setItem('rkHeroBanner', dataUrl);
+      } catch(err) {
+        alert('ไม่สามารถบันทึกรูปในเครื่องได้ กรุณาใช้รูปที่เล็กลง');
+        console.error(err);
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+
+  if(reset){
+    reset.addEventListener('click', function(){
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem('rkHeroBanner');
+      } catch(e) {}
+      image.src = DEFAULT_HERO;
+      input.value = '';
+    });
+  }
+})();
+
 </script>
 </body>
 </html>
