@@ -1,411 +1,393 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ข้อมูลประชาชน | RONGKHEM e-VILLAGE</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>
+ข้อมูลประชาชน | RONGKHEM e-VILLAGE
+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 :root{
-    --bg:#03101a;
-    --panel:rgba(4,29,43,.92);
-    --panel2:rgba(7,39,54,.85);
-    --border:rgba(112,190,220,.24);
 
-    --text:#fff;
-    --muted:#9db5be;
+    --bg:#07111f;
+    --card:rgba(15,29,48,.88);
+    --border:rgba(255,255,255,.08);
 
-    --green:#4cff70;
-    --cyan:#45e8ff;
-    --purple:#d78cff;
-    --orange:#ffb53d;
-    --red:#ff5d5d;
+    --text:#f8fafc;
+    --muted:#94a3b8;
 
-    --sidebar:260px;
+    --cyan:#22d3ee;
+    --blue:#38bdf8;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --purple:#a78bfa;
+
+    --radius:22px;
+
 }
 
 *{
+
     box-sizing:border-box;
     margin:0;
     padding:0;
+
 }
 
 body{
-    min-height:100vh;
-    font-family:"Prompt","Kanit",sans-serif;
+
+    font-family:"Prompt",sans-serif;
+
     color:var(--text);
 
+    min-height:100vh;
+
     background:
-    linear-gradient(
-        rgba(0,12,20,.91),
-        rgba(0,12,20,.96)
+
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(34,211,238,.10),
+        transparent 30%
     ),
-    url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
-    center/cover fixed;
-}
 
-button,
-input,
-select{
-    font-family:inherit;
-}
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(59,130,246,.10),
+        transparent 30%
+    ),
 
-button{
-    cursor:pointer;
-}
-
-
-/* =========================
-SIDEBAR
-========================= */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-
-    width:var(--sidebar);
-
-    padding:20px 14px;
-
-    background:
     linear-gradient(
-        180deg,
-        rgba(1,18,30,.99),
-        rgba(1,10,18,.98)
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
     );
 
-    border-right:1px solid rgba(120,201,230,.18);
-
-    z-index:1000;
-
-    overflow-y:auto;
 }
 
-.sidebar-brand{
+.container{
+
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
+
+    margin:auto;
+
+}
+
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.header{
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:
+    rgba(4,11,20,.86);
+
+    backdrop-filter:
+    blur(18px);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+.header-inner{
+
+    min-height:76px;
+
     display:flex;
+
+    justify-content:space-between;
+
     align-items:center;
-    gap:11px;
 
-    padding:5px 9px 20px;
+    gap:20px;
 
-    border-bottom:1px solid rgba(255,255,255,.09);
+}
 
-    margin-bottom:13px;
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
 }
 
 .logo{
-    width:54px;
-    height:54px;
+
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
 
     display:flex;
     align-items:center;
     justify-content:center;
 
-    border-radius:15px;
-
-    font-size:29px;
+    font-size:21px;
 
     background:
     linear-gradient(
-        145deg,
-        rgba(255,188,49,.17),
-        rgba(4,38,51,.4)
+        135deg,
+        #0284c7,
+        #22d3ee
     );
 
-    border:1px solid rgba(255,190,54,.27);
 }
 
-.brand-title{
+.brand h1{
+
     font-family:"Kanit";
-    font-size:17px;
-    line-height:1.1;
+
+    font-size:19px;
+
 }
 
-.brand-title span{
-    color:#b6ff43;
+.brand p{
+
+    color:var(--muted);
+
+    font-size:11px;
+
 }
 
-.brand-sub{
-    color:#9eb8c2;
-    font-size:10px;
-    margin-top:3px;
-}
+.back{
 
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:4px;
-}
+    border:
+    1px solid var(--border);
 
-.menu a{
-    display:flex;
-    align-items:center;
-    gap:12px;
+    background:
+    rgba(255,255,255,.04);
 
-    padding:12px 13px;
+    color:white;
 
-    color:#d6e3e8;
-    text-decoration:none;
+    padding:
+    9px 14px;
 
     border-radius:12px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+
+/* =====================================================
+PAGE HEADER
+===================================================== */
+
+.page-head{
+
+    margin-top:30px;
+
+}
+
+.page-head h2{
+
+    font-family:"Kanit";
+
+    font-size:36px;
+
+}
+
+.page-head p{
+
+    color:var(--muted);
+
+    margin-top:5px;
 
     font-size:13px;
 
-    border:1px solid transparent;
-
-    transition:.2s;
 }
 
-.menu a:hover{
-    background:rgba(51,205,104,.08);
-    border-color:rgba(65,231,108,.14);
-}
+.source{
 
-.menu a.active{
-    background:
-    linear-gradient(
-        100deg,
-        rgba(31,190,75,.42),
-        rgba(19,90,52,.22)
-    );
+    display:inline-flex;
 
-    border-color:rgba(84,238,106,.7);
+    align-items:center;
 
-    color:#fff;
-}
+    gap:8px;
 
-.icon{
-    width:28px;
-    text-align:center;
-    font-size:20px;
-}
+    margin-top:12px;
 
-.contact{
-    margin-top:18px;
+    padding:
+    8px 12px;
 
-    padding:14px;
+    border-radius:10px;
 
-    border-radius:15px;
+    color:#67e8f9;
 
     background:
-    linear-gradient(
-        145deg,
-        rgba(7,40,55,.9),
-        rgba(3,22,33,.9)
-    );
+    rgba(34,211,238,.07);
 
-    border:1px solid rgba(116,196,219,.23);
-}
+    border:
+    1px solid
+    rgba(34,211,238,.16);
 
-.contact h3{
-    font-family:"Kanit";
-    font-size:16px;
-    margin-bottom:10px;
-}
+    font-size:11px;
 
-.contact p{
-    color:#b7cbd3;
-    font-size:10px;
-    margin:7px 0;
 }
 
 
-/* =========================
-TOP BAR
-========================= */
+/* =====================================================
+STATS
+===================================================== */
 
-.topbar{
-    position:fixed;
+.stats{
 
-    left:var(--sidebar);
-    right:0;
-    top:0;
-
-    height:78px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    padding:0 25px;
-
-    background:rgba(3,22,35,.91);
-
-    backdrop-filter:blur(18px);
-
-    border-bottom:1px solid var(--border);
-
-    z-index:900;
-}
-
-.page-title{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.page-title .big-icon{
-    width:44px;
-    height:44px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:12px;
-
-    background:rgba(69,232,255,.08);
-
-    border:1px solid rgba(69,232,255,.25);
-
-    font-size:24px;
-}
-
-.page-title h1{
-    font-family:"Kanit";
-    font-size:21px;
-    font-weight:500;
-}
-
-.page-title p{
-    color:#8ea7b1;
-    font-size:10px;
-}
-
-.clock{
-    text-align:right;
-}
-
-.time{
-    font-family:"Kanit";
-    font-size:25px;
-}
-
-.today{
-    color:#8ea7b1;
-    font-size:10px;
-}
-
-
-/* =========================
-MAIN
-========================= */
-
-.main{
-    margin-left:var(--sidebar);
-    padding-top:78px;
-    min-height:100vh;
-}
-
-.content{
-    max-width:1550px;
-    margin:auto;
-    padding:25px;
-}
-
-
-/* =========================
-SUMMARY
-========================= */
-
-.summary{
     display:grid;
 
     grid-template-columns:
-    repeat(5,1fr);
+    repeat(4,1fr);
 
-    gap:14px;
+    gap:15px;
 
-    margin-bottom:18px;
+    margin-top:24px;
+
 }
 
-.summary-card{
+.stat{
 
-    padding:18px;
+    padding:22px;
 
-    border-radius:17px;
+    border-radius:
+    var(--radius);
 
     background:
-    linear-gradient(
-        145deg,
-        rgba(5,36,51,.92),
-        rgba(2,20,30,.91)
-    );
+    var(--card);
 
-    border:1px solid var(--border);
-
-    box-shadow:
-    0 15px 40px rgba(0,0,0,.25);
+    border:
+    1px solid var(--border);
 
     position:relative;
+
     overflow:hidden;
+
 }
 
-.summary-card::after{
+.stat::after{
 
     content:"";
 
     position:absolute;
 
     width:90px;
+
     height:90px;
 
-    right:-30px;
-    bottom:-35px;
+    right:-35px;
+
+    top:-35px;
 
     border-radius:50%;
 
-    background:rgba(69,232,255,.08);
+    background:
+    rgba(34,211,238,.05);
+
 }
 
-.summary-icon{
-    font-size:25px;
+.stat-icon{
+
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
 }
 
-.summary-title{
-    color:#94adb7;
-    font-size:10px;
-    margin-top:6px;
-}
+.stat-value{
 
-.summary-number{
+    margin-top:12px;
+
     font-family:"Kanit";
-    font-size:29px;
-    line-height:1.1;
-    margin-top:2px;
+
+    font-size:35px;
+
 }
 
-.summary-card.green{
-    border-color:rgba(76,255,112,.25);
-}
+.stat-label{
 
-.summary-card.purple{
-    border-color:rgba(215,140,255,.25);
-}
+    color:var(--muted);
 
-.summary-card.orange{
-    border-color:rgba(255,181,61,.25);
-}
+    font-size:12px;
 
-.summary-card.red{
-    border-color:rgba(255,93,93,.25);
 }
 
 
-/* =========================
-TOOLBAR
-========================= */
+/* =====================================================
+GENDER
+===================================================== */
 
-.toolbar{
+.grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:15px;
+
+}
+
+.card{
+
+    padding:23px;
+
+    border-radius:
+    var(--radius);
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.card-head{
 
     display:flex;
 
@@ -413,2227 +395,1656 @@ TOOLBAR
 
     align-items:center;
 
+    gap:15px;
+
+    margin-bottom:18px;
+
+}
+
+.card-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.card-sub{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+.gender-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
     gap:12px;
 
-    padding:16px;
+}
+
+.gender{
+
+    padding:20px;
 
     border-radius:17px;
 
-    background:rgba(4,29,43,.88);
+    background:
+    rgba(255,255,255,.035);
 
-    border:1px solid var(--border);
-
-    margin-bottom:16px;
 }
 
-.search-area{
+.gender-icon{
+
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.gender-number{
+
+    margin-top:10px;
+
+    font-family:"Kanit";
+
+    font-size:30px;
+
+}
+
+.gender-label{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+.progress{
+
+    height:7px;
+
+    margin-top:12px;
+
+    background:
+    rgba(255,255,255,.07);
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.progress span{
+
+    display:block;
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0284c7,
+        #22d3ee
+    );
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+.summary-list{
 
     display:flex;
 
-    gap:8px;
+    flex-direction:column;
 
-    flex:1;
+    gap:10px;
 
-    max-width:700px;
 }
 
-.search{
+.summary-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:
+    14px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.summary-name{
+
+    font-size:12px;
+
+}
+
+.summary-value{
+
+    font-family:"Kanit";
+
+    color:#67e8f9;
+
+    font-size:19px;
+
+}
+
+
+/* =====================================================
+NOTICE
+===================================================== */
+
+.notice{
+
+    margin-top:20px;
+
+    padding:21px;
+
+    border-radius:
+    var(--radius);
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+    background:
+    rgba(250,204,21,.06);
+
+    border:
+    1px solid
+    rgba(250,204,21,.17);
+
+}
+
+.notice-icon{
+
+    width:43px;
+    height:43px;
+
+    flex:none;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--yellow);
+
+    background:
+    rgba(250,204,21,.08);
+
+}
+
+.notice h3{
+
+    font-size:15px;
+
+}
+
+.notice p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+SEARCH
+===================================================== */
+
+.search-panel{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:
+    var(--radius);
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.search-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.search-sub{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:2px;
+
+}
+
+.search-box{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:17px;
+
+}
+
+.search-box input{
 
     flex:1;
 
     min-width:0;
 
-    padding:12px 15px;
+    padding:
+    14px 16px;
 
-    border-radius:11px;
+    border-radius:13px;
 
-    border:1px solid rgba(255,255,255,.12);
+    border:
+    1px solid var(--border);
 
-    background:rgba(255,255,255,.045);
+    background:
+    rgba(0,0,0,.20);
 
     color:white;
 
     outline:none;
 
-    font-size:12px;
+    font-family:"Prompt";
+
 }
 
-.search:focus{
-    border-color:rgba(69,232,255,.55);
-}
+.search-box input:focus{
 
-.filter{
+    border-color:
+    rgba(34,211,238,.4);
 
-    padding:12px 14px;
-
-    border-radius:11px;
-
-    background:rgba(255,255,255,.045);
-
-    color:white;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    outline:none;
-
-    font-size:11px;
-}
-
-.filter option{
-    background:#071c28;
 }
 
 .btn{
 
+    padding:
+    12px 17px;
+
+    border-radius:13px;
+
     border:0;
 
-    padding:11px 17px;
-
-    border-radius:11px;
-
-    font-size:11px;
-
-    font-weight:500;
-
-    color:#02150a;
-
-    background:#48dc68;
-
-    box-shadow:0 7px 20px rgba(72,220,104,.13);
-}
-
-.btn:hover{
-    filter:brightness(1.08);
-}
-
-.btn-blue{
     color:white;
-    background:#167bc0;
-}
 
+    cursor:pointer;
 
-/* =========================
-TABLE PANEL
-========================= */
-
-.panel{
+    font-family:"Prompt";
 
     background:
     linear-gradient(
-        145deg,
-        rgba(4,29,43,.94),
-        rgba(2,18,29,.92)
+        135deg,
+        #0284c7,
+        #06b6d4
     );
 
-    border:1px solid var(--border);
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    box-shadow:0 15px 45px rgba(0,0,0,.28);
 }
 
-.panel-head{
+.btn.secondary{
 
-    display:flex;
+    background:
+    rgba(255,255,255,.05);
 
-    align-items:center;
+    border:
+    1px solid var(--border);
 
-    justify-content:space-between;
-
-    padding:18px 20px;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.panel-head h2{
-
-    font-family:"Kanit";
-
-    font-size:18px;
-
-    font-weight:500;
-}
-
-.count{
-
-    color:#82dfff;
-
-    font-size:10px;
 }
 
 
-/* =========================
+/* =====================================================
 TABLE
-========================= */
+===================================================== */
 
 .table-wrap{
+
+    margin-top:18px;
+
     overflow-x:auto;
+
 }
 
 table{
 
     width:100%;
 
+    min-width:750px;
+
     border-collapse:collapse;
 
-    min-width:900px;
-}
-
-thead{
-    background:rgba(255,255,255,.035);
 }
 
 th{
 
-    padding:13px 12px;
-
-    color:#8faab4;
-
-    font-size:10px;
-
-    font-weight:400;
+    padding:
+    14px 12px;
 
     text-align:left;
 
-    white-space:nowrap;
+    color:#67e8f9;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    background:
+    rgba(34,211,238,.04);
+
+    border-bottom:
+    1px solid var(--border);
+
 }
 
 td{
 
-    padding:13px 12px;
+    padding:
+    15px 12px;
 
-    border-top:1px solid rgba(255,255,255,.055);
+    font-size:12px;
 
-    font-size:11px;
+    color:#dbe4ef;
 
-    color:#d9e5e9;
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
 
-    white-space:nowrap;
 }
 
-tbody tr{
-    transition:.2s;
+.empty{
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    color:var(--muted);
+
 }
 
-tbody tr:hover{
-    background:rgba(69,232,255,.035);
-}
+.empty i{
 
-.person{
-    display:flex;
-    align-items:center;
-    gap:9px;
-}
+    display:block;
 
-.person-avatar{
+    margin-bottom:12px;
 
-    width:35px;
-    height:35px;
+    font-size:38px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    color:
+    rgba(34,211,238,.35);
 
-    border-radius:50%;
-
-    background:
-    linear-gradient(
-        145deg,
-        #19465b,
-        #0b2533
-    );
-
-    border:1px solid rgba(120,205,231,.2);
-
-    font-size:17px;
-}
-
-.person-name{
-    font-weight:500;
-}
-
-.person-id{
-    color:#718a94;
-    font-size:8px;
-    margin-top:2px;
-}
-
-.badge{
-
-    display:inline-flex;
-
-    padding:4px 8px;
-
-    border-radius:7px;
-
-    font-size:9px;
-}
-
-.badge-male{
-    background:rgba(65,169,255,.12);
-    color:#75c7ff;
-    border:1px solid rgba(65,169,255,.2);
-}
-
-.badge-female{
-    background:rgba(215,140,255,.12);
-    color:#dfadff;
-    border:1px solid rgba(215,140,255,.2);
-}
-
-.badge-normal{
-    background:rgba(75,222,100,.1);
-    color:#82ef91;
-    border:1px solid rgba(75,222,100,.2);
-}
-
-.badge-old{
-    background:rgba(255,181,61,.12);
-    color:#ffc86c;
-    border:1px solid rgba(255,181,61,.2);
-}
-
-.action-btn{
-
-    width:30px;
-    height:30px;
-
-    border-radius:8px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:rgba(255,255,255,.04);
-
-    color:white;
-
-    margin-right:4px;
-}
-
-.action-btn:hover{
-    background:rgba(69,232,255,.1);
-}
-
-.delete:hover{
-    background:rgba(255,80,80,.15);
 }
 
 
-/* =========================
-PAGINATION
-========================= */
+/* =====================================================
+PRIVACY
+===================================================== */
 
-.pagination{
+.privacy{
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:15px 18px;
-
-    border-top:1px solid rgba(255,255,255,.07);
-}
-
-.pagination-info{
-
-    color:#78939d;
-
-    font-size:9px;
-}
-
-.pages{
-    display:flex;
-    gap:5px;
-}
-
-.page{
-
-    min-width:31px;
-    height:31px;
-
-    border-radius:8px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:rgba(255,255,255,.035);
-
-    color:#c8d9df;
-
-    font-size:10px;
-}
-
-.page.active{
-    background:#2cae55;
-    border-color:#5ce47b;
-    color:white;
-}
-
-
-/* =========================
-MODAL
-========================= */
-
-.modal{
-
-    position:fixed;
-
-    inset:0;
-
-    display:none;
-
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.72);
-
-    backdrop-filter:blur(8px);
-
-    z-index:3000;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-
-    width:min(650px,100%);
-
-    max-height:90vh;
-
-    overflow-y:auto;
-
-    border-radius:20px;
-
-    background:
-    linear-gradient(
-        145deg,
-        #082a3a,
-        #031721
-    );
-
-    border:1px solid rgba(100,210,235,.28);
-
-    box-shadow:0 25px 80px rgba(0,0,0,.6);
-}
-
-.modal-head{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    padding:18px 20px;
-
-    border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.modal-head h3{
-
-    font-family:"Kanit";
-
-    font-size:19px;
-
-    font-weight:500;
-}
-
-.close{
-
-    width:34px;
-    height:34px;
-
-    border-radius:9px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:rgba(255,255,255,.05);
-
-    color:white;
-
-    font-size:18px;
-}
-
-.form{
-
-    padding:20px;
+    margin-top:20px;
 
     display:grid;
 
     grid-template-columns:
-    repeat(2,1fr);
+    repeat(3,1fr);
 
-    gap:14px;
+    gap:15px;
+
 }
 
-.form-group{
+.privacy-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.privacy-icon{
+
+    width:43px;
+    height:43px;
+
+    border-radius:13px;
+
     display:flex;
-    flex-direction:column;
-    gap:5px;
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
 }
 
-.form-group.full{
-    grid-column:1/-1;
+.privacy-card h3{
+
+    margin-top:13px;
+
+    font-size:14px;
+
 }
 
-.form-group label{
+.privacy-card p{
 
-    color:#9bb4bd;
+    margin-top:5px;
 
-    font-size:10px;
-}
-
-.form-group input,
-.form-group select{
-
-    padding:11px;
-
-    border-radius:9px;
-
-    background:rgba(255,255,255,.045);
-
-    color:white;
-
-    border:1px solid rgba(255,255,255,.12);
-
-    outline:none;
+    color:var(--muted);
 
     font-size:11px;
+
+    line-height:1.8;
+
 }
 
-.form-group select option{
-    background:#06202e;
-}
 
-.modal-actions{
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:45px;
+
+    padding:
+    25px 0;
+
+    border-top:
+    1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:11px;
 
     display:flex;
 
-    justify-content:flex-end;
+    justify-content:space-between;
 
-    gap:8px;
+    gap:20px;
 
-    padding:0 20px 20px;
-}
-
-.btn-cancel{
-
-    color:#d5e0e4;
-
-    background:rgba(255,255,255,.07);
-
-    border:1px solid rgba(255,255,255,.1);
 }
 
 
-/* =========================
-MOBILE
-========================= */
+/* =====================================================
+RESPONSIVE
+===================================================== */
 
-.mobile-button{
+@media(max-width:950px){
 
-    display:none;
+    .stats{
 
-    width:42px;
-    height:42px;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.05);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    color:white;
-
-    font-size:20px;
-}
-
-
-@media(max-width:1200px){
-
-    :root{
-        --sidebar:230px;
-    }
-
-    .summary{
-        grid-template-columns:
-        repeat(3,1fr);
-    }
-}
-
-
-@media(max-width:1000px){
-
-    .sidebar{
-        transform:translateX(-100%);
-        transition:.3s;
-    }
-
-    .sidebar.open{
-        transform:translateX(0);
-    }
-
-    .topbar{
-        left:0;
-    }
-
-    .main{
-        margin-left:0;
-    }
-
-    .mobile-button{
-        display:block;
-    }
-
-    .page-title p{
-        display:none;
-    }
-}
-
-
-@media(max-width:750px){
-
-    .content{
-        padding:13px;
-    }
-
-    .summary{
         grid-template-columns:
         repeat(2,1fr);
+
     }
 
-    .toolbar{
-        flex-direction:column;
-        align-items:stretch;
+    .privacy{
+
+        grid-template-columns:
+        1fr 1fr;
+
     }
 
-    .search-area{
-        max-width:none;
-        flex-direction:column;
-    }
-
-    .form{
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full{
-        grid-column:auto;
-    }
-
-    .clock{
-        display:none;
-    }
-
-    .page-title h1{
-        font-size:17px;
-    }
 }
 
+@media(max-width:650px){
 
-@media(max-width:480px){
+    .container{
 
-    .summary{
-        grid-template-columns:1fr;
+        width:
+        calc(100% - 20px);
+
     }
 
-    .page-title .big-icon{
-        width:38px;
-        height:38px;
+    .page-head h2{
+
+        font-size:29px;
+
     }
 
-    .panel-head{
-        padding:15px;
-    }
+    .stats{
 
-    .pagination{
-        flex-direction:column;
+        grid-template-columns:
+        1fr 1fr;
+
         gap:10px;
-        align-items:flex-start;
+
     }
+
+    .stat{
+
+        padding:16px;
+
+    }
+
+    .stat-value{
+
+        font-size:28px;
+
+    }
+
+    .grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .gender-grid{
+
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+    .search-box{
+
+        flex-direction:column;
+
+    }
+
+    .privacy{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .footer{
+
+        display:block;
+
+    }
+
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
-<!-- =========================================================
-SIDEBAR
-========================================================= -->
+<header class="header">
 
-<aside class="sidebar" id="sidebar">
-
-    <div class="sidebar-brand">
-
-        <div class="logo">
-            🏛️
-        </div>
-
-        <div>
-            <div class="brand-title">
-                RONGKHEM <span>e-VILLAGE</span>
-            </div>
-
-            <div class="brand-sub">
-                ที่ทำการผู้ใหญ่บ้านออนไลน์
-            </div>
-        </div>
-
-    </div>
+<div class="container header-inner">
 
 
-    <nav class="menu">
+<div class="brand">
 
-        <a href="index.html">
-            <span class="icon">🏠</span>
-            หน้าหลัก
-        </a>
+<div class="logo">
 
-        <a href="citizen.html" class="active">
-            <span class="icon">👥</span>
-            ข้อมูลประชาชน
-        </a>
+<i class="fa-solid fa-users"></i>
 
-        <a href="household.html">
-            <span class="icon">🏠</span>
-            ข้อมูลครัวเรือน
-        </a>
-
-        <a href="leader.html">
-            <span class="icon">👔</span>
-            ผู้นำชุมชน
-        </a>
-
-        <a href="news.html">
-            <span class="icon">📢</span>
-            ข่าวประชาสัมพันธ์
-        </a>
-
-        <a href="activity.html">
-            <span class="icon">📅</span>
-            กิจกรรม / ปฏิทิน
-        </a>
-
-        <a href="incident.html">
-            <span class="icon">🚨</span>
-            แจ้งเหตุ / ร้องเรียน
-        </a>
-
-        <a href="service.html">
-            <span class="icon">🤝</span>
-            บริการประชาชน
-        </a>
-
-        <a href="project.html">
-            <span class="icon">🏗️</span>
-            โครงการพัฒนาหมู่บ้าน
-        </a>
-
-        <a href="environment.html">
-            <span class="icon">🌱</span>
-            สิ่งแวดล้อม / PM2.5
-        </a>
-
-        <a href="wetland.html">
-            <span class="icon">💧</span>
-            แหล่งซับน้ำจำ
-        </a>
-
-        <a href="rice.html">
-            <span class="icon">🍚</span>
-            กลุ่มข้าวสาร
-        </a>
-
-        <a href="statistics.html">
-            <span class="icon">📊</span>
-            สถิติหมู่บ้าน
-        </a>
-
-        <a href="admin.html">
-            <span class="icon">⚙️</span>
-            ตั้งค่าระบบ
-        </a>
-
-    </nav>
+</div>
 
 
-    <div class="contact">
+<div>
 
-        <h3>
-            ที่ทำการผู้ใหญ่บ้าน
-        </h3>
+<h1>
+RONGKHEM e-VILLAGE
+</h1>
 
-        <p>📞 โทร. 088-888-8888</p>
+<p>
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+</p>
 
-        <p>🟢 LINE ID: rongkhem.village</p>
+</div>
 
-        <p>🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.</p>
-
-    </div>
-
-</aside>
+</div>
 
 
-<!-- =========================================================
-TOPBAR
-========================================================= -->
+<button
+class="back"
+onclick="location.href='../index.html'">
 
-<header class="topbar">
+<i class="fa-solid fa-arrow-left"></i>
 
-    <div class="page-title">
+กลับหน้าหลัก
 
-        <button
-            class="mobile-button"
-            id="mobileButton"
-        >
-            ☰
-        </button>
-
-        <div class="big-icon">
-            👥
-        </div>
-
-        <div>
-
-            <h1>
-                ข้อมูลประชาชน
-            </h1>
-
-            <p>
-                ระบบทะเบียนข้อมูลประชาชน บ้านร่องเข็ม หมู่ที่ 6
-            </p>
-
-        </div>
-
-    </div>
+</button>
 
 
-    <div class="clock">
-
-        <div
-            class="time"
-            id="time"
-        >
-            00:00:00
-        </div>
-
-        <div
-            class="today"
-            id="today"
-        >
-            กำลังโหลด...
-        </div>
-
-    </div>
+</div>
 
 </header>
 
 
-<!-- =========================================================
-MAIN
-========================================================= -->
 
-<main class="main">
+<main class="container">
 
-<div class="content">
 
+<!-- =====================================================
+TITLE
+===================================================== -->
 
-    <!-- SUMMARY -->
+<section class="page-head">
 
-    <section class="summary">
+<h2>
+ข้อมูลประชาชน
+</h2>
 
+<p>
+ภาพรวมประชากรบ้านร่องเข็ม หมู่ที่ 6
+</p>
 
-        <div class="summary-card green">
+<div class="source">
 
-            <div class="summary-icon">
-                👥
-            </div>
+<i class="fa-solid fa-file-lines"></i>
 
-            <div class="summary-title">
-                ประชาชนทั้งหมด
-            </div>
+ข้อมูลประชากรอ้างอิงจากรายงาน ปีการศึกษา 2568
 
-            <div
-                class="summary-number"
-                id="totalPeople"
-            >
-                1,245
-            </div>
+</div>
 
-        </div>
+</section>
 
 
-        <div class="summary-card">
 
-            <div class="summary-icon">
-                👨
-            </div>
+<!-- =====================================================
+STATS
+===================================================== -->
 
-            <div class="summary-title">
-                ชาย
-            </div>
+<section class="stats">
 
-            <div
-                class="summary-number"
-                id="maleCount"
-            >
-                618
-            </div>
 
-        </div>
+<div class="stat">
 
+<div class="stat-icon">
 
-        <div class="summary-card purple">
+<i class="fa-solid fa-users"></i>
 
-            <div class="summary-icon">
-                👩
-            </div>
+</div>
 
-            <div class="summary-title">
-                หญิง
-            </div>
+<div
+id="population"
+class="stat-value">
 
-            <div
-                class="summary-number"
-                id="femaleCount"
-            >
-                627
-            </div>
+960
 
-        </div>
+</div>
 
+<div class="stat-label">
 
-        <div class="summary-card orange">
+ประชากรรวม
 
-            <div class="summary-icon">
-                👴
-            </div>
+</div>
 
-            <div class="summary-title">
-                ผู้สูงอายุ
-            </div>
+</div>
 
-            <div
-                class="summary-number"
-                id="elderlyCount"
-            >
-                186
-            </div>
 
-        </div>
+<div class="stat">
 
+<div class="stat-icon">
 
-        <div class="summary-card red">
+<i class="fa-solid fa-house"></i>
 
-            <div class="summary-icon">
-                ♿
-            </div>
+</div>
 
-            <div class="summary-title">
-                กลุ่มเปราะบาง
-            </div>
+<div
+id="households"
+class="stat-value">
 
-            <div
-                class="summary-number"
-                id="vulnerableCount"
-            >
-                45
-            </div>
+352
 
-        </div>
+</div>
 
-    </section>
+<div class="stat-label">
 
+ครัวเรือน
 
-    <!-- TOOLBAR -->
+</div>
 
-    <section class="toolbar">
+</div>
 
-        <div class="search-area">
 
-            <input
-                type="search"
-                id="searchInput"
-                class="search"
-                placeholder="🔎 ค้นหาชื่อ นามสกุล หรือเลขบัตรประชาชน..."
-            >
+<div class="stat">
 
-            <select
-                id="genderFilter"
-                class="filter"
-            >
-                <option value="">เพศทั้งหมด</option>
-                <option value="ชาย">ชาย</option>
-                <option value="หญิง">หญิง</option>
-            </select>
+<div class="stat-icon">
 
-            <select
-                id="typeFilter"
-                class="filter"
-            >
-                <option value="">ประเภททั้งหมด</option>
-                <option value="ทั่วไป">ทั่วไป</option>
-                <option value="ผู้สูงอายุ">ผู้สูงอายุ</option>
-                <option value="ผู้พิการ">ผู้พิการ</option>
-                <option value="ผู้ป่วยติดเตียง">ผู้ป่วยติดเตียง</option>
-            </select>
+<i class="fa-solid fa-person"></i>
 
-        </div>
+</div>
 
+<div
+id="male"
+class="stat-value">
 
-        <button
-            class="btn"
-            id="addButton"
-        >
-            ＋ เพิ่มประชาชน
-        </button>
+471
 
-    </section>
+</div>
 
+<div class="stat-label">
 
-    <!-- TABLE -->
+ประชากรชาย
 
-    <section class="panel">
+</div>
 
-        <div class="panel-head">
+</div>
 
-            <h2>
-                👥 ทะเบียนประชาชน
-            </h2>
 
-            <span
-                class="count"
-                id="resultCount"
-            >
-                แสดง 10 รายการ
-            </span>
+<div class="stat">
 
-        </div>
+<div class="stat-icon">
 
+<i class="fa-solid fa-person-dress"></i>
 
-        <div class="table-wrap">
+</div>
 
-            <table>
+<div
+id="female"
+class="stat-value">
 
-                <thead>
+489
 
-                    <tr>
+</div>
 
-                        <th>
-                            ประชาชน
-                        </th>
+<div class="stat-label">
 
-                        <th>
-                            เพศ
-                        </th>
+ประชากรหญิง
 
-                        <th>
-                            อายุ
-                        </th>
+</div>
 
-                        <th>
-                            บ้านเลขที่
-                        </th>
+</div>
 
-                        <th>
-                            หมู่
-                        </th>
 
-                        <th>
-                            ประเภท
-                        </th>
+</section>
 
-                        <th>
-                            สถานะ
-                        </th>
 
-                        <th>
-                            จัดการ
-                        </th>
 
-                    </tr>
+<!-- =====================================================
+GENDER + SUMMARY
+===================================================== -->
 
-                </thead>
+<section class="grid">
 
 
-                <tbody id="citizenTable">
+<div class="card">
 
-                </tbody>
+<div class="card-head">
 
-            </table>
+<div>
 
-        </div>
+<div class="card-title">
+สัดส่วนประชากร
+</div>
 
+<div class="card-sub">
+ประชากรทั้งหมด 960 คน
+</div>
 
-        <div class="pagination">
+</div>
 
-            <div
-                class="pagination-info"
-                id="paginationInfo"
-            >
-                แสดงรายการ 1-10
-            </div>
+<i class="fa-solid fa-chart-pie"
+style="color:#22d3ee">
+</i>
 
-            <div class="pages">
+</div>
 
-                <button class="page active">
-                    1
-                </button>
 
-                <button class="page">
-                    2
-                </button>
+<div class="gender-grid">
 
-                <button class="page">
-                    3
-                </button>
 
-                <button class="page">
-                    ›
-                </button>
+<div class="gender">
 
-            </div>
+<div class="gender-icon">
 
-        </div>
+<i class="fa-solid fa-person"></i>
 
-    </section>
+</div>
+
+<div
+id="male2"
+class="gender-number">
+
+471
+
+</div>
+
+<div class="gender-label">
+
+ชาย
+
+</div>
+
+<div class="progress">
+
+<span
+id="maleProgress"
+style="width:49.1%">
+</span>
+
+</div>
+
+</div>
+
+
+<div class="gender">
+
+<div class="gender-icon">
+
+<i class="fa-solid fa-person-dress"></i>
+
+</div>
+
+<div
+id="female2"
+class="gender-number">
+
+489
+
+</div>
+
+<div class="gender-label">
+
+หญิง
+
+</div>
+
+<div class="progress">
+
+<span
+id="femaleProgress"
+style="width:50.9%">
+</span>
+
+</div>
+
+</div>
 
 
 </div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+สรุปข้อมูลประชากร
+</div>
+
+<div class="card-sub">
+ข้อมูลที่ยืนยันจากรายงาน
+</div>
+
+</div>
+
+<i class="fa-solid fa-database"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div class="summary-list">
+
+
+<div class="summary-row">
+
+<div class="summary-name">
+ประชากรรวม
+</div>
+
+<div
+id="summaryPopulation"
+class="summary-value">
+960 คน
+</div>
+
+</div>
+
+
+<div class="summary-row">
+
+<div class="summary-name">
+ชาย
+</div>
+
+<div
+id="summaryMale"
+class="summary-value">
+471 คน
+</div>
+
+</div>
+
+
+<div class="summary-row">
+
+<div class="summary-name">
+หญิง
+</div>
+
+<div
+id="summaryFemale"
+class="summary-value">
+489 คน
+</div>
+
+</div>
+
+
+<div class="summary-row">
+
+<div class="summary-name">
+ครัวเรือน
+</div>
+
+<div
+id="summaryHouseholds"
+class="summary-value">
+352
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+NOTICE
+===================================================== -->
+
+<section class="notice">
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+<div>
+
+<h3>
+ข้อมูลสาธารณะและข้อมูลทะเบียน
+</h3>
+
+<p>
+
+หน้านี้แสดงเฉพาะข้อมูลสถิติประชากรที่มีอยู่ในรายงาน
+ยังไม่มีการนำรายชื่อ เลขประจำตัวประชาชน
+วันเดือนปีเกิด หรือข้อมูลส่วนบุคคลของประชาชน
+ขึ้นแสดงในเว็บไซต์สาธารณะ
+
+</p>
+
+<p>
+
+หากมีทะเบียนประชาชนจริง จะต้องกำหนดสิทธิ์การเข้าถึง
+ก่อนนำข้อมูลเข้าสู่ระบบ
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+SEARCH
+===================================================== -->
+
+<section class="search-panel">
+
+<div class="search-title">
+
+ค้นหาข้อมูลประชาชน
+
+</div>
+
+<div class="search-sub">
+
+สำหรับทะเบียนประชาชนที่ได้รับอนุญาตให้นำเข้าสู่ระบบเท่านั้น
+
+</div>
+
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="search"
+placeholder="ค้นหาชื่อ / เลขที่บ้าน"
+autocomplete="off">
+
+
+<button
+class="btn"
+onclick="searchCitizen()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+ค้นหา
+
+</button>
+
+
+<button
+class="btn secondary"
+onclick="clearSearch()">
+
+ล้าง
+
+</button>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+ชื่อ-นามสกุล
+</th>
+
+<th>
+เลขที่บ้าน
+</th>
+
+<th>
+เพศ
+</th>
+
+<th>
+อายุ
+</th>
+
+<th>
+สถานะ
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="citizenTable">
+
+<tr>
+
+<td
+colspan="5"
+class="empty">
+
+<i class="fa-solid fa-user-lock"></i>
+
+ยังไม่มีทะเบียนประชาชนรายบุคคลในฐานข้อมูล
+
+<br>
+
+ระบบจะไม่สร้างข้อมูลบุคคลขึ้นเอง
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+PRIVACY
+===================================================== -->
+
+<section class="privacy">
+
+
+<div class="privacy-card">
+
+<div class="privacy-icon">
+
+<i class="fa-solid fa-lock"></i>
+
+</div>
+
+<h3>
+ข้อมูลส่วนบุคคล
+</h3>
+
+<p>
+
+ข้อมูลทะเบียนรายบุคคลจะไม่แสดงต่อสาธารณะ
+โดยไม่มีการกำหนดสิทธิ์การเข้าถึง
+
+</p>
+
+</div>
+
+
+
+<div class="privacy-card">
+
+<div class="privacy-icon">
+
+<i class="fa-solid fa-user-shield"></i>
+
+</div>
+
+<h3>
+สิทธิ์ผู้ใช้งาน
+</h3>
+
+<p>
+
+เตรียมแยกสิทธิ์สำหรับประชาชน
+ผู้ช่วยผู้ใหญ่บ้าน ผู้ใหญ่บ้าน
+และผู้ดูแลระบบ
+
+</p>
+
+</div>
+
+
+
+<div class="privacy-card">
+
+<div class="privacy-icon">
+
+<i class="fa-solid fa-database"></i>
+
+</div>
+
+<h3>
+ฐานข้อมูล
+</h3>
+
+<p>
+
+ข้อมูลสถิติจะอ่านจาก Supabase
+ส่วนทะเบียนรายบุคคลจะนำเข้าเมื่อมีข้อมูลจริง
+
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+<div>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</div>
+
+</footer>
+
 
 </main>
 
 
-<!-- =========================================================
-ADD / EDIT MODAL
-========================================================= -->
-
-<div
-    class="modal"
-    id="modal"
->
-
-    <div class="modal-box">
-
-
-        <div class="modal-head">
-
-            <h3 id="modalTitle">
-                เพิ่มข้อมูลประชาชน
-            </h3>
-
-            <button
-                class="close"
-                id="closeModal"
-            >
-                ×
-            </button>
-
-        </div>
-
-
-        <form
-            class="form"
-            id="citizenForm"
-        >
-
-            <input
-                type="hidden"
-                id="editId"
-            >
-
-
-            <div class="form-group">
-
-                <label>
-                    คำนำหน้า
-                </label>
-
-                <select id="prefix">
-
-                    <option>
-                        นาย
-                    </option>
-
-                    <option>
-                        นาง
-                    </option>
-
-                    <option>
-                        นางสาว
-                    </option>
-
-                    <option>
-                        เด็กชาย
-                    </option>
-
-                    <option>
-                        เด็กหญิง
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    ชื่อ
-                </label>
-
-                <input
-                    id="firstName"
-                    required
-                    placeholder="ชื่อ"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    นามสกุล
-                </label>
-
-                <input
-                    id="lastName"
-                    required
-                    placeholder="นามสกุล"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    เพศ
-                </label>
-
-                <select id="gender">
-
-                    <option value="ชาย">
-                        ชาย
-                    </option>
-
-                    <option value="หญิง">
-                        หญิง
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    อายุ
-                </label>
-
-                <input
-                    id="age"
-                    type="number"
-                    min="0"
-                    max="120"
-                    required
-                    placeholder="อายุ"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    บ้านเลขที่
-                </label>
-
-                <input
-                    id="houseNumber"
-                    required
-                    placeholder="เช่น 12/1"
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    หมู่
-                </label>
-
-                <input
-                    id="moo"
-                    value="6"
-                    required
-                >
-
-            </div>
-
-
-            <div class="form-group">
-
-                <label>
-                    ประเภท
-                </label>
-
-                <select id="type">
-
-                    <option>
-                        ทั่วไป
-                    </option>
-
-                    <option>
-                        ผู้สูงอายุ
-                    </option>
-
-                    <option>
-                        ผู้พิการ
-                    </option>
-
-                    <option>
-                        ผู้ป่วยติดเตียง
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    เลขบัตรประชาชน
-                </label>
-
-                <input
-                    id="citizenId"
-                    maxlength="13"
-                    placeholder="กรอกเลข 13 หลัก"
-                >
-
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    หมายเหตุ
-                </label>
-
-                <input
-                    id="note"
-                    placeholder="ข้อมูลเพิ่มเติม"
-                >
-
-            </div>
-
-        </form>
-
-
-        <div class="modal-actions">
-
-            <button
-                class="btn btn-cancel"
-                id="cancelButton"
-            >
-                ยกเลิก
-            </button>
-
-            <button
-                class="btn"
-                id="saveButton"
-            >
-                💾 บันทึกข้อมูล
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
 
 <script>
 
-/* =========================================================
-ข้อมูลตัวอย่าง
-========================================================= */
+/* =====================================================
+SUPABASE
+===================================================== */
 
-let citizens = [
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
 
-{
-    id:1,
-    prefix:"นาย",
-    firstName:"สมชาย",
-    lastName:"ใจดี",
-    gender:"ชาย",
-    age:52,
-    house:"12",
-    moo:"6",
-    type:"ทั่วไป",
-    citizenId:"xxxxxxxxxxxxx"
-},
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
 
-{
-    id:2,
-    prefix:"นาง",
-    firstName:"สมศรี",
-    lastName:"ใจดี",
-    gender:"หญิง",
-    age:48,
-    house:"12",
-    moo:"6",
-    type:"ทั่วไป",
-    citizenId:"xxxxxxxxxxxxx"
-},
 
-{
-    id:3,
-    prefix:"นาย",
-    firstName:"ประเสริฐ",
-    lastName:"คำดี",
-    gender:"ชาย",
-    age:72,
-    house:"25",
-    moo:"6",
-    type:"ผู้สูงอายุ",
-    citizenId:"xxxxxxxxxxxxx"
-},
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-{
-    id:4,
-    prefix:"นาง",
-    firstName:"ทองดี",
-    lastName:"คำดี",
-    gender:"หญิง",
-    age:68,
-    house:"25",
-    moo:"6",
-    type:"ผู้สูงอายุ",
-    citizenId:"xxxxxxxxxxxxx"
-},
 
-{
-    id:5,
-    prefix:"นาย",
-    firstName:"วิชัย",
-    lastName:"แสนดี",
-    gender:"ชาย",
-    age:39,
-    house:"31",
-    moo:"6",
-    type:"ทั่วไป",
-    citizenId:"xxxxxxxxxxxxx"
-},
+/* =====================================================
+HELPER
+===================================================== */
 
-{
-    id:6,
-    prefix:"นางสาว",
-    firstName:"สุดา",
-    lastName:"แสงทอง",
-    gender:"หญิง",
-    age:29,
-    house:"42",
-    moo:"6",
-    type:"ทั่วไป",
-    citizenId:"xxxxxxxxxxxxx"
-},
+function numberFormat(value){
 
-{
-    id:7,
-    prefix:"นาย",
-    firstName:"บุญมี",
-    lastName:"คำปัน",
-    gender:"ชาย",
-    age:81,
-    house:"51",
-    moo:"6",
-    type:"ผู้สูงอายุ",
-    citizenId:"xxxxxxxxxxxxx"
-},
+    return Number(
+        value || 0
+    ).toLocaleString(
+        "th-TH"
+    );
 
-{
-    id:8,
-    prefix:"นาง",
-    firstName:"จันทร์เพ็ญ",
-    lastName:"บุญมา",
-    gender:"หญิง",
-    age:76,
-    house:"63",
-    moo:"6",
-    type:"ผู้สูงอายุ",
-    citizenId:"xxxxxxxxxxxxx"
-},
-
-{
-    id:9,
-    prefix:"นาย",
-    firstName:"อนันต์",
-    lastName:"ใจคำ",
-    gender:"ชาย",
-    age:45,
-    house:"71",
-    moo:"6",
-    type:"ผู้พิการ",
-    citizenId:"xxxxxxxxxxxxx"
-},
-
-{
-    id:10,
-    prefix:"นาง",
-    firstName:"มาลี",
-    lastName:"วงศ์คำ",
-    gender:"หญิง",
-    age:64,
-    house:"88",
-    moo:"6",
-    type:"ทั่วไป",
-    citizenId:"xxxxxxxxxxxxx"
 }
 
-];
+
+/* =====================================================
+LOAD STATISTICS
+===================================================== */
+
+async function loadStatistics(){
+
+    try{
+
+        const {
+
+            data,
+            error
+
+        } =
+        await supabaseClient
+
+        .from("statistics")
+
+        .select(
+            "population,male,female,households"
+        )
+
+        .eq(
+            "year",
+            2568
+        )
+
+        .limit(1)
+
+        .maybeSingle();
 
 
-/* =========================================================
-ELEMENTS
-========================================================= */
-
-const table =
-document.getElementById("citizenTable");
-
-const search =
-document.getElementById("searchInput");
-
-const genderFilter =
-document.getElementById("genderFilter");
-
-const typeFilter =
-document.getElementById("typeFilter");
-
-const resultCount =
-document.getElementById("resultCount");
-
-const modal =
-document.getElementById("modal");
-
-const form =
-document.getElementById("citizenForm");
+        if(error)
+            throw error;
 
 
-/* =========================================================
-RENDER TABLE
-========================================================= */
-
-function renderTable(){
-
-    const keyword =
-    search.value
-    .trim()
-    .toLowerCase();
-
-    const gender =
-    genderFilter.value;
-
-    const type =
-    typeFilter.value;
+        if(!data)
+            return;
 
 
-    const filtered =
-    citizens.filter(person => {
-
-        const fullName =
-        (
-            person.prefix +
-            person.firstName +
-            " " +
-            person.lastName
-        ).toLowerCase();
-
-
-        const matchSearch =
-        !keyword ||
-        fullName.includes(keyword) ||
-        String(person.house).includes(keyword) ||
-        String(person.citizenId).includes(keyword);
-
-
-        const matchGender =
-        !gender ||
-        person.gender === gender;
-
-
-        const matchType =
-        !type ||
-        person.type === type;
-
-
-        return (
-            matchSearch &&
-            matchGender &&
-            matchType
+        const population =
+        Number(
+            data.population || 0
         );
 
-    });
+        const male =
+        Number(
+            data.male || 0
+        );
+
+        const female =
+        Number(
+            data.female || 0
+        );
+
+        const households =
+        Number(
+            data.households || 0
+        );
 
 
-    table.innerHTML = "";
+        document.getElementById(
+            "population"
+        ).textContent =
+        numberFormat(
+            population
+        );
 
 
-    filtered.forEach(person => {
-
-        const tr =
-        document.createElement("tr");
-
-
-        let typeClass =
-        "badge-normal";
+        document.getElementById(
+            "households"
+        ).textContent =
+        numberFormat(
+            households
+        );
 
 
-        if(
-            person.type === "ผู้สูงอายุ"
-        ){
-            typeClass =
-            "badge-old";
+        document.getElementById(
+            "male"
+        ).textContent =
+        numberFormat(
+            male
+        );
+
+
+        document.getElementById(
+            "female"
+        ).textContent =
+        numberFormat(
+            female
+        );
+
+
+        document.getElementById(
+            "male2"
+        ).textContent =
+        numberFormat(
+            male
+        );
+
+
+        document.getElementById(
+            "female2"
+        ).textContent =
+        numberFormat(
+            female
+        );
+
+
+        document.getElementById(
+            "summaryPopulation"
+        ).textContent =
+        numberFormat(
+            population
+        ) + " คน";
+
+
+        document.getElementById(
+            "summaryMale"
+        ).textContent =
+        numberFormat(
+            male
+        ) + " คน";
+
+
+        document.getElementById(
+            "summaryFemale"
+        ).textContent =
+        numberFormat(
+            female
+        ) + " คน";
+
+
+        document.getElementById(
+            "summaryHouseholds"
+        ).textContent =
+        numberFormat(
+            households
+        );
+
+
+        if(population > 0){
+
+            document.getElementById(
+                "maleProgress"
+            ).style.width =
+            (
+                male /
+                population *
+                100
+            ) + "%";
+
+
+            document.getElementById(
+                "femaleProgress"
+            ).style.width =
+            (
+                female /
+                population *
+                100
+            ) + "%";
+
         }
 
 
-        if(
-            person.type === "ผู้พิการ" ||
-            person.type === "ผู้ป่วยติดเตียง"
-        ){
-            typeClass =
-            "badge-female";
-        }
+    }catch(error){
+
+        console.error(
+            "Statistics error:",
+            error
+        );
+
+    }
+
+}
 
 
-        const genderClass =
-        person.gender === "ชาย"
-        ? "badge-male"
-        : "badge-female";
+/* =====================================================
+SEARCH CITIZEN
+===================================================== */
+
+async function searchCitizen(){
+
+    const keyword =
+    document
+    .getElementById(
+        "searchInput"
+    )
+    .value
+    .trim();
 
 
-        tr.innerHTML = `
-
-            <td>
-
-                <div class="person">
-
-                    <div class="person-avatar">
-                        ${person.gender === "ชาย" ? "👨" : "👩"}
-                    </div>
-
-                    <div>
-
-                        <div class="person-name">
-                            ${person.prefix}${person.firstName} ${person.lastName}
-                        </div>
-
-                        <div class="person-id">
-                            เลขบัตร ${maskCitizen(person.citizenId)}
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </td>
+    const table =
+    document
+    .getElementById(
+        "citizenTable"
+    );
 
 
-            <td>
+    if(!keyword){
 
-                <span class="badge ${genderClass}">
-                    ${person.gender}
-                </span>
+        table.innerHTML = `
 
-            </td>
+        <tr>
 
+        <td
+        colspan="5"
+        class="empty">
 
-            <td>
-                ${person.age} ปี
-            </td>
+        <i class="fa-solid fa-magnifying-glass"></i>
 
+        กรุณาระบุชื่อหรือเลขที่บ้าน
 
-            <td>
-                ${person.house}
-            </td>
+        </td>
 
-
-            <td>
-                ${person.moo}
-            </td>
-
-
-            <td>
-
-                <span class="badge ${typeClass}">
-                    ${person.type}
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <span class="badge badge-normal">
-                    ✓ มีชีวิต
-                </span>
-
-            </td>
-
-
-            <td>
-
-                <button
-                    class="action-btn"
-                    onclick="editCitizen(${person.id})"
-                    title="แก้ไข"
-                >
-                    ✏️
-                </button>
-
-                <button
-                    class="action-btn delete"
-                    onclick="deleteCitizen(${person.id})"
-                    title="ลบ"
-                >
-                    🗑️
-                </button>
-
-            </td>
+        </tr>
 
         `;
 
-
-        table.appendChild(tr);
-
-    });
-
-
-    resultCount.textContent =
-    `แสดง ${filtered.length} รายการ`;
-
-}
-
-
-/* =========================================================
-MASK CITIZEN ID
-========================================================= */
-
-function maskCitizen(id){
-
-    if(!id){
-        return "-";
-    }
-
-    if(
-        id.length < 13 ||
-        id.includes("x")
-    ){
-        return "xxxxxxxxxxxxx";
-    }
-
-    return (
-        id.substring(0,1) +
-        "-" +
-        id.substring(1,5) +
-        "-" +
-        id.substring(5,10) +
-        "-" +
-        id.substring(10,12) +
-        "-" +
-        id.substring(12)
-    );
-
-}
-
-
-/* =========================================================
-UPDATE SUMMARY
-========================================================= */
-
-function updateSummary(){
-
-    const total =
-    citizens.length;
-
-    const male =
-    citizens.filter(
-        x => x.gender === "ชาย"
-    ).length;
-
-    const female =
-    citizens.filter(
-        x => x.gender === "หญิง"
-    ).length;
-
-    const elderly =
-    citizens.filter(
-        x => x.type === "ผู้สูงอายุ"
-    ).length;
-
-    const vulnerable =
-    citizens.filter(
-        x =>
-        x.type === "ผู้พิการ" ||
-        x.type === "ผู้ป่วยติดเตียง"
-    ).length;
-
-
-    document.getElementById(
-        "totalPeople"
-    ).textContent = total;
-
-
-    document.getElementById(
-        "maleCount"
-    ).textContent = male;
-
-
-    document.getElementById(
-        "femaleCount"
-    ).textContent = female;
-
-
-    document.getElementById(
-        "elderlyCount"
-    ).textContent = elderly;
-
-
-    document.getElementById(
-        "vulnerableCount"
-    ).textContent = vulnerable;
-
-}
-
-
-/* =========================================================
-OPEN MODAL
-========================================================= */
-
-document
-.getElementById("addButton")
-.addEventListener(
-    "click",
-    () => {
-
-        form.reset();
-
-        document.getElementById(
-            "editId"
-        ).value = "";
-
-        document.getElementById(
-            "moo"
-        ).value = "6";
-
-        document.getElementById(
-            "modalTitle"
-        ).textContent =
-        "เพิ่มข้อมูลประชาชน";
-
-        modal.classList.add("show");
+        return;
 
     }
-);
 
 
-/* =========================================================
-CLOSE MODAL
-========================================================= */
+    /*
+      ยังไม่มีตาราง citizen
+      สำหรับทะเบียนประชาชนจริง
 
-function closeModal(){
+      จึงไม่สร้างข้อมูลสมมติ
+    */
 
-    modal.classList.remove("show");
+
+    table.innerHTML = `
+
+    <tr>
+
+    <td
+    colspan="5"
+    class="empty">
+
+    <i class="fa-solid fa-database"></i>
+
+    ยังไม่มีทะเบียนประชาชนรายบุคคลในระบบ
+
+    <br>
+
+    กรุณานำเข้าข้อมูลทะเบียนจริงก่อน
+
+    </td>
+
+    </tr>
+
+    `;
 
 }
 
 
+/* =====================================================
+CLEAR
+===================================================== */
+
+function clearSearch(){
+
+    document
+    .getElementById(
+        "searchInput"
+    )
+    .value = "";
+
+
+    document
+    .getElementById(
+        "citizenTable"
+    )
+    .innerHTML = `
+
+    <tr>
+
+    <td
+    colspan="5"
+    class="empty">
+
+    <i class="fa-solid fa-user-lock"></i>
+
+    ยังไม่มีทะเบียนประชาชนรายบุคคลในฐานข้อมูล
+
+    <br>
+
+    ระบบจะไม่สร้างข้อมูลบุคคลขึ้นเอง
+
+    </td>
+
+    </tr>
+
+    `;
+
+}
+
+
+/* =====================================================
+ENTER SEARCH
+===================================================== */
+
 document
-.getElementById("closeModal")
+.getElementById(
+    "searchInput"
+)
 .addEventListener(
-    "click",
-    closeModal
-);
-
-
-document
-.getElementById("cancelButton")
-.addEventListener(
-    "click",
-    closeModal
-);
-
-
-modal.addEventListener(
-    "click",
-    event => {
+    "keydown",
+    function(event){
 
         if(
-            event.target === modal
+            event.key === "Enter"
         ){
-            closeModal();
-        }
 
-    }
-);
-
-
-/* =========================================================
-SAVE
-========================================================= */
-
-document
-.getElementById("saveButton")
-.addEventListener(
-    "click",
-    saveCitizen
-);
-
-
-function saveCitizen(){
-
-    if(
-        !form.checkValidity()
-    ){
-
-        form.reportValidity();
-
-        return;
-    }
-
-
-    const id =
-    document.getElementById(
-        "editId"
-    ).value;
-
-
-    const person = {
-
-        id:
-        id
-        ? Number(id)
-        : Date.now(),
-
-        prefix:
-        document.getElementById(
-            "prefix"
-        ).value,
-
-        firstName:
-        document.getElementById(
-            "firstName"
-        ).value.trim(),
-
-        lastName:
-        document.getElementById(
-            "lastName"
-        ).value.trim(),
-
-        gender:
-        document.getElementById(
-            "gender"
-        ).value,
-
-        age:
-        Number(
-            document.getElementById(
-                "age"
-            ).value
-        ),
-
-        house:
-        document.getElementById(
-            "houseNumber"
-        ).value.trim(),
-
-        moo:
-        document.getElementById(
-            "moo"
-        ).value.trim(),
-
-        type:
-        document.getElementById(
-            "type"
-        ).value,
-
-        citizenId:
-        document.getElementById(
-            "citizenId"
-        ).value.trim(),
-
-        note:
-        document.getElementById(
-            "note"
-        ).value.trim()
-
-    };
-
-
-    if(id){
-
-        const index =
-        citizens.findIndex(
-            x => x.id === Number(id)
-        );
-
-        if(index !== -1){
-
-            citizens[index] =
-            person;
+            searchCitizen();
 
         }
 
-    }else{
-
-        citizens.unshift(person);
-
-    }
-
-
-    closeModal();
-
-    renderTable();
-
-    updateSummary();
-
-}
-
-
-/* =========================================================
-EDIT
-========================================================= */
-
-function editCitizen(id){
-
-    const person =
-    citizens.find(
-        x => x.id === id
-    );
-
-
-    if(!person){
-        return;
-    }
-
-
-    document.getElementById(
-        "editId"
-    ).value = person.id;
-
-
-    document.getElementById(
-        "prefix"
-    ).value = person.prefix;
-
-
-    document.getElementById(
-        "firstName"
-    ).value = person.firstName;
-
-
-    document.getElementById(
-        "lastName"
-    ).value = person.lastName;
-
-
-    document.getElementById(
-        "gender"
-    ).value = person.gender;
-
-
-    document.getElementById(
-        "age"
-    ).value = person.age;
-
-
-    document.getElementById(
-        "houseNumber"
-    ).value = person.house;
-
-
-    document.getElementById(
-        "moo"
-    ).value = person.moo;
-
-
-    document.getElementById(
-        "type"
-    ).value = person.type;
-
-
-    document.getElementById(
-        "citizenId"
-    ).value =
-    person.citizenId;
-
-
-    document.getElementById(
-        "note"
-    ).value =
-    person.note || "";
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-    "แก้ไขข้อมูลประชาชน";
-
-
-    modal.classList.add("show");
-
-}
-
-
-/* =========================================================
-DELETE
-========================================================= */
-
-function deleteCitizen(id){
-
-    const person =
-    citizens.find(
-        x => x.id === id
-    );
-
-
-    if(!person){
-        return;
-    }
-
-
-    const confirmDelete =
-    confirm(
-        `ต้องการลบข้อมูล ${person.prefix}${person.firstName} ${person.lastName} หรือไม่?`
-    );
-
-
-    if(!confirmDelete){
-        return;
-    }
-
-
-    citizens =
-    citizens.filter(
-        x => x.id !== id
-    );
-
-
-    renderTable();
-
-    updateSummary();
-
-}
-
-
-/* =========================================================
-FILTER
-========================================================= */
-
-search.addEventListener(
-    "input",
-    renderTable
-);
-
-genderFilter.addEventListener(
-    "change",
-    renderTable
-);
-
-typeFilter.addEventListener(
-    "change",
-    renderTable
-);
-
-
-/* =========================================================
-CLOCK
-========================================================= */
-
-function updateClock(){
-
-    const now =
-    new Date();
-
-
-    document.getElementById(
-        "time"
-    ).textContent =
-    now.toLocaleTimeString(
-        "th-TH",
-        {
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit",
-            hour12:false
-        }
-    );
-
-
-    document.getElementById(
-        "today"
-    ).textContent =
-    now.toLocaleDateString(
-        "th-TH",
-        {
-            weekday:"long",
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-updateClock();
-
-setInterval(
-    updateClock,
-    1000
-);
-
-
-/* =========================================================
-MOBILE MENU
-========================================================= */
-
-document
-.getElementById("mobileButton")
-.addEventListener(
-    "click",
-    () => {
-
-        document
-        .getElementById("sidebar")
-        .classList.toggle("open");
-
     }
 );
 
 
-/* =========================================================
-START
-========================================================= */
+/* =====================================================
+INIT
+===================================================== */
 
-renderTable();
+document.addEventListener(
+    "DOMContentLoaded",
+    function(){
 
-updateSummary();
+        loadStatistics();
+
+    }
+);
 
 </script>
 
+
 </body>
+
 </html>
