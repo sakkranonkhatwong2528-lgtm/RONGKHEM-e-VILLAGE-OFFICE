@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ปฏิทินเศรษฐกิจชุมชน | RONGKHEM e-VILLAGE OFFICE</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:
+    "Noto Sans Thai",
+    "Tahoma",
+    sans-serif;
+  background:#f4f7fb;
+  color:#172033;
+}
+
+.economicPage{
+  max-width:1400px;
+  margin:auto;
+  padding:30px;
+}
+
+/* HEADER */
+
+.economicHero{
+  position:relative;
+  overflow:hidden;
+  border-radius:28px;
+  padding:42px;
+  color:white;
+  background:
+    linear-gradient(
+      135deg,
+      #075985,
+      #0f766e,
+      #166534
+    );
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.15);
+}
+
+.economicHero:after{
+  content:"🌾";
+  position:absolute;
+  right:40px;
+  bottom:-20px;
+  font-size:150px;
+  opacity:.15;
+}
+
+.economicHero h1{
+  margin:0 0 8px;
+  font-size:34px;
+}
+
+.economicHero p{
+  margin:6px 0;
+  font-size:17px;
+  opacity:.92;
+}
+
+.badge{
+  display:inline-block;
+  margin-top:15px;
+  padding:8px 15px;
+  border-radius:999px;
+  background:rgba(255,255,255,.16);
+  backdrop-filter:blur(8px);
+}
+
+/* SUMMARY */
+
+.summary{
+  display:grid;
+  grid-template-columns:
+    repeat(4,1fr);
+  gap:18px;
+  margin:25px 0;
+}
+
+.summaryCard{
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:
+    0 8px 25px rgba(15,23,42,.07);
+}
+
+.summaryIcon{
+  font-size:35px;
+}
+
+.summaryCard h3{
+  margin:8px 0 3px;
+}
+
+.summaryCard p{
+  margin:0;
+  color:#64748b;
+}
+
+/* TOOLBAR */
+
+.toolbar{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:space-between;
+  align-items:center;
+  margin:25px 0;
+}
+
+.searchBox{
+  flex:1;
+  min-width:260px;
+}
+
+.searchBox input{
+  width:100%;
+  padding:13px 17px;
+  border:1px solid #dbe2ea;
+  border-radius:14px;
+  font-size:16px;
+}
+
+.buttons{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:0;
+  border-radius:12px;
+  padding:12px 17px;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.btnAdd{
+  background:#15803d;
+  color:white;
+}
+
+.btnEdit{
+  background:#2563eb;
+  color:white;
+}
+
+.btnDelete{
+  background:#dc2626;
+  color:white;
+}
+
+.btnReset{
+  background:#475569;
+  color:white;
+}
+
+/* CALENDAR */
+
+.calendar{
+  display:grid;
+  grid-template-columns:
+    repeat(3,1fr);
+  gap:20px;
+}
+
+.monthCard{
+  position:relative;
+  background:white;
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:
+    0 8px 25px rgba(15,23,42,.08);
+  transition:.2s;
+}
+
+.monthCard:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 15px 35px rgba(15,23,42,.12);
+}
+
+.monthHeader{
+  padding:20px;
+  background:
+    linear-gradient(
+      135deg,
+      #e0f2fe,
+      #dcfce7
+    );
+}
+
+.monthHeader h2{
+  margin:0;
+}
+
+.monthHeader small{
+  color:#64748b;
+}
+
+.monthBody{
+  padding:20px;
+}
+
+.economicItem{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #edf1f5;
+}
+
+.economicItem:last-child{
+  border-bottom:0;
+}
+
+.cropIcon{
+  font-size:28px;
+}
+
+.itemTitle{
+  font-weight:700;
+}
+
+.itemText{
+  font-size:14px;
+  color:#64748b;
+  margin-top:3px;
+}
+
+.monthActions{
+  display:flex;
+  gap:7px;
+  padding:0 20px 20px;
+}
+
+.smallBtn{
+  border:0;
+  padding:8px 12px;
+  border-radius:9px;
+  cursor:pointer;
+}
+
+/* LEGEND */
+
+.legend{
+  background:white;
+  margin-top:25px;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:
+    0 8px 25px rgba(15,23,42,.07);
+}
+
+.legend h2{
+  margin-top:0;
+}
+
+.legendList{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.legendItem{
+  padding:9px 14px;
+  border-radius:999px;
+  background:#f1f5f9;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:rgba(15,23,42,.65);
+  padding:20px;
+  overflow:auto;
+}
+
+.modal.show{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.modalBox{
+  width:min(650px,100%);
+  background:white;
+  border-radius:22px;
+  padding:25px;
+}
+
+.modalBox h2{
+  margin-top:0;
+}
+
+.formGroup{
+  margin-bottom:15px;
+}
+
+.formGroup label{
+  display:block;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select{
+  width:100%;
+  padding:12px;
+  border:1px solid #dbe2ea;
+  border-radius:11px;
+  font-size:15px;
+}
+
+.formGroup textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.modalButtons{
+  display:flex;
+  justify-content:flex-end;
+  gap:8px;
+  margin-top:20px;
+}
+
+.imagePreview{
+  margin-top:10px;
+  width:100%;
+  max-height:220px;
+  object-fit:cover;
+  border-radius:12px;
+  display:none;
+}
+
+@media(max-width:1000px){
+
+  .calendar{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+  .summary{
+    grid-template-columns:
+      repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:650px){
+
+  .economicPage{
+    padding:14px;
+  }
+
+  .economicHero{
+    padding:28px 22px;
+  }
+
+  .economicHero h1{
+    font-size:26px;
+  }
+
+  .calendar{
+    grid-template-columns:1fr;
+  }
+
+  .summary{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="economicPage">
+
+<!-- HERO -->
+
+<section class="economicHero">
+
+<h1>🌾 ปฏิทินเศรษฐกิจชุมชน</h1>
+
+<p>
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
+</p>
+
+<p>
+วิถีเศรษฐกิจชุมชนด้านการเกษตร
+และการรับจ้างทั่วไป
+</p>
+
+<span class="badge">
+RONGKHEM e-VILLAGE OFFICE
+</span>
+
+</section>
+
+
+<!-- SUMMARY -->
+
+<section class="summary">
+
+<div class="summaryCard">
+<div class="summaryIcon">🌾</div>
+<h3>ข้าว</h3>
+<p>พืชเกษตรสำคัญของชุมชน</p>
+</div>
+
+<div class="summaryCard">
+<div class="summaryIcon">🌽</div>
+<h3>ข้าวโพด</h3>
+<p>พืชไร่ที่ชุมชนปลูก</p>
+</div>
+
+<div class="summaryCard">
+<div class="summaryIcon">🧄</div>
+<h3>กระเทียม</h3>
+<p>พืชหลังฤดูทำนา</p>
+</div>
+
+<div class="summaryCard">
+<div class="summaryIcon">🧅</div>
+<h3>หอมแดง</h3>
+<p>พืชสร้างรายได้ของครัวเรือน</p>
+</div>
+
+</section>
+
+
+<!-- TOOLBAR -->
+
+<div class="toolbar">
+
+<div class="searchBox">
+<input
+type="search"
+id="searchEconomic"
+placeholder="🔎 ค้นหากิจกรรม เช่น ข้าว กระเทียม หอมแดง..."
+oninput="searchEconomic()">
+</div>
+
+<div class="buttons">
+
+<button
+class="btn btnAdd"
+onclick="openEconomicForm()">
+➕ เพิ่มกิจกรรม
+</button>
+
+<button
+class="btn btnEdit"
+onclick="exportEconomic()">
+💾 สำรองข้อมูล
+</button>
+
+<button
+class="btn btnReset"
+onclick="resetEconomic()">
+↺ คืนค่าข้อมูล
+</button>
+
+</div>
+
+</div>
+
+
+<!-- CALENDAR -->
+
+<section
+class="calendar"
+id="economicCalendar">
+</section>
+
+
+<!-- LEGEND -->
+
+<section class="legend">
+
+<h2>📌 ประเภทกิจกรรมเศรษฐกิจ</h2>
+
+<div class="legendList">
+
+<div class="legendItem">🌾 ข้าว</div>
+<div class="legendItem">🌽 ข้าวโพด</div>
+<div class="legendItem">🧄 กระเทียม</div>
+<div class="legendItem">🧅 หอมแดง</div>
+<div class="legendItem">👷 รับจ้างทั่วไป</div>
+<div class="legendItem">💰 จำหน่ายผลผลิต</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+class="modal"
+id="economicModal">
+
+<div class="modalBox">
+
+<h2 id="modalTitle">
+➕ เพิ่มกิจกรรมเศรษฐกิจ
+</h2>
+
+<div class="formGroup">
+
+<label>
+เดือน
+</label>
+
+<select id="economicMonth">
+
+<option value="1">มกราคม</option>
+<option value="2">กุมภาพันธ์</option>
+<option value="3">มีนาคม</option>
+<option value="4">เมษายน</option>
+<option value="5">พฤษภาคม</option>
+<option value="6">มิถุนายน</option>
+<option value="7">กรกฎาคม</option>
+<option value="8">สิงหาคม</option>
+<option value="9">กันยายน</option>
+<option value="10">ตุลาคม</option>
+<option value="11">พฤศจิกายน</option>
+<option value="12">ธันวาคม</option>
+
+</select>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+ประเภทกิจกรรม
+</label>
+
+<select id="economicType">
+
+<option value="🌾">🌾 ข้าว</option>
+<option value="🌽">🌽 ข้าวโพด</option>
+<option value="🧄">🧄 กระเทียม</option>
+<option value="🧅">🧅 หอมแดง</option>
+<option value="👷">👷 รับจ้างทั่วไป</option>
+<option value="💰">💰 จำหน่ายผลผลิต</option>
+
+</select>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+ชื่อกิจกรรม
+</label>
+
+<input
+id="economicTitle"
+placeholder="เช่น เตรียมพื้นที่ทำนา">
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+รายละเอียด
+</label>
+
+<textarea
+id="economicDescription"
+placeholder="รายละเอียดกิจกรรมทางเศรษฐกิจ"></textarea>
+
+</div>
+
+
+<div class="formGroup">
+
+<label>
+รูปภาพ
+</label>
+
+<input
+type="file"
+id="economicImage"
+accept="image/*"
+onchange="previewEconomicImage(this)">
+
+<img
+id="economicImagePreview"
+class="imagePreview">
+
+</div>
+
+
+<div class="modalButtons">
+
+<button
+class="btn btnReset"
+onclick="closeEconomicForm()">
+ยกเลิก
+</button>
+
+<button
+class="btn btnAdd"
+onclick="saveEconomic()">
+💾 บันทึก
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   RONGKHEM ECONOMIC CALENDAR
+===================================================== */
+
+const ECONOMIC_KEY =
+"rongkhem_economic_calendar_v1";
+
+const monthNames = [
+"",
+"มกราคม",
+"กุมภาพันธ์",
+"มีนาคม",
+"เมษายน",
+"พฤษภาคม",
+"มิถุนายน",
+"กรกฎาคม",
+"สิงหาคม",
+"กันยายน",
+"ตุลาคม",
+"พฤศจิกายน",
+"ธันวาคม"
+];
+
+
+const defaultEconomic = [
+
+{
+id:1,
+month:1,
+icon:"🧄",
+title:"กระเทียม",
+description:"ดูแลและเก็บเกี่ยวกระเทียมตามรอบการผลิต",
+image:""
+},
+
+{
+id:2,
+month:1,
+icon:"🧅",
+title:"หอมแดง",
+description:"ดูแลและเก็บเกี่ยวหอมแดงตามรอบการผลิต",
+image:""
+},
+
+{
+id:3,
+month:1,
+icon:"👷",
+title:"รับจ้างทั่วไป",
+description:"ประชาชนประกอบอาชีพรับจ้างทั่วไปตามฤดูกาล",
+image:""
+},
+
+{
+id:4,
+month:2,
+icon:"🧄",
+title:"กระเทียม",
+description:"เก็บเกี่ยวและจำหน่ายผลผลิตตามรอบ",
+image:""
+},
+
+{
+id:5,
+month:2,
+icon:"🧅",
+title:"หอมแดง",
+description:"เก็บเกี่ยวและจำหน่ายผลผลิตตามรอบ",
+image:""
+},
+
+{
+id:6,
+month:3,
+icon:"🌽",
+title:"เตรียมพื้นที่พืชไร่",
+description:"เตรียมพื้นที่สำหรับการปลูกพืชไร่",
+image:""
+},
+
+{
+id:7,
+month:4,
+icon:"🌽",
+title:"ข้าวโพด",
+description:"เตรียมพื้นที่และเริ่มกิจกรรมปลูกข้าวโพดตามสภาพพื้นที่",
+image:""
+},
+
+{
+id:8,
+month:5,
+icon:"🌾",
+title:"ข้าวนาปี",
+description:"เริ่มเข้าสู่ฤดูเพาะปลูกข้าวนาปี",
+image:""
+},
+
+{
+id:9,
+month:5,
+icon:"🌽",
+title:"ข้าวโพด",
+description:"ปลูกและดูแลข้าวโพดตามรอบการผลิต",
+image:""
+},
+
+{
+id:10,
+month:6,
+icon:"🌾",
+title:"ทำนา",
+description:"ทำนาและดูแลข้าวนาปี",
+image:""
+},
+
+{
+id:11,
+month:6,
+icon:"🌽",
+title:"ข้าวโพด",
+description:"ดูแลแปลงข้าวโพด",
+image:""
+},
+
+{
+id:12,
+month:7,
+icon:"🌾",
+title:"ข้าวนาปี",
+description:"ดูแลแปลงข้าวนาปี",
+image:""
+},
+
+{
+id:13,
+month:7,
+icon:"🌽",
+title:"ข้าวโพด",
+description:"ดูแลผลผลิตข้าวโพด",
+image:""
+},
+
+{
+id:14,
+month:8,
+icon:"🌾",
+title:"ข้าวนาปี",
+description:"ดูแลข้าวและเตรียมเข้าสู่ระยะเก็บเกี่ยว",
+image:""
+},
+
+{
+id:15,
+month:9,
+icon:"🌾",
+title:"ข้าว",
+description:"ดูแลข้าวและเตรียมการเก็บเกี่ยว",
+image:""
+},
+
+{
+id:16,
+month:9,
+icon:"🌽",
+title:"ข้าวโพด",
+description:"เก็บเกี่ยวตามรอบการผลิต",
+image:""
+},
+
+{
+id:17,
+month:10,
+icon:"🌾",
+title:"เก็บเกี่ยวข้าว",
+description:"เริ่มเก็บเกี่ยวข้าวนาปีและจำหน่ายผลผลิต",
+image:""
+},
+
+{
+id:18,
+month:10,
+icon:"💰",
+title:"จำหน่ายผลผลิต",
+description:"นำผลผลิตทางการเกษตรออกจำหน่าย",
+image:""
+},
+
+{
+id:19,
+month:11,
+icon:"🌾",
+title:"เก็บเกี่ยวข้าว",
+description:"ช่วงสำคัญของการเก็บเกี่ยวข้าวนาปี",
+image:""
+},
+
+{
+id:20,
+month:11,
+icon:"🧄",
+title:"กระเทียม",
+description:"เตรียมพื้นที่และเริ่มปลูกกระเทียมหลังฤดูทำนา",
+image:""
+},
+
+{
+id:21,
+month:11,
+icon:"🧅",
+title:"หอมแดง",
+description:"เตรียมพื้นที่และเริ่มปลูกหอมแดงหลังฤดูทำนา",
+image:""
+},
+
+{
+id:22,
+month:12,
+icon:"🧄",
+title:"กระเทียม",
+description:"ปลูกและดูแลกระเทียม",
+image:""
+},
+
+{
+id:23,
+month:12,
+icon:"🧅",
+title:"หอมแดง",
+description:"ปลูกและดูแลหอมแดง",
+image:""
+},
+
+{
+id:24,
+month:12,
+icon:"👷",
+title:"รับจ้างทั่วไป",
+description:"ประกอบอาชีพรับจ้างทั่วไป",
+image:""
+}
+
+];
+
+
+let economicData = [];
+
+
+function loadEconomic(){
+
+try{
+
+const saved =
+localStorage.getItem(
+ECONOMIC_KEY
+);
+
+if(saved){
+
+economicData =
+JSON.parse(saved);
+
+return;
+
+}
+
+}catch(e){
+
+console.error(e);
+
+}
+
+economicData =
+JSON.parse(
+JSON.stringify(
+defaultEconomic
+)
+);
+
+saveEconomicData();
+
+}
+
+
+function saveEconomicData(){
+
+localStorage.setItem(
+ECONOMIC_KEY,
+JSON.stringify(
+economicData
+)
+);
+
+}
+
+
+/* RENDER */
+
+function renderEconomic(){
+
+const container =
+document.getElementById(
+"economicCalendar"
+);
+
+if(!container)return;
+
+
+container.innerHTML =
+monthNames
+.slice(1)
+.map(
+(monthName,index)=>{
+
+const month =
+index + 1;
+
+const items =
+economicData.filter(
+item =>
+Number(item.month) ===
+month
+);
+
+return `
+
+<article
+class="monthCard"
+data-month="${month}">
+
+<div class="monthHeader">
+
+<h2>
+${monthName}
+</h2>
+
+<small>
+กิจกรรมเศรษฐกิจชุมชน
+</small>
+
+</div>
+
+<div class="monthBody">
+
+${
+items.length
+
+?
+
+items.map(
+item => `
+
+<div
+class="economicItem">
+
+<div class="cropIcon">
+${item.icon}
+</div>
+
+<div style="flex:1">
+
+<div class="itemTitle">
+${escapeHTML(item.title)}
+</div>
+
+<div class="itemText">
+${escapeHTML(item.description)}
+</div>
+
+${
+item.image
+
+?
+
+`<img
+src="${item.image}"
+style="
+width:100%;
+margin-top:10px;
+border-radius:12px;
+max-height:160px;
+object-fit:cover;
+">`
+
+:""
+
+}
+
+</div>
+
+</div>
+
+`
+).join("")
+
+:
+
+`<div
+style="
+color:#94a3b8;
+padding:15px 0;
+">
+ยังไม่มีข้อมูลกิจกรรม
+</div>`
+
+}
+
+</div>
+
+<div class="monthActions">
+
+<button
+class="smallBtn btnAdd"
+onclick="
+openEconomicForm(
+null,
+${month}
+)">
+➕ เพิ่ม
+</button>
+
+</div>
+
+</article>
+
+`;
+
+}
+)
+.join("");
+
+}
+
+
+function openEconomicForm(
+editId=null,
+month=null
+){
+
+const modal =
+document.getElementById(
+"economicModal"
+);
+
+modal.classList.add(
+"show"
+);
+
+
+document.getElementById(
+"modalTitle"
+).textContent =
+editId
+?
+"✏️ แก้ไขกิจกรรม"
+:
+"➕ เพิ่มกิจกรรม";
+
+
+if(month){
+
+document.getElementById(
+"economicMonth"
+).value =
+month;
+
+}
+
+}
+
+
+function closeEconomicForm(){
+
+document.getElementById(
+"economicModal"
+).classList.remove(
+"show"
+);
+
+}
+
+
+function saveEconomic(){
+
+const month =
+Number(
+document.getElementById(
+"economicMonth"
+).value
+);
+
+const icon =
+document.getElementById(
+"economicType"
+).value;
+
+const title =
+document.getElementById(
+"economicTitle"
+).value.trim();
+
+const description =
+document.getElementById(
+"economicDescription"
+).value.trim();
+
+
+if(!title){
+
+alert(
+"กรุณากรอกชื่อกิจกรรม"
+);
+
+return;
+
+}
+
+
+economicData.push({
+
+id:
+Date.now(),
+
+month,
+
+icon,
+
+title,
+
+description,
+
+image:
+""
+
+});
+
+
+saveEconomicData();
+
+renderEconomic();
+
+closeEconomicForm();
+
+
+document.getElementById(
+"economicTitle"
+).value="";
+
+document.getElementById(
+"economicDescription"
+).value="";
+
+}
+
+
+/* SEARCH */
+
+function searchEconomic(){
+
+const q =
+document.getElementById(
+"searchEconomic"
+).value
+.toLowerCase()
+.trim();
+
+document
+.querySelectorAll(
+".monthCard"
+)
+.forEach(card=>{
+
+const text =
+card.textContent
+.toLowerCase();
+
+card.style.display =
+!q ||
+text.includes(q)
+?
+""
+:
+"none";
+
+});
+
+}
+
+
+/* IMAGE */
+
+function previewEconomicImage(input){
+
+const preview =
+document.getElementById(
+"economicImagePreview"
+);
+
+const file =
+input.files[0];
+
+if(!file)return;
+
+const reader =
+new FileReader();
+
+reader.onload =
+e => {
+
+preview.src =
+e.target.result;
+
+preview.style.display =
+"block";
+
+};
+
+reader.readAsDataURL(
+file
+);
+
+}
+
+
+/* EXPORT */
+
+function exportEconomic(){
+
+const blob =
+new Blob(
+[
+JSON.stringify(
+economicData,
+null,
+2
+)
+],
+{
+type:
+"application/json"
+}
+);
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+const a =
+document.createElement(
+"a"
+);
+
+a.href=url;
+
+a.download =
+"rongkhem-economic-calendar.json";
+
+a.click();
+
+URL.revokeObjectURL(
+url
+);
+
+alert(
+"สำรองข้อมูลเรียบร้อย"
+);
+
+}
+
+
+/* RESET */
+
+function resetEconomic(){
+
+if(
+!confirm(
+"ต้องการคืนค่าปฏิทินเศรษฐกิจเริ่มต้นหรือไม่?"
+)
+)return;
+
+economicData =
+JSON.parse(
+JSON.stringify(
+defaultEconomic
+)
+);
+
+saveEconomicData();
+
+renderEconomic();
+
+}
+
+
+/* ESCAPE */
+
+function escapeHTML(value){
+
+return String(
+value ?? ""
+)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* START */
+
+loadEconomic();
+
+renderEconomic();
+
+</script>
+
+</body>
+</html>
