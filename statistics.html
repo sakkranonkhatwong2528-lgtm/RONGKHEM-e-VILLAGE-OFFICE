@@ -1,0 +1,3191 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+สถิติหมู่บ้าน | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+ROOT
+===================================================== */
+
+:root{
+
+--bg:#03101a;
+
+--panel:rgba(4,29,43,.95);
+
+--border:rgba(112,190,220,.23);
+
+--text:#ffffff;
+
+--muted:#9db5be;
+
+--green:#4cff70;
+
+--cyan:#45e8ff;
+
+--blue:#579fff;
+
+--purple:#d78cff;
+
+--orange:#ffb53d;
+
+--red:#ff5d5d;
+
+--sidebar:260px;
+
+}
+
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+
+box-sizing:border-box;
+
+margin:0;
+
+padding:0;
+
+}
+
+
+body{
+
+min-height:100vh;
+
+font-family:
+"Prompt",
+"Kanit",
+sans-serif;
+
+color:var(--text);
+
+background:
+
+linear-gradient(
+rgba(0,12,20,.94),
+rgba(0,12,20,.98)
+),
+
+url("https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=2200&q=85")
+center/cover fixed no-repeat;
+
+}
+
+
+button,
+input,
+select{
+
+font-family:inherit;
+
+}
+
+
+button{
+
+cursor:pointer;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+width:var(--sidebar);
+
+padding:20px 14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(1,18,30,.99),
+rgba(1,10,18,.98)
+);
+
+border-right:
+1px solid
+rgba(120,201,230,.18);
+
+z-index:1000;
+
+overflow-y:auto;
+
+}
+
+
+.sidebar-brand{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:
+5px
+9px
+20px;
+
+margin-bottom:13px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.09);
+
+}
+
+
+.logo{
+
+width:54px;
+
+height:54px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:15px;
+
+font-size:29px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,188,49,.17),
+rgba(4,38,51,.4)
+);
+
+border:
+1px solid
+rgba(255,190,54,.27);
+
+}
+
+
+.brand-title{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1.1;
+
+}
+
+
+.brand-title span{
+
+color:#b6ff43;
+
+}
+
+
+.brand-sub{
+
+color:#9eb8c2;
+
+font-size:10px;
+
+margin-top:3px;
+
+}
+
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:4px;
+
+}
+
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:
+12px
+13px;
+
+color:#d6e3e8;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:13px;
+
+border:
+1px solid
+transparent;
+
+transition:.2s;
+
+}
+
+
+.menu a:hover{
+
+background:
+rgba(51,205,104,.08);
+
+border-color:
+rgba(65,231,108,.14);
+
+transform:
+translateX(2px);
+
+}
+
+
+.menu a.active{
+
+background:
+
+linear-gradient(
+100deg,
+rgba(31,190,75,.42),
+rgba(19,90,52,.22)
+);
+
+border-color:
+rgba(84,238,106,.7);
+
+color:#ffffff;
+
+}
+
+
+.icon{
+
+width:28px;
+
+text-align:center;
+
+font-size:20px;
+
+}
+
+
+.contact{
+
+margin-top:18px;
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(7,40,55,.9),
+rgba(3,22,33,.9)
+);
+
+border:
+1px solid
+rgba(116,196,219,.23);
+
+}
+
+
+.contact h3{
+
+font-family:"Kanit";
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+
+.contact p{
+
+color:#b7cbd3;
+
+font-size:10px;
+
+margin:7px 0;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+position:fixed;
+
+left:var(--sidebar);
+
+right:0;
+
+top:0;
+
+height:78px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 25px;
+
+background:
+rgba(3,22,35,.91);
+
+backdrop-filter:
+blur(18px);
+
+border-bottom:
+1px solid
+var(--border);
+
+z-index:900;
+
+}
+
+
+.page-title{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.big-icon{
+
+width:44px;
+
+height:44px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(69,159,255,.08);
+
+border:
+1px solid
+rgba(69,159,255,.25);
+
+font-size:24px;
+
+}
+
+
+.page-title h1{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+font-weight:500;
+
+}
+
+
+.page-title p{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.clock{
+
+text-align:right;
+
+}
+
+
+.time{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.today{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.mobile-button{
+
+display:none;
+
+width:42px;
+
+height:42px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color:#fff;
+
+font-size:20px;
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.main{
+
+margin-left:var(--sidebar);
+
+padding-top:78px;
+
+min-height:100vh;
+
+}
+
+
+.content{
+
+max-width:1550px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.dashboard-header{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:20px;
+
+padding:23px;
+
+margin-bottom:18px;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+120deg,
+rgba(9,59,68,.95),
+rgba(4,29,43,.96)
+);
+
+border:
+1px solid
+rgba(69,232,255,.2);
+
+}
+
+
+.header-left{
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+}
+
+
+.header-icon{
+
+width:55px;
+
+height:55px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:15px;
+
+background:
+rgba(69,232,255,.08);
+
+border:
+1px solid
+rgba(69,232,255,.2);
+
+font-size:28px;
+
+}
+
+
+.header-title{
+
+font-family:"Kanit";
+
+font-size:22px;
+
+}
+
+
+.header-sub{
+
+color:#8ea8b1;
+
+font-size:9px;
+
+margin-top:3px;
+
+}
+
+
+.live{
+
+display:flex;
+
+align-items:center;
+
+gap:7px;
+
+font-size:8px;
+
+color:#8ef49b;
+
+}
+
+
+.live-dot{
+
+width:8px;
+
+height:8px;
+
+border-radius:50%;
+
+background:#4cff70;
+
+box-shadow:
+0 0 12px
+#4cff70;
+
+}
+
+
+/* =====================================================
+STAT CARDS
+===================================================== */
+
+.stat-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:14px;
+
+margin-bottom:18px;
+
+}
+
+
+.stat-card{
+
+position:relative;
+
+overflow:hidden;
+
+padding:20px;
+
+min-height:145px;
+
+border-radius:18px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(5,36,51,.96),
+rgba(2,20,30,.94)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 40px
+rgba(0,0,0,.24);
+
+transition:.2s;
+
+}
+
+
+.stat-card:hover{
+
+transform:
+translateY(-3px);
+
+border-color:
+rgba(69,232,255,.32);
+
+}
+
+
+.stat-top{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+}
+
+
+.stat-icon{
+
+font-size:28px;
+
+}
+
+
+.stat-change{
+
+font-size:8px;
+
+padding:
+5px
+7px;
+
+border-radius:6px;
+
+}
+
+
+.up{
+
+color:#8ff49b;
+
+background:
+rgba(72,220,104,.08);
+
+}
+
+
+.warn{
+
+color:#ffd36f;
+
+background:
+rgba(255,181,61,.08);
+
+}
+
+
+.stat-label{
+
+color:#78949e;
+
+font-size:9px;
+
+margin-top:12px;
+
+}
+
+
+.stat-number{
+
+font-family:"Kanit";
+
+font-size:35px;
+
+line-height:1.1;
+
+margin-top:2px;
+
+}
+
+
+.stat-sub{
+
+color:#66838d;
+
+font-size:7px;
+
+margin-top:4px;
+
+}
+
+
+/* =====================================================
+MAIN GRID
+===================================================== */
+
+.main-grid{
+
+display:grid;
+
+grid-template-columns:
+1.35fr
+.65fr;
+
+gap:18px;
+
+margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+PANEL
+===================================================== */
+
+.panel{
+
+border-radius:19px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.27);
+
+overflow:hidden;
+
+}
+
+
+.panel-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+17px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.07);
+
+}
+
+
+.panel-head h2{
+
+font-family:"Kanit";
+
+font-size:18px;
+
+font-weight:500;
+
+}
+
+
+.panel-head span{
+
+color:#718d97;
+
+font-size:8px;
+
+}
+
+
+/* =====================================================
+CHART
+===================================================== */
+
+.chart{
+
+height:340px;
+
+padding:20px;
+
+}
+
+
+canvas{
+
+width:100% !important;
+
+height:100% !important;
+
+}
+
+
+/* =====================================================
+AGE
+===================================================== */
+
+.age-box{
+
+padding:18px;
+
+}
+
+
+.age-item{
+
+margin-bottom:16px;
+
+}
+
+
+.age-top{
+
+display:flex;
+
+justify-content:space-between;
+
+font-size:9px;
+
+color:#a8bdc4;
+
+}
+
+
+.age-bar{
+
+height:9px;
+
+margin-top:6px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.06);
+
+overflow:hidden;
+
+}
+
+
+.age-fill{
+
+height:100%;
+
+border-radius:20px;
+
+}
+
+
+.age-note{
+
+color:#66818b;
+
+font-size:7px;
+
+margin-top:4px;
+
+}
+
+
+/* =====================================================
+CATEGORY
+===================================================== */
+
+.category-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:10px;
+
+padding:18px;
+
+}
+
+
+.category{
+
+padding:14px;
+
+border-radius:12px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+.category-icon{
+
+font-size:22px;
+
+}
+
+
+.category-title{
+
+color:#78949e;
+
+font-size:8px;
+
+margin-top:7px;
+
+}
+
+
+.category-value{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+HEALTH / VULNERABLE
+===================================================== */
+
+.health-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:12px;
+
+padding:18px;
+
+}
+
+
+.health-card{
+
+padding:15px;
+
+border-radius:13px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+.health-icon{
+
+font-size:24px;
+
+}
+
+
+.health-title{
+
+font-size:8px;
+
+color:#78949e;
+
+margin-top:8px;
+
+}
+
+
+.health-number{
+
+font-family:"Kanit";
+
+font-size:23px;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+PROJECT STATUS
+===================================================== */
+
+.project-list{
+
+padding:10px 18px 18px;
+
+}
+
+
+.project-row{
+
+display:grid;
+
+grid-template-columns:
+1fr
+90px
+70px;
+
+align-items:center;
+
+gap:12px;
+
+padding:13px 4px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.project-row:last-child{
+
+border-bottom:0;
+
+}
+
+
+.project-name{
+
+font-size:9px;
+
+}
+
+
+.project-owner{
+
+font-size:7px;
+
+color:#69838d;
+
+margin-top:3px;
+
+}
+
+
+.progress{
+
+height:7px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.06);
+
+overflow:hidden;
+
+}
+
+
+.progress-fill{
+
+height:100%;
+
+border-radius:20px;
+
+background:
+linear-gradient(
+90deg,
+#2698d5,
+#57ddff
+);
+
+}
+
+
+.percent{
+
+text-align:right;
+
+font-family:"Kanit";
+
+font-size:13px;
+
+}
+
+
+/* =====================================================
+ENVIRONMENT
+===================================================== */
+
+.environment-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:12px;
+
+padding:18px;
+
+}
+
+
+.env-card{
+
+padding:16px;
+
+border-radius:13px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+.env-icon{
+
+font-size:24px;
+
+}
+
+
+.env-label{
+
+color:#78949e;
+
+font-size:8px;
+
+margin-top:8px;
+
+}
+
+
+.env-value{
+
+font-family:"Kanit";
+
+font-size:23px;
+
+margin-top:2px;
+
+}
+
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer{
+
+margin-top:18px;
+
+padding:18px;
+
+text-align:center;
+
+color:#5f7b86;
+
+font-size:8px;
+
+border-top:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1250px){
+
+:root{
+--sidebar:230px;
+}
+
+.stat-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.main-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:1000px){
+
+.sidebar{
+
+transform:
+translateX(-100%);
+
+transition:.3s;
+
+}
+
+.sidebar.open{
+
+transform:
+translateX(0);
+
+}
+
+.topbar{
+
+left:0;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.mobile-button{
+
+display:block;
+
+}
+
+.page-title p{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.content{
+
+padding:13px;
+
+}
+
+.stat-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.category-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.health-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.environment-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.dashboard-header{
+
+align-items:flex-start;
+
+flex-direction:column;
+
+}
+
+.clock{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.stat-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.category-grid,
+.health-grid,
+.environment-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.page-title h1{
+
+font-size:17px;
+
+}
+
+.header-title{
+
+font-size:19px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<aside
+class="sidebar"
+id="sidebar"
+>
+
+<div class="sidebar-brand">
+
+<div class="logo">
+🏛️
+</div>
+
+<div>
+
+<div class="brand-title">
+
+RONGKHEM
+<span>e-VILLAGE</span>
+
+</div>
+
+<div class="brand-sub">
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="menu">
+
+
+<a href="index.html">
+<span class="icon">🏠</span>
+หน้าหลัก
+</a>
+
+
+<a href="citizen.html">
+<span class="icon">👥</span>
+ข้อมูลประชาชน
+</a>
+
+
+<a href="household.html">
+<span class="icon">🏠</span>
+ข้อมูลครัวเรือน
+</a>
+
+
+<a href="leader.html">
+<span class="icon">👔</span>
+ผู้นำชุมชน
+</a>
+
+
+<a href="news.html">
+<span class="icon">📢</span>
+ข่าวประชาสัมพันธ์
+</a>
+
+
+<a href="activity.html">
+<span class="icon">📅</span>
+กิจกรรม / ปฏิทิน
+</a>
+
+
+<a href="incident.html">
+<span class="icon">🚨</span>
+แจ้งเหตุ / ร้องเรียน
+</a>
+
+
+<a href="service.html">
+<span class="icon">🤝</span>
+บริการประชาชน
+</a>
+
+
+<a href="project.html">
+<span class="icon">🏗️</span>
+โครงการพัฒนาหมู่บ้าน
+</a>
+
+
+<a href="environment.html">
+<span class="icon">🌱</span>
+สิ่งแวดล้อม / PM2.5
+</a>
+
+
+<a href="wetland.html">
+<span class="icon">💧</span>
+แหล่งซับน้ำจำ
+</a>
+
+
+<a href="rice.html">
+<span class="icon">🍚</span>
+กลุ่มข้าวสาร
+</a>
+
+
+<a
+href="statistics.html"
+class="active"
+>
+<span class="icon">📊</span>
+สถิติหมู่บ้าน
+</a>
+
+
+<a href="admin.html">
+<span class="icon">⚙️</span>
+ตั้งค่าระบบ
+</a>
+
+
+</nav>
+
+
+<div class="contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+📞 โทร. 088-888-8888
+</p>
+
+<p>
+🟢 LINE ID: rongkhem.village
+</p>
+
+<p>
+🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
+</p>
+
+</div>
+
+</aside>
+
+
+<!-- =====================================================
+TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+
+<div class="page-title">
+
+
+<button
+class="mobile-button"
+id="mobileButton"
+>
+☰
+</button>
+
+
+<div class="big-icon">
+📊
+</div>
+
+
+<div>
+
+<h1>
+ศูนย์สถิติหมู่บ้าน
+</h1>
+
+<p>
+ข้อมูลภาพรวมเพื่อสนับสนุนการบริหารจัดการบ้านร่องเข็ม
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="clock">
+
+<div
+class="time"
+id="time"
+>
+00:00:00
+</div>
+
+<div
+class="today"
+id="today"
+>
+กำลังโหลด...
+</div>
+
+</div>
+
+
+</header>
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main">
+
+<div class="content">
+
+
+<!-- HEADER -->
+
+<section class="dashboard-header">
+
+
+<div class="header-left">
+
+
+<div class="header-icon">
+📊
+</div>
+
+
+<div>
+
+<div class="header-title">
+ภาพรวมข้อมูลหมู่บ้าน
+</div>
+
+<div class="header-sub">
+บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="live">
+
+<div class="live-dot"></div>
+
+ข้อมูลระบบออนไลน์
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+STAT CARDS
+===================================================== -->
+
+<section class="stat-grid">
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+👥
+</div>
+
+<div class="stat-change up">
+↑ 2.4%
+</div>
+
+</div>
+
+<div class="stat-label">
+ประชากรในพื้นที่
+</div>
+
+<div
+class="stat-number"
+id="population"
+>
+642
+</div>
+
+<div class="stat-sub">
+คน
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+🏠
+</div>
+
+<div class="stat-change up">
+↑ 1.1%
+</div>
+
+</div>
+
+<div class="stat-label">
+ครัวเรือน
+</div>
+
+<div
+class="stat-number"
+id="households"
+>
+192
+</div>
+
+<div class="stat-sub">
+ครัวเรือน
+</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+👴
+</div>
+
+<div class="stat-change warn">
+ดูแล 68
+</div>
+
+</div>
+
+<div class="stat-label">
+ผู้สูงอายุ
+</div>
+
+<div
+class="stat-number"
+>
+68
+</div>
+
+<div class="stat-sub">
+คน</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+❤️
+</div>
+
+<div class="stat-change warn">
+เฝ้าระวัง 17
+</div>
+
+</div>
+
+<div class="stat-label">
+กลุ่มเปราะบาง
+</div>
+
+<div
+class="stat-number"
+>
+17
+</div>
+
+<div class="stat-sub">
+ราย</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+🏗️
+</div>
+
+<div class="stat-change up">
+กำลังดำเนินการ
+</div>
+
+</div>
+
+<div class="stat-label">
+โครงการพัฒนา
+</div>
+
+<div
+class="stat-number"
+>
+12
+</div>
+
+<div class="stat-sub">
+โครงการ</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+📢
+</div>
+
+<div class="stat-change up">
+เดือนนี้
+</div>
+
+</div>
+
+<div class="stat-label">
+ประกาศประชาสัมพันธ์
+</div>
+
+<div
+class="stat-number"
+>
+24
+</div>
+
+<div class="stat-sub">
+รายการ</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+🚨
+</div>
+
+<div class="stat-change warn">
+รอดำเนินการ 3
+</div>
+
+</div>
+
+<div class="stat-label">
+เรื่องร้องเรียน
+</div>
+
+<div
+class="stat-number"
+>
+18
+</div>
+
+<div class="stat-sub">
+รายการ</div>
+
+</div>
+
+
+<div class="stat-card">
+
+<div class="stat-top">
+
+<div class="stat-icon">
+🍚
+</div>
+
+<div class="stat-change up">
+94.8%
+</div>
+
+</div>
+
+<div class="stat-label">
+สมาชิกกลุ่มข้าวสาร
+</div>
+
+<div
+class="stat-number"
+>
+192
+</div>
+
+<div class="stat-sub">
+ครัวเรือน</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+CHART + AGE
+===================================================== -->
+
+<section class="main-grid">
+
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+📈 แนวโน้มประชากร
+</h2>
+
+<span>
+ข้อมูลตัวอย่าง 2564 - 2569
+</span>
+
+</div>
+
+
+<div class="chart">
+
+<canvas
+id="populationChart"
+></canvas>
+
+</div>
+
+
+</div>
+
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+👥 โครงสร้างอายุ
+</h2>
+
+<span>
+ประชากรทั้งหมด 642 คน
+</span>
+
+</div>
+
+
+<div class="age-box">
+
+
+<div class="age-item">
+
+<div class="age-top">
+
+<span>
+เด็ก 0–14 ปี
+</span>
+
+<span>
+82 คน
+</span>
+
+</div>
+
+<div class="age-bar">
+
+<div
+class="age-fill"
+style="
+width:13%;
+background:#45e8ff;
+"
+></div>
+
+</div>
+
+<div class="age-note">
+12.8% ของประชากร
+</div>
+
+</div>
+
+
+<div class="age-item">
+
+<div class="age-top">
+
+<span>
+วัยทำงาน 15–59 ปี
+</span>
+
+<span>
+437 คน
+</span>
+
+</div>
+
+<div class="age-bar">
+
+<div
+class="age-fill"
+style="
+width:68%;
+background:#579fff;
+"
+></div>
+
+</div>
+
+<div class="age-note">
+68.1% ของประชากร
+</div>
+
+</div>
+
+
+<div class="age-item">
+
+<div class="age-top">
+
+<span>
+ผู้สูงอายุ 60 ปีขึ้นไป
+</span>
+
+<span>
+123 คน
+</span>
+
+</div>
+
+<div class="age-bar">
+
+<div
+class="age-fill"
+style="
+width:19%;
+background:#d78cff;
+"
+></div>
+
+</div>
+
+<div class="age-note">
+19.1% ของประชากร
+</div>
+
+</div>
+
+
+<div class="age-item">
+
+<div class="age-top">
+
+<span>
+ผู้สูงอายุที่ต้องดูแล
+</span>
+
+<span>
+68 คน
+</span>
+
+</div>
+
+<div class="age-bar">
+
+<div
+class="age-fill"
+style="
+width:11%;
+background:#ffb53d;
+"
+></div>
+
+</div>
+
+<div class="age-note">
+กลุ่มที่มีการติดตาม
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+CATEGORY
+===================================================== -->
+
+<section class="panel">
+
+<div class="panel-head">
+
+<h2>
+🏘️ ข้อมูลโครงสร้างชุมชน
+</h2>
+
+<span>
+ข้อมูลพื้นฐาน
+</span>
+
+</div>
+
+
+<div class="category-grid">
+
+
+<div class="category">
+
+<div class="category-icon">
+🏠
+</div>
+
+<div class="category-title">
+บ้านเรือน
+</div>
+
+<div class="category-value">
+192
+</div>
+
+</div>
+
+
+<div class="category">
+
+<div class="category-icon">
+👨
+</div>
+
+<div class="category-title">
+ชาย
+</div>
+
+<div class="category-value">
+311
+</div>
+
+</div>
+
+
+<div class="category">
+
+<div class="category-icon">
+👩
+</div>
+
+<div class="category-title">
+หญิง
+</div>
+
+<div class="category-value">
+331
+</div>
+
+</div>
+
+
+<div class="category">
+
+<div class="category-icon">
+🌾
+</div>
+
+<div class="category-title">
+ครัวเรือนเกษตร
+</div>
+
+<div class="category-value">
+137
+</div>
+
+</div>
+
+
+<div class="category">
+
+<div class="category-icon">
+🧑‍💼
+</div>
+
+<div class="category-title">
+ประกอบอาชีพอื่น
+</div>
+
+<div class="category-value">
+55
+</div>
+
+</div>
+
+
+<div class="category">
+
+<div class="category-icon">
+🏪
+</div>
+
+<div class="category-title">
+ร้านค้า / กิจการ
+</div>
+
+<div class="category-value">
+19
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+HEALTH
+===================================================== -->
+
+<section class="panel"
+style="margin-top:18px;"
+>
+
+<div class="panel-head">
+
+<h2>
+❤️ สุขภาพและกลุ่มที่ต้องดูแล
+</h2>
+
+<span>
+ข้อมูลติดตาม
+</span>
+
+</div>
+
+
+<div class="health-grid">
+
+
+<div class="health-card">
+
+<div class="health-icon">
+👴
+</div>
+
+<div class="health-title">
+ผู้สูงอายุ
+</div>
+
+<div class="health-number">
+123
+</div>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+♿
+</div>
+
+<div class="health-title">
+ผู้พิการ
+</div>
+
+<div class="health-number">
+14
+</div>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+❤️
+</div>
+
+<div class="health-title">
+ผู้ป่วยติดบ้าน/ติดเตียง
+</div>
+
+<div class="health-number">
+7
+</div>
+
+</div>
+
+
+<div class="health-card">
+
+<div class="health-icon">
+🛡️
+</div>
+
+<div class="health-title">
+กลุ่มต้องเฝ้าระวัง
+</div>
+
+<div class="health-number">
+17
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PROJECT
+===================================================== -->
+
+<section class="panel"
+style="margin-top:18px;"
+>
+
+<div class="panel-head">
+
+<h2>
+🏗️ สถานะโครงการพัฒนาหมู่บ้าน
+</h2>
+
+<span>
+ปีงบประมาณ 2569
+</span>
+
+</div>
+
+
+<div class="project-list">
+
+
+<div class="project-row">
+
+<div>
+
+<div class="project-name">
+ปรับปรุงระบบประปาหมู่บ้าน
+</div>
+
+<div class="project-owner">
+ฝ่ายพัฒนาหมู่บ้าน
+</div>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="width:85%"
+></div>
+
+</div>
+
+<div class="percent">
+85%
+</div>
+
+</div>
+
+
+<div class="project-row">
+
+<div>
+
+<div class="project-name">
+ปรับปรุงถนนภายในหมู่บ้าน
+</div>
+
+<div class="project-owner">
+งานโครงสร้างพื้นฐาน
+</div>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="width:70%"
+></div>
+
+</div>
+
+<div class="percent">
+70%
+</div>
+
+</div>
+
+
+<div class="project-row">
+
+<div>
+
+<div class="project-name">
+โครงการลดการเผาและ PM2.5
+</div>
+
+<div class="project-owner">
+สิ่งแวดล้อมชุมชน
+</div>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="width:62%"
+></div>
+
+</div>
+
+<div class="percent">
+62%
+</div>
+
+</div>
+
+
+<div class="project-row">
+
+<div>
+
+<div class="project-name">
+พัฒนาแหล่งซับน้ำจำ
+</div>
+
+<div class="project-owner">
+อนุรักษ์ทรัพยากรธรรมชาติ
+</div>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="width:75%"
+></div>
+
+</div>
+
+<div class="percent">
+75%
+</div>
+
+</div>
+
+
+<div class="project-row">
+
+<div>
+
+<div class="project-name">
+ระบบที่ทำการผู้ใหญ่บ้านออนไลน์
+</div>
+
+<div class="project-owner">
+Digital Village
+</div>
+
+</div>
+
+<div class="progress">
+
+<div
+class="progress-fill"
+style="width:80%"
+></div>
+
+</div>
+
+<div class="percent">
+80%
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ENVIRONMENT
+===================================================== -->
+
+<section class="panel"
+style="margin-top:18px;"
+>
+
+<div class="panel-head">
+
+<h2>
+🌱 สิ่งแวดล้อมและคุณภาพอากาศ
+</h2>
+
+<span>
+ข้อมูลล่าสุด
+</span>
+
+</div>
+
+
+<div class="environment-grid">
+
+
+<div class="env-card">
+
+<div class="env-icon">
+🌫️
+</div>
+
+<div class="env-label">
+PM2.5
+</div>
+
+<div
+class="env-value"
+style="color:#70ef88"
+>
+18
+</div>
+
+<div class="env-label">
+µg/m³ • ดี
+</div>
+
+</div>
+
+
+<div class="env-card">
+
+<div class="env-icon">
+💧
+</div>
+
+<div class="env-label">
+แหล่งซับน้ำจำ
+</div>
+
+<div
+class="env-value"
+style="color:#55ddff"
+>
+63%
+</div>
+
+<div class="env-label">
+ระดับน้ำ
+</div>
+
+</div>
+
+
+<div class="env-card">
+
+<div class="env-icon">
+🔥
+</div>
+
+<div class="env-label">
+จุดเสี่ยง
+</div>
+
+<div
+class="env-value"
+style="color:#ffd15c"
+>
+3
+</div>
+
+<div class="env-label">
+จุดเฝ้าระวัง
+</div>
+
+</div>
+
+
+<div class="env-card">
+
+<div class="env-icon">
+🌳
+</div>
+
+<div class="env-label">
+พื้นที่สีเขียว
+</div>
+
+<div
+class="env-value"
+style="color:#70ef88"
+>
+38
+</div>
+
+<div class="env-label">
+ไร่
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+🏛️ RONGKHEM e-VILLAGE
+•
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+<br>
+
+ระบบข้อมูลเพื่อการบริหารจัดการชุมชนบ้านร่องเข็ม
+
+</footer>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+/* =====================================================
+CLOCK
+===================================================== */
+
+function updateClock(){
+
+const now =
+new Date();
+
+
+document.getElementById(
+"time"
+).textContent =
+
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}
+);
+
+
+document.getElementById(
+"today"
+).textContent =
+
+now.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =====================================================
+POPULATION CHART
+===================================================== */
+
+const canvas =
+document.getElementById(
+"populationChart"
+);
+
+function drawChart(){
+
+const ctx =
+canvas.getContext("2d");
+
+const rect =
+canvas.getBoundingClientRect();
+
+const dpr =
+window.devicePixelRatio || 1;
+
+canvas.width =
+rect.width * dpr;
+
+canvas.height =
+rect.height * dpr;
+
+ctx.scale(dpr,dpr);
+
+
+const width =
+rect.width;
+
+const height =
+rect.height;
+
+
+const padding = {
+
+left:45,
+right:20,
+top:20,
+bottom:35
+
+};
+
+
+const data = [
+581,
+592,
+603,
+614,
+628,
+642
+];
+
+
+const years = [
+"2564",
+"2565",
+"2566",
+"2567",
+"2568",
+"2569"
+];
+
+
+const min =
+560;
+
+const max =
+660;
+
+
+const chartWidth =
+width -
+padding.left -
+padding.right;
+
+
+const chartHeight =
+height -
+padding.top -
+padding.bottom;
+
+
+/* GRID */
+
+ctx.font =
+"10px Prompt";
+
+ctx.textAlign =
+"right";
+
+ctx.textBaseline =
+"middle";
+
+ctx.fillStyle =
+"#607b86";
+
+
+for(
+let value=560;
+value<=660;
+value+=20
+){
+
+const y =
+padding.top +
+chartHeight -
+((value-min)/(max-min))
+*chartHeight;
+
+
+ctx.strokeStyle =
+"rgba(255,255,255,.06)";
+
+ctx.beginPath();
+
+ctx.moveTo(
+padding.left,
+y
+);
+
+ctx.lineTo(
+width-padding.right,
+y
+);
+
+ctx.stroke();
+
+
+ctx.fillText(
+value,
+padding.left-8,
+y
+);
+
+}
+
+
+/* POINTS */
+
+const points = [];
+
+
+data.forEach(
+(value,index)=>{
+
+const x =
+padding.left +
+(index/(data.length-1))
+*chartWidth;
+
+
+const y =
+padding.top +
+chartHeight -
+((value-min)/(max-min))
+*chartHeight;
+
+
+points.push({
+x:x,
+y:y
+});
+
+}
+);
+
+
+/* AREA */
+
+ctx.beginPath();
+
+ctx.moveTo(
+points[0].x,
+padding.top+chartHeight
+);
+
+points.forEach(
+point =>
+ctx.lineTo(
+point.x,
+point.y
+)
+);
+
+ctx.lineTo(
+points[points.length-1].x,
+padding.top+chartHeight
+);
+
+ctx.closePath();
+
+ctx.fillStyle =
+"rgba(69,232,255,.08)";
+
+ctx.fill();
+
+
+/* LINE */
+
+ctx.beginPath();
+
+points.forEach(
+(point,index)=>{
+
+if(index===0){
+
+ctx.moveTo(
+point.x,
+point.y
+);
+
+}else{
+
+ctx.lineTo(
+point.x,
+point.y
+);
+
+}
+
+}
+);
+
+ctx.strokeStyle =
+"#45e8ff";
+
+ctx.lineWidth = 2.5;
+
+ctx.stroke();
+
+
+/* POINTS */
+
+points.forEach(
+(point,index)=>{
+
+ctx.beginPath();
+
+ctx.arc(
+point.x,
+point.y,
+4,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle =
+"#45e8ff";
+
+ctx.fill();
+
+
+ctx.font =
+"9px Prompt";
+
+ctx.textAlign =
+"center";
+
+ctx.fillStyle =
+"#b8d5dc";
+
+ctx.fillText(
+data[index],
+point.x,
+point.y-12
+);
+
+}
+);
+
+
+/* YEAR */
+
+ctx.font =
+"9px Prompt";
+
+ctx.textAlign =
+"center";
+
+ctx.fillStyle =
+"#607b86";
+
+
+years.forEach(
+(year,index)=>{
+
+const x =
+padding.left +
+(index/(years.length-1))
+*chartWidth;
+
+
+ctx.fillText(
+year,
+x,
+height-17
+);
+
+}
+);
+
+}
+
+
+setTimeout(
+drawChart,
+100
+);
+
+
+window.addEventListener(
+"resize",
+drawChart
+);
+
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+document
+.getElementById(
+"mobileButton"
+)
+.addEventListener(
+"click",
+function(){
+
+document
+.getElementById(
+"sidebar"
+)
+.classList.toggle(
+"open"
+);
+
+}
+);
+
+
+/* =====================================================
+LIVE NUMBER EFFECT
+===================================================== */
+
+function numberEffect(
+element,
+target
+){
+
+let current = 0;
+
+const duration = 900;
+
+const start =
+performance.now();
+
+
+function animate(
+timestamp
+){
+
+const progress =
+Math.min(
+(timestamp-start)/duration,
+1
+);
+
+
+current =
+Math.floor(
+progress * target
+);
+
+
+element.textContent =
+current.toLocaleString(
+"th-TH"
+);
+
+
+if(progress < 1){
+
+requestAnimationFrame(
+animate
+);
+
+}else{
+
+element.textContent =
+target.toLocaleString(
+"th-TH"
+);
+
+}
+
+}
+
+
+requestAnimationFrame(
+animate
+);
+
+}
+
+
+numberEffect(
+document.getElementById(
+"population"
+),
+642
+);
+
+
+numberEffect(
+document.getElementById(
+"households"
+),
+192
+);
+
+</script>
+
+</body>
+</html>
