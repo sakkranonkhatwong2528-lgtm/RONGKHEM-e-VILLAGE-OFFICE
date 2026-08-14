@@ -8,12 +8,9 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-สุขภาพชุมชน | RONGKHEM e-VILLAGE
-</title>
+<title>ศูนย์สุขภาพชุมชน | RONGKHEM e-VILLAGE</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
       href="https://fonts.gstatic.com"
@@ -42,17 +39,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     --blue:#38bdf8;
     --green:#22c55e;
     --yellow:#facc15;
-    --red:#ef4444;
+    --orange:#fb923c;
+    --red:#fb7185;
     --purple:#a78bfa;
-
-    --radius:22px;
 
 }
 
 *{
+
     box-sizing:border-box;
     margin:0;
     padding:0;
+
 }
 
 body{
@@ -67,13 +65,13 @@ body{
 
     radial-gradient(
         circle at 10% 0%,
-        rgba(34,211,238,.10),
+        rgba(34,197,94,.09),
         transparent 30%
     ),
 
     radial-gradient(
         circle at 90% 20%,
-        rgba(59,130,246,.10),
+        rgba(34,211,238,.08),
         transparent 30%
     ),
 
@@ -105,7 +103,9 @@ HEADER
 .header{
 
     position:sticky;
+
     top:0;
+
     z-index:100;
 
     background:
@@ -125,9 +125,9 @@ HEADER
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    justify-content:space-between;
 
     gap:20px;
 
@@ -151,7 +151,9 @@ HEADER
     border-radius:15px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:21px;
@@ -159,8 +161,8 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #0284c7,
-        #22d3ee
+        #15803d,
+        #22c55e
     );
 
 }
@@ -183,6 +185,10 @@ HEADER
 
 .back{
 
+    padding:9px 14px;
+
+    border-radius:12px;
+
     border:
     1px solid var(--border);
 
@@ -190,11 +196,6 @@ HEADER
     rgba(255,255,255,.04);
 
     color:white;
-
-    padding:
-    9px 14px;
-
-    border-radius:12px;
 
     cursor:pointer;
 
@@ -223,9 +224,9 @@ TITLE
 
 .page-head p{
 
-    color:var(--muted);
-
     margin-top:5px;
+
+    color:var(--muted);
 
     font-size:13px;
 
@@ -241,19 +242,18 @@ TITLE
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
-    color:#67e8f9;
+    color:#86efac;
 
     background:
-    rgba(34,211,238,.07);
+    rgba(34,197,94,.07);
 
     border:
     1px solid
-    rgba(34,211,238,.16);
+    rgba(34,197,94,.16);
 
     font-size:11px;
 
@@ -261,76 +261,12 @@ TITLE
 
 
 /* =====================================================
-WARNING
-===================================================== */
-
-.warning{
-
-    margin-top:20px;
-
-    padding:20px;
-
-    border-radius:22px;
-
-    display:flex;
-
-    gap:14px;
-
-    align-items:flex-start;
-
-    background:
-    rgba(250,204,21,.06);
-
-    border:
-    1px solid
-    rgba(250,204,21,.18);
-
-}
-
-.warning-icon{
-
-    width:44px;
-    height:44px;
-
-    flex:none;
-
-    border-radius:13px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:var(--yellow);
-
-    background:
-    rgba(250,204,21,.08);
-
-}
-
-.warning h3{
-
-    font-size:15px;
-
-}
-
-.warning p{
-
-    margin-top:4px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.8;
-
-}
-
-
-/* =====================================================
-STATISTICS
+STATS
 ===================================================== */
 
 .stats{
+
+    margin-top:22px;
 
     display:grid;
 
@@ -338,8 +274,6 @@ STATISTICS
     repeat(4,1fr);
 
     gap:15px;
-
-    margin-top:20px;
 
 }
 
@@ -359,19 +293,21 @@ STATISTICS
 
 .stat-icon{
 
-    width:45px;
-    height:45px;
+    width:46px;
+    height:46px;
 
     border-radius:14px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
-    color:#67e8f9;
+    color:#86efac;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(34,197,94,.08);
 
 }
 
@@ -395,52 +331,23 @@ STATISTICS
 
 
 /* =====================================================
-SECTION
+MAIN GRID
 ===================================================== */
 
-.section{
+.main-grid{
 
-    margin-top:22px;
-
-}
-
-.section-title{
-
-    font-family:"Kanit";
-
-    font-size:24px;
-
-}
-
-.section-sub{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    margin-top:2px;
-
-}
-
-
-/* =====================================================
-GRID
-===================================================== */
-
-.grid{
-
-    margin-top:15px;
+    margin-top:20px;
 
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+    1.15fr .85fr;
 
-    gap:15px;
+    gap:16px;
 
 }
 
-.card{
+.panel{
 
     padding:23px;
 
@@ -454,29 +361,29 @@ GRID
 
 }
 
-.card-head{
+.panel-head{
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    justify-content:space-between;
 
     gap:15px;
 
-    margin-bottom:17px;
-
 }
 
-.card-title{
+.panel-title{
 
     font-family:"Kanit";
 
-    font-size:20px;
+    font-size:21px;
 
 }
 
-.card-sub{
+.panel-sub{
+
+    margin-top:2px;
 
     color:var(--muted);
 
@@ -486,164 +393,23 @@ GRID
 
 
 /* =====================================================
-BARS
+HEALTH SERVICES
 ===================================================== */
 
-.bar-list{
+.health-grid{
 
-    display:flex;
-
-    flex-direction:column;
-
-    gap:13px;
-
-}
-
-.bar-item{
+    margin-top:18px;
 
     display:grid;
 
     grid-template-columns:
-    120px 1fr 45px;
-
-    align-items:center;
+    1fr 1fr;
 
     gap:10px;
 
 }
 
-.bar-label{
-
-    font-size:12px;
-
-}
-
-.bar{
-
-    height:10px;
-
-    border-radius:999px;
-
-    overflow:hidden;
-
-    background:
-    rgba(255,255,255,.07);
-
-}
-
-.bar span{
-
-    display:block;
-
-    height:100%;
-
-    border-radius:999px;
-
-    background:
-    linear-gradient(
-        90deg,
-        #0284c7,
-        #22d3ee
-    );
-
-}
-
-.bar-value{
-
-    text-align:right;
-
-    font-family:"Kanit";
-
-    color:#67e8f9;
-
-}
-
-
-/* =====================================================
-HEALTH PROBLEMS
-===================================================== */
-
-.problem-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-.problem{
-
-    display:grid;
-
-    grid-template-columns:
-    35px 1fr auto;
-
-    gap:10px;
-
-    align-items:center;
-
-    padding:14px;
-
-    border-radius:15px;
-
-    background:
-    rgba(255,255,255,.035);
-
-}
-
-.rank{
-
-    width:30px;
-    height:30px;
-
-    border-radius:9px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    color:#67e8f9;
-
-    background:
-    rgba(34,211,238,.08);
-
-    font-size:12px;
-
-}
-
-.problem-name{
-
-    font-size:13px;
-
-}
-
-.problem-score{
-
-    font-family:"Kanit";
-
-    color:#67e8f9;
-
-}
-
-
-/* =====================================================
-SIMPLE CARDS
-===================================================== */
-
-.mini-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:11px;
-
-}
-
-.mini{
+.health-item{
 
     padding:17px;
 
@@ -654,30 +420,169 @@ SIMPLE CARDS
 
 }
 
-.mini-value{
+.health-icon{
 
-    font-family:"Kanit";
+    width:42px;
+    height:42px;
 
-    font-size:25px;
+    border-radius:13px;
 
-    color:#67e8f9;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
 
 }
 
-.mini-label{
+.health-item h3{
+
+    margin-top:10px;
+
+    font-size:13px;
+
+}
+
+.health-item p{
+
+    margin-top:4px;
 
     color:var(--muted);
 
-    font-size:11px;
+    font-size:10px;
+
+    line-height:1.7;
 
 }
 
 
 /* =====================================================
-DISEASE SURVEILLANCE
+HEALTH LEVEL
 ===================================================== */
 
-.disease-list{
+.health-level{
+
+    margin-top:18px;
+
+    display:grid;
+
+    gap:11px;
+
+}
+
+.level{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.level-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.level-icon{
+
+    width:35px;
+    height:35px;
+
+    border-radius:10px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.level-name{
+
+    font-size:11px;
+
+}
+
+.level-desc{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.level-value{
+
+    font-family:"Kanit";
+
+    font-size:20px;
+
+}
+
+.green{
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+}
+
+.yellow{
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.08);
+
+}
+
+.red{
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.08);
+
+}
+
+.blue{
+
+    color:#7dd3fc;
+
+    background:
+    rgba(56,189,248,.08);
+
+}
+
+
+/* =====================================================
+VISIT
+===================================================== */
+
+.visit-list{
+
+    margin-top:18px;
 
     display:flex;
 
@@ -687,13 +592,7 @@ DISEASE SURVEILLANCE
 
 }
 
-.disease{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
+.visit{
 
     padding:15px;
 
@@ -704,74 +603,197 @@ DISEASE SURVEILLANCE
 
 }
 
-.disease-name{
+.visit-top{
 
-    font-size:13px;
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
 
 }
 
-.disease-area{
+.visit-title{
 
-    margin-top:3px;
+    font-size:12px;
+
+}
+
+.visit-status{
+
+    padding:4px 8px;
+
+    border-radius:999px;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+    font-size:9px;
+
+}
+
+.visit-meta{
+
+    margin-top:6px;
 
     color:var(--muted);
 
-    font-size:10px;
-
-}
-
-.disease-count{
-
-    font-family:"Kanit";
-
-    color:#67e8f9;
-
-    font-size:22px;
-
-}
-
-.disease-count span{
-
-    font-family:"Prompt";
-
-    font-size:10px;
-
-    color:var(--muted);
+    font-size:9px;
 
 }
 
 
 /* =====================================================
-SOURCE
+TABLE
 ===================================================== */
 
-.source-box{
+.table-card{
 
     margin-top:20px;
 
-    padding:20px;
+    padding:23px;
 
-    border-radius:20px;
+    border-radius:22px;
 
     background:
-    rgba(255,255,255,.035);
+    var(--card);
 
     border:
     1px solid var(--border);
 
 }
 
-.source-box h3{
+.table-wrap{
 
-    font-family:"Kanit";
+    margin-top:18px;
 
-    font-size:18px;
+    overflow-x:auto;
 
 }
 
-.source-box p{
+table{
 
-    margin-top:6px;
+    width:100%;
+
+    min-width:750px;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    padding:14px 12px;
+
+    text-align:left;
+
+    color:#86efac;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    background:
+    rgba(34,197,94,.04);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+td{
+
+    padding:13px 12px;
+
+    font-size:11px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+}
+
+.empty{
+
+    padding:50px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+
+}
+
+.empty i{
+
+    display:block;
+
+    margin-bottom:12px;
+
+    font-size:40px;
+
+    color:
+    rgba(34,197,94,.28);
+
+}
+
+
+/* =====================================================
+PRIVACY
+===================================================== */
+
+.privacy{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    display:flex;
+
+    gap:14px;
+
+    border-radius:20px;
+
+    background:
+    rgba(251,113,133,.05);
+
+    border:
+    1px solid
+    rgba(251,113,133,.13);
+
+}
+
+.privacy-icon{
+
+    width:43px;
+    height:43px;
+
+    flex:none;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.08);
+
+}
+
+.privacy h3{
+
+    font-size:14px;
+
+}
+
+.privacy p{
+
+    margin-top:5px;
 
     color:var(--muted);
 
@@ -790,8 +812,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -822,7 +843,7 @@ RESPONSIVE
 
     }
 
-    .grid{
+    .main-grid{
 
         grid-template-columns:
         1fr;
@@ -831,7 +852,7 @@ RESPONSIVE
 
 }
 
-@media(max-width:600px){
+@media(max-width:620px){
 
     .container{
 
@@ -847,9 +868,6 @@ RESPONSIVE
     }
 
     .stats{
-
-        grid-template-columns:
-        1fr 1fr;
 
         gap:10px;
 
@@ -867,10 +885,10 @@ RESPONSIVE
 
     }
 
-    .bar-item{
+    .health-grid{
 
         grid-template-columns:
-        90px 1fr 35px;
+        1fr;
 
     }
 
@@ -893,6 +911,7 @@ RESPONSIVE
 <header class="header">
 
 <div class="container header-inner">
+
 
 <div class="brand">
 
@@ -927,6 +946,7 @@ onclick="location.href='../index.html'">
 
 </button>
 
+
 </div>
 
 </header>
@@ -936,58 +956,21 @@ onclick="location.href='../index.html'">
 <main class="container">
 
 
-<!-- =====================================================
-TITLE
-===================================================== -->
-
 <section class="page-head">
 
 <h2>
-สุขภาพชุมชน
+ศูนย์สุขภาพชุมชน
 </h2>
 
 <p>
-ข้อมูลสุขภาพจากรายงานการวินิจฉัยชุมชนบ้านร่องเข็ม
+ระบบข้อมูลสุขภาพสำหรับการบริหารจัดการและประสานงานในชุมชน
 </p>
 
 <div class="source">
 
-<i class="fa-solid fa-file-medical"></i>
+<i class="fa-solid fa-shield-heart"></i>
 
-รายงานผลการวินิจฉัยชุมชน ปีการศึกษา 2568
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-IMPORTANT WARNING
-===================================================== -->
-
-<section class="warning">
-
-<div class="warning-icon">
-
-<i class="fa-solid fa-triangle-exclamation"></i>
-
-</div>
-
-<div>
-
-<h3>
-ขอบเขตของข้อมูล
-</h3>
-
-<p>
-
-ข้อมูลสุขภาพในส่วนนี้เป็นผลจาก
-<strong>กลุ่มตัวอย่าง 22 คน</strong>
-ตามรายงาน ไม่ใช่ข้อมูลสุขภาพของประชากรทั้งหมู่บ้าน 960 คน
-จึงไม่ควรนำตัวเลขเหล่านี้ไปตีความว่าเป็นจำนวนผู้ป่วยของทั้งหมู่บ้าน
-
-</p>
+ข้อมูลสุขภาพเป็นข้อมูลจำกัดสิทธิ์
 
 </div>
 
@@ -996,7 +979,7 @@ IMPORTANT WARNING
 
 
 <!-- =====================================================
-MAIN STATS
+STATS
 ===================================================== -->
 
 <section class="stats">
@@ -1006,21 +989,21 @@ MAIN STATS
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-users"></i>
+<i class="fa-solid fa-user-nurse"></i>
 
 </div>
 
 <div
-id="sample"
+id="volunteerCount"
 class="stat-value">
 
-22
+--
 
 </div>
 
 <div class="stat-label">
 
-กลุ่มตัวอย่าง
+อสม. ในระบบ
 
 </div>
 
@@ -1031,21 +1014,21 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-heart-pulse"></i>
+<i class="fa-solid fa-house-medical"></i>
 
 </div>
 
 <div
-id="chronic"
+id="visitCount"
 class="stat-value">
 
-17
+--
 
 </div>
 
 <div class="stat-label">
 
-มีโรคประจำตัว
+การเยี่ยมบ้าน
 
 </div>
 
@@ -1056,21 +1039,21 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-droplet"></i>
+<i class="fa-solid fa-person-cane"></i>
 
 </div>
 
 <div
-id="bp"
+id="elderlyCount"
 class="stat-value">
 
-8
+--
 
 </div>
 
 <div class="stat-label">
 
-ความดันโลหิต
+ผู้สูงอายุที่ติดตาม
 
 </div>
 
@@ -1081,21 +1064,21 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-tractor"></i>
+<i class="fa-solid fa-hand-holding-heart"></i>
 
 </div>
 
 <div
-id="agriculture"
+id="careCount"
 class="stat-value">
 
-10
+--
 
 </div>
 
 <div class="stat-label">
 
-เกษตรกรรม
+ผู้ที่ต้องดูแล/ติดตาม
 
 </div>
 
@@ -1107,326 +1090,507 @@ class="stat-value">
 
 
 <!-- =====================================================
-DEMOGRAPHICS
+MAIN
 ===================================================== -->
 
-<section class="section">
-
-<div class="section-title">
-ข้อมูลพื้นฐานกลุ่มตัวอย่าง
-</div>
-
-<div class="section-sub">
-n = 22 คน
-</div>
+<section class="main-grid">
 
 
-<div class="grid">
+<!-- SERVICES -->
 
+<div class="panel">
 
-<!-- GENDER -->
-
-<div class="card">
-
-<div class="card-head">
+<div class="panel-head">
 
 <div>
 
-<div class="card-title">
-เพศ
+<div class="panel-title">
+งานสุขภาพชุมชน
 </div>
 
-<div class="card-sub">
-กลุ่มตัวอย่าง 22 คน
+<div class="panel-sub">
+ภารกิจที่ระบบรองรับ
 </div>
 
 </div>
 
-<i class="fa-solid fa-people-group"
-style="color:#22d3ee">
+<i
+class="fa-solid fa-heart-pulse"
+style="color:#86efac;font-size:25px">
 </i>
 
 </div>
 
 
-<div
-id="genderBars"
-class="bar-list">
+<div class="health-grid">
+
+
+<div class="health-item">
+
+<div class="health-icon">
+
+<i class="fa-solid fa-user-nurse"></i>
 
 </div>
-
-</div>
-
-
-
-<!-- AGE -->
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-ช่วงอายุ
-</div>
-
-<div class="card-sub">
-กลุ่มตัวอย่าง 22 คน
-</div>
-
-</div>
-
-<i class="fa-solid fa-cake-candles"
-style="color:#22d3ee">
-</i>
-
-</div>
-
-
-<div
-id="ageBars"
-class="bar-list">
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-OCCUPATION + BEHAVIOR
-===================================================== -->
-
-<section class="section">
-
-<div class="grid">
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-อาชีพ
-</div>
-
-<div class="card-sub">
-ข้อมูลกลุ่มตัวอย่าง
-</div>
-
-</div>
-
-<i class="fa-solid fa-briefcase"
-style="color:#22d3ee">
-</i>
-
-</div>
-
-
-<div
-id="occupationBars"
-class="bar-list">
-
-</div>
-
-</div>
-
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-พฤติกรรมสุขภาพ
-</div>
-
-<div class="card-sub">
-การสูบบุหรี่และการดื่มสุรา
-</div>
-
-</div>
-
-<i class="fa-solid fa-person-running"
-style="color:#22d3ee">
-</i>
-
-</div>
-
-
-<div
-id="behaviorGrid"
-class="mini-grid">
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-HEALTH PROBLEMS
-===================================================== -->
-
-<section class="section">
-
-<div class="section-title">
-ปัญหาสุขภาพชุมชน
-</div>
-
-<div class="section-sub">
-จัดลำดับตามข้อมูลในรายงาน
-</div>
-
-
-<div class="card"
-style="margin-top:15px">
-
-<div
-id="healthProblems"
-class="problem-list">
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-CHRONIC CONDITIONS
-===================================================== -->
-
-<section class="section">
-
-<div class="grid">
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-โรคประจำตัว
-</div>
-
-<div class="card-sub">
-ข้อมูลกลุ่มตัวอย่าง
-</div>
-
-</div>
-
-<i class="fa-solid fa-notes-medical"
-style="color:#22d3ee">
-</i>
-
-</div>
-
-
-<div
-id="chronicList"
-class="problem-list">
-
-</div>
-
-</div>
-
-
-
-<!-- SURVEILLANCE -->
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-โรคเฝ้าระวัง
-</div>
-
-<div class="card-sub">
-ข้อมูลตามพื้นที่ที่ระบุในรายงาน
-</div>
-
-</div>
-
-<i class="fa-solid fa-shield-virus"
-style="color:#22d3ee">
-</i>
-
-</div>
-
-
-<div
-id="diseaseList"
-class="disease-list">
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-SOURCE
-===================================================== -->
-
-<section class="source-box">
 
 <h3>
+อสม. และเครือข่ายสุขภาพ
+</h3>
 
-<i class="fa-solid fa-book"></i>
+<p>
+จัดเก็บข้อมูลการปฏิบัติงานและประสานงาน
+ของเครือข่ายสุขภาพในหมู่บ้าน
+</p>
 
-แหล่งข้อมูลและข้อควรระวัง
+</div>
 
+
+<div class="health-item">
+
+<div class="health-icon">
+
+<i class="fa-solid fa-house-medical"></i>
+
+</div>
+
+<h3>
+เยี่ยมบ้าน
+</h3>
+
+<p>
+บันทึกการเยี่ยมบ้านและติดตามงาน
+โดยผู้มีสิทธิ์เข้าถึง
+</p>
+
+</div>
+
+
+<div class="health-item">
+
+<div class="health-icon">
+
+<i class="fa-solid fa-person-cane"></i>
+
+</div>
+
+<h3>
+ผู้สูงอายุ
+</h3>
+
+<p>
+รองรับการประสานงานและติดตาม
+ผู้สูงอายุในพื้นที่
+</p>
+
+</div>
+
+
+<div class="health-item">
+
+<div class="health-icon">
+
+<i class="fa-solid fa-hand-holding-medical"></i>
+
+</div>
+
+<h3>
+กลุ่มที่ต้องดูแล
+</h3>
+
+<p>
+ติดตามการช่วยเหลือและการประสานงาน
+โดยไม่เปิดเผยข้อมูลเกินความจำเป็น
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- SUMMARY -->
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+สรุปสถานะสุขภาพ
+</div>
+
+<div class="panel-sub">
+ข้อมูลตามรายการที่บันทึกในระบบ
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-chart-simple"
+style="color:#86efac;font-size:23px">
+</i>
+
+</div>
+
+
+<div class="health-level">
+
+
+<div class="level">
+
+<div class="level-left">
+
+<div class="level-icon blue">
+
+<i class="fa-solid fa-user-nurse"></i>
+
+</div>
+
+<div>
+
+<div class="level-name">
+อสม.
+</div>
+
+<div class="level-desc">
+บุคลากรสุขภาพชุมชน
+</div>
+
+</div>
+
+</div>
+
+<div
+id="summaryVolunteer"
+class="level-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="level">
+
+<div class="level-left">
+
+<div class="level-icon green">
+
+<i class="fa-solid fa-house-medical"></i>
+
+</div>
+
+<div>
+
+<div class="level-name">
+การเยี่ยมบ้าน
+</div>
+
+<div class="level-desc">
+รายการที่บันทึก
+</div>
+
+</div>
+
+</div>
+
+<div
+id="summaryVisit"
+class="level-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="level">
+
+<div class="level-left">
+
+<div class="level-icon yellow">
+
+<i class="fa-solid fa-person-cane"></i>
+
+</div>
+
+<div>
+
+<div class="level-name">
+ผู้สูงอายุ
+</div>
+
+<div class="level-desc">
+รายการที่ติดตาม
+</div>
+
+</div>
+
+</div>
+
+<div
+id="summaryElderly"
+class="level-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="level">
+
+<div class="level-left">
+
+<div class="level-icon red">
+
+<i class="fa-solid fa-heart-circle-exclamation"></i>
+
+</div>
+
+<div>
+
+<div class="level-name">
+กลุ่มต้องติดตาม
+</div>
+
+<div class="level-desc">
+ข้อมูลภายในระบบ
+</div>
+
+</div>
+
+</div>
+
+<div
+id="summaryCare"
+class="level-value">
+
+--
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+VISITS
+===================================================== -->
+
+<section class="main-grid">
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+การเยี่ยมบ้านล่าสุด
+</div>
+
+<div class="panel-sub">
+แสดงเฉพาะข้อมูลที่ได้รับอนุญาต
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-calendar-check"
+style="color:#86efac;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="visitList"
+class="visit-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-house-medical"></i>
+
+ยังไม่มีข้อมูลการเยี่ยมบ้าน
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+งานสุขภาพที่ต้องติดตาม
+</div>
+
+<div class="panel-sub">
+รายการสำหรับผู้รับผิดชอบ
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-list-check"
+style="color:#86efac;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="careList"
+class="visit-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+ยังไม่มีรายการติดตาม
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+VOLUNTEER TABLE
+===================================================== -->
+
+<section class="table-card">
+
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+เครือข่ายสุขภาพชุมชน
+</div>
+
+<div class="panel-sub">
+ข้อมูลบุคลากรจากฐานข้อมูลจริง
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-people-group"
+style="color:#86efac;font-size:24px">
+</i>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ลำดับ</th>
+
+<th>ชื่อ</th>
+
+<th>หน้าที่</th>
+
+<th>พื้นที่รับผิดชอบ</th>
+
+<th>สถานะ</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="volunteerTable">
+
+<tr>
+
+<td
+colspan="5"
+class="empty">
+
+<i class="fa-solid fa-database"></i>
+
+ยังไม่มีข้อมูล อสม. ในฐานข้อมูล
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+PRIVACY
+===================================================== -->
+
+<section class="privacy">
+
+<div class="privacy-icon">
+
+<i class="fa-solid fa-user-lock"></i>
+
+</div>
+
+<div>
+
+<h3>
+ข้อควรระวังด้านข้อมูลสุขภาพ
 </h3>
 
 <p>
 
-แหล่งข้อมูลหลัก:
-รายงานผลการวินิจฉัยชุมชน บ้านร่องเข็ม หมู่ที่ 6
-ปีการศึกษา 2568
+ข้อมูลสุขภาพของประชาชนเป็นข้อมูลส่วนบุคคลที่มีความละเอียดอ่อน
+จึงไม่ควรนำชื่อ โรค ประวัติการรักษา หรือรายละเอียดการเจ็บป่วย
+มาแสดงบนหน้าเว็บไซต์สาธารณะโดยไม่จำเป็น
+ส่วนข้อมูลเชิงสถิติสำหรับ Dashboard สามารถแสดงได้เมื่อไม่ทำให้ระบุตัวบุคคลได้
 
 </p>
 
-<p>
-
-ข้อมูลสุขภาพหลายรายการเป็นข้อมูลจากกลุ่มตัวอย่าง
-จึงต้องแสดงขอบเขตของข้อมูลทุกครั้งเมื่อเผยแพร่ต่อสาธารณะ
-
-</p>
-
-<p>
-
-ข้อมูลโรคเฝ้าระวังจะระบุพื้นที่ตามรายงาน
-และจะไม่ตีความว่าเป็นจำนวนผู้ป่วยเฉพาะบ้านร่องเข็ม
-หากเอกสารไม่ได้ระบุเช่นนั้น
-
-</p>
+</div>
 
 </section>
 
@@ -1445,6 +1609,7 @@ RONGKHEM e-VILLAGE
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
+
 
 <div>
 
@@ -1473,6 +1638,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "ใส่_ANON_KEY_ของคุณ";
 
+
 const supabaseClient =
 supabase.createClient(
     SUPABASE_URL,
@@ -1481,7 +1647,7 @@ supabase.createClient(
 
 
 /* =====================================================
-HELPER
+ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
@@ -1495,6 +1661,29 @@ function escapeHTML(value){
     .replaceAll(">","&gt;")
     .replaceAll('"',"&quot;")
     .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+NUMBER
+===================================================== */
+
+function numberFormat(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "--";
+
+    }
+
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
 
 }
 
@@ -1514,15 +1703,14 @@ async function loadHealthSummary(){
         await supabaseClient
 
         .from(
-            "health_survey_summary"
+            "health_summary"
         )
 
         .select("*")
 
-        .eq(
-            "survey_year",
-            2568
-        );
+        .limit(1)
+
+        .maybeSingle();
 
 
         if(error)
@@ -1533,119 +1721,65 @@ async function loadHealthSummary(){
             return;
 
 
-        function amount(
-            category,
-            item
-        ){
+        const volunteer =
+        data.volunteer_count;
 
-            const row =
-            data.find(
-                x =>
-                x.category === category &&
-                x.item_name === item
-            );
+        const visits =
+        data.visit_count;
 
-            return row
-            ? Number(row.amount)
-            : 0;
+        const elderly =
+        data.elderly_count;
 
-        }
+        const care =
+        data.care_count;
 
 
-        const chronic =
-        amount(
-            "โรคประจำตัว",
-            "มีโรคประจำตัว"
+        setText(
+            "volunteerCount",
+            volunteer
+        );
+
+        setText(
+            "visitCount",
+            visits
+        );
+
+        setText(
+            "elderlyCount",
+            elderly
+        );
+
+        setText(
+            "careCount",
+            care
         );
 
 
-        const bp =
-        amount(
-            "โรคประจำตัว",
-            "ความดันโลหิต"
+        setText(
+            "summaryVolunteer",
+            volunteer
         );
 
-
-        const agriculture =
-        amount(
-            "อาชีพ",
-            "เกษตรกรรม"
+        setText(
+            "summaryVisit",
+            visits
         );
 
-
-        document.getElementById(
-            "chronic"
-        ).textContent =
-        chronic;
-
-
-        document.getElementById(
-            "bp"
-        ).textContent =
-        bp;
-
-
-        document.getElementById(
-            "agriculture"
-        ).textContent =
-        agriculture;
-
-
-        /* GENDER */
-
-        renderBars(
-            "genderBars",
-            data.filter(
-                x =>
-                x.category === "เพศ"
-            ),
-            22
+        setText(
+            "summaryElderly",
+            elderly
         );
 
-
-        /* AGE */
-
-        renderBars(
-            "ageBars",
-            data.filter(
-                x =>
-                x.category === "อายุ"
-            ),
-            22
-        );
-
-
-        /* OCCUPATION */
-
-        renderBars(
-            "occupationBars",
-            data.filter(
-                x =>
-                x.category === "อาชีพ"
-            ),
-            22
-        );
-
-
-        /* BEHAVIOR */
-
-        renderBehavior(
-            data
-        );
-
-
-        /* CHRONIC */
-
-        renderChronic(
-            data
+        setText(
+            "summaryCare",
+            care
         );
 
 
     }catch(error){
 
-        console.error(
-            "Health summary:",
-            error
+        console.log(
+            "ยังไม่มี health_summary"
         );
 
     }
@@ -1654,241 +1788,44 @@ async function loadHealthSummary(){
 
 
 /* =====================================================
-BARS
+SET TEXT
 ===================================================== */
 
-function renderBars(
+function setText(
     id,
-    rows,
-    total
+    value
 ){
 
-    const container =
-    document.getElementById(id);
+    const element =
+    document.getElementById(
+        id
+    );
 
 
-    if(
-        !rows ||
-        rows.length === 0
-    ){
-
-        container.innerHTML = `
-        <div style="color:#94a3b8;font-size:12px">
-            ไม่มีข้อมูล
-        </div>
-        `;
-
+    if(!element)
         return;
 
-    }
 
-
-    container.innerHTML =
-    rows.map(
-        row => {
-
-            const amount =
-            Number(row.amount || 0);
-
-            const percent =
-            total > 0
-            ? amount / total * 100
-            : 0;
-
-
-            return `
-
-            <div class="bar-item">
-
-                <div class="bar-label">
-
-                    ${escapeHTML(
-                        row.item_name
-                    )}
-
-                </div>
-
-                <div class="bar">
-
-                    <span
-                    style="width:${Math.min(
-                        percent,
-                        100
-                    )}%">
-
-                    </span>
-
-                </div>
-
-                <div class="bar-value">
-
-                    ${amount}
-
-                </div>
-
-            </div>
-
-            `;
-
-        }
-    ).join("");
+    element.textContent =
+    value !== null &&
+    value !== undefined
+    ?
+    numberFormat(value)
+    :
+    "--";
 
 }
 
 
 /* =====================================================
-BEHAVIOR
+LOAD VISITS
 ===================================================== */
 
-function renderBehavior(
-    data
-){
+async function loadVisits(){
 
-    const container =
+    const list =
     document.getElementById(
-        "behaviorGrid"
-    );
-
-
-    const rows = [
-
-        {
-            category:"การสูบบุหรี่",
-            item:"สูบ",
-            label:"สูบบุหรี่"
-        },
-
-        {
-            category:"การสูบบุหรี่",
-            item:"ไม่สูบ",
-            label:"ไม่สูบบุหรี่"
-        },
-
-        {
-            category:"การดื่มสุรา",
-            item:"ดื่ม",
-            label:"ดื่มสุรา"
-        },
-
-        {
-            category:"การดื่มสุรา",
-            item:"ไม่ดื่ม",
-            label:"ไม่ดื่มสุรา"
-        }
-
-    ];
-
-
-    container.innerHTML =
-    rows.map(
-        item => {
-
-            const row =
-            data.find(
-                x =>
-                x.category === item.category &&
-                x.item_name === item.item
-            );
-
-
-            const amount =
-            row
-            ? row.amount
-            : "--";
-
-
-            return `
-
-            <div class="mini">
-
-                <div class="mini-value">
-
-                    ${amount}
-
-                </div>
-
-                <div class="mini-label">
-
-                    ${item.label}
-
-                </div>
-
-            </div>
-
-            `;
-
-        }
-    ).join("");
-
-}
-
-
-/* =====================================================
-CHRONIC CONDITIONS
-===================================================== */
-
-function renderChronic(
-    data
-){
-
-    const container =
-    document.getElementById(
-        "chronicList"
-    );
-
-
-    const rows =
-    data.filter(
-        x =>
-        x.category === "โรคประจำตัว" &&
-        x.item_name !== "ไม่มี" &&
-        x.item_name !== "มีโรคประจำตัว"
-    );
-
-
-    container.innerHTML =
-    rows.map(
-        (row,index) => `
-
-        <div class="problem">
-
-            <div class="rank">
-
-                ${index + 1}
-
-            </div>
-
-            <div class="problem-name">
-
-                ${escapeHTML(
-                    row.item_name
-                )}
-
-            </div>
-
-            <div class="problem-score">
-
-                ${row.amount}
-
-            </div>
-
-        </div>
-
-        `
-    ).join("");
-
-}
-
-
-/* =====================================================
-HEALTH PROBLEMS
-===================================================== */
-
-async function loadHealthProblems(){
-
-    const container =
-    document.getElementById(
-        "healthProblems"
+        "visitList"
     );
 
 
@@ -1901,13 +1838,262 @@ async function loadHealthProblems(){
         await supabaseClient
 
         .from(
-            "community_health_problems"
+            "health_visits"
         )
 
-        .select("*")
+        .select(
+            "visit_date,category,status,area"
+        )
 
         .order(
-            "priority_rank",
+            "visit_date",
+            {
+                ascending:false
+            }
+        )
+
+        .limit(8);
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+        data.map(
+            item => `
+
+            <div class="visit">
+
+                <div class="visit-top">
+
+                    <div class="visit-title">
+
+                        ${escapeHTML(
+                            item.category ||
+                            "การเยี่ยมบ้าน"
+                        )}
+
+                    </div>
+
+                    <span
+                    class="visit-status">
+
+                        ${escapeHTML(
+                            item.status ||
+                            "ไม่ระบุ"
+                        )}
+
+                    </span>
+
+                </div>
+
+                <div class="visit-meta">
+
+                    ${
+                        item.area
+                        ?
+                        escapeHTML(
+                            item.area
+                        )
+                        :
+                        "ไม่ระบุพื้นที่"
+                    }
+
+                    ·
+
+                    ${
+                        item.visit_date
+                        ?
+                        formatDate(
+                            item.visit_date
+                        )
+                        :
+                        "-"
+                    }
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        console.log(
+            "ยังไม่มี health_visits"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+LOAD CARE
+===================================================== */
+
+async function loadCare(){
+
+    const list =
+    document.getElementById(
+        "careList"
+    );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "health_followups"
+        )
+
+        .select(
+            "category,status,followup_date,area"
+        )
+
+        .order(
+            "followup_date",
+            {
+                ascending:true
+            }
+        )
+
+        .limit(8);
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+        data.map(
+            item => `
+
+            <div class="visit">
+
+                <div class="visit-top">
+
+                    <div class="visit-title">
+
+                        ${escapeHTML(
+                            item.category ||
+                            "รายการติดตาม"
+                        )}
+
+                    </div>
+
+                    <span
+                    class="visit-status">
+
+                        ${escapeHTML(
+                            item.status ||
+                            "ไม่ระบุ"
+                        )}
+
+                    </span>
+
+                </div>
+
+                <div class="visit-meta">
+
+                    ${
+                        item.area
+                        ?
+                        escapeHTML(
+                            item.area
+                        )
+                        :
+                        "ไม่ระบุพื้นที่"
+                    }
+
+                    ${
+                        item.followup_date
+                        ?
+                        " · " +
+                        formatDate(
+                            item.followup_date
+                        )
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        console.log(
+            "ยังไม่มี health_followups"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+LOAD VOLUNTEERS
+===================================================== */
+
+async function loadVolunteers(){
+
+    const table =
+    document.getElementById(
+        "volunteerTable"
+    );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "health_volunteers"
+        )
+
+        .select(
+            "name,duty,area,status"
+        )
+
+        .order(
+            "name",
             {
                 ascending:true
             }
@@ -1923,57 +2109,50 @@ async function loadHealthProblems(){
             data.length === 0
         ){
 
-            container.innerHTML = `
-
-            <div class="problem">
-
-                <div class="rank">
-                -
-                </div>
-
-                <div class="problem-name">
-                ยังไม่มีข้อมูล
-                </div>
-
-            </div>
-
-            `;
-
             return;
 
         }
 
 
-        container.innerHTML =
+        table.innerHTML =
         data.map(
-            (row,index) => `
+            (item,index) => `
 
-            <div class="problem">
+            <tr>
 
-                <div class="rank">
+                <td>
+                    ${index + 1}
+                </td>
 
-                    ${row.priority_rank ||
-                      index + 1}
-
-                </div>
-
-
-                <div class="problem-name">
-
+                <td>
                     ${escapeHTML(
-                        row.problem_name
+                        item.name ||
+                        "-"
                     )}
+                </td>
 
-                </div>
+                <td>
+                    ${escapeHTML(
+                        item.duty ||
+                        "-"
+                    )}
+                </td>
 
+                <td>
+                    ${escapeHTML(
+                        item.area ||
+                        "-"
+                    )}
+                </td>
 
-                <div class="problem-score">
+                <td>
+                    ${escapeHTML(
+                        item.status ||
+                        "-"
+                    )}
+                </td>
 
-                    ${row.total_multiplication ?? "-"}
-
-                </div>
-
-            </div>
+            </tr>
 
             `
         ).join("");
@@ -1981,9 +2160,8 @@ async function loadHealthProblems(){
 
     }catch(error){
 
-        console.error(
-            "Health problems:",
-            error
+        console.log(
+            "ยังไม่มี health_volunteers"
         );
 
     }
@@ -1992,120 +2170,42 @@ async function loadHealthProblems(){
 
 
 /* =====================================================
-DISEASE SURVEILLANCE
+DATE
 ===================================================== */
 
-async function loadDiseases(){
+function formatDate(
+    value
+){
 
-    const container =
-    document.getElementById(
-        "diseaseList"
-    );
+    if(!value)
+        return "-";
 
 
-    try{
+    const date =
+    new Date(value);
 
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
 
-        .from(
-            "epidemiology_surveillance"
+    if(
+        Number.isNaN(
+            date.getTime()
         )
+    ){
 
-        .select("*")
-
-        .order(
-            "amount",
-            {
-                ascending:false
-            }
-        );
-
-
-        if(error)
-            throw error;
-
-
-        if(
-            !data ||
-            data.length === 0
-        ){
-
-            container.innerHTML = `
-
-            <div class="disease">
-
-                <div>
-
-                    <div class="disease-name">
-                    ไม่มีข้อมูล
-                    </div>
-
-                </div>
-
-            </div>
-
-            `;
-
-            return;
-
-        }
-
-
-        container.innerHTML =
-        data.map(
-            row => `
-
-            <div class="disease">
-
-                <div>
-
-                    <div class="disease-name">
-
-                        ${escapeHTML(
-                            row.disease_name
-                        )}
-
-                    </div>
-
-                    <div class="disease-area">
-
-                        ${escapeHTML(
-                            row.area
-                        )}
-
-                    </div>
-
-                </div>
-
-
-                <div class="disease-count">
-
-                    ${row.amount}
-
-                    <span>
-                    คน
-                    </span>
-
-                </div>
-
-            </div>
-
-            `
-        ).join("");
-
-
-    }catch(error){
-
-        console.error(
-            "Disease:",
-            error
+        return escapeHTML(
+            value
         );
 
     }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
 
 }
 
@@ -2116,17 +2216,15 @@ INIT
 
 document.addEventListener(
     "DOMContentLoaded",
-    async () => {
+    () => {
 
-        await Promise.all([
+        loadHealthSummary();
 
-            loadHealthSummary(),
+        loadVisits();
 
-            loadHealthProblems(),
+        loadCare();
 
-            loadDiseases()
-
-        ]);
+        loadVolunteers();
 
     }
 );
@@ -2135,4 +2233,5 @@ document.addEventListener(
 
 
 </body>
+
 </html>
