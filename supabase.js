@@ -1158,7 +1158,7 @@ async function addRiceStock(
 
 
 /* =========================================================
-   24. STATISTICS
+   24. STATISTICS (อัปเดตใหม่เพื่อดึงข้อมูลสถิติประชากร)
    ========================================================= */
 
 async function getStatistics(){
@@ -1172,6 +1172,63 @@ async function getStatistics(){
             }
         }
     );
+
+}
+
+
+async function getLatestStatistics(){
+
+    return await dbGet(
+        TABLES.statistics,
+        {
+            order:{
+                column:"created_at",
+                ascending:false
+            },
+            limit:1
+        }
+    );
+
+}
+
+
+async function renderDashboardStats(){
+
+    const res = await getLatestStatistics();
+
+    // กำหนดข้อมูลตั้งต้นถ้าไม่มีใน DB
+    const defaultStats = {
+        total_citizens: 960,
+        male_count: 471,
+        female_count: 489,
+        household_count: 352,
+        elderly_count: 92,
+        disabled_count: 3,
+        chronic_count: 1,
+        vulnerable_count: 95,
+        survey_count: 202
+    };
+
+    const stats = (res.success && res.data && res.data.length > 0) 
+        ? res.data[0] 
+        : defaultStats;
+
+    const updateText = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val !== undefined) {
+            el.textContent = Number(val).toLocaleString("th-TH");
+        }
+    };
+
+    updateText("stat-citizens", stats.total_citizens);
+    updateText("stat-male", stats.male_count);
+    updateText("stat-female", stats.female_count);
+    updateText("stat-households", stats.household_count);
+    updateText("stat-elderly", stats.elderly_count);
+    updateText("stat-disabled", stats.disabled_count);
+    updateText("stat-chronic", stats.chronic_count);
+    updateText("stat-vulnerable", stats.vulnerable_count);
+    updateText("stat-surveys", stats.survey_count);
 
 }
 
@@ -1447,6 +1504,8 @@ document.addEventListener(
                 "กรุณาใส่ SUPABASE_URL"
             );
 
+            // แสดงผลสถิติเบื้องต้นทันที แม้ยังไม่ได้เชื่อมต่อ DB
+            renderDashboardStats();
             return;
 
         }
@@ -1465,12 +1524,18 @@ document.addEventListener(
                 result.message
             );
 
+            // ดึงสถิติมาแสดงบนหน้า Dashboard ทันที
+            await renderDashboardStats();
+
         }else{
 
             console.error(
                 "🔴",
                 result.message
             );
+
+            // แม้เชื่อมต่อล้มเหลวก็ยังแสดงสถิติมาตรฐานไว้
+            renderDashboardStats();
 
         }
 
