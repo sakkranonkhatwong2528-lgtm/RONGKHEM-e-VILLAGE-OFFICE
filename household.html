@@ -4,22 +4,30 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONGKHEM e-VILLAGE | ทะเบียนครัวเรือน</title>
+<title>ข้อมูลครัวเรือน | RONGKHEM e-VILLAGE</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
-    --bg:#06101d;
-    --card:#0d2035;
-    --card2:#102942;
-    --blue:#08a8ff;
-    --blue2:#006eff;
-    --cyan:#36d5ff;
-    --green:#00df8a;
-    --yellow:#ffc83d;
-    --red:#ff5261;
-    --text:#f5f9ff;
-    --muted:#8ea3ba;
-    --border:rgba(255,255,255,.08);
+    --bg:#03101a;
+    --panel:rgba(4,29,43,.94);
+    --border:rgba(112,190,220,.24);
+
+    --text:#fff;
+    --muted:#9db5be;
+
+    --green:#4cff70;
+    --cyan:#45e8ff;
+    --purple:#d78cff;
+    --orange:#ffb53d;
+    --red:#ff5d5d;
+
+    --sidebar:260px;
 }
 
 *{
@@ -29,434 +37,881 @@
 }
 
 body{
-    font-family:"Noto Sans Thai","Segoe UI",Arial,sans-serif;
-    background:
-        radial-gradient(
-            circle at 15% 0%,
-            rgba(0,145,255,.16),
-            transparent 30%
-        ),
-        #06101d;
-    color:var(--text);
     min-height:100vh;
+
+    font-family:"Prompt","Kanit",sans-serif;
+
+    color:var(--text);
+
+    background:
+        linear-gradient(
+            rgba(0,12,20,.92),
+            rgba(0,12,20,.97)
+        ),
+        url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
+        center/cover fixed no-repeat;
 }
 
-button,input,select,textarea{
+button,
+input,
+select{
     font-family:inherit;
 }
 
-/* SIDEBAR */
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+SIDEBAR
+========================================================= */
 
 .sidebar{
+
     position:fixed;
+
     left:0;
     top:0;
     bottom:0;
-    width:255px;
+
+    width:var(--sidebar);
+
+    padding:20px 14px;
+
     background:
         linear-gradient(
             180deg,
-            #0b1e32,
-            #05101d
+            rgba(1,18,30,.99),
+            rgba(1,10,18,.98)
         );
-    border-right:1px solid var(--border);
-    padding:18px 14px;
+
+    border-right:1px solid rgba(120,201,230,.18);
+
     z-index:1000;
+
+    overflow-y:auto;
+}
+
+.sidebar-brand{
+
+    display:flex;
+    align-items:center;
+
+    gap:11px;
+
+    padding:5px 9px 20px;
+
+    margin-bottom:13px;
+
+    border-bottom:1px solid rgba(255,255,255,.09);
 }
 
 .logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:7px 9px 20px;
-    border-bottom:1px solid var(--border);
-    margin-bottom:20px;
-}
 
-.logo-icon{
-    width:50px;
-    height:50px;
+    width:54px;
+    height:54px;
+
     display:flex;
-    justify-content:center;
     align-items:center;
-    border-radius:16px;
+    justify-content:center;
+
+    border-radius:15px;
+
+    font-size:29px;
+
     background:
         linear-gradient(
-            135deg,
-            #007aff,
-            #00c8ff
+            145deg,
+            rgba(255,188,49,.17),
+            rgba(4,38,51,.4)
         );
-    font-size:26px;
+
+    border:1px solid rgba(255,190,54,.27);
 }
 
-.logo-title{
-    font-size:18px;
-    font-weight:900;
+.brand-title{
+
+    font-family:"Kanit";
+
+    font-size:17px;
+
+    line-height:1.1;
 }
 
-.logo-sub{
-    color:var(--cyan);
-    font-size:9px;
-    margin-top:3px;
+.brand-title span{
+    color:#b6ff43;
 }
 
-.logo-village{
-    color:var(--muted);
-    font-size:9px;
-    margin-top:3px;
-}
+.brand-sub{
 
-.menu-title{
-    color:#60758c;
+    color:#9eb8c2;
+
     font-size:10px;
-    font-weight:800;
-    padding:0 12px;
-    margin-bottom:8px;
+
+    margin-top:3px;
 }
 
 .menu{
+
     display:flex;
+
     flex-direction:column;
-    gap:5px;
+
+    gap:4px;
 }
 
-.menu button{
-    width:100%;
-    border:0;
-    background:transparent;
-    color:#aebed1;
-    padding:12px;
-    border-radius:12px;
-    cursor:pointer;
+.menu a{
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
-    text-align:left;
+
+    padding:12px 13px;
+
+    color:#d6e3e8;
+
+    text-decoration:none;
+
+    border-radius:12px;
+
+    font-size:13px;
+
+    border:1px solid transparent;
+
+    transition:.2s;
 }
 
-.menu button:hover,
-.menu button.active{
+.menu a:hover{
+
+    background:rgba(51,205,104,.08);
+
+    border-color:rgba(65,231,108,.14);
+
+    transform:translateX(2px);
+}
+
+.menu a.active{
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(31,190,75,.42),
+            rgba(19,90,52,.22)
+        );
+
+    border-color:rgba(84,238,106,.7);
+
     color:#fff;
-    background:rgba(0,150,255,.11);
 }
 
-.menu button.active{
-    border-left:3px solid var(--blue);
-}
+.icon{
 
-.menu-icon{
-    width:26px;
+    width:28px;
+
     text-align:center;
-    font-size:19px;
+
+    font-size:20px;
 }
 
-/* MAIN */
+.contact{
 
-.main{
-    margin-left:255px;
-    padding:22px;
+    margin-top:18px;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(7,40,55,.9),
+            rgba(3,22,33,.9)
+        );
+
+    border:1px solid rgba(116,196,219,.23);
 }
+
+.contact h3{
+
+    font-family:"Kanit";
+
+    font-size:16px;
+
+    margin-bottom:10px;
+}
+
+.contact p{
+
+    color:#b7cbd3;
+
+    font-size:10px;
+
+    margin:7px 0;
+}
+
+
+/* =========================================================
+TOPBAR
+========================================================= */
 
 .topbar{
+
+    position:fixed;
+
+    left:var(--sidebar);
+    right:0;
+    top:0;
+
+    height:78px;
+
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
-    margin-bottom:20px;
+
+    justify-content:space-between;
+
+    padding:0 25px;
+
+    background:rgba(3,22,35,.91);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:1px solid var(--border);
+
+    z-index:900;
 }
 
 .page-title{
-    font-size:25px;
-    font-weight:900;
-}
 
-.page-sub{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
+    display:flex;
 
-.clock{
-    padding:10px 14px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:rgba(255,255,255,.035);
-    color:var(--cyan);
-    font-family:monospace;
-}
+    align-items:center;
 
-.breadcrumb{
-    color:var(--muted);
-    font-size:11px;
-    margin-bottom:18px;
-}
-
-.breadcrumb span{
-    color:var(--cyan);
-}
-
-/* SUMMARY */
-
-.summary{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
     gap:12px;
-    margin-bottom:20px;
 }
 
-.summary-card{
-    padding:18px;
-    border:1px solid var(--border);
-    border-radius:18px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,42,67,.95),
-            rgba(8,20,34,.98)
-        );
-}
+.big-icon{
 
-.summary-icon{
-    font-size:24px;
-    margin-bottom:8px;
-}
+    width:44px;
+    height:44px;
 
-.summary-number{
-    font-size:27px;
-    font-weight:900;
-}
-
-.summary-label{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:4px;
-}
-
-/* CARD */
-
-.card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(17,37,59,.96),
-            rgba(7,18,31,.98)
-        );
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.card-icon{
-    width:43px;
-    height:43px;
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:13px;
-    background:rgba(0,160,255,.09);
+
+    border-radius:12px;
+
+    background:rgba(69,232,255,.08);
+
+    border:1px solid rgba(69,232,255,.25);
+
+    font-size:24px;
+}
+
+.page-title h1{
+
+    font-family:"Kanit";
+
     font-size:21px;
+
+    font-weight:500;
 }
 
-.card-title h2{
-    font-size:18px;
-}
+.page-title p{
 
-.card-title p{
-    color:var(--muted);
+    color:#8ea7b1;
+
     font-size:10px;
-    margin-top:3px;
 }
 
-.add-btn{
-    border:0;
-    background:
-        linear-gradient(
-            135deg,
-            var(--blue),
-            var(--blue2)
-        );
-    color:#fff;
-    padding:10px 15px;
+.clock{
+
+    text-align:right;
+}
+
+.time{
+
+    font-family:"Kanit";
+
+    font-size:25px;
+}
+
+.today{
+
+    color:#8ea7b1;
+
+    font-size:10px;
+}
+
+.mobile-button{
+
+    display:none;
+
+    width:42px;
+    height:42px;
+
     border-radius:10px;
-    cursor:pointer;
-    font-weight:700;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    color:#fff;
+
+    font-size:20px;
 }
 
-/* TOOLBAR */
 
-.toolbar{
-    display:flex;
-    gap:10px;
+/* =========================================================
+MAIN
+========================================================= */
+
+.main{
+
+    margin-left:var(--sidebar);
+
+    padding-top:78px;
+
+    min-height:100vh;
+}
+
+.content{
+
+    max-width:1550px;
+
+    margin:auto;
+
+    padding:25px;
+}
+
+
+/* =========================================================
+SUMMARY
+========================================================= */
+
+.summary{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:14px;
+
     margin-bottom:18px;
 }
 
-.search{
+.summary-card{
+
     position:relative;
-    flex:1;
-}
 
-.search input{
-    width:100%;
-    padding:13px 15px 13px 42px;
+    overflow:hidden;
+
+    padding:18px;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(5,36,51,.92),
+            rgba(2,20,30,.91)
+        );
+
     border:1px solid var(--border);
-    border-radius:12px;
-    background:rgba(0,0,0,.17);
-    color:#fff;
-    outline:0;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
 }
 
-.search-icon{
+.summary-card::after{
+
+    content:"";
+
     position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
+
+    width:100px;
+    height:100px;
+
+    right:-40px;
+    bottom:-45px;
+
+    border-radius:50%;
+
+    background:rgba(69,232,255,.07);
+}
+
+.summary-icon{
+    font-size:25px;
+}
+
+.summary-title{
+
+    color:#94adb7;
+
+    font-size:10px;
+
+    margin-top:6px;
+}
+
+.summary-number{
+
+    font-family:"Kanit";
+
+    font-size:29px;
+
+    line-height:1.1;
+
+    margin-top:2px;
+}
+
+.summary-card.green{
+    border-color:rgba(76,255,112,.28);
+}
+
+.summary-card.cyan{
+    border-color:rgba(69,232,255,.28);
+}
+
+.summary-card.purple{
+    border-color:rgba(215,140,255,.28);
+}
+
+.summary-card.orange{
+    border-color:rgba(255,181,61,.28);
+}
+
+.summary-card.red{
+    border-color:rgba(255,93,93,.28);
+}
+
+
+/* =========================================================
+TOOLBAR
+========================================================= */
+
+.toolbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    padding:16px;
+
+    margin-bottom:16px;
+
+    border-radius:17px;
+
+    background:rgba(4,29,43,.88);
+
+    border:1px solid var(--border);
+}
+
+.search-area{
+
+    display:flex;
+
+    gap:8px;
+
+    flex:1;
+
+    max-width:780px;
+}
+
+.search{
+
+    flex:1;
+
+    min-width:0;
+
+    padding:12px 15px;
+
+    border-radius:11px;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.045);
+
+    color:white;
+
+    outline:none;
+
+    font-size:12px;
+}
+
+.search:focus{
+
+    border-color:rgba(69,232,255,.55);
 }
 
 .filter{
-    min-width:180px;
-    padding:0 12px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:#0b1e32;
-    color:#fff;
-    outline:0;
+
+    padding:12px 14px;
+
+    border-radius:11px;
+
+    background:rgba(255,255,255,.045);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    outline:none;
+
+    font-size:11px;
 }
 
-/* TABLE */
+.filter option{
+    background:#071c28;
+}
+
+.btn{
+
+    border:0;
+
+    padding:11px 17px;
+
+    border-radius:11px;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    color:#02150a;
+
+    background:#48dc68;
+
+    box-shadow:
+        0 7px 20px rgba(72,220,104,.13);
+}
+
+.btn:hover{
+    filter:brightness(1.08);
+}
+
+.btn-blue{
+
+    color:#fff;
+
+    background:#147bc0;
+}
+
+
+/* =========================================================
+TABLE
+========================================================= */
+
+.panel{
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(4,29,43,.94),
+            rgba(2,18,29,.92)
+        );
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.28);
+}
+
+.panel-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:18px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.panel-head h2{
+
+    font-family:"Kanit";
+
+    font-size:18px;
+
+    font-weight:500;
+}
+
+.count{
+
+    color:#82dfff;
+
+    font-size:10px;
+}
 
 .table-wrap{
     overflow-x:auto;
 }
 
 table{
+
     width:100%;
+
     min-width:1050px;
+
     border-collapse:collapse;
 }
 
 thead{
-    background:rgba(0,150,255,.06);
+    background:rgba(255,255,255,.035);
 }
 
 th{
-    padding:13px;
-    color:#8fa4ba;
+
+    padding:13px 12px;
+
+    color:#8faab4;
+
     font-size:10px;
+
+    font-weight:400;
+
     text-align:left;
-    border-bottom:1px solid var(--border);
-}
 
-td{
-    padding:13px;
-    font-size:11px;
-    border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-tbody tr:hover{
-    background:rgba(255,255,255,.025);
-}
-
-.house-number{
-    color:var(--cyan);
-    font-weight:900;
-    font-size:13px;
-}
-
-.owner{
-    font-weight:800;
-}
-
-.small{
-    color:var(--muted);
-    font-size:9px;
-    margin-top:3px;
-}
-
-.badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:8px;
     white-space:nowrap;
 }
 
-.badge.green{
-    color:var(--green);
-    background:rgba(0,220,140,.08);
+td{
+
+    padding:13px 12px;
+
+    border-top:1px solid rgba(255,255,255,.055);
+
+    font-size:11px;
+
+    color:#d9e5e9;
+
+    white-space:nowrap;
 }
 
-.badge.yellow{
-    color:var(--yellow);
-    background:rgba(255,190,40,.08);
+tbody tr{
+    transition:.2s;
 }
 
-.badge.blue{
-    color:#55cfff;
-    background:rgba(0,150,255,.08);
+tbody tr:hover{
+    background:rgba(69,232,255,.035);
 }
 
-.actions{
+.house{
+
     display:flex;
+
+    align-items:center;
+
+    gap:10px;
+}
+
+.house-icon{
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #143d50,
+            #082431
+        );
+
+    border:1px solid rgba(120,205,231,.2);
+
+    font-size:19px;
+}
+
+.house-number{
+
+    font-weight:500;
+
+    font-size:12px;
+}
+
+.house-sub{
+
+    color:#718a94;
+
+    font-size:8px;
+
+    margin-top:2px;
+}
+
+.badge{
+
+    display:inline-flex;
+
+    padding:4px 8px;
+
+    border-radius:7px;
+
+    font-size:9px;
+}
+
+.badge-green{
+
+    background:rgba(75,222,100,.1);
+
+    color:#82ef91;
+
+    border:1px solid rgba(75,222,100,.2);
+}
+
+.badge-blue{
+
+    background:rgba(65,169,255,.12);
+
+    color:#75c7ff;
+
+    border:1px solid rgba(65,169,255,.2);
+}
+
+.badge-orange{
+
+    background:rgba(255,181,61,.12);
+
+    color:#ffc86c;
+
+    border:1px solid rgba(255,181,61,.2);
+}
+
+.badge-red{
+
+    background:rgba(255,93,93,.12);
+
+    color:#ff9a9a;
+
+    border:1px solid rgba(255,93,93,.2);
+}
+
+.action-btn{
+
+    width:30px;
+    height:30px;
+
+    border-radius:8px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.04);
+
+    color:#fff;
+
+    margin-right:4px;
+}
+
+.action-btn:hover{
+
+    background:rgba(69,232,255,.1);
+}
+
+.delete:hover{
+
+    background:rgba(255,80,80,.15);
+}
+
+
+/* =========================================================
+PAGINATION
+========================================================= */
+
+.pagination{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:15px 18px;
+
+    border-top:1px solid rgba(255,255,255,.07);
+}
+
+.pagination-info{
+
+    color:#78939d;
+
+    font-size:9px;
+}
+
+.pages{
+
+    display:flex;
+
     gap:5px;
 }
 
-.action{
-    width:32px;
-    height:32px;
-    border:1px solid var(--border);
+.page{
+
+    min-width:31px;
+    height:31px;
+
     border-radius:8px;
-    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.035);
+
+    color:#c8d9df;
+
+    font-size:10px;
+}
+
+.page.active{
+
+    background:#2cae55;
+
+    border-color:#5ce47b;
+
     color:#fff;
-    cursor:pointer;
 }
 
-.action:hover{
-    background:rgba(0,150,255,.1);
-}
 
-.action.delete:hover{
-    background:rgba(255,60,70,.12);
-}
-
-/* EMPTY */
-
-.empty{
-    text-align:center;
-    padding:50px;
-    color:#74869b;
-}
-
-.empty-icon{
-    font-size:45px;
-    margin-bottom:10px;
-}
-
-/* MODAL */
+/* =========================================================
+MODAL
+========================================================= */
 
 .modal{
+
     position:fixed;
+
     inset:0;
+
     display:none;
-    justify-content:center;
+
     align-items:center;
-    background:rgba(0,0,0,.75);
-    backdrop-filter:blur(8px);
-    z-index:2000;
+
+    justify-content:center;
+
     padding:20px;
+
+    background:rgba(0,0,0,.72);
+
+    backdrop-filter:blur(8px);
+
+    z-index:3000;
 }
 
 .modal.show{
@@ -464,1305 +919,1324 @@ tbody tr:hover{
 }
 
 .modal-box{
-    width:100%;
-    max-width:760px;
+
+    width:min(680px,100%);
+
     max-height:90vh;
+
     overflow-y:auto;
-    background:#102139;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:23px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #082a3a,
+            #031721
+        );
+
+    border:1px solid rgba(100,210,235,.28);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.6);
 }
 
 .modal-head{
+
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
-    margin-bottom:20px;
+
+    justify-content:space-between;
+
+    padding:18px 20px;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
-.modal-head h2{
-    font-size:20px;
+.modal-head h3{
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+    font-weight:500;
 }
 
 .close{
-    width:36px;
-    height:36px;
-    border:0;
-    border-radius:10px;
-    background:rgba(255,255,255,.06);
+
+    width:34px;
+    height:34px;
+
+    border-radius:9px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:rgba(255,255,255,.05);
+
     color:#fff;
-    cursor:pointer;
+
+    font-size:18px;
 }
 
-.form-grid{
+.form{
+
+    padding:20px;
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:14px;
 }
 
 .form-group{
-    margin-bottom:13px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
 }
 
-.full{
+.form-group.full{
     grid-column:1/-1;
 }
 
-label{
-    display:block;
-    color:#aab9cb;
+.form-group label{
+
+    color:#9bb4bd;
+
     font-size:10px;
-    margin-bottom:6px;
 }
 
-.form-control{
-    width:100%;
-    padding:12px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    background:rgba(0,0,0,.18);
+.form-group input,
+.form-group select{
+
+    padding:11px;
+
+    border-radius:9px;
+
+    background:rgba(255,255,255,.045);
+
     color:#fff;
-    outline:0;
-}
 
-select option{
-    background:#102139;
-}
+    border:1px solid rgba(255,255,255,.12);
 
-.save-btn{
-    width:100%;
-    border:0;
-    margin-top:5px;
-    padding:13px;
-    border-radius:11px;
-    background:
-        linear-gradient(
-            135deg,
-            #008cff,
-            #0069ee
-        );
-    color:#fff;
-    cursor:pointer;
-    font-weight:800;
-}
+    outline:none;
 
-/* DETAIL */
-
-.detail{
-    margin-top:16px;
-    padding:15px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    background:rgba(255,255,255,.025);
-}
-
-.detail-row{
-    display:grid;
-    grid-template-columns:140px 1fr;
-    gap:10px;
-    padding:8px 0;
-    border-bottom:1px solid rgba(255,255,255,.05);
     font-size:11px;
 }
 
-.detail-label{
-    color:var(--muted);
+.form-group select option{
+    background:#06202e;
 }
 
-/* MOBILE */
+.modal-actions{
 
-.mobile-menu{
-    display:none;
-    width:42px;
-    height:42px;
-    border:1px solid var(--border);
-    border-radius:11px;
-    background:rgba(255,255,255,.04);
-    color:#fff;
-    cursor:pointer;
-    font-size:19px;
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    padding:0 20px 20px;
 }
 
-@media(max-width:1100px){
+.btn-cancel{
+
+    color:#d5e0e4;
+
+    background:rgba(255,255,255,.07);
+
+    border:1px solid rgba(255,255,255,.1);
+}
+
+
+/* =========================================================
+RESPONSIVE
+========================================================= */
+
+@media(max-width:1200px){
+
+    :root{
+        --sidebar:230px;
+    }
 
     .summary{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(3,1fr);
     }
-
 }
 
-@media(max-width:900px){
+@media(max-width:1000px){
 
     .sidebar{
-        width:70px;
-        padding:15px 8px;
+
+        transform:translateX(-100%);
+
+        transition:.3s;
     }
 
-    .logo{
-        justify-content:center;
+    .sidebar.open{
+        transform:translateX(0);
     }
 
-    .logo-title,
-    .logo-sub,
-    .logo-village,
-    .menu-title,
-    .menu-text{
-        display:none;
-    }
-
-    .menu button{
-        justify-content:center;
-    }
-
-    .main{
-        margin-left:70px;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .sidebar{
-        display:none;
+    .topbar{
+        left:0;
     }
 
     .main{
         margin-left:0;
-        padding:12px;
     }
 
-    .mobile-menu{
+    .mobile-button{
         display:block;
     }
 
-    .topbar{
-        align-items:flex-start;
+    .page-title p{
+        display:none;
     }
+}
 
-    .page-title{
-        font-size:20px;
-    }
+@media(max-width:750px){
 
-    .clock{
-        font-size:10px;
-        padding:8px;
+    .content{
+        padding:13px;
     }
 
     .summary{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .toolbar{
         flex-direction:column;
+        align-items:stretch;
     }
 
-    .filter{
-        height:43px;
+    .search-area{
+        max-width:none;
+        flex-direction:column;
     }
 
-    .form-grid{
+    .form{
         grid-template-columns:1fr;
     }
 
-    .full{
+    .form-group.full{
         grid-column:auto;
     }
 
+    .clock{
+        display:none;
+    }
+
+    .page-title h1{
+        font-size:17px;
+    }
+}
+
+@media(max-width:480px){
+
+    .summary{
+        grid-template-columns:1fr;
+    }
+
+    .page-title .big-icon{
+        width:38px;
+        height:38px;
+    }
+
+    .panel-head{
+        padding:15px;
+    }
+
+    .pagination{
+
+        flex-direction:column;
+
+        gap:10px;
+
+        align-items:flex-start;
+    }
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
 
-<aside class="sidebar">
+<!-- =========================================================
+SIDEBAR
+========================================================= -->
 
-    <div class="logo">
+<aside class="sidebar" id="sidebar">
 
-        <div class="logo-icon">
+    <div class="sidebar-brand">
+
+        <div class="logo">
             🏛️
         </div>
 
         <div>
 
-            <div class="logo-title">
-                RONGKHEM
+            <div class="brand-title">
+                RONGKHEM <span>e-VILLAGE</span>
             </div>
 
-            <div class="logo-sub">
-                e-VILLAGE OFFICE
-            </div>
-
-            <div class="logo-village">
-                บ้านร่องเข็ม หมู่ 6
+            <div class="brand-sub">
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
             </div>
 
         </div>
 
-    </div>
-
-
-    <div class="menu-title">
-        MAIN MENU
     </div>
 
 
     <nav class="menu">
 
-        <button onclick="go('index.html')">
-            <span class="menu-icon">📊</span>
-            <span class="menu-text">
-                หน้าแรก
-            </span>
-        </button>
+        <a href="index.html">
+            <span class="icon">🏠</span>
+            หน้าหลัก
+        </a>
 
+        <a href="citizen.html">
+            <span class="icon">👥</span>
+            ข้อมูลประชาชน
+        </a>
 
-        <button onclick="go('leader.html')">
-            <span class="menu-icon">👔</span>
-            <span class="menu-text">
-                ทำเนียบผู้นำ
-            </span>
-        </button>
+        <a href="household.html" class="active">
+            <span class="icon">🏠</span>
+            ข้อมูลครัวเรือน
+        </a>
 
+        <a href="leader.html">
+            <span class="icon">👔</span>
+            ผู้นำชุมชน
+        </a>
 
-        <button onclick="go('activity.html')">
-            <span class="menu-icon">📸</span>
-            <span class="menu-text">
-                ภาพกิจกรรม
-            </span>
-        </button>
+        <a href="news.html">
+            <span class="icon">📢</span>
+            ข่าวประชาสัมพันธ์
+        </a>
 
+        <a href="activity.html">
+            <span class="icon">📅</span>
+            กิจกรรม / ปฏิทิน
+        </a>
 
-        <button onclick="go('citizen.html')">
-            <span class="menu-icon">👥</span>
-            <span class="menu-text">
-                ประชาชน
-            </span>
-        </button>
+        <a href="incident.html">
+            <span class="icon">🚨</span>
+            แจ้งเหตุ / ร้องเรียน
+        </a>
 
+        <a href="service.html">
+            <span class="icon">🤝</span>
+            บริการประชาชน
+        </a>
 
-        <button class="active">
-            <span class="menu-icon">🏠</span>
-            <span class="menu-text">
-                ครัวเรือน
-            </span>
-        </button>
+        <a href="project.html">
+            <span class="icon">🏗️</span>
+            โครงการพัฒนาหมู่บ้าน
+        </a>
 
+        <a href="environment.html">
+            <span class="icon">🌱</span>
+            สิ่งแวดล้อม / PM2.5
+        </a>
 
-        <button onclick="go('complaint.html')">
-            <span class="menu-icon">📝</span>
-            <span class="menu-text">
-                รับเรื่องร้องเรียน
-            </span>
-        </button>
+        <a href="wetland.html">
+            <span class="icon">💧</span>
+            แหล่งซับน้ำจำ
+        </a>
+
+        <a href="rice.html">
+            <span class="icon">🍚</span>
+            กลุ่มข้าวสาร
+        </a>
+
+        <a href="statistics.html">
+            <span class="icon">📊</span>
+            สถิติหมู่บ้าน
+        </a>
+
+        <a href="admin.html">
+            <span class="icon">⚙️</span>
+            ตั้งค่าระบบ
+        </a>
 
     </nav>
+
+
+    <div class="contact">
+
+        <h3>
+            ที่ทำการผู้ใหญ่บ้าน
+        </h3>
+
+        <p>📞 โทร. 088-888-8888</p>
+
+        <p>🟢 LINE ID: rongkhem.village</p>
+
+        <p>🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.</p>
+
+    </div>
 
 </aside>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main class="main">
+<!-- =========================================================
+TOPBAR
+========================================================= -->
 
 <header class="topbar">
 
-    <div style="display:flex;align-items:center;gap:10px;">
+    <div class="page-title">
 
         <button
-            class="mobile-menu"
-            onclick="go('index.html')"
+            class="mobile-button"
+            id="mobileButton"
         >
-            ←
+            ☰
         </button>
+
+        <div class="big-icon">
+            🏠
+        </div>
 
         <div>
 
-            <div class="page-title">
-                ทะเบียนครัวเรือน
-            </div>
+            <h1>
+                ข้อมูลครัวเรือน
+            </h1>
 
-            <div class="page-sub">
-                RONGKHEM e-VILLAGE OFFICE |
-                บ้านร่องเข็ม หมู่ที่ 6
-            </div>
+            <p>
+                ทะเบียนครัวเรือน บ้านร่องเข็ม หมู่ที่ 6
+            </p>
 
         </div>
 
     </div>
 
 
-    <div
-        class="clock"
-        id="clock"
-    >
-        08:05:56
+    <div class="clock">
+
+        <div
+            class="time"
+            id="time"
+        >
+            00:00:00
+        </div>
+
+        <div
+            class="today"
+            id="today"
+        >
+            กำลังโหลด...
+        </div>
+
     </div>
 
 </header>
 
 
-<div class="breadcrumb">
+<!-- =========================================================
+MAIN
+========================================================= -->
 
-    หน้าแรก /
-    <span>
-        ครัวเรือน
-    </span>
+<main class="main">
 
-</div>
+<div class="content">
 
 
-<!-- =====================================================
-     SUMMARY
-===================================================== -->
+    <!-- SUMMARY -->
 
-<section class="summary">
+    <section class="summary">
 
-    <div class="summary-card">
 
-        <div class="summary-icon">
-            🏠
+        <div class="summary-card green">
+
+            <div class="summary-icon">
+                🏠
+            </div>
+
+            <div class="summary-title">
+                ครัวเรือนทั้งหมด
+            </div>
+
+            <div
+                class="summary-number"
+                id="totalHouseholds"
+            >
+                535
+            </div>
+
         </div>
 
-        <div
-            class="summary-number"
-            id="totalHouseholds"
+
+        <div class="summary-card cyan">
+
+            <div class="summary-icon">
+                👨‍👩‍👧
+            </div>
+
+            <div class="summary-title">
+                สมาชิกทั้งหมด
+            </div>
+
+            <div
+                class="summary-number"
+                id="totalMembers"
+            >
+                1,245
+            </div>
+
+        </div>
+
+
+        <div class="summary-card green">
+
+            <div class="summary-icon">
+                🟢
+            </div>
+
+            <div class="summary-title">
+                อาศัยอยู่จริง
+            </div>
+
+            <div
+                class="summary-number"
+                id="activeHouseholds"
+            >
+                515
+            </div>
+
+        </div>
+
+
+        <div class="summary-card orange">
+
+            <div class="summary-icon">
+                👴
+            </div>
+
+            <div class="summary-title">
+                มีผู้สูงอายุ
+            </div>
+
+            <div
+                class="summary-number"
+                id="elderlyHouseholds"
+            >
+                142
+            </div>
+
+        </div>
+
+
+        <div class="summary-card red">
+
+            <div class="summary-icon">
+                ♿
+            </div>
+
+            <div class="summary-title">
+                มีกลุ่มเปราะบาง
+            </div>
+
+            <div
+                class="summary-number"
+                id="vulnerableHouseholds"
+            >
+                31
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TOOLBAR -->
+
+    <section class="toolbar">
+
+        <div class="search-area">
+
+            <input
+                type="search"
+                id="searchInput"
+                class="search"
+                placeholder="🔎 ค้นหาบ้านเลขที่ เจ้าบ้าน หรือข้อมูลครัวเรือน..."
+            >
+
+
+            <select
+                id="statusFilter"
+                class="filter"
+            >
+
+                <option value="">
+                    สถานะทั้งหมด
+                </option>
+
+                <option value="อาศัยอยู่จริง">
+                    อาศัยอยู่จริง
+                </option>
+
+                <option value="ไม่มีผู้อาศัย">
+                    ไม่มีผู้อาศัย
+                </option>
+
+            </select>
+
+
+            <select
+                id="specialFilter"
+                class="filter"
+            >
+
+                <option value="">
+                    กลุ่มทั้งหมด
+                </option>
+
+                <option value="ผู้สูงอายุ">
+                    มีผู้สูงอายุ
+                </option>
+
+                <option value="ผู้เปราะบาง">
+                    มีกลุ่มเปราะบาง
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="btn"
+            id="addButton"
         >
-            192
-        </div>
+            ＋ เพิ่มครัวเรือน
+        </button>
 
-        <div class="summary-label">
-            ครัวเรือนทั้งหมด
-        </div>
-
-    </div>
+    </section>
 
 
-    <div class="summary-card">
+    <!-- TABLE -->
 
-        <div class="summary-icon">
-            👥
-        </div>
+    <section class="panel">
 
-        <div
-            class="summary-number"
-            id="totalMembers"
-        >
-            648
-        </div>
-
-        <div class="summary-label">
-            สมาชิกทั้งหมด
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            👴
-        </div>
-
-        <div
-            class="summary-number"
-            id="elderlyHouseholds"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            ครัวเรือนที่มีผู้สูงอายุ
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            ♿
-        </div>
-
-        <div
-            class="summary-number"
-            id="specialHouseholds"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            ครัวเรือนกลุ่มเปราะบาง
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     HOUSEHOLD TABLE
-===================================================== -->
-
-<section class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            🏠
-        </div>
-
-        <div>
+        <div class="panel-head">
 
             <h2>
-                ทะเบียนครัวเรือนบ้านร่องเข็ม
+                🏠 ทะเบียนครัวเรือน
             </h2>
 
-            <p>
-                ฐานข้อมูลครัวเรือนและสมาชิกในครัวเรือน
-            </p>
+            <span
+                class="count"
+                id="resultCount"
+            >
+                แสดง 10 รายการ
+            </span>
 
         </div>
 
-    </div>
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            บ้านเลขที่
+                        </th>
+
+                        <th>
+                            เจ้าบ้าน
+                        </th>
+
+                        <th>
+                            สมาชิก
+                        </th>
+
+                        <th>
+                            ชาย
+                        </th>
+
+                        <th>
+                            หญิง
+                        </th>
+
+                        <th>
+                            ผู้สูงอายุ
+                        </th>
+
+                        <th>
+                            กลุ่มเปราะบาง
+                        </th>
+
+                        <th>
+                            สถานะ
+                        </th>
+
+                        <th>
+                            จัดการ
+                        </th>
+
+                    </tr>
+
+                </thead>
 
 
-    <button
-        class="add-btn"
-        onclick="openModal()"
-    >
+                <tbody id="householdTable">
 
-        + เพิ่มครัวเรือน
+                </tbody>
 
-    </button>
-
-</div>
-
-
-<div class="toolbar">
-
-    <div class="search">
-
-        <span class="search-icon">
-            🔍
-        </span>
-
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="ค้นหาบ้านเลขที่ เจ้าบ้าน หรือเบอร์โทร..."
-            oninput="render()"
-        >
-
-    </div>
-
-
-    <select
-        class="filter"
-        id="statusFilter"
-        onchange="render()"
-    >
-
-        <option value="all">
-            ทุกสถานะ
-        </option>
-
-        <option value="ปกติ">
-            ปกติ
-        </option>
-
-        <option value="ผู้สูงอายุ">
-            มีผู้สูงอายุ
-        </option>
-
-        <option value="เปราะบาง">
-            กลุ่มเปราะบาง
-        </option>
-
-    </select>
-
-</div>
-
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-    <th>
-        บ้านเลขที่
-    </th>
-
-    <th>
-        เจ้าบ้าน
-    </th>
-
-    <th>
-        สมาชิก
-    </th>
-
-    <th>
-        เบอร์โทร
-    </th>
-
-    <th>
-        สถานะ
-    </th>
-
-    <th>
-        หมายเหตุ
-    </th>
-
-    <th>
-        จัดการ
-    </th>
-
-</tr>
-
-</thead>
-
-
-<tbody
-    id="householdTable"
-></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     INFO
-===================================================== -->
-
-<section class="card">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            💡
-        </div>
-
-        <div>
-
-            <h2>
-                ระบบทะเบียนครัวเรือน
-            </h2>
-
-            <p>
-                ใช้สำหรับบันทึกและค้นหาข้อมูลครัวเรือน
-                เพื่อสนับสนุนการบริหารจัดการหมู่บ้าน
-            </p>
+            </table>
 
         </div>
 
-    </div>
 
-</section>
+        <div class="pagination">
+
+            <div
+                class="pagination-info"
+                id="paginationInfo"
+            >
+                แสดงรายการ 1-10
+            </div>
+
+            <div class="pages">
+
+                <button class="page active">
+                    1
+                </button>
+
+                <button class="page">
+                    2
+                </button>
+
+                <button class="page">
+                    3
+                </button>
+
+                <button class="page">
+                    ›
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</div>
 
 </main>
 
 
-<!-- =====================================================
-     MODAL
-===================================================== -->
+<!-- =========================================================
+MODAL
+========================================================= -->
 
 <div
     class="modal"
     id="modal"
 >
 
-<div class="modal-box">
+    <div class="modal-box">
 
-<div class="modal-head">
 
-    <h2 id="modalTitle">
-        🏠 เพิ่มครัวเรือนใหม่
-    </h2>
+        <div class="modal-head">
 
-    <button
-        class="close"
-        onclick="closeModal()"
-    >
-        ✕
-    </button>
+            <h3 id="modalTitle">
+                เพิ่มข้อมูลครัวเรือน
+            </h3>
 
-</div>
+            <button
+                class="close"
+                id="closeModal"
+            >
+                ×
+            </button>
 
+        </div>
 
-<div class="form-grid">
 
+        <form
+            class="form"
+            id="householdForm"
+        >
 
-<div class="form-group">
+            <input
+                type="hidden"
+                id="editId"
+            >
 
-<label>
-    บ้านเลขที่ *
-</label>
 
-<input
-    class="form-control"
-    id="houseNumber"
-    type="text"
-    placeholder="เช่น 123/4"
-/>
+            <div class="form-group">
 
-</div>
+                <label>
+                    บ้านเลขที่
+                </label>
 
+                <input
+                    id="houseNumber"
+                    required
+                    placeholder="เช่น 12/1"
+                >
 
-<div class="form-group">
+            </div>
 
-<label>
-    หมู่
-</label>
 
-<input
-    class="form-control"
-    id="moo"
-    type="text"
-    value="6"
-/>
+            <div class="form-group">
 
-</div>
+                <label>
+                    หมู่
+                </label>
 
+                <input
+                    id="moo"
+                    value="6"
+                    required
+                >
 
-<div class="form-group">
+            </div>
 
-<label>
-    ชื่อเจ้าบ้าน *
-</label>
 
-<input
-    class="form-control"
-    id="owner"
-    type="text"
-    placeholder="นาย/นาง/นางสาว..."
-/>
+            <div class="form-group full">
 
-</div>
+                <label>
+                    ชื่อเจ้าบ้าน
+                </label>
 
+                <input
+                    id="owner"
+                    required
+                    placeholder="ชื่อ-นามสกุลเจ้าบ้าน"
+                >
 
-<div class="form-group">
+            </div>
 
-<label>
-    เบอร์โทรศัพท์
-</label>
 
-<input
-    class="form-control"
-    id="phone"
-    type="tel"
-    placeholder="08xxxxxxxx"
-/>
+            <div class="form-group">
 
-</div>
+                <label>
+                    จำนวนสมาชิก
+                </label>
 
+                <input
+                    id="members"
+                    type="number"
+                    min="0"
+                    required
+                >
 
-<div class="form-group">
+            </div>
 
-<label>
-    จำนวนสมาชิกในบ้าน
-</label>
 
-<input
-    class="form-control"
-    id="members"
-    type="number"
-    min="0"
-    value="1"
-/>
+            <div class="form-group">
 
-</div>
+                <label>
+                    ชาย
+                </label>
 
+                <input
+                    id="male"
+                    type="number"
+                    min="0"
+                    required
+                >
 
-<div class="form-group">
+            </div>
 
-<label>
-    ผู้สูงอายุ
-</label>
 
-<select
-    class="form-control"
-    id="elderly"
->
+            <div class="form-group">
 
-    <option value="ไม่มี">
-        ไม่มี
-    </option>
+                <label>
+                    หญิง
+                </label>
 
-    <option value="มี">
-        มี
-    </option>
+                <input
+                    id="female"
+                    type="number"
+                    min="0"
+                    required
+                >
 
-</select>
+            </div>
 
-</div>
 
+            <div class="form-group">
 
-<div class="form-group">
+                <label>
+                    ผู้สูงอายุ
+                </label>
 
-<label>
-    กลุ่มเปราะบาง
-</label>
+                <input
+                    id="elderly"
+                    type="number"
+                    min="0"
+                    value="0"
+                    required
+                >
 
-<select
-    class="form-control"
-    id="vulnerable"
->
+            </div>
 
-    <option value="ไม่มี">
-        ไม่มี
-    </option>
 
-    <option value="มี">
-        มี
-    </option>
+            <div class="form-group">
 
-</select>
+                <label>
+                    กลุ่มเปราะบาง
+                </label>
 
-</div>
+                <input
+                    id="vulnerable"
+                    type="number"
+                    min="0"
+                    value="0"
+                    required
+                >
 
+            </div>
 
-<div class="form-group">
 
-<label>
-    สถานะครัวเรือน
-</label>
+            <div class="form-group">
 
-<select
-    class="form-control"
-    id="status"
->
+                <label>
+                    สถานะ
+                </label>
 
-    <option value="ปกติ">
-        ปกติ
-    </option>
+                <select id="status">
 
-    <option value="ผู้สูงอายุ">
-        มีผู้สูงอายุ
-    </option>
+                    <option>
+                        อาศัยอยู่จริง
+                    </option>
 
-    <option value="เปราะบาง">
-        กลุ่มเปราะบาง
-    </option>
+                    <option>
+                        ไม่มีผู้อาศัย
+                    </option>
 
-</select>
+                </select>
 
-</div>
+            </div>
 
 
-<div class="form-group full">
+            <div class="form-group full">
 
-<label>
-    ที่อยู่เพิ่มเติม
-</label>
+                <label>
+                    หมายเหตุ
+                </label>
 
-<input
-    class="form-control"
-    id="address"
-    type="text"
-    placeholder="ซอย ถนน จุดสังเกต..."
-/>
+                <input
+                    id="note"
+                    placeholder="รายละเอียดเพิ่มเติม"
+                >
 
-</div>
+            </div>
 
+        </form>
 
-<div class="form-group full">
 
-<label>
-    หมายเหตุ
-</label>
+        <div class="modal-actions">
 
-<input
-    class="form-control"
-    id="note"
-    type="text"
-    placeholder="ข้อมูลเพิ่มเติม"
-/>
+            <button
+                class="btn btn-cancel"
+                id="cancelButton"
+            >
+                ยกเลิก
+            </button>
 
-</div>
+            <button
+                class="btn"
+                id="saveButton"
+            >
+                💾 บันทึกข้อมูล
+            </button>
 
+        </div>
 
-</div>
-
-
-<button
-    class="save-btn"
-    onclick="saveHousehold()"
->
-
-    💾 บันทึกข้อมูลครัวเรือน
-
-</button>
-
-</div>
+    </div>
 
 </div>
 
 
 <script>
 
-/* =====================================================
-   CLOCK
-===================================================== */
+/* =========================================================
+DATA
+========================================================= */
 
-function updateClock(){
+let households = [
 
-    const now =
-        new Date();
+{
+    id:1,
+    house:"12",
+    moo:"6",
+    owner:"สมชาย ใจดี",
+    members:5,
+    male:2,
+    female:3,
+    elderly:0,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
 
-    document.getElementById(
-        "clock"
-    ).textContent =
-        now.toLocaleTimeString(
-            "th-TH",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                second:"2-digit"
-            }
-        );
+{
+    id:2,
+    house:"25",
+    moo:"6",
+    owner:"ประเสริฐ คำดี",
+    members:4,
+    male:1,
+    female:3,
+    elderly:2,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
 
+{
+    id:3,
+    house:"31",
+    moo:"6",
+    owner:"วิชัย แสนดี",
+    members:3,
+    male:2,
+    female:1,
+    elderly:0,
+    vulnerable:1,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:4,
+    house:"42",
+    moo:"6",
+    owner:"สุดา แสงทอง",
+    members:4,
+    male:1,
+    female:3,
+    elderly:0,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:5,
+    house:"51",
+    moo:"6",
+    owner:"บุญมี คำปัน",
+    members:2,
+    male:1,
+    female:1,
+    elderly:2,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:6,
+    house:"63",
+    moo:"6",
+    owner:"จันทร์เพ็ญ บุญมา",
+    members:3,
+    male:1,
+    female:2,
+    elderly:1,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:7,
+    house:"71",
+    moo:"6",
+    owner:"อนันต์ ใจคำ",
+    members:2,
+    male:1,
+    female:1,
+    elderly:0,
+    vulnerable:1,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:8,
+    house:"88",
+    moo:"6",
+    owner:"มาลี วงศ์คำ",
+    members:5,
+    male:2,
+    female:3,
+    elderly:1,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:9,
+    house:"105",
+    moo:"6",
+    owner:"สุชาติ แก้วคำ",
+    members:4,
+    male:2,
+    female:2,
+    elderly:0,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
+},
+
+{
+    id:10,
+    house:"118",
+    moo:"6",
+    owner:"คำปัน ใฝ่ใจ",
+    members:1,
+    male:1,
+    female:0,
+    elderly:1,
+    vulnerable:0,
+    status:"อาศัยอยู่จริง"
 }
 
-updateClock();
-
-setInterval(
-    updateClock,
-    1000
-);
+];
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================================================
+ELEMENTS
+========================================================= */
 
-function go(page){
+const table =
+document.getElementById("householdTable");
 
-    window.location.href =
-        page;
+const search =
+document.getElementById("searchInput");
 
-}
+const statusFilter =
+document.getElementById("statusFilter");
 
+const specialFilter =
+document.getElementById("specialFilter");
 
-/* =====================================================
-   STORAGE
-===================================================== */
+const resultCount =
+document.getElementById("resultCount");
 
-let households =
-    JSON.parse(
-        localStorage.getItem(
-            "rongkhem_households"
-        ) || "[]"
-    );
+const modal =
+document.getElementById("modal");
 
-
-let editIndex = -1;
-
-
-/* =====================================================
-   DEFAULT DATA
-===================================================== */
-
-if(
-    households.length === 0
-){
-
-    households = [
-
-        {
-            houseNumber:"1",
-            moo:"6",
-            owner:"ครัวเรือนตัวอย่าง 1",
-            phone:"",
-            members:4,
-            elderly:"มี",
-            vulnerable:"ไม่มี",
-            status:"ผู้สูงอายุ",
-            address:"",
-            note:""
-        },
-
-        {
-            houseNumber:"2",
-            moo:"6",
-            owner:"ครัวเรือนตัวอย่าง 2",
-            phone:"",
-            members:3,
-            elderly:"ไม่มี",
-            vulnerable:"ไม่มี",
-            status:"ปกติ",
-            address:"",
-            note:""
-        },
-
-        {
-            houseNumber:"3",
-            moo:"6",
-            owner:"ครัวเรือนตัวอย่าง 3",
-            phone:"",
-            members:5,
-            elderly:"มี",
-            vulnerable:"มี",
-            status:"เปราะบาง",
-            address:"",
-            note:""
-        }
-
-    ];
+const form =
+document.getElementById("householdForm");
 
 
-    localStorage.setItem(
-        "rongkhem_households",
-        JSON.stringify(
-            households
-        )
-    );
+/* =========================================================
+RENDER
+========================================================= */
 
-}
+function renderTable(){
 
-
-/* =====================================================
-   RENDER
-===================================================== */
-
-function render(){
-
-    const tbody =
-        document.getElementById(
-            "householdTable"
-        );
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
-
+    const keyword =
+        search.value.trim().toLowerCase();
 
     const status =
-        document.getElementById(
-            "statusFilter"
-        ).value;
+        statusFilter.value;
+
+    const special =
+        specialFilter.value;
 
 
     const filtered =
-        households.filter(
-            h => {
+        households.filter(item => {
 
-                const text =
-
-                    String(
-                        h.houseNumber
-                    )
-                    .toLowerCase()
-
-                    +
-
+            const searchText =
+                (
+                    item.house +
                     " " +
-
-                    String(
-                        h.owner
-                    )
-                    .toLowerCase()
-
-                    +
-
+                    item.owner +
                     " " +
-
-                    String(
-                        h.phone
-                    )
-                    .toLowerCase();
+                    item.moo
+                ).toLowerCase();
 
 
-                const matchSearch =
-                    text.includes(
-                        search
-                    );
+            const matchSearch =
+                !keyword ||
+                searchText.includes(keyword);
 
 
-                const matchStatus =
-                    status === "all" ||
-                    h.status === status;
+            const matchStatus =
+                !status ||
+                item.status === status;
 
 
-                return (
-                    matchSearch &&
-                    matchStatus
-                );
+            let matchSpecial = true;
+
+
+            if(special === "ผู้สูงอายุ"){
+
+                matchSpecial =
+                    item.elderly > 0;
 
             }
-        );
 
 
-    if(
-        filtered.length === 0
-    ){
+            if(special === "ผู้เปราะบาง"){
 
-        tbody.innerHTML = `
+                matchSpecial =
+                    item.vulnerable > 0;
 
-            <tr>
+            }
 
-                <td
-                    colspan="7"
-                    class="empty"
-                >
 
-                    <div class="empty-icon">
+            return (
+                matchSearch &&
+                matchStatus &&
+                matchSpecial
+            );
+
+        });
+
+
+    table.innerHTML = "";
+
+
+    filtered.forEach(item => {
+
+        const tr =
+            document.createElement("tr");
+
+
+        const statusClass =
+            item.status === "อาศัยอยู่จริง"
+            ? "badge-green"
+            : "badge-red";
+
+
+        const elderlyBadge =
+            item.elderly > 0
+            ? `<span class="badge badge-orange">${item.elderly} คน</span>`
+            : `<span class="badge badge-blue">ไม่มี</span>`;
+
+
+        const vulnerableBadge =
+            item.vulnerable > 0
+            ? `<span class="badge badge-red">${item.vulnerable} คน</span>`
+            : `<span class="badge badge-blue">ไม่มี</span>`;
+
+
+        tr.innerHTML = `
+
+            <td>
+
+                <div class="house">
+
+                    <div class="house-icon">
                         🏠
                     </div>
 
-                    ไม่พบข้อมูลครัวเรือน
+                    <div>
 
-                </td>
+                        <div class="house-number">
+                            ${item.house}
+                        </div>
 
-            </tr>
+                        <div class="house-sub">
+                            หมู่ ${item.moo}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td>
+                ${item.owner}
+            </td>
+
+
+            <td>
+                <strong>
+                    ${item.members}
+                </strong>
+                คน
+            </td>
+
+
+            <td>
+                ${item.male}
+            </td>
+
+
+            <td>
+                ${item.female}
+            </td>
+
+
+            <td>
+                ${elderlyBadge}
+            </td>
+
+
+            <td>
+                ${vulnerableBadge}
+            </td>
+
+
+            <td>
+
+                <span class="badge ${statusClass}">
+                    ${item.status === "อาศัยอยู่จริง" ? "✓ " : "⚠ "}
+                    ${item.status}
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <button
+                    class="action-btn"
+                    onclick="editHousehold(${item.id})"
+                    title="แก้ไข"
+                >
+                    ✏️
+                </button>
+
+                <button
+                    class="action-btn delete"
+                    onclick="deleteHousehold(${item.id})"
+                    title="ลบ"
+                >
+                    🗑️
+                </button>
+
+            </td>
 
         `;
 
-    }else{
 
-        tbody.innerHTML =
-            filtered.map(
-                h => {
+        table.appendChild(tr);
 
-                    const index =
-                        households.indexOf(
-                            h
-                        );
+    });
 
 
-                    let statusClass =
-                        "green";
-
-
-                    if(
-                        h.status ===
-                        "ผู้สูงอายุ"
-                    ){
-
-                        statusClass =
-                            "yellow";
-
-                    }
-
-
-                    if(
-                        h.status ===
-                        "เปราะบาง"
-                    ){
-
-                        statusClass =
-                            "blue";
-
-                    }
-
-
-                    return `
-
-                    <tr>
-
-                        <td>
-
-                            <div
-                                class="house-number"
-                            >
-
-                                ${escapeHTML(
-                                    h.houseNumber
-                                )}
-
-                            </div>
-
-                            <div class="small">
-
-                                หมู่ ${escapeHTML(
-                                    h.moo || "6"
-                                )}
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            <div
-                                class="owner"
-                            >
-
-                                ${escapeHTML(
-                                    h.owner
-                                )}
-
-                            </div>
-
-                            <div class="small">
-
-                                ${escapeHTML(
-                                    h.address || "-"
-                                )}
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            👥
-                            ${Number(
-                                h.members || 0
-                            )}
-                            คน
-
-                        </td>
-
-
-                        <td>
-
-                            ${escapeHTML(
-                                h.phone || "-"
-                            )}
-
-                        </td>
-
-
-                        <td>
-
-                            <span
-                                class="
-                                    badge
-                                    ${statusClass}
-                                "
-                            >
-
-                                ${escapeHTML(
-                                    h.status
-                                )}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="small">
-
-                                ${
-                                    h.elderly === "มี"
-                                    ?
-                                    "👴 ผู้สูงอายุ "
-                                    :
-                                    ""
-                                }
-
-                                ${
-                                    h.vulnerable === "มี"
-                                    ?
-                                    "♿ กลุ่มเปราะบาง"
-                                    :
-                                    ""
-                                }
-
-                            </div>
-
-
-                            <div class="small">
-
-                                ${escapeHTML(
-                                    h.note || "-"
-                                )}
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="actions">
-
-                                <button
-                                    class="action"
-                                    title="ดูข้อมูล"
-                                    onclick="
-                                        viewHousehold(
-                                            ${index}
-                                        )
-                                    "
-                                >
-                                    👁️
-                                </button>
-
-
-                                <button
-                                    class="action"
-                                    title="แก้ไข"
-                                    onclick="
-                                        editHousehold(
-                                            ${index}
-                                        )
-                                    "
-                                >
-                                    ✏️
-                                </button>
-
-
-                                <button
-                                    class="
-                                        action
-                                        delete
-                                    "
-                                    title="ลบ"
-                                    onclick="
-                                        deleteHousehold(
-                                            ${index}
-                                        )
-                                    "
-                                >
-                                    🗑️
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                    `;
-
-                }
-            ).join("");
-
-    }
-
-
-    updateSummary();
+    resultCount.textContent =
+        `แสดง ${filtered.length} รายการ`;
 
 }
 
 
-/* =====================================================
-   SUMMARY
-===================================================== */
+/* =========================================================
+SUMMARY
+========================================================= */
 
 function updateSummary(){
 
@@ -1772,31 +2246,30 @@ function updateSummary(){
 
     const members =
         households.reduce(
-            (
-                sum,
-                h
-            ) =>
-                sum +
-                Number(
-                    h.members || 0
-                ),
+            (sum,item) =>
+                sum + Number(item.members),
             0
         );
 
 
+    const active =
+        households.filter(
+            item =>
+                item.status === "อาศัยอยู่จริง"
+        ).length;
+
+
     const elderly =
         households.filter(
-            h =>
-                h.elderly ===
-                "มี"
+            item =>
+                item.elderly > 0
         ).length;
 
 
     const vulnerable =
         households.filter(
-            h =>
-                h.vulnerable ===
-                "มี"
+            item =>
+                item.vulnerable > 0
         ).length;
 
 
@@ -1813,120 +2286,138 @@ function updateSummary(){
 
 
     document.getElementById(
+        "activeHouseholds"
+    ).textContent =
+        active;
+
+
+    document.getElementById(
         "elderlyHouseholds"
     ).textContent =
         elderly;
 
 
     document.getElementById(
-        "specialHouseholds"
+        "vulnerableHouseholds"
     ).textContent =
         vulnerable;
 
 }
 
 
-/* =====================================================
-   MODAL
-===================================================== */
+/* =========================================================
+OPEN ADD
+========================================================= */
 
-function openModal(){
+document
+.getElementById("addButton")
+.addEventListener(
+    "click",
+    () => {
 
-    editIndex = -1;
+        form.reset();
+
+        document.getElementById(
+            "editId"
+        ).value = "";
+
+        document.getElementById(
+            "moo"
+        ).value = "6";
+
+        document.getElementById(
+            "status"
+        ).value = "อาศัยอยู่จริง";
+
+        document.getElementById(
+            "modalTitle"
+        ).textContent =
+            "เพิ่มข้อมูลครัวเรือน";
+
+        modal.classList.add("show");
+
+    }
+);
 
 
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "🏠 เพิ่มครัวเรือนใหม่";
-
-
-    clearForm();
-
-
-    document.getElementById(
-        "modal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
+/* =========================================================
+CLOSE
+========================================================= */
 
 function closeModal(){
 
-    document.getElementById(
-        "modal"
-    ).classList.remove(
-        "show"
-    );
+    modal.classList.remove("show");
 
 }
 
 
-function clearForm(){
-
-    document.getElementById(
-        "houseNumber"
-    ).value = "";
-
-
-    document.getElementById(
-        "moo"
-    ).value = "6";
+document
+.getElementById("closeModal")
+.addEventListener(
+    "click",
+    closeModal
+);
 
 
-    document.getElementById(
-        "owner"
-    ).value = "";
+document
+.getElementById("cancelButton")
+.addEventListener(
+    "click",
+    closeModal
+);
 
 
-    document.getElementById(
-        "phone"
-    ).value = "";
+modal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === modal){
+
+            closeModal();
+
+        }
+
+    }
+);
 
 
-    document.getElementById(
-        "members"
-    ).value = "1";
+/* =========================================================
+SAVE
+========================================================= */
 
+document
+.getElementById("saveButton")
+.addEventListener(
+    "click",
+    saveHousehold
+);
 
-    document.getElementById(
-        "elderly"
-    ).value = "ไม่มี";
-
-
-    document.getElementById(
-        "vulnerable"
-    ).value = "ไม่มี";
-
-
-    document.getElementById(
-        "status"
-    ).value = "ปกติ";
-
-
-    document.getElementById(
-        "address"
-    ).value = "";
-
-
-    document.getElementById(
-        "note"
-    ).value = "";
-
-}
-
-
-/* =====================================================
-   SAVE
-===================================================== */
 
 function saveHousehold(){
 
-    const data = {
+    if(!form.checkValidity()){
 
-        houseNumber:
+        form.reportValidity();
+
+        return;
+
+    }
+
+
+    const id =
+        document.getElementById(
+            "editId"
+        ).value;
+
+
+    const item = {
+
+        id:
+            id
+            ? Number(id)
+            : Date.now(),
+
+        house:
             document.getElementById(
                 "houseNumber"
             ).value.trim(),
@@ -1941,385 +2432,314 @@ function saveHousehold(){
                 "owner"
             ).value.trim(),
 
-        phone:
-            document.getElementById(
-                "phone"
-            ).value.trim(),
-
         members:
             Number(
                 document.getElementById(
                     "members"
                 ).value
-            ) || 0,
+            ),
+
+        male:
+            Number(
+                document.getElementById(
+                    "male"
+                ).value
+            ),
+
+        female:
+            Number(
+                document.getElementById(
+                    "female"
+                ).value
+            ),
 
         elderly:
-            document.getElementById(
-                "elderly"
-            ).value,
+            Number(
+                document.getElementById(
+                    "elderly"
+                ).value
+            ),
 
         vulnerable:
-            document.getElementById(
-                "vulnerable"
-            ).value,
+            Number(
+                document.getElementById(
+                    "vulnerable"
+                ).value
+            ),
 
         status:
             document.getElementById(
                 "status"
             ).value,
 
-        address:
-            document.getElementById(
-                "address"
-            ).value.trim(),
-
         note:
             document.getElementById(
                 "note"
-            ).value.trim()
+            ).value
 
     };
 
 
-    if(
-        !data.houseNumber ||
-        !data.owner
-    ){
+    if(id){
 
-        alert(
-            "กรุณากรอกบ้านเลขที่และชื่อเจ้าบ้าน"
-        );
-
-        return;
-
-    }
-
-
-    if(
-        editIndex === -1
-    ){
-
-        const duplicate =
-            households.some(
-                h =>
-                    h.houseNumber
-                    .toLowerCase()
-                    ===
-                    data.houseNumber
-                    .toLowerCase()
+        const index =
+            households.findIndex(
+                x =>
+                    x.id === Number(id)
             );
 
 
-        if(duplicate){
+        if(index !== -1){
 
-            alert(
-                "มีบ้านเลขที่นี้อยู่แล้ว"
-            );
-
-            return;
+            households[index] =
+                item;
 
         }
 
-
-        households.push(
-            data
-        );
-
-
-        alert(
-            "เพิ่มข้อมูลครัวเรือนเรียบร้อยแล้ว"
-        );
-
     }else{
 
-        households[
-            editIndex
-        ] = data;
-
-
-        alert(
-            "แก้ไขข้อมูลครัวเรือนเรียบร้อยแล้ว"
-        );
+        households.unshift(item);
 
     }
-
-
-    localStorage.setItem(
-        "rongkhem_households",
-        JSON.stringify(
-            households
-        )
-    );
 
 
     closeModal();
 
-    render();
+    renderTable();
+
+    updateSummary();
 
 }
 
 
-/* =====================================================
-   EDIT
-===================================================== */
+/* =========================================================
+EDIT
+========================================================= */
 
-function editHousehold(index){
+function editHousehold(id){
 
-    const h =
-        households[index];
+    const item =
+        households.find(
+            x => x.id === id
+        );
 
 
-    if(!h) return;
-
-
-    editIndex =
-        index;
+    if(!item){
+        return;
+    }
 
 
     document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "✏️ แก้ไขข้อมูลครัวเรือน";
+        "editId"
+    ).value =
+        item.id;
 
 
     document.getElementById(
         "houseNumber"
     ).value =
-        h.houseNumber;
+        item.house;
 
 
     document.getElementById(
         "moo"
     ).value =
-        h.moo || "6";
+        item.moo;
 
 
     document.getElementById(
         "owner"
     ).value =
-        h.owner;
-
-
-    document.getElementById(
-        "phone"
-    ).value =
-        h.phone || "";
+        item.owner;
 
 
     document.getElementById(
         "members"
     ).value =
-        h.members || 0;
+        item.members;
+
+
+    document.getElementById(
+        "male"
+    ).value =
+        item.male;
+
+
+    document.getElementById(
+        "female"
+    ).value =
+        item.female;
 
 
     document.getElementById(
         "elderly"
     ).value =
-        h.elderly || "ไม่มี";
+        item.elderly;
 
 
     document.getElementById(
         "vulnerable"
     ).value =
-        h.vulnerable || "ไม่มี";
+        item.vulnerable;
 
 
     document.getElementById(
         "status"
     ).value =
-        h.status || "ปกติ";
-
-
-    document.getElementById(
-        "address"
-    ).value =
-        h.address || "";
+        item.status;
 
 
     document.getElementById(
         "note"
     ).value =
-        h.note || "";
+        item.note || "";
 
 
     document.getElementById(
-        "modal"
-    ).classList.add(
-        "show"
-    );
+        "modalTitle"
+    ).textContent =
+        "แก้ไขข้อมูลครัวเรือน";
+
+
+    modal.classList.add("show");
 
 }
 
 
-/* =====================================================
-   VIEW
-===================================================== */
+/* =========================================================
+DELETE
+========================================================= */
 
-function viewHousehold(index){
+function deleteHousehold(id){
 
-    const h =
-        households[index];
-
-
-    if(!h) return;
-
-
-    alert(
-
-        "🏠 ข้อมูลครัวเรือน\n\n" +
-
-        "บ้านเลขที่: " +
-        h.houseNumber +
-
-        "\nหมู่: " +
-        h.moo +
-
-        "\nเจ้าบ้าน: " +
-        h.owner +
-
-        "\nเบอร์โทร: " +
-        (
-            h.phone ||
-            "-"
-        ) +
-
-        "\nสมาชิก: " +
-        h.members +
-        " คน" +
-
-        "\nผู้สูงอายุ: " +
-        h.elderly +
-
-        "\nกลุ่มเปราะบาง: " +
-        h.vulnerable +
-
-        "\nสถานะ: " +
-        h.status +
-
-        "\nที่อยู่เพิ่มเติม: " +
-        (
-            h.address ||
-            "-"
-        ) +
-
-        "\nหมายเหตุ: " +
-        (
-            h.note ||
-            "-"
-        )
-
-    );
-
-}
+    const item =
+        households.find(
+            x => x.id === id
+        );
 
 
-/* =====================================================
-   DELETE
-===================================================== */
-
-function deleteHousehold(index){
-
-    const h =
-        households[index];
-
-
-    if(!h) return;
-
-
-    if(
-        !confirm(
-            `ต้องการลบบ้านเลขที่ ${h.houseNumber} หรือไม่?`
-        )
-    ){
-
+    if(!item){
         return;
-
     }
 
 
-    households.splice(
-        index,
-        1
-    );
+    const confirmed =
+        confirm(
+            `ต้องการลบข้อมูลบ้านเลขที่ ${item.house} เจ้าบ้าน ${item.owner} หรือไม่?`
+        );
 
 
-    localStorage.setItem(
-        "rongkhem_households",
-        JSON.stringify(
-            households
-        )
-    );
+    if(!confirmed){
+        return;
+    }
 
 
-    render();
+    households =
+        households.filter(
+            x => x.id !== id
+        );
 
 
-    alert(
-        "ลบข้อมูลครัวเรือนเรียบร้อยแล้ว"
-    );
+    renderTable();
 
-}
-
-
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(
-        value ?? ""
-    )
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+    updateSummary();
 
 }
 
 
-/* =====================================================
-   CLOSE MODAL
-===================================================== */
+/* =========================================================
+FILTER
+========================================================= */
 
-document.addEventListener(
+search.addEventListener(
+    "input",
+    renderTable
+);
+
+statusFilter.addEventListener(
+    "change",
+    renderTable
+);
+
+specialFilter.addEventListener(
+    "change",
+    renderTable
+);
+
+
+/* =========================================================
+CLOCK
+========================================================= */
+
+function updateClock(){
+
+    const now =
+        new Date();
+
+
+    document.getElementById(
+        "time"
+    ).textContent =
+        now.toLocaleTimeString(
+            "th-TH",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:false
+            }
+        );
+
+
+    document.getElementById(
+        "today"
+    ).textContent =
+        now.toLocaleDateString(
+            "th-TH",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+}
+
+
+updateClock();
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =========================================================
+MOBILE MENU
+========================================================= */
+
+document
+.getElementById("mobileButton")
+.addEventListener(
     "click",
-    function(event){
+    () => {
 
-        if(
-            event.target.classList
-            .contains("modal")
-        ){
-
-            closeModal();
-
-        }
+        document
+        .getElementById("sidebar")
+        .classList.toggle("open");
 
     }
 );
 
 
-/* =====================================================
-   INITIALIZE
-===================================================== */
+/* =========================================================
+START
+========================================================= */
 
-render();
+renderTable();
+
+updateSummary();
 
 </script>
 
