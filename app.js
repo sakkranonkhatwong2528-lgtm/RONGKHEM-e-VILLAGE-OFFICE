@@ -1,15 +1,16 @@
 /* =========================================================
    RONGKHEM e-VILLAGE OFFICE
-   APP.JS — ระบบทำงานหลัก
+   APP.JS — COMPLETE
    ========================================================= */
 
 (function () {
 
     "use strict";
 
+
     /* =====================================================
-       ตรวจสอบ DATA / CONFIG
-       ===================================================== */
+       DATA / CONFIG
+    ===================================================== */
 
     const DATA =
         window.RONGKHEM_DATA || {};
@@ -17,19 +18,6 @@
     const CONFIG =
         window.RONGKHEM_CONFIG || {};
 
-
-    /* =====================================================
-       ฟังก์ชันค้นหา Element
-       ===================================================== */
-
-    function $(id) {
-        return document.getElementById(id);
-    }
-
-
-    /* =====================================================
-       ข้อมูล VERIFIED DATA
-       ===================================================== */
 
     const population =
         DATA.population || {};
@@ -45,155 +33,35 @@
 
 
     /* =====================================================
-       แสดงข้อมูล Dashboard
-       ===================================================== */
+       HELPER
+    ===================================================== */
 
-    function loadDashboardData() {
-
-        const elements = {
-
-            population:
-                $("populationTotal"),
-
-            male:
-                $("populationMale"),
-
-            female:
-                $("populationFemale"),
-
-            households:
-                $("householdsTotal"),
-
-            elderly:
-                $("elderlyTotal"),
-
-            elderlyPercent:
-                $("elderlyPercent"),
-
-            vulnerable:
-                $("vulnerableTotal"),
-
-            disabled:
-                $("disabledTotal"),
-
-            chronic:
-                $("chronicTotal"),
-
-            survey:
-                $("surveyTotal"),
-
-            surveyHouseholds:
-                $("surveyHouseholds")
-        };
+    function $(id) {
+        return document.getElementById(id);
+    }
 
 
-        if (elements.population) {
-            elements.population.textContent =
-                population.total ?? 0;
-        }
+    function escapeHTML(value) {
 
+        return String(value ?? "")
+            .replace(/[&<>"']/g, function (char) {
 
-        if (elements.male) {
-            elements.male.textContent =
-                population.male ?? 0;
-        }
+                return {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#039;"
+                }[char];
 
-
-        if (elements.female) {
-            elements.female.textContent =
-                population.female ?? 0;
-        }
-
-
-        if (elements.households) {
-            elements.households.textContent =
-                households.total ?? 0;
-        }
-
-
-        if (elements.elderly) {
-            elements.elderly.textContent =
-                survey.elderly60Plus ?? 0;
-        }
-
-
-        if (elements.elderlyPercent) {
-            elements.elderlyPercent.textContent =
-                survey.elderlyPercent ?? 0;
-        }
-
-
-        if (elements.vulnerable) {
-            elements.vulnerable.textContent =
-                survey.vulnerableSelections ?? 0;
-        }
-
-
-        if (elements.disabled) {
-            elements.disabled.textContent =
-                survey.disabled ?? 0;
-        }
-
-
-        if (elements.chronic) {
-            elements.chronic.textContent =
-                survey.chronicDisease ?? 0;
-        }
-
-
-        if (elements.survey) {
-            elements.survey.textContent =
-                survey.respondents ?? 0;
-        }
-
-
-        if (elements.surveyHouseholds) {
-            elements.surveyHouseholds.textContent =
-                survey.households ?? 0;
-        }
+            });
 
     }
 
 
     /* =====================================================
-       ข้อมูลผู้ใหญ่บ้าน
-       ===================================================== */
-
-    function loadLeader() {
-
-        const name =
-            $("leaderName");
-
-        const phone =
-            $("leaderPhone");
-
-        const line =
-            $("leaderLine");
-
-
-        if (name && leader.name) {
-            name.textContent =
-                leader.name;
-        }
-
-
-        if (phone && leader.phone) {
-            phone.textContent =
-                leader.phone;
-        }
-
-
-        if (line && leader.line) {
-            line.textContent =
-                leader.line;
-        }
-
-    }
-
-
-    /* =====================================================
-       นาฬิกาดิจิทัล
-       ===================================================== */
+       CLOCK
+    ===================================================== */
 
     function updateClock() {
 
@@ -202,7 +70,6 @@
 
         const date =
             $("date");
-
 
         const now =
             new Date();
@@ -242,33 +109,107 @@
     }
 
 
-    setInterval(
-        updateClock,
-        1000
-    );
+    /* =====================================================
+       DASHBOARD DATA
+    ===================================================== */
 
-    updateClock();
+    function loadDashboardData() {
+
+        const map = {
+
+            populationTotal:
+                population.total,
+
+            populationMale:
+                population.male,
+
+            populationFemale:
+                population.female,
+
+            householdsTotal:
+                households.total,
+
+            elderlyTotal:
+                survey.elderly60Plus,
+
+            elderlyPercent:
+                survey.elderlyPercent,
+
+            vulnerableTotal:
+                survey.vulnerableSelections,
+
+            disabledTotal:
+                survey.disabled,
+
+            chronicTotal:
+                survey.chronicDisease,
+
+            surveyTotal:
+                survey.respondents,
+
+            surveyHouseholds:
+                survey.households
+
+        };
+
+
+        Object.keys(map).forEach(
+            function (id) {
+
+                const element =
+                    $(id);
+
+                if (element) {
+
+                    element.textContent =
+                        map[id] ?? 0;
+
+                }
+
+            }
+        );
+
+    }
 
 
     /* =====================================================
-       LocalStorage
-       ===================================================== */
+       LEADER
+    ===================================================== */
+
+    function loadLeader() {
+
+        const name =
+            $("leaderName");
+
+
+        if (
+            name &&
+            leader.name
+        ) {
+
+            name.textContent =
+                leader.name;
+
+        }
+
+    }
+
+
+    /* =====================================================
+       LOCAL STORAGE
+    ===================================================== */
 
     function getStorage(key) {
 
         try {
 
             return JSON.parse(
-                localStorage.getItem(key) ||
-                "[]"
+                localStorage.getItem(key) || "[]"
             );
 
         } catch (error) {
 
-            console.error(
-                "Storage Error:",
-                error
-            );
+            console.error(error);
 
             return [];
 
@@ -288,35 +229,8 @@
 
 
     /* =====================================================
-       ป้องกัน HTML
-       ===================================================== */
-
-    function escapeHTML(value) {
-
-        return String(
-            value ?? ""
-        ).replace(
-            /[&<>"']/g,
-            function (char) {
-
-                return {
-                    "&": "&amp;",
-                    "<": "&lt;",
-                    ">": "&gt;",
-                    '"': "&quot;",
-                    "'": "&#039;"
-
-                }[char];
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       ระบบประกาศ
-       ===================================================== */
+       NEWS
+    ===================================================== */
 
     const NEWS_KEY =
         "RONGKHEM_NEWS";
@@ -334,11 +248,7 @@
             getStorage(NEWS_KEY);
 
 
-        if (!news.length) {
-
-            return;
-
-        }
+        if (!news.length) return;
 
 
         container.className = "";
@@ -346,11 +256,13 @@
 
         container.innerHTML =
             news
-                .slice(0, 5)
+                .slice(0, 10)
                 .map(function (item) {
 
                     return `
+
                     <div class="alert">
+
                         <b>
                             📢
                             ${escapeHTML(item.title)}
@@ -358,13 +270,13 @@
 
                         <small>
                             ${escapeHTML(item.date || "")}
-                            ${escapeHTML(item.time || "")}
+                            ${item.time ? " " + escapeHTML(item.time) : ""}
                         </small>
 
                         ${
                             item.detail
                                 ? `
-                                <div>
+                                <div style="margin-top:6px">
                                     ${escapeHTML(item.detail)}
                                 </div>
                                 `
@@ -372,6 +284,7 @@
                         }
 
                     </div>
+
                     `;
 
                 })
@@ -381,8 +294,8 @@
 
 
     /* =====================================================
-       ระบบกิจกรรม
-       ===================================================== */
+       ACTIVITY
+    ===================================================== */
 
     const ACTIVITY_KEY =
         "RONGKHEM_ACTIVITY";
@@ -400,11 +313,7 @@
             getStorage(ACTIVITY_KEY);
 
 
-        if (!activities.length) {
-
-            return;
-
-        }
+        if (!activities.length) return;
 
 
         container.className = "";
@@ -412,10 +321,11 @@
 
         container.innerHTML =
             activities
-                .slice(0, 5)
+                .slice(0, 10)
                 .map(function (item) {
 
                     return `
+
                     <div class="alert">
 
                         <b>
@@ -425,13 +335,13 @@
 
                         <small>
                             ${escapeHTML(item.date || "")}
-                            ${escapeHTML(item.time || "")}
+                            ${item.time ? " " + escapeHTML(item.time) : ""}
                         </small>
 
                         ${
                             item.detail
                                 ? `
-                                <div>
+                                <div style="margin-top:6px">
                                     ${escapeHTML(item.detail)}
                                 </div>
                                 `
@@ -439,6 +349,7 @@
                         }
 
                     </div>
+
                     `;
 
                 })
@@ -448,8 +359,8 @@
 
 
     /* =====================================================
-       ระบบแจ้งเหตุ / ร้องเรียน
-       ===================================================== */
+       COMPLAINT
+    ===================================================== */
 
     const COMPLAINT_KEY =
         "RONGKHEM_COMPLAINT";
@@ -458,7 +369,7 @@
     function loadComplaints() {
 
         const container =
-            $("complaintList");
+            $("alertList");
 
         if (!container) return;
 
@@ -467,19 +378,16 @@
             getStorage(COMPLAINT_KEY);
 
 
-        if (!complaints.length) {
-
-            return;
-
-        }
+        if (!complaints.length) return;
 
 
         container.innerHTML =
             complaints
-                .slice(0, 5)
+                .slice(0, 10)
                 .map(function (item) {
 
                     return `
+
                     <div class="alert">
 
                         <b>
@@ -491,7 +399,18 @@
                             ${escapeHTML(item.date || "")}
                         </small>
 
+                        ${
+                            item.detail
+                                ? `
+                                <div style="margin-top:6px">
+                                    ${escapeHTML(item.detail)}
+                                </div>
+                                `
+                                : ""
+                        }
+
                     </div>
+
                     `;
 
                 })
@@ -501,8 +420,8 @@
 
 
     /* =====================================================
-       Modal
-       ===================================================== */
+       MODAL
+    ===================================================== */
 
     function openModal(html) {
 
@@ -544,8 +463,8 @@
 
 
     /* =====================================================
-       จัดการประกาศ / กิจกรรม / แจ้งเหตุ
-       ===================================================== */
+       MANAGER
+    ===================================================== */
 
     window.openManager =
         function (type) {
@@ -553,39 +472,24 @@
             let title =
                 "จัดการข้อมูล";
 
-            let key =
-                NEWS_KEY;
-
-
             if (type === "news") {
 
                 title =
                     "📢 เพิ่มประกาศ";
 
-                key =
-                    NEWS_KEY;
-
             }
-
 
             if (type === "activity") {
 
                 title =
                     "📅 เพิ่มกิจกรรม";
 
-                key =
-                    ACTIVITY_KEY;
-
             }
 
-
-            if (type === "complaint") {
+            if (type === "alert") {
 
                 title =
                     "🚨 เพิ่มแจ้งเหตุ / ร้องเรียน";
-
-                key =
-                    COMPLAINT_KEY;
 
             }
 
@@ -645,17 +549,19 @@
 
                     <button
                         class="btn gray"
-                        onclick="closeModal()"
-                    >
+                        onclick="closeModal()">
+
                         ปิด
+
                     </button>
 
 
                     <button
                         class="btn green"
-                        onclick="saveManagerItem('${type}')"
-                    >
+                        onclick="saveManagerItem('${type}')">
+
                         💾 บันทึก
+
                     </button>
 
                 </div>
@@ -707,7 +613,7 @@
             }
 
 
-            if (type === "complaint") {
+            if (type === "alert") {
 
                 key =
                     COMPLAINT_KEY;
@@ -715,11 +621,11 @@
             }
 
 
-            const data =
+            const items =
                 getStorage(key);
 
 
-            data.unshift({
+            items.unshift({
 
                 id:
                     Date.now(),
@@ -728,13 +634,13 @@
                     title.value.trim(),
 
                 date:
-                    date.value,
+                    date ? date.value : "",
 
                 time:
-                    time.value,
+                    time ? time.value : "",
 
                 detail:
-                    detail.value.trim(),
+                    detail ? detail.value.trim() : "",
 
                 createdAt:
                     new Date().toISOString()
@@ -744,7 +650,7 @@
 
             setStorage(
                 key,
-                data
+                items
             );
 
 
@@ -752,7 +658,9 @@
 
 
             loadNews();
+
             loadActivities();
+
             loadComplaints();
 
 
@@ -764,127 +672,423 @@
 
 
     /* =====================================================
-       AI ผู้ช่วยผู้ใหญ่บ้าน
-       ===================================================== */
+       SETTINGS
+    ===================================================== */
 
-    window.askAI =
+    window.openSettings =
         function () {
 
-            const question =
-                prompt(
-                    "ถามข้อมูลบ้านร่องเข็ม เช่น\n\n" +
-                    "• ประชากรมีกี่คน?\n" +
-                    "• มีกี่ครัวเรือน?\n" +
-                    "• ผู้สูงอายุมีกี่คน?\n" +
-                    "• กลุ่มเปราะบางมีกี่รายการ?"
+            openModal(`
+
+                <h2>
+                    ⚙️ ตั้งค่าระบบ
+                </h2>
+
+
+                <label>
+                    ชื่อผู้ใหญ่บ้าน
+
+                    <input
+                        id="settingName"
+                        type="text"
+                        value="${escapeHTML(
+                            leader.name ||
+                            "นายศักรนนท์ ขัติ์วงศ์"
+                        )}"
+                    >
+
+                </label>
+
+
+                <label>
+                    เบอร์โทรศัพท์
+
+                    <input
+                        id="settingPhone"
+                        type="text"
+                        value="${escapeHTML(
+                            leader.phone ||
+                            "080-1202529"
+                        )}"
+                    >
+
+                </label>
+
+
+                <label>
+                    LINE ID
+
+                    <input
+                        id="settingLine"
+                        type="text"
+                        value="${escapeHTML(
+                            leader.line ||
+                            "rongkhem.village"
+                        )}"
+                    >
+
+                </label>
+
+
+                <label>
+                    รูปผู้ใหญ่บ้าน
+
+                    <input
+                        id="leaderPhotoFile"
+                        type="file"
+                        accept="image/*"
+                    >
+
+                </label>
+
+
+                <div class="actions">
+
+                    <button
+                        class="btn gray"
+                        onclick="closeModal()">
+
+                        ปิด
+
+                    </button>
+
+
+                    <button
+                        class="btn green"
+                        onclick="saveSettings()">
+
+                        💾 บันทึก
+
+                    </button>
+
+                </div>
+
+            `);
+
+        };
+
+
+    window.saveSettings =
+        function () {
+
+            const name =
+                $("settingName")?.value.trim();
+
+            const phone =
+                $("settingPhone")?.value.trim();
+
+            const line =
+                $("settingLine")?.value.trim();
+
+
+            const settings = {
+
+                name:
+                    name || leader.name,
+
+                phone:
+                    phone || leader.phone,
+
+                line:
+                    line || leader.line
+
+            };
+
+
+            localStorage.setItem(
+                "RONGKHEM_SETTINGS",
+                JSON.stringify(settings)
+            );
+
+
+            if ($("leaderName")) {
+
+                $("leaderName").textContent =
+                    settings.name;
+
+            }
+
+
+            const file =
+                $("leaderPhotoFile")
+                    ?.files?.[0];
+
+
+            if (file) {
+
+                saveLeaderPhoto(
+                    file
                 );
 
-
-            if (!question) return;
-
-
-            const q =
-                question.toLowerCase();
-
-
-            let answer =
-                "ผมสามารถตอบข้อมูล VERIFIED DATA ของบ้านร่องเข็มได้ครับ";
-
-
-            if (
-                q.includes("ประชากร") ||
-                q.includes("คน")
-            ) {
-
-                answer =
-                    `บ้านร่องเข็มมีประชากร ${population.total} คน ` +
-                    `แบ่งเป็นชาย ${population.male} คน ` +
-                    `และหญิง ${population.female} คนครับ`;
-
             }
 
 
-            else if (
-                q.includes("ครัวเรือน") ||
-                q.includes("บ้าน")
-            ) {
-
-                answer =
-                    `บ้านร่องเข็มมี ${households.total} ครัวเรือนครับ`;
-
-            }
+            closeModal();
 
 
-            else if (
-                q.includes("ผู้สูงอายุ") ||
-                q.includes("60")
-            ) {
-
-                answer =
-                    `มีผู้สูงอายุอายุ 60 ปีขึ้นไป ` +
-                    `${survey.elderly60Plus} คน ` +
-                    `คิดเป็น ${survey.elderlyPercent}% ` +
-                    `ของผู้ตอบแบบสำรวจครับ`;
-
-            }
-
-
-            else if (
-                q.includes("เปราะบาง")
-            ) {
-
-                answer =
-                    `กลุ่มเปราะบางมี ` +
-                    `${survey.vulnerableSelections} รายการครับ ` +
-                    `โดยมีผู้พิการ ${survey.disabled} คน ` +
-                    `และโรคเรื้อรัง ${survey.chronicDisease} คน`;
-
-            }
-
-
-            else if (
-                q.includes("พิการ")
-            ) {
-
-                answer =
-                    `ข้อมูลสำรวจพบผู้พิการ ${survey.disabled} คนครับ`;
-
-            }
-
-
-            else if (
-                q.includes("โรคเรื้อรัง")
-            ) {
-
-                answer =
-                    `ข้อมูลสำรวจพบผู้มีโรคเรื้อรัง ${survey.chronicDisease} คนครับ`;
-
-            }
-
-
-            const ai =
-                $("aiText");
-
-
-            if (ai) {
-
-                ai.textContent =
-                    answer;
-
-            }
+            alert(
+                "บันทึกการตั้งค่าเรียบร้อยแล้ว"
+            );
 
         };
 
 
     /* =====================================================
-       WEATHER — OPEN METEO
-       ===================================================== */
+       LEADER PHOTO
+    ===================================================== */
+
+    function saveLeaderPhoto(file) {
+
+        if (!file) return;
+
+
+        if (
+            !file.type.startsWith("image/")
+        ) {
+
+            alert(
+                "กรุณาเลือกไฟล์รูปภาพ"
+            );
+
+            return;
+
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+            function (event) {
+
+                const image =
+                    event.target.result;
+
+
+                localStorage.setItem(
+                    "RONGKHEM_LEADER_PHOTO",
+                    image
+                );
+
+
+                showLeaderPhoto(
+                    image
+                );
+
+            };
+
+
+        reader.readAsDataURL(
+            file
+        );
+
+    }
+
+
+    function showLeaderPhoto(image) {
+
+        const element =
+            $("profilePic");
+
+
+        if (!element) return;
+
+
+        element.innerHTML =
+            `<img
+                src="${image}"
+                alt="ผู้ใหญ่บ้าน"
+            >`;
+
+    }
+
+
+    function loadLeaderPhoto() {
+
+        const image =
+            localStorage.getItem(
+                "RONGKHEM_LEADER_PHOTO"
+            );
+
+
+        if (image) {
+
+            showLeaderPhoto(
+                image
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       HERO IMAGE
+       หมู่บ้านกองทุนแม่ของแผ่นดิน
+    ===================================================== */
+
+    const HERO_IMAGE_KEY =
+        "RONGKHEM_HERO_IMAGE";
+
+
+    window.openHeroUpload =
+        function () {
+
+            const input =
+                document.createElement(
+                    "input"
+                );
+
+
+            input.type =
+                "file";
+
+            input.accept =
+                "image/*";
+
+
+            input.onchange =
+                function () {
+
+                    const file =
+                        input.files &&
+                        input.files[0];
+
+
+                    if (!file) return;
+
+
+                    if (
+                        !file.type.startsWith(
+                            "image/"
+                        )
+                    ) {
+
+                        alert(
+                            "กรุณาเลือกไฟล์รูปภาพ"
+                        );
+
+                        return;
+
+                    }
+
+
+                    if (
+                        file.size >
+                        10 * 1024 * 1024
+                    ) {
+
+                        alert(
+                            "รูปภาพต้องมีขนาดไม่เกิน 10 MB"
+                        );
+
+                        return;
+
+                    }
+
+
+                    const reader =
+                        new FileReader();
+
+
+                    reader.onload =
+                        function (event) {
+
+                            const image =
+                                event.target.result;
+
+
+                            localStorage.setItem(
+                                HERO_IMAGE_KEY,
+                                image
+                            );
+
+
+                            applyHeroImage(
+                                image
+                            );
+
+
+                            alert(
+                                "เปลี่ยนรูปภาพเรียบร้อยแล้ว"
+                            );
+
+                        };
+
+
+                    reader.readAsDataURL(
+                        file
+                    );
+
+                };
+
+
+            input.click();
+
+        };
+
+
+    function applyHeroImage(image) {
+
+        const hero =
+            $("heroBanner");
+
+
+        if (!hero) return;
+
+
+        hero.style.backgroundImage =
+            `url("${image}")`;
+
+
+        hero.style.backgroundSize =
+            "cover";
+
+
+        hero.style.backgroundPosition =
+            "center";
+
+
+        hero.style.backgroundRepeat =
+            "no-repeat";
+
+    }
+
+
+    function loadHeroImage() {
+
+        const image =
+            localStorage.getItem(
+                HERO_IMAGE_KEY
+            );
+
+
+        if (image) {
+
+            applyHeroImage(
+                image
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       WEATHER
+       Open-Meteo
+    ===================================================== */
 
     async function loadWeather() {
 
+        const weatherConfig =
+            CONFIG.weather;
+
+
         if (
-            !CONFIG.weather ||
-            CONFIG.weather.enabled === false
+            !weatherConfig ||
+            weatherConfig.enabled === false
         ) {
 
             return;
@@ -893,21 +1097,30 @@
 
 
         const latitude =
-            CONFIG.weather.latitude;
+            weatherConfig.latitude;
+
 
         const longitude =
-            CONFIG.weather.longitude;
+            weatherConfig.longitude;
 
 
         const url =
             "https://api.open-meteo.com/v1/forecast" +
+
             `?latitude=${latitude}` +
+
             `&longitude=${longitude}` +
-            "&current=temperature_2m," +
+
+            "&current=" +
+
+            "temperature_2m," +
             "relative_humidity_2m," +
+            "precipitation," +
             "wind_speed_10m," +
             "weather_code" +
+
             "&hourly=precipitation_probability" +
+
             "&timezone=Asia%2FBangkok";
 
 
@@ -950,83 +1163,88 @@
                 );
 
 
-            const code =
+            const weatherCode =
                 current.weather_code;
 
 
-            const temp =
-                $("temp");
-
-            const topTemp =
-                $("topTemp");
-
-            const hum =
-                $("hum");
-
-            const windElement =
-                $("wind");
-
-            const weatherText =
-                $("weatherText");
+            const precipitation =
+                data.hourly &&
+                data.hourly.precipitation_probability
+                    ? data.hourly.precipitation_probability[0]
+                    : null;
 
 
-            if (temp) {
+            if ($("temp")) {
 
-                temp.textContent =
+                $("temp").textContent =
                     temperature + "°C";
 
             }
 
 
-            if (topTemp) {
+            if ($("topTemp")) {
 
-                topTemp.textContent =
+                $("topTemp").textContent =
                     temperature + "°C";
 
             }
 
 
-            if (hum) {
+            if ($("hum")) {
 
-                hum.textContent =
+                $("hum").textContent =
                     humidity + "%";
 
             }
 
 
-            if (windElement) {
+            if ($("wind")) {
 
-                windElement.textContent =
+                $("wind").textContent =
                     wind + " km/h";
 
             }
 
 
-            if (weatherText) {
+            if (
+                $("weatherText")
+            ) {
 
-                weatherText.textContent =
+                $("weatherText").textContent =
                     weatherDescription(
-                        code
+                        weatherCode
                     );
 
             }
 
 
+            const rainElement =
+                document.querySelector(
+                    ".weather3 div:nth-child(2) b"
+                );
+
+
+            if (
+                rainElement &&
+                precipitation !== null
+            ) {
+
+                rainElement.textContent =
+                    precipitation + "%";
+
+            }
+
         } catch (error) {
 
             console.error(
-                "Weather:",
+                "Weather error:",
                 error
             );
 
 
-            const weatherText =
-                $("weatherText");
+            if ($("weatherText")) {
 
-
-            if (weatherText) {
-
-                weatherText.textContent =
+                $("weatherText").textContent =
                     "ไม่สามารถโหลดข้อมูลสดได้";
 
             }
@@ -1036,54 +1254,49 @@
     }
 
 
-    function weatherDescription(
-        code
-    ) {
+    function weatherDescription(code) {
 
         if (code === 0) {
-
             return "ท้องฟ้าแจ่มใส";
-
         }
-
 
         if (
             code === 1 ||
-            code === 2 ||
-            code === 3
+            code === 2
         ) {
-
             return "มีเมฆบางส่วน";
-
         }
 
+        if (code === 3) {
+            return "มีเมฆมาก";
+        }
 
         if (
             code >= 51 &&
             code <= 67
         ) {
-
             return "มีฝน";
-
         }
-
 
         if (
             code >= 71 &&
             code <= 77
         ) {
-
-            return "อากาศเย็น";
-
+            return "มีหิมะ";
         }
 
+        if (
+            code >= 80 &&
+            code <= 82
+        ) {
+            return "ฝนตก";
+        }
 
-        if (code >= 80) {
-
+        if (
+            code >= 95
+        ) {
             return "ฝนฟ้าคะนอง";
-
         }
-
 
         return "สภาพอากาศปัจจุบัน";
 
@@ -1091,14 +1304,18 @@
 
 
     /* =====================================================
-       PM2.5 — OPEN METEO
-       ===================================================== */
+       PM2.5
+    ===================================================== */
 
     async function loadPM25() {
 
+        const pmConfig =
+            CONFIG.pm25;
+
+
         if (
-            !CONFIG.pm25 ||
-            CONFIG.pm25.enabled === false
+            !pmConfig ||
+            pmConfig.enabled === false
         ) {
 
             return;
@@ -1107,17 +1324,22 @@
 
 
         const latitude =
-            CONFIG.pm25.latitude;
+            pmConfig.latitude;
+
 
         const longitude =
-            CONFIG.pm25.longitude;
+            pmConfig.longitude;
 
 
         const url =
             "https://air-quality-api.open-meteo.com/v1/air-quality" +
+
             `?latitude=${latitude}` +
+
             `&longitude=${longitude}` +
+
             "&current=pm2_5" +
+
             "&timezone=Asia%2FBangkok";
 
 
@@ -1146,46 +1368,32 @@
                 );
 
 
-            const pm =
-                $("pmv");
+            if ($("pmv")) {
 
-            const status =
-                $("pmStatus");
-
-
-            if (pm) {
-
-                pm.textContent =
+                $("pmv").textContent =
                     value.toFixed(1);
 
             }
 
 
-            if (status) {
+            if ($("pmStatus")) {
 
-                status.textContent =
-                    getPM25Status(
-                        value
-                    );
+                $("pmStatus").textContent =
+                    getPM25Status(value);
 
             }
-
 
         } catch (error) {
 
             console.error(
-                "PM2.5:",
+                "PM2.5 error:",
                 error
             );
 
 
-            const status =
-                $("pmStatus");
+            if ($("pmStatus")) {
 
-
-            if (status) {
-
-                status.textContent =
+                $("pmStatus").textContent =
                     "ไม่สามารถโหลดข้อมูลสดได้";
 
             }
@@ -1195,37 +1403,23 @@
     }
 
 
-    function getPM25Status(
-        value
-    ) {
+    function getPM25Status(value) {
 
         if (value <= 25) {
-
             return "ดีมาก";
-
         }
-
 
         if (value <= 37) {
-
             return "ดี";
-
         }
-
 
         if (value <= 50) {
-
             return "ปานกลาง";
-
         }
-
 
         if (value <= 90) {
-
             return "เริ่มมีผล";
-
         }
-
 
         return "มีผลกระทบ";
 
@@ -1233,252 +1427,8 @@
 
 
     /* =====================================================
-       อัปโหลดรูปผู้ใหญ่บ้าน
-       ===================================================== */
-
-    window.saveLeaderPhoto =
-        function (file) {
-
-            if (!file) return;
-
-
-            if (
-                !file.type.startsWith(
-                    "image/"
-                )
-            ) {
-
-                alert(
-                    "กรุณาเลือกไฟล์รูปภาพ"
-                );
-
-                return;
-
-            }
-
-
-            const reader =
-                new FileReader();
-
-
-            reader.onload =
-                function (event) {
-
-                    const image =
-                        event.target.result;
-
-
-                    localStorage.setItem(
-                        "RONGKHEM_LEADER_PHOTO",
-                        image
-                    );
-
-
-                    showLeaderPhoto(
-                        image
-                    );
-
-                };
-
-
-            reader.readAsDataURL(
-                file
-            );
-
-        };
-
-
-    function showLeaderPhoto(
-        image
-    ) {
-
-        const photo =
-            $("profilePic");
-
-
-        if (!photo) return;
-
-
-        photo.innerHTML =
-            `<img src="${image}" alt="ผู้ใหญ่บ้าน">`;
-
-    }
-
-
-    function loadLeaderPhoto() {
-
-        const image =
-            localStorage.getItem(
-                "RONGKHEM_LEADER_PHOTO"
-            );
-
-
-        if (image) {
-
-            showLeaderPhoto(
-                image
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       ตั้งค่าระบบ
-       ===================================================== */
-
-    window.openSettings =
-        function () {
-
-            openModal(`
-
-                <h2>
-                    ⚙️ ตั้งค่าระบบ
-                </h2>
-
-
-                <label>
-                    ชื่อผู้ใหญ่บ้าน
-
-                    <input
-                        id="settingName"
-                        value="${escapeHTML(
-                            leader.name || ""
-                        )}"
-                    >
-
-                </label>
-
-
-                <label>
-                    เบอร์โทรศัพท์
-
-                    <input
-                        id="settingPhone"
-                        value="${escapeHTML(
-                            leader.phone || ""
-                        )}"
-                    >
-
-                </label>
-
-
-                <label>
-                    LINE ID
-
-                    <input
-                        id="settingLine"
-                        value="${escapeHTML(
-                            leader.line || ""
-                        )}"
-                    >
-
-                </label>
-
-
-                <label>
-                    รูปผู้ใหญ่บ้าน
-
-                    <input
-                        id="leaderPhotoFile"
-                        type="file"
-                        accept="image/*"
-                    >
-
-                </label>
-
-
-                <div class="actions">
-
-                    <button
-                        class="btn gray"
-                        onclick="closeModal()"
-                    >
-                        ปิด
-                    </button>
-
-
-                    <button
-                        class="btn green"
-                        onclick="saveSettings()"
-                    >
-                        💾 บันทึก
-                    </button>
-
-                </div>
-
-            `);
-
-        };
-
-
-    window.saveSettings =
-        function () {
-
-            const settings = {
-
-                name:
-                    $("settingName")?.value ||
-                    leader.name,
-
-                phone:
-                    $("settingPhone")?.value ||
-                    leader.phone,
-
-                line:
-                    $("settingLine")?.value ||
-                    leader.line
-
-            };
-
-
-            localStorage.setItem(
-                "RONGKHEM_SETTINGS",
-                JSON.stringify(
-                    settings
-                )
-            );
-
-
-            const file =
-                $("leaderPhotoFile")?.files?.[0];
-
-
-            if (file) {
-
-                saveLeaderPhoto(
-                    file
-                );
-
-            }
-
-
-            const leaderName =
-                $("leaderName");
-
-
-            if (leaderName) {
-
-                leaderName.textContent =
-                    settings.name;
-
-            }
-
-
-            closeModal();
-
-
-            alert(
-                "บันทึกการตั้งค่าเรียบร้อยแล้ว"
-            );
-
-        };
-
-
-    /* =====================================================
-       โหลด SETTINGS
-       ===================================================== */
+       SETTINGS LOAD
+    ===================================================== */
 
     function loadSettings() {
 
@@ -1504,9 +1454,7 @@
 
         } catch (error) {
 
-            console.error(
-                error
-            );
+            console.error(error);
 
         }
 
@@ -1514,8 +1462,8 @@
 
 
     /* =====================================================
-       ปิด Modal เมื่อคลิกพื้นหลัง
-       ===================================================== */
+       MODAL BACKGROUND
+    ===================================================== */
 
     document.addEventListener(
         "click",
@@ -1539,8 +1487,8 @@
 
 
     /* =====================================================
-       เริ่มต้นระบบ
-       ===================================================== */
+       INIT
+    ===================================================== */
 
     function init() {
 
@@ -1548,19 +1496,29 @@
 
         loadLeader();
 
+        loadSettings();
+
+        loadLeaderPhoto();
+
+        loadHeroImage();
+
         loadNews();
 
         loadActivities();
 
         loadComplaints();
 
-        loadLeaderPhoto();
-
-        loadSettings();
+        updateClock();
 
         loadWeather();
 
         loadPM25();
+
+
+        setInterval(
+            updateClock,
+            1000
+        );
 
 
         const weatherRefresh =
@@ -1586,6 +1544,10 @@
 
     }
 
+
+    /* =====================================================
+       START
+    ===================================================== */
 
     if (
         document.readyState ===
