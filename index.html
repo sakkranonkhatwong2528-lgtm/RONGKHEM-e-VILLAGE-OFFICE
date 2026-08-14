@@ -1,1589 +1,1992 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
-
-<style>
-
-:root{
-    --bg:#06101d;
-    --bg2:#091a2c;
-    --card:#0d2035;
-    --card2:#102942;
-    --blue:#08a8ff;
-    --blue2:#006eff;
-    --cyan:#36d5ff;
-    --green:#00df8a;
-    --yellow:#ffc83d;
-    --red:#ff5261;
-    --purple:#9b7cff;
-    --text:#f5f9ff;
-    --muted:#8ea3ba;
-    --border:rgba(255,255,255,.08);
-    --shadow:0 20px 60px rgba(0,0,0,.25);
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:
-        "Noto Sans Thai",
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
-    background:
-        radial-gradient(
-            circle at 10% 0%,
-            rgba(0,145,255,.18),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 100% 20%,
-            rgba(0,220,160,.08),
-            transparent 25%
-        ),
-        linear-gradient(
-            180deg,
-            #06101d,
-            #071321
-        );
-
-    color:var(--text);
-    min-height:100vh;
-}
-
-button,
-input,
-select,
-textarea{
-    font-family:inherit;
-}
-
-/* =====================================================
-   SIDEBAR
-===================================================== */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-
-    width:255px;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(11,30,50,.98),
-            rgba(5,15,27,.99)
-        );
-
-    border-right:1px solid var(--border);
-
-    padding:18px 14px;
-
-    z-index:1000;
-
-    overflow-y:auto;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    padding:7px 9px 20px;
+    <title>RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
 
-    border-bottom:
-        1px solid var(--border);
+    <meta
+        name="description"
+        content="ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา"
+    >
 
-    margin-bottom:20px;
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-.logo-icon{
-    width:50px;
-    height:50px;
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    <style>
 
-    border-radius:16px;
+        /* =========================================================
+           ROOT
+        ========================================================= */
 
-    background:
-        linear-gradient(
-            135deg,
-            #007aff,
-            #00c8ff
-        );
+        :root {
+            --bg: #03101a;
+            --bg2: #061b29;
+            --panel: rgba(3, 23, 37, 0.86);
+            --panel-light: rgba(9, 39, 55, 0.76);
 
-    box-shadow:
-        0 8px 25px
-        rgba(0,150,255,.25);
+            --border: rgba(112, 190, 220, 0.25);
 
-    font-size:26px;
-}
+            --text: #ffffff;
+            --muted: #a9c0cc;
 
-.logo-title{
-    font-size:18px;
-    font-weight:900;
-    letter-spacing:.5px;
-}
+            --green: #4cff70;
+            --green2: #1fc95a;
 
-.logo-sub{
-    color:var(--cyan);
-    font-size:9px;
-    margin-top:3px;
-    letter-spacing:.5px;
-}
+            --cyan: #45e8ff;
+            --blue: #46a9ff;
+            --purple: #d78cff;
+            --orange: #ffb53d;
+            --red: #ff5d5d;
 
-.logo-village{
-    color:var(--muted);
-    font-size:9px;
-    margin-top:3px;
-}
+            --shadow:
+                0 15px 45px rgba(0, 0, 0, .38);
 
-.menu-title{
-    color:#60758c;
-    font-size:10px;
-    font-weight:800;
-    padding:0 12px;
-    margin-bottom:8px;
-    letter-spacing:.5px;
-}
+            --radius: 18px;
 
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
+            --sidebar: 260px;
+        }
 
-.menu button{
-    width:100%;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    border:0;
+        html {
+            scroll-behavior: smooth;
+        }
 
-    background:transparent;
+        body {
+            min-height: 100vh;
 
-    color:#aebed1;
+            font-family: "Prompt", "Kanit", sans-serif;
 
-    padding:12px;
+            color: var(--text);
 
-    border-radius:12px;
+            background:
+                linear-gradient(
+                    rgba(0, 11, 19, .72),
+                    rgba(0, 12, 21, .92)
+                ),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2400&q=90")
+                center / cover fixed no-repeat;
 
-    cursor:pointer;
+            overflow-x: hidden;
+        }
 
-    display:flex;
-    align-items:center;
+        button,
+        input {
+            font-family: inherit;
+        }
 
-    gap:12px;
+        button {
+            cursor: pointer;
+        }
 
-    text-align:left;
 
-    transition:.2s;
-}
+        /* =========================================================
+           TOP HEADER
+        ========================================================= */
 
-.menu button:hover{
-    color:#fff;
+        .top-header {
 
-    background:
-        rgba(0,150,255,.09);
-}
+            position: fixed;
 
-.menu button.active{
-    color:#fff;
+            top: 0;
+            left: var(--sidebar);
+            right: 0;
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0,150,255,.18),
-            rgba(0,150,255,.04)
-        );
+            height: 96px;
 
-    border-left:
-        3px solid var(--blue);
-}
+            z-index: 100;
 
-.menu-icon{
-    width:26px;
-    font-size:19px;
-    text-align:center;
-}
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-.menu-text{
-    font-size:12px;
-    font-weight:600;
-}
+            padding: 0 28px;
 
-.sidebar-bottom{
-    margin-top:30px;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(2, 18, 30, .94),
+                    rgba(3, 26, 40, .84)
+                );
 
-    padding:15px;
+            border-bottom: 1px solid var(--border);
 
-    border:
-        1px solid var(--border);
+            backdrop-filter: blur(18px);
 
-    border-radius:15px;
+            box-shadow: 0 8px 35px rgba(0, 0, 0, .25);
+        }
 
-    background:
-        rgba(255,255,255,.025);
-}
+        .mobile-menu {
 
-.online-dot{
-    display:inline-block;
+            display: none;
 
-    width:7px;
-    height:7px;
+            width: 44px;
+            height: 44px;
 
-    border-radius:50%;
+            border: 1px solid rgba(255,255,255,.15);
 
-    background:var(--green);
+            background: rgba(255,255,255,.06);
 
-    box-shadow:
-        0 0 10px var(--green);
+            color: white;
 
-    margin-right:6px;
-}
+            border-radius: 12px;
 
-.sidebar-bottom-title{
-    font-size:11px;
-    font-weight:700;
-}
+            font-size: 23px;
+        }
 
-.sidebar-bottom-text{
-    color:var(--muted);
-    font-size:9px;
-    line-height:1.6;
-    margin-top:6px;
-}
+        .brand-mini {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
 
-/* =====================================================
-   MAIN
-===================================================== */
+        .brand-logo {
 
-.main{
-    margin-left:255px;
-    padding:22px;
-}
+            width: 55px;
+            height: 55px;
 
-.topbar{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+            border-radius: 50%;
 
-    gap:20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    margin-bottom:18px;
-}
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 185, 45, .22),
+                    rgba(0, 0, 0, .15)
+                );
 
-.page-title{
-    font-size:25px;
-    font-weight:900;
-}
+            border: 1px solid rgba(255, 187, 49, .35);
 
-.page-sub{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
+            font-size: 30px;
 
-.top-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+            box-shadow:
+                0 0 25px rgba(255, 177, 31, .12);
+        }
 
-.clock{
-    min-width:110px;
+        .brand-mini h1 {
 
-    padding:10px 14px;
+            font-family: "Kanit", sans-serif;
 
-    border:
-        1px solid var(--border);
+            font-size: 24px;
+            line-height: 1.1;
 
-    border-radius:12px;
+            font-weight: 600;
+        }
 
-    background:
-        rgba(255,255,255,.035);
+        .brand-mini h1 span {
+            color: #b8ff45;
+        }
 
-    color:var(--cyan);
+        .brand-mini p {
 
-    font-family:monospace;
+            margin-top: 3px;
 
-    text-align:center;
+            color: #c9d8df;
 
-    font-size:14px;
-}
+            font-size: 13px;
+        }
 
-.notification{
-    position:relative;
 
-    width:42px;
-    height:42px;
+        /* =========================================================
+           CLOCK
+        ========================================================= */
 
-    border:
-        1px solid var(--border);
+        .clock-box {
+            text-align: right;
+        }
 
-    border-radius:12px;
+        .clock {
 
-    background:
-        rgba(255,255,255,.035);
+            font-family: "Kanit", sans-serif;
 
-    color:#fff;
+            font-size: 39px;
+            line-height: 1;
 
-    cursor:pointer;
+            font-weight: 500;
 
-    font-size:18px;
-}
+            letter-spacing: 1px;
+        }
 
-.notification-badge{
-    position:absolute;
+        .date {
 
-    right:-3px;
-    top:-4px;
+            margin-top: 5px;
 
-    min-width:17px;
-    height:17px;
+            font-size: 13px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            color: var(--muted);
+        }
 
-    border-radius:50%;
 
-    background:var(--red);
+        /* =========================================================
+           USER
+        ========================================================= */
 
-    color:#fff;
+        .user-box {
 
-    font-size:8px;
-    font-weight:800;
-}
+            min-width: 285px;
 
-/* =====================================================
-   HERO
-===================================================== */
+            display: flex;
+            align-items: center;
 
-.hero{
-    position:relative;
+            gap: 13px;
 
-    overflow:hidden;
+            padding: 10px 15px;
 
-    border:
-        1px solid
-        rgba(0,170,255,.16);
+            border-radius: 17px;
 
-    border-radius:24px;
+            background: rgba(7, 29, 45, .78);
 
-    padding:28px;
+            border: 1px solid rgba(130, 205, 233, .23);
+        }
 
-    margin-bottom:18px;
+        .avatar {
 
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(0,200,255,.20),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 15% 100%,
-            rgba(0,220,150,.08),
-            transparent 25%
-        ),
-        linear-gradient(
-            135deg,
-            #0b2844,
-            #091827
-        );
+            width: 57px;
+            height: 57px;
 
-    box-shadow:var(--shadow);
-}
+            flex: 0 0 57px;
 
-.hero:after{
-    content:"";
+            border-radius: 50%;
 
-    position:absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    width:250px;
-    height:250px;
+            background:
+                linear-gradient(
+                    145deg,
+                    #d8e5e8,
+                    #647d86
+                );
 
-    right:-90px;
-    bottom:-100px;
+            border: 2px solid rgba(255,255,255,.4);
 
-    border-radius:50%;
+            font-size: 30px;
+        }
 
-    border:
-        1px solid
-        rgba(0,200,255,.10);
-}
+        .user-name {
 
-.hero-content{
-    position:relative;
-    z-index:2;
+            font-weight: 600;
 
-    max-width:760px;
-}
+            font-size: 16px;
+        }
 
-.hero-label{
-    display:inline-flex;
-    align-items:center;
-    gap:7px;
+        .user-role {
 
-    color:#68d9ff;
+            font-size: 12px;
 
-    font-size:10px;
+            color: #b7cbd3;
 
-    padding:6px 10px;
+            margin-top: 1px;
+        }
 
-    border-radius:20px;
+        .online {
 
-    background:
-        rgba(0,160,255,.09);
+            margin-top: 3px;
 
-    border:
-        1px solid
-        rgba(0,160,255,.15);
+            display: flex;
+            align-items: center;
 
-    margin-bottom:12px;
-}
+            gap: 5px;
 
-.hero h1{
-    font-size:30px;
-    line-height:1.35;
-    font-weight:900;
-}
+            font-size: 11px;
 
-.hero h1 span{
-    color:var(--cyan);
-}
+            color: #70ff7f;
+        }
 
-.hero p{
-    color:#a9b9ca;
-    font-size:12px;
-    line-height:1.8;
-    margin-top:9px;
-}
+        .online-dot {
 
-.hero-actions{
-    display:flex;
-    gap:9px;
-    margin-top:18px;
-    flex-wrap:wrap;
-}
+            width: 8px;
+            height: 8px;
 
-.hero-btn{
-    border:0;
+            background: #37ee65;
 
-    padding:10px 15px;
+            border-radius: 50%;
 
-    border-radius:10px;
+            box-shadow: 0 0 10px #37ee65;
+        }
 
-    cursor:pointer;
 
-    color:#fff;
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
 
-    font-size:11px;
-    font-weight:700;
-}
+        .sidebar {
 
-.hero-btn.primary{
-    background:
-        linear-gradient(
-            135deg,
-            #008cff,
-            #0069ee
-        );
-}
+            position: fixed;
 
-.hero-btn.secondary{
-    background:
-        rgba(255,255,255,.055);
+            left: 0;
+            top: 0;
+            bottom: 0;
 
-    border:
-        1px solid
-        var(--border);
-}
+            width: var(--sidebar);
 
-/* =====================================================
-   DASHBOARD CARDS
-===================================================== */
+            z-index: 200;
 
-.dashboard-grid{
-    display:grid;
+            padding: 20px 14px;
 
-    grid-template-columns:
-        repeat(6,1fr);
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(1, 18, 30, .98),
+                    rgba(1, 11, 20, .97)
+                );
 
-    gap:12px;
+            border-right: 1px solid rgba(120, 201, 230, .18);
 
-    margin-bottom:18px;
-}
+            box-shadow:
+                8px 0 35px rgba(0, 0, 0, .28);
 
-.stat-card{
-    position:relative;
+            overflow-y: auto;
+        }
 
-    overflow:hidden;
+        .sidebar-brand {
 
-    padding:17px;
+            display: flex;
+            align-items: center;
 
-    min-height:130px;
+            gap: 11px;
 
-    border:
-        1px solid
-        var(--border);
+            padding: 5px 9px 20px;
 
-    border-radius:18px;
+            border-bottom: 1px solid rgba(255,255,255,.09);
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,42,67,.95),
-            rgba(8,20,34,.98)
-        );
+            margin-bottom: 13px;
+        }
 
-    transition:.2s;
-}
+        .sidebar-logo {
 
-.stat-card:hover{
-    transform:translateY(-3px);
+            width: 54px;
+            height: 54px;
 
-    border-color:
-        rgba(0,170,255,.18);
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.stat-icon{
-    font-size:24px;
-    margin-bottom:12px;
-}
+            font-size: 30px;
 
-.stat-number{
-    font-size:26px;
-    font-weight:900;
-}
+            border-radius: 15px;
 
-.stat-label{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:4px;
-}
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,188,49,.17),
+                    rgba(4,38,51,.4)
+                );
 
-.stat-status{
-    margin-top:9px;
+            border: 1px solid rgba(255,190,54,.27);
+        }
 
-    color:var(--green);
+        .sidebar-title {
 
-    font-size:9px;
-}
+            font-family: "Kanit", sans-serif;
 
-.stat-glow{
-    position:absolute;
+            font-size: 17px;
 
-    width:90px;
-    height:90px;
+            line-height: 1.1;
+        }
 
-    right:-35px;
-    bottom:-35px;
+        .sidebar-title span {
+            color: #b6ff43;
+        }
 
-    border-radius:50%;
+        .sidebar-sub {
 
-    background:
-        rgba(0,160,255,.08);
+            font-size: 10px;
 
-    filter:blur(5px);
-}
+            color: #9eb8c2;
 
-/* =====================================================
-   SECTION
-===================================================== */
+            margin-top: 3px;
+        }
 
-.section-grid{
-    display:grid;
+        .menu {
 
-    grid-template-columns:
-        1.5fr 1fr;
+            display: flex;
 
-    gap:16px;
+            flex-direction: column;
 
-    margin-bottom:18px;
-}
+            gap: 4px;
+        }
 
-.card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(17,37,59,.96),
-            rgba(7,18,31,.98)
-        );
+        .menu-item {
 
-    border:
-        1px solid
-        var(--border);
+            position: relative;
 
-    border-radius:20px;
+            display: flex;
+            align-items: center;
 
-    padding:19px;
+            gap: 12px;
 
-    box-shadow:
-        0 12px 40px
-        rgba(0,0,0,.12);
-}
+            width: 100%;
 
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+            padding: 12px 13px;
 
-    gap:10px;
+            color: #d6e3e8;
 
-    margin-bottom:16px;
-}
+            text-decoration: none;
 
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
+            border-radius: 12px;
 
-.card-icon{
-    width:42px;
-    height:42px;
+            font-size: 13px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            border: 1px solid transparent;
 
-    border-radius:12px;
+            transition: .22s ease;
+        }
 
-    background:
-        rgba(0,160,255,.09);
+        .menu-item:hover {
 
-    font-size:20px;
-}
+            background: rgba(51, 205, 104, .08);
 
-.card-title h2{
-    font-size:16px;
-}
+            border-color: rgba(65, 231, 108, .14);
 
-.card-title p{
-    color:var(--muted);
-    font-size:9px;
-    margin-top:3px;
-}
+            transform: translateX(2px);
 
-.view-btn{
-    border:0;
+            color: white;
+        }
 
-    background:
-        rgba(0,150,255,.08);
+        .menu-item.active {
 
-    color:#59cfff;
+            background:
+                linear-gradient(
+                    100deg,
+                    rgba(31, 190, 75, .42),
+                    rgba(19, 90, 52, .22)
+                );
 
-    padding:8px 11px;
+            border-color: rgba(84, 238, 106, .7);
 
-    border-radius:9px;
+            box-shadow:
+                inset 0 0 20px rgba(40, 238, 89, .05),
+                0 0 20px rgba(25, 213, 77, .06);
 
-    cursor:pointer;
+            color: white;
+        }
 
-    font-size:10px;
-}
+        .menu-icon {
 
-/* =====================================================
-   ACTIVITY
-===================================================== */
+            width: 28px;
+            height: 28px;
 
-.activity-list{
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.activity-item{
-    display:flex;
-    gap:12px;
+            font-size: 20px;
 
-    padding:11px;
+            flex: 0 0 28px;
+        }
 
-    border:
-        1px solid
-        rgba(255,255,255,.05);
+        .sidebar-contact {
 
-    border-radius:13px;
+            margin-top: 18px;
 
-    background:
-        rgba(255,255,255,.025);
-}
+            padding: 14px;
 
-.activity-thumb{
-    width:82px;
-    height:65px;
+            border-radius: 15px;
 
-    flex-shrink:0;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(7, 40, 55, .9),
+                    rgba(3, 22, 33, .9)
+                );
 
-    border-radius:10px;
+            border: 1px solid rgba(116, 196, 219, .23);
+        }
 
-    object-fit:cover;
+        .sidebar-contact h3 {
 
-    background:
-        linear-gradient(
-            135deg,
-            #143553,
-            #0b1b2f
-        );
-}
+            font-family: "Kanit";
 
-.activity-info{
-    min-width:0;
-}
+            font-size: 16px;
 
-.activity-name{
-    font-size:12px;
-    font-weight:800;
+            margin-bottom: 10px;
+        }
 
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
-}
+        .contact-row {
 
-.activity-desc{
-    color:var(--muted);
+            display: flex;
 
-    font-size:9px;
+            gap: 8px;
 
-    line-height:1.6;
+            margin: 8px 0;
 
-    margin-top:5px;
+            color: #bed0d7;
 
-    display:
-        -webkit-box;
+            font-size: 11px;
+        }
 
-    -webkit-line-clamp:2;
 
-    -webkit-box-orient:vertical;
+        /* =========================================================
+           MAIN
+        ========================================================= */
 
-    overflow:hidden;
-}
+        .main {
 
-.activity-date{
-    color:#5bcfff;
+            margin-left: var(--sidebar);
 
-    font-size:9px;
+            padding-top: 96px;
 
-    margin-top:5px;
-}
+            min-height: 100vh;
+        }
 
-/* =====================================================
-   LEADERS
-===================================================== */
+        .content {
 
-.leader-list{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
+            max-width: 1550px;
 
-.leader-item{
-    display:flex;
-    align-items:center;
+            margin: 0 auto;
 
-    gap:11px;
+            padding: 26px;
+        }
 
-    padding:10px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.05);
+        /* =========================================================
+           HERO
+        ========================================================= */
 
-    border-radius:12px;
+        .hero {
 
-    background:
-        rgba(255,255,255,.025);
-}
+            position: relative;
 
-.leader-avatar{
-    width:45px;
-    height:45px;
+            min-height: 220px;
 
-    border-radius:50%;
+            display: flex;
 
-    object-fit:cover;
+            align-items: flex-start;
 
-    background:
-        linear-gradient(
-            135deg,
-            #087cff,
-            #00c9ff
-        );
+            justify-content: space-between;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            padding: 30px;
 
-    font-size:19px;
+            border-radius: 24px;
 
-    flex-shrink:0;
-}
+            overflow: hidden;
 
-.leader-name{
-    font-size:11px;
-    font-weight:800;
-}
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0, 22, 34, .92),
+                    rgba(0, 25, 38, .3)
+                ),
+                url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1800&q=85")
+                center / cover;
 
-.leader-position{
-    color:#59cfff;
-    font-size:9px;
-    margin-top:3px;
-}
+            border: 1px solid rgba(145, 212, 231, .18);
 
-.leader-status{
-    margin-left:auto;
-}
+            box-shadow: var(--shadow);
+        }
 
-/* =====================================================
-   COMPLAINTS
-===================================================== */
+        .hero::after {
 
-.complaint-list{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
+            content: "";
 
-.complaint-item{
-    display:grid;
+            position: absolute;
 
-    grid-template-columns:
-        40px 1fr auto;
+            inset: 0;
 
-    gap:10px;
+            background:
+                radial-gradient(
+                    circle at 75% 25%,
+                    rgba(70, 221, 117, .14),
+                    transparent 30%
+                );
 
-    align-items:center;
+            pointer-events: none;
+        }
 
-    padding:11px;
+        .hero-content {
 
-    border:
-        1px solid
-        rgba(255,255,255,.05);
+            position: relative;
 
-    border-radius:12px;
+            z-index: 2;
 
-    background:
-        rgba(255,255,255,.025);
-}
+            max-width: 720px;
+        }
 
-.complaint-icon{
-    width:38px;
-    height:38px;
+        .hero h2 {
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            font-family: "Kanit";
 
-    border-radius:10px;
+            font-size: clamp(27px, 3vw, 42px);
 
-    background:
-        rgba(0,150,255,.08);
+            line-height: 1.15;
 
-    font-size:18px;
-}
+            font-weight: 600;
 
-.complaint-title{
-    font-size:11px;
-    font-weight:800;
-}
+            text-shadow: 0 5px 20px rgba(0,0,0,.4);
+        }
 
-.complaint-sub{
-    color:var(--muted);
-    font-size:9px;
-    margin-top:3px;
-}
+        .hero-quote {
 
-.badge{
-    display:inline-block;
+            color: #ffd83d;
 
-    padding:5px 8px;
+            font-size: 17px;
 
-    border-radius:20px;
+            margin-top: 7px;
 
-    font-size:8px;
+            font-weight: 500;
+        }
 
-    white-space:nowrap;
-}
+        .hero-tag {
 
-.badge.green{
-    color:var(--green);
-    background:rgba(0,220,140,.08);
-}
+            display: inline-flex;
 
-.badge.yellow{
-    color:var(--yellow);
-    background:rgba(255,190,40,.08);
-}
+            margin-top: 17px;
 
-.badge.red{
-    color:var(--red);
-    background:rgba(255,60,70,.08);
-}
+            padding: 7px 14px;
 
-.badge.blue{
-    color:#55cfff;
-    background:rgba(0,150,255,.08);
-}
+            border-radius: 30px;
 
-/* =====================================================
-   WEATHER
-===================================================== */
+            background: rgba(31, 194, 84, .17);
 
-.weather-card{
-    position:relative;
-    overflow:hidden;
-}
+            border: 1px solid rgba(74, 236, 110, .5);
 
-.weather-top{
-    display:flex;
+            font-size: 12px;
 
-    justify-content:space-between;
-    align-items:center;
+            color: #9affac;
+        }
 
-    padding:14px;
 
-    border-radius:15px;
+        /* =========================================================
+           KPI DIAMONDS
+        ========================================================= */
 
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,160,255,.12),
-            rgba(0,200,180,.04)
-        );
+        .kpi-grid {
 
-    border:
-        1px solid
-        rgba(0,160,255,.09);
-}
+            display: grid;
 
-.weather-temp{
-    font-size:38px;
-    font-weight:900;
-}
+            grid-template-columns:
+                repeat(4, 1fr);
 
-.weather-condition{
-    color:#a8bacd;
-    font-size:10px;
-    margin-top:3px;
-}
+            gap: 28px;
 
-.weather-icon{
-    font-size:42px;
-}
+            margin-top: -45px;
 
-.weather-grid{
-    display:grid;
+            position: relative;
 
-    grid-template-columns:
-        repeat(4,1fr);
+            z-index: 5;
 
-    gap:8px;
+            padding: 0 25px;
+        }
 
-    margin-top:10px;
-}
+        .kpi-wrap {
+            text-align: center;
+        }
 
-.weather-mini{
-    padding:10px;
+        .kpi-diamond {
 
-    border-radius:11px;
+            position: relative;
 
-    background:
-        rgba(255,255,255,.025);
+            width: 150px;
+            height: 150px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.04);
-}
+            margin: 0 auto;
 
-.weather-mini-icon{
-    font-size:15px;
-}
+            transform: rotate(45deg);
 
-.weather-mini-value{
-    font-size:12px;
-    font-weight:800;
+            border-radius: 24px;
 
-    margin-top:4px;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-.weather-mini-label{
-    color:var(--muted);
-    font-size:8px;
-    margin-top:2px;
-}
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(11, 62, 49, .94),
+                    rgba(3, 25, 30, .96)
+                );
 
-/* =====================================================
-   PM
-===================================================== */
+            border: 1px solid rgba(111, 255, 133, .8);
 
-.pm-box{
-    margin-top:12px;
+            box-shadow:
+                0 0 30px rgba(42, 238, 97, .14),
+                inset 0 0 25px rgba(73, 255, 123, .04);
+        }
 
-    padding:14px;
+        .kpi-diamond.cyan {
 
-    border-radius:14px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(9, 62, 72, .94),
+                    rgba(3, 24, 34, .96)
+                );
 
-    background:
-        rgba(0,220,140,.045);
+            border-color: rgba(69, 232, 255, .75);
 
-    border:
-        1px solid
-        rgba(0,220,140,.10);
-}
+            box-shadow:
+                0 0 30px rgba(69,232,255,.14);
+        }
 
-.pm-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        .kpi-diamond.purple {
 
-.pm-title{
-    font-size:11px;
-    font-weight:800;
-}
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(66, 36, 81, .94),
+                    rgba(18, 18, 34, .96)
+                );
 
-.pm-value{
-    font-size:24px;
-    font-weight:900;
+            border-color: rgba(215, 140, 255, .8);
 
-    color:var(--green);
-}
+            box-shadow:
+                0 0 30px rgba(215,140,255,.13);
+        }
 
-.pm-unit{
-    color:var(--muted);
-    font-size:8px;
-}
+        .kpi-diamond.orange {
 
-.pm-status{
-    color:var(--green);
-    font-size:10px;
-    font-weight:700;
-    margin-top:3px;
-}
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(78, 56, 20, .94),
+                    rgba(28, 23, 13, .96)
+                );
 
-.pm-text{
-    color:var(--muted);
-    font-size:9px;
-    line-height:1.6;
-    margin-top:5px;
-}
+            border-color: rgba(255,181,61,.82);
 
-/* =====================================================
-   QUICK ACTION
-===================================================== */
+            box-shadow:
+                0 0 30px rgba(255,181,61,.12);
+        }
 
-.quick-grid{
-    display:grid;
+        .kpi-inner {
 
-    grid-template-columns:
-        repeat(4,1fr);
+            transform: rotate(-45deg);
 
-    gap:10px;
-}
+            text-align: center;
+        }
 
-.quick-btn{
-    border:
-        1px solid
-        var(--border);
+        .kpi-icon {
 
-    background:
-        rgba(255,255,255,.025);
+            font-size: 30px;
 
-    color:#fff;
+            margin-bottom: 1px;
+        }
 
-    padding:16px 10px;
+        .kpi-label {
 
-    border-radius:14px;
+            font-size: 14px;
 
-    cursor:pointer;
+            color: #e7f2f4;
+        }
 
-    transition:.2s;
-}
+        .kpi-number {
 
-.quick-btn:hover{
-    background:
-        rgba(0,150,255,.08);
+            font-family: "Kanit";
 
-    transform:translateY(-2px);
-}
+            font-size: 30px;
 
-.quick-icon{
-    font-size:24px;
-}
+            line-height: 1.05;
 
-.quick-text{
-    font-size:10px;
-    font-weight:700;
-    margin-top:7px;
-}
+            font-weight: 500;
+        }
 
-.quick-sub{
-    color:var(--muted);
-    font-size:8px;
-    margin-top:3px;
-}
+        .kpi-unit {
 
-/* =====================================================
-   ALERTS
-===================================================== */
+            font-size: 11px;
 
-.alert-list{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
+            color: #a8c0c9;
+        }
 
-.alert-item{
-    display:flex;
-    align-items:center;
+        .kpi-detail {
 
-    gap:11px;
+            width: 180px;
 
-    padding:11px;
+            margin: 20px auto 0;
 
-    border-radius:12px;
+            padding: 9px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.05);
+            border-radius: 12px;
 
-    background:
-        rgba(255,255,255,.025);
-}
+            background: rgba(4, 24, 31, .8);
 
-.alert-icon{
-    width:38px;
-    height:38px;
+            border: 1px solid rgba(136, 206, 224, .2);
 
-    border-radius:10px;
+            font-size: 11px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+            color: #d4e0e5;
 
-    font-size:18px;
+            line-height: 1.7;
+        }
 
-    background:
-        rgba(255,255,255,.04);
-}
 
-.alert-title{
-    font-size:10px;
-    font-weight:800;
-}
+        /* =========================================================
+           TWO COLUMN
+        ========================================================= */
 
-.alert-text{
-    color:var(--muted);
-    font-size:8px;
-    margin-top:3px;
-}
+        .dashboard-grid {
 
-.alert-priority{
-    margin-left:auto;
-}
+            display: grid;
 
-/* =====================================================
-   FOOTER
-===================================================== */
+            grid-template-columns:
+                minmax(0, 1fr)
+                325px;
 
-.footer{
-    text-align:center;
+            gap: 18px;
 
-    padding:20px 10px 10px;
+            margin-top: 28px;
+        }
 
-    color:#61758b;
+        .panel {
 
-    font-size:9px;
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(4, 29, 43, .92),
+                    rgba(2, 18, 29, .9)
+                );
 
-    line-height:1.7;
-}
+            border: 1px solid var(--border);
 
-.footer strong{
-    color:#8ea5bb;
-}
+            border-radius: var(--radius);
 
-/* =====================================================
-   MOBILE MENU
-===================================================== */
+            box-shadow: var(--shadow);
 
-.mobile-menu-btn{
-    display:none;
+            backdrop-filter: blur(16px);
 
-    width:42px;
-    height:42px;
+            overflow: hidden;
+        }
 
-    border:
-        1px solid
-        var(--border);
+        .panel-header {
 
-    border-radius:11px;
+            display: flex;
 
-    background:
-        rgba(255,255,255,.04);
+            align-items: center;
 
-    color:#fff;
+            justify-content: space-between;
 
-    cursor:pointer;
+            padding: 17px 20px;
 
-    font-size:19px;
-}
+            border-bottom: 1px solid rgba(255,255,255,.08);
+        }
 
-/* =====================================================
-   RESPONSIVE
-===================================================== */
+        .panel-header h3 {
 
-@media(max-width:1250px){
+            font-family: "Kanit";
 
-    .dashboard-grid{
-        grid-template-columns:
-            repeat(3,1fr);
-    }
+            font-size: 18px;
 
-}
+            font-weight: 500;
+        }
 
-@media(max-width:1050px){
+        .panel-link {
 
-    .section-grid{
-        grid-template-columns:1fr;
-    }
+            color: #83dfff;
 
-    .quick-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+            font-size: 11px;
 
-}
+            text-decoration: none;
+        }
 
-@media(max-width:900px){
 
-    .sidebar{
-        width:70px;
-        padding:14px 8px;
-    }
+        /* =========================================================
+           ANNOUNCEMENTS
+        ========================================================= */
 
-    .logo{
-        justify-content:center;
-    }
+        .announcement {
 
-    .logo-title,
-    .logo-sub,
-    .logo-village,
-    .menu-title,
-    .menu-text,
-    .sidebar-bottom{
-        display:none;
-    }
+            display: flex;
 
-    .menu button{
-        justify-content:center;
-    }
+            gap: 13px;
 
-    .main{
-        margin-left:70px;
-    }
+            padding: 15px 20px;
 
-}
+            border-bottom: 1px solid rgba(255,255,255,.065);
 
-@media(max-width:650px){
+            transition: .2s;
+        }
 
-    .sidebar{
-        display:none;
-    }
+        .announcement:hover {
 
-    .main{
-        margin-left:0;
-        padding:12px;
-    }
+            background: rgba(255,255,255,.025);
+        }
 
-    .mobile-menu-btn{
-        display:block;
-    }
+        .announcement:last-child {
+            border-bottom: 0;
+        }
 
-    .topbar{
-        gap:8px;
-    }
+        .announcement-icon {
 
-    .page-title{
-        font-size:18px;
-    }
+            width: 39px;
+            height: 39px;
 
-    .page-sub{
-        font-size:9px;
-    }
+            flex: 0 0 39px;
 
-    .clock{
-        min-width:auto;
-        font-size:10px;
-        padding:8px;
-    }
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-    .notification{
-        display:none;
-    }
+            border-radius: 10px;
 
-    .hero{
-        padding:20px;
-        border-radius:18px;
-    }
+            font-size: 20px;
 
-    .hero h1{
-        font-size:23px;
-    }
+            background: rgba(44, 167, 255, .16);
 
-    .hero p{
-        font-size:10px;
-    }
+            border: 1px solid rgba(44, 167, 255, .25);
+        }
 
-    .dashboard-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+        .announcement.red .announcement-icon {
 
-    .stat-card{
-        min-height:120px;
-    }
+            background: rgba(255, 74, 74, .15);
 
-    .stat-number{
-        font-size:23px;
-    }
+            border-color: rgba(255, 74, 74, .3);
+        }
 
-    .weather-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+        .announcement.green .announcement-icon {
 
-    .quick-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+            background: rgba(59, 222, 89, .14);
 
-}
+            border-color: rgba(59, 222, 89, .3);
+        }
 
-/* =====================================================
-   MOBILE DRAWER
-===================================================== */
+        .announcement.orange .announcement-icon {
 
-.mobile-drawer{
-    position:fixed;
+            background: rgba(255, 166, 49, .14);
 
-    left:0;
-    top:0;
-    bottom:0;
+            border-color: rgba(255, 166, 49, .3);
+        }
 
-    width:270px;
+        .announcement-body {
+            flex: 1;
+        }
 
-    background:#081727;
+        .announcement-title {
 
-    z-index:2000;
+            font-size: 13px;
 
-    transform:
-        translateX(-100%);
+            font-weight: 500;
 
-    transition:.25s;
+            margin-bottom: 2px;
+        }
 
-    padding:20px;
+        .announcement-desc {
 
-    box-shadow:
-        15px 0 50px
-        rgba(0,0,0,.4);
-}
+            font-size: 10px;
 
-.mobile-drawer.show{
-    transform:
-        translateX(0);
-}
+            color: #9db5be;
 
-.drawer-close{
-    display:flex;
+            line-height: 1.55;
+        }
 
-    justify-content:flex-end;
+        .announcement-date {
 
-    margin-bottom:20px;
-}
+            font-size: 10px;
 
-.drawer-close button{
-    border:0;
+            color: #6e8994;
 
-    background:
-        rgba(255,255,255,.06);
+            white-space: nowrap;
+        }
 
-    color:#fff;
 
-    width:38px;
-    height:38px;
+        /* =========================================================
+           AI
+        ========================================================= */
 
-    border-radius:10px;
+        .ai-panel {
 
-    cursor:pointer;
-}
+            min-height: 100%;
+        }
 
-.drawer-menu{
-    display:flex;
-    flex-direction:column;
-    gap:6px;
-}
+        .ai-body {
 
-.drawer-menu button{
-    border:0;
+            padding: 20px;
+        }
 
-    background:transparent;
+        .robot {
 
-    color:#b6c5d5;
+            display: flex;
 
-    padding:13px;
+            align-items: center;
 
-    border-radius:11px;
+            gap: 12px;
 
-    text-align:left;
+            margin-bottom: 14px;
+        }
 
-    cursor:pointer;
-}
+        .robot-avatar {
 
-.drawer-menu button:hover{
-    background:
-        rgba(0,150,255,.10);
+            width: 65px;
+            height: 65px;
 
-    color:#fff;
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-</style>
+            border-radius: 50%;
+
+            font-size: 34px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(72, 220, 255, .22),
+                    rgba(4, 31, 43, .95)
+                );
+
+            border: 1px solid rgba(68, 223, 255, .35);
+
+            box-shadow:
+                0 0 25px rgba(50, 217, 255, .12);
+        }
+
+        .robot-text {
+
+            padding: 10px 13px;
+
+            border-radius: 13px;
+
+            background: rgba(11, 48, 64, .7);
+
+            border: 1px solid rgba(100, 195, 220, .17);
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+        .question {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 10px 12px;
+
+            margin-top: 7px;
+
+            border-radius: 10px;
+
+            background: rgba(255,255,255,.035);
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            color: #dbe8ed;
+
+            font-size: 11px;
+
+            text-align: left;
+
+            transition: .2s;
+        }
+
+        .question:hover {
+
+            border-color: rgba(69,232,255,.4);
+
+            background: rgba(69,232,255,.06);
+        }
+
+        .ai-input {
+
+            display: flex;
+
+            gap: 7px;
+
+            margin-top: 12px;
+        }
+
+        .ai-input input {
+
+            min-width: 0;
+            flex: 1;
+
+            padding: 10px 12px;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            border: 1px solid rgba(255,255,255,.13);
+
+            background: rgba(255,255,255,.05);
+
+            color: white;
+
+            font-size: 11px;
+        }
+
+        .ai-input button {
+
+            width: 44px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            background: #43d85d;
+
+            color: #02140a;
+
+            font-size: 19px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================================================
+           WEATHER
+        ========================================================= */
+
+        .weather {
+
+            padding-bottom: 10px;
+        }
+
+        .weather-main {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 20px;
+        }
+
+        .weather-icon {
+
+            font-size: 55px;
+        }
+
+        .temperature {
+
+            font-family: "Kanit";
+
+            font-size: 42px;
+
+            line-height: 1;
+        }
+
+        .weather-status {
+
+            font-size: 11px;
+
+            color: #a9c4cc;
+        }
+
+        .weather-data {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            border-top: 1px solid rgba(255,255,255,.08);
+
+            margin: 0 20px;
+        }
+
+        .weather-item {
+
+            text-align: center;
+
+            padding: 12px 3px;
+
+            border-right: 1px solid rgba(255,255,255,.07);
+        }
+
+        .weather-item:last-child {
+            border-right: 0;
+        }
+
+        .weather-item span {
+
+            display: block;
+
+            color: #87a2ad;
+
+            font-size: 9px;
+
+            margin-bottom: 3px;
+        }
+
+        .weather-item strong {
+
+            font-size: 13px;
+
+            font-weight: 500;
+        }
+
+        .weather-location {
+
+            padding: 8px 20px;
+
+            color: #829da7;
+
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
+           PM 2.5
+        ========================================================= */
+
+        .pm-box {
+            margin-top: 18px;
+        }
+
+        .pm-content {
+            padding: 18px 20px;
+        }
+
+        .pm-main {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 15px;
+        }
+
+        .pm-face {
+
+            width: 52px;
+            height: 52px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #77db3c;
+
+            color: #143d07;
+
+            font-size: 28px;
+
+            box-shadow: 0 0 22px rgba(119,219,60,.17);
+        }
+
+        .pm-value {
+
+            font-family: "Kanit";
+
+            font-size: 35px;
+
+            line-height: 1;
+        }
+
+        .pm-value small {
+
+            font-family: "Prompt";
+
+            font-size: 11px;
+
+            color: #a9c0c6;
+        }
+
+        .pm-status {
+
+            margin-top: 4px;
+
+            color: #73e54a;
+
+            font-size: 11px;
+        }
+
+        .pm-bar {
+
+            position: relative;
+
+            height: 9px;
+
+            margin-top: 18px;
+
+            border-radius: 30px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #50d839 0%,
+                    #c7e32d 30%,
+                    #ffc928 55%,
+                    #ff6e32 75%,
+                    #d83249 100%
+                );
+        }
+
+        .pm-marker {
+
+            position: absolute;
+
+            top: -4px;
+
+            left: 18%;
+
+            width: 17px;
+            height: 17px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            border: 3px solid #53c936;
+
+            box-shadow: 0 0 10px rgba(255,255,255,.5);
+        }
+
+        .pm-scale {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #7f969f;
+
+            font-size: 8px;
+
+            margin-top: 7px;
+        }
+
+
+        /* =========================================================
+           ACTIVITIES
+        ========================================================= */
+
+        .activity {
+
+            display: flex;
+
+            gap: 11px;
+
+            padding: 14px 18px;
+
+            border-bottom: 1px solid rgba(255,255,255,.065);
+        }
+
+        .activity:last-child {
+            border-bottom: 0;
+        }
+
+        .activity-icon {
+
+            width: 38px;
+            height: 38px;
+
+            flex: 0 0 38px;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(47, 157, 255, .16);
+
+            font-size: 19px;
+        }
+
+        .activity-title {
+
+            font-size: 11px;
+
+            font-weight: 500;
+        }
+
+        .activity-place {
+
+            color: #8199a3;
+
+            font-size: 9px;
+
+            margin-top: 2px;
+        }
+
+        .activity-time {
+
+            margin-left: auto;
+
+            height: fit-content;
+
+            padding: 4px 8px;
+
+            border-radius: 7px;
+
+            border: 1px solid rgba(72, 224, 100, .4);
+
+            color: #80ed8f;
+
+            font-size: 9px;
+
+            white-space: nowrap;
+        }
+
+
+        /* =========================================================
+           BOTTOM STATS
+        ========================================================= */
+
+        .bottom-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr 1fr;
+
+            gap: 18px;
+
+            margin-top: 18px;
+        }
+
+        .stat-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 9px;
+
+            padding: 16px;
+        }
+
+        .stat-card {
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            background: rgba(255,255,255,.035);
+
+            border: 1px solid rgba(255,255,255,.08);
+
+            text-align: center;
+        }
+
+        .stat-icon {
+
+            font-size: 23px;
+
+            margin-bottom: 5px;
+        }
+
+        .stat-number {
+
+            font-family: "Kanit";
+
+            font-size: 23px;
+
+            line-height: 1;
+        }
+
+        .stat-label {
+
+            margin-top: 3px;
+
+            font-size: 9px;
+
+            color: #8ca5ae;
+        }
+
+
+        /* =========================================================
+           CONTACTS
+        ========================================================= */
+
+        .contacts {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 9px;
+
+            padding: 16px;
+        }
+
+        .contact-card {
+
+            min-height: 75px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            border-radius: 11px;
+
+            background: rgba(255,255,255,.035);
+
+            border: 1px solid rgba(255,255,255,.09);
+        }
+
+        .contact-card .icon {
+
+            font-size: 22px;
+
+            margin-bottom: 4px;
+        }
+
+        .contact-card span {
+
+            color: #8da6af;
+
+            font-size: 9px;
+        }
+
+        .contact-card strong {
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+            margin-top: 2px;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            padding: 22px;
+
+            text-align: center;
+
+            color: #637d87;
+
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1300px) {
+
+            :root {
+                --sidebar: 230px;
+            }
+
+            .user-box {
+                min-width: 235px;
+            }
+
+            .kpi-grid {
+                gap: 14px;
+                padding: 0 12px;
+            }
+
+            .kpi-diamond {
+                width: 135px;
+                height: 135px;
+            }
+
+            .kpi-detail {
+                width: 160px;
+            }
+
+            .kpi-number {
+                font-size: 26px;
+            }
+        }
+
+
+        @media (max-width: 1100px) {
+
+            .top-header {
+                left: 0;
+            }
+
+            .sidebar {
+
+                transform: translateX(-100%);
+
+                transition: .3s;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main {
+                margin-left: 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .brand-mini {
+                display: none;
+            }
+
+            .top-header {
+                padding: 0 14px;
+            }
+
+            .clock {
+                font-size: 29px;
+            }
+
+            .user-box {
+                min-width: auto;
+            }
+
+            .user-box .user-role,
+            .user-box .online {
+                display: none;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .top-header {
+                height: 78px;
+            }
+
+            .main {
+                padding-top: 78px;
+            }
+
+            .clock {
+                font-size: 24px;
+            }
+
+            .date {
+                font-size: 9px;
+            }
+
+            .avatar {
+                width: 42px;
+                height: 42px;
+                flex-basis: 42px;
+                font-size: 22px;
+            }
+
+            .user-name {
+                font-size: 12px;
+            }
+
+            .content {
+                padding: 14px;
+            }
+
+            .hero {
+                min-height: 250px;
+                padding: 20px;
+            }
+
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .hero-quote {
+                font-size: 13px;
+            }
+
+            .kpi-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+                margin-top: -35px;
+
+                gap: 30px 10px;
+
+                padding: 0 5px;
+            }
+
+            .kpi-diamond {
+                width: 125px;
+                height: 125px;
+            }
+
+            .kpi-number {
+                font-size: 25px;
+            }
+
+            .kpi-detail {
+                width: 145px;
+            }
+
+            .stat-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .contacts {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media (max-width: 520px) {
+
+            .clock-box {
+                display: none;
+            }
+
+            .user-box {
+                padding: 6px 9px;
+            }
+
+            .user-name {
+                font-size: 11px;
+            }
+
+            .hero {
+                min-height: 220px;
+            }
+
+            .hero h2 {
+                font-size: 23px;
+            }
+
+            .kpi-diamond {
+                width: 110px;
+                height: 110px;
+            }
+
+            .kpi-icon {
+                font-size: 23px;
+            }
+
+            .kpi-label {
+                font-size: 11px;
+            }
+
+            .kpi-number {
+                font-size: 21px;
+            }
+
+            .kpi-unit {
+                font-size: 8px;
+            }
+
+            .kpi-detail {
+                width: 125px;
+                font-size: 9px;
+            }
+
+            .panel-header h3 {
+                font-size: 15px;
+            }
+        }
+
+
+        /* =========================================================
+           ANIMATION
+        ========================================================= */
+
+        @keyframes pulse {
+
+            0%, 100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .55;
+            }
+        }
+
+        .live {
+            animation: pulse 2s infinite;
+        }
+
+        .fade-in {
+
+            animation:
+                fadeIn .6s ease both;
+        }
+
+        @keyframes fadeIn {
+
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
 
-<!-- =====================================================
-     DESKTOP SIDEBAR
-===================================================== -->
+<!-- ============================================================
+     SIDEBAR
+============================================================ -->
 
-<aside class="sidebar">
+<aside class="sidebar" id="sidebar">
 
-    <div class="logo">
+    <div class="sidebar-brand">
 
-        <div class="logo-icon">
+        <div class="sidebar-logo">
             🏛️
         </div>
 
         <div>
 
-            <div class="logo-title">
-                RONGKHEM
+            <div class="sidebar-title">
+                RONGKHEM <span>e-VILLAGE</span>
             </div>
 
-            <div class="logo-sub">
-                e-VILLAGE OFFICE
-            </div>
-
-            <div class="logo-village">
-                บ้านร่องเข็ม หมู่ 6
+            <div class="sidebar-sub">
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
             </div>
 
         </div>
 
-    </div>
-
-
-    <div class="menu-title">
-        MAIN MENU
     </div>
 
 
     <nav class="menu">
 
-        <button
-            class="active"
-            onclick="go('index.html')"
-        >
-            <span class="menu-icon">📊</span>
-            <span class="menu-text">
-                หน้าแรก / ที่ทำการผู้ใหญ่บ้านออนไลน์
-            </span>
-        </button>
+        <a href="#" class="menu-item active">
 
-
-        <button
-            onclick="go('leader.html')"
-        >
-            <span class="menu-icon">👔</span>
-            <span class="menu-text">
-                ทำเนียบผู้นำ
-            </span>
-        </button>
-
-
-        <button
-            onclick="go('activity.html')"
-        >
-            <span class="menu-icon">📸</span>
-            <span class="menu-text">
-                ภาพกิจกรรมหมู่บ้าน
-            </span>
-        </button>
-
-
-        <button
-            onclick="go('citizen.html')"
-        >
-            <span class="menu-icon">👥</span>
-            <span class="menu-text">
-                ประชาชน
-            </span>
-        </button>
-
-
-        <button
-            onclick="go('household.html')"
-        >
             <span class="menu-icon">🏠</span>
-            <span class="menu-text">
-                ครัวเรือน
+
+            <span>
+                หน้าหลัก<br>
+                <small>ศูนย์บัญชาการ</small>
             </span>
-        </button>
+
+        </a>
 
 
-        <button
-            onclick="go('complaint.html')"
-        >
-            <span class="menu-icon">📝</span>
-            <span class="menu-text">
-                รับเรื่องร้องเรียน
-            </span>
-        </button>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">👥</span>
+            <span>ข้อมูลประชาชน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🏠</span>
+            <span>ข้อมูลครัวเรือน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">👨‍👩‍👧</span>
+            <span>ผู้นำชุมชน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">📢</span>
+            <span>ข่าวประชาสัมพันธ์</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">📅</span>
+            <span>กิจกรรม / ปฏิทิน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🚨</span>
+            <span>แจ้งเหตุ / ร้องเรียน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🤝</span>
+            <span>บริการประชาชน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🏗️</span>
+            <span>โครงการพัฒนาหมู่บ้าน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🌱</span>
+            <span>สิ่งแวดล้อม / PM2.5</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">💧</span>
+            <span>แหล่งซับน้ำจำ</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🍚</span>
+            <span>กลุ่มข้าวสาร</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">📊</span>
+            <span>สถิติหมู่บ้าน</span>
+        </a>
+
+
+        <a href="#" class="menu-item">
+            <span class="menu-icon">⚙️</span>
+            <span>ตั้งค่าระบบ</span>
+        </a>
 
     </nav>
 
 
-    <div class="sidebar-bottom">
+    <div class="sidebar-contact">
 
-        <div class="sidebar-bottom-title">
+        <h3>ที่ทำการผู้ใหญ่บ้าน</h3>
 
-            <span class="online-dot"></span>
-
-            ระบบออนไลน์
-
+        <div class="contact-row">
+            📞
+            <span>โทร. 088-888-8888</span>
         </div>
 
-        <div class="sidebar-bottom-text">
+        <div class="contact-row">
+            🟢
+            <span>LINE ID: rongkhem.village</span>
+        </div>
 
-            RONGKHEM e-VILLAGE OFFICE<br>
-            ที่ทำการผู้ใหญ่บ้านออนไลน์<br>
-            หมู่ที่ 6 ตำบลจำป่าหวาย
-
+        <div class="contact-row">
+            🕐
+            <span>จันทร์ - ศุกร์ 08.30 - 16.30 น.</span>
         </div>
 
     </div>
@@ -1591,1975 +1994,1253 @@ textarea{
 </aside>
 
 
-<!-- =====================================================
-     MOBILE DRAWER
-===================================================== -->
+<!-- ============================================================
+     HEADER
+============================================================ -->
 
-<div
-    class="mobile-drawer"
-    id="mobileDrawer"
->
+<header class="top-header">
 
-    <div class="drawer-close">
-
-        <button
-            onclick="toggleDrawer()"
-        >
-            ✕
-        </button>
-
-    </div>
+    <button
+        class="mobile-menu"
+        id="mobileMenu"
+        aria-label="เปิดเมนู"
+    >
+        ☰
+    </button>
 
 
-    <div class="logo">
+    <div class="brand-mini">
 
-        <div class="logo-icon">
+        <div class="brand-logo">
             🏛️
         </div>
 
         <div>
 
-            <div class="logo-title">
-                RONGKHEM
-            </div>
+            <h1>
+                RONGKHEM <span>e-VILLAGE</span>
+            </h1>
 
-            <div class="logo-sub">
-                e-VILLAGE OFFICE
-            </div>
+            <p>
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
+                • บ้านร่องเข็ม หมู่ 6
+            </p>
 
         </div>
 
     </div>
 
 
-    <div class="drawer-menu">
+    <div class="clock-box">
 
-        <button onclick="go('index.html')">
-            📊 หน้าแรก / ที่ทำการผู้ใหญ่บ้านออนไลน์
-        </button>
+        <div class="clock" id="clock">
+            00:00:00
+        </div>
 
-        <button onclick="go('leader.html')">
-            👔 ทำเนียบผู้นำ
-        </button>
-
-        <button onclick="go('activity.html')">
-            📸 ภาพกิจกรรมหมู่บ้าน
-        </button>
-
-        <button onclick="go('citizen.html')">
-            👥 ประชาชน
-        </button>
-
-        <button onclick="go('household.html')">
-            🏠 ครัวเรือน
-        </button>
-
-        <button onclick="go('complaint.html')">
-            📝 รับเรื่องร้องเรียน
-        </button>
+        <div class="date" id="date">
+            กำลังโหลดวันที่...
+        </div>
 
     </div>
 
-</div>
 
+    <div class="user-box">
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
-
-<main class="main">
-
-
-<header class="topbar">
-
-    <div style="display:flex;align-items:center;gap:10px;">
-
-        <button
-            class="mobile-menu-btn"
-            onclick="toggleDrawer()"
-        >
-            ☰
-        </button>
+        <div class="avatar">
+            👨🏻‍💼
+        </div>
 
         <div>
 
-            <div class="page-title">
-                ที่ทำการผู้ใหญ่บ้านออนไลน์
+            <div class="user-name">
+                นายศักรนนท์ ขัติย์วงศ์
             </div>
 
-            <div class="page-sub">
-                RONGKHEM e-VILLAGE OFFICE
-                | บ้านร่องเข็ม หมู่ที่ 6
+            <div class="user-role">
+                ผู้ใหญ่บ้าน หมู่ที่ 6
+            </div>
+
+            <div class="online">
+                <span class="online-dot"></span>
+                ระบบออนไลน์
             </div>
 
         </div>
-
-    </div>
-
-
-    <div class="top-right">
-
-        <div
-            class="clock"
-            id="clock"
-        >
-            08:05:56
-        </div>
-
-
-        <button
-            class="notification"
-            onclick="go('complaint.html')"
-        >
-
-            🔔
-
-            <span
-                class="notification-badge"
-                id="notificationBadge"
-            >
-                0
-            </span>
-
-        </button>
 
     </div>
 
 </header>
 
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<!-- ============================================================
+     MAIN
+============================================================ -->
 
-<section class="hero">
+<main class="main">
 
-    <div class="hero-content">
-
-        <div class="hero-label">
-
-            <span class="online-dot"></span>
-
-            ระบบจัดการหมู่บ้านออนไลน์
-
-        </div>
+    <div class="content">
 
 
-        <h1>
+        <!-- HERO -->
 
-            สวัสดีครับ
-            <span>ผู้ใหญ่บ้าน</span>
-            👋
+        <section class="hero fade-in">
 
-        </h1>
+            <div class="hero-content">
+
+                <h2>
+                    ศูนย์บัญชาการข้อมูลหมู่บ้านร่องเข็ม
+                </h2>
+
+                <div class="hero-quote">
+                    “ร่วมคิด ร่วมทำ ร่วมพัฒนา เพื่อบ้านร่องเข็มของเรา”
+                </div>
+
+                <div class="hero-tag">
+                    🟢 ข้อมูล ณ เวลาปัจจุบัน
+                </div>
+
+            </div>
+
+        </section>
 
 
-        <p>
+        <!-- ====================================================
+             KPI
+        ==================================================== -->
 
-            ยินดีต้อนรับสู่
-            <strong>
-                RONGKHEM e-VILLAGE OFFICE
-            </strong>
+        <section class="kpi-grid">
 
-            ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+            <!-- ประชาชน -->
+
+            <div class="kpi-wrap">
+
+                <div class="kpi-diamond">
+
+                    <div class="kpi-inner">
+
+                        <div class="kpi-icon">
+                            👥
+                        </div>
+
+                        <div class="kpi-label">
+                            ประชาชน
+                        </div>
+
+                        <div class="kpi-number">
+                            1,245
+                        </div>
+
+                        <div class="kpi-unit">
+                            คน
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="kpi-detail">
+
+                    👩 หญิง 627 คน<br>
+                    👨 ชาย 618 คน
+
+                </div>
+
+            </div>
+
+
+            <!-- ครัวเรือน -->
+
+            <div class="kpi-wrap">
+
+                <div class="kpi-diamond cyan">
+
+                    <div class="kpi-inner">
+
+                        <div class="kpi-icon">
+                            🏠
+                        </div>
+
+                        <div class="kpi-label">
+                            ครัวเรือน
+                        </div>
+
+                        <div class="kpi-number">
+                            535
+                        </div>
+
+                        <div class="kpi-unit">
+                            ครัวเรือน
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="kpi-detail">
+
+                    🏡 บ้านเรือน 538 หลัง<br>
+                    🏠 อาศัยอยู่จริง 535 หลัง
+
+                </div>
+
+            </div>
+
+
+            <!-- ผู้สูงอายุ -->
+
+            <div class="kpi-wrap">
+
+                <div class="kpi-diamond purple">
+
+                    <div class="kpi-inner">
+
+                        <div class="kpi-icon">
+                            👴
+                        </div>
+
+                        <div class="kpi-label">
+                            ผู้สูงอายุ
+                        </div>
+
+                        <div class="kpi-number">
+                            186
+                        </div>
+
+                        <div class="kpi-unit">
+                            คน
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="kpi-detail">
+
+                    👨 ชาย 81 คน<br>
+                    👩 หญิง 105 คน
+
+                </div>
+
+            </div>
+
+
+            <!-- กลุ่มเปราะบาง -->
+
+            <div class="kpi-wrap">
+
+                <div class="kpi-diamond orange">
+
+                    <div class="kpi-inner">
+
+                        <div class="kpi-icon">
+                            👨‍👩‍👧
+                        </div>
+
+                        <div class="kpi-label">
+                            กลุ่มเปราะบาง
+                        </div>
+
+                        <div class="kpi-number">
+                            45
+                        </div>
+
+                        <div class="kpi-unit">
+                            คน
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="kpi-detail">
+
+                    ♿ ผู้พิการ 18 คน<br>
+                    ❤️ ผู้ป่วยติดเตียง 27 คน
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             DASHBOARD GRID
+        ==================================================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- LEFT -->
+
+            <div>
+
+
+                <!-- ประกาศ -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <h3>
+                            📢 ประกาศล่าสุด
+                        </h3>
+
+                        <a
+                            href="#"
+                            class="panel-link"
+                        >
+                            ดูทั้งหมด →
+                        </a>
+
+                    </div>
+
+
+                    <div class="announcement red">
+
+                        <div class="announcement-icon">
+                            📢
+                        </div>
+
+                        <div class="announcement-body">
+
+                            <div class="announcement-title">
+                                ประกาศ ห้ามเผาในที่โล่งทุกชนิด
+                            </div>
+
+                            <div class="announcement-desc">
+                                ขอความร่วมมือประชาชนงดการเผา
+                                เพื่อป้องกันปัญหาหมอกควันและ PM2.5
+                            </div>
+
+                        </div>
+
+                        <div class="announcement-date">
+                            13 ส.ค. 2569
+                        </div>
+
+                    </div>
+
+
+                    <div class="announcement">
+
+                        <div class="announcement-icon">
+                            📅
+                        </div>
+
+                        <div class="announcement-body">
+
+                            <div class="announcement-title">
+                                นัดประชุมหมู่บ้านประจำเดือน
+                            </div>
+
+                            <div class="announcement-desc">
+                                วันอาทิตย์ที่ 19 สิงหาคม 2569
+                                เวลา 07.00 น. ณ ศาลาเอนกประสงค์หมู่บ้าน
+                            </div>
+
+                        </div>
+
+                        <div class="announcement-date">
+                            12 ส.ค. 2569
+                        </div>
+
+                    </div>
+
+
+                    <div class="announcement green">
+
+                        <div class="announcement-icon">
+                            ♻️
+                        </div>
+
+                        <div class="announcement-body">
+
+                            <div class="announcement-title">
+                                โครงการคัดแยกขยะในครัวเรือน
+                            </div>
+
+                            <div class="announcement-desc">
+                                ขอความร่วมมือคัดแยกขยะ 4 ประเภท
+                                ก่อนนำออกจากครัวเรือน
+                            </div>
+
+                        </div>
+
+                        <div class="announcement-date">
+                            10 ส.ค. 2569
+                        </div>
+
+                    </div>
+
+
+                    <div class="announcement orange">
+
+                        <div class="announcement-icon">
+                            🚧
+                        </div>
+
+                        <div class="announcement-body">
+
+                            <div class="announcement-title">
+                                แจ้งซ่อมถนนชำรุด
+                            </div>
+
+                            <div class="announcement-desc">
+                                ถนนสายร่องเข็ม-ดอยน้อย
+                                ช่วงบ้านนายอินทร์ ถึง บ้านนายทอง
+                            </div>
+
+                        </div>
+
+                        <div class="announcement-date">
+                            09 ส.ค. 2569
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- AI -->
+
+                <div
+                    class="panel ai-panel"
+                    style="margin-top:18px;"
+                >
+
+                    <div class="panel-header">
+
+                        <h3>
+                            🤖 AI ผู้ช่วยผู้ใหญ่บ้าน
+                        </h3>
+
+                        <span
+                            style="
+                                color:#64ecff;
+                                font-size:10px;
+                            "
+                        >
+                            ● พร้อมให้บริการ
+                        </span>
+
+                    </div>
+
+
+                    <div class="ai-body">
+
+                        <div class="robot">
+
+                            <div class="robot-avatar">
+                                🤖
+                            </div>
+
+                            <div class="robot-text">
+
+                                <strong>
+                                    สวัสดีครับ!
+                                </strong>
+
+                                <br>
+
+                                ผมคือผู้ช่วย AI
+                                ที่พร้อมให้ข้อมูลและบริการประชาชน
+
+                            </div>
+
+                        </div>
+
+
+                        <button class="question">
+                            วันนี้มีประชุมหมู่บ้านไหมครับ?
+                            <span>›</span>
+                        </button>
+
+
+                        <button class="question">
+                            แจ้งเหตุไฟไหม้ ต้องทำอย่างไร?
+                            <span>›</span>
+                        </button>
+
+
+                        <button class="question">
+                            ติดต่อที่ทำการผู้ใหญ่บ้านได้อย่างไร?
+                            <span>›</span>
+                        </button>
+
+
+                        <button class="question">
+                            มีโครงการช่วยเหลืออะไรบ้าง?
+                            <span>›</span>
+                        </button>
+
+
+                        <form
+                            class="ai-input"
+                            id="aiForm"
+                        >
+
+                            <input
+                                type="text"
+                                id="aiInput"
+                                placeholder="พิมพ์คำถามของคุณ..."
+                            >
+
+                            <button type="submit">
+                                ➤
+                            </button>
+
+                        </form>
+
+                        <div
+                            id="aiReply"
+                            style="
+                                display:none;
+                                margin-top:10px;
+                                padding:10px;
+                                border-radius:10px;
+                                background:rgba(67,216,93,.08);
+                                border:1px solid rgba(67,216,93,.2);
+                                font-size:11px;
+                                color:#bdecc4;
+                            "
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div>
+
+
+                <!-- WEATHER -->
+
+                <div class="panel weather">
+
+                    <div class="panel-header">
+
+                        <h3>
+                            🌤️ สภาพอากาศ
+                        </h3>
+
+                        <a
+                            href="#"
+                            class="panel-link"
+                        >
+                            ดูเพิ่มเติม
+                        </a>
+
+                    </div>
+
+
+                    <div class="weather-main">
+
+                        <div class="weather-icon">
+                            🌤️
+                        </div>
+
+                        <div>
+
+                            <div class="temperature">
+                                28°C
+                            </div>
+
+                            <div class="weather-status">
+                                เมฆเป็นส่วนมาก
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="weather-data">
+
+                        <div class="weather-item">
+
+                            <span>💧 ความชื้น</span>
+
+                            <strong>
+                                72%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="weather-item">
+
+                            <span>🌧️ โอกาสฝน</span>
+
+                            <strong>
+                                20%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="weather-item">
+
+                            <span>💨 ลม</span>
+
+                            <strong>
+                                6 km/h
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="weather-location">
+
+                        📍 พะเยา อ.เมืองพะเยา
+
+                        <span style="float:right;">
+                            อัปเดต 09:30 น.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PM2.5 -->
+
+                <div class="panel pm-box">
+
+                    <div class="panel-header">
+
+                        <h3>
+                            🌫️ PM2.5
+                        </h3>
+
+                        <a
+                            href="#"
+                            class="panel-link"
+                        >
+                            ดูเพิ่มเติม
+                        </a>
+
+                    </div>
+
+
+                    <div class="pm-content">
+
+                        <div class="pm-main">
+
+                            <div class="pm-face">
+                                ☺
+                            </div>
+
+                            <div>
+
+                                <div class="pm-value">
+
+                                    18
+                                    <small>
+                                        µg/m³
+                                    </small>
+
+                                </div>
+
+                                <div class="pm-status">
+                                    คุณภาพอากาศดี
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="pm-bar">
+
+                            <div class="pm-marker"></div>
+
+                        </div>
+
+
+                        <div class="pm-scale">
+
+                            <span>0-25<br>ดีมาก</span>
+                            <span>26-37<br>ดี</span>
+                            <span>38-50<br>ปานกลาง</span>
+                            <span>51-90<br>เริ่มมีผล</span>
+                            <span>91+<br>อันตราย</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIVITY -->
+
+                <div
+                    class="panel"
+                    style="margin-top:18px;"
+                >
+
+                    <div class="panel-header">
+
+                        <h3>
+                            📅 กิจกรรมวันนี้
+                        </h3>
+
+                        <a
+                            href="#"
+                            class="panel-link"
+                        >
+                            ดูทั้งหมด
+                        </a>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div class="activity-icon">
+                            🏛️
+                        </div>
+
+                        <div>
+
+                            <div class="activity-title">
+                                ประชุมหมู่บ้านประจำเดือน
+                            </div>
+
+                            <div class="activity-place">
+                                📍 ณ ศาลาเอนกประสงค์หมู่บ้าน
+                            </div>
+
+                        </div>
+
+                        <div class="activity-time">
+                            07:00 น.
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div
+                            class="activity-icon"
+                            style="
+                                background:rgba(66,210,89,.15);
+                            "
+                        >
+                            🩺
+                        </div>
+
+                        <div>
+
+                            <div class="activity-title">
+                                อสม. ออกเยี่ยมผู้ป่วยติดเตียง
+                            </div>
+
+                            <div class="activity-place">
+                                📍 พื้นที่หมู่ 6
+                            </div>
+
+                        </div>
+
+                        <div class="activity-time">
+                            09:00 น.
+                        </div>
+
+                    </div>
+
+
+                    <div class="activity">
+
+                        <div
+                            class="activity-icon"
+                            style="
+                                background:rgba(255,159,42,.15);
+                            "
+                        >
+                            🛕
+                        </div>
+
+                        <div>
+
+                            <div class="activity-title">
+                                กิจกรรมทำความสะอาดวัด
+                            </div>
+
+                            <div class="activity-place">
+                                📍 วัดร่องเข็ม
+                            </div>
+
+                        </div>
+
+                        <div class="activity-time">
+                            14:00 น.
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================================
+             BOTTOM
+        ==================================================== -->
+
+        <section class="bottom-grid">
+
+
+            <!-- STATISTICS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        📊 สถิติการแจ้งเหตุ
+                        <span
+                            style="
+                                color:#7f9aa4;
+                                font-size:11px;
+                            "
+                        >
+                            (เดือนนี้)
+                        </span>
+                    </h3>
+
+                </div>
+
+
+                <div class="stat-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            🚨
+                        </div>
+
+                        <div class="stat-number">
+                            12
+                        </div>
+
+                        <div class="stat-label">
+                            แจ้งเหตุทั้งหมด
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            🚧
+                        </div>
+
+                        <div class="stat-number">
+                            3
+                        </div>
+
+                        <div class="stat-label">
+                            กำลังดำเนินการ
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ✅
+                        </div>
+
+                        <div class="stat-number">
+                            9
+                        </div>
+
+                        <div class="stat-label">
+                            ดำเนินการเสร็จสิ้น
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            👥
+                        </div>
+
+                        <div class="stat-number">
+                            156
+                        </div>
+
+                        <div class="stat-label">
+                            ผู้ใช้งานระบบวันนี้
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <h3>
+                        📞 ช่องทางติดต่อ
+                    </h3>
+
+                </div>
+
+
+                <div class="contacts">
+
+
+                    <div class="contact-card">
+
+                        <div class="icon">
+                            📞
+                        </div>
+
+                        <span>
+                            โทรศัพท์
+                        </span>
+
+                        <strong>
+                            088-888-8888
+                        </strong>
+
+                    </div>
+
+
+                    <div class="contact-card">
+
+                        <div class="icon">
+                            🔵
+                        </div>
+
+                        <span>
+                            Facebook
+                        </span>
+
+                        <strong>
+                            ร่องเข็ม หมู่ 6
+                        </strong>
+
+                    </div>
+
+
+                    <div class="contact-card">
+
+                        <div class="icon">
+                            🟢
+                        </div>
+
+                        <span>
+                            Line OA
+                        </span>
+
+                        <strong>
+                            @rongkhem.village
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+
+            © 2569 ที่ทำการผู้ใหญ่บ้านออนไลน์
             บ้านร่องเข็ม หมู่ที่ 6
+            ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
 
-            ระบบศูนย์รวมข้อมูลชุมชน
-            สำหรับบริหารจัดการและประชาสัมพันธ์
-            ข้อมูลให้ประชาชนเข้าถึงได้ง่าย
+        </footer>
 
-        </p>
-
-
-        <div class="hero-actions">
-
-            <button
-                class="hero-btn primary"
-                onclick="go('complaint.html')"
-            >
-                📝 รับเรื่องร้องเรียน
-            </button>
-
-
-            <button
-                class="hero-btn secondary"
-                onclick="go('activity.html')"
-            >
-                📸 เพิ่มกิจกรรม
-            </button>
-
-
-            <button
-                class="hero-btn secondary"
-                onclick="go('leader.html')"
-            >
-                👔 จัดการทำเนียบผู้นำ
-            </button>
-
-        </div>
 
     </div>
-
-</section>
-
-
-<!-- =====================================================
-     STAT DASHBOARD
-===================================================== -->
-
-<section class="dashboard-grid">
-
-
-    <div class="stat-card">
-
-        <div class="stat-icon">
-            🏠
-        </div>
-
-        <div
-            class="stat-number"
-            id="householdCount"
-        >
-            192
-        </div>
-
-        <div class="stat-label">
-            ครัวเรือน
-        </div>
-
-        <div class="stat-status">
-            ● ข้อมูลหมู่บ้าน
-        </div>
-
-        <div class="stat-glow"></div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div class="stat-icon">
-            👥
-        </div>
-
-        <div
-            class="stat-number"
-            id="citizenCount"
-        >
-            648
-        </div>
-
-        <div class="stat-label">
-            ประชาชน
-        </div>
-
-        <div class="stat-status">
-            ● ฐานข้อมูล
-        </div>
-
-        <div class="stat-glow"></div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div class="stat-icon">
-            👴
-        </div>
-
-        <div
-            class="stat-number"
-            id="elderlyCount"
-        >
-            124
-        </div>
-
-        <div class="stat-label">
-            ผู้สูงอายุ
-        </div>
-
-        <div class="stat-status">
-            ● ฐานข้อมูล
-        </div>
-
-        <div class="stat-glow"></div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div class="stat-icon">
-            👔
-        </div>
-
-        <div
-            class="stat-number"
-            id="leaderCount"
-        >
-            0
-        </div>
-
-        <div class="stat-label">
-            คณะกรรมการผู้นำ
-        </div>
-
-        <div class="stat-status">
-            ทำเนียบผู้นำ
-        </div>
-
-        <div class="stat-glow"></div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div class="stat-icon">
-            📸
-        </div>
-
-        <div
-            class="stat-number"
-            id="activityCount"
-        >
-            0
-        </div>
-
-        <div class="stat-label">
-            กิจกรรมหมู่บ้าน
-        </div>
-
-        <div class="stat-status">
-            อัลบั้มภาพ
-        </div>
-
-        <div class="stat-glow"></div>
-
-    </div>
-
-
-    <div class="stat-card">
-
-        <div class="stat-icon">
-            📝
-        </div>
-
-        <div
-            class="stat-number"
-            id="complaintCount"
-        >
-            0
-        </div>
-
-        <div class="stat-label">
-            คำร้องค้าง
-        </div>
-
-        <div class="stat-status">
-            ● รอติดตาม
-        </div>
-
-        <div class="stat-glow"></div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     ACTIVITY + LEADER
-===================================================== -->
-
-<section class="section-grid">
-
-
-<!-- ACTIVITY -->
-
-<div class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            📸
-        </div>
-
-        <div>
-
-            <h2>
-                ข่าวสารและภาพกิจกรรมหมู่บ้าน
-            </h2>
-
-            <p>
-                กิจกรรมล่าสุดของบ้านร่องเข็ม
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="view-btn"
-        onclick="go('activity.html')"
-    >
-        ดูทั้งหมด →
-    </button>
-
-</div>
-
-
-<div
-    class="activity-list"
-    id="activityList"
-></div>
-
-</div>
-
-
-<!-- LEADER -->
-
-<div class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            👔
-        </div>
-
-        <div>
-
-            <h2>
-                ทำเนียบผู้นำ
-            </h2>
-
-            <p>
-                ผู้นำและคณะกรรมการหมู่บ้าน
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="view-btn"
-        onclick="go('leader.html')"
-    >
-        ดูทั้งหมด →
-    </button>
-
-</div>
-
-
-<div
-    class="leader-list"
-    id="leaderList"
-></div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     WEATHER + COMPLAINT
-===================================================== -->
-
-<section class="section-grid">
-
-
-<!-- WEATHER -->
-
-<div class="card weather-card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            🌤️
-        </div>
-
-        <div>
-
-            <h2>
-                สภาพอากาศบ้านร่องเข็ม
-            </h2>
-
-            <p>
-                LIVE WEATHER
-            </p>
-
-        </div>
-
-    </div>
-
-    <span class="badge blue">
-        LIVE API
-    </span>
-
-</div>
-
-
-<div class="weather-top">
-
-    <div>
-
-        <div
-            class="weather-temp"
-            id="weatherTemp"
-        >
-            27°C
-        </div>
-
-        <div
-            class="weather-condition"
-            id="weatherCondition"
-        >
-            ท้องฟ้าโปร่ง
-        </div>
-
-    </div>
-
-
-    <div
-        class="weather-icon"
-        id="weatherIcon"
-    >
-        🌤️
-    </div>
-
-</div>
-
-
-<div class="weather-grid">
-
-
-    <div class="weather-mini">
-
-        <div class="weather-mini-icon">
-            💧
-        </div>
-
-        <div
-            class="weather-mini-value"
-            id="humidity"
-        >
-            81%
-        </div>
-
-        <div class="weather-mini-label">
-            ความชื้น
-        </div>
-
-    </div>
-
-
-    <div class="weather-mini">
-
-        <div class="weather-mini-icon">
-            💨
-        </div>
-
-        <div
-            class="weather-mini-value"
-            id="wind"
-        >
-            7 km/h
-        </div>
-
-        <div class="weather-mini-label">
-            ลม
-        </div>
-
-    </div>
-
-
-    <div class="weather-mini">
-
-        <div class="weather-mini-icon">
-            🌧️
-        </div>
-
-        <div
-            class="weather-mini-value"
-            id="rain"
-        >
-            25%
-        </div>
-
-        <div class="weather-mini-label">
-            โอกาสฝน
-        </div>
-
-    </div>
-
-
-    <div class="weather-mini">
-
-        <div class="weather-mini-icon">
-            👁️
-        </div>
-
-        <div
-            class="weather-mini-value"
-        >
-            ดี
-        </div>
-
-        <div class="weather-mini-label">
-            ทัศนวิสัย
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- PM2.5 -->
-
-<div class="pm-box">
-
-<div class="pm-header">
-
-    <div>
-
-        <div class="pm-title">
-            🌫️ PM2.5
-        </div>
-
-        <div class="pm-unit">
-            µg/m³
-        </div>
-
-    </div>
-
-
-    <div>
-
-        <span
-            class="pm-value"
-            id="pmValue"
-        >
-            7
-        </span>
-
-    </div>
-
-</div>
-
-
-<div
-    class="pm-status"
-    id="pmStatus"
->
-    ดี
-</div>
-
-
-<div class="pm-text">
-
-    คุณภาพอากาศอยู่ในเกณฑ์ที่สามารถ
-    ทำกิจกรรมกลางแจ้งได้ตามปกติ
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- COMPLAINT -->
-
-<div class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            🚨
-        </div>
-
-        <div>
-
-            <h2>
-                งานและเรื่องแจ้งเตือน
-            </h2>
-
-            <p>
-                รายการล่าสุด
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="view-btn"
-        onclick="go('complaint.html')"
-    >
-        ดูทั้งหมด →
-    </button>
-
-</div>
-
-
-<div
-    class="complaint-list"
-    id="complaintList"
-></div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     QUICK ACTIONS
-===================================================== -->
-
-<section class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            ⚡
-        </div>
-
-        <div>
-
-            <h2>
-                เมนูด่วน
-            </h2>
-
-            <p>
-                เข้าถึงระบบที่ใช้บ่อย
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="quick-grid">
-
-
-<button
-    class="quick-btn"
-    onclick="go('complaint.html')"
->
-
-    <div class="quick-icon">
-        ✍️
-    </div>
-
-    <div class="quick-text">
-        รับเรื่องร้องเรียน
-    </div>
-
-    <div class="quick-sub">
-        บันทึกคำร้องใหม่
-    </div>
-
-</button>
-
-
-<button
-    class="quick-btn"
-    onclick="go('leader.html')"
->
-
-    <div class="quick-icon">
-        👔
-    </div>
-
-    <div class="quick-text">
-        เพิ่มผู้นำใหม่
-    </div>
-
-    <div class="quick-sub">
-        จัดการทำเนียบ
-    </div>
-
-</button>
-
-
-<button
-    class="quick-btn"
-    onclick="go('activity.html')"
->
-
-    <div class="quick-icon">
-        📸
-    </div>
-
-    <div class="quick-text">
-        อัปโหลดกิจกรรม
-    </div>
-
-    <div class="quick-sub">
-        เพิ่มข่าวสารและภาพ
-    </div>
-
-</button>
-
-
-<button
-    class="quick-btn"
-    onclick="showLineMessage()"
->
-
-    <div class="quick-icon">
-        💬
-    </div>
-
-    <div class="quick-text">
-        แจ้งเตือนไลน์กลุ่ม
-    </div>
-
-    <div class="quick-sub">
-        เตรียมระบบ LINE
-    </div>
-
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     ALERTS
-===================================================== -->
-
-<section class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            🚨
-        </div>
-
-        <div>
-
-            <h2>
-                งานและเรื่องที่ต้องติดตาม
-            </h2>
-
-            <p>
-                ระบบแจ้งเตือนจากทะเบียนคำร้อง
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div
-    class="alert-list"
-    id="alertList"
-></div>
-
-</section>
-
-
-<footer class="footer">
-
-    <strong>
-        🏛️ RONGKHEM e-VILLAGE OFFICE
-    </strong>
-
-    <br>
-
-    ที่ทำการผู้ใหญ่บ้านออนไลน์
-    บ้านร่องเข็ม หมู่ที่ 6
-    ตำบลจำป่าหวาย
-    อำเภอเมืองพะเยา
-    จังหวัดพะเยา
-
-    <br>
-
-    ระบบบริหารจัดการหมู่บ้านอัจฉริยะ
-
-</footer>
-
 
 </main>
 
 
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+
 <script>
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+    /* =========================================================
+       DIGITAL CLOCK
+    ========================================================= */
 
-function go(page){
+    function updateClock() {
 
-    window.location.href =
-        page;
+        const now = new Date();
 
-}
-
-
-/* =====================================================
-   MOBILE DRAWER
-===================================================== */
-
-function toggleDrawer(){
-
-    document
-        .getElementById(
-            "mobileDrawer"
-        )
-        .classList.toggle(
-            "show"
-        );
-
-}
-
-
-/* =====================================================
-   CLOCK
-===================================================== */
-
-function updateClock(){
-
-    const now =
-        new Date();
-
-    document.getElementById(
-        "clock"
-    ).textContent =
-        now.toLocaleTimeString(
+        const time = now.toLocaleTimeString(
             "th-TH",
             {
-                hour:"2-digit",
-                minute:"2-digit",
-                second:"2-digit"
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: false
             }
         );
 
-}
-
-updateClock();
-
-setInterval(
-    updateClock,
-    1000
-);
+        document.getElementById("clock").textContent = time;
 
 
-/* =====================================================
-   LOAD STORAGE
-===================================================== */
-
-function getStorage(
-    key,
-    fallback=[]
-){
-
-    try{
-
-        return JSON.parse(
-            localStorage.getItem(
-                key
-            ) || JSON.stringify(
-                fallback
-            )
+        const date = now.toLocaleDateString(
+            "th-TH",
+            {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric"
+            }
         );
 
-    }catch(error){
-
-        return fallback;
-
+        document.getElementById("date").textContent = date;
     }
 
-}
 
+    updateClock();
 
-let leaders =
-    getStorage(
-        "rongkhem_leaders"
+    setInterval(
+        updateClock,
+        1000
     );
 
 
-let activities =
-    getStorage(
-        "rongkhem_activities"
-    );
+    /* =========================================================
+       MOBILE SIDEBAR
+    ========================================================= */
 
+    const mobileMenu =
+        document.getElementById("mobileMenu");
 
-let complaints =
-    getStorage(
-        "rongkhem_complaints"
-    );
+    const sidebar =
+        document.getElementById("sidebar");
 
 
-/* =====================================================
-   LEADER COUNT
-===================================================== */
+    mobileMenu.addEventListener(
+        "click",
+        () => {
 
-function renderLeaderData(){
+            sidebar.classList.toggle("open");
 
-    document.getElementById(
-        "leaderCount"
-    ).textContent =
-        leaders.length;
-
-
-    const box =
-        document.getElementById(
-            "leaderList"
-        );
-
-
-    if(
-        leaders.length === 0
-    ){
-
-        box.innerHTML = `
-
-            <div
-                style="
-                    text-align:center;
-                    padding:30px 10px;
-                    color:#71869b;
-                    font-size:10px;
-                "
-            >
-
-                👔
-
-                <br><br>
-
-                ยังไม่มีข้อมูลทำเนียบผู้นำ
-
-                <br><br>
-
-                <button
-                    class="view-btn"
-                    onclick="go('leader.html')"
-                >
-                    + เพิ่มผู้นำใหม่
-                </button>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-        leaders
-        .slice(0,5)
-        .map(
-            leader => {
-
-                const image =
-                    leader.image || "";
-
-
-                return `
-
-                    <div
-                        class="leader-item"
-                    >
-
-                        ${
-                            image
-
-                            ?
-
-                            `
-                            <img
-                                class="leader-avatar"
-                                src="${escapeHTML(
-                                    image
-                                )}"
-                                alt=""
-                                onerror="
-                                    this.style.display='none';
-                                    this.nextElementSibling.style.display='flex';
-                                "
-                            >
-
-                            <div
-                                class="leader-avatar"
-                                style="display:none"
-                            >
-                                👔
-                            </div>
-                            `
-
-                            :
-
-                            `
-                            <div
-                                class="leader-avatar"
-                            >
-                                👔
-                            </div>
-                            `
-                        }
-
-
-                        <div>
-
-                            <div
-                                class="leader-name"
-                            >
-                                ${escapeHTML(
-                                    leader.name
-                                )}
-                            </div>
-
-                            <div
-                                class="leader-position"
-                            >
-                                ${escapeHTML(
-                                    leader.position
-                                )}
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="leader-status"
-                        >
-
-                            <span
-                                class="
-                                    badge
-                                    ${
-                                        leader.status ===
-                                        "ปฏิบัติหน้าที่"
-                                        ?
-                                        "green"
-                                        :
-                                        "yellow"
-                                    }
-                                "
-                            >
-
-                                ${escapeHTML(
-                                    leader.status ||
-                                    "ปฏิบัติหน้าที่"
-                                )}
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* =====================================================
-   ACTIVITY
-===================================================== */
-
-function renderActivityData(){
-
-    document.getElementById(
-        "activityCount"
-    ).textContent =
-        activities.length;
-
-
-    const box =
-        document.getElementById(
-            "activityList"
-        );
-
-
-    if(
-        activities.length === 0
-    ){
-
-        box.innerHTML = `
-
-            <div
-                style="
-                    text-align:center;
-                    padding:30px 10px;
-                    color:#71869b;
-                    font-size:10px;
-                "
-            >
-
-                📸
-
-                <br><br>
-
-                ยังไม่มีข้อมูลกิจกรรม
-
-                <br><br>
-
-                <button
-                    class="view-btn"
-                    onclick="go('activity.html')"
-                >
-                    + เพิ่มกิจกรรม
-                </button>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const sorted =
-        [...activities]
-        .sort(
-            (a,b) =>
-                new Date(b.date) -
-                new Date(a.date)
-        );
-
-
-    box.innerHTML =
-        sorted
-        .slice(0,4)
-        .map(
-            activity => {
-
-                const image =
-                    activity.image || "";
-
-
-                return `
-
-                    <div
-                        class="activity-item"
-                    >
-
-                        ${
-                            image
-
-                            ?
-
-                            `
-                            <img
-                                class="activity-thumb"
-                                src="${escapeHTML(
-                                    image
-                                )}"
-                                alt=""
-                            >
-                            `
-
-                            :
-
-                            `
-                            <div
-                                class="activity-thumb"
-                                style="
-                                    display:flex;
-                                    align-items:center;
-                                    justify-content:center;
-                                    font-size:25px;
-                                "
-                            >
-                                📸
-                            </div>
-                            `
-                        }
-
-
-                        <div
-                            class="activity-info"
-                        >
-
-                            <div
-                                class="activity-name"
-                            >
-                                ${escapeHTML(
-                                    activity.title
-                                )}
-                            </div>
-
-
-                            <div
-                                class="activity-desc"
-                            >
-                                ${escapeHTML(
-                                    activity.description
-                                )}
-                            </div>
-
-
-                            <div
-                                class="activity-date"
-                            >
-                                📅
-                                ${formatThaiDate(
-                                    activity.date
-                                )}
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* =====================================================
-   COMPLAINT
-===================================================== */
-
-function renderComplaintData(){
-
-    const pending =
-        complaints.filter(
-            c =>
-                c.status !==
-                "เสร็จสิ้น"
-        );
-
-
-    document.getElementById(
-        "complaintCount"
-    ).textContent =
-        pending.length;
-
-
-    document.getElementById(
-        "notificationBadge"
-    ).textContent =
-        pending.length;
-
-
-    const box =
-        document.getElementById(
-            "complaintList"
-        );
-
-
-    if(
-        complaints.length === 0
-    ){
-
-        box.innerHTML = `
-
-            <div
-                style="
-                    text-align:center;
-                    padding:30px;
-                    color:#71869b;
-                    font-size:10px;
-                "
-            >
-
-                📝
-
-                <br><br>
-
-                ยังไม่มีเรื่องแจ้งเตือน
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    const sorted =
-        [...complaints]
-        .sort(
-            (a,b) =>
-                new Date(b.date) -
-                new Date(a.date)
-        );
-
-
-    box.innerHTML =
-        sorted
-        .slice(0,5)
-        .map(
-            complaint => {
-
-                let statusClass =
-                    "blue";
-
-
-                if(
-                    complaint.status ===
-                    "กำลังดำเนินการ"
-                ){
-
-                    statusClass =
-                        "yellow";
-
-                }
-
-
-                if(
-                    complaint.status ===
-                    "เสร็จสิ้น"
-                ){
-
-                    statusClass =
-                        "green";
-
-                }
-
-
-                return `
-
-                    <div
-                        class="complaint-item"
-                    >
-
-                        <div
-                            class="complaint-icon"
-                        >
-
-                            ${
-                                complaint.type ===
-                                "น้ำประปา"
-                                ?
-                                "🚰"
-                                :
-                                complaint.type ===
-                                "ไฟส่องสว่าง"
-                                ?
-                                "💡"
-                                :
-                                "📝"
-                            }
-
-                        </div>
-
-
-                        <div>
-
-                            <div
-                                class="complaint-title"
-                            >
-
-                                ${escapeHTML(
-                                    complaint.title
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="complaint-sub"
-                            >
-
-                                ${escapeHTML(
-                                    complaint.location ||
-                                    "-"
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-                        <span
-                            class="
-                                badge
-                                ${statusClass}
-                            "
-                        >
-
-                            ${escapeHTML(
-                                complaint.status
-                            )}
-
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* =====================================================
-   ALERTS
-===================================================== */
-
-function renderAlerts(){
-
-    const box =
-        document.getElementById(
-            "alertList"
-        );
-
-
-    const pending =
-        complaints.filter(
-            c =>
-                c.status !==
-                "เสร็จสิ้น"
-        );
-
-
-    if(
-        pending.length === 0
-    ){
-
-        box.innerHTML = `
-
-            <div
-                class="alert-item"
-            >
-
-                <div class="alert-icon">
-                    ✅
-                </div>
-
-                <div>
-
-                    <div class="alert-title">
-                        ไม่มีงานค้าง
-                    </div>
-
-                    <div class="alert-text">
-                        ขณะนี้ไม่มีคำร้องที่ต้องติดตาม
-                    </div>
-
-                </div>
-
-                <span
-                    class="
-                        badge
-                        green
-                    "
-                >
-                    ปกติ
-                </span>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    box.innerHTML =
-        pending
-        .slice(0,5)
-        .map(
-            c => {
-
-                const urgent =
-                    c.priority ===
-                    "เร่งด่วน";
-
-
-                return `
-
-                    <div
-                        class="alert-item"
-                    >
-
-                        <div
-                            class="alert-icon"
-                        >
-
-                            ${
-                                urgent
-                                ?
-                                "🚨"
-                                :
-                                "📌"
-                            }
-
-                        </div>
-
-
-                        <div>
-
-                            <div
-                                class="alert-title"
-                            >
-
-                                ${escapeHTML(
-                                    c.title
-                                )}
-
-                            </div>
-
-
-                            <div
-                                class="alert-text"
-                            >
-
-                                ${escapeHTML(
-                                    c.id
-                                )}
-                                ·
-                                ${escapeHTML(
-                                    c.status
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-                        <span
-                            class="
-                                badge
-                                ${
-                                    urgent
-                                    ?
-                                    "red"
-                                    :
-                                    "yellow"
-                                }
-                            "
-                        >
-
-                            ${
-                                urgent
-                                ?
-                                "เร่งด่วน"
-                                :
-                                "ติดตาม"
-                            }
-
-                        </span>
-
-                    </div>
-
-                `;
-
-            }
-        )
-        .join("");
-
-}
-
-
-/* =====================================================
-   WEATHER DEMO
-===================================================== */
-
-async function loadWeather(){
-
-    /*
-       ส่วนนี้เตรียมไว้สำหรับเชื่อม
-       Weather API จริงในขั้นต่อไป
-
-       ตอนนี้ใช้ค่าตัวอย่างตามหน้า
-       ที่คุณออกแบบไว้
-    */
-
-    document.getElementById(
-        "weatherTemp"
-    ).textContent =
-        "27°C";
-
-    document.getElementById(
-        "weatherCondition"
-    ).textContent =
-        "ท้องฟ้าโปร่ง";
-
-    document.getElementById(
-        "weatherIcon"
-    ).textContent =
-        "🌤️";
-
-    document.getElementById(
-        "humidity"
-    ).textContent =
-        "81%";
-
-    document.getElementById(
-        "wind"
-    ).textContent =
-        "7 km/h";
-
-    document.getElementById(
-        "rain"
-    ).textContent =
-        "25%";
-
-    document.getElementById(
-        "pmValue"
-    ).textContent =
-        "7";
-
-}
-
-
-/* =====================================================
-   PM STATUS
-===================================================== */
-
-function updatePM(value){
-
-    const status =
-        document.getElementById(
-            "pmStatus"
-        );
-
-
-    if(value <= 15){
-
-        status.textContent =
-            "ดี";
-
-        status.style.color =
-            "var(--green)";
-
-    }else if(value <= 25){
-
-        status.textContent =
-            "ปานกลาง";
-
-        status.style.color =
-            "var(--yellow)";
-
-    }else{
-
-        status.textContent =
-            "ควรเฝ้าระวัง";
-
-        status.style.color =
-            "var(--red)";
-
-    }
-
-}
-
-
-/* =====================================================
-   LINE
-===================================================== */
-
-function showLineMessage(){
-
-    alert(
-        "💬 ระบบแจ้งเตือนไลน์กลุ่ม\n\n" +
-
-        "เตรียมเชื่อมต่อ LINE Official Account / LINE Messaging API\n\n" +
-
-        "เมื่อเชื่อมระบบแล้ว สามารถส่งแจ้งเตือนเรื่องร้องเรียน\nข่าวสาร และประกาศหมู่บ้านได้อัตโนมัติ"
-    );
-
-}
-
-
-/* =====================================================
-   DATE
-===================================================== */
-
-function formatThaiDate(
-    dateString
-){
-
-    if(!dateString)
-        return "-";
-
-
-    const date =
-        new Date(
-            dateString
-        );
-
-
-    if(
-        Number.isNaN(
-            date.getTime()
-        )
-    ){
-
-        return dateString;
-
-    }
-
-
-    return date.toLocaleDateString(
-        "th-TH",
-        {
-            day:"numeric",
-            month:"short",
-            year:"numeric"
         }
     );
 
-}
+
+    /* =========================================================
+       MENU ACTIVE
+    ========================================================= */
+
+    const menuItems =
+        document.querySelectorAll(".menu-item");
 
 
-/* =====================================================
-   SECURITY
-===================================================== */
+    menuItems.forEach(
+        item => {
 
-function escapeHTML(value){
+            item.addEventListener(
+                "click",
+                function(event) {
 
-    return String(
-        value ?? ""
-    )
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-    .replaceAll(
-        "'",
-        "&#039;"
+                    event.preventDefault();
+
+                    menuItems.forEach(
+                        x => x.classList.remove("active")
+                    );
+
+                    this.classList.add("active");
+
+                    if (
+                        window.innerWidth <= 1100
+                    ) {
+
+                        sidebar.classList.remove("open");
+
+                    }
+
+                }
+            );
+
+        }
     );
 
-}
+
+    /* =========================================================
+       AI DEMO
+    ========================================================= */
+
+    const aiForm =
+        document.getElementById("aiForm");
+
+    const aiInput =
+        document.getElementById("aiInput");
+
+    const aiReply =
+        document.getElementById("aiReply");
 
 
-/* =====================================================
-   DEFAULT VILLAGE DATA
-===================================================== */
+    function answerAI(question) {
 
-function loadVillageDefaults(){
-
-    /*
-       ค่าเริ่มต้นตามข้อมูลที่คุณกำหนดไว้
-       สามารถเปลี่ยนภายหลังให้ดึงจากฐานข้อมูลได้
-    */
-
-    document.getElementById(
-        "householdCount"
-    ).textContent =
-        "192";
+        const q =
+            question.toLowerCase();
 
 
-    document.getElementById(
-        "citizenCount"
-    ).textContent =
-        "648";
+        if (
+            q.includes("ประชุม") ||
+            q.includes("ประชุมหมู่บ้าน")
+        ) {
+
+            return "วันนี้มีประชุมหมู่บ้านประจำเดือน เวลา 07.00 น. ณ ศาลาเอนกประสงค์หมู่บ้านครับ";
+
+        }
 
 
-    document.getElementById(
-        "elderlyCount"
-    ).textContent =
-        "124";
+        if (
+            q.includes("ไฟไหม้") ||
+            q.includes("ไฟ")
+        ) {
 
-}
+            return "หากเกิดเหตุไฟไหม้ ให้แจ้งผู้ใหญ่บ้านหรือผู้นำชุมชนทันที และโทรแจ้งหน่วยงานฉุกเฉินในพื้นที่ครับ";
 
-
-/* =====================================================
-   INITIALIZE
-===================================================== */
-
-function initialize(){
-
-    loadVillageDefaults();
-
-    renderLeaderData();
-
-    renderActivityData();
-
-    renderComplaintData();
-
-    renderAlerts();
-
-    loadWeather();
-
-    updatePM(7);
-
-}
+        }
 
 
-initialize();
+        if (
+            q.includes("ติดต่อ") ||
+            q.includes("โทร")
+        ) {
+
+            return "สามารถติดต่อที่ทำการผู้ใหญ่บ้านได้ที่ โทร. 088-888-8888 หรือผ่านช่องทาง LINE ของหมู่บ้านครับ";
+
+        }
 
 
-/* =====================================================
-   AUTO REFRESH
-===================================================== */
+        if (
+            q.includes("pm2.5") ||
+            q.includes("ฝุ่น")
+        ) {
 
-setInterval(
-    function(){
+            return "ขณะนี้ Dashboard แสดงค่า PM2.5 ตัวอย่าง 18 µg/m³ อยู่ในระดับคุณภาพอากาศดีครับ";
 
-        leaders =
-            getStorage(
-                "rongkhem_leaders"
-            );
+        }
 
 
-        activities =
-            getStorage(
-                "rongkhem_activities"
-            );
+        return "ขอบคุณสำหรับคำถามครับ ระบบ AI ผู้ช่วยหมู่บ้านสามารถต่อเชื่อมฐานข้อมูลของบ้านร่องเข็ม เพื่อให้ตอบข้อมูลจริงได้ในขั้นตอนถัดไปครับ";
+
+    }
 
 
-        complaints =
-            getStorage(
-                "rongkhem_complaints"
-            );
+    aiForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
 
 
-        renderLeaderData();
+            const question =
+                aiInput.value.trim();
 
-        renderActivityData();
 
-        renderComplaintData();
+            if (!question) {
+                return;
+            }
 
-        renderAlerts();
 
-    },
-    3000
-);
+            aiReply.style.display =
+                "block";
+
+
+            aiReply.textContent =
+                "🤖 " + answerAI(question);
+
+
+            aiInput.value = "";
+
+        }
+    );
+
+
+    /* =========================================================
+       QUICK AI QUESTIONS
+    ========================================================= */
+
+    document
+        .querySelectorAll(".question")
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const text =
+                            button.textContent
+                                .replace("›", "")
+                                .trim();
+
+                        aiInput.value = text;
+
+                        aiForm.dispatchEvent(
+                            new Event("submit")
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =========================================================
+       SIMPLE DATA REFRESH DEMO
+    ========================================================= */
+
+    function refreshStatus() {
+
+        const online =
+            document.querySelector(".online");
+
+        if (online) {
+
+            online.innerHTML =
+                '<span class="online-dot"></span> ระบบออนไลน์';
+
+        }
+
+    }
+
+    refreshStatus();
+
 
 </script>
+
 
 </body>
 </html>
