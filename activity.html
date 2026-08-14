@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RONGKHEM e-VILLAGE | กิจกรรมหมู่บ้าน</title>
+
+<style>
+
+:root{
+    --bg:#07111f;
+    --card:#101f33;
+    --primary:#08a8ff;
+    --primary2:#006eff;
+    --green:#00df8a;
+    --yellow:#ffc83d;
+    --red:#ff5261;
+    --text:#f4f8ff;
+    --muted:#8fa1b8;
+    --border:rgba(255,255,255,.08);
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:"Noto Sans Thai","Segoe UI",Arial,sans-serif;
+    background:
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(0,150,255,.14),
+            transparent 30%
+        ),
+        #07111f;
+    color:var(--text);
+    min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+    font-family:inherit;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:250px;
+    background:
+        linear-gradient(
+            180deg,
+            #0b1b2f,
+            #071321
+        );
+    border-right:1px solid var(--border);
+    padding:20px 14px;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px 22px;
+    border-bottom:1px solid var(--border);
+    margin-bottom:20px;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:15px;
+    background:
+        linear-gradient(
+            135deg,
+            #007aff,
+            #00c8ff
+        );
+    font-size:25px;
+}
+
+.logo-title{
+    font-size:17px;
+    font-weight:800;
+}
+
+.logo-sub{
+    font-size:10px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.menu-title{
+    color:#61748b;
+    font-size:10px;
+    font-weight:700;
+    padding:0 12px;
+    margin-bottom:8px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.menu button{
+    border:0;
+    background:transparent;
+    color:#aebdd0;
+    padding:12px;
+    border-radius:12px;
+    cursor:pointer;
+    text-align:left;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    transition:.2s;
+}
+
+.menu button:hover,
+.menu button.active{
+    color:#fff;
+    background:rgba(0,150,255,.12);
+}
+
+.menu-icon{
+    width:25px;
+    font-size:19px;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+    padding:22px;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.page-title{
+    font-size:25px;
+    font-weight:800;
+}
+
+.page-sub{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:4px;
+}
+
+.clock{
+    padding:10px 15px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:#62d5ff;
+    font-family:monospace;
+}
+
+.breadcrumb{
+    color:var(--muted);
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.breadcrumb span{
+    color:#58caff;
+}
+
+/* ================= SUMMARY ================= */
+
+.summary{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:20px;
+}
+
+.summary-card{
+    padding:18px;
+    border-radius:18px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
+        );
+    border:1px solid var(--border);
+}
+
+.summary-icon{
+    font-size:24px;
+    margin-bottom:8px;
+}
+
+.summary-number{
+    font-size:27px;
+    font-weight:800;
+}
+
+.summary-label{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:4px;
+}
+
+/* ================= CARD ================= */
+
+.card{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(18,36,58,.96),
+            rgba(8,20,34,.98)
+        );
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.card-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.card-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.card-icon{
+    width:43px;
+    height:43px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:13px;
+    background:rgba(0,160,255,.1);
+    font-size:21px;
+}
+
+.card-title h2{
+    font-size:18px;
+}
+
+.card-title p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:3px;
+}
+
+.add-btn{
+    border:0;
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+    color:#fff;
+    border-radius:10px;
+    padding:10px 15px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+/* ================= TOOLBAR ================= */
+
+.toolbar{
+    display:flex;
+    gap:10px;
+    margin-bottom:18px;
+}
+
+.search-box{
+    flex:1;
+    position:relative;
+}
+
+.search-box input{
+    width:100%;
+    padding:13px 15px 13px 42px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:0;
+    background:rgba(0,0,0,.15);
+    color:#fff;
+}
+
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.filter{
+    min-width:180px;
+    padding:0 12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:#0b1b2f;
+    color:#fff;
+    outline:0;
+}
+
+/* ================= ACTIVITY GRID ================= */
+
+.activity-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:16px;
+}
+
+.activity-card{
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--border);
+    border-radius:17px;
+    overflow:hidden;
+    transition:.25s;
+}
+
+.activity-card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(0,170,255,.25);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.25);
+}
+
+.activity-image{
+    width:100%;
+    height:210px;
+    object-fit:cover;
+    display:block;
+    cursor:pointer;
+    background:
+        linear-gradient(
+            135deg,
+            #12314d,
+            #071321
+        );
+}
+
+.activity-image-placeholder{
+    width:100%;
+    height:210px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:55px;
+    background:
+        linear-gradient(
+            135deg,
+            #12314d,
+            #0b1b2f
+        );
+}
+
+.activity-body{
+    padding:16px;
+}
+
+.activity-title{
+    font-size:16px;
+    font-weight:800;
+    line-height:1.45;
+}
+
+.activity-date{
+    color:#55cfff;
+    font-size:10px;
+    margin-top:7px;
+}
+
+.activity-description{
+    color:#9caec2;
+    font-size:11px;
+    line-height:1.7;
+    margin-top:9px;
+    min-height:38px;
+}
+
+.activity-footer{
+    display:flex;
+    justify-content:space-between;
+    gap:7px;
+    margin-top:14px;
+}
+
+.activity-btn{
+    flex:1;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    padding:8px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.activity-btn:hover{
+    background:rgba(0,150,255,.12);
+}
+
+.activity-btn.delete:hover{
+    background:rgba(255,60,70,.12);
+}
+
+.empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:60px 20px;
+    color:#74869b;
+    border:1px dashed var(--border);
+    border-radius:16px;
+}
+
+.empty-icon{
+    font-size:50px;
+    margin-bottom:12px;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.78);
+    backdrop-filter:blur(8px);
+    z-index:500;
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:720px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:#102139;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:23px;
+    box-shadow:0 25px 80px rgba(0,0,0,.5);
+}
+
+.modal-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modal-head h2{
+    font-size:20px;
+}
+
+.close{
+    width:36px;
+    height:36px;
+    border:0;
+    border-radius:10px;
+    background:rgba(255,255,255,.06);
+    color:#fff;
+    cursor:pointer;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.form-group{
+    margin-bottom:13px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+label{
+    display:block;
+    color:#aab9cb;
+    font-size:11px;
+    margin-bottom:6px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid var(--border);
+    background:rgba(0,0,0,.18);
+    color:#fff;
+    padding:12px;
+    border-radius:10px;
+    outline:0;
+}
+
+select option{
+    background:#102139;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.save-btn{
+    width:100%;
+    margin-top:5px;
+    border:0;
+    padding:13px;
+    border-radius:11px;
+    color:#fff;
+    background:
+        linear-gradient(
+            135deg,
+            #008cff,
+            #0069ee
+        );
+    cursor:pointer;
+    font-weight:700;
+}
+
+/* ================= IMAGE VIEWER ================= */
+
+.image-viewer{
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.92);
+    z-index:1000;
+    padding:20px;
+}
+
+.image-viewer.show{
+    display:flex;
+}
+
+.viewer-image{
+    max-width:95vw;
+    max-height:85vh;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.viewer-close{
+    position:absolute;
+    top:20px;
+    right:25px;
+    width:45px;
+    height:45px;
+    border:0;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    color:#fff;
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:1100px){
+
+    .activity-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:70px;
+        padding:15px 8px;
+    }
+
+    .logo-title,
+    .logo-sub,
+    .menu-title,
+    .menu-text{
+        display:none;
+    }
+
+    .logo{
+        justify-content:center;
+    }
+
+    .menu button{
+        justify-content:center;
+    }
+
+    .main{
+        margin-left:70px;
+    }
+}
+
+@media(max-width:600px){
+
+    .sidebar{
+        display:none;
+    }
+
+    .main{
+        margin-left:0;
+        padding:12px;
+    }
+
+    .topbar{
+        align-items:flex-start;
+    }
+
+    .page-title{
+        font-size:20px;
+    }
+
+    .clock{
+        font-size:11px;
+        padding:8px;
+    }
+
+    .summary{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .toolbar{
+        flex-direction:column;
+    }
+
+    .filter{
+        height:43px;
+    }
+
+    .activity-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ==================================================
+     SIDEBAR
+================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏛️
+        </div>
+
+        <div>
+
+            <div class="logo-title">
+                RONGKHEM
+            </div>
+
+            <div class="logo-sub">
+                e-VILLAGE OFFICE
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-title">
+        MAIN MENU
+    </div>
+
+
+    <nav class="menu">
+
+        <button onclick="location.href='index.html'">
+
+            <span class="menu-icon">
+                📊
+            </span>
+
+            <span class="menu-text">
+                หน้าแรก
+            </span>
+
+        </button>
+
+
+        <button onclick="location.href='household.html'">
+
+            <span class="menu-icon">
+                🏠
+            </span>
+
+            <span class="menu-text">
+                ครัวเรือน
+            </span>
+
+        </button>
+
+
+        <button onclick="location.href='citizen.html'">
+
+            <span class="menu-icon">
+                👥
+            </span>
+
+            <span class="menu-text">
+                ประชาชน
+            </span>
+
+        </button>
+
+
+        <button onclick="location.href='leader.html'">
+
+            <span class="menu-icon">
+                👔
+            </span>
+
+            <span class="menu-text">
+                ทำเนียบผู้นำ
+            </span>
+
+        </button>
+
+
+        <button class="active">
+
+            <span class="menu-icon">
+                📸
+            </span>
+
+            <span class="menu-text">
+                ภาพกิจกรรม
+            </span>
+
+        </button>
+
+
+        <button onclick="location.href='complaint.html'">
+
+            <span class="menu-icon">
+                📝
+            </span>
+
+            <span class="menu-text">
+                รับเรื่องร้องเรียน
+            </span>
+
+        </button>
+
+    </nav>
+
+</aside>
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="main">
+
+<header class="topbar">
+
+    <div>
+
+        <div class="page-title">
+            ข่าวสารและภาพกิจกรรมหมู่บ้าน
+        </div>
+
+        <div class="page-sub">
+            RONGKHEM e-VILLAGE OFFICE |
+            ที่ทำการผู้ใหญ่บ้านออนไลน์
+        </div>
+
+    </div>
+
+
+    <div
+        class="clock"
+        id="clock"
+    >
+        08:05:56
+    </div>
+
+</header>
+
+
+<div class="breadcrumb">
+
+    หน้าแรก /
+    <span>
+        ภาพกิจกรรม
+    </span>
+
+</div>
+
+
+<!-- ==================================================
+     SUMMARY
+================================================== -->
+
+<section class="summary">
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            📸
+        </div>
+
+        <div
+            class="summary-number"
+            id="totalActivities"
+        >
+            0
+        </div>
+
+        <div class="summary-label">
+            กิจกรรมทั้งหมด
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            📅
+        </div>
+
+        <div
+            class="summary-number"
+            id="thisMonth"
+        >
+            0
+        </div>
+
+        <div class="summary-label">
+            กิจกรรมเดือนนี้
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            🏡
+        </div>
+
+        <div
+            class="summary-number"
+            id="communityActivities"
+        >
+            0
+        </div>
+
+        <div class="summary-label">
+            กิจกรรมชุมชน
+        </div>
+
+    </div>
+
+
+    <div class="summary-card">
+
+        <div class="summary-icon">
+            🌱
+        </div>
+
+        <div
+            class="summary-number"
+            id="volunteerActivities"
+        >
+            0
+        </div>
+
+        <div class="summary-label">
+            จิตอาสา
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ==================================================
+     ACTIVITIES
+================================================== -->
+
+<section class="card">
+
+<div class="card-header">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            📸
+        </div>
+
+        <div>
+
+            <h2>
+                ภาพกิจกรรมหมู่บ้าน
+            </h2>
+
+            <p>
+                ข่าวสาร ประชาสัมพันธ์
+                และกิจกรรมของบ้านร่องเข็ม
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="add-btn"
+        onclick="openActivityModal()"
+    >
+
+        + เพิ่มกิจกรรมใหม่
+
+    </button>
+
+</div>
+
+
+<div class="toolbar">
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔍
+        </span>
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="ค้นหากิจกรรม..."
+            oninput="renderActivities()"
+        >
+
+    </div>
+
+
+    <select
+        class="filter"
+        id="categoryFilter"
+        onchange="renderActivities()"
+    >
+
+        <option value="all">
+            ทุกประเภท
+        </option>
+
+        <option value="ชุมชน">
+            ชุมชน
+        </option>
+
+        <option value="จิตอาสา">
+            จิตอาสา
+        </option>
+
+        <option value="ประชุม">
+            ประชุม
+        </option>
+
+        <option value="ประเพณี">
+            ประเพณี
+        </option>
+
+        <option value="ประชาสัมพันธ์">
+            ประชาสัมพันธ์
+        </option>
+
+        <option value="อื่น ๆ">
+            อื่น ๆ
+        </option>
+
+    </select>
+
+</div>
+
+
+<div
+    class="activity-grid"
+    id="activityGrid"
+></div>
+
+</section>
+
+</main>
+
+
+<!-- ==================================================
+     ADD / EDIT MODAL
+================================================== -->
+
+<div
+    class="modal"
+    id="activityModal"
+>
+
+<div class="modal-box">
+
+<div class="modal-head">
+
+    <h2 id="modalTitle">
+        📸 เพิ่มกิจกรรมใหม่
+    </h2>
+
+    <button
+        class="close"
+        onclick="closeActivityModal()"
+    >
+        ✕
+    </button>
+
+</div>
+
+
+<div class="form-grid">
+
+
+<div class="form-group full">
+
+<label>
+    ชื่อกิจกรรม *
+</label>
+
+<input
+    id="activityTitle"
+    type="text"
+    placeholder="เช่น กิจกรรมจิตอาสาพัฒนาทำความสะอาดลำห้วย"
+/>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    วันที่จัดกิจกรรม *
+</label>
+
+<input
+    id="activityDate"
+    type="date"
+/>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    ประเภทกิจกรรม
+</label>
+
+<select id="activityCategory">
+
+    <option value="ชุมชน">
+        ชุมชน
+    </option>
+
+    <option value="จิตอาสา">
+        จิตอาสา
+    </option>
+
+    <option value="ประชุม">
+        ประชุม
+    </option>
+
+    <option value="ประเพณี">
+        ประเพณี
+    </option>
+
+    <option value="ประชาสัมพันธ์">
+        ประชาสัมพันธ์
+    </option>
+
+    <option value="อื่น ๆ">
+        อื่น ๆ
+    </option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    URL รูปภาพ
+</label>
+
+<input
+    id="activityImage"
+    type="url"
+    placeholder="https://..."
+/>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+    รายละเอียดกิจกรรม *
+</label>
+
+<textarea
+    id="activityDescription"
+    placeholder="เขียนรายละเอียดกิจกรรม..."
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    สถานที่
+</label>
+
+<input
+    id="activityLocation"
+    type="text"
+    placeholder="เช่น บ้านร่องเข็ม หมู่ 6"
+/>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+    ผู้จัดกิจกรรม
+</label>
+
+<input
+    id="activityOrganizer"
+    type="text"
+    placeholder="เช่น ผู้นำหมู่บ้าน / ชาวบ้าน"
+/>
+
+</div>
+
+
+</div>
+
+
+<button
+    class="save-btn"
+    onclick="saveActivity()"
+>
+
+    💾 บันทึกกิจกรรม
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ==================================================
+     IMAGE VIEWER
+================================================== -->
+
+<div
+    class="image-viewer"
+    id="imageViewer"
+    onclick="closeImageViewer()"
+>
+
+<button
+    class="viewer-close"
+    onclick="closeImageViewer()"
+>
+    ✕
+</button>
+
+
+<img
+    id="viewerImage"
+    class="viewer-image"
+    src=""
+    alt="ภาพกิจกรรม"
+    onclick="event.stopPropagation()"
+/>
+
+</div>
+
+
+<script>
+
+/* ==================================================
+   CLOCK
+================================================== */
+
+function updateClock(){
+
+    const now =
+        new Date();
+
+    document.getElementById(
+        "clock"
+    ).textContent =
+        now.toLocaleTimeString(
+            "th-TH",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit"
+            }
+        );
+
+}
+
+updateClock();
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* ==================================================
+   STORAGE
+================================================== */
+
+let activities =
+    JSON.parse(
+        localStorage.getItem(
+            "rongkhem_activities"
+        ) || "[]"
+    );
+
+
+let editIndex = -1;
+
+
+/* ==================================================
+   SAMPLE ACTIVITY
+================================================== */
+
+if(
+    activities.length === 0
+){
+
+    activities = [
+
+        {
+            title:
+                "กิจกรรมจิตอาสาพัฒนาทำความสะอาดลำห้วย",
+
+            date:
+                "2026-08-10",
+
+            category:
+                "จิตอาสา",
+
+            image:
+                "",
+
+            description:
+                "ชาวบ้านร่องเข็มร่วมใจกันทำความสะอาดและกำจัดวัชพืช เพื่อเปิดทางน้ำไหลและดูแลพื้นที่ส่วนรวมของชุมชน",
+
+            location:
+                "บ้านร่องเข็ม หมู่ 6",
+
+            organizer:
+                "ผู้นำหมู่บ้านและประชาชนบ้านร่องเข็ม"
+
+        }
+
+    ];
+
+
+    localStorage.setItem(
+        "rongkhem_activities",
+        JSON.stringify(
+            activities
+        )
+    );
+
+}
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+function renderActivities(){
+
+    const grid =
+        document.getElementById(
+            "activityGrid"
+        );
+
+
+    const search =
+        document.getElementById(
+            "searchInput"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+    const category =
+        document.getElementById(
+            "categoryFilter"
+        ).value;
+
+
+    const filtered =
+        activities.filter(
+            activity => {
+
+                const matchSearch =
+
+                    activity.title
+                    .toLowerCase()
+                    .includes(search)
+
+                    ||
+
+                    activity.description
+                    .toLowerCase()
+                    .includes(search);
+
+
+                const matchCategory =
+                    category === "all" ||
+                    activity.category === category;
+
+
+                return (
+                    matchSearch &&
+                    matchCategory
+                );
+
+            }
+        );
+
+
+    if(
+        filtered.length === 0
+    ){
+
+        grid.innerHTML = `
+
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📸
+                </div>
+
+                ไม่พบกิจกรรม
+
+                <br><br>
+
+                คลิก
+                <strong>
+                    + เพิ่มกิจกรรมใหม่
+                </strong>
+                เพื่อเริ่มบันทึก
+
+            </div>
+
+        `;
+
+    }else{
+
+        grid.innerHTML =
+            filtered.map(
+                activity => {
+
+                    const index =
+                        activities.indexOf(
+                            activity
+                        );
+
+
+                    const image =
+                        activity.image || "";
+
+
+                    return `
+
+                    <article
+                        class="activity-card"
+                    >
+
+                        ${
+                            image
+
+                            ?
+
+                            `
+                            <img
+                                class="activity-image"
+                                src="${escapeHTML(
+                                    image
+                                )}"
+                                alt="${escapeHTML(
+                                    activity.title
+                                )}"
+                                onclick="
+                                    openImageViewer(
+                                        '${escapeAttribute(
+                                            image
+                                        )}'
+                                    )
+                                "
+                                onerror="
+                                    this.style.display='none';
+                                    this.nextElementSibling.style.display='flex';
+                                "
+                            >
+
+                            <div
+                                class="
+                                    activity-image-placeholder
+                                "
+                                style="display:none"
+                            >
+                                📸
+                            </div>
+                            `
+
+                            :
+
+                            `
+                            <div
+                                class="
+                                    activity-image-placeholder
+                                "
+                            >
+                                📸
+                            </div>
+                            `
+                        }
+
+
+                        <div class="activity-body">
+
+                            <div
+                                class="activity-title"
+                            >
+
+                                ${escapeHTML(
+                                    activity.title
+                                )}
+
+                            </div>
+
+
+                            <div
+                                class="activity-date"
+                            >
+
+                                📅
+                                ${formatThaiDate(
+                                    activity.date
+                                )}
+
+                            </div>
+
+
+                            <div
+                                class="activity-description"
+                            >
+
+                                ${escapeHTML(
+                                    activity.description
+                                )}
+
+                            </div>
+
+
+                            <div
+                                class="activity-date"
+                            >
+
+                                🏷️
+                                ${escapeHTML(
+                                    activity.category
+                                )}
+
+                            </div>
+
+
+                            <div
+                                class="activity-footer"
+                            >
+
+                                <button
+                                    class="activity-btn"
+                                    onclick="
+                                        editActivity(
+                                            ${index}
+                                        )
+                                    "
+                                >
+
+                                    ✏️ แก้ไข
+
+                                </button>
+
+
+                                <button
+                                    class="
+                                        activity-btn
+                                        delete
+                                    "
+                                    onclick="
+                                        deleteActivity(
+                                            ${index}
+                                        )
+                                    "
+                                >
+
+                                    🗑️ ลบ
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    `;
+
+                }
+            ).join("");
+
+    }
+
+
+    updateSummary();
+
+}
+
+
+/* ==================================================
+   SUMMARY
+================================================== */
+
+function updateSummary(){
+
+    const total =
+        activities.length;
+
+
+    const now =
+        new Date();
+
+
+    const month =
+        now.getMonth();
+
+
+    const year =
+        now.getFullYear();
+
+
+    const thisMonth =
+        activities.filter(
+            a => {
+
+                const date =
+                    new Date(
+                        a.date
+                    );
+
+                return (
+                    date.getMonth()
+                    ===
+                    month
+                    &&
+                    date.getFullYear()
+                    ===
+                    year
+                );
+
+            }
+        ).length;
+
+
+    const community =
+        activities.filter(
+            a =>
+                a.category ===
+                "ชุมชน"
+        ).length;
+
+
+    const volunteer =
+        activities.filter(
+            a =>
+                a.category ===
+                "จิตอาสา"
+        ).length;
+
+
+    document.getElementById(
+        "totalActivities"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "thisMonth"
+    ).textContent =
+        thisMonth;
+
+
+    document.getElementById(
+        "communityActivities"
+    ).textContent =
+        community;
+
+
+    document.getElementById(
+        "volunteerActivities"
+    ).textContent =
+        volunteer;
+
+}
+
+
+/* ==================================================
+   MODAL
+================================================== */
+
+function openActivityModal(){
+
+    editIndex = -1;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "📸 เพิ่มกิจกรรมใหม่";
+
+
+    clearForm();
+
+
+    document.getElementById(
+        "activityDate"
+    ).value =
+        new Date()
+        .toISOString()
+        .slice(0,10);
+
+
+    document.getElementById(
+        "activityModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeActivityModal(){
+
+    document.getElementById(
+        "activityModal"
+    ).classList.remove(
+        "show"
+    );
+
+}
+
+
+function clearForm(){
+
+    document.getElementById(
+        "activityTitle"
+    ).value = "";
+
+
+    document.getElementById(
+        "activityDate"
+    ).value = "";
+
+
+    document.getElementById(
+        "activityCategory"
+    ).value =
+        "ชุมชน";
+
+
+    document.getElementById(
+        "activityImage"
+    ).value = "";
+
+
+    document.getElementById(
+        "activityDescription"
+    ).value = "";
+
+
+    document.getElementById(
+        "activityLocation"
+    ).value = "";
+
+
+    document.getElementById(
+        "activityOrganizer"
+    ).value = "";
+
+}
+
+
+/* ==================================================
+   SAVE
+================================================== */
+
+function saveActivity(){
+
+    const data = {
+
+        title:
+            document.getElementById(
+                "activityTitle"
+            ).value.trim(),
+
+        date:
+            document.getElementById(
+                "activityDate"
+            ).value,
+
+        category:
+            document.getElementById(
+                "activityCategory"
+            ).value,
+
+        image:
+            document.getElementById(
+                "activityImage"
+            ).value.trim(),
+
+        description:
+            document.getElementById(
+                "activityDescription"
+            ).value.trim(),
+
+        location:
+            document.getElementById(
+                "activityLocation"
+            ).value.trim(),
+
+        organizer:
+            document.getElementById(
+                "activityOrganizer"
+            ).value.trim()
+
+    };
+
+
+    if(
+        !data.title ||
+        !data.date ||
+        !data.description
+    ){
+
+        alert(
+            "กรุณากรอกชื่อกิจกรรม วันที่ และรายละเอียด"
+        );
+
+        return;
+
+    }
+
+
+    if(
+        editIndex === -1
+    ){
+
+        activities.push(
+            data
+        );
+
+        alert(
+            "เพิ่มกิจกรรมเรียบร้อยแล้ว"
+        );
+
+    }else{
+
+        activities[
+            editIndex
+        ] = data;
+
+        alert(
+            "แก้ไขกิจกรรมเรียบร้อยแล้ว"
+        );
+
+    }
+
+
+    localStorage.setItem(
+        "rongkhem_activities",
+        JSON.stringify(
+            activities
+        )
+    );
+
+
+    closeActivityModal();
+
+    renderActivities();
+
+}
+
+
+/* ==================================================
+   EDIT
+================================================== */
+
+function editActivity(index){
+
+    const activity =
+        activities[index];
+
+
+    if(!activity) return;
+
+
+    editIndex =
+        index;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "✏️ แก้ไขกิจกรรม";
+
+
+    document.getElementById(
+        "activityTitle"
+    ).value =
+        activity.title;
+
+
+    document.getElementById(
+        "activityDate"
+    ).value =
+        activity.date;
+
+
+    document.getElementById(
+        "activityCategory"
+    ).value =
+        activity.category;
+
+
+    document.getElementById(
+        "activityImage"
+    ).value =
+        activity.image || "";
+
+
+    document.getElementById(
+        "activityDescription"
+    ).value =
+        activity.description;
+
+
+    document.getElementById(
+        "activityLocation"
+    ).value =
+        activity.location || "";
+
+
+    document.getElementById(
+        "activityOrganizer"
+    ).value =
+        activity.organizer || "";
+
+
+    document.getElementById(
+        "activityModal"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+/* ==================================================
+   DELETE
+================================================== */
+
+function deleteActivity(index){
+
+    const activity =
+        activities[index];
+
+
+    if(!activity) return;
+
+
+    if(
+        !confirm(
+            `ต้องการลบกิจกรรม "${activity.title}" หรือไม่?`
+        )
+    ){
+
+        return;
+
+    }
+
+
+    activities.splice(
+        index,
+        1
+    );
+
+
+    localStorage.setItem(
+        "rongkhem_activities",
+        JSON.stringify(
+            activities
+        )
+    );
+
+
+    renderActivities();
+
+
+    alert(
+        "ลบกิจกรรมเรียบร้อยแล้ว"
+    );
+
+}
+
+
+/* ==================================================
+   IMAGE VIEWER
+================================================== */
+
+function openImageViewer(url){
+
+    if(!url) return;
+
+
+    document.getElementById(
+        "viewerImage"
+    ).src =
+        url;
+
+
+    document.getElementById(
+        "imageViewer"
+    ).classList.add(
+        "show"
+    );
+
+}
+
+
+function closeImageViewer(){
+
+    document.getElementById(
+        "imageViewer"
+    ).classList.remove(
+        "show"
+    );
+
+
+    document.getElementById(
+        "viewerImage"
+    ).src = "";
+
+}
+
+
+/* ==================================================
+   DATE
+================================================== */
+
+function formatThaiDate(dateString){
+
+    if(!dateString)
+        return "-";
+
+
+    const date =
+        new Date(
+            dateString
+        );
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return dateString;
+
+    }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            day:"numeric",
+            month:"short",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* ==================================================
+   SECURITY
+================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+function escapeAttribute(value){
+
+    return String(
+        value ?? ""
+    )
+    .replaceAll("\\","\\\\")
+    .replaceAll("'","\\'")
+    .replaceAll("\n","\\n")
+    .replaceAll("\r","\\r");
+
+}
+
+
+/* ==================================================
+   CLOSE MODALS
+================================================== */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        if(
+            event.target.classList
+            .contains("modal")
+        ){
+
+            closeActivityModal();
+
+        }
+
+    }
+);
+
+
+/* ==================================================
+   INITIALIZE
+================================================== */
+
+renderActivities();
+
+</script>
+
+</body>
+</html>
