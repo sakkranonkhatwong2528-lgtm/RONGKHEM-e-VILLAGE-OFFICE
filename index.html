@@ -55,7 +55,7 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 <a href="#"><span class="mi">📊</span><span>สถิติหมู่บ้าน</span></a>
 <a href="#settings" id="settingsLink"><span class="mi">⚙️</span><span>ตั้งค่าระบบ<small class="sub">จัดการข้อมูล</small></span></a>
 </nav>
-<div class="contact"><h3>ที่ทำการผู้ใหญ่บ้าน</h3><p>📞 โทร. <span id="phone">088-888-8888</span><br>💬 LINE ID : <span id="line">rongkhem.village</span><br>🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.</p></div>
+<div class="contact"><h3>ที่ทำการผู้ใหญ่บ้าน</h3><p>📞 โทร. <span id="phone">080-1202529</span><br>💬 LINE ID : <span id="line">rongkhem.village</span><br>🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.</p></div>
 </aside>
 
 <main class="content">
@@ -81,8 +81,8 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 <div class="lower">
 
 <div class="panel announcement" id="news">
-<h3>📢 ประกาศล่าสุด</h3>
-<div id="newsList"><div class="row"><div class="ico">ℹ️</div><div><div class="rowtitle">ยังไม่มีข้อมูลประกาศ</div><div class="rowtext">ระบบจะใช้ข้อมูลที่เพิ่มเข้ามาภายหลัง</div></div><div class="date">--</div></div></div>
+<h3>📢 ประกาศล่าสุด <button id="openNewsAdmin" style="float:right;border:0;border-radius:8px;padding:6px 10px;background:#173845;color:#dff7ff;cursor:pointer">⚙️ จัดการ</button></h3>
+<div id="newsList"></div>
 </div>
 
 <div class="panel ai">
@@ -113,7 +113,7 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 <div class="stat"><div class="si">👥</div><div><div class="st">ผู้ใช้งานระบบวันนี้</div><div class="sv">--</div></div></div>
 </div>
 <div class="panel contacts">
-<div class="ct"><i>📞</i><div class="ctl">โทรศัพท์</div><div class="ctv">088-888-8888</div></div>
+<div class="ct"><i>📞</i><div class="ctl">โทรศัพท์</div><div class="ctv">080-1202529</div></div>
 <div class="ct"><i>📘</i><div class="ctl">Facebook</div><div class="ctv">ร่องเข็ม หมู่ 6</div></div>
 <div class="ct"><i>💬</i><div class="ctl">Line OA</div><div class="ctv">@rongkhem.village</div></div>
 </div>
@@ -175,7 +175,7 @@ const DEFAULT_RONGKHEM_DATA = {
   leader:{
     name:"นายศักรนนทน์ ขัติย์วงศ์",
     role:"ผู้ใหญ่บ้าน หมู่ที่ 6",
-    phone:"088-888-8888",
+    phone:"080-1202529",
     line:"rongkhem.village"
   },
   population:{total:960,male:471,female:489},
@@ -744,5 +744,211 @@ document.addEventListener("keydown", function(e){
 })();
 </script>
 
+
+<style>
+#newsAdminModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;padding:20px;overflow:auto}
+.news-admin-box{max-width:850px;margin:30px auto;background:#0d2029;color:#eef7fb;border:1px solid #2a4b57;border-radius:18px;padding:20px;box-shadow:0 20px 60px #000}
+.news-admin-box h2{margin:0 0 14px}.news-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.news-form .full{grid-column:1/-1}
+.news-form label{font-size:13px;color:#a8c0c9;display:block;margin-bottom:5px}
+.news-form input,.news-form textarea,.news-form select{width:100%;background:#07151c;color:#fff;border:1px solid #294651;border-radius:9px;padding:10px}
+.news-form textarea{min-height:110px;resize:vertical}
+.news-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.news-btn{border:0;border-radius:9px;padding:10px 14px;cursor:pointer;font-weight:700}
+.news-save{background:#1dd39a;color:#06231b}.news-close{background:#27414c;color:white}.news-danger{background:#6b3035;color:white}
+.news-manage-item{border:1px solid #27434d;border-radius:10px;padding:10px;margin-top:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.news-manage-item small{color:#9db5be}
+@media(max-width:700px){.news-form{grid-template-columns:1fr}.news-form .full{grid-column:auto}}
+</style>
+
+<div id="newsAdminModal">
+  <div class="news-admin-box">
+    <h2>📢 จัดการประกาศหมู่บ้าน</h2>
+    <div class="news-form">
+      <div class="full">
+        <label>หัวข้อประกาศ</label>
+        <input id="newsTitle" maxlength="180" placeholder="เช่น แจ้งประชุมหมู่บ้านประจำเดือน">
+      </div>
+      <div>
+        <label>ประเภท</label>
+        <select id="newsCategory">
+          <option>ประกาศสำคัญ</option>
+          <option>ประชาสัมพันธ์</option>
+          <option>แจ้งเตือน</option>
+          <option>ข่าวกิจกรรม</option>
+        </select>
+      </div>
+      <div>
+        <label>วันที่ประกาศ</label>
+        <input id="newsDate" type="date">
+      </div>
+      <div class="full">
+        <label>รายละเอียด</label>
+        <textarea id="newsBody" placeholder="รายละเอียดประกาศ"></textarea>
+      </div>
+      <div class="full">
+        <label>รูปภาพประกาศ (ไม่บังคับ)</label>
+        <input id="newsImage" type="file" accept="image/*">
+      </div>
+    </div>
+    <div class="news-actions">
+      <button class="news-btn news-save" id="saveNews">💾 บันทึกประกาศ</button>
+      <button class="news-btn news-close" id="closeNewsAdmin">ปิด</button>
+      <button class="news-btn news-danger" id="clearNews">ล้างประกาศทั้งหมด</button>
+    </div>
+    <div id="newsManageList" style="margin-top:15px"></div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   RONGKHEM e-VILLAGE — NEWS / ANNOUNCEMENT MANAGER
+   เพิ่ม/แก้ไข/ลบ/อัปโหลดรูปประกาศได้ทันที
+   เก็บในเครื่องเป็น fallback; โครงสร้างพร้อมต่อ Supabase news
+   ========================================================= */
+(function(){
+  const KEY="RONGKHEM_NEWS";
+  let editingId=null;
+
+  const $=id=>document.getElementById(id);
+
+  function load(){
+    try{
+      const x=JSON.parse(localStorage.getItem(KEY)||"[]");
+      return Array.isArray(x)?x:[];
+    }catch(e){return []}
+  }
+
+  function save(list){
+    localStorage.setItem(KEY,JSON.stringify(list));
+  }
+
+  function esc(s){
+    return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+  }
+
+  function render(){
+    const list=load().sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+    const out=$("newsList");
+    if(!out)return;
+
+    if(!list.length){
+      out.innerHTML='<div class="row"><div class="ico">ℹ️</div><div><div class="rowtitle">ยังไม่มีข้อมูลประกาศ</div><div class="rowtext">กด “⚙️ จัดการ” เพื่อเพิ่มประกาศ</div></div><div class="date">--</div></div>';
+    }else{
+      out.innerHTML=list.slice(0,6).map(n=>`
+        <div class="row">
+          <div class="ico">${n.category==="แจ้งเตือน"?"🚨":n.category==="ข่าวกิจกรรม"?"📅":"📢"}</div>
+          <div style="flex:1">
+            <div class="rowtitle">${esc(n.title)}</div>
+            <div class="rowtext">${esc(n.body||"")}</div>
+          </div>
+          <div class="date">${esc(n.date||"--")}</div>
+        </div>
+      `).join("");
+    }
+
+    const manage=$("newsManageList");
+    if(manage){
+      manage.innerHTML=list.length
+        ? list.map(n=>`
+          <div class="news-manage-item">
+            <div style="flex:1"><b>${esc(n.title)}</b><br><small>${esc(n.category)} · ${esc(n.date||"--")}</small></div>
+            <div>
+              <button class="news-btn news-close" onclick="RONGKHEM_NEWS.edit('${n.id}')">แก้ไข</button>
+              <button class="news-btn news-danger" onclick="RONGKHEM_NEWS.remove('${n.id}')">ลบ</button>
+            </div>
+          </div>`).join("")
+        : '<div style="color:#91aab4">ยังไม่มีประกาศ</div>';
+    }
+  }
+
+  function reset(){
+    editingId=null;
+    $("newsTitle").value="";
+    $("newsCategory").value="ประกาศสำคัญ";
+    $("newsDate").value=new Date().toISOString().slice(0,10);
+    $("newsBody").value="";
+    $("newsImage").value="";
+    $("saveNews").textContent="💾 บันทึกประกาศ";
+  }
+
+  $("openNewsAdmin")?.addEventListener("click",()=>{
+    $("newsAdminModal").style.display="block";
+    reset();
+    render();
+  });
+
+  $("closeNewsAdmin")?.addEventListener("click",()=>{
+    $("newsAdminModal").style.display="none";
+  });
+
+  $("newsAdminModal")?.addEventListener("click",e=>{
+    if(e.target.id==="newsAdminModal") e.currentTarget.style.display="none";
+  });
+
+  $("saveNews")?.addEventListener("click",()=>{
+    const title=$("newsTitle").value.trim();
+    if(!title){alert("กรุณาใส่หัวข้อประกาศ");return}
+
+    const file=$("newsImage").files[0];
+
+    const finish=(image)=>{
+      const list=load();
+      const item={
+        id:editingId||("news_"+Date.now()),
+        title,
+        category:$("newsCategory").value,
+        date:$("newsDate").value,
+        body:$("newsBody").value.trim(),
+        image:image||"",
+        updatedAt:new Date().toISOString()
+      };
+      const idx=list.findIndex(x=>x.id===item.id);
+      if(idx>=0)list[idx]=item;else list.push(item);
+      save(list);
+      render();
+      reset();
+      alert("บันทึกประกาศเรียบร้อยแล้ว");
+    };
+
+    if(file){
+      if(!file.type.startsWith("image/")){alert("กรุณาเลือกไฟล์รูปภาพ");return}
+      const r=new FileReader();
+      r.onload=e=>finish(e.target.result);
+      r.readAsDataURL(file);
+    }else{
+      const old=load().find(x=>x.id===editingId);
+      finish(old?.image||"");
+    }
+  });
+
+  window.RONGKHEM_NEWS={
+    edit(id){
+      const n=load().find(x=>x.id===id);
+      if(!n)return;
+      editingId=id;
+      $("newsTitle").value=n.title||"";
+      $("newsCategory").value=n.category||"ประกาศสำคัญ";
+      $("newsDate").value=n.date||"";
+      $("newsBody").value=n.body||"";
+      $("newsImage").value="";
+      $("saveNews").textContent="💾 บันทึกการแก้ไข";
+    },
+    remove(id){
+      if(!confirm("ยืนยันลบประกาศนี้?"))return;
+      save(load().filter(x=>x.id!==id));
+      render();
+    }
+  };
+
+  $("clearNews")?.addEventListener("click",()=>{
+    if(confirm("ยืนยันล้างประกาศทั้งหมด?")){
+      localStorage.removeItem(KEY);
+      render();
+    }
+  });
+
+  render();
+})();
+</script>
 </body>
 </html>
