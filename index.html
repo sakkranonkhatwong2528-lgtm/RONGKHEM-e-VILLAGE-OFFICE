@@ -3,203 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RONGKHEM e-VILLAGE OFFICE</title>
-<link rel="stylesheet" href="style.css">
+<title>RONGKHEM e-VILLAGE OFFICE — ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<style>
+:root{--nav:#06346d;--nav2:#072c59;--blue:#0867d9;--blue2:#0b82ef;--panel:#07345f;--panel2:#082d52;--line:rgba(151,211,255,.22);--text:#fff;--muted:#c9d8e8;--green:#12c78a;--orange:#ff9f16;--purple:#8145e9;--shadow:0 10px 28px rgba(0,0,0,.18)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Prompt,Kanit,sans-serif;color:var(--text);background:#042b57}button,input,textarea,select{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}
+body{background:linear-gradient(180deg,#052e5d,#031e3f)}
+.app{min-height:100vh;display:grid;grid-template-columns:240px 1fr;grid-template-rows:78px 1fr 42px}
+.header{grid-column:1/-1;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:24px;padding:9px 18px 9px 25px;background:linear-gradient(90deg,#052b5a,#063c7d,#052c5b);border-bottom:1px solid rgba(255,255,255,.13);box-shadow:0 4px 18px rgba(0,0,0,.18);z-index:30}
+.brand{display:flex;align-items:center;gap:14px;min-width:0}.brand-logo{width:46px;height:46px;display:grid;place-items:center;font-size:39px}.brand h1{font:600 24px Kanit;margin:0;white-space:nowrap}.brand h2{font:400 14px Kanit;margin:0;color:#eef6ff}.online{display:inline-flex;align-items:center;gap:7px;background:#078c68;padding:5px 13px;border-radius:18px;font-size:11px;margin-left:12px}.dot{width:8px;height:8px;border-radius:50%;background:#32e694;box-shadow:0 0 10px #32e694}
+.clockbox{min-width:125px;text-align:right;border-left:1px solid rgba(255,255,255,.14);padding-left:22px}.clock{font:500 26px Kanit;line-height:1}.date{font-size:11px}.weather-mini{display:flex;align-items:center;gap:8px;padding:0 20px;border-left:1px solid rgba(255,255,255,.14);border-right:1px solid rgba(255,255,255,.14)}.weather-mini .wi{font-size:28px}.weather-mini b{font:500 21px Kanit}.weather-mini small{display:block;font-size:10px;color:#d6e5f2}.top-actions{display:flex;align-items:center;gap:17px}.bell{position:relative;font-size:27px}.badge{position:absolute;right:-8px;top:-9px;width:20px;height:20px;border-radius:50%;background:#ef4444;display:grid;place-items:center;font-size:10px;font-weight:700}.user{display:flex;align-items:center;gap:10px;padding-left:5px}.avatar{width:44px;height:44px;border-radius:50%;overflow:hidden;background:#d8e3ee;display:grid;place-items:center;font-size:24px;cursor:pointer;border:2px solid rgba(255,255,255,.55)}.avatar img{width:100%;height:100%;object-fit:cover}.user-name{font:500 13px Kanit}.user-role{font-size:9px;color:#d8e5f2}.chev{font-size:14px}
+.sidebar{grid-row:2/3;padding:15px 12px 12px;background:linear-gradient(180deg,#063a76,#042a56);border-right:1px solid rgba(255,255,255,.1);overflow:auto}.menu{display:flex;flex-direction:column;gap:4px}.menu a{display:flex;align-items:center;gap:12px;min-height:44px;padding:8px 11px;border-radius:9px;color:#f1f7ff;font:400 13px Kanit;border:1px solid transparent}.menu a:hover{background:rgba(255,255,255,.07)}.menu a.active{background:linear-gradient(135deg,#0c70dd,#0755b6);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}.mi{width:25px;text-align:center;font-size:18px;color:#eaf5ff}.sub{display:block;color:#c2d5e9;font-size:9px;line-height:1.1}.contact{margin-top:13px;padding:13px;border:1px solid var(--line);border-radius:10px;background:rgba(3,30,61,.55)}.contact h3{text-align:center;font:400 14px Kanit;margin:0 0 9px}.contact p{font-size:11px;line-height:1.8;color:#d8e5f1;margin:0}
+.content{grid-column:2;grid-row:2;position:relative;padding:10px 14px 14px;overflow:auto;background:linear-gradient(180deg,#06376d,#052b58)}.content:before{content:"";position:fixed;inset:78px 0 42px 240px;pointer-events:none;background:radial-gradient(circle at 80% 10%,rgba(30,131,232,.16),transparent 34%)}.wrap{position:relative;z-index:1;max-width:1500px;margin:auto}.hero-banner{width:100%;height:280px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.18);box-shadow:var(--shadow);background:#0753a8}.hero-banner img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}
+.dashboard-grid{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:10px;margin-top:10px}.maincol{min-width:0}.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.kpi{min-height:165px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(180deg,rgba(5,55,105,.96),rgba(4,40,78,.96));box-shadow:var(--shadow);padding:15px 16px}.kpi-top{display:flex;align-items:center;gap:13px}.kpi-icon{width:65px;height:65px;border-radius:50%;display:grid;place-items:center;font-size:30px;flex:none}.green{background:#12bf7d}.blue{background:#1483e8}.orange{background:#ff9514}.purple{background:#7540dc}.kpi h3{font:500 17px Kanit;margin:0}.num{font:600 38px Kanit;line-height:1;margin-top:5px}.unit{font-size:11px}.detail{text-align:center;margin-top:20px;font-size:12px;line-height:1.65}.verify{margin:10px 0;background:linear-gradient(90deg,#0758b8,#0750a5);border:1px solid rgba(255,255,255,.1);border-radius:8px;text-align:center;padding:12px;font-size:15px;box-shadow:var(--shadow)}
+.lower{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.panel{background:linear-gradient(180deg,rgba(4,48,91,.98),rgba(3,39,75,.98));border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}.panel-head{display:flex;align-items:center;justify-content:space-between;padding:13px 15px;border-bottom:1px solid rgba(255,255,255,.08);font:500 16px Kanit}.panel-head button{background:#0756aa;border:0;color:#fff;border-radius:7px;padding:6px 11px;font-size:10px}.panel-body{padding:12px}.empty{min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#d5e4f0;font-size:13px}.empty .big{font-size:53px;opacity:.95;margin-bottom:12px}.add{margin-top:15px;background:#0769d6;color:#fff;border:0;border-radius:7px;padding:9px 16px;font-size:11px}.alert-item{background:rgba(19,72,129,.7);border-radius:8px;padding:10px 12px;margin-bottom:8px;font-size:12px}.alert-item b{font:500 13px Kanit}.alert-item small{display:block;margin-top:3px;color:#d3e3f1}.ai-card .robotline{display:flex;align-items:center;gap:10px;margin-bottom:9px}.robot{width:49px;height:49px;border-radius:14px;background:#e9f1f7;color:#31526b;display:grid;place-items:center;font-size:27px}.ai-title{font:500 15px Kanit}.ai-sub{font-size:9px;color:#c0d2e2}.aimsg{background:#f1f6fa;color:#14324d;border-radius:12px;padding:11px;font-size:11px;line-height:1.55;min-height:65px}.ai-btn{width:100%;margin-top:8px;background:#0868d2;color:#fff;border:0;border-radius:9px;padding:10px;font-size:11px}
+.rightcol{display:flex;flex-direction:column;gap:10px}.weather-card,.pm-card{padding-bottom:8px}.weather-main{display:flex;align-items:center;gap:10px;padding:12px}.weather-big{font-size:38px}.temp{font:500 32px Kanit}.weather-text{font-size:10px}.weather-data{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08)}.wd{text-align:center;padding:8px 2px;border-right:1px solid rgba(255,255,255,.08);font-size:8px}.wd:last-child{border:0}.wd b{display:block;font:500 13px Kanit;margin-top:2px}.locationline{padding:8px 12px;font-size:8px;color:#c5d8e8}.pm-main{display:flex;align-items:center;gap:10px;padding:12px}.pm-face{width:49px;height:49px;border-radius:50%;background:#17bd79;display:grid;place-items:center;font-size:25px}.pm-num{font:500 34px Kanit}.pm-status{font-size:11px;color:#b5edcf}.pm-scale{height:7px;margin:0 12px 7px;border-radius:10px;background:linear-gradient(90deg,#0bc17a 0 25%,#e7db35 25% 45%,#f3982e 45% 65%,#e15a37 65% 82%,#9c2850 82%)}.pm-label{display:flex;justify-content:space-between;padding:0 12px;font-size:7px;color:#c2d0dc}.updated{padding:8px 12px;font-size:8px;color:#a9bdce}
+.footer{grid-column:1/-1;background:#052b56;border-top:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:10px;color:#d3e0ed}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,7,17,.78);z-index:1000;padding:22px;overflow:auto}.modal.open{display:block}.modal-box{max-width:980px;margin:20px auto;background:#062b52;border:1px solid #2c628e;border-radius:15px;box-shadow:0 25px 80px #0009;overflow:hidden}.modal-head{display:flex;align-items:center;justify-content:space-between;padding:15px 18px;background:#073a6f;border-bottom:1px solid var(--line)}.modal-head h2{font:500 20px Kanit;margin:0}.close{background:#244a69;color:#fff;border:0;border-radius:7px;padding:7px 12px}.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:15px}.module-card{background:#08355f;border:1px solid var(--line);border-radius:10px;padding:13px}.module-card h3{font:500 15px Kanit;margin:0 0 7px}.module-card p{font-size:10px;color:#d1dfec;line-height:1.6}.module-card .btns{display:flex;gap:7px;margin-top:9px}.module-card button{border:0;border-radius:7px;padding:7px 10px;background:#0969d4;color:#fff;font-size:10px}.form{padding:15px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.form .full{grid-column:1/-1}.form label{font-size:10px;color:#cbdbea}.form input,.form textarea,.form select{width:100%;margin-top:4px;background:#031f3d;border:1px solid #2a587c;border-radius:7px;padding:9px;color:#fff}.form textarea{min-height:100px}.actions{padding:0 15px 15px;display:flex;gap:8px}.primary{background:#0871df;color:#fff;border:0;border-radius:7px;padding:9px 15px}.danger{background:#9c3440;color:#fff;border:0;border-radius:7px;padding:9px 15px}.tablewrap{padding:15px;overflow:auto}.table{width:100%;border-collapse:collapse;font-size:10px}.table th,.table td{border:1px solid #24557a;padding:8px;text-align:left}.table th{background:#0a477f}.toast{position:fixed;right:18px;bottom:55px;background:#0ab77c;color:#fff;padding:10px 14px;border-radius:8px;display:none;z-index:2000;font-size:11px}.mobile{display:none;position:fixed;left:10px;top:88px;z-index:80;width:42px;height:42px;border:1px solid var(--line);border-radius:8px;background:#07345f;color:#fff}
+@media(max-width:1250px){.header{grid-template-columns:1fr auto}.weather-mini{display:none}.dashboard-grid{grid-template-columns:1fr 220px}.kpi{padding:12px}.num{font-size:32px}.brand h1{font-size:21px}}
+@media(max-width:1000px){.app{grid-template-columns:1fr;grid-template-rows:70px 1fr 40px}.header{grid-column:1;grid-row:1;padding-left:55px}.sidebar{position:fixed;left:0;top:70px;bottom:40px;width:240px;transform:translateX(-102%);transition:.25s;z-index:70}.sidebar.open{transform:translateX(0)}.mobile{display:block}.content{grid-column:1;grid-row:2}.content:before{inset:70px 0 40px}.dashboard-grid{grid-template-columns:1fr}.rightcol{display:grid;grid-template-columns:1fr 1fr}.lower{grid-template-columns:1fr 1fr}.hero-banner{height:230px}.user{display:none}}
+@media(max-width:700px){.brand h1{font-size:17px}.brand h2{font-size:11px}.online{display:none}.clockbox{display:none}.kpis{grid-template-columns:1fr 1fr}.lower,.rightcol{grid-template-columns:1fr}.hero-banner{height:160px}.module-grid,.form{grid-template-columns:1fr}.form .full{grid-column:auto}.kpi{min-height:145px}.kpi-icon{width:50px;height:50px;font-size:24px}.kpi h3{font-size:14px}.num{font-size:29px}.detail{font-size:10px;margin-top:13px}.footer{font-size:8px;padding:0 10px;text-align:center}}
+</style>
 </head>
 <body>
-
-<header class="topbar">
- <div class="gov">🏛️</div>
- <div class="brand">
-   <b>RONGKHEM e-VILLAGE OFFICE</b>
-   <span>ที่ทำการผู้ใหญ่บ้านออนไลน์</span>
- </div>
- <div class="online">● ระบบออนไลน์</div>
- <div class="grow"></div>
- <div class="headClock"><b id="clock">--:--:--</b><small id="date">--</small></div>
- <div class="headWeather">🌤️<div><b id="topTemp">--°C</b><small>พะเยา</small></div></div>
- <div class="bell">🔔</div>
- <div class="profile">
-   <div class="profilePic" id="profilePic">👨🏻‍💼</div>
-   <div><b>ผู้ใหญ่บ้าน</b><small id="leaderName">นายศักรนนทน์ ขัติย์วงศ์</small></div>
- </div>
+<button class="mobile" id="mobile"><i class="fa-solid fa-bars"></i></button>
+<div class="app">
+<header class="header">
+  <div class="brand"><div class="brand-logo">🏛️</div><div><h1>RONGKHEM e-VILLAGE OFFICE</h1><h2>ที่ทำการผู้ใหญ่บ้านออนไลน์</h2></div><span class="online"><span class="dot"></span>ระบบออนไลน์</span></div>
+  <div class="clockbox"><div id="clock" class="clock">--:--:--</div><div id="date" class="date">--</div></div>
+  <div class="top-actions"><div class="weather-mini"><span class="wi" id="miniIcon">🌤️</span><div><b id="miniTemp">--°C</b><small>พะเยา</small></div></div><div class="bell">🔔<span class="badge">3</span></div><div class="user"><div class="avatar" id="avatar"><img id="avatarImg" style="display:none"><span id="avatarFallback">👨🏻‍💼</span><input id="avatarInput" type="file" accept="image/*" hidden></div><div><div class="user-name">ผู้ใหญ่บ้าน</div><div class="user-role">ศักรนนทน์ ขัติย์วงศ์</div></div><span class="chev">⌄</span></div></div>
 </header>
-
-<div class="shell">
-
-<aside class="sidebar">
-<a class="nav active" href="#home"><span class="ico">⌂</span>หน้าแรก<br>ศูนย์บัญชาการ</a>
-<a class="nav" href="#population"><span class="ico">👤</span>ข้อมูลประชาชน</a>
-<a class="nav" href="#households"><span class="ico">🏠</span>ข้อมูลครัวเรือน</a>
-<a class="nav" href="#"><span class="ico">👥</span>ผู้นำชุมชน</a>
-<a class="nav" href="#news"><span class="ico">📢</span>ข่าวประชาสัมพันธ์</a>
-<a class="nav" href="#activity"><span class="ico">▣</span>กิจกรรม / ปฏิทิน</a>
-<a class="nav" href="#alert"><span class="ico">⚠</span>แจ้งเหตุ / ร้องเรียน</a>
-<a class="nav" href="#"><span class="ico">🤝</span>บริการประชาชน</a>
-<a class="nav" href="#"><span class="ico">⌂</span>โครงการพัฒนาหมู่บ้าน</a>
-<a class="nav" href="#pm"><span class="ico">♧</span>สิ่งแวดล้อม / PM2.5</a>
-<a class="nav" href="#"><span class="ico">♜</span>แหล่งซับน้ำจำ</a>
-<a class="nav" href="#"><span class="ico">♜</span>กลุ่มข้าวสาร</a>
-<a class="nav" href="#"><span class="ico">▥</span>สถิติหมู่บ้าน</a>
-<a class="nav" href="#" onclick="openSettings();return false"><span class="ico">⚙</span>ตั้งค่าระบบ</a>
-
-<div class="contact">
-<h3>ที่ทำการผู้ใหญ่บ้าน</h3>
-<div class="phone">📞 080-1202529</div>
-💬 rongkhem.village<br>
-📍 บ้านร่องเข็ม หมู่ที่ 6<br>
-ต.จำป่าหวาย อ.เมืองพะเยา<br>
-จ.พะเยา
+<aside class="sidebar" id="sidebar"><nav class="menu">
+<a class="active" data-module="home"><span class="mi">⌂</span><span>หน้าแรก<small class="sub">ศูนย์บัญชาการ</small></span></a>
+<a data-module="population"><span class="mi">👥</span><span>ข้อมูลประชาชน</span></a>
+<a data-module="households"><span class="mi">⌂</span><span>ข้อมูลครัวเรือน</span></a>
+<a data-module="leader"><span class="mi">👥</span><span>ผู้นำชุมชน</span></a>
+<a data-module="news"><span class="mi">📣</span><span>ข่าวประชาสัมพันธ์</span></a>
+<a data-module="activities"><span class="mi">▣</span><span>กิจกรรม / ปฏิทิน</span></a>
+<a data-module="complaint"><span class="mi">♧</span><span>แจ้งเหตุ / ร้องเรียน</span></a>
+<a data-module="service"><span class="mi">🤝</span><span>บริการประชาชน</span></a>
+<a data-module="project"><span class="mi">⌂</span><span>โครงการพัฒนาหมู่บ้าน</span></a>
+<a data-module="environment"><span class="mi">♧</span><span>สิ่งแวดล้อม / PM2.5</span></a>
+<a data-module="wetland"><span class="mi">♒</span><span>แหล่งซับน้ำจำ</span></a>
+<a data-module="rice"><span class="mi">♨</span><span>กลุ่มข้าวสาร</span></a>
+<a data-module="statistics"><span class="mi">▥</span><span>สถิติหมู่บ้าน</span></a>
+<a data-module="settings"><span class="mi">⚙</span><span>ตั้งค่าระบบ</span></a>
+</nav><div class="contact"><h3>ที่ทำการผู้ใหญ่บ้าน</h3><p>📞 080-1202529<br>🟢 rongkhem.village<br>📍 บ้านร่องเข็ม หมู่ที่ 6<br>ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา</p></div></aside>
+<main class="content"><div class="wrap" id="homeView">
+<div class="hero-banner"><img src="fund-mother-banner.png" alt="หมู่บ้านกองทุนแม่ของแผ่นดิน บ้านร่องเข็ม หมู่ที่ 6"></div>
+<div class="dashboard-grid"><div class="maincol">
+<div class="kpis">
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon green">👥</div><div><h3>ประชาชน</h3><div class="num">960 <span class="unit">คน</span></div></div></div><div class="detail">หญิง 489 คน &nbsp;|&nbsp; ชาย 471 คน</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon blue">⌂</div><div><h3>ครัวเรือน</h3><div class="num">352 <span class="unit">ครัวเรือน</span></div></div></div><div class="detail">ข้อมูลที่ตรวจสอบแล้ว 352 หลัง</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon orange">👴</div><div><h3>ผู้สูงอายุ</h3><div class="num">92 <span class="unit">คน</span></div></div></div><div class="detail">อายุ 60 ปีขึ้นไป<br>45.5% ของผู้ตอบแบบสำรวจ</div></div>
+<div class="kpi"><div class="kpi-top"><div class="kpi-icon purple">👥</div><div><h3>กลุ่มเปราะบาง</h3><div class="num">95 <span class="unit">รายการ</span></div></div></div><div class="detail">ผู้พิการ 3 คน<br>โรคเรื้อรัง 1 คน</div></div>
 </div>
-</aside>
-
-<main id="home">
-
-<section class="hero" id="heroBanner">
-  <div class="heroShade"></div>
-
-  <button
-    type="button"
-    class="heroUploadButton"
-    onclick="openHeroUpload()">
-    📷 เปลี่ยนรูป
-  </button>
-</section>
-
-<div class="dashboard">
-
-<div>
-
-<section class="stats" id="population">
-
-<div class="metric">
-<div class="metricTop"><div class="metricIcon">👥</div><h3>ประชาชน</h3></div>
-<div class="num">960 <small style="font-size:14px;color:#fff">คน</small></div>
-<p>หญิง 489 คน　|　ชาย 471 คน</p>
+<div class="verify">✓ VERIFIED DATA · แบบสำรวจ 202 คน / 202 ครัวเรือน</div>
+<div class="lower">
+<section class="panel"><div class="panel-head">📣 ประกาศล่าสุด <button onclick="openModule('news')">ดูทั้งหมด</button></div><div class="panel-body" id="newsList"><div class="empty"><div class="big">📣</div><div>ยังไม่มีข้อมูลประกาศ</div><div>ระบบจะใช้ข้อมูลที่เพิ่มเข้ามาภายหลัง</div><button class="add" onclick="openModule('news')">＋ เพิ่มประกาศ</button></div></div></section>
+<section class="panel ai-card"><div class="panel-head">🤖 AI ผู้ช่วยผู้ใหญ่บ้าน <button onclick="openAI()">ถาม AI</button></div><div class="panel-body"><div class="robotline"><div class="robot">🤖</div><div><div class="ai-title">สวัสดีครับ! ผมคือผู้ช่วย AI</div><div class="ai-sub">ผู้ช่วยค้นข้อมูลจาก Dashboard</div></div></div><div class="aimsg" id="aiReply">สวัสดีครับ! ผมสามารถช่วยตอบข้อมูลของบ้านร่องเข็มได้ครับ</div><button class="ai-btn" onclick="openAI()">ถามข้อมูลเลย</button></div></section>
+<section class="panel"><div class="panel-head">📅 กิจกรรมวันนี้ <button onclick="openModule('activities')">ดูทั้งหมด</button></div><div class="panel-body" id="activityList"><div class="alert-item"><b>👥 ประชุมประจำเดือนกำนันผู้ใหญ่บ้าน</b><small>15 ส.ค. 2569 09:00 น.</small></div><div class="alert-item"><b>🧹 โครงการ Big Cleaning Day</b><small>17 ส.ค. 2569 08:00 น.</small></div><div class="alert-item"><b>🌫️ รณรงค์ป้องกัน PM2.5</b><small>20 ส.ค. 2569 09:00 น.</small></div></div></section>
+</div></div>
+<div class="rightcol">
+<section class="panel weather-card"><div class="panel-head">🌤️ สภาพอากาศ</div><div class="weather-main"><div class="weather-big" id="weatherIcon">🌤️</div><div><div><span class="temp" id="weatherTemp">29</span>°C</div><div class="weather-text" id="weatherText">มีเมฆบางส่วน</div></div></div><div class="weather-data"><div class="wd">ความชื้น<b id="weatherHumidity">72%</b></div><div class="wd">โอกาสฝน<b id="weatherRain">20%</b></div><div class="wd">ลม<b id="weatherWind">8 km/h</b></div></div><div class="locationline">📍 พะเยา อ.เมืองพะเยา <span style="float:right" id="weatherUpdated">อัปเดต --</span></div></section>
+<section class="panel pm-card"><div class="panel-head">🌫️ PM2.5</div><div class="pm-main"><div class="pm-face" id="pmFace">🙂</div><div><div class="pm-num" id="pmValue">18</div><div style="font-size:8px">µg/m³</div><div class="pm-status" id="pmStatus">ดีมาก</div></div></div><div class="pm-scale"></div><div class="pm-label"><span>0-25<br>ดีมาก</span><span>26-37<br>ดี</span><span>38-50<br>ปานกลาง</span><span>51-90<br>เริ่มมีผล</span><span>91+<br>มีผล</span></div><div class="updated">อัปเดต: <span id="pmUpdated">--</span></div></section>
+</div></div></div></main>
+<footer class="footer">© 2025 RONGKHEM e-VILLAGE OFFICE | ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา</footer>
 </div>
 
-<div class="metric" id="households">
-<div class="metricTop"><div class="metricIcon">🏠</div><h3>ครัวเรือน</h3></div>
-<div class="num">352 <small style="font-size:14px;color:#fff">ครัวเรือน</small></div>
-<p>ข้อมูลที่ตรวจสอบแล้ว 352 หลัง</p>
-</div>
-
-<div class="metric">
-<div class="metricTop"><div class="metricIcon">👴</div><h3>ผู้สูงอายุ</h3></div>
-<div class="num">92 <small style="font-size:14px;color:#fff">คน</small></div>
-<p>อายุ 60 ปีขึ้นไป<br>45.5% ของผู้ตอบแบบสำรวจ</p>
-</div>
-
-<div class="metric">
-<div class="metricTop"><div class="metricIcon">👥</div><h3>กลุ่มเปราะบาง</h3></div>
-<div class="num">95 <small style="font-size:14px;color:#fff">รายการ</small></div>
-<p>ผู้พิการ 3 คน<br>โรคเรื้อรัง 1 คน</p>
-</div>
-
-<div class="verified">
-✓ VERIFIED DATA · แบบสำรวจ <b>202 คน / 202 ครัวเรือน</b>
-</div>
-
-</section>
-
-<section class="panels">
-
-<div class="panel" id="news">
-<div class="panelHead">
-<h2>📢 ประกาศล่าสุด</h2>
-<button class="view" onclick="openManager('news')">ดูทั้งหมด</button>
-</div>
-<div id="newsList" class="empty">
-<span class="emptyIcon">📣</span>
-ยังไม่มีข้อมูลประกาศ<br>
-ระบบพร้อมรับข้อมูลที่เพิ่มภายหลัง<br>
-<button class="add" onclick="openManager('news')">＋ เพิ่มประกาศ</button>
-</div>
-</div>
-
-<div class="panel" id="activity">
-<div class="panelHead">
-<h2>📅 กิจกรรมวันนี้</h2>
-<button class="view" onclick="openManager('activity')">ดูทั้งหมด</button>
-</div>
-<div id="activityList" class="empty">
-<span class="emptyIcon">🗓️</span>
-ยังไม่มีข้อมูลกิจกรรม<br>
-กรุณาเพิ่มข้อมูลกิจกรรมภายหลัง<br>
-<button class="add" onclick="openManager('activity')">＋ เพิ่มกิจกรรม</button>
-</div>
-</div>
-
-<div class="panel" id="alert">
-<div class="panelHead">
-<h2>📋 แจ้งเตือน</h2>
-<button class="view" onclick="openManager('alert')">ดูทั้งหมด</button>
-</div>
-<div id="alertList">
-<div class="alert"><b>👨‍👩‍👧 ประชุมประจำเดือนกำนันผู้ใหญ่บ้าน</b><small>15 ส.ค. 2569 09:00 น.</small></div>
-<div class="alert"><b>🧹 โครงการ Big Cleaning Day</b><small>17 ส.ค. 2569 08:00 น.</small></div>
-<div class="alert"><b>🌫️ รณรงค์ป้องกัน PM2.5</b><small>20 ส.ค. 2569 09:00 น.</small></div>
-</div>
-</div>
-
-</section>
-</div>
-
-<aside class="right">
-
-<div class="card">
-<div class="cardTitle">🌤️ สภาพอากาศ</div>
-<div class="temp" id="temp">--°C</div>
-<div id="weatherText">กำลังโหลด...</div>
-<div class="weather3">
-<div>ความชื้น<b id="hum">--</b></div>
-<div>โอกาสฝน<b>20%</b></div>
-<div>ลม<b id="wind">--</b></div>
-</div>
-<div class="place">📍 พะเยา อ.เมืองพะเยา</div>
-</div>
-
-<div class="card" id="pm">
-<div class="cardTitle">🌫️ PM2.5</div>
-<div class="pmValue">
-<span id="pmv">--</span>
-<small style="font-size:14px">µg/m³</small>
-</div>
-<b id="pmStatus" class="pmGood">กำลังตรวจสอบ</b>
-<div class="pmBar"></div>
-<div class="pmLegend">
-<span>0-25</span><span>26-37</span><span>38-50</span><span>51-90</span><span>91+</span>
-</div>
-</div>
-
-<div class="card">
-<div class="cardTitle">🤖 AI ผู้ช่วยผู้ใหญ่บ้าน</div>
-<div class="aiBox" id="aiText">
-สวัสดีครับ! ผมคือผู้ช่วย AI<br>
-ผู้ช่วยค้นข้อมูลจาก Dashboard
-</div>
-<button class="ask" onclick="askAI()">ถามข้อมูลเลย</button>
-</div>
-
-</aside>
-</div>
-
-<footer class="footer">
-© 2026 RONGKHEM e-VILLAGE OFFICE |
-ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6
-ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา
-</footer>
-
-</main>
-</div>
-
-<div class="modal" id="modal">
-<div class="modalBox" id="modalBox"></div>
-</div>
-
-<script src="data.js"></script>
-<script src="config.js"></script>
-<script src="app.js"></script>
-
+<div class="modal" id="moduleModal"><div class="modal-box"><div class="modal-head"><h2 id="modalTitle">โมดูล</h2><button class="close" onclick="closeModal()">✕ ปิด</button></div><div id="modalBody"></div></div></div>
+<div class="toast" id="toast"></div>
+<script>
+const DATA={population:960,male:471,female:489,households:352,elderly:92,disabled:3,chronic:1,vulnerable:95,survey:202,leader:'นายศักรนนทน์ ขัติย์วงศ์',phone:'080-1202529',line:'rongkhem.village'};
+const $=id=>document.getElementById(id);
+function clock(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('th-TH',{hour12:false});$('date').textContent=d.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});}clock();setInterval(clock,1000);
+$('mobile').onclick=()=>$('sidebar').classList.toggle('open');
+$('avatar').onclick=()=>$('avatarInput').click();
+$('avatarInput').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{localStorage.rkAvatar=ev.target.result;$('avatarImg').src=ev.target.result;$('avatarImg').style.display='block';$('avatarFallback').style.display='none'};r.readAsDataURL(f)};
+if(localStorage.rkAvatar){$('avatarImg').src=localStorage.rkAvatar;$('avatarImg').style.display='block';$('avatarFallback').style.display='none'}
+const MODULES={
+ population:['👥 ข้อมูลประชาชน','<div class="module-grid"><div class="module-card"><h3>ประชากรรวม</h3><p><b style="font-size:25px">960</b> คน</p></div><div class="module-card"><h3>ชาย</h3><p><b style="font-size:25px">471</b> คน</p></div><div class="module-card"><h3>หญิง</h3><p><b style="font-size:25px">489</b> คน</p></div></div>'],
+ households:['🏠 ข้อมูลครัวเรือน','<div class="tablewrap"><table class="table"><tr><th>รายการ</th><th>จำนวน</th><th>สถานะ</th></tr><tr><td>ครัวเรือนทั้งหมด</td><td>352</td><td>ตรวจสอบแล้ว</td></tr><tr><td>ผู้ตอบแบบสำรวจ</td><td>202</td><td>ยืนยันแล้ว</td></tr></table></div>'],
+ leader:['👥 ผู้นำชุมชน','<div class="module-grid"><div class="module-card"><h3>ผู้ใหญ่บ้าน</h3><p>นายศักรนนทน์ ขัติย์วงศ์<br>ผู้ใหญ่บ้าน หมู่ที่ 6<br>โทร. 080-1202529</p></div><div class="module-card"><h3>การติดต่อ</h3><p>LINE ID: rongkhem.village<br>ที่ทำการผู้ใหญ่บ้านออนไลน์</p></div></div>'],
+ news:['📣 ข่าวประชาสัมพันธ์','<div class="form"><label class="full">หัวข้อประกาศ<input id="newsTitle" placeholder="หัวข้อประกาศ"></label><label>วันที่<input id="newsDate" type="date"></label><label>ประเภท<select id="newsType"><option>ประกาศสำคัญ</option><option>ประชาสัมพันธ์</option><option>แจ้งเตือน</option></select></label><label class="full">รายละเอียด<textarea id="newsBody"></textarea></label></div><div class="actions"><button class="primary" onclick="saveNews()">💾 บันทึกประกาศ</button></div><div class="tablewrap" id="newsManage"></div>'],
+ activities:['📅 กิจกรรม / ปฏิทิน','<div class="form"><label>ชื่อกิจกรรม<input id="actTitle" placeholder="ชื่อกิจกรรม"></label><label>วันที่<input id="actDate" type="date"></label><label>เวลา<input id="actTime" type="time"></label><label>สถานที่<input id="actPlace" placeholder="สถานที่"></label><label class="full">รายละเอียด<textarea id="actBody"></textarea></label></div><div class="actions"><button class="primary" onclick="saveActivity()">💾 บันทึกกิจกรรม</button></div><div class="tablewrap" id="actManage"></div>'],
+ complaint:['🚨 แจ้งเหตุ / ร้องเรียน','<div class="form"><label>ชื่อผู้แจ้ง<input id="cpName"></label><label>โทรศัพท์<input id="cpPhone"></label><label>ประเภท<select id="cpType"><option>ถนน / ไฟฟ้า / น้ำ</option><option>สิ่งแวดล้อม</option><option>ความเดือดร้อน</option><option>อื่น ๆ</option></select></label><label class="full">รายละเอียด<textarea id="cpBody"></textarea></label></div><div class="actions"><button class="primary" onclick="saveComplaint()">ส่งเรื่องร้องเรียน</button></div><div class="tablewrap" id="cpList"></div>'],
+ service:['🤝 บริการประชาชน','<div class="module-grid"><div class="module-card"><h3>📄 ขอหนังสือรับรอง</h3><p>เตรียมข้อมูลสำหรับยื่นคำขอ</p><button onclick="toast(\'เปิดแบบฟอร์มคำขอ\')">เปิดบริการ</button></div><div class="module-card"><h3>📢 ประชาสัมพันธ์</h3><p>ข่าวสารและประกาศจากที่ทำการผู้ใหญ่บ้าน</p><button onclick="openModule(\'news\')">ดูประกาศ</button></div><div class="module-card"><h3>🚨 แจ้งเหตุ</h3><p>ส่งเรื่องร้องเรียนหรือแจ้งปัญหาในหมู่บ้าน</p><button onclick="openModule(\'complaint\')">แจ้งเหตุ</button></div></div>'],
+ project:['📁 โครงการพัฒนาหมู่บ้าน','<div class="module-grid"><div class="module-card"><h3>🏘️ พัฒนาชุมชน</h3><p>โครงการพัฒนาหมู่บ้านและโครงสร้างพื้นฐาน</p></div><div class="module-card"><h3>♻️ สิ่งแวดล้อม</h3><p>ลดการเผา จัดการขยะ และคุ้มครองสุขภาพ</p></div><div class="module-card"><h3>💧 แหล่งน้ำ</h3><p>ดูแลและพัฒนาแหล่งซับน้ำจำ</p></div></div>'],
+ environment:['🌿 สิ่งแวดล้อม / PM2.5','<div class="module-grid"><div class="module-card"><h3>🌫️ PM2.5</h3><p>ตรวจสอบค่าฝุ่นจากข้อมูลสดบน Dashboard</p></div><div class="module-card"><h3>🔥 ลดการเผา</h3><p>รณรงค์ลดการเผาและเฝ้าระวังจุดเสี่ยงในชุมชน</p></div><div class="module-card"><h3>♻️ ขยะ</h3><p>คัดแยกขยะ ขยะเปียก ปุ๋ยหมัก และการจัดการขยะชุมชน</p></div></div>'],
+ wetland:['💧 แหล่งซับน้ำจำ','<div class="module-grid"><div class="module-card"><h3>แหล่งซับน้ำจำ</h3><p>ทรัพยากรสำคัญของบ้านร่องเข็ม เชื่อมโยงการอนุรักษ์น้ำและพื้นที่ชุ่มน้ำ</p></div><div class="module-card"><h3>การพัฒนา</h3><p>รวบรวมข้อมูลกิจกรรมและโครงการที่เกี่ยวข้อง</p></div></div>'],
+ rice:['🍚 กลุ่มข้าวสาร','<div class="module-grid"><div class="module-card"><h3>สมาชิก</h3><p>ระบบกลุ่มข้าวสารสำหรับช่วยเหลืองานศพของสมาชิก</p><button onclick="toast(\'โมดูลกลุ่มข้าวสารพร้อมเชื่อมต่อระบบเดิม\')">เปิดระบบ</button></div><div class="module-card"><h3>กติกากลุ่ม</h3><p>ส่งข้าวสารตามกติกาของกลุ่ม และติดตามรายการค้างส่ง</p></div></div>'],
+ statistics:['📊 สถิติหมู่บ้าน','<div class="module-grid"><div class="module-card"><h3>ประชากร</h3><p>960 คน</p></div><div class="module-card"><h3>ครัวเรือน</h3><p>352 ครัวเรือน</p></div><div class="module-card"><h3>ผู้สูงอายุ</h3><p>92 คน</p></div><div class="module-card"><h3>แบบสำรวจ</h3><p>202 คน / 202 ครัวเรือน</p></div><div class="module-card"><h3>ผู้พิการ</h3><p>3 คน</p></div><div class="module-card"><h3>โรคเรื้อรัง</h3><p>1 คน</p></div></div>'],
+ settings:['⚙️ ตั้งค่าระบบ','<div class="form"><label>ชื่อผู้ใหญ่บ้าน<input id="setLeader" value="นายศักรนนทน์ ขัติย์วงศ์"></label><label>โทรศัพท์<input id="setPhone" value="080-1202529"></label><label>LINE ID<input id="setLine" value="rongkhem.village"></label><label>ชื่อหน่วยงาน<input value="RONGKHEM e-VILLAGE OFFICE"></label></div><div class="actions"><button class="primary" onclick="toast(\'บันทึกการตั้งค่าเรียบร้อยแล้ว\')">💾 บันทึก</button></div>']
+};
+function openModule(name){document.querySelectorAll('.menu a').forEach(a=>a.classList.toggle('active',a.dataset.module===name));if(name==='home'){closeModal();return}const m=MODULES[name]||MODULES.statistics;$('modalTitle').textContent=m[0];$('modalBody').innerHTML=m[1];$('moduleModal').classList.add('open');if(name==='news')renderNews();if(name==='activities')renderActivities();if(name==='complaint')renderComplaints();$('sidebar').classList.remove('open')}
+function closeModal(){$('moduleModal').classList.remove('open');document.querySelectorAll('.menu a').forEach(a=>a.classList.toggle('active',a.dataset.module==='home'))}
+$('moduleModal').onclick=e=>{if(e.target.id==='moduleModal')closeModal()};
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=e=>{e.preventDefault();openModule(a.dataset.module)});
+function toast(t){$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
+function openAI(){openModule('ai')}
+MODULES.ai=['🤖 AI ผู้ช่วยผู้ใหญ่บ้าน','<div class="form"><label class="full">คำถาม<input id="aiQ" placeholder="เช่น บ้านร่องเข็มมีกี่คน?"></label></div><div class="actions"><button class="primary" onclick="askAI()">ถาม AI</button></div><div class="tablewrap"><div class="aimsg" id="aiModalReply">ผมตอบได้จากข้อมูล VERIFIED DATA ของระบบครับ</div></div>'];
+function askAI(){const q=($('aiQ')?.value||'').toLowerCase();let r='ผมตอบได้จากข้อมูลประชากร ครัวเรือน ผู้สูงอายุ แบบสำรวจ ผู้พิการ กลุ่มเปราะบาง และการติดต่อผู้ใหญ่บ้านครับ';if(q.includes('ประชากร')||q.includes('กี่คน'))r=`บ้านร่องเข็ม หมู่ที่ 6 มีประชากร ${DATA.population.toLocaleString('th-TH')} คน ชาย ${DATA.male} คน หญิง ${DATA.female} คนครับ`;else if(q.includes('ครัวเรือน'))r=`มี ${DATA.households} ครัวเรือนครับ`;else if(q.includes('สูงอายุ'))r=`มีผู้สูงอายุ 60 ปีขึ้นไป ${DATA.elderly} คนครับ`;else if(q.includes('พิการ'))r=`มีผู้พิการ ${DATA.disabled} คนครับ`;else if(q.includes('เปราะบาง'))r=`มีข้อมูลกลุ่มเปราะบาง ${DATA.vulnerable} รายการครับ`;else if(q.includes('โทร')||q.includes('ติดต่อ'))r=`โทร. ${DATA.phone} หรือ LINE ID ${DATA.line} ครับ`;$('aiModalReply').textContent=r;$('aiReply').textContent=r}
+function getList(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch{return[]}}function putList(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function saveNews(){const t=$('newsTitle').value.trim();if(!t)return toast('กรุณาใส่หัวข้อประกาศ');const x=getList('RK_NEWS');x.unshift({title:t,date:$('newsDate').value||new Date().toISOString().slice(0,10),type:$('newsType').value,body:$('newsBody').value});putList('RK_NEWS',x);toast('บันทึกประกาศแล้ว');renderNews()}
+function renderNews(){const x=getList('RK_NEWS');$('newsManage').innerHTML=x.length?x.map((n,i)=>`<div class="alert-item"><b>${escapeHtml(n.title)}</b><small>${n.type} · ${n.date}<br>${escapeHtml(n.body||'')}</small></div>`).join(''):'<p style="font-size:10px;color:#bcd0df">ยังไม่มีประกาศที่บันทึกไว้</p>'}
+function saveActivity(){const t=$('actTitle').value.trim();if(!t)return toast('กรุณาใส่ชื่อกิจกรรม');const x=getList('RK_ACT');x.push({title:t,date:$('actDate').value,time:$('actTime').value,place:$('actPlace').value,body:$('actBody').value});putList('RK_ACT',x);toast('บันทึกกิจกรรมแล้ว');renderActivities()}
+function renderActivities(){const x=getList('RK_ACT');$('actManage').innerHTML=x.length?x.map(n=>`<div class="alert-item"><b>${escapeHtml(n.title)}</b><small>${n.date||''} ${n.time||''} · ${escapeHtml(n.place||'')}<br>${escapeHtml(n.body||'')}</small></div>`).join(''):'<p style="font-size:10px;color:#bcd0df">ยังไม่มีกิจกรรมที่บันทึกไว้</p>'}
+function saveComplaint(){const x=getList('RK_CP');x.unshift({name:$('cpName').value,phone:$('cpPhone').value,type:$('cpType').value,body:$('cpBody').value,date:new Date().toLocaleString('th-TH')});putList('RK_CP',x);toast('ส่งเรื่องร้องเรียนแล้ว');renderComplaints()}
+function renderComplaints(){const x=getList('RK_CP');$('cpList').innerHTML=x.length?x.map(n=>`<div class="alert-item"><b>${escapeHtml(n.type)}</b><small>${escapeHtml(n.name||'ไม่ระบุชื่อ')} · ${escapeHtml(n.phone||'')}<br>${escapeHtml(n.body||'')}<br>${n.date}</small></div>`).join(''):'<p style="font-size:10px;color:#bcd0df">ยังไม่มีเรื่องร้องเรียน</p>'}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+async function loadLive(){const lat=19.0446,lon=99.9765,tz='Asia/Bangkok';try{const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,is_day&hourly=precipitation_probability&forecast_hours=2&timezone=${encodeURIComponent(tz)}`;const d=await fetch(u,{cache:'no-store'}).then(r=>r.json()),c=d.current;const icon=code=>code===0?(c.is_day?'☀️':'🌙'):[1,2].includes(code)?'🌤️':code===3?'☁️':[45,48].includes(code)?'🌫️':[51,53,55,56,57].includes(code)?'🌦️':[61,63,65,80,81,82].includes(code)?'🌧️':[95,96,99].includes(code)?'⛈️':'🌤️';const text=code=>({0:'ท้องฟ้าแจ่มใส',1:'มีเมฆเล็กน้อย',2:'มีเมฆบางส่วน',3:'เมฆมาก',45:'มีหมอก',51:'ฝนปรอย',61:'ฝนเล็กน้อย',63:'ฝนปานกลาง',65:'ฝนตกหนัก',95:'พายุฝนฟ้าคะนอง'}[code]||'สภาพอากาศปัจจุบัน');$('weatherIcon').textContent=icon(c.weather_code);$('miniIcon').textContent=icon(c.weather_code);$('weatherTemp').textContent=Number(c.temperature_2m).toFixed(0);$('miniTemp').textContent=Number(c.temperature_2m).toFixed(0)+'°C';$('weatherText').textContent=text(c.weather_code);$('weatherHumidity').textContent=Math.round(c.relative_humidity_2m)+'%';$('weatherWind').textContent=Math.round(c.wind_speed_10m)+' km/h';$('weatherRain').textContent=(d.hourly?.precipitation_probability?.[0]??0)+'%';const tm=new Date(c.time).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});$('weatherUpdated').textContent='อัปเดต '+tm}catch(e){console.warn(e)}}
+async function loadPM(){try{const u='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.0446&longitude=99.9765&current=pm2_5&timezone=Asia%2FBangkok';const d=await fetch(u,{cache:'no-store'}).then(r=>r.json()),v=Number(d.current.pm2_5);$('pmValue').textContent=v.toFixed(0);let face='😊',status='ดีมาก';if(v>25&&v<=37){face='🙂';status='ดี'}else if(v<=50&&v>37){face='😐';status='ปานกลาง'}else if(v<=90){face='😷';status='เริ่มมีผล'}else if(v>90){face='🚨';status='มีผลกระทบ'}$('pmFace').textContent=face;$('pmStatus').textContent=status;const tm=new Date(d.current.time).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});$('pmUpdated').textContent=tm}catch(e){console.warn(e)}}
+loadLive();loadPM();setInterval(loadLive,300000);setInterval(loadPM,300000);
+</script>
 </body>
 </html>
