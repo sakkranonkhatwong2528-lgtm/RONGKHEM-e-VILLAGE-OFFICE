@@ -40,7 +40,7 @@ body{background:radial-gradient(circle at 70% 15%,#123044 0,#020a12 45%,#01060b 
 
 <aside class="sidebar" id="sidebar">
 <nav class="menu">
-<a class="active" href="#"><span class="mi">🏠</span><span>หน้าแรก<small class="sub">ศูนย์บัญชาการ</small></span></a>
+<a class="active"        href="#statistics" data-module="statistics"><span class="mi">🏠</span><span>หน้าแรก<small class="sub">ศูนย์บัญชาการ</small></span></a>
 <a href="#population" data-module="population"><span class="mi">👥</span><span>ข้อมูลประชาชน</span></a>
 <a href="#households" data-module="household"><span class="mi">🏠</span><span>ข้อมูลครัวเรือน</span></a>
 <a href="#leader" data-module="leader"><span class="mi">👨‍👩‍👧</span><span>ผู้นำชุมชน</span></a>
@@ -1133,6 +1133,9 @@ document.addEventListener("keydown", function(e){
     rice:{icon:"🍚",title:"กลุ่มข้าวสาร",fields:[
       ["title","รายการ/กิจกรรม","text"],["date","วันที่","date"],["quantity","จำนวน","number"],["detail","รายละเอียด","textarea"]
     ]},
+    statistics:{icon:"📊",title:"สถิติหมู่บ้าน",fields:[
+      ["title","หัวข้อสถิติ","text"],["value","ค่า","number"],["detail","รายละเอียด","textarea"]
+    ]},
     settings:{icon:"⚙️",title:"ตั้งค่าระบบ",fields:[
       ["villageName","ชื่อหมู่บ้าน","text"],["phone","โทรศัพท์","tel"],["line","LINE ID","text"],["detail","ข้อความติดต่อ/เวลาทำการ","textarea"]
     ]}
@@ -1251,6 +1254,30 @@ document.addEventListener("keydown", function(e){
   window.RONGKHEM_MODULES={open:openModule,modules:MODULES};
 
   console.log("✓ RONGKHEM ALL MENU MODULES READY");
+})();
+</script>
+
+
+<script>
+(function(){
+  const items=[
+    ["complaint","🚨 แจ้งเหตุ / ร้องเรียน"],
+    ["service","🤝 บริการประชาชน"],
+    ["project","📁 โครงการพัฒนาหมู่บ้าน"],
+    ["environment","🌿 สิ่งแวดล้อม / PM2.5"],
+    ["wetland","💧 แหล่งซับน้ำจำ"],
+    ["rice","🍚 กลุ่มข้าวสาร"],
+    ["statistics","📊 สถิติหมู่บ้าน"]
+  ];
+  const bar=document.createElement("div");
+  bar.id="rongkhemQuickManager";
+  bar.style.cssText="position:fixed;right:16px;bottom:16px;z-index:99990;display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end;max-width:420px";
+  bar.innerHTML=items.map(([m,t])=>`<button data-open-module="${m}" style="border:0;border-radius:10px;padding:9px 11px;background:#123844;color:#fff;box-shadow:0 5px 18px #0008;cursor:pointer;font-weight:700">${t}</button>`).join("");
+  document.body.appendChild(bar);
+  bar.addEventListener("click",e=>{
+    const b=e.target.closest("[data-open-module]");
+    if(b && window.RONGKHEM_MODULES) window.RONGKHEM_MODULES.open(b.dataset.openModule);
+  });
 })();
 </script>
 
