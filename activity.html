@@ -6,1628 +6,896 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>
-กิจกรรมและปฏิทิน | RONGKHEM e-VILLAGE
+กิจกรรมหมู่บ้าน | RONGKHEM e-VILLAGE
 </title>
 
 <link rel="preconnect"
-href="https://fonts.googleapis.com">
+      href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
-href="https://fonts.gstatic.com"
-crossorigin>
+      href="https://fonts.gstatic.com"
+      crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-rel="stylesheet">
+      rel="stylesheet">
 
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
-/* =====================================================
-ROOT
-===================================================== */
-
 :root{
 
---bg:#03101a;
+    --bg:#07111f;
 
---panel:rgba(4,29,43,.94);
+    --card:rgba(15,29,48,.88);
 
---border:rgba(112,190,220,.24);
+    --border:rgba(255,255,255,.08);
 
---text:#fff;
+    --text:#f8fafc;
 
---muted:#9db5be;
+    --muted:#94a3b8;
 
---green:#4cff70;
+    --cyan:#22d3ee;
 
---cyan:#45e8ff;
+    --blue:#38bdf8;
 
---purple:#d78cff;
+    --green:#22c55e;
 
---orange:#ffb53d;
+    --yellow:#facc15;
 
---red:#ff5d5d;
+    --orange:#fb923c;
 
---sidebar:260px;
+    --purple:#a78bfa;
+
+    --red:#fb7185;
+
+    --radius:22px;
 
 }
-
-
-/* =====================================================
-RESET
-===================================================== */
 
 *{
 
-box-sizing:border-box;
+    box-sizing:border-box;
 
-margin:0;
+    margin:0;
 
-padding:0;
+    padding:0;
 
 }
-
 
 body{
 
-min-height:100vh;
+    font-family:"Prompt",sans-serif;
 
-font-family:
-"Prompt",
-"Kanit",
-sans-serif;
+    color:var(--text);
 
-color:var(--text);
+    min-height:100vh;
 
-background:
+    background:
 
-linear-gradient(
-rgba(0,12,20,.92),
-rgba(0,12,20,.97)
-),
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(34,211,238,.10),
+        transparent 30%
+    ),
 
-url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
-center/cover fixed no-repeat;
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(59,130,246,.10),
+        transparent 30%
+    ),
 
-}
-
-
-button,
-input,
-select,
-textarea{
-
-font-family:inherit;
+    linear-gradient(
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
+    );
 
 }
 
+.container{
 
-button{
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
 
-cursor:pointer;
+    margin:auto;
 
 }
 
 
 /* =====================================================
-SIDEBAR
+HEADER
 ===================================================== */
 
-.sidebar{
+.header{
 
-position:fixed;
+    position:sticky;
 
-left:0;
+    top:0;
 
-top:0;
+    z-index:100;
 
-bottom:0;
+    background:
+    rgba(4,11,20,.86);
 
-width:var(--sidebar);
+    backdrop-filter:
+    blur(18px);
 
-padding:20px 14px;
-
-background:
-
-linear-gradient(
-180deg,
-rgba(1,18,30,.99),
-rgba(1,10,18,.98)
-);
-
-border-right:
-1px solid
-rgba(120,201,230,.18);
-
-z-index:1000;
-
-overflow-y:auto;
+    border-bottom:
+    1px solid var(--border);
 
 }
 
+.header-inner{
 
-.sidebar-brand{
+    min-height:76px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-gap:11px;
+    justify-content:space-between;
 
-padding:
-5px
-9px
-20px;
-
-margin-bottom:13px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.09);
+    gap:20px;
 
 }
 
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
 
 .logo{
 
-width:54px;
+    width:48px;
 
-height:54px;
+    height:48px;
 
-display:flex;
+    border-radius:15px;
 
-align-items:center;
+    display:flex;
 
-justify-content:center;
+    align-items:center;
 
-border-radius:15px;
+    justify-content:center;
 
-font-size:29px;
+    font-size:21px;
 
-background:
-
-linear-gradient(
-145deg,
-rgba(255,188,49,.17),
-rgba(4,38,51,.4)
-);
-
-border:
-1px solid
-rgba(255,190,54,.27);
+    background:
+    linear-gradient(
+        135deg,
+        #0284c7,
+        #22d3ee
+    );
 
 }
 
+.brand h1{
 
-.brand-title{
+    font-family:"Kanit";
 
-font-family:"Kanit";
-
-font-size:17px;
-
-line-height:1.1;
+    font-size:19px;
 
 }
 
+.brand p{
 
-.brand-title span{
+    color:var(--muted);
 
-color:#b6ff43;
-
-}
-
-
-.brand-sub{
-
-color:#9eb8c2;
-
-font-size:10px;
-
-margin-top:3px;
+    font-size:11px;
 
 }
 
+.back{
 
-.menu{
+    padding:
+    9px 14px;
 
-display:flex;
+    border-radius:12px;
 
-flex-direction:column;
+    border:
+    1px solid var(--border);
 
-gap:4px;
+    background:
+    rgba(255,255,255,.04);
 
-}
+    color:white;
 
+    cursor:pointer;
 
-.menu a{
-
-display:flex;
-
-align-items:center;
-
-gap:12px;
-
-padding:
-12px
-13px;
-
-color:#d6e3e8;
-
-text-decoration:none;
-
-border-radius:12px;
-
-font-size:13px;
-
-border:
-1px solid
-transparent;
-
-transition:.2s;
-
-}
-
-
-.menu a:hover{
-
-background:
-rgba(51,205,104,.08);
-
-border-color:
-rgba(65,231,108,.14);
-
-transform:
-translateX(2px);
-
-}
-
-
-.menu a.active{
-
-background:
-
-linear-gradient(
-100deg,
-rgba(31,190,75,.42),
-rgba(19,90,52,.22)
-);
-
-border-color:
-rgba(84,238,106,.7);
-
-color:#fff;
-
-}
-
-
-.icon{
-
-width:28px;
-
-text-align:center;
-
-font-size:20px;
-
-}
-
-
-.contact{
-
-margin-top:18px;
-
-padding:14px;
-
-border-radius:15px;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(7,40,55,.9),
-rgba(3,22,33,.9)
-);
-
-border:
-1px solid
-rgba(116,196,219,.23);
-
-}
-
-
-.contact h3{
-
-font-family:"Kanit";
-
-font-size:16px;
-
-margin-bottom:10px;
-
-}
-
-
-.contact p{
-
-color:#b7cbd3;
-
-font-size:10px;
-
-margin:7px 0;
+    font-family:inherit;
 
 }
 
 
 /* =====================================================
-TOPBAR
+TITLE
 ===================================================== */
 
-.topbar{
+.page-head{
 
-position:fixed;
-
-left:var(--sidebar);
-
-right:0;
-
-top:0;
-
-height:78px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:0 25px;
-
-background:
-rgba(3,22,35,.91);
-
-backdrop-filter:
-blur(18px);
-
-border-bottom:
-1px solid
-var(--border);
-
-z-index:900;
+    margin-top:30px;
 
 }
 
+.page-head h2{
 
-.page-title{
+    font-family:"Kanit";
 
-display:flex;
-
-align-items:center;
-
-gap:12px;
+    font-size:36px;
 
 }
 
+.page-head p{
 
-.big-icon{
+    margin-top:5px;
 
-width:44px;
+    color:var(--muted);
 
-height:44px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:12px;
-
-background:
-rgba(69,232,255,.08);
-
-border:
-1px solid
-rgba(69,232,255,.25);
-
-font-size:24px;
+    font-size:13px;
 
 }
 
+.source{
 
-.page-title h1{
+    display:inline-flex;
 
-font-family:"Kanit";
+    align-items:center;
 
-font-size:21px;
+    gap:8px;
 
-font-weight:500;
+    margin-top:12px;
 
-}
+    padding:
+    8px 12px;
 
+    border-radius:10px;
 
-.page-title p{
+    color:#67e8f9;
 
-color:#8ea7b1;
+    background:
+    rgba(34,211,238,.07);
 
-font-size:10px;
+    border:
+    1px solid
+    rgba(34,211,238,.16);
 
-}
-
-
-.clock{
-
-text-align:right;
-
-}
-
-
-.time{
-
-font-family:"Kanit";
-
-font-size:25px;
-
-}
-
-
-.today{
-
-color:#8ea7b1;
-
-font-size:10px;
-
-}
-
-
-.mobile-button{
-
-display:none;
-
-width:42px;
-
-height:42px;
-
-border-radius:10px;
-
-background:
-rgba(255,255,255,.05);
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-color:#fff;
-
-font-size:20px;
+    font-size:11px;
 
 }
 
 
 /* =====================================================
-MAIN
+STATS
 ===================================================== */
 
-.main{
+.stats{
 
-margin-left:var(--sidebar);
+    display:grid;
 
-padding-top:78px;
+    grid-template-columns:
+    repeat(4,1fr);
 
-min-height:100vh;
+    gap:15px;
+
+    margin-top:22px;
 
 }
 
+.stat{
 
-.content{
+    padding:22px;
 
-max-width:1550px;
+    border-radius:22px;
 
-margin:auto;
+    background:
+    var(--card);
 
-padding:25px;
+    border:
+    1px solid var(--border);
+
+}
+
+.stat-icon{
+
+    width:45px;
+
+    height:45px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.stat-value{
+
+    margin-top:12px;
+
+    font-family:"Kanit";
+
+    font-size:34px;
+
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:12px;
 
 }
 
 
 /* =====================================================
-SUMMARY
+CONTROL
 ===================================================== */
 
-.summary{
+.control{
 
-display:grid;
+    margin-top:20px;
 
-grid-template-columns:
-repeat(5,1fr);
+    padding:18px;
 
-gap:14px;
+    border-radius:20px;
 
-margin-bottom:18px;
+    background:
+    var(--card);
 
-}
-
-
-.summary-card{
-
-padding:18px;
-
-border-radius:17px;
-
-background:
-
-linear-gradient(
-145deg,
-rgba(5,36,51,.92),
-rgba(2,20,30,.91)
-);
-
-border:
-1px solid
-var(--border);
-
-box-shadow:
-0 15px 40px
-rgba(0,0,0,.25);
+    border:
+    1px solid var(--border);
 
 }
 
+.control-row{
 
-.summary-icon{
+    display:flex;
 
-font-size:25px;
+    justify-content:space-between;
 
-}
+    align-items:center;
 
-
-.summary-title{
-
-color:#94adb7;
-
-font-size:10px;
-
-margin-top:6px;
+    gap:15px;
 
 }
-
-
-.summary-number{
-
-font-family:"Kanit";
-
-font-size:29px;
-
-line-height:1.1;
-
-margin-top:2px;
-
-}
-
-
-.green{
-
-border-color:
-rgba(76,255,112,.28);
-
-}
-
-
-.cyan{
-
-border-color:
-rgba(69,232,255,.28);
-
-}
-
-
-.orange{
-
-border-color:
-rgba(255,181,61,.28);
-
-}
-
-
-.purple{
-
-border-color:
-rgba(215,140,255,.28);
-
-}
-
-
-.red{
-
-border-color:
-rgba(255,93,93,.28);
-
-}
-
-
-/* =====================================================
-TOOLBAR
-===================================================== */
-
-.toolbar{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-gap:12px;
-
-padding:16px;
-
-margin-bottom:18px;
-
-border-radius:17px;
-
-background:
-rgba(4,29,43,.88);
-
-border:
-1px solid
-var(--border);
-
-}
-
-
-.search-area{
-
-display:flex;
-
-gap:8px;
-
-flex:1;
-
-max-width:850px;
-
-}
-
 
 .search{
 
-flex:1;
+    display:flex;
 
-padding:
-12px
-15px;
+    gap:10px;
 
-border-radius:11px;
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-background:
-rgba(255,255,255,.045);
-
-color:#fff;
-
-outline:none;
-
-font-size:12px;
+    flex:1;
 
 }
 
+.search input{
 
-.search:focus{
+    width:100%;
 
-border-color:
-rgba(69,232,255,.55);
+    padding:
+    13px 15px;
 
-}
+    border-radius:13px;
 
+    border:
+    1px solid var(--border);
 
-.filter{
+    background:
+    rgba(0,0,0,.20);
 
-padding:
-12px
-14px;
+    color:white;
 
-border-radius:11px;
+    outline:none;
 
-background:
-rgba(255,255,255,.045);
-
-color:#fff;
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-outline:none;
-
-font-size:11px;
+    font-family:"Prompt";
 
 }
-
-
-.filter option{
-
-background:#071c28;
-
-}
-
 
 .btn{
 
-border:0;
+    padding:
+    12px 17px;
 
-padding:
-11px
-17px;
+    border:0;
 
-border-radius:11px;
+    border-radius:13px;
 
-font-size:11px;
+    color:white;
 
-font-weight:500;
+    cursor:pointer;
 
-color:#02150a;
+    font-family:"Prompt";
 
-background:#48dc68;
-
-box-shadow:
-0 7px 20px
-rgba(72,220,104,.13);
-
-}
-
-
-.btn:hover{
-
-filter:brightness(1.08);
+    background:
+    linear-gradient(
+        135deg,
+        #0284c7,
+        #06b6d4
+    );
 
 }
 
 
 /* =====================================================
-LAYOUT
+ACTIVITY GRID
 ===================================================== */
 
-.calendar-layout{
+.activity-grid{
 
-display:grid;
+    margin-top:20px;
 
-grid-template-columns:
-1.45fr
-.75fr;
+    display:grid;
 
-gap:18px;
+    grid-template-columns:
+    1.4fr .8fr;
+
+    gap:18px;
 
 }
 
 
 /* =====================================================
-CALENDAR
+TIMELINE
 ===================================================== */
 
-.calendar-panel{
+.timeline-card{
 
-background:
+    padding:24px;
 
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
+    border-radius:22px;
 
-border:
-1px solid
-var(--border);
+    background:
+    var(--card);
 
-border-radius:20px;
-
-overflow:hidden;
-
-box-shadow:
-0 15px 45px
-rgba(0,0,0,.28);
+    border:
+    1px solid var(--border);
 
 }
 
+.card-head{
 
-.calendar-head{
+    display:flex;
 
-display:flex;
+    justify-content:space-between;
 
-align-items:center;
+    align-items:center;
 
-justify-content:space-between;
-
-padding:
-18px
-20px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.08);
+    margin-bottom:20px;
 
 }
 
+.card-title{
 
-.month-title{
+    font-family:"Kanit";
 
-font-family:"Kanit";
-
-font-size:21px;
-
-}
-
-
-.month-actions{
-
-display:flex;
-
-gap:6px;
+    font-size:21px;
 
 }
 
+.card-sub{
 
-.month-btn{
+    color:var(--muted);
 
-width:35px;
+    font-size:11px;
 
-height:35px;
-
-border-radius:9px;
-
-background:
-rgba(255,255,255,.04);
-
-border:
-1px solid
-rgba(255,255,255,.1);
-
-color:#fff;
+    margin-top:2px;
 
 }
 
+.timeline{
 
-.month-btn:hover{
-
-background:
-rgba(69,232,255,.1);
+    position:relative;
 
 }
 
+.timeline::before{
 
-.weekdays{
+    content:"";
 
-display:grid;
+    position:absolute;
 
-grid-template-columns:
-repeat(7,1fr);
+    left:22px;
 
-background:
-rgba(255,255,255,.025);
+    top:10px;
 
-}
+    bottom:10px;
 
+    width:1px;
 
-.weekday{
-
-padding:12px 5px;
-
-text-align:center;
-
-color:#7e99a4;
-
-font-size:10px;
+    background:
+    rgba(34,211,238,.18);
 
 }
-
-
-.calendar{
-
-display:grid;
-
-grid-template-columns:
-repeat(7,1fr);
-
-}
-
-
-.day{
-
-min-height:100px;
-
-padding:7px;
-
-border-right:
-1px solid
-rgba(255,255,255,.055);
-
-border-bottom:
-1px solid
-rgba(255,255,255,.055);
-
-background:
-rgba(255,255,255,.008);
-
-transition:.2s;
-
-}
-
-
-.day:hover{
-
-background:
-rgba(69,232,255,.035);
-
-}
-
-
-.day.other{
-
-opacity:.3;
-
-}
-
-
-.day.today{
-
-background:
-rgba(72,220,104,.06);
-
-}
-
-
-.day-number{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-font-size:10px;
-
-color:#8ea9b3;
-
-}
-
-
-.today .day-number span:first-child{
-
-width:23px;
-
-height:23px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:50%;
-
-background:#2cae55;
-
-color:#fff;
-
-}
-
 
 .event{
 
-margin-top:5px;
+    position:relative;
 
-padding:
-4px
-5px;
+    display:grid;
 
-border-radius:5px;
+    grid-template-columns:
+    45px 1fr;
 
-font-size:8px;
+    gap:15px;
 
-line-height:1.35;
-
-cursor:pointer;
-
-overflow:hidden;
-
-white-space:nowrap;
-
-text-overflow:ellipsis;
+    margin-bottom:18px;
 
 }
 
+.event:last-child{
 
-.event:hover{
-
-filter:brightness(1.15);
-
-}
-
-
-.event-meeting{
-
-background:
-rgba(72,220,104,.15);
-
-border-left:
-3px solid
-#48dc68;
-
-color:#9af6a7;
+    margin-bottom:0;
 
 }
 
+.event-dot{
 
-.event-community{
+    position:relative;
 
-background:
-rgba(255,181,61,.14);
+    z-index:2;
 
-border-left:
-3px solid
-#ffb53d;
+    width:45px;
 
-color:#ffd78f;
+    height:45px;
 
-}
+    border-radius:14px;
 
+    display:flex;
 
-.event-government{
+    align-items:center;
 
-background:
-rgba(69,232,255,.13);
+    justify-content:center;
 
-border-left:
-3px solid
-#45e8ff;
+    color:#67e8f9;
 
-color:#9beeff;
+    background:
+    #0d2031;
 
-}
-
-
-.event-health{
-
-background:
-rgba(215,140,255,.13);
-
-border-left:
-3px solid
-#d78cff;
-
-color:#e6bdff;
+    border:
+    1px solid
+    rgba(34,211,238,.20);
 
 }
 
+.event-body{
 
-/* =====================================================
-UPCOMING
-===================================================== */
+    padding:16px;
 
-.side-panel{
+    border-radius:16px;
 
-display:flex;
+    background:
+    rgba(255,255,255,.035);
 
-flex-direction:column;
-
-gap:18px;
-
-}
-
-
-.side-card{
-
-background:
-
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
-
-border:
-1px solid
-var(--border);
-
-border-radius:20px;
-
-overflow:hidden;
+    border:
+    1px solid
+    rgba(255,255,255,.04);
 
 }
 
+.event-title{
 
-.side-head{
+    font-family:"Kanit";
 
-padding:
-17px
-18px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.08);
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
+    font-size:16px;
 
 }
 
+.event-description{
 
-.side-head h2{
+    margin-top:5px;
 
-font-family:"Kanit";
+    color:var(--muted);
 
-font-size:17px;
+    font-size:11px;
 
-font-weight:500;
-
-}
-
-
-.side-count{
-
-font-size:9px;
-
-color:#78eaff;
+    line-height:1.7;
 
 }
 
+.event-meta{
 
-.event-list{
+    display:flex;
 
-padding:8px;
+    flex-wrap:wrap;
 
-}
+    gap:12px;
 
+    margin-top:10px;
 
-.upcoming{
+    color:#94a3b8;
 
-display:flex;
-
-gap:11px;
-
-padding:12px;
-
-border-radius:12px;
-
-transition:.2s;
+    font-size:10px;
 
 }
 
+.event-meta i{
 
-.upcoming:hover{
-
-background:
-rgba(255,255,255,.035);
-
-}
-
-
-.date-box{
-
-width:45px;
-
-height:48px;
-
-flex-shrink:0;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
-
-border-radius:10px;
-
-background:
-rgba(69,232,255,.07);
-
-border:
-1px solid
-rgba(69,232,255,.15);
-
-}
-
-
-.date-box strong{
-
-font-family:"Kanit";
-
-font-size:17px;
-
-line-height:1;
-
-}
-
-
-.date-box span{
-
-font-size:7px;
-
-color:#7fa0ab;
-
-margin-top:3px;
-
-}
-
-
-.upcoming-info{
-
-min-width:0;
-
-}
-
-
-.upcoming-title{
-
-font-size:11px;
-
-font-weight:500;
-
-white-space:nowrap;
-
-overflow:hidden;
-
-text-overflow:ellipsis;
-
-}
-
-
-.upcoming-meta{
-
-margin-top:4px;
-
-font-size:8px;
-
-color:#78939d;
-
-}
-
-
-.type-badge{
-
-display:inline-flex;
-
-margin-top:5px;
-
-padding:
-3px
-7px;
-
-border-radius:5px;
-
-font-size:7px;
-
-}
-
-
-.type-meeting{
-
-background:
-rgba(72,220,104,.1);
-
-color:#8ef59d;
-
-}
-
-
-.type-community{
-
-background:
-rgba(255,181,61,.1);
-
-color:#ffd18a;
-
-}
-
-
-.type-government{
-
-background:
-rgba(69,232,255,.1);
-
-color:#8feeff;
-
-}
-
-
-.type-health{
-
-background:
-rgba(215,140,255,.1);
-
-color:#e0b2ff;
+    color:#67e8f9;
 
 }
 
 
 /* =====================================================
-TODAY
+CALENDAR SIDE
 ===================================================== */
 
-.today-box{
+.calendar-card{
 
-padding:17px;
+    padding:24px;
 
-margin:10px;
+    border-radius:22px;
 
-border-radius:14px;
+    background:
+    var(--card);
 
-background:
-
-linear-gradient(
-135deg,
-rgba(31,190,75,.13),
-rgba(69,232,255,.06)
-);
-
-border:
-1px solid
-rgba(72,220,104,.18);
+    border:
+    1px solid var(--border);
 
 }
 
+.calendar-title{
 
-.today-label{
+    font-family:"Kanit";
 
-font-size:8px;
-
-color:#7c9ca6;
-
-}
-
-
-.today-title{
-
-font-family:"Kanit";
-
-font-size:19px;
-
-margin-top:3px;
+    font-size:21px;
 
 }
 
+.calendar{
 
-.today-desc{
+    margin-top:18px;
 
-font-size:9px;
+}
 
-color:#8faab4;
+.calendar-head{
 
-margin-top:5px;
+    display:grid;
 
-line-height:1.5;
+    grid-template-columns:
+    repeat(7,1fr);
+
+    gap:5px;
+
+    margin-bottom:7px;
+
+}
+
+.calendar-head div{
+
+    text-align:center;
+
+    color:#67e8f9;
+
+    font-size:9px;
+
+}
+
+.calendar-days{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(7,1fr);
+
+    gap:5px;
+
+}
+
+.day{
+
+    aspect-ratio:1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    color:#cbd5e1;
+
+    font-size:10px;
+
+}
+
+.day.empty{
+
+    background:transparent;
+
+}
+
+.day.today{
+
+    color:white;
+
+    background:
+    rgba(34,211,238,.15);
+
+    border:
+    1px solid
+    rgba(34,211,238,.35);
+
+}
+
+.day.event-day{
+
+    position:relative;
+
+    color:#67e8f9;
+
+}
+
+.day.event-day::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:4px;
+
+    width:4px;
+
+    height:4px;
+
+    border-radius:50%;
+
+    background:#22d3ee;
 
 }
 
 
 /* =====================================================
-MODAL
+EMPTY
 ===================================================== */
 
-.modal{
+.empty{
 
-position:fixed;
+    padding:55px 20px;
 
-inset:0;
+    text-align:center;
 
-display:none;
+    color:var(--muted);
 
-align-items:center;
+}
 
-justify-content:center;
+.empty i{
 
-padding:20px;
+    display:block;
 
-background:
-rgba(0,0,0,.72);
+    margin-bottom:13px;
 
-backdrop-filter:
-blur(8px);
+    font-size:40px;
 
-z-index:3000;
+    color:
+    rgba(34,211,238,.30);
 
 }
 
 
-.modal.show{
+/* =====================================================
+INFO
+===================================================== */
 
-display:flex;
+.info{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.info-card{
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.info-icon{
+
+    width:43px;
+
+    height:43px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.info-card h3{
+
+    margin-top:13px;
+
+    font-size:14px;
+
+}
+
+.info-card p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
 
 }
 
 
-.modal-box{
+/* =====================================================
+FOOTER
+===================================================== */
 
-width:min(700px,100%);
+.footer{
 
-max-height:90vh;
+    margin-top:45px;
 
-overflow-y:auto;
+    padding:
+    25px 0;
 
-border-radius:20px;
+    border-top:
+    1px solid var(--border);
 
-background:
+    color:var(--muted);
 
-linear-gradient(
-145deg,
-#082a3a,
-#031721
-);
+    font-size:11px;
 
-border:
-1px solid
-rgba(100,210,235,.28);
+    display:flex;
 
-box-shadow:
-0 25px 80px
-rgba(0,0,0,.6);
+    justify-content:space-between;
 
-}
-
-
-.modal-head{
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-padding:
-18px
-20px;
-
-border-bottom:
-1px solid
-rgba(255,255,255,.08);
-
-}
-
-
-.modal-head h3{
-
-font-family:"Kanit";
-
-font-size:19px;
-
-font-weight:500;
-
-}
-
-
-.close{
-
-width:34px;
-
-height:34px;
-
-border-radius:9px;
-
-border:
-1px solid
-rgba(255,255,255,.1);
-
-background:
-rgba(255,255,255,.05);
-
-color:#fff;
-
-font-size:18px;
-
-}
-
-
-.form{
-
-padding:20px;
-
-display:grid;
-
-grid-template-columns:
-repeat(2,1fr);
-
-gap:14px;
-
-}
-
-
-.form-group{
-
-display:flex;
-
-flex-direction:column;
-
-gap:5px;
-
-}
-
-
-.form-group.full{
-
-grid-column:1/-1;
-
-}
-
-
-.form-group label{
-
-color:#9bb4bd;
-
-font-size:10px;
-
-}
-
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-
-padding:11px;
-
-border-radius:9px;
-
-background:
-rgba(255,255,255,.045);
-
-color:#fff;
-
-border:
-1px solid
-rgba(255,255,255,.12);
-
-outline:none;
-
-font-size:11px;
-
-}
-
-
-.form-group textarea{
-
-min-height:90px;
-
-resize:vertical;
-
-}
-
-
-.form-group select option{
-
-background:#06202e;
-
-}
-
-
-.modal-actions{
-
-display:flex;
-
-justify-content:flex-end;
-
-gap:8px;
-
-padding:
-0 20px
-20px;
-
-}
-
-
-.btn-cancel{
-
-color:#d5e0e4;
-
-background:
-rgba(255,255,255,.07);
-
-border:
-1px solid
-rgba(255,255,255,.1);
+    gap:20px;
 
 }
 
@@ -1636,190 +904,91 @@ rgba(255,255,255,.1);
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:1200px){
+@media(max-width:950px){
 
-:root{
+    .stats{
 
---sidebar:230px;
+        grid-template-columns:
+        repeat(2,1fr);
 
-}
+    }
 
-.summary{
+    .activity-grid{
 
-grid-template-columns:
-repeat(3,1fr);
+        grid-template-columns:
+        1fr;
 
-}
+    }
 
-.calendar-layout{
+    .info{
 
-grid-template-columns:1fr;
+        grid-template-columns:
+        1fr 1fr;
 
-}
-
-}
-
-
-@media(max-width:1000px){
-
-.sidebar{
-
-transform:
-translateX(-100%);
-
-transition:.3s;
+    }
 
 }
 
-.sidebar.open{
+@media(max-width:600px){
 
-transform:
-translateX(0);
+    .container{
 
-}
+        width:
+        calc(100% - 20px);
 
-.topbar{
+    }
 
-left:0;
+    .page-head h2{
 
-}
+        font-size:29px;
 
-.main{
+    }
 
-margin-left:0;
+    .stats{
 
-}
+        grid-template-columns:
+        1fr 1fr;
 
-.mobile-button{
+        gap:10px;
 
-display:block;
+    }
 
-}
+    .stat{
 
-.page-title p{
+        padding:16px;
 
-display:none;
+    }
 
-}
+    .stat-value{
 
-}
+        font-size:28px;
 
+    }
 
-@media(max-width:750px){
+    .control-row{
 
-.content{
+        display:block;
 
-padding:13px;
+    }
 
-}
+    .search{
 
-.summary{
+        margin-top:10px;
 
-grid-template-columns:
-repeat(2,1fr);
+    }
 
-}
+    .info{
 
-.toolbar{
+        grid-template-columns:
+        1fr;
 
-flex-direction:column;
+    }
 
-align-items:stretch;
+    .footer{
 
-}
+        display:block;
 
-.search-area{
-
-max-width:none;
-
-flex-direction:column;
-
-}
-
-.day{
-
-min-height:78px;
-
-}
-
-.event{
-
-font-size:7px;
-
-}
-
-.form{
-
-grid-template-columns:1fr;
-
-}
-
-.form-group.full{
-
-grid-column:auto;
-
-}
-
-.clock{
-
-display:none;
-
-}
-
-.page-title h1{
-
-font-size:17px;
-
-}
-
-}
-
-
-@media(max-width:480px){
-
-.summary{
-
-grid-template-columns:1fr;
-
-}
-
-.page-title .big-icon{
-
-width:38px;
-
-height:38px;
-
-}
-
-.weekday{
-
-font-size:8px;
-
-padding:9px 2px;
-
-}
-
-.day{
-
-padding:4px;
-
-min-height:65px;
-
-}
-
-.day-number{
-
-font-size:8px;
-
-}
-
-.event{
-
-padding:3px;
-
-font-size:6px;
-
-}
+    }
 
 }
 
@@ -1831,629 +1000,340 @@ font-size:6px;
 <body>
 
 
-<!-- =====================================================
-SIDEBAR
-===================================================== -->
+<header class="header">
 
-<aside
-class="sidebar"
-id="sidebar"
->
+<div class="container header-inner">
 
-<div class="sidebar-brand">
+
+<div class="brand">
 
 <div class="logo">
-🏛️
-</div>
 
-<div>
+<i class="fa-solid fa-calendar-days"></i>
 
-<div class="brand-title">
-
-RONGKHEM
-<span>e-VILLAGE</span>
-
-</div>
-
-<div class="brand-sub">
-
-ที่ทำการผู้ใหญ่บ้านออนไลน์
-
-</div>
-
-</div>
-
-</div>
-
-
-<nav class="menu">
-
-
-<a href="index.html">
-
-<span class="icon">
-🏠
-</span>
-
-หน้าหลัก
-
-</a>
-
-
-<a href="citizen.html">
-
-<span class="icon">
-👥
-</span>
-
-ข้อมูลประชาชน
-
-</a>
-
-
-<a href="household.html">
-
-<span class="icon">
-🏠
-</span>
-
-ข้อมูลครัวเรือน
-
-</a>
-
-
-<a href="leader.html">
-
-<span class="icon">
-👔
-</span>
-
-ผู้นำชุมชน
-
-</a>
-
-
-<a href="news.html">
-
-<span class="icon">
-📢
-</span>
-
-ข่าวประชาสัมพันธ์
-
-</a>
-
-
-<a
-href="activity.html"
-class="active"
->
-
-<span class="icon">
-📅
-</span>
-
-กิจกรรม / ปฏิทิน
-
-</a>
-
-
-<a href="incident.html">
-
-<span class="icon">
-🚨
-</span>
-
-แจ้งเหตุ / ร้องเรียน
-
-</a>
-
-
-<a href="service.html">
-
-<span class="icon">
-🤝
-</span>
-
-บริการประชาชน
-
-</a>
-
-
-<a href="project.html">
-
-<span class="icon">
-🏗️
-</span>
-
-โครงการพัฒนาหมู่บ้าน
-
-</a>
-
-
-<a href="environment.html">
-
-<span class="icon">
-🌱
-</span>
-
-สิ่งแวดล้อม / PM2.5
-
-</a>
-
-
-<a href="wetland.html">
-
-<span class="icon">
-💧
-</span>
-
-แหล่งซับน้ำจำ
-
-</a>
-
-
-<a href="rice.html">
-
-<span class="icon">
-🍚
-</span>
-
-กลุ่มข้าวสาร
-
-</a>
-
-
-<a href="statistics.html">
-
-<span class="icon">
-📊
-</span>
-
-สถิติหมู่บ้าน
-
-</a>
-
-
-<a href="admin.html">
-
-<span class="icon">
-⚙️
-</span>
-
-ตั้งค่าระบบ
-
-</a>
-
-
-</nav>
-
-
-<div class="contact">
-
-<h3>
-ที่ทำการผู้ใหญ่บ้าน
-</h3>
-
-<p>
-📞 โทร. 088-888-8888
-</p>
-
-<p>
-🟢 LINE ID: rongkhem.village
-</p>
-
-<p>
-🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
-</p>
-
-</div>
-
-</aside>
-
-
-<!-- =====================================================
-TOPBAR
-===================================================== -->
-
-<header class="topbar">
-
-
-<div class="page-title">
-
-
-<button
-class="mobile-button"
-id="mobileButton"
->
-☰
-</button>
-
-
-<div class="big-icon">
-📅
 </div>
 
 
 <div>
 
 <h1>
-กิจกรรม / ปฏิทินหมู่บ้าน
+RONGKHEM e-VILLAGE
 </h1>
 
 <p>
-ศูนย์กลางกำหนดการและกิจกรรม บ้านร่องเข็ม หมู่ที่ 6
+ที่ทำการผู้ใหญ่บ้านออนไลน์
 </p>
 
 </div>
 
-
 </div>
 
 
-<div class="clock">
+<button
+class="back"
+onclick="location.href='../index.html'">
 
-<div
-class="time"
-id="time"
->
-00:00:00
-</div>
+<i class="fa-solid fa-arrow-left"></i>
 
-<div
-class="today"
-id="today"
->
-กำลังโหลด...
-</div>
+กลับหน้าหลัก
+
+</button>
+
 
 </div>
-
 
 </header>
+
+
+
+<main class="container">
+
+
+<section class="page-head">
+
+<h2>
+กิจกรรมหมู่บ้าน
+</h2>
+
+<p>
+ปฏิทินกิจกรรมและภารกิจของบ้านร่องเข็ม หมู่ที่ 6
+</p>
+
+<div class="source">
+
+<i class="fa-solid fa-database"></i>
+
+ข้อมูลกิจกรรมจากฐานข้อมูลหมู่บ้าน
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+STATS
+===================================================== -->
+
+<section class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-calendar-check"></i>
+
+</div>
+
+<div
+id="totalActivities"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+กิจกรรมทั้งหมด
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-clock"></i>
+
+</div>
+
+<div
+id="upcomingActivities"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+กิจกรรมที่กำลังจะมาถึง
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-location-dot"></i>
+
+</div>
+
+<div
+id="locationCount"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+สถานที่จัดกิจกรรม
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div
+id="participantCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ผู้เข้าร่วมที่บันทึกไว้
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+SEARCH
+===================================================== -->
+
+<section class="control">
+
+<div class="control-row">
+
+<div>
+
+<strong
+style="font-family:Kanit;font-size:18px">
+
+ค้นหากิจกรรม
+
+</strong>
+
+<div
+style="color:#94a3b8;font-size:10px">
+
+ค้นหาจากชื่อกิจกรรม สถานที่ หรือรายละเอียด
+
+</div>
+
+</div>
+
+
+<div class="search">
+
+<input
+id="searchInput"
+type="search"
+placeholder="ค้นหากิจกรรม..."
+autocomplete="off">
+
+<button
+class="btn"
+onclick="loadActivities()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+ค้นหา
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
 
 
 <!-- =====================================================
 MAIN
 ===================================================== -->
 
-<main class="main">
-
-<div class="content">
+<section class="activity-grid">
 
 
-<!-- SUMMARY -->
+<!-- TIMELINE -->
 
-<section class="summary">
+<div class="timeline-card">
 
+<div class="card-head">
 
-<div class="summary-card green">
+<div>
 
-<div class="summary-icon">
-📅
+<div class="card-title">
+กำหนดการกิจกรรม
 </div>
 
-<div class="summary-title">
-กิจกรรมทั้งหมด
+<div class="card-sub">
+เรียงตามวันที่ล่าสุด
 </div>
+
+</div>
+
+<i class="fa-solid fa-list-check"
+style="color:#22d3ee">
+</i>
+
+</div>
+
 
 <div
-class="summary-number"
-id="totalEvents"
->
-12
+id="activityList"
+class="timeline">
+
+<div class="empty">
+
+<i class="fa-solid fa-calendar-xmark"></i>
+
+กำลังโหลดข้อมูลกิจกรรม...
+
+</div>
+
 </div>
 
 </div>
 
-
-<div class="summary-card cyan">
-
-<div class="summary-icon">
-📌
-</div>
-
-<div class="summary-title">
-กิจกรรมเดือนนี้
-</div>
-
-<div
-class="summary-number"
-id="monthEvents"
->
-8
-</div>
-
-</div>
-
-
-<div class="summary-card orange">
-
-<div class="summary-icon">
-🏘️
-</div>
-
-<div class="summary-title">
-กิจกรรมชุมชน
-</div>
-
-<div
-class="summary-number"
-id="communityEvents"
->
-4
-</div>
-
-</div>
-
-
-<div class="summary-card purple">
-
-<div class="summary-icon">
-🩺
-</div>
-
-<div class="summary-title">
-กิจกรรมสุขภาพ
-</div>
-
-<div
-class="summary-number"
-id="healthEvents"
->
-2
-</div>
-
-</div>
-
-
-<div class="summary-card red">
-
-<div class="summary-icon">
-⏰
-</div>
-
-<div class="summary-title">
-วันนี้
-</div>
-
-<div
-class="summary-number"
-id="todayEvents"
->
-1
-</div>
-
-</div>
-
-
-</section>
-
-
-<!-- TOOLBAR -->
-
-<section class="toolbar">
-
-
-<div class="search-area">
-
-
-<input
-type="search"
-id="searchInput"
-class="search"
-placeholder="🔎 ค้นหากิจกรรม..."
->
-
-
-<select
-class="filter"
-id="typeFilter"
->
-
-<option value="">
-ประเภททั้งหมด
-</option>
-
-<option value="ประชุม">
-🟢 ประชุม
-</option>
-
-<option value="ชุมชน">
-🟠 ชุมชน
-</option>
-
-<option value="ราชการ">
-🔵 ราชการ
-</option>
-
-<option value="สุขภาพ">
-🟣 สุขภาพ
-</option>
-
-</select>
-
-
-</div>
-
-
-<button
-class="btn"
-id="addButton"
->
-
-＋ เพิ่มกิจกรรม
-
-</button>
-
-
-</section>
 
 
 <!-- CALENDAR -->
 
-<section class="calendar-layout">
+<div class="calendar-card">
+
+<div class="card-head">
+
+<div>
+
+<div class="calendar-title">
+ปฏิทิน
+</div>
+
+<div
+id="calendarMonth"
+class="card-sub">
+
+</div>
+
+</div>
+
+<i class="fa-solid fa-calendar-days"
+style="color:#22d3ee">
+</i>
+
+</div>
 
 
-<div class="calendar-panel">
-
+<div class="calendar">
 
 <div class="calendar-head">
 
-
-<div
-class="month-title"
-id="monthTitle"
->
-กำลังโหลด...
-</div>
-
-
-<div class="month-actions">
-
-
-<button
-class="month-btn"
-id="prevMonth"
->
-‹
-</button>
-
-
-<button
-class="month-btn"
-id="todayButton"
->
-วันนี้
-</button>
-
-
-<button
-class="month-btn"
-id="nextMonth"
->
-›
-</button>
-
-
-</div>
-
-
-</div>
-
-
-<div class="weekdays">
-
-<div class="weekday">
-อา
-</div>
-
-<div class="weekday">
-จ
-</div>
-
-<div class="weekday">
-อ
-</div>
-
-<div class="weekday">
-พ
-</div>
-
-<div class="weekday">
-พฤ
-</div>
-
-<div class="weekday">
-ศ
-</div>
-
-<div class="weekday">
-ส
-</div>
+<div>อา.</div>
+<div>จ.</div>
+<div>อ.</div>
+<div>พ.</div>
+<div>พฤ.</div>
+<div>ศ.</div>
+<div>ส.</div>
 
 </div>
 
 
 <div
-class="calendar"
-id="calendar"
-></div>
-
+id="calendarDays"
+class="calendar-days">
 
 </div>
 
-
-<!-- SIDE -->
-
-<div class="side-panel">
-
-
-<div class="side-card">
-
-
-<div class="side-head">
-
-<h2>
-📅 กิจกรรมที่กำลังจะมาถึง
-</h2>
-
-<span
-class="side-count"
-id="upcomingCount"
->
-0 รายการ
-</span>
-
 </div>
-
-
-<div
-class="event-list"
-id="upcomingList"
-></div>
-
-
-</div>
-
-
-<div class="side-card">
-
-
-<div class="side-head">
-
-<h2>
-📍 วันนี้
-</h2>
-
-</div>
-
-
-<div class="today-box">
-
-<div class="today-label">
-วันที่ปัจจุบัน
-</div>
-
-<div
-class="today-title"
-id="todayTitle"
->
--
-</div>
-
-<div
-class="today-desc"
-id="todayDesc"
->
-กำลังตรวจสอบกิจกรรม...
-</div>
-
-</div>
-
-
-</div>
-
 
 </div>
 
@@ -2461,1364 +1341,771 @@ id="todayDesc"
 </section>
 
 
+
+<!-- =====================================================
+INFO
+===================================================== -->
+
+<section class="info">
+
+
+<div class="info-card">
+
+<div class="info-icon">
+
+<i class="fa-solid fa-bullhorn"></i>
+
 </div>
+
+<h3>
+ประชาสัมพันธ์
+</h3>
+
+<p>
+
+กิจกรรมที่เผยแพร่ต่อประชาชนควรมีวัน เวลา
+สถานที่ และหน่วยงานหรือผู้รับผิดชอบอย่างชัดเจน
+
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<div class="info-icon">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+</div>
+
+<h3>
+ติดตามผล
+</h3>
+
+<p>
+
+ระบบสามารถต่อยอดให้บันทึกผู้เข้าร่วม
+ผลการดำเนินงาน และภาพกิจกรรมได้
+
+</p>
+
+</div>
+
+
+
+<div class="info-card">
+
+<div class="info-icon">
+
+<i class="fa-solid fa-database"></i>
+
+</div>
+
+<h3>
+ข้อมูลจริง
+</h3>
+
+<p>
+
+หากยังไม่มีข้อมูลในฐานข้อมูล
+ระบบจะแสดงสถานะว่าไม่มีข้อมูล
+แทนการสร้างกิจกรรมขึ้นเอง
+
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+
+<div>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</div>
+
+</footer>
+
 
 </main>
 
-
-<!-- =====================================================
-MODAL
-===================================================== -->
-
-<div
-class="modal"
-id="modal"
->
-
-
-<div class="modal-box">
-
-
-<div class="modal-head">
-
-<h3
-id="modalTitle"
->
-เพิ่มกิจกรรม
-</h3>
-
-
-<button
-class="close"
-id="closeModal"
->
-×
-</button>
-
-
-</div>
-
-
-<form
-class="form"
-id="eventForm"
->
-
-
-<input
-type="hidden"
-id="editId"
->
-
-
-<div class="form-group full">
-
-<label>
-ชื่อกิจกรรม
-</label>
-
-<input
-id="title"
-required
-placeholder="เช่น ประชุมประจำเดือน"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-วันที่
-</label>
-
-<input
-type="date"
-id="date"
-required
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-เวลา
-</label>
-
-<input
-type="time"
-id="timeInput"
-value="07:00"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-ประเภท
-</label>
-
-<select id="type">
-
-<option value="ประชุม">
-🟢 ประชุม
-</option>
-
-<option value="ชุมชน">
-🟠 ชุมชน
-</option>
-
-<option value="ราชการ">
-🔵 ราชการ
-</option>
-
-<option value="สุขภาพ">
-🟣 สุขภาพ
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-สถานที่
-</label>
-
-<input
-id="location"
-placeholder="เช่น อาคารเอนกประสงค์ หมู่ 6"
->
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-รายละเอียด
-</label>
-
-<textarea
-id="description"
-placeholder="รายละเอียดกิจกรรม..."
-></textarea>
-
-</div>
-
-
-</form>
-
-
-<div class="modal-actions">
-
-
-<button
-class="btn btn-cancel"
-id="cancelButton"
->
-ยกเลิก
-</button>
-
-
-<button
-class="btn"
-id="saveButton"
->
-💾 บันทึกกิจกรรม
-</button>
-
-
-</div>
-
-
-</div>
-
-</div>
 
 
 <script>
 
 /* =====================================================
-DATA
+SUPABASE
 ===================================================== */
 
-let events = [
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
 
-{
-id:1,
-title:"ประชุมประจำเดือนหมู่บ้าน",
-date:"2026-08-15",
-time:"07:00",
-type:"ประชุม",
-location:"อาคารเอนกประสงค์ หมู่ที่ 6",
-description:"ประชุมชี้แจงข่าวสารราชการและรับฟังความคิดเห็นประชาชน"
-},
-
-{
-id:2,
-title:"กิจกรรมพัฒนาหมู่บ้าน",
-date:"2026-08-17",
-time:"08:00",
-type:"ชุมชน",
-location:"ศาลาประชาคม",
-description:"ร่วมกันทำความสะอาดและปรับปรุงพื้นที่สาธารณะ"
-},
-
-{
-id:3,
-title:"ประชุมคณะกรรมการหมู่บ้าน",
-date:"2026-08-19",
-time:"18:00",
-type:"ประชุม",
-location:"ที่ทำการผู้ใหญ่บ้าน",
-description:"ติดตามงานและวางแผนการดำเนินงานประจำเดือน"
-},
-
-{
-id:4,
-title:"ตรวจสุขภาพประชาชน",
-date:"2026-08-21",
-time:"09:00",
-type:"สุขภาพ",
-location:"ศาลาประชาคม",
-description:"ตรวจสุขภาพเบื้องต้นโดยทีม อสม."
-},
-
-{
-id:5,
-title:"กิจกรรมกำจัดลูกน้ำยุงลาย",
-date:"2026-08-23",
-time:"08:30",
-type:"สุขภาพ",
-location:"พื้นที่หมู่บ้าน",
-description:"รณรงค์ป้องกันโรคไข้เลือดออก"
-},
-
-{
-id:6,
-title:"ประชุมฝ่ายปกครอง",
-date:"2026-08-25",
-time:"18:00",
-type:"ราชการ",
-location:"ที่ทำการผู้ใหญ่บ้าน",
-description:"ติดตามสถานการณ์และภารกิจฝ่ายปกครอง"
-},
-
-{
-id:7,
-title:"กิจกรรมจิตอาสาพัฒนาชุมชน",
-date:"2026-08-27",
-time:"08:00",
-type:"ชุมชน",
-location:"พื้นที่สาธารณะ",
-description:"กิจกรรมจิตอาสาพัฒนาพื้นที่หมู่บ้าน"
-},
-
-{
-id:8,
-title:"ประชุมเตรียมงานหมู่บ้าน",
-date:"2026-08-29",
-time:"19:00",
-type:"ประชุม",
-location:"อาคารเอนกประสงค์",
-description:"เตรียมความพร้อมกิจกรรมของหมู่บ้าน"
-},
-
-{
-id:9,
-title:"ประชุมหน่วยงานราชการ",
-date:"2026-09-02",
-time:"10:00",
-type:"ราชการ",
-location:"ที่ว่าการอำเภอ",
-description:"ประชุมประสานงานราชการ"
-},
-
-{
-id:10,
-title:"กิจกรรมชุมชนสัมพันธ์",
-date:"2026-09-05",
-time:"08:00",
-type:"ชุมชน",
-location:"หมู่บ้านร่องเข็ม",
-description:"ส่งเสริมความสามัคคีของประชาชน"
-}
-
-];
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
 
 
-/* =====================================================
-ELEMENTS
-===================================================== */
-
-const calendar =
-document.getElementById("calendar");
-
-const monthTitle =
-document.getElementById("monthTitle");
-
-const search =
-document.getElementById("searchInput");
-
-const typeFilter =
-document.getElementById("typeFilter");
-
-const modal =
-document.getElementById("modal");
-
-const form =
-document.getElementById("eventForm");
-
-
-let currentDate =
-new Date();
-
-
-/* =====================================================
-HELPERS
-===================================================== */
-
-function pad(value){
-
-return String(value).padStart(2,"0");
-
-}
-
-
-function dateKey(date){
-
-return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())}`;
-
-}
-
-
-function typeClass(type){
-
-if(type==="ประชุม")
-return "event-meeting";
-
-if(type==="ชุมชน")
-return "event-community";
-
-if(type==="ราชการ")
-return "event-government";
-
-return "event-health";
-
-}
-
-
-function typeBadge(type){
-
-if(type==="ประชุม")
-return "type-meeting";
-
-if(type==="ชุมชน")
-return "type-community";
-
-if(type==="ราชการ")
-return "type-government";
-
-return "type-health";
-
-}
-
-
-function monthName(date){
-
-return date.toLocaleDateString(
-"th-TH",
-{
-month:"long",
-year:"numeric"
-}
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
-}
+
+/* =====================================================
+STATE
+===================================================== */
+
+let activities = [];
 
 
 /* =====================================================
-FILTER
+ESCAPE
 ===================================================== */
 
-function filteredEvents(){
+function escapeHTML(value){
 
-const keyword =
-search.value.trim().toLowerCase();
+    return String(
+        value ?? ""
+    )
 
-const type =
-typeFilter.value;
-
-return events.filter(event=>{
-
-const text =
-(
-event.title+
-" "+
-event.description+
-" "+
-event.location
-).toLowerCase();
-
-return (
-
-(!keyword || text.includes(keyword))
-
-&&
-
-(!type || event.type===type)
-
-);
-
-});
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
 /* =====================================================
-RENDER CALENDAR
+DATE
 ===================================================== */
 
-function renderCalendar(){
-
-const year =
-currentDate.getFullYear();
-
-const month =
-currentDate.getMonth();
-
-
-monthTitle.textContent =
-monthName(currentDate);
-
-
-calendar.innerHTML="";
-
-
-const first =
-new Date(year,month,1);
-
-
-const last =
-new Date(year,month+1,0);
-
-
-const startDay =
-first.getDay();
-
-
-const days =
-last.getDate();
-
-
-const previousLast =
-new Date(year,month,0).getDate();
-
-
-const visible =
-filteredEvents();
-
-
-for(
-let i=0;
-i<startDay;
-i++
+function formatThaiDate(
+    value
 ){
 
-const day =
-document.createElement("div");
-
-day.className =
-"day other";
-
-day.innerHTML=`
-<div class="day-number">
-<span>
-${previousLast-startDay+i+1}
-</span>
-</div>
-`;
-
-calendar.appendChild(day);
-
-}
+    if(!value)
+        return "-";
 
 
-for(
-let dayNumber=1;
-dayNumber<=days;
-dayNumber++
-){
-
-const day =
-document.createElement("div");
-
-const date =
-new Date(
-year,
-month,
-dayNumber
-);
+    const date =
+    new Date(value);
 
 
-const key =
-dateKey(date);
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return escapeHTML(
+            value
+        );
+
+    }
 
 
-const today =
-new Date();
-
-
-const isToday =
-key===dateKey(today);
-
-
-day.className =
-"day"+
-(isToday ? " today":"");
-
-
-let html=`
-
-<div class="day-number">
-
-<span>
-${dayNumber}
-</span>
-
-</div>
-
-`;
-
-
-const dayEvents =
-visible.filter(
-event =>
-event.date===key
-);
-
-
-dayEvents.forEach(event=>{
-
-html+=`
-
-<div
-class="event ${typeClass(event.type)}"
-onclick="showEvent(${event.id})"
-title="${event.title}"
->
-
-${event.time}
- ${event.title}
-
-</div>
-
-`;
-
-});
-
-
-day.innerHTML=html;
-
-calendar.appendChild(day);
-
-}
-
-
-const totalCells =
-startDay+days;
-
-const remaining =
-totalCells<=35
-?35-totalCells
-:42-totalCells;
-
-
-for(
-let i=1;
-i<=remaining;
-i++
-){
-
-const day =
-document.createElement("div");
-
-day.className =
-"day other";
-
-day.innerHTML=`
-
-<div class="day-number">
-<span>${i}</span>
-</div>
-
-`;
-
-calendar.appendChild(day);
-
-}
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"long",
+            day:"numeric"
+        }
+    );
 
 }
 
 
 /* =====================================================
-UPCOMING
+TIME
 ===================================================== */
 
-function renderUpcoming(){
+function formatTime(
+    value
+){
 
-const list =
-document.getElementById(
-"upcomingList"
-);
-
-list.innerHTML="";
+    if(!value)
+        return "";
 
 
-const today =
-new Date();
+    return String(
+        value
+    ).substring(
+        0,
+        5
+    );
 
-today.setHours(0,0,0,0);
+}
 
 
-const upcoming =
-events
-.filter(event=>{
+/* =====================================================
+LOAD ACTIVITIES
+===================================================== */
 
-const date =
-new Date(
-event.date+"T00:00:00"
-);
+async function loadActivities(){
 
-return date>=today;
+    const list =
+    document.getElementById(
+        "activityList"
+    );
 
-})
-.sort(
-(a,b)=>
-new Date(a.date)-
-new Date(b.date)
+
+    const keyword =
+    document
+    .getElementById(
+        "searchInput"
+    )
+    .value
+    .trim();
+
+
+    try{
+
+        let query =
+        supabaseClient
+
+        .from("activities")
+
+        .select("*")
+
+        .order(
+            "activity_date",
+            {
+                ascending:true
+            }
+        );
+
+
+        if(keyword){
+
+            query =
+            query.or(
+                `title.ilike.%${keyword}%,description.ilike.%${keyword}%,location.ilike.%${keyword}%`
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } = await query;
+
+
+        if(error)
+            throw error;
+
+
+        activities =
+        data || [];
+
+
+        renderActivities(
+            activities
+        );
+
+        updateStatistics(
+            activities
+        );
+
+        renderCalendar(
+            activities
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Activities:",
+            error
+        );
+
+
+        activities = [];
+
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-calendar-xmark"></i>
+
+            ยังไม่มีข้อมูลกิจกรรมในฐานข้อมูล
+
+            <br>
+
+            กรุณาเพิ่มข้อมูลจากระบบผู้ดูแล
+
+        </div>
+
+        `;
+
+
+        updateStatistics([]);
+
+        renderCalendar([]);
+
+    }
+
+}
+
+
+/* =====================================================
+RENDER ACTIVITIES
+===================================================== */
+
+function renderActivities(
+    data
+){
+
+    const list =
+    document.getElementById(
+        "activityList"
+    );
+
+
+    if(
+        !data ||
+        data.length === 0
+    ){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-calendar-xmark"></i>
+
+            ไม่พบกิจกรรม
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    data.map(
+        item => {
+
+            const icon =
+            item.category === "ประชุม"
+            ? "fa-users"
+            : item.category === "อบรม"
+            ? "fa-chalkboard-user"
+            : item.category === "พัฒนา"
+            ? "fa-screwdriver-wrench"
+            : "fa-calendar-check";
+
+
+            const time =
+            formatTime(
+                item.start_time
+            );
+
+
+            return `
+
+            <div class="event">
+
+
+                <div class="event-dot">
+
+                    <i class="fa-solid ${icon}">
+                    </i>
+
+                </div>
+
+
+                <div class="event-body">
+
+
+                    <div class="event-title">
+
+                        ${escapeHTML(
+                            item.title
+                        )}
+
+                    </div>
+
+
+                    <div class="event-description">
+
+                        ${escapeHTML(
+                            item.description
+                        )}
+
+                    </div>
+
+
+                    <div class="event-meta">
+
+
+                        <span>
+
+                            <i class="fa-regular fa-calendar"></i>
+
+                            ${formatThaiDate(
+                                item.activity_date
+                            )}
+
+                        </span>
+
+
+                        ${
+                            time
+                            ?
+                            `
+                            <span>
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                ${escapeHTML(time)} น.
+
+                            </span>
+                            `
+                            :
+                            ""
+                        }
+
+
+                        ${
+                            item.location
+                            ?
+                            `
+                            <span>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                ${escapeHTML(
+                                    item.location
+                                )}
+
+                            </span>
+                            `
+                            :
+                            ""
+                        }
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =====================================================
+STATISTICS
+===================================================== */
+
+function updateStatistics(
+    data
+){
+
+    const total =
+    data.length;
+
+
+    const now =
+    new Date();
+
+
+    const upcoming =
+    data.filter(
+        item => {
+
+            if(!item.activity_date)
+                return false;
+
+            return new Date(
+                item.activity_date
+            ) >= now;
+
+        }
+    ).length;
+
+
+    const locations =
+    new Set(
+        data
+        .map(
+            item =>
+            item.location
+        )
+        .filter(Boolean)
+    ).size;
+
+
+    let participants = 0;
+
+    data.forEach(
+        item => {
+
+            if(
+                item.participants !== null &&
+                item.participants !== undefined
+            ){
+
+                participants +=
+                Number(
+                    item.participants
+                ) || 0;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalActivities"
+    ).textContent =
+    total.toLocaleString(
+        "th-TH"
+    );
+
+
+    document.getElementById(
+        "upcomingActivities"
+    ).textContent =
+    upcoming.toLocaleString(
+        "th-TH"
+    );
+
+
+    document.getElementById(
+        "locationCount"
+    ).textContent =
+    locations.toLocaleString(
+        "th-TH"
+    );
+
+
+    document.getElementById(
+        "participantCount"
+    ).textContent =
+    participants > 0
+    ? participants.toLocaleString("th-TH")
+    : "--";
+
+}
+
+
+/* =====================================================
+CALENDAR
+===================================================== */
+
+function renderCalendar(
+    data
+){
+
+    const now =
+    new Date();
+
+
+    const year =
+    now.getFullYear();
+
+
+    const month =
+    now.getMonth();
+
+
+    const monthName =
+    now.toLocaleDateString(
+        "th-TH",
+        {
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+
+    document.getElementById(
+        "calendarMonth"
+    ).textContent =
+    monthName;
+
+
+    const firstDay =
+    new Date(
+        year,
+        month,
+        1
+    ).getDay();
+
+
+    const daysInMonth =
+    new Date(
+        year,
+        month + 1,
+        0
+    ).getDate();
+
+
+    const eventDays =
+    new Set();
+
+
+    data.forEach(
+        item => {
+
+            if(!item.activity_date)
+                return;
+
+
+            const d =
+            new Date(
+                item.activity_date
+            );
+
+
+            if(
+                d.getFullYear() === year &&
+                d.getMonth() === month
+            ){
+
+                eventDays.add(
+                    d.getDate()
+                );
+
+            }
+
+        }
+    );
+
+
+    const calendar =
+    document.getElementById(
+        "calendarDays"
+    );
+
+
+    let html = "";
+
+
+    for(
+        let i = 0;
+        i < firstDay;
+        i++
+    ){
+
+        html += `
+        <div class="day empty"></div>
+        `;
+
+    }
+
+
+    for(
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ){
+
+        const today =
+        day === now.getDate();
+
+
+        const hasEvent =
+        eventDays.has(day);
+
+
+        html += `
+
+        <div
+        class="day
+        ${today ? "today" : ""}
+        ${hasEvent ? "event-day" : ""}">
+
+            ${day}
+
+        </div>
+
+        `;
+
+    }
+
+
+    calendar.innerHTML =
+    html;
+
+}
+
+
+/* =====================================================
+ENTER SEARCH
+===================================================== */
+
+document
+.getElementById(
+    "searchInput"
 )
-.slice(0,6);
-
-
-document.getElementById(
-"upcomingCount"
-).textContent =
-upcoming.length+
-" รายการ";
-
-
-upcoming.forEach(event=>{
-
-const date =
-new Date(
-event.date+"T00:00:00"
-);
-
-
-const item =
-document.createElement("div");
-
-item.className =
-"upcoming";
-
-
-item.innerHTML=`
-
-<div class="date-box">
-
-<strong>
-${date.getDate()}
-</strong>
-
-<span>
-${date.toLocaleDateString(
-"th-TH",
-{month:"short"}
-)}
-</span>
-
-</div>
-
-
-<div class="upcoming-info">
-
-<div class="upcoming-title">
-
-${event.title}
-
-</div>
-
-
-<div class="upcoming-meta">
-
-🕐 ${event.time}
-&nbsp; • &nbsp;
-📍 ${event.location}
-
-</div>
-
-
-<div class="type-badge ${typeBadge(event.type)}">
-
-${event.type}
-
-</div>
-
-</div>
-
-`;
-
-
-item.onclick =
-()=>showEvent(event.id);
-
-
-list.appendChild(item);
-
-});
-
-}
-
-
-/* =====================================================
-TODAY
-===================================================== */
-
-function renderToday(){
-
-const today =
-new Date();
-
-const key =
-dateKey(today);
-
-
-const todayEvents =
-events.filter(
-event=>event.date===key
-);
-
-
-document.getElementById(
-"todayTitle"
-).textContent =
-today.toLocaleDateString(
-"th-TH",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-);
-
-
-if(todayEvents.length){
-
-document.getElementById(
-"todayDesc"
-).textContent =
-`วันนี้มีกิจกรรม ${todayEvents.length} รายการ`;
-
-}else{
-
-document.getElementById(
-"todayDesc"
-).textContent =
-"วันนี้ไม่มีกิจกรรมที่กำหนดไว้";
-
-}
-
-}
-
-
-/* =====================================================
-SUMMARY
-===================================================== */
-
-function updateSummary(){
-
-const now =
-new Date();
-
-
-const month =
-now.getMonth();
-
-const year =
-now.getFullYear();
-
-
-const monthEvents =
-events.filter(event=>{
-
-const date =
-new Date(
-event.date+"T00:00:00"
-);
-
-return(
-date.getMonth()===month &&
-date.getFullYear()===year
-);
-
-}).length;
-
-
-const todayKey =
-dateKey(now);
-
-
-const todayEvents =
-events.filter(
-event=>event.date===todayKey
-).length;
-
-
-const community =
-events.filter(
-event=>event.type==="ชุมชน"
-).length;
-
-
-const health =
-events.filter(
-event=>event.type==="สุขภาพ"
-).length;
-
-
-document.getElementById(
-"totalEvents"
-).textContent =
-events.length;
-
-
-document.getElementById(
-"monthEvents"
-).textContent =
-monthEvents;
-
-
-document.getElementById(
-"communityEvents"
-).textContent =
-community;
-
-
-document.getElementById(
-"healthEvents"
-).textContent =
-health;
-
-
-document.getElementById(
-"todayEvents"
-).textContent =
-todayEvents;
-
-}
-
-
-/* =====================================================
-EVENT DETAIL
-===================================================== */
-
-function showEvent(id){
-
-const event =
-events.find(
-x=>x.id===id
-);
-
-
-if(!event)
-return;
-
-
-alert(
-
-"📅 "+event.title+
-
-"\n\n"+
-"วันที่: "+event.date+
-
-"\nเวลา: "+event.time+
-
-"\nประเภท: "+event.type+
-
-"\nสถานที่: "+event.location+
-
-"\n\n"+
-event.description
-
-);
-
-}
-
-
-/* =====================================================
-ADD
-===================================================== */
-
-document
-.getElementById("addButton")
 .addEventListener(
-"click",
-()=>{
+    "keydown",
+    event => {
 
-form.reset();
+        if(
+            event.key === "Enter"
+        ){
 
-document.getElementById(
-"editId"
-).value="";
+            loadActivities();
 
+        }
 
-document.getElementById(
-"date"
-).value=
-dateKey(new Date());
-
-
-document.getElementById(
-"timeInput"
-).value="07:00";
-
-
-document.getElementById(
-"modalTitle"
-).textContent=
-"เพิ่มกิจกรรม";
-
-
-modal.classList.add("show");
-
-}
+    }
 );
 
 
 /* =====================================================
-CLOSE
+INIT
 ===================================================== */
 
-function closeModal(){
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-modal.classList.remove(
-"show"
+        loadActivities();
+
+    }
 );
-
-}
-
-
-document
-.getElementById("closeModal")
-.addEventListener(
-"click",
-closeModal
-);
-
-
-document
-.getElementById("cancelButton")
-.addEventListener(
-"click",
-closeModal
-);
-
-
-modal.addEventListener(
-"click",
-event=>{
-
-if(event.target===modal){
-
-closeModal();
-
-}
-
-}
-);
-
-
-/* =====================================================
-SAVE
-===================================================== */
-
-document
-.getElementById("saveButton")
-.addEventListener(
-"click",
-saveEvent
-);
-
-
-function saveEvent(){
-
-if(!form.checkValidity()){
-
-form.reportValidity();
-
-return;
-
-}
-
-
-const id =
-document.getElementById(
-"editId"
-).value;
-
-
-const eventData={
-
-id:
-id
-?Number(id)
-:Date.now(),
-
-title:
-document.getElementById(
-"title"
-).value.trim(),
-
-date:
-document.getElementById(
-"date"
-).value,
-
-time:
-document.getElementById(
-"timeInput"
-).value,
-
-type:
-document.getElementById(
-"type"
-).value,
-
-location:
-document.getElementById(
-"location"
-).value.trim(),
-
-description:
-document.getElementById(
-"description"
-).value.trim()
-
-};
-
-
-if(id){
-
-const index =
-events.findIndex(
-x=>x.id===Number(id)
-);
-
-
-if(index!==-1){
-
-events[index]=eventData;
-
-}
-
-}else{
-
-events.push(
-eventData
-);
-
-}
-
-
-closeModal();
-
-renderAll();
-
-}
-
-
-/* =====================================================
-EDIT
-===================================================== */
-
-function editEvent(id){
-
-const event =
-events.find(
-x=>x.id===id
-);
-
-
-if(!event)
-return;
-
-
-document.getElementById(
-"editId"
-).value=
-event.id;
-
-
-document.getElementById(
-"title"
-).value=
-event.title;
-
-
-document.getElementById(
-"date"
-).value=
-event.date;
-
-
-document.getElementById(
-"timeInput"
-).value=
-event.time;
-
-
-document.getElementById(
-"type"
-).value=
-event.type;
-
-
-document.getElementById(
-"location"
-).value=
-event.location;
-
-
-document.getElementById(
-"description"
-).value=
-event.description;
-
-
-document.getElementById(
-"modalTitle"
-).textContent=
-"แก้ไขกิจกรรม";
-
-
-modal.classList.add(
-"show"
-);
-
-}
-
-
-/* =====================================================
-DELETE
-===================================================== */
-
-function deleteEvent(id){
-
-const event =
-events.find(
-x=>x.id===id
-);
-
-
-if(!event)
-return;
-
-
-const confirmDelete =
-confirm(
-`ต้องการลบกิจกรรม "${event.title}" หรือไม่?`
-);
-
-
-if(!confirmDelete)
-return;
-
-
-events=
-events.filter(
-x=>x.id!==id
-);
-
-
-renderAll();
-
-}
-
-
-/* =====================================================
-KEYBOARD / FILTER
-===================================================== */
-
-search.addEventListener(
-"input",
-renderCalendar
-);
-
-search.addEventListener(
-"input",
-renderUpcoming
-);
-
-
-typeFilter.addEventListener(
-"change",
-renderCalendar
-);
-
-typeFilter.addEventListener(
-"change",
-renderUpcoming
-);
-
-
-/* =====================================================
-MONTH NAVIGATION
-===================================================== */
-
-document
-.getElementById("prevMonth")
-.addEventListener(
-"click",
-()=>{
-
-currentDate.setMonth(
-currentDate.getMonth()-1
-);
-
-renderCalendar();
-
-}
-);
-
-
-document
-.getElementById("nextMonth")
-.addEventListener(
-"click",
-()=>{
-
-currentDate.setMonth(
-currentDate.getMonth()+1
-);
-
-renderCalendar();
-
-}
-);
-
-
-document
-.getElementById("todayButton")
-.addEventListener(
-"click",
-()=>{
-
-currentDate =
-new Date();
-
-renderCalendar();
-
-}
-);
-
-
-/* =====================================================
-CLOCK
-===================================================== */
-
-function updateClock(){
-
-const now =
-new Date();
-
-
-document.getElementById(
-"time"
-).textContent=
-now.toLocaleTimeString(
-"th-TH",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-hour12:false
-}
-);
-
-
-document.getElementById(
-"today"
-).textContent=
-now.toLocaleDateString(
-"th-TH",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-);
-
-}
-
-
-updateClock();
-
-setInterval(
-updateClock,
-1000
-);
-
-
-/* =====================================================
-MOBILE MENU
-===================================================== */
-
-document
-.getElementById("mobileButton")
-.addEventListener(
-"click",
-()=>{
-
-document
-.getElementById("sidebar")
-.classList.toggle(
-"open"
-);
-
-}
-);
-
-
-/* =====================================================
-RENDER ALL
-===================================================== */
-
-function renderAll(){
-
-renderCalendar();
-
-renderUpcoming();
-
-renderToday();
-
-updateSummary();
-
-}
-
-
-renderAll();
 
 </script>
 
+
 </body>
+
 </html>
