@@ -1,2108 +1,724 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
-
 <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta charset="UTF-8">
+<title>ทำเนียบผู้นำ | RONGKHEM e-VILLAGE OFFICE</title>
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<title>
-ทำเนียบผู้นำ | RONGKHEM e-VILLAGE
-</title>
-
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="style.css">
 
 <style>
-
-:root{
-
-    --bg:#07111f;
-    --card:rgba(15,29,48,.88);
-    --border:rgba(255,255,255,.08);
-
-    --text:#f8fafc;
-    --muted:#94a3b8;
-
-    --cyan:#22d3ee;
-    --blue:#38bdf8;
-    --green:#22c55e;
-    --yellow:#facc15;
-    --purple:#a78bfa;
-    --red:#fb7185;
-
+.leaderPage{
+  padding:25px;
+  max-width:1500px;
+  margin:auto;
 }
 
-*{
-
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-
+.pageTitle{
+  background:linear-gradient(135deg,#064e3b,#0f766e);
+  color:white;
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
 }
 
-body{
-
-    font-family:"Prompt",sans-serif;
-
-    color:var(--text);
-
-    min-height:100vh;
-
-    background:
-
-    radial-gradient(
-        circle at 10% 0%,
-        rgba(34,211,238,.10),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 90% 20%,
-        rgba(59,130,246,.10),
-        transparent 30%
-    ),
-
-    linear-gradient(
-        135deg,
-        #040b14,
-        #07111f,
-        #0b1728
-    );
-
+.pageTitle h1{
+  margin:0 0 8px;
+  font-size:30px;
 }
 
-.container{
-
-    width:min(
-        1450px,
-        calc(100% - 32px)
-    );
-
-    margin:auto;
-
+.pageTitle p{
+  margin:0;
+  opacity:.9;
 }
 
-
-/* =====================================================
-HEADER
-===================================================== */
-
-.header{
-
-    position:sticky;
-
-    top:0;
-
-    z-index:100;
-
-    background:
-    rgba(4,11,20,.86);
-
-    backdrop-filter:
-    blur(18px);
-
-    border-bottom:
-    1px solid var(--border);
-
-}
-
-.header-inner{
-
-    min-height:76px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:20px;
-
-}
-
-.brand{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:13px;
-
-}
-
-.logo{
-
-    width:48px;
-    height:48px;
-
-    border-radius:15px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:21px;
-
-    background:
-    linear-gradient(
-        135deg,
-        #0369a1,
-        #22d3ee
-    );
-
-}
-
-.brand h1{
-
-    font-family:"Kanit";
-
-    font-size:19px;
-
-}
-
-.brand p{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-.back{
-
-    padding:
-    9px 14px;
-
-    border-radius:12px;
-
-    border:
-    1px solid var(--border);
-
-    background:
-    rgba(255,255,255,.04);
-
-    color:white;
-
-    cursor:pointer;
-
-    font-family:inherit;
-
-}
-
-
-/* =====================================================
-TITLE
-===================================================== */
-
-.page-head{
-
-    margin-top:30px;
-
-}
-
-.page-head h2{
-
-    font-family:"Kanit";
-
-    font-size:36px;
-
-}
-
-.page-head p{
-
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:13px;
-
-}
-
-.source{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    margin-top:12px;
-
-    padding:
-    8px 12px;
-
-    border-radius:10px;
-
-    color:#67e8f9;
-
-    background:
-    rgba(34,211,238,.07);
-
-    border:
-    1px solid
-    rgba(34,211,238,.16);
-
-    font-size:11px;
-
-}
-
-
-/* =====================================================
-STATS
-===================================================== */
-
-.stats{
-
-    margin-top:22px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(4,1fr);
-
-    gap:15px;
-
-}
-
-.stat{
-
-    padding:22px;
-
-    border-radius:22px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.stat-icon{
-
-    width:46px;
-    height:46px;
-
-    border-radius:14px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#67e8f9;
-
-    background:
-    rgba(34,211,238,.08);
-
-}
-
-.stat-value{
-
-    margin-top:12px;
-
-    font-family:"Kanit";
-
-    font-size:34px;
-
-}
-
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-}
-
-
-/* =====================================================
-CONTROL
-===================================================== */
-
-.control{
-
-    margin-top:20px;
-
-    padding:18px;
-
-    border-radius:20px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-}
-
-.filters{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    gap:9px;
-
-}
-
-.filter{
-
-    padding:
-    9px 14px;
-
-    border-radius:11px;
-
-    border:
-    1px solid var(--border);
-
-    background:
-    rgba(255,255,255,.04);
-
-    color:#cbd5e1;
-
-    cursor:pointer;
-
-    font-family:"Prompt";
-
-}
-
-.filter.active{
-
-    color:white;
-
-    background:
-    rgba(34,211,238,.10);
-
-    border-color:
-    rgba(34,211,238,.30);
-
-}
-
-.search{
-
-    margin-top:13px;
-
-    display:flex;
-
-    gap:10px;
-
-}
-
-.search input{
-
-    flex:1;
-
-    min-width:0;
-
-    padding:
-    13px 15px;
-
-    border-radius:13px;
-
-    border:
-    1px solid var(--border);
-
-    background:
-    rgba(0,0,0,.20);
-
-    color:white;
-
-    outline:none;
-
-    font-family:"Prompt";
-
+.toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:25px;
 }
 
 .btn{
-
-    padding:
-    12px 17px;
-
-    border:0;
-
-    border-radius:13px;
-
-    color:white;
-
-    cursor:pointer;
-
-    font-family:"Prompt";
-
-    background:
-    linear-gradient(
-        135deg,
-        #0284c7,
-        #06b6d4
-    );
-
+  border:0;
+  border-radius:12px;
+  padding:11px 18px;
+  cursor:pointer;
+  font-weight:700;
 }
 
-
-/* =====================================================
-LEADER GRID
-===================================================== */
-
-.leader-grid{
-
-    margin-top:20px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:16px;
-
+.btnAdd{
+  background:#059669;
+  color:#fff;
 }
 
-.leader-card{
-
-    overflow:hidden;
-
-    border-radius:22px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
-    transition:
-    transform .2s ease,
-    border-color .2s ease;
-
+.btnSearch{
+  background:#fff;
+  border:1px solid #ddd;
 }
 
-.leader-card:hover{
-
-    transform:
-    translateY(-3px);
-
-    border-color:
-    rgba(34,211,238,.22);
-
+.search{
+  padding:11px 15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  min-width:260px;
 }
 
-.leader-photo{
-
-    height:240px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:
-
-    radial-gradient(
-        circle,
-        rgba(34,211,238,.10),
-        transparent 60%
-    ),
-
-    rgba(255,255,255,.025);
-
+.org{
+  text-align:center;
+  margin:30px 0;
 }
 
-.photo-placeholder{
-
-    width:105px;
-    height:105px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    font-size:43px;
-
-    color:#67e8f9;
-
-    background:
-    rgba(34,211,238,.08);
-
-    border:
-    1px solid
-    rgba(34,211,238,.18);
-
+.orgRoot{
+  display:inline-block;
+  background:linear-gradient(135deg,#064e3b,#047857);
+  color:#fff;
+  padding:20px 35px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
 }
 
-.leader-body{
-
-    padding:20px;
-
+.orgRoot strong{
+  display:block;
+  font-size:22px;
 }
 
-.position{
-
-    display:inline-flex;
-
-    padding:
-    5px 10px;
-
-    border-radius:999px;
-
-    color:#67e8f9;
-
-    background:
-    rgba(34,211,238,.08);
-
-    font-size:9px;
-
+.orgLine{
+  width:3px;
+  height:35px;
+  background:#94a3b8;
+  margin:auto;
 }
 
-.leader-name{
-
-    margin-top:11px;
-
-    font-family:"Kanit";
-
-    font-size:20px;
-
+.orgGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  max-width:1100px;
+  margin:auto;
 }
 
-.leader-name.empty-name{
-
-    color:#64748b;
-
+.orgBox{
+  background:#fff;
+  border:1px solid #e5e7eb;
+  border-radius:15px;
+  padding:18px;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
 }
 
-.leader-info{
-
-    margin-top:13px;
-
-    display:grid;
-
-    gap:8px;
-
+.orgBox strong{
+  display:block;
+  color:#064e3b;
+  margin-bottom:5px;
 }
 
-.info-row{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:9px;
-
-    color:var(--muted);
-
-    font-size:10px;
-
+.sectionTitle{
+  margin:35px 0 18px;
+  font-size:23px;
 }
 
-.info-row i{
-
-    width:17px;
-
-    color:#67e8f9;
-
+.leaderGrid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  gap:20px;
 }
 
-.leader-footer{
-
-    margin-top:16px;
-
-    padding-top:13px;
-
-    border-top:
-    1px solid rgba(255,255,255,.06);
-
-    color:var(--muted);
-
-    font-size:10px;
-
+.leaderCard{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #e5e7eb;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
-
-/* =====================================================
-COMMITTEE
-===================================================== */
-
-.committee{
-
-    margin-top:20px;
-
-    padding:23px;
-
-    border-radius:22px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
+.leaderPhoto{
+  width:100%;
+  height:230px;
+  object-fit:cover;
+  background:#e2e8f0;
 }
 
-.committee-head{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    gap:15px;
-
+.leaderInfo{
+  padding:18px;
 }
 
-.committee-title{
-
-    font-family:"Kanit";
-
-    font-size:21px;
-
+.leaderRole{
+  color:#059669;
+  font-weight:800;
+  font-size:14px;
 }
 
-.committee-sub{
-
-    margin-top:2px;
-
-    color:var(--muted);
-
-    font-size:11px;
-
+.leaderName{
+  font-size:20px;
+  font-weight:800;
+  margin:7px 0;
 }
 
-.table-wrap{
-
-    margin-top:18px;
-
-    overflow-x:auto;
-
+.leaderDetail{
+  color:#64748b;
+  font-size:14px;
+  line-height:1.7;
 }
 
-table{
+.cardActions{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+}
 
+.btnEdit{
+  background:#f59e0b;
+  color:white;
+}
+
+.btnDelete{
+  background:#dc2626;
+  color:white;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modalBox{
+  background:#fff;
+  width:min(600px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:20px;
+  padding:25px;
+}
+
+.modalBox h2{
+  margin-top:0;
+}
+
+.formGroup{
+  margin-bottom:15px;
+}
+
+.formGroup label{
+  display:block;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.formGroup input,
+.formGroup textarea,
+.formGroup select{
+  width:100%;
+  box-sizing:border-box;
+  padding:12px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-family:inherit;
+}
+
+.formGroup textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+.preview{
+  width:150px;
+  height:150px;
+  object-fit:cover;
+  border-radius:15px;
+  background:#e5e7eb;
+  margin-bottom:10px;
+}
+
+.modalActions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:20px;
+}
+
+.btnCancel{
+  background:#e5e7eb;
+}
+
+@media(max-width:900px){
+  .orgGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .leaderPage{
+    padding:15px;
+  }
+
+  .pageTitle h1{
+    font-size:23px;
+  }
+
+  .orgGrid{
+    grid-template-columns:1fr;
+  }
+
+  .search{
     width:100%;
-
-    min-width:700px;
-
-    border-collapse:collapse;
-
+    min-width:0;
+  }
 }
-
-th{
-
-    padding:
-    13px 12px;
-
-    text-align:left;
-
-    color:#67e8f9;
-
-    font-size:11px;
-
-    font-weight:500;
-
-    background:
-    rgba(34,211,238,.04);
-
-    border-bottom:
-    1px solid var(--border);
-
-}
-
-td{
-
-    padding:
-    13px 12px;
-
-    font-size:11px;
-
-    border-bottom:
-    1px solid rgba(255,255,255,.05);
-
-}
-
-.role{
-
-    color:#67e8f9;
-
-}
-
-.empty{
-
-    padding:55px 20px;
-
-    text-align:center;
-
-    color:var(--muted);
-
-}
-
-.empty i{
-
-    display:block;
-
-    margin-bottom:13px;
-
-    font-size:42px;
-
-    color:
-    rgba(34,211,238,.30);
-
-}
-
-
-/* =====================================================
-NOTE
-===================================================== */
-
-.note{
-
-    margin-top:20px;
-
-    padding:20px;
-
-    border-radius:20px;
-
-    display:flex;
-
-    gap:14px;
-
-    background:
-    rgba(167,139,250,.06);
-
-    border:
-    1px solid
-    rgba(167,139,250,.15);
-
-}
-
-.note-icon{
-
-    width:43px;
-    height:43px;
-
-    flex:none;
-
-    border-radius:13px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:#c4b5fd;
-
-    background:
-    rgba(167,139,250,.08);
-
-}
-
-.note h3{
-
-    font-size:14px;
-
-}
-
-.note p{
-
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    line-height:1.8;
-
-}
-
-
-/* =====================================================
-FOOTER
-===================================================== */
-
-.footer{
-
-    margin-top:45px;
-
-    padding:
-    25px 0;
-
-    border-top:
-    1px solid var(--border);
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-}
-
-
-/* =====================================================
-RESPONSIVE
-===================================================== */
-
-@media(max-width:950px){
-
-    .stats{
-
-        grid-template-columns:
-        repeat(2,1fr);
-
-    }
-
-    .leader-grid{
-
-        grid-template-columns:
-        1fr 1fr;
-
-    }
-
-}
-
-@media(max-width:620px){
-
-    .container{
-
-        width:
-        calc(100% - 20px);
-
-    }
-
-    .page-head h2{
-
-        font-size:29px;
-
-    }
-
-    .stats{
-
-        gap:10px;
-
-    }
-
-    .stat{
-
-        padding:16px;
-
-    }
-
-    .stat-value{
-
-        font-size:28px;
-
-    }
-
-    .leader-grid{
-
-        grid-template-columns:
-        1fr;
-
-    }
-
-    .search{
-
-        flex-direction:column;
-
-    }
-
-    .footer{
-
-        display:block;
-
-    }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
+<header class="topbar">
 
-<header class="header">
+  <div class="gov">🏛️</div>
 
-<div class="container header-inner">
+  <div class="brand">
+    <b>RONGKHEM e-VILLAGE OFFICE</b>
+    <span>ที่ทำการผู้ใหญ่บ้านออนไลน์</span>
+  </div>
 
+  <div class="online">● ระบบออนไลน์</div>
 
-<div class="brand">
+  <div class="grow"></div>
 
-<div class="logo">
+  <div class="headClock">
+    <b id="clock">--:--:--</b>
+    <small id="date">--</small>
+  </div>
 
-<i class="fa-solid fa-people-roof"></i>
+  <div class="headWeather">
+    🌤️
+    <div>
+      <b id="topTemp">--°C</b>
+      <small>พะเยา</small>
+    </div>
+  </div>
 
-</div>
+  <div class="bell">🔔</div>
 
-<div>
-
-<h1>
-RONGKHEM e-VILLAGE
-</h1>
-
-<p>
-ที่ทำการผู้ใหญ่บ้านออนไลน์
-</p>
-
-</div>
-
-</div>
-
-
-<button
-class="back"
-onclick="location.href='../index.html'">
-
-<i class="fa-solid fa-arrow-left"></i>
-
-กลับหน้าหลัก
-
-</button>
-
-
-</div>
+  <div class="profile">
+    <div class="profilePic">👨🏻‍💼</div>
+    <div>
+      <b>ผู้ใหญ่บ้าน</b>
+      <small>นายศักรนนทน์ ขัติย์วงศ์</small>
+    </div>
+  </div>
 
 </header>
 
 
+<div class="shell">
 
-<main class="container">
+<aside class="sidebar">
+
+<a class="nav" href="index.html">
+<span class="ico">⌂</span>
+หน้าแรก<br>ศูนย์บัญชาการ
+</a>
+
+<a class="nav active" href="leader.html">
+<span class="ico">👥</span>
+ทำเนียบผู้นำ
+</a>
+
+<a class="nav" href="citizen.html">
+<span class="ico">👤</span>
+ข้อมูลประชาชน
+</a>
+
+<a class="nav" href="household.html">
+<span class="ico">🏠</span>
+ข้อมูลครัวเรือน
+</a>
+
+<a class="nav" href="news.html">
+<span class="ico">📢</span>
+ข่าวประชาสัมพันธ์
+</a>
+
+<a class="nav" href="activity.html">
+<span class="ico">📅</span>
+กิจกรรม / ปฏิทิน
+</a>
+
+<a class="nav" href="complaint.html">
+<span class="ico">⚠️</span>
+แจ้งเหตุ / ร้องเรียน
+</a>
+
+<a class="nav" href="service.html">
+<span class="ico">🤝</span>
+บริการประชาชน
+</a>
+
+<a class="nav" href="project.html">
+<span class="ico">🏗️</span>
+โครงการพัฒนาหมู่บ้าน
+</a>
+
+<a class="nav" href="environment.html">
+<span class="ico">🌿</span>
+สิ่งแวดล้อม / PM2.5
+</a>
+
+<a class="nav" href="wetland.html">
+<span class="ico">💧</span>
+แหล่งซับน้ำจำ
+</a>
+
+<a class="nav" href="rice.html">
+<span class="ico">🍚</span>
+กลุ่มข้าวสาร
+</a>
+
+<a class="nav" href="statistics.html">
+<span class="ico">📊</span>
+สถิติหมู่บ้าน
+</a>
+
+</aside>
 
 
-<!-- =====================================================
-TITLE
-===================================================== -->
+<main class="leaderPage">
 
-<section class="page-head">
+<section class="pageTitle">
 
-<h2>
-ทำเนียบผู้นำและคณะกรรมการหมู่บ้าน
-</h2>
+<h1>👥 ทำเนียบผู้นำและองค์กรชุมชน</h1>
 
 <p>
-ข้อมูลผู้ใหญ่บ้าน ผู้ช่วยผู้ใหญ่บ้าน และคณะกรรมการหมู่บ้าน
+บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
 </p>
 
-<div class="source">
-
-<i class="fa-solid fa-database"></i>
-
-ข้อมูลบุคลากรจากฐานข้อมูลหมู่บ้าน
-
-</div>
-
 </section>
 
 
+<div class="toolbar">
 
-<!-- =====================================================
-STATS
-===================================================== -->
-
-<section class="stats">
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-user-tie"></i>
-
-</div>
-
-<div
-id="totalLeaders"
-class="stat-value">
-
-0
-
-</div>
-
-<div class="stat-label">
-
-บุคลากรในระบบ
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-crown"></i>
-
-</div>
-
-<div
-id="villageHead"
-class="stat-value">
-
-0
-
-</div>
-
-<div class="stat-label">
-
-ผู้ใหญ่บ้าน
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-user-group"></i>
-
-</div>
-
-<div
-id="assistantCount"
-class="stat-value">
-
-0
-
-</div>
-
-<div class="stat-label">
-
-ผู้ช่วยผู้ใหญ่บ้าน
-
-</div>
-
-</div>
-
-
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-people-group"></i>
-
-</div>
-
-<div
-id="committeeCount"
-class="stat-value">
-
-0
-
-</div>
-
-<div class="stat-label">
-
-คณะกรรมการ
-
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-FILTER
-===================================================== -->
-
-<section class="control">
-
-
-<div class="filters">
-
-
-<button
-class="filter active"
-onclick="setFilter('all',this)">
-
-ทั้งหมด
-
+<button class="btn btnAdd" onclick="openLeaderForm()">
+➕ เพิ่มบุคลากร
 </button>
-
-
-<button
-class="filter"
-onclick="setFilter('ผู้ใหญ่บ้าน',this)">
-
-ผู้ใหญ่บ้าน
-
-</button>
-
-
-<button
-class="filter"
-onclick="setFilter('ผู้ช่วยผู้ใหญ่บ้าน',this)">
-
-ผู้ช่วยผู้ใหญ่บ้าน
-
-</button>
-
-
-<button
-class="filter"
-onclick="setFilter('คณะกรรมการ',this)">
-
-คณะกรรมการ
-
-</button>
-
-
-</div>
-
-
-<div class="search">
 
 <input
-id="searchInput"
-type="search"
-placeholder="ค้นหาชื่อหรือหน้าที่..."
-autocomplete="off">
-
-
-<button
-class="btn"
-onclick="loadLeaders()">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-ค้นหา
-
-</button>
+class="search"
+id="searchLeader"
+placeholder="🔎 ค้นหาชื่อ / ตำแหน่ง..."
+oninput="renderLeaders()"
+>
 
 </div>
 
 
-</section>
+<!-- ผังองค์กร -->
 
+<section class="org">
 
+<div class="orgRoot">
 
-<!-- =====================================================
-LEADER CARDS
-===================================================== -->
+<strong>🏛️ ผู้ใหญ่บ้าน</strong>
 
-<section
-id="leaderGrid"
-class="leader-grid">
-
-<div class="empty">
-
-<i class="fa-solid fa-users"></i>
-
-กำลังโหลดข้อมูลผู้นำ...
+นายศักรนนทน์ ขัติย์วงศ์
 
 </div>
 
-</section>
+<div class="orgLine"></div>
 
+<div class="orgGrid">
 
-
-<!-- =====================================================
-COMMITTEE
-===================================================== -->
-
-<section class="committee">
-
-
-<div class="committee-head">
-
-<div>
-
-<div class="committee-title">
-
-คณะกรรมการหมู่บ้าน
-
+<div class="orgBox">
+<strong>👔 ผู้ช่วยผู้ใหญ่บ้าน</strong>
+<span>ฝ่ายปกครอง / ฝ่ายรักษาความสงบ</span>
 </div>
 
-<div class="committee-sub">
-
-รายชื่อและหน้าที่ตามข้อมูลที่บันทึกไว้
-
+<div class="orgBox">
+<strong>👥 คณะกรรมการหมู่บ้าน</strong>
+<span>คณะกรรมการและฝ่ายต่าง ๆ</span>
 </div>
 
+<div class="orgBox">
+<strong>🧑‍💼 ที่ปรึกษา</strong>
+<span>ที่ปรึกษาหมู่บ้าน</span>
 </div>
 
-
-<i
-class="fa-solid fa-people-group"
-style="color:#22d3ee;font-size:25px">
-</i>
-
+<div class="orgBox">
+<strong>🎓 ผู้ทรงคุณวุฒิ</strong>
+<span>ผู้ทรงคุณวุฒิประจำหมู่บ้าน</span>
 </div>
-
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-ลำดับ
-</th>
-
-<th>
-ชื่อ-นามสกุล
-</th>
-
-<th>
-ตำแหน่ง
-</th>
-
-<th>
-หน้าที่
-</th>
-
-<th>
-สถานะ
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody
-id="committeeTable">
-
-<tr>
-
-<td
-colspan="5"
-class="empty">
-
-<i class="fa-solid fa-database"></i>
-
-ยังไม่มีข้อมูลคณะกรรมการ
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-NOTE
-===================================================== -->
-
-<section class="note">
-
-<div class="note-icon">
-
-<i class="fa-solid fa-shield-halved"></i>
-
-</div>
-
-<div>
-
-<h3>
-ข้อมูลทำเนียบผู้นำ
-</h3>
-
-<p>
-
-ระบบจะแสดงเฉพาะข้อมูลที่บันทึกไว้ในฐานข้อมูล
-หากยังไม่มีรูปภาพหรือรายละเอียดบางรายการ
-ระบบจะแสดงเป็นข้อมูลว่างแทนการสร้างข้อมูลขึ้นเอง
-
-</p>
 
 </div>
 
 </section>
 
 
+<h2 class="sectionTitle">
+👨‍💼 ผู้บริหารและคณะผู้นำ
+</h2>
 
-<footer class="footer">
+<div id="leaderGrid" class="leaderGrid"></div>
 
-<div>
 
-<strong>
-RONGKHEM e-VILLAGE
-</strong>
+<h2 class="sectionTitle">
+🛡️ องค์กรและกลุ่มชุมชน
+</h2>
 
-<br>
+<div class="leaderGrid">
 
-ที่ทำการผู้ใหญ่บ้านออนไลน์
+<div class="leaderCard">
+
+<div class="leaderInfo">
+
+<div class="leaderRole">ชรบ.</div>
+
+<div class="leaderName">
+🛡️ ชุดรักษาความปลอดภัยหมู่บ้าน
+</div>
+
+<div class="leaderDetail">
+ดูทำเนียบสมาชิก ภารกิจ ตารางเวร
+และรายงานการปฏิบัติงาน
+</div>
+
+<div class="cardActions">
+
+<a class="btn btnAdd" href="organization.html">
+เปิดระบบ
+</a>
+
+</div>
+
+</div>
 
 </div>
 
 
-<div>
+<div class="leaderCard">
 
-บ้านร่องเข็ม หมู่ที่ 6
-ตำบลจำป่าหวาย
-อำเภอเมืองพะเยา จังหวัดพะเยา
+<div class="leaderInfo">
+
+<div class="leaderRole">อปพร.</div>
+
+<div class="leaderName">
+🚒 อาสาสมัครป้องกันภัยฝ่ายพลเรือน
+</div>
+
+<div class="leaderDetail">
+ทำเนียบสมาชิก ภารกิจ และกิจกรรม
+</div>
+
+<div class="cardActions">
+
+<a class="btn btnAdd" href="organization.html?type=อปพร">
+เปิดระบบ
+</a>
 
 </div>
 
-</footer>
+</div>
 
+</div>
+
+
+<div class="leaderCard">
+
+<div class="leaderInfo">
+
+<div class="leaderRole">อสม.</div>
+
+<div class="leaderName">
+🩺 อาสาสมัครสาธารณสุข
+</div>
+
+<div class="leaderDetail">
+ข้อมูล อสม. และพื้นที่รับผิดชอบ
+</div>
+
+<div class="cardActions">
+
+<a class="btn btnAdd" href="organization.html?type=อสม">
+เปิดระบบ
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="leaderCard">
+
+<div class="leaderInfo">
+
+<div class="leaderRole">ชุมชน</div>
+
+<div class="leaderName">
+🤝 กลุ่มผู้สูงอายุ / แม่บ้าน
+</div>
+
+<div class="leaderDetail">
+ข้อมูลคณะกรรมการ สมาชิก และกิจกรรม
+</div>
+
+<div class="cardActions">
+
+<a class="btn btnAdd" href="community-group.html">
+เปิดระบบ
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
+</div>
 
 
-<script>
+<!-- MODAL -->
 
-/* =====================================================
-SUPABASE
-===================================================== */
+<div class="modal" id="leaderModal">
 
-const SUPABASE_URL =
-"ใส่_URL_SUPABASE_ของคุณ";
+<div class="modalBox">
 
-const SUPABASE_KEY =
-"ใส่_ANON_KEY_ของคุณ";
+<h2 id="formTitle">
+➕ เพิ่มบุคลากร
+</h2>
 
+<form id="leaderForm">
 
-const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
+<input type="hidden" id="leaderId">
 
+<div class="formGroup">
 
-/* =====================================================
-STATE
-===================================================== */
+<label>รูปภาพ</label>
 
-let currentFilter =
-"all";
+<img
+id="previewImage"
+class="preview"
+src="rongkhem-images/leader-placeholder.jpg"
+>
 
+<input
+type="file"
+id="leaderImage"
+accept="image/*"
+onchange="previewLeaderImage(event)"
+>
 
-/* =====================================================
-ESCAPE
-===================================================== */
+</div>
 
-function escapeHTML(
-    value
-){
 
-    return String(
-        value ?? ""
-    )
+<div class="formGroup">
 
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
+<label>ชื่อ-นามสกุล</label>
 
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
+<input
+id="leaderNameInput"
+required
+placeholder="เช่น นายสมชาย ใจดี"
+>
 
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
+</div>
 
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
 
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
+<div class="formGroup">
 
-}
+<label>ตำแหน่ง</label>
 
+<select id="leaderRoleInput">
 
-/* =====================================================
-LOAD LEADERS
-===================================================== */
+<option>ผู้ใหญ่บ้าน</option>
+<option>ผู้ช่วยผู้ใหญ่บ้าน</option>
+<option>คณะกรรมการหมู่บ้าน</option>
+<option>ที่ปรึกษา</option>
+<option>ผู้ทรงคุณวุฒิ</option>
 
-async function loadLeaders(){
+</select>
 
-    const grid =
-    document.getElementById(
-        "leaderGrid"
-    );
+</div>
 
 
-    const keyword =
-    document
-    .getElementById(
-        "searchInput"
-    )
-    .value
-    .trim();
+<div class="formGroup">
 
+<label>หน้าที่</label>
 
-    try{
+<input
+id="leaderDutyInput"
+placeholder="หน้าที่รับผิดชอบ"
+>
 
-        let query =
-        supabaseClient
+</div>
 
-        .from("leaders")
 
-        .select("*")
+<div class="formGroup">
 
-        .order(
-            "sort_order",
-            {
-                ascending:true,
-                nullsFirst:false
-            }
-        );
+<label>โทรศัพท์</label>
 
+<input
+id="leaderPhoneInput"
+placeholder="เบอร์โทรศัพท์"
+>
 
-        if(
-            currentFilter !== "all"
-        ){
+</div>
 
-            query =
-            query.eq(
-                "position",
-                currentFilter
-            );
 
-        }
+<div class="formGroup">
 
+<label>ประวัติ / รายละเอียด</label>
 
-        if(keyword){
+<textarea
+id="leaderBioInput"
+placeholder="ประวัติหรือรายละเอียด"
+></textarea>
 
-            query =
-            query.or(
-                `name.ilike.%${keyword}%,position.ilike.%${keyword}%,duty.ilike.%${keyword}%`
-            );
+</div>
 
-        }
 
+<div class="modalActions">
 
-        const {
-            data,
-            error
-        } = await query;
+<button
+type="button"
+class="btn btnCancel"
+onclick="closeLeaderForm()">
+ยกเลิก
+</button>
 
+<button
+type="submit"
+class="btn btnAdd">
+💾 บันทึกข้อมูล
+</button>
 
-        if(error)
-            throw error;
+</div>
 
+</form>
 
-        renderLeaders(
-            data || []
-        );
+</div>
 
+</div>
 
-        updateStats(
-            data || []
-        );
 
-
-        renderCommittee(
-            data || []
-        );
-
-
-    }catch(error){
-
-        console.error(
-            "Leaders:",
-            error
-        );
-
-
-        grid.innerHTML = `
-
-        <div class="empty">
-
-            <i class="fa-solid fa-database"></i>
-
-            ยังไม่มีข้อมูลผู้นำในฐานข้อมูล
-
-            <br>
-
-            กรุณาเพิ่มข้อมูลจากระบบผู้ดูแล
-
-        </div>
-
-        `;
-
-
-        updateStats([]);
-
-        renderCommittee([]);
-
-    }
-
-}
-
-
-/* =====================================================
-RENDER LEADERS
-===================================================== */
-
-function renderLeaders(
-    leaders
-){
-
-    const grid =
-    document.getElementById(
-        "leaderGrid"
-    );
-
-
-    if(
-        !leaders ||
-        leaders.length === 0
-    ){
-
-        grid.innerHTML = `
-
-        <div class="empty">
-
-            <i class="fa-solid fa-user-slash"></i>
-
-            ไม่พบข้อมูลบุคลากร
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    grid.innerHTML =
-    leaders.map(
-        person => {
-
-
-            const hasPhoto =
-            person.photo_url;
-
-
-            return `
-
-            <article
-            class="leader-card">
-
-
-                <div
-                class="leader-photo">
-
-
-                    ${
-                        hasPhoto
-
-                        ?
-
-                        `
-                        <img
-                        src="${escapeHTML(
-                            person.photo_url
-                        )}"
-                        alt=""
-                        style="
-                        width:105px;
-                        height:105px;
-                        object-fit:cover;
-                        border-radius:50%;
-                        border:1px solid rgba(34,211,238,.25);
-                        "
-                        >
-
-                        `
-
-                        :
-
-                        `
-
-                        <div
-                        class="photo-placeholder">
-
-                            <i
-                            class="fa-solid
-                            fa-user">
-                            </i>
-
-                        </div>
-
-                        `
-                    }
-
-
-                </div>
-
-
-                <div
-                class="leader-body">
-
-
-                    <span
-                    class="position">
-
-                        ${escapeHTML(
-                            person.position ||
-                            "ไม่ระบุตำแหน่ง"
-                        )}
-
-                    </span>
-
-
-                    <div
-                    class="
-                    leader-name
-                    ${
-                        person.name
-                        ? ""
-                        : "empty-name"
-                    }">
-
-                        ${
-                            person.name
-                            ?
-                            escapeHTML(
-                                person.name
-                            )
-                            :
-                            "ยังไม่มีข้อมูลชื่อ"
-                        }
-
-                    </div>
-
-
-                    <div
-                    class="leader-info">
-
-
-                        <div
-                        class="info-row">
-
-                            <i
-                            class="fa-solid
-                            fa-briefcase">
-                            </i>
-
-                            <span>
-
-                                ${
-                                    escapeHTML(
-                                        person.duty ||
-                                        "ยังไม่มีข้อมูลหน้าที่"
-                                    )
-                                }
-
-                            </span>
-
-                        </div>
-
-
-                        ${
-                            person.phone
-                            ?
-
-                            `
-                            <div
-                            class="info-row">
-
-                                <i
-                                class="fa-solid
-                                fa-phone">
-                                </i>
-
-                                <span>
-
-                                    ${escapeHTML(
-                                        person.phone
-                                    )}
-
-                                </span>
-
-                            </div>
-                            `
-
-                            :
-
-                            ""
-                        }
-
-
-                        ${
-                            person.term
-                            ?
-
-                            `
-                            <div
-                            class="info-row">
-
-                                <i
-                                class="fa-regular
-                                fa-calendar">
-                                </i>
-
-                                <span>
-
-                                    วาระ
-                                    ${escapeHTML(
-                                        person.term
-                                    )}
-
-                                </span>
-
-                            </div>
-                            `
-
-                            :
-
-                            ""
-                        }
-
-
-                    </div>
-
-
-                    <div
-                    class="leader-footer">
-
-                        ${
-                            person.department
-                            ?
-                            escapeHTML(
-                                person.department
-                            )
-                            :
-                            "ที่ทำการผู้ใหญ่บ้านออนไลน์"
-                        }
-
-                    </div>
-
-
-                </div>
-
-
-            </article>
-
-            `;
-
-        }
-    ).join("");
-
-}
-
-
-/* =====================================================
-COMMITTEE
-===================================================== */
-
-function renderCommittee(
-    leaders
-){
-
-    const table =
-    document.getElementById(
-        "committeeTable"
-    );
-
-
-    const committee =
-    leaders.filter(
-        person => {
-
-            const position =
-            String(
-                person.position ||
-                ""
-            );
-
-            return (
-                position.includes(
-                    "คณะกรรมการ"
-                ) ||
-                position.includes(
-                    "กรรมการ"
-                )
-            );
-
-        }
-    );
-
-
-    if(
-        committee.length === 0
-    ){
-
-        table.innerHTML = `
-
-        <tr>
-
-            <td
-            colspan="5"
-            class="empty">
-
-                <i class="fa-solid fa-people-group"></i>
-
-                ยังไม่มีข้อมูลคณะกรรมการ
-
-            </td>
-
-        </tr>
-
-        `;
-
-        return;
-
-    }
-
-
-    table.innerHTML =
-    committee.map(
-        (person,index) => `
-
-        <tr>
-
-            <td>
-                ${index + 1}
-            </td>
-
-            <td>
-                ${escapeHTML(
-                    person.name ||
-                    "-"
-                )}
-            </td>
-
-            <td
-            class="role">
-
-                ${escapeHTML(
-                    person.position ||
-                    "-"
-                )}
-
-            </td>
-
-            <td>
-
-                ${escapeHTML(
-                    person.duty ||
-                    "-"
-                )}
-
-            </td>
-
-            <td>
-
-                ${escapeHTML(
-                    person.status ||
-                    "ใช้งาน"
-                )}
-
-            </td>
-
-        </tr>
-
-        `
-    ).join("");
-
-}
-
-
-/* =====================================================
-STATS
-===================================================== */
-
-function updateStats(
-    leaders
-){
-
-    const total =
-    leaders.length;
-
-
-    const villageHead =
-    leaders.filter(
-        person =>
-        person.position ===
-        "ผู้ใหญ่บ้าน"
-    ).length;
-
-
-    const assistants =
-    leaders.filter(
-        person =>
-        person.position ===
-        "ผู้ช่วยผู้ใหญ่บ้าน"
-    ).length;
-
-
-    const committee =
-    leaders.filter(
-        person => {
-
-            const position =
-            String(
-                person.position ||
-                ""
-            );
-
-            return (
-                position.includes(
-                    "คณะกรรมการ"
-                ) ||
-                position.includes(
-                    "กรรมการ"
-                )
-            );
-
-        }
-    ).length;
-
-
-    document.getElementById(
-        "totalLeaders"
-    ).textContent =
-    total.toLocaleString(
-        "th-TH"
-    );
-
-
-    document.getElementById(
-        "villageHead"
-    ).textContent =
-    villageHead.toLocaleString(
-        "th-TH"
-    );
-
-
-    document.getElementById(
-        "assistantCount"
-    ).textContent =
-    assistants.toLocaleString(
-        "th-TH"
-    );
-
-
-    document.getElementById(
-        "committeeCount"
-    ).textContent =
-    committee.toLocaleString(
-        "th-TH"
-    );
-
-}
-
-
-/* =====================================================
-FILTER
-===================================================== */
-
-function setFilter(
-    filter,
-    button
-){
-
-    currentFilter =
-    filter;
-
-
-    document
-    .querySelectorAll(
-        ".filter"
-    )
-    .forEach(
-        el =>
-        el.classList.remove(
-            "active"
-        )
-    );
-
-
-    button.classList.add(
-        "active"
-    );
-
-
-    loadLeaders();
-
-}
-
-
-/* =====================================================
-ENTER
-===================================================== */
-
-document
-.getElementById(
-    "searchInput"
-)
-.addEventListener(
-    "keydown",
-    event => {
-
-        if(
-            event.key === "Enter"
-        ){
-
-            loadLeaders();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-INIT
-===================================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        loadLeaders();
-
-    }
-);
-
-</script>
-
+<script src="app.js"></script>
+<script src="leader.js"></script>
 
 </body>
-
 </html>
