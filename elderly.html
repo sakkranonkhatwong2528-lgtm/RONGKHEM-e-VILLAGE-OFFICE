@@ -9,7 +9,7 @@
       content="width=device-width, initial-scale=1.0">
 
 <title>
-ผู้สูงอายุ | RONGKHEM e-VILLAGE
+ศูนย์ข้อมูลผู้สูงอายุ | RONGKHEM e-VILLAGE
 </title>
 
 <link rel="preconnect"
@@ -40,20 +40,18 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
     --cyan:#22d3ee;
     --blue:#38bdf8;
-    --purple:#a78bfa;
-    --yellow:#facc15;
     --green:#22c55e;
-
-    --radius:22px;
+    --yellow:#facc15;
+    --orange:#fb923c;
+    --red:#fb7185;
+    --purple:#a78bfa;
 
 }
 
 *{
-
     box-sizing:border-box;
     margin:0;
     padding:0;
-
 }
 
 body{
@@ -68,7 +66,7 @@ body{
 
     radial-gradient(
         circle at 10% 0%,
-        rgba(167,139,250,.10),
+        rgba(250,204,21,.09),
         transparent 30%
     ),
 
@@ -159,16 +157,16 @@ HEADER
 
     justify-content:center;
 
-    color:white;
-
     font-size:21px;
 
     background:
     linear-gradient(
         135deg,
-        #7c3aed,
-        #a78bfa
+        #a16207,
+        #facc15
     );
+
+    color:#fff;
 
 }
 
@@ -190,13 +188,11 @@ HEADER
 
 .back{
 
-    padding:
-    9px 14px;
+    padding:9px 14px;
 
     border-radius:12px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
@@ -248,89 +244,20 @@ TITLE
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
-    color:#c4b5fd;
+    color:#fde68a;
 
     background:
-    rgba(167,139,250,.07);
+    rgba(250,204,21,.07);
 
     border:
     1px solid
-    rgba(167,139,250,.18);
+    rgba(250,204,21,.16);
 
     font-size:11px;
-
-}
-
-
-/* =====================================================
-NOTICE
-===================================================== */
-
-.notice{
-
-    margin-top:22px;
-
-    padding:21px;
-
-    display:flex;
-
-    gap:14px;
-
-    align-items:flex-start;
-
-    border-radius:22px;
-
-    background:
-    rgba(250,204,21,.06);
-
-    border:
-    1px solid
-    rgba(250,204,21,.17);
-
-}
-
-.notice-icon{
-
-    width:44px;
-    height:44px;
-
-    flex:none;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:13px;
-
-    color:var(--yellow);
-
-    background:
-    rgba(250,204,21,.08);
-
-}
-
-.notice h3{
-
-    font-size:15px;
-
-}
-
-.notice p{
-
-    margin-top:5px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.8;
 
 }
 
@@ -341,12 +268,12 @@ STATS
 
 .stats{
 
-    margin-top:20px;
+    margin-top:22px;
 
     display:grid;
 
     grid-template-columns:
-    repeat(3,1fr);
+    repeat(4,1fr);
 
     gap:15px;
 
@@ -354,7 +281,7 @@ STATS
 
 .stat{
 
-    padding:23px;
+    padding:22px;
 
     border-radius:22px;
 
@@ -368,8 +295,8 @@ STATS
 
 .stat-icon{
 
-    width:47px;
-    height:47px;
+    width:46px;
+    height:46px;
 
     border-radius:14px;
 
@@ -379,20 +306,20 @@ STATS
 
     justify-content:center;
 
-    color:#c4b5fd;
+    color:#fde68a;
 
     background:
-    rgba(167,139,250,.09);
+    rgba(250,204,21,.08);
 
 }
 
 .stat-value{
 
-    margin-top:13px;
+    margin-top:12px;
 
     font-family:"Kanit";
 
-    font-size:37px;
+    font-size:34px;
 
 }
 
@@ -406,27 +333,16 @@ STATS
 
 
 /* =====================================================
-GRID
+CONTROL
 ===================================================== */
 
-.grid{
+.control{
 
     margin-top:20px;
 
-    display:grid;
+    padding:18px;
 
-    grid-template-columns:
-    1fr 1fr;
-
-    gap:15px;
-
-}
-
-.card{
-
-    padding:23px;
-
-    border-radius:22px;
+    border-radius:20px;
 
     background:
     var(--card);
@@ -436,126 +352,50 @@ GRID
 
 }
 
-.card-head{
+.filters{
 
     display:flex;
 
-    justify-content:space-between;
+    flex-wrap:wrap;
 
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:18px;
+    gap:9px;
 
 }
 
-.card-title{
+.filter{
 
-    font-family:"Kanit";
+    padding:9px 14px;
 
-    font-size:21px;
+    border-radius:11px;
 
-}
-
-.card-sub{
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-
-/* =====================================================
-INFO
-===================================================== */
-
-.info-list{
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:10px;
-
-}
-
-.info-row{
-
-    padding:15px;
-
-    border-radius:15px;
+    border:1px solid var(--border);
 
     background:
-    rgba(255,255,255,.035);
+    rgba(255,255,255,.04);
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
 
 }
 
-.info-row strong{
+.filter.active{
 
-    display:block;
-
-    font-size:13px;
-
-}
-
-.info-row span{
-
-    display:block;
-
-    margin-top:4px;
-
-    color:var(--muted);
-
-    font-size:11px;
-
-    line-height:1.7;
-
-}
-
-
-/* =====================================================
-SEARCH
-===================================================== */
-
-.search-panel{
-
-    margin-top:20px;
-
-    padding:23px;
-
-    border-radius:22px;
+    color:white;
 
     background:
-    var(--card);
+    rgba(250,204,21,.10);
 
-    border:
-    1px solid var(--border);
-
-}
-
-.search-title{
-
-    font-family:"Kanit";
-
-    font-size:21px;
+    border-color:
+    rgba(250,204,21,.30);
 
 }
 
-.search-sub{
+.search{
 
-    margin-top:2px;
-
-    color:var(--muted);
-
-    font-size:11px;
-
-}
-
-.search-box{
-
-    margin-top:17px;
+    margin-top:13px;
 
     display:flex;
 
@@ -563,19 +403,17 @@ SEARCH
 
 }
 
-.search-box input{
+.search input{
 
     flex:1;
 
     min-width:0;
 
-    padding:
-    14px 16px;
+    padding:13px 15px;
 
     border-radius:13px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(0,0,0,.20);
@@ -590,8 +428,7 @@ SEARCH
 
 .btn{
 
-    padding:
-    12px 17px;
+    padding:12px 17px;
 
     border:0;
 
@@ -606,9 +443,181 @@ SEARCH
     background:
     linear-gradient(
         135deg,
-        #7c3aed,
-        #06b6d4
+        #ca8a04,
+        #eab308
     );
+
+}
+
+
+/* =====================================================
+ELDERLY GRID
+===================================================== */
+
+.elderly-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.elderly-card{
+
+    padding:21px;
+
+    border-radius:21px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
+
+}
+
+.elderly-card:hover{
+
+    transform:
+    translateY(-3px);
+
+    border-color:
+    rgba(250,204,21,.22);
+
+}
+
+.elderly-top{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+.elderly-icon{
+
+    width:52px;
+    height:52px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.08);
+
+    font-size:21px;
+
+}
+
+.status{
+
+    padding:5px 9px;
+
+    border-radius:999px;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+    font-size:9px;
+
+}
+
+.elderly-name{
+
+    margin-top:16px;
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+}
+
+.elderly-house{
+
+    margin-top:3px;
+
+    color:#fde68a;
+
+    font-size:11px;
+
+}
+
+.elderly-info{
+
+    margin-top:15px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:9px;
+
+}
+
+.info{
+
+    padding:11px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.info-label{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.info-value{
+
+    margin-top:3px;
+
+    color:#e2e8f0;
+
+    font-size:11px;
+
+}
+
+.elderly-footer{
+
+    margin-top:15px;
+
+    padding-top:12px;
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    color:var(--muted);
+
+    font-size:9px;
 
 }
 
@@ -616,6 +625,50 @@ SEARCH
 /* =====================================================
 TABLE
 ===================================================== */
+
+.table-card{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.table-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.table-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.table-sub{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
 
 .table-wrap{
 
@@ -629,7 +682,7 @@ table{
 
     width:100%;
 
-    min-width:650px;
+    min-width:850px;
 
     border-collapse:collapse;
 
@@ -637,19 +690,18 @@ table{
 
 th{
 
-    padding:
-    14px 12px;
+    padding:14px 12px;
 
     text-align:left;
 
-    color:#c4b5fd;
+    color:#fde68a;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:500;
 
     background:
-    rgba(167,139,250,.04);
+    rgba(250,204,21,.04);
 
     border-bottom:
     1px solid var(--border);
@@ -658,21 +710,220 @@ th{
 
 td{
 
-    padding:
-    15px 12px;
+    padding:13px 12px;
 
-    font-size:12px;
+    font-size:11px;
 
     border-bottom:
     1px solid rgba(255,255,255,.05);
 
 }
 
+
+/* =====================================================
+FOLLOW UP
+===================================================== */
+
+.followup{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:16px;
+
+}
+
+.panel{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.panel-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.panel-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.panel-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.follow-list{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.follow-item{
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.follow-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.follow-title{
+
+    font-size:11px;
+
+}
+
+.follow-status{
+
+    padding:4px 8px;
+
+    border-radius:999px;
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.08);
+
+    font-size:9px;
+
+}
+
+.follow-meta{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+PRIVACY
+===================================================== */
+
+.privacy{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    gap:14px;
+
+    background:
+    rgba(251,113,133,.05);
+
+    border:
+    1px solid
+    rgba(251,113,133,.13);
+
+}
+
+.privacy-icon{
+
+    width:43px;
+    height:43px;
+
+    flex:none;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.08);
+
+}
+
+.privacy h3{
+
+    font-size:14px;
+
+}
+
+.privacy p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+EMPTY
+===================================================== */
+
 .empty{
 
-    text-align:center;
+    grid-column:
+    1 / -1;
 
-    padding:45px 20px;
+    padding:55px 20px;
+
+    text-align:center;
 
     color:var(--muted);
 
@@ -682,12 +933,12 @@ td{
 
     display:block;
 
-    margin-bottom:12px;
+    margin-bottom:13px;
 
-    font-size:38px;
+    font-size:42px;
 
     color:
-    rgba(167,139,250,.35);
+    rgba(250,204,21,.28);
 
 }
 
@@ -700,8 +951,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -723,16 +973,23 @@ FOOTER
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:850px){
+@media(max-width:950px){
 
     .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .elderly-grid{
 
         grid-template-columns:
         1fr 1fr;
 
     }
 
-    .grid{
+    .followup{
 
         grid-template-columns:
         1fr;
@@ -741,7 +998,7 @@ RESPONSIVE
 
 }
 
-@media(max-width:600px){
+@media(max-width:620px){
 
     .container{
 
@@ -758,12 +1015,30 @@ RESPONSIVE
 
     .stats{
 
+        gap:10px;
+
+    }
+
+    .stat{
+
+        padding:16px;
+
+    }
+
+    .stat-value{
+
+        font-size:28px;
+
+    }
+
+    .elderly-grid{
+
         grid-template-columns:
         1fr;
 
     }
 
-    .search-box{
+    .search{
 
         flex-direction:column;
 
@@ -788,6 +1063,7 @@ RESPONSIVE
 <header class="header">
 
 <div class="container header-inner">
+
 
 <div class="brand">
 
@@ -822,6 +1098,7 @@ onclick="location.href='../index.html'">
 
 </button>
 
+
 </div>
 
 </header>
@@ -838,56 +1115,18 @@ TITLE
 <section class="page-head">
 
 <h2>
-ผู้สูงอายุ
+ศูนย์ข้อมูลผู้สูงอายุ
 </h2>
 
 <p>
-ข้อมูลและแนวทางการดูแลผู้สูงอายุบ้านร่องเข็ม หมู่ที่ 6
+ข้อมูลสำหรับการประสานงาน ดูแล และติดตามผู้สูงอายุในชุมชน
 </p>
 
 <div class="source">
 
-<i class="fa-solid fa-file-lines"></i>
+<i class="fa-solid fa-shield-halved"></i>
 
-ยึดรายงานการวินิจฉัยชุมชนเป็นข้อมูลหลัก
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-NOTICE
-===================================================== -->
-
-<section class="notice">
-
-<div class="notice-icon">
-
-<i class="fa-solid fa-circle-info"></i>
-
-</div>
-
-<div>
-
-<h3>
-ยังไม่มีจำนวนผู้สูงอายุที่ยืนยันในรายงานหลัก
-</h3>
-
-<p>
-
-จากการตรวจสอบรายงานหลัก ไม่พบตารางจำนวนผู้สูงอายุ
-แยกชายหญิง หรือทะเบียนรายบุคคลที่สามารถนำมาแสดงเป็นตัวเลขได้
-จึงไม่ใส่ตัวเลขประมาณการหรือข้อมูลจากแหล่งอื่น
-
-</p>
-
-<p>
-
-เมื่อมีทะเบียนผู้สูงอายุจริง สามารถนำเข้าระบบภายหลังได้
-
-</p>
+ข้อมูลส่วนบุคคลจำกัดการเข้าถึง
 
 </div>
 
@@ -911,7 +1150,7 @@ STATS
 </div>
 
 <div
-id="elderlyTotal"
+id="totalElderly"
 class="stat-value">
 
 --
@@ -920,7 +1159,7 @@ class="stat-value">
 
 <div class="stat-label">
 
-ผู้สูงอายุที่มีทะเบียนในระบบ
+ผู้สูงอายุในระบบ
 
 </div>
 
@@ -931,12 +1170,12 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-person"></i>
+<i class="fa-solid fa-house"></i>
 
 </div>
 
 <div
-id="elderlyMale"
+id="houseCount"
 class="stat-value">
 
 --
@@ -944,242 +1183,273 @@ class="stat-value">
 </div>
 
 <div class="stat-label">
+
+ครัวเรือนที่เกี่ยวข้อง
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-house-medical"></i>
+
+</div>
+
+<div
+id="visitCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+รายการเยี่ยมบ้าน
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-list-check"></i>
+
+</div>
+
+<div
+id="followCount"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+รายการติดตาม
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+CONTROL
+===================================================== -->
+
+<section class="control">
+
+
+<div class="filters">
+
+
+<button
+class="filter active"
+onclick="setFilter('all',this)">
+
+ทั้งหมด
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('ชาย',this)">
 
 ชาย
 
-</div>
-
-</div>
+</button>
 
 
-<div class="stat">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-person-dress"></i>
-
-</div>
-
-<div
-id="elderlyFemale"
-class="stat-value">
-
---
-
-</div>
-
-<div class="stat-label">
+<button
+class="filter"
+onclick="setFilter('หญิง',this)">
 
 หญิง
 
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-REPORT INFORMATION
-===================================================== -->
-
-<section class="grid">
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-ข้อมูลจากรายงาน
-</div>
-
-<div class="card-sub">
-สิ่งที่เอกสารระบุเกี่ยวกับผู้สูงอายุ
-</div>
-
-</div>
-
-<i class="fa-solid fa-file-medical"
-style="color:#a78bfa">
-</i>
-
-</div>
-
-
-<div class="info-list">
-
-
-<div class="info-row">
-
-<strong>
-การออกกำลังกาย
-</strong>
-
-<span>
-
-รายงานระบุว่าผู้สูงอายุส่วนใหญ่มักออกกำลังกาย
-ด้วยการเดินรอบบริเวณหมู่บ้านหรือรอบบ้าน
-
-</span>
-
-</div>
-
-
-<div class="info-row">
-
-<strong>
-การส่งเสริมสุขภาพ
-</strong>
-
-<span>
-
-ในชุมชนมีการแนะนำเรื่องการออกกำลังกาย
-ที่เหมาะสมกับทุกเพศทุกวัย
-
-</span>
-
-</div>
-
-
-<div class="info-row">
-
-<strong>
-กิจกรรมชุมชน
-</strong>
-
-<span>
-
-รายงานกล่าวถึงการเต้นแอโรบิค
-การบริหารร่างกาย การเดิน วิ่ง และปั่นจักรยาน
-
-</span>
-
-</div>
+</button>
 
 
 </div>
 
-</div>
 
-
-
-<div class="card">
-
-<div class="card-head">
-
-<div>
-
-<div class="card-title">
-ข้อมูลที่จะเพิ่มภายหลัง
-</div>
-
-<div class="card-sub">
-สำหรับทะเบียนผู้สูงอายุจริง
-</div>
-
-</div>
-
-<i class="fa-solid fa-database"
-style="color:#a78bfa">
-</i>
-
-</div>
-
-
-<div class="info-list">
-
-
-<div class="info-row">
-
-<strong>
-ทะเบียนรายบุคคล
-</strong>
-
-<span>
-ชื่อ-นามสกุล และเลขที่บ้าน
-</span>
-
-</div>
-
-
-<div class="info-row">
-
-<strong>
-ข้อมูลพื้นฐาน
-</strong>
-
-<span>
-อายุ เพศ และสถานะการอยู่อาศัย
-</span>
-
-</div>
-
-
-<div class="info-row">
-
-<strong>
-การดูแล
-</strong>
-
-<span>
-ข้อมูลผู้ดูแลและข้อมูลช่วยเหลือ
-ตามสิทธิ์การเข้าถึงของระบบ
-</span>
-
-</div>
-
-
-</div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- =====================================================
-SEARCH
-===================================================== -->
-
-<section class="search-panel">
-
-<div class="search-title">
-
-ค้นหาทะเบียนผู้สูงอายุ
-
-</div>
-
-<div class="search-sub">
-
-ใช้เมื่อมีการนำทะเบียนจริงเข้าสู่ระบบ
-
-</div>
-
-
-<div class="search-box">
+<div class="search">
 
 <input
 id="searchInput"
 type="search"
-placeholder="ค้นหาชื่อหรือเลขที่บ้าน"
+placeholder="ค้นหาชื่อหรือบ้านเลขที่..."
 autocomplete="off">
 
 
 <button
 class="btn"
-onclick="searchElderly()">
+onclick="loadElderly()">
 
 <i class="fa-solid fa-magnifying-glass"></i>
 
 ค้นหา
 
 </button>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+ELDERLY CARDS
+===================================================== -->
+
+<section
+id="elderlyGrid"
+class="elderly-grid">
+
+<div class="empty">
+
+<i class="fa-solid fa-person-cane"></i>
+
+กำลังโหลดข้อมูลผู้สูงอายุ...
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+FOLLOW UP
+===================================================== -->
+
+<section class="followup">
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+การเยี่ยมบ้าน
+</div>
+
+<div class="panel-sub">
+รายการจากระบบที่ได้รับอนุญาตให้แสดง
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-house-medical"
+style="color:#fde68a;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="visitList"
+class="follow-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-house-medical"></i>
+
+ยังไม่มีข้อมูลการเยี่ยมบ้าน
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+งานที่ต้องติดตาม
+</div>
+
+<div class="panel-sub">
+สำหรับเจ้าหน้าที่หรือผู้รับผิดชอบ
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-list-check"
+style="color:#fde68a;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="followList"
+class="follow-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-clipboard-check"></i>
+
+ยังไม่มีรายการติดตาม
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+TABLE
+===================================================== -->
+
+<section class="table-card">
+
+
+<div class="table-head">
+
+<div>
+
+<div class="table-title">
+ทะเบียนผู้สูงอายุ
+</div>
+
+<div class="table-sub">
+ข้อมูลจากฐานข้อมูลจริงของระบบ
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-table-list"
+style="font-size:24px;color:#fde68a">
+</i>
 
 </div>
 
@@ -1192,25 +1462,17 @@ onclick="searchElderly()">
 
 <tr>
 
-<th>
-ชื่อ-นามสกุล
-</th>
+<th>ลำดับ</th>
 
-<th>
-เลขที่บ้าน
-</th>
+<th>ชื่อ-นามสกุล</th>
 
-<th>
-อายุ
-</th>
+<th>เพศ</th>
 
-<th>
-เพศ
-</th>
+<th>อายุ</th>
 
-<th>
-สถานะ
-</th>
+<th>บ้านเลขที่</th>
+
+<th>สถานะ</th>
 
 </tr>
 
@@ -1223,16 +1485,12 @@ id="elderlyTable">
 <tr>
 
 <td
-colspan="5"
+colspan="6"
 class="empty">
 
-<i class="fa-solid fa-user-lock"></i>
+<i class="fa-solid fa-database"></i>
 
-ยังไม่มีทะเบียนผู้สูงอายุรายบุคคลในระบบ
-
-<br>
-
-ระบบจะไม่สร้างข้อมูลขึ้นเอง
+ยังไม่มีข้อมูลผู้สูงอายุ
 
 </td>
 
@@ -1241,6 +1499,40 @@ class="empty">
 </tbody>
 
 </table>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+PRIVACY
+===================================================== -->
+
+<section class="privacy">
+
+<div class="privacy-icon">
+
+<i class="fa-solid fa-user-lock"></i>
+
+</div>
+
+<div>
+
+<h3>
+การคุ้มครองข้อมูลผู้สูงอายุ
+</h3>
+
+<p>
+
+ข้อมูลผู้สูงอายุอาจเชื่อมโยงกับข้อมูลสุขภาพ
+และข้อมูลส่วนบุคคล จึงควรจำกัดสิทธิ์การเข้าถึง
+ระบบสาธารณะไม่ควรเปิดเผยเลขบัตรประชาชน
+เบอร์โทรศัพท์ รายละเอียดโรค หรือประวัติการรักษา
+
+</p>
 
 </div>
 
@@ -1261,6 +1553,7 @@ RONGKHEM e-VILLAGE
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
+
 
 <div>
 
@@ -1289,6 +1582,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "ใส่_ANON_KEY_ของคุณ";
 
+
 const supabaseClient =
 supabase.createClient(
     SUPABASE_URL,
@@ -1297,105 +1591,66 @@ supabase.createClient(
 
 
 /* =====================================================
-LOAD ELDERLY DATA
+STATE
 ===================================================== */
 
-async function loadElderly(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "elderly"
-        )
-
-        .select(
-            "id,first_name,last_name,house_number,age,gender,status"
-        );
+let currentFilter =
+"all";
 
 
-        if(error)
-            throw error;
+/* =====================================================
+ESCAPE
+===================================================== */
 
+function escapeHTML(value){
 
-        if(
-            !data ||
-            data.length === 0
-        ){
+    return String(
+        value ?? ""
+    )
 
-            return;
-
-        }
-
-
-        const total =
-        data.length;
-
-
-        const male =
-        data.filter(
-            item =>
-            item.gender === "ชาย"
-        ).length;
-
-
-        const female =
-        data.filter(
-            item =>
-            item.gender === "หญิง"
-        ).length;
-
-
-        document.getElementById(
-            "elderlyTotal"
-        ).textContent =
-        total.toLocaleString(
-            "th-TH"
-        );
-
-
-        document.getElementById(
-            "elderlyMale"
-        ).textContent =
-        male.toLocaleString(
-            "th-TH"
-        );
-
-
-        document.getElementById(
-            "elderlyFemale"
-        ).textContent =
-        female.toLocaleString(
-            "th-TH"
-        );
-
-
-    }catch(error){
-
-        /*
-          ถ้ายังไม่มีตาราง elderly
-          ไม่แสดงข้อมูลสมมติ
-        */
-
-        console.log(
-            "ยังไม่มีทะเบียน elderly"
-        );
-
-    }
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
 /* =====================================================
-SEARCH
+NUMBER
 ===================================================== */
 
-async function searchElderly(){
+function numberFormat(value){
+
+    if(
+        value === null ||
+        value === undefined
+    ){
+
+        return "--";
+
+    }
+
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
+
+}
+
+
+/* =====================================================
+LOAD ELDERLY
+===================================================== */
+
+async function loadElderly(){
+
+    const grid =
+    document.getElementById(
+        "elderlyGrid"
+    );
+
 
     const keyword =
     document
@@ -1406,28 +1661,301 @@ async function searchElderly(){
     .trim();
 
 
+    try{
+
+        let query =
+        supabaseClient
+
+        .from("elderly")
+
+        .select("*")
+
+        .order(
+            "age",
+            {
+                ascending:false,
+                nullsFirst:false
+            }
+        );
+
+
+        if(
+            currentFilter !== "all"
+        ){
+
+            query =
+            query.eq(
+                "gender",
+                currentFilter
+            );
+
+        }
+
+
+        if(keyword){
+
+            query =
+            query.or(
+                `name.ilike.%${keyword}%,house_number.ilike.%${keyword}%`
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } = await query;
+
+
+        if(error)
+            throw error;
+
+
+        renderElderly(
+            data || []
+        );
+
+
+        renderTable(
+            data || []
+        );
+
+
+        updateStatistics(
+            data || []
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Elderly:",
+            error
+        );
+
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-database"></i>
+
+            ยังไม่มีข้อมูลผู้สูงอายุในฐานข้อมูล
+
+            <br>
+
+            กรุณานำเข้าข้อมูลจริงจากไฟล์ก่อนใช้งาน
+
+        </div>
+
+        `;
+
+
+        renderTable([]);
+
+        updateStatistics([]);
+
+    }
+
+}
+
+
+/* =====================================================
+RENDER CARDS
+===================================================== */
+
+function renderElderly(
+    people
+){
+
+    const grid =
+    document.getElementById(
+        "elderlyGrid"
+    );
+
+
+    if(
+        people.length === 0
+    ){
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-person-circle-question"></i>
+
+            ไม่พบข้อมูลผู้สูงอายุ
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+    people.map(
+        person => `
+
+        <article
+        class="elderly-card">
+
+
+            <div
+            class="elderly-top">
+
+
+                <div
+                class="elderly-icon">
+
+                    <i
+                    class="fa-solid fa-person-cane">
+                    </i>
+
+                </div>
+
+
+                <span
+                class="status">
+
+                    ${escapeHTML(
+                        person.status ||
+                        "ไม่ระบุ"
+                    )}
+
+                </span>
+
+
+            </div>
+
+
+            <div
+            class="elderly-name">
+
+                ${escapeHTML(
+                    person.name ||
+                    "ยังไม่มีข้อมูลชื่อ"
+                )}
+
+            </div>
+
+
+            <div
+            class="elderly-house">
+
+                <i
+                class="fa-solid fa-house">
+                </i>
+
+                บ้านเลขที่
+
+                ${escapeHTML(
+                    person.house_number ||
+                    "-"
+                )}
+
+            </div>
+
+
+            <div
+            class="elderly-info">
+
+
+                <div class="info">
+
+                    <div class="info-label">
+                    อายุ
+                    </div>
+
+                    <div class="info-value">
+
+                        ${
+                            person.age !== null &&
+                            person.age !== undefined
+                            ?
+                            numberFormat(
+                                person.age
+                            ) + " ปี"
+                            :
+                            "--"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="info">
+
+                    <div class="info-label">
+                    เพศ
+                    </div>
+
+                    <div class="info-value">
+
+                        ${escapeHTML(
+                            person.gender ||
+                            "--"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div
+            class="elderly-footer">
+
+                ข้อมูลสำหรับการประสานงานและดูแลชุมชน
+
+            </div>
+
+
+        </article>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+function renderTable(
+    people
+){
+
     const table =
-    document
-    .getElementById(
+    document.getElementById(
         "elderlyTable"
     );
 
 
-    if(!keyword){
+    if(
+        people.length === 0
+    ){
 
         table.innerHTML = `
 
         <tr>
 
-        <td
-        colspan="5"
-        class="empty">
+            <td
+            colspan="6"
+            class="empty">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-database"></i>
 
-        กรุณาระบุชื่อหรือเลขที่บ้าน
+                ยังไม่มีข้อมูล
 
-        </td>
+            </td>
 
         </tr>
 
@@ -1436,6 +1964,126 @@ async function searchElderly(){
         return;
 
     }
+
+
+    table.innerHTML =
+    people.map(
+        (person,index) => `
+
+        <tr>
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    person.name ||
+                    "-"
+                )}
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    person.gender ||
+                    "--"
+                )}
+            </td>
+
+            <td>
+
+                ${
+                    person.age !== null &&
+                    person.age !== undefined
+                    ?
+                    numberFormat(
+                        person.age
+                    )
+                    :
+                    "--"
+                }
+
+            </td>
+
+            <td>
+                ${escapeHTML(
+                    person.house_number ||
+                    "-"
+                )}
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    person.status ||
+                    "ไม่ระบุ"
+                )}
+
+            </td>
+
+        </tr>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+STATISTICS
+===================================================== */
+
+function updateStatistics(
+    people
+){
+
+    const total =
+    people.length;
+
+
+    const houses =
+    new Set(
+        people
+        .map(
+            person =>
+            person.house_number
+        )
+        .filter(Boolean)
+    ).size;
+
+
+    document.getElementById(
+        "totalElderly"
+    ).textContent =
+    total > 0
+    ?
+    total.toLocaleString("th-TH")
+    :
+    "--";
+
+
+    document.getElementById(
+        "houseCount"
+    ).textContent =
+    houses > 0
+    ?
+    houses.toLocaleString("th-TH")
+    :
+    "--";
+
+}
+
+
+/* =====================================================
+LOAD VISITS
+===================================================== */
+
+async function loadVisits(){
+
+    const list =
+    document.getElementById(
+        "visitList"
+    );
 
 
     try{
@@ -1447,14 +2095,21 @@ async function searchElderly(){
         await supabaseClient
 
         .from(
-            "elderly"
+            "health_visits"
         )
 
-        .select("*")
+        .select(
+            "visit_date,category,status,area"
+        )
 
-        .or(
-            `first_name.ilike.%${keyword}%,last_name.ilike.%${keyword}%,house_number.ilike.%${keyword}%`
-        );
+        .order(
+            "visit_date",
+            {
+                ascending:false
+            }
+        )
+
+        .limit(8);
 
 
         if(error)
@@ -1466,65 +2121,72 @@ async function searchElderly(){
             data.length === 0
         ){
 
-            table.innerHTML = `
-
-            <tr>
-
-            <td
-            colspan="5"
-            class="empty">
-
-            ไม่พบข้อมูล
-
-            </td>
-
-            </tr>
-
-            `;
-
             return;
 
         }
 
 
-        table.innerHTML =
+        document.getElementById(
+            "visitCount"
+        ).textContent =
+        data.length.toLocaleString(
+            "th-TH"
+        );
+
+
+        list.innerHTML =
         data.map(
             item => `
 
-            <tr>
+            <div class="follow-item">
 
-            <td>
+                <div class="follow-top">
 
-                ${item.first_name || ""}
-                ${item.last_name || ""}
+                    <div class="follow-title">
 
-            </td>
+                        ${escapeHTML(
+                            item.category ||
+                            "การเยี่ยมบ้าน"
+                        )}
 
-            <td>
+                    </div>
 
-                ${item.house_number || "-"}
+                    <span
+                    class="follow-status">
 
-            </td>
+                        ${escapeHTML(
+                            item.status ||
+                            "ไม่ระบุ"
+                        )}
 
-            <td>
+                    </span>
 
-                ${item.age || "-"}
+                </div>
 
-            </td>
+                <div class="follow-meta">
 
-            <td>
+                    ${
+                        item.area
+                        ?
+                        escapeHTML(item.area)
+                        :
+                        "ไม่ระบุพื้นที่"
+                    }
 
-                ${item.gender || "-"}
+                    ${
+                        item.visit_date
+                        ?
+                        " · " +
+                        formatDate(
+                            item.visit_date
+                        )
+                        :
+                        ""
+                    }
 
-            </td>
+                </div>
 
-            <td>
-
-                ${item.status || "-"}
-
-            </td>
-
-            </tr>
+            </div>
 
             `
         ).join("");
@@ -1532,23 +2194,9 @@ async function searchElderly(){
 
     }catch(error){
 
-        table.innerHTML = `
-
-        <tr>
-
-        <td
-        colspan="5"
-        class="empty">
-
-        <i class="fa-solid fa-database"></i>
-
-        ยังไม่มีทะเบียนผู้สูงอายุในฐานข้อมูล
-
-        </td>
-
-        </tr>
-
-        `;
+        console.log(
+            "ยังไม่มี health_visits"
+        );
 
     }
 
@@ -1556,7 +2204,212 @@ async function searchElderly(){
 
 
 /* =====================================================
-ENTER
+LOAD FOLLOWUPS
+===================================================== */
+
+async function loadFollowups(){
+
+    const list =
+    document.getElementById(
+        "followList"
+    );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "health_followups"
+        )
+
+        .select(
+            "category,status,followup_date,area"
+        )
+
+        .order(
+            "followup_date",
+            {
+                ascending:true
+            }
+        )
+
+        .limit(8);
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "followCount"
+        ).textContent =
+        data.length.toLocaleString(
+            "th-TH"
+        );
+
+
+        list.innerHTML =
+        data.map(
+            item => `
+
+            <div class="follow-item">
+
+                <div class="follow-top">
+
+                    <div class="follow-title">
+
+                        ${escapeHTML(
+                            item.category ||
+                            "รายการติดตาม"
+                        )}
+
+                    </div>
+
+                    <span
+                    class="follow-status">
+
+                        ${escapeHTML(
+                            item.status ||
+                            "ไม่ระบุ"
+                        )}
+
+                    </span>
+
+                </div>
+
+                <div class="follow-meta">
+
+                    ${
+                        item.area
+                        ?
+                        escapeHTML(item.area)
+                        :
+                        "ไม่ระบุพื้นที่"
+                    }
+
+                    ${
+                        item.followup_date
+                        ?
+                        " · " +
+                        formatDate(
+                            item.followup_date
+                        )
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        console.log(
+            "ยังไม่มี health_followups"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+FILTER
+===================================================== */
+
+function setFilter(
+    filter,
+    button
+){
+
+    currentFilter =
+    filter;
+
+
+    document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        item =>
+        item.classList.remove(
+            "active"
+        )
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    loadElderly();
+
+}
+
+
+/* =====================================================
+DATE
+===================================================== */
+
+function formatDate(
+    value
+){
+
+    if(!value)
+        return "-";
+
+
+    const date =
+    new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return escapeHTML(
+            value
+        );
+
+    }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+SEARCH ENTER
 ===================================================== */
 
 document
@@ -1571,7 +2424,7 @@ document
             event.key === "Enter"
         ){
 
-            searchElderly();
+            loadElderly();
 
         }
 
@@ -1588,6 +2441,10 @@ document.addEventListener(
     () => {
 
         loadElderly();
+
+        loadVisits();
+
+        loadFollowups();
 
     }
 );
