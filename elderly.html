@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+ผู้สูงอายุ | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+:root{
+
+    --bg:#07111f;
+    --card:rgba(15,29,48,.88);
+    --border:rgba(255,255,255,.08);
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --cyan:#22d3ee;
+    --blue:#38bdf8;
+    --purple:#a78bfa;
+    --yellow:#facc15;
+    --green:#22c55e;
+
+    --radius:22px;
+
+}
+
+*{
+
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
+}
+
+body{
+
+    font-family:"Prompt",sans-serif;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(167,139,250,.10),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(34,211,238,.08),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
+    );
+
+}
+
+.container{
+
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
+
+    margin:auto;
+
+}
+
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.header{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:100;
+
+    background:
+    rgba(4,11,20,.86);
+
+    backdrop-filter:
+    blur(18px);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+.header-inner{
+
+    min-height:76px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+.logo{
+
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:21px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #a78bfa
+    );
+
+}
+
+.brand h1{
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+}
+
+.brand p{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+.back{
+
+    padding:
+    9px 14px;
+
+    border-radius:12px;
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+
+/* =====================================================
+TITLE
+===================================================== */
+
+.page-head{
+
+    margin-top:30px;
+
+}
+
+.page-head h2{
+
+    font-family:"Kanit";
+
+    font-size:36px;
+
+}
+
+.page-head p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+.source{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:12px;
+
+    padding:
+    8px 12px;
+
+    border-radius:10px;
+
+    color:#c4b5fd;
+
+    background:
+    rgba(167,139,250,.07);
+
+    border:
+    1px solid
+    rgba(167,139,250,.18);
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+NOTICE
+===================================================== */
+
+.notice{
+
+    margin-top:22px;
+
+    padding:21px;
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+    border-radius:22px;
+
+    background:
+    rgba(250,204,21,.06);
+
+    border:
+    1px solid
+    rgba(250,204,21,.17);
+
+}
+
+.notice-icon{
+
+    width:44px;
+    height:44px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:var(--yellow);
+
+    background:
+    rgba(250,204,21,.08);
+
+}
+
+.notice h3{
+
+    font-size:15px;
+
+}
+
+.notice p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.stat{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.stat-icon{
+
+    width:47px;
+    height:47px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#c4b5fd;
+
+    background:
+    rgba(167,139,250,.09);
+
+}
+
+.stat-value{
+
+    margin-top:13px;
+
+    font-family:"Kanit";
+
+    font-size:37px;
+
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+/* =====================================================
+GRID
+===================================================== */
+
+.grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:15px;
+
+}
+
+.card{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.card-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:18px;
+
+}
+
+.card-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.card-sub{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+INFO
+===================================================== */
+
+.info-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.info-row{
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.info-row strong{
+
+    display:block;
+
+    font-size:13px;
+
+}
+
+.info-row span{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.7;
+
+}
+
+
+/* =====================================================
+SEARCH
+===================================================== */
+
+.search-panel{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.search-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.search-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+.search-box{
+
+    margin-top:17px;
+
+    display:flex;
+
+    gap:10px;
+
+}
+
+.search-box input{
+
+    flex:1;
+
+    min-width:0;
+
+    padding:
+    14px 16px;
+
+    border-radius:13px;
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(0,0,0,.20);
+
+    color:white;
+
+    outline:none;
+
+    font-family:"Prompt";
+
+}
+
+.btn{
+
+    padding:
+    12px 17px;
+
+    border:0;
+
+    border-radius:13px;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
+
+    background:
+    linear-gradient(
+        135deg,
+        #7c3aed,
+        #06b6d4
+    );
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+.table-wrap{
+
+    margin-top:18px;
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    min-width:650px;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    padding:
+    14px 12px;
+
+    text-align:left;
+
+    color:#c4b5fd;
+
+    font-size:12px;
+
+    font-weight:500;
+
+    background:
+    rgba(167,139,250,.04);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+td{
+
+    padding:
+    15px 12px;
+
+    font-size:12px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
+
+}
+
+.empty{
+
+    text-align:center;
+
+    padding:45px 20px;
+
+    color:var(--muted);
+
+}
+
+.empty i{
+
+    display:block;
+
+    margin-bottom:12px;
+
+    font-size:38px;
+
+    color:
+    rgba(167,139,250,.35);
+
+}
+
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:45px;
+
+    padding:
+    25px 0;
+
+    border-top:
+    1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:850px){
+
+    .stats{
+
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+    .grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+
+        width:
+        calc(100% - 20px);
+
+    }
+
+    .page-head h2{
+
+        font-size:29px;
+
+    }
+
+    .stats{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .search-box{
+
+        flex-direction:column;
+
+    }
+
+    .footer{
+
+        display:block;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div class="container header-inner">
+
+<div class="brand">
+
+<div class="logo">
+
+<i class="fa-solid fa-person-cane"></i>
+
+</div>
+
+<div>
+
+<h1>
+RONGKHEM e-VILLAGE
+</h1>
+
+<p>
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="back"
+onclick="location.href='../index.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+กลับหน้าหลัก
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =====================================================
+TITLE
+===================================================== -->
+
+<section class="page-head">
+
+<h2>
+ผู้สูงอายุ
+</h2>
+
+<p>
+ข้อมูลและแนวทางการดูแลผู้สูงอายุบ้านร่องเข็ม หมู่ที่ 6
+</p>
+
+<div class="source">
+
+<i class="fa-solid fa-file-lines"></i>
+
+ยึดรายงานการวินิจฉัยชุมชนเป็นข้อมูลหลัก
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+NOTICE
+===================================================== -->
+
+<section class="notice">
+
+<div class="notice-icon">
+
+<i class="fa-solid fa-circle-info"></i>
+
+</div>
+
+<div>
+
+<h3>
+ยังไม่มีจำนวนผู้สูงอายุที่ยืนยันในรายงานหลัก
+</h3>
+
+<p>
+
+จากการตรวจสอบรายงานหลัก ไม่พบตารางจำนวนผู้สูงอายุ
+แยกชายหญิง หรือทะเบียนรายบุคคลที่สามารถนำมาแสดงเป็นตัวเลขได้
+จึงไม่ใส่ตัวเลขประมาณการหรือข้อมูลจากแหล่งอื่น
+
+</p>
+
+<p>
+
+เมื่อมีทะเบียนผู้สูงอายุจริง สามารถนำเข้าระบบภายหลังได้
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+STATS
+===================================================== -->
+
+<section class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-person-cane"></i>
+
+</div>
+
+<div
+id="elderlyTotal"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ผู้สูงอายุที่มีทะเบียนในระบบ
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-person"></i>
+
+</div>
+
+<div
+id="elderlyMale"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+ชาย
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-person-dress"></i>
+
+</div>
+
+<div
+id="elderlyFemale"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+หญิง
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+REPORT INFORMATION
+===================================================== -->
+
+<section class="grid">
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+ข้อมูลจากรายงาน
+</div>
+
+<div class="card-sub">
+สิ่งที่เอกสารระบุเกี่ยวกับผู้สูงอายุ
+</div>
+
+</div>
+
+<i class="fa-solid fa-file-medical"
+style="color:#a78bfa">
+</i>
+
+</div>
+
+
+<div class="info-list">
+
+
+<div class="info-row">
+
+<strong>
+การออกกำลังกาย
+</strong>
+
+<span>
+
+รายงานระบุว่าผู้สูงอายุส่วนใหญ่มักออกกำลังกาย
+ด้วยการเดินรอบบริเวณหมู่บ้านหรือรอบบ้าน
+
+</span>
+
+</div>
+
+
+<div class="info-row">
+
+<strong>
+การส่งเสริมสุขภาพ
+</strong>
+
+<span>
+
+ในชุมชนมีการแนะนำเรื่องการออกกำลังกาย
+ที่เหมาะสมกับทุกเพศทุกวัย
+
+</span>
+
+</div>
+
+
+<div class="info-row">
+
+<strong>
+กิจกรรมชุมชน
+</strong>
+
+<span>
+
+รายงานกล่าวถึงการเต้นแอโรบิค
+การบริหารร่างกาย การเดิน วิ่ง และปั่นจักรยาน
+
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+ข้อมูลที่จะเพิ่มภายหลัง
+</div>
+
+<div class="card-sub">
+สำหรับทะเบียนผู้สูงอายุจริง
+</div>
+
+</div>
+
+<i class="fa-solid fa-database"
+style="color:#a78bfa">
+</i>
+
+</div>
+
+
+<div class="info-list">
+
+
+<div class="info-row">
+
+<strong>
+ทะเบียนรายบุคคล
+</strong>
+
+<span>
+ชื่อ-นามสกุล และเลขที่บ้าน
+</span>
+
+</div>
+
+
+<div class="info-row">
+
+<strong>
+ข้อมูลพื้นฐาน
+</strong>
+
+<span>
+อายุ เพศ และสถานะการอยู่อาศัย
+</span>
+
+</div>
+
+
+<div class="info-row">
+
+<strong>
+การดูแล
+</strong>
+
+<span>
+ข้อมูลผู้ดูแลและข้อมูลช่วยเหลือ
+ตามสิทธิ์การเข้าถึงของระบบ
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+SEARCH
+===================================================== -->
+
+<section class="search-panel">
+
+<div class="search-title">
+
+ค้นหาทะเบียนผู้สูงอายุ
+
+</div>
+
+<div class="search-sub">
+
+ใช้เมื่อมีการนำทะเบียนจริงเข้าสู่ระบบ
+
+</div>
+
+
+<div class="search-box">
+
+<input
+id="searchInput"
+type="search"
+placeholder="ค้นหาชื่อหรือเลขที่บ้าน"
+autocomplete="off">
+
+
+<button
+class="btn"
+onclick="searchElderly()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+ค้นหา
+
+</button>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+ชื่อ-นามสกุล
+</th>
+
+<th>
+เลขที่บ้าน
+</th>
+
+<th>
+อายุ
+</th>
+
+<th>
+เพศ
+</th>
+
+<th>
+สถานะ
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="elderlyTable">
+
+<tr>
+
+<td
+colspan="5"
+class="empty">
+
+<i class="fa-solid fa-user-lock"></i>
+
+ยังไม่มีทะเบียนผู้สูงอายุรายบุคคลในระบบ
+
+<br>
+
+ระบบจะไม่สร้างข้อมูลขึ้นเอง
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+<div>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</div>
+
+</footer>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
+
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+LOAD ELDERLY DATA
+===================================================== */
+
+async function loadElderly(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "elderly"
+        )
+
+        .select(
+            "id,first_name,last_name,house_number,age,gender,status"
+        );
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        const total =
+        data.length;
+
+
+        const male =
+        data.filter(
+            item =>
+            item.gender === "ชาย"
+        ).length;
+
+
+        const female =
+        data.filter(
+            item =>
+            item.gender === "หญิง"
+        ).length;
+
+
+        document.getElementById(
+            "elderlyTotal"
+        ).textContent =
+        total.toLocaleString(
+            "th-TH"
+        );
+
+
+        document.getElementById(
+            "elderlyMale"
+        ).textContent =
+        male.toLocaleString(
+            "th-TH"
+        );
+
+
+        document.getElementById(
+            "elderlyFemale"
+        ).textContent =
+        female.toLocaleString(
+            "th-TH"
+        );
+
+
+    }catch(error){
+
+        /*
+          ถ้ายังไม่มีตาราง elderly
+          ไม่แสดงข้อมูลสมมติ
+        */
+
+        console.log(
+            "ยังไม่มีทะเบียน elderly"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+SEARCH
+===================================================== */
+
+async function searchElderly(){
+
+    const keyword =
+    document
+    .getElementById(
+        "searchInput"
+    )
+    .value
+    .trim();
+
+
+    const table =
+    document
+    .getElementById(
+        "elderlyTable"
+    );
+
+
+    if(!keyword){
+
+        table.innerHTML = `
+
+        <tr>
+
+        <td
+        colspan="5"
+        class="empty">
+
+        <i class="fa-solid fa-magnifying-glass"></i>
+
+        กรุณาระบุชื่อหรือเลขที่บ้าน
+
+        </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "elderly"
+        )
+
+        .select("*")
+
+        .or(
+            `first_name.ilike.%${keyword}%,last_name.ilike.%${keyword}%,house_number.ilike.%${keyword}%`
+        );
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            table.innerHTML = `
+
+            <tr>
+
+            <td
+            colspan="5"
+            class="empty">
+
+            ไม่พบข้อมูล
+
+            </td>
+
+            </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        table.innerHTML =
+        data.map(
+            item => `
+
+            <tr>
+
+            <td>
+
+                ${item.first_name || ""}
+                ${item.last_name || ""}
+
+            </td>
+
+            <td>
+
+                ${item.house_number || "-"}
+
+            </td>
+
+            <td>
+
+                ${item.age || "-"}
+
+            </td>
+
+            <td>
+
+                ${item.gender || "-"}
+
+            </td>
+
+            <td>
+
+                ${item.status || "-"}
+
+            </td>
+
+            </tr>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        table.innerHTML = `
+
+        <tr>
+
+        <td
+        colspan="5"
+        class="empty">
+
+        <i class="fa-solid fa-database"></i>
+
+        ยังไม่มีทะเบียนผู้สูงอายุในฐานข้อมูล
+
+        </td>
+
+        </tr>
+
+        `;
+
+    }
+
+}
+
+
+/* =====================================================
+ENTER
+===================================================== */
+
+document
+.getElementById(
+    "searchInput"
+)
+.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter"
+        ){
+
+            searchElderly();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+INIT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        loadElderly();
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
