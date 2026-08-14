@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>โครงสร้างชุมชน | RONGKHEM e-VILLAGE OFFICE</title>
+
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+*{
+ box-sizing:border-box;
+}
+
+body{
+ margin:0;
+ font-family:
+ "Noto Sans Thai",
+ "Leelawadee UI",
+ Tahoma,
+ sans-serif;
+ background:#f4f7fb;
+ color:#172033;
+}
+
+.communityPage{
+ max-width:1450px;
+ margin:auto;
+ padding:25px;
+}
+
+/* HERO */
+
+.communityHero{
+ position:relative;
+ overflow:hidden;
+ padding:45px;
+ border-radius:28px;
+ color:#fff;
+ background:
+ linear-gradient(
+  135deg,
+  #073b4c,
+  #087f8c,
+  #20a39e
+ );
+ box-shadow:0 18px 45px rgba(7,59,76,.2);
+}
+
+.communityHero:after{
+ content:"👥";
+ position:absolute;
+ right:40px;
+ bottom:-45px;
+ font-size:200px;
+ opacity:.12;
+}
+
+.communityHero h1{
+ margin:0 0 10px;
+ font-size:38px;
+ position:relative;
+ z-index:2;
+}
+
+.communityHero p{
+ margin:5px 0;
+ font-size:17px;
+ position:relative;
+ z-index:2;
+}
+
+.badge{
+ display:inline-block;
+ margin-top:18px;
+ padding:9px 15px;
+ border-radius:999px;
+ background:rgba(255,255,255,.15);
+ border:1px solid rgba(255,255,255,.25);
+}
+
+/* SUMMARY */
+
+.summary{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:18px;
+ margin:22px 0;
+}
+
+.summaryCard{
+ background:#fff;
+ border-radius:20px;
+ padding:20px;
+ box-shadow:0 7px 25px rgba(15,23,42,.06);
+ border:1px solid #e8edf3;
+}
+
+.summaryIcon{
+ font-size:32px;
+}
+
+.summaryNumber{
+ margin-top:5px;
+ font-size:28px;
+ font-weight:900;
+ color:#087f8c;
+}
+
+.summaryText{
+ color:#64748b;
+}
+
+/* SECTION */
+
+.section{
+ margin-top:30px;
+}
+
+.sectionTitle{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:15px;
+ margin-bottom:15px;
+}
+
+.sectionTitle h2{
+ margin:0;
+ color:#123c4a;
+}
+
+.sectionTitle p{
+ margin:3px 0 0;
+ color:#64748b;
+}
+
+/* LEADERS */
+
+.leaderStructure{
+ background:#fff;
+ padding:30px;
+ border-radius:25px;
+ box-shadow:0 8px 28px rgba(15,23,42,.07);
+}
+
+.orgTop{
+ display:flex;
+ justify-content:center;
+}
+
+.orgLeader{
+ width:min(390px,100%);
+ text-align:center;
+ padding:25px;
+ border-radius:20px;
+ background:
+ linear-gradient(135deg,#075985,#0e7490);
+ color:#fff;
+ box-shadow:0 12px 30px rgba(7,89,133,.2);
+}
+
+.orgLeader .personIcon{
+ font-size:45px;
+}
+
+.orgLeader h3{
+ margin:8px 0 3px;
+ font-size:22px;
+}
+
+.orgLine{
+ width:3px;
+ height:35px;
+ background:#94a3b8;
+ margin:auto;
+}
+
+.assistants{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:20px;
+ max-width:850px;
+ margin:auto;
+}
+
+.orgPerson{
+ padding:20px;
+ border-radius:18px;
+ background:#f8fafc;
+ border:2px solid #e2e8f0;
+ text-align:center;
+}
+
+.orgPerson .personIcon{
+ font-size:35px;
+}
+
+.orgPerson h3{
+ margin:7px 0;
+}
+
+.role{
+ color:#087f8c;
+ font-weight:800;
+}
+
+/* GROUP GRID */
+
+.groupGrid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:18px;
+}
+
+.groupCard{
+ background:#fff;
+ border-radius:20px;
+ padding:22px;
+ border:1px solid #e7ecf2;
+ box-shadow:0 7px 24px rgba(15,23,42,.06);
+ transition:.2s;
+}
+
+.groupCard:hover{
+ transform:translateY(-3px);
+ box-shadow:0 12px 30px rgba(15,23,42,.1);
+}
+
+.groupIcon{
+ width:58px;
+ height:58px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ border-radius:16px;
+ background:#e6f7f7;
+ font-size:31px;
+}
+
+.groupCard h3{
+ margin:15px 0 5px;
+}
+
+.groupDescription{
+ color:#64748b;
+ line-height:1.7;
+ font-size:14px;
+}
+
+.memberCount{
+ display:inline-block;
+ margin-top:10px;
+ padding:5px 10px;
+ border-radius:999px;
+ background:#ecfeff;
+ color:#0e7490;
+ font-size:13px;
+ font-weight:800;
+}
+
+/* MEMBERS */
+
+.memberList{
+ margin-top:15px;
+ display:none;
+ border-top:1px solid #e2e8f0;
+ padding-top:15px;
+}
+
+.memberList.show{
+ display:block;
+}
+
+.member{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ padding:8px 0;
+ border-bottom:1px dashed #e2e8f0;
+ font-size:14px;
+}
+
+.member:last-child{
+ border-bottom:0;
+}
+
+.memberNo{
+ color:#94a3b8;
+ min-width:28px;
+}
+
+.memberName{
+ flex:1;
+}
+
+.toggleBtn{
+ margin-top:15px;
+ width:100%;
+ border:0;
+ border-radius:11px;
+ padding:10px;
+ cursor:pointer;
+ background:#f1f5f9;
+ color:#0f172a;
+ font-weight:800;
+}
+
+/* IMPORTANT PEOPLE */
+
+.peopleGrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:20px;
+}
+
+.peopleCard{
+ background:#fff;
+ padding:25px;
+ border-radius:20px;
+ border:1px solid #e5e7eb;
+ box-shadow:0 7px 24px rgba(15,23,42,.06);
+}
+
+.peopleCard h3{
+ margin-top:0;
+}
+
+.peopleItem{
+ display:flex;
+ gap:12px;
+ align-items:center;
+ padding:12px 0;
+ border-bottom:1px solid #eef2f7;
+}
+
+.peopleItem:last-child{
+ border-bottom:0;
+}
+
+.peopleAvatar{
+ width:45px;
+ height:45px;
+ border-radius:50%;
+ background:#e0f2fe;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:22px;
+ flex:none;
+}
+
+/* ADD */
+
+.adminTools{
+ display:flex;
+ gap:10px;
+ flex-wrap:wrap;
+}
+
+.adminBtn{
+ border:0;
+ padding:11px 15px;
+ border-radius:11px;
+ cursor:pointer;
+ font-weight:800;
+}
+
+.addBtn{
+ background:#16a34a;
+ color:white;
+}
+
+.editBtn{
+ background:#dbeafe;
+ color:#1d4ed8;
+}
+
+.deleteBtn{
+ background:#fee2e2;
+ color:#b91c1c;
+}
+
+/* FOOTER */
+
+.footer{
+ margin-top:40px;
+ padding:25px;
+ text-align:center;
+ background:#073b4c;
+ color:#fff;
+ border-radius:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:1000px){
+
+ .summary{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .groupGrid{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+}
+
+@media(max-width:700px){
+
+ .communityPage{
+  padding:14px;
+ }
+
+ .communityHero{
+  padding:28px 22px;
+ }
+
+ .communityHero h1{
+  font-size:28px;
+ }
+
+ .summary{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .assistants{
+  grid-template-columns:1fr;
+ }
+
+ .groupGrid{
+  grid-template-columns:1fr;
+ }
+
+ .peopleGrid{
+  grid-template-columns:1fr;
+ }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="communityPage">
+
+<!-- HERO -->
+
+<section class="communityHero">
+
+<h1>👥 โครงสร้างชุมชนบ้านร่องเข็ม</h1>
+
+<p>
+ผู้นำชุมชน • องค์กรชุมชน • กลุ่มอาสาสมัคร • กลุ่มประชาชน
+</p>
+
+<p>
+บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+</p>
+
+<div class="badge">
+🏛️ RONGKHEM e-VILLAGE OFFICE
+</div>
+
+</section>
+
+
+<!-- SUMMARY -->
+
+<section class="summary">
+
+<div class="summaryCard">
+<div class="summaryIcon">👥</div>
+<div class="summaryNumber">352</div>
+<div class="summaryText">ครัวเรือน</div>
+</div>
+
+<div class="summaryCard">
+<div class="summaryIcon">👨</div>
+<div class="summaryNumber">471</div>
+<div class="summaryText">ประชากรชาย</div>
+</div>
+
+<div class="summaryCard">
+<div class="summaryIcon">👩</div>
+<div class="summaryNumber">489</div>
+<div class="summaryText">ประชากรหญิง</div>
+</div>
+
+<div class="summaryCard">
+<div class="summaryIcon">🏘️</div>
+<div class="summaryNumber">หลายกลุ่ม</div>
+<div class="summaryText">องค์กรและกลุ่มชุมชน</div>
+</div>
+
+</section>
+
+
+<!-- LEADERS -->
+
+<section class="section">
+
+<div class="sectionTitle">
+
+<div>
+<h2>🏛️ โครงสร้างผู้นำชุมชน</h2>
+<p>กลุ่มผู้นำชุมชนหมู่ที่ 6 บ้านร่องเข็ม</p>
+</div>
+
+</div>
+
+
+<div class="leaderStructure">
+
+<div class="orgTop">
+
+<div class="orgLeader">
+
+<div class="personIcon">👔</div>
+
+<div>ผู้ใหญ่บ้าน</div>
+
+<h3>
+นายศักรนนทน์ ขัติย์วงศ์
+</h3>
+
+<div>
+ผู้นำฝ่ายปกครองของหมู่บ้าน
+</div>
+
+</div>
+
+</div>
+
+
+<div class="orgLine"></div>
+
+
+<div class="assistants">
+
+<div class="orgPerson">
+
+<div class="personIcon">👨‍💼</div>
+
+<div class="role">
+ผู้ช่วยผู้ใหญ่บ้าน
+</div>
+
+<h3>
+นายจักร์กวัส ประพลรัตนัง
+</h3>
+
+</div>
+
+
+<div class="orgPerson">
+
+<div class="personIcon">👩‍💼</div>
+
+<div class="role">
+ผู้ช่วยผู้ใหญ่บ้าน
+</div>
+
+<h3>
+นางสาวสุภาพร วังมูล
+</h3>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- OFFICIAL GROUPS -->
+
+<section class="section">
+
+<div class="sectionTitle">
+
+<div>
+<h2>🏛️ องค์กรชุมชนอย่างเป็นทางการ</h2>
+<p>หน่วยงานและกลุ่มที่ทำหน้าที่ร่วมกับผู้นำชุมชน</p>
+</div>
+
+</div>
+
+
+<div class="groupGrid">
+
+
+<!-- คณะกรรมการ -->
+
+<div class="groupCard">
+
+<div class="groupIcon">👥</div>
+
+<h3>คณะกรรมการหมู่บ้าน</h3>
+
+<div class="groupDescription">
+คณะกรรมการที่ช่วยงานผู้ใหญ่บ้าน
+และปฏิบัติหน้าที่ตามแบบแผนของทางราชการ
+รวมทั้งร่วมวางแผนพัฒนาหมู่บ้าน
+</div>
+
+<span class="memberCount">
+8 คน
+</span>
+
+<button
+class="toggleBtn"
+onclick="toggleGroup('committee')">
+ดูรายชื่อ
+</button>
+
+<div
+class="memberList"
+id="committee">
+
+<div class="member">
+<span class="memberNo">1</span>
+<span class="memberName">นายอัครวัฒน์ วรพิพัฒน์ผัดดี</span>
+</div>
+
+<div class="member">
+<span class="memberNo">2</span>
+<span class="memberName">นายยนต์ บุญธิวงศ์</span>
+</div>
+
+<div class="member">
+<span class="memberNo">3</span>
+<span class="memberName">นางสาวนวกชมณ ปิงเมือง</span>
+</div>
+
+<div class="member">
+<span class="memberNo">4</span>
+<span class="memberName">นายประจักษ์ งานดี</span>
+</div>
+
+<div class="member">
+<span class="memberNo">5</span>
+<span class="memberName">นายยรรยง ผัดดี</span>
+</div>
+
+<div class="member">
+<span class="memberNo">6</span>
+<span class="memberName">นายผัด เครือนวล</span>
+</div>
+
+<div class="member">
+<span class="memberNo">7</span>
+<span class="memberName">นายสุนิตย์ ไข่หนู</span>
+</div>
+
+<div class="member">
+<span class="memberNo">8</span>
+<span class="memberName">นายทวัน ทาฤทธิ์</span>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- กองทุน -->
+
+<div class="groupCard">
+
+<div class="groupIcon">💰</div>
+
+<h3>กองทุนหมู่บ้าน</h3>
+
+<div class="groupDescription">
+เป็นแหล่งเงินทุนหมุนเวียนสำหรับการลงทุน
+พัฒนาอาชีพ สร้างงาน และสร้างรายได้
+ในชุมชน
+</div>
+
+<span class="memberCount">
+9 คน
+</span>
+
+<button
+class="toggleBtn"
+onclick="toggleGroup('fund')">
+ดูรายชื่อ
+</button>
+
+<div
+class="memberList"
+id="fund">
+
+<div class="member"><span class="memberNo">1</span><span class="memberName">นายสมเกียรติ อุปเสน</span></div>
+<div class="member"><span class="memberNo">2</span><span class="memberName">นายวันชัย บุญเก่ง</span></div>
+<div class="member"><span class="memberNo">3</span><span class="memberName">นายธวัชชัย บุญเก่ง</span></div>
+<div class="member"><span class="memberNo">4</span><span class="memberName">นางไสว ศรีไชยอิน</span></div>
+<div class="member"><span class="memberNo">5</span><span class="memberName">นายภาณุพงษ์ ผัดดี</span></div>
+<div class="member"><span class="memberNo">6</span><span class="memberName">นายธนารันทกร ทินนา</span></div>
+<div class="member"><span class="memberNo">7</span><span class="memberName">นางอัมพร ปิงเมือง</span></div>
+<div class="member"><span class="memberNo">8</span><span class="memberName">นายมา วังมูล</span></div>
+<div class="member"><span class="memberNo">9</span><span class="memberName">นายสนาน วังมูล</span></div>
+
+</div>
+
+</div>
+
+
+<!-- อสม -->
+
+<div class="groupCard">
+
+<div class="groupIcon">🩺</div>
+
+<h3>อาสาสมัครสาธารณสุขประจำหมู่บ้าน</h3>
+
+<div class="groupDescription">
+อสม. ทำหน้าที่ประสานงานด้านสุขภาพ
+แจ้งข่าวสารสุขภาพ เฝ้าระวังและป้องกัน
+ปัญหาสาธารณสุขในชุมชน
+</div>
+
+<span class="memberCount">
+26 คน
+</span>
+
+<button
+class="toggleBtn"
+onclick="toggleGroup('osm')">
+ดูรายชื่อ 26 คน
+</button>
+
+<div
+class="memberList"
+id="osm">
+
+<div class="member"><span class="memberNo">1</span><span class="memberName">นางดวงแข จันทร์มูล — ประธาน อสม.</span></div>
+<div class="member"><span class="memberNo">2</span><span class="memberName">นางเกษร ผัดดี</span></div>
+<div class="member"><span class="memberNo">3</span><span class="memberName">นางศศิธร เข็มแก้ว</span></div>
+<div class="member"><span class="memberNo">4</span><span class="memberName">นางบัวจีน ปันใจ</span></div>
+<div class="member"><span class="memberNo">5</span><span class="memberName">นายพัฒนศักดิ์ ดีกัลป์ลา</span></div>
+<div class="member"><span class="memberNo">6</span><span class="memberName">นางอำพร ปิงเมือง</span></div>
+<div class="member"><span class="memberNo">7</span><span class="memberName">นางจันทร์สม ปิงเมือง</span></div>
+<div class="member"><span class="memberNo">8</span><span class="memberName">นางกรรณิการ์ นาแพร่</span></div>
+<div class="member"><span class="memberNo">9</span><span class="memberName">นายชุมพล ใฝ่ใจ</span></div>
+<div class="member"><span class="memberNo">10</span><span class="memberName">นางแสงเดือน จันทร์มูล</span></div>
+<div class="member"><span class="memberNo">11</span><span class="memberName">นางบัวหนอง ขัติย์ษิ</span></div>
+<div class="member"><span class="memberNo">12</span><span class="memberName">นางทวีพร จันทร์มูล</span></div>
+<div class="member"><span class="memberNo">13</span><span class="memberName">นายแก้วมูล ทินนา</span></div>
+<div class="member"><span class="memberNo">14</span><span class="memberName">นางอลิษา ใฝ่จิตต์</span></div>
+<div class="member"><span class="memberNo">15</span><span class="memberName">นางเขียว งามจิต</span></div>
+<div class="member"><span class="memberNo">16</span><span class="memberName">นางเพ็ญศรี งามจิต</span></div>
+<div class="member"><span class="memberNo">17</span><span class="memberName">นางจันทร์ฉาม วงค์ปัญญา</span></div>
+<div class="member"><span class="memberNo">18</span><span class="memberName">นางบัวหนา ทาฤทธ์</span></div>
+<div class="member"><span class="memberNo">19</span><span class="memberName">นายอิ่ม จักจุ่ม</span></div>
+<div class="member"><span class="memberNo">20</span><span class="memberName">นายปัน ผัดดี</span></div>
+<div class="member"><span class="memberNo">21</span><span class="memberName">นายสุพัศน์ ปันใจ</span></div>
+<div class="member"><span class="memberNo">22</span><span class="memberName">นายธนวัฒน์ ปันใจ</span></div>
+<div class="member"><span class="memberNo">23</span><span class="memberName">นางอำไพวิทย์ ปัญญา</span></div>
+<div class="member"><span class="memberNo">24</span><span class="memberName">นางอำภา งามจิต</span></div>
+<div class="member"><span class="memberNo">25</span><span class="memberName">นายพิพัฒน์ ใฝ่ใจ</span></div>
+<div class="member"><span class="memberNo">26</span><span class="memberName">นายประจักร งานดี</span></div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- INFORMAL GROUPS -->
+
+<section class="section">
+
+<div class="sectionTitle">
+
+<div>
+<h2>🤝 กลุ่มและองค์กรชุมชน</h2>
+<p>โครงสร้างแบบไม่เป็นทางการและกลุ่มที่รวมตัวกันในชุมชน</p>
+</div>
+
+</div>
+
+
+<div class="groupGrid">
+
+
+<!-- แม่บ้าน -->
+
+<div class="groupCard">
+
+<div class="groupIcon">👩‍👩‍👧</div>
+
+<h3>กลุ่มแม่บ้าน</h3>
+
+<div class="groupDescription">
+กลุ่มสตรีในหมู่บ้านที่รวมตัวกัน
+และทำงานร่วมกันเมื่อมีกิจกรรมต่าง ๆ
+ของชุมชน
+</div>
+
+<span class="memberCount">
+15 คน
+</span>
+
+<button
+class="toggleBtn"
+onclick="toggleGroup('housewife')">
+ดูรายชื่อ
+</button>
+
+<div
+class="memberList"
+id="housewife">
+
+<div class="member"><span class="memberNo">1</span><span class="memberName">นางสาวจีรวรรณ ผัดดี</span></div>
+<div class="member"><span class="memberNo">2</span><span class="memberName">นางสำรอง มหาวรรณศรี</span></div>
+<div class="member"><span class="memberNo">3</span><span class="memberName">นางสุภาวดี วังมูล</span></div>
+<div class="member"><span class="memberNo">4</span><span class="memberName">นางอารีย์ ประพลรัตนัง</span></div>
+<div class="member"><span class="memberNo">5</span><span class="memberName">นางเดือนฉาย เครือวัลย์</span></div>
+<div class="member"><span class="memberNo">6</span><span class="memberName">นางวิลาวรรณ วังมูล</span></div>
+<div class="member"><span class="memberNo">7</span><span class="memberName">นางนงคราญ ยะนา</span></div>
+<div class="member"><span class="memberNo">8</span><span class="memberName">นางอาลิษา กอเตอะ</span></div>
+<div class="member"><span class="memberNo">9</span><span class="memberName">นางสุพรรณี บุญส่ง</span></div>
+<div class="member"><span class="memberNo">10</span><span class="memberName">นางสุปราณี ถิ่นลำปาง</span></div>
+<div class="member"><span class="memberNo">11</span><span class="memberName">นางปวีณา มิ่งขวัญ</span></div>
+<div class="member"><span class="memberNo">12</span><span class="memberName">นางสุดา บุญเก่ง</span></div>
+<div class="member"><span class="memberNo">13</span><span class="memberName">นางบรรณาลักษณ์ พลูคำ</span></div>
+<div class="member"><span class="memberNo">14</span><span class="memberName">นางกรรณิการ์ นาแพร่</span></div>
+<div class="member"><span class="memberNo">15</span><span class="memberName">นางกรรณิกา บุญเก่ง</span></div>
+
+</div>
+
+</div>
+
+
+<!-- ชรบ -->
+
+<div class="groupCard">
+
+<div class="groupIcon">🛡️</div>
+
+<h3>ชุดรักษาความปลอดภัยหมู่บ้าน (ชรบ.)</h3>
+
+<div class="groupDescription">
+ดูแลความสงบเรียบร้อยและความปลอดภัย
+ภายในหมู่บ้าน
+</div>
+
+<span class="memberCount">
+12 คน
+</span>
+
+<button
+class="toggleBtn"
+onclick="toggleGroup('security')">
+ดูรายชื่อ
+</button>
+
+<div
+class="memberList"
+id="security">
+
+<div class="member"><span class="memberNo">1</span><span class="memberName">นายวันชัย บุญเก่ง</span></div>
+<div class="member"><span class="memberNo">2</span><span class="memberName">นายผัด เครือนวล</span></div>
+<div class="member"><span class="memberNo">3</span><span class="memberName">นายสรชัย ใฝ่ใจ</span></div>
+<div class="member"><span class="memberNo">4</span><span class="memberName">นายอินทอง บุญธิวงค์</span></div>
+<div class="member"><span class="memberNo">5</span><span class="memberName">นายชุมพล ใฝ่ใจ</span></div>
+<div class="member"><span class="memberNo">6</span><span class="memberName">นายศักรนนทน์ ขัติย์วงศ์</span></div>
+<div class="member"><span class="memberNo">7</span><span class="memberName">นายจักรวัส ประพลรัตนัง</span></div>
+<div class="member"><span class="memberNo">8</span><span class="memberName">นายยรรยง ผัดดี</span></div>
+<div class="member"><span class="memberNo">9</span><span class="memberName">นายประจักร งานดี</span></div>
+<div class="member"><span class="memberNo">10</span><span class="memberName">นางสาวสุภาพร วังมูล</span></div>
+<div class="member"><span class="memberNo">11</span><span class="memberName">นายธวัชชัย ทาทอง</span></div>
+<div class="member"><span class="memberNo">12</span><span class="memberName">นายธวัชชัย บุญเก่ง</span></div>
+
+</div>
+
+</div>
+
+
+<!-- ฌาปนกิจ -->
+
+<div class="groupCard">
+
+<div class="groupIcon">🪦</div>
+
+<h3>กลุ่มฌาปนกิจ</h3>
+
+<div class="groupDescription">
+กลุ่มที่ร่วมช่วยเหลือครอบครัวสมาชิก
+เมื่อมีสมาชิกในหมู่บ้านเสียชีวิต
+โดยมีการเก็บเงินจากสมาชิก
+เพื่อนำมอบให้ครอบครัวผู้เสียชีวิต
+</div>
+
+<span class="memberCount">
+ระบบกลุ่มฌาปนกิจ
+</span>
+
+</div>
+
+
+<!-- ผู้สูงอายุ -->
+
+<div class="groupCard">
+
+<div class="groupIcon">👴</div>
+
+<h3>กลุ่มผู้สูงอายุ</h3>
+
+<div class="groupDescription">
+กลุ่มผู้สูงอายุของชุมชน
+สำหรับการดูแล ส่งเสริมสุขภาพ
+และกิจกรรมของผู้สูงอายุ
+</div>
+
+<span class="memberCount">
+อยู่ระหว่างจัดทำข้อมูล
+</span>
+
+</div>
+
+
+<!-- อปพร -->
+
+<div class="groupCard">
+
+<div class="groupIcon">🚒</div>
+
+<h3>อปพร.</h3>
+
+<div class="groupDescription">
+ระบบสำหรับจัดเก็บข้อมูล
+สมาชิกอาสาสมัครป้องกันภัยฝ่ายพลเรือน
+ของหมู่บ้าน
+</div>
+
+<span class="memberCount">
+อยู่ระหว่างจัดทำข้อมูล
+</span>
+
+</div>
+
+
+<!-- ปราชญ์ -->
+
+<div class="groupCard">
+
+<div class="groupIcon">🧑‍🌾</div>
+
+<h3>ปราชญ์ชาวบ้าน</h3>
+
+<div class="groupDescription">
+พื้นที่สำหรับจัดเก็บข้อมูลภูมิปัญญา
+องค์ความรู้ และบุคคลผู้มีประสบการณ์
+ในชุมชน
+</div>
+
+<span class="memberCount">
+อยู่ระหว่างจัดทำข้อมูล
+</span>
+
+</div>
+
+
+<!-- ผู้ทรงคุณวุฒิ -->
+
+<div class="groupCard">
+
+<div class="groupIcon">🎓</div>
+
+<h3>ที่ปรึกษา / ผู้ทรงคุณวุฒิ</h3>
+
+<div class="groupDescription">
+จัดเก็บข้อมูลผู้ทรงคุณวุฒิ
+และผู้ให้คำปรึกษาแก่ชุมชน
+</div>
+
+<span class="memberCount">
+อยู่ระหว่างจัดทำข้อมูล
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- วัด -->
+
+<section class="section">
+
+<div class="peopleGrid">
+
+<div class="peopleCard">
+
+<h3>🏯 วัดและศาสนสถาน</h3>
+
+<div class="peopleItem">
+
+<div class="peopleAvatar">🏯</div>
+
+<div>
+
+<strong>วัดเวฬุวัน (วัดร่องเข็ม)</strong>
+
+<br>
+
+<span style="color:#64748b">
+ข้อมูลประวัติปรากฏในเอกสารชุมชน
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="peopleCard">
+
+<h3>📍 แหล่งเรียนรู้ / สถานที่สำคัญ</h3>
+
+<div class="peopleItem">
+
+<div class="peopleAvatar">💧</div>
+
+<div>
+
+<strong>แหล่งซับน้ำจำ</strong>
+
+<br>
+
+<span style="color:#64748b">
+พื้นที่สำคัญของชุมชน
+</span>
+
+</div>
+
+</div>
+
+<div class="peopleItem">
+
+<div class="peopleAvatar">🌳</div>
+
+<div>
+
+<strong>แหล่งท่องเที่ยวชุมชน</strong>
+
+<br>
+
+<span style="color:#64748b">
+เพิ่มข้อมูล รูปภาพ และรายละเอียดได้
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+🏛️ RONGKHEM e-VILLAGE OFFICE
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+<br>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</footer>
+
+</div>
+
+
+<script>
+
+function toggleGroup(id){
+
+ const box =
+ document.getElementById(id);
+
+ if(!box) return;
+
+ box.classList.toggle("show");
+
+}
+
+</script>
+
+</body>
+</html>
