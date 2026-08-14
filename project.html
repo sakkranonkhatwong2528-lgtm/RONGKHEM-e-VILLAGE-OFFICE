@@ -8,12 +8,9 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-โครงการพัฒนาหมู่บ้าน | RONGKHEM e-VILLAGE
-</title>
+<title>โครงการพัฒนาหมู่บ้าน | RONGKHEM e-VILLAGE</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
       href="https://fonts.gstatic.com"
@@ -43,10 +40,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     --green:#22c55e;
     --yellow:#facc15;
     --orange:#fb923c;
-    --purple:#a78bfa;
     --red:#fb7185;
-
-    --radius:22px;
+    --purple:#a78bfa;
 
 }
 
@@ -70,13 +65,13 @@ body{
 
     radial-gradient(
         circle at 10% 0%,
-        rgba(34,211,238,.10),
+        rgba(34,197,94,.08),
         transparent 30%
     ),
 
     radial-gradient(
         circle at 90% 20%,
-        rgba(59,130,246,.10),
+        rgba(56,189,248,.08),
         transparent 30%
     ),
 
@@ -108,7 +103,9 @@ HEADER
 .header{
 
     position:sticky;
+
     top:0;
+
     z-index:100;
 
     background:
@@ -154,7 +151,9 @@ HEADER
     border-radius:15px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:21px;
@@ -162,8 +161,8 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #0369a1,
-        #22d3ee
+        #15803d,
+        #22c55e
     );
 
 }
@@ -186,13 +185,11 @@ HEADER
 
 .back{
 
-    padding:
-    9px 14px;
+    padding:9px 14px;
 
     border-radius:12px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
@@ -244,19 +241,18 @@ TITLE
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
-    color:#67e8f9;
+    color:#86efac;
 
     background:
-    rgba(34,211,238,.07);
+    rgba(34,197,94,.07);
 
     border:
     1px solid
-    rgba(34,211,238,.16);
+    rgba(34,197,94,.16);
 
     font-size:11px;
 
@@ -304,12 +300,13 @@ STATS
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
-    color:#67e8f9;
+    color:#86efac;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(34,197,94,.08);
 
 }
 
@@ -364,13 +361,11 @@ CONTROL
 
 .filter{
 
-    padding:
-    9px 14px;
+    padding:9px 14px;
 
     border-radius:11px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
@@ -388,20 +383,20 @@ CONTROL
     color:white;
 
     background:
-    rgba(34,211,238,.10);
+    rgba(34,197,94,.10);
 
     border-color:
-    rgba(34,211,238,.30);
+    rgba(34,197,94,.30);
 
 }
 
 .search{
 
+    margin-top:13px;
+
     display:flex;
 
     gap:10px;
-
-    margin-top:13px;
 
 }
 
@@ -411,13 +406,11 @@ CONTROL
 
     min-width:0;
 
-    padding:
-    13px 15px;
+    padding:13px 15px;
 
     border-radius:13px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(0,0,0,.20);
@@ -432,8 +425,7 @@ CONTROL
 
 .btn{
 
-    padding:
-    12px 17px;
+    padding:12px 17px;
 
     border:0;
 
@@ -448,8 +440,8 @@ CONTROL
     background:
     linear-gradient(
         135deg,
-        #0284c7,
-        #06b6d4
+        #15803d,
+        #16a34a
     );
 
 }
@@ -466,17 +458,17 @@ PROJECT GRID
     display:grid;
 
     grid-template-columns:
-    repeat(2,1fr);
+    repeat(3,1fr);
 
-    gap:16px;
+    gap:15px;
 
 }
 
 .project-card{
 
-    padding:23px;
+    padding:21px;
 
-    border-radius:22px;
+    border-radius:21px;
 
     background:
     var(--card);
@@ -496,7 +488,7 @@ PROJECT GRID
     translateY(-3px);
 
     border-color:
-    rgba(34,211,238,.22);
+    rgba(34,197,94,.25);
 
 }
 
@@ -504,20 +496,20 @@ PROJECT GRID
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:flex-start;
 
-    gap:15px;
+    justify-content:space-between;
+
+    gap:12px;
 
 }
 
 .project-icon{
 
-    width:48px;
-    height:48px;
+    width:52px;
+    height:52px;
 
-    border-radius:15px;
+    border-radius:16px;
 
     display:flex;
 
@@ -525,17 +517,18 @@ PROJECT GRID
 
     justify-content:center;
 
-    color:#67e8f9;
+    color:#86efac;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(34,197,94,.08);
+
+    font-size:21px;
 
 }
 
 .status{
 
-    padding:
-    5px 10px;
+    padding:5px 9px;
 
     border-radius:999px;
 
@@ -543,21 +536,12 @@ PROJECT GRID
 
 }
 
-.status.planned{
-
-    color:#facc15;
-
-    background:
-    rgba(250,204,21,.09);
-
-}
-
 .status.progress{
 
-    color:#67e8f9;
+    color:#7dd3fc;
 
     background:
-    rgba(34,211,238,.09);
+    rgba(56,189,248,.08);
 
 }
 
@@ -566,7 +550,16 @@ PROJECT GRID
     color:#86efac;
 
     background:
-    rgba(34,197,94,.09);
+    rgba(34,197,94,.08);
+
+}
+
+.status.wait{
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.08);
 
 }
 
@@ -575,19 +568,19 @@ PROJECT GRID
     color:#fda4af;
 
     background:
-    rgba(251,113,133,.09);
+    rgba(251,113,133,.08);
 
 }
 
 .project-title{
 
-    margin-top:17px;
+    margin-top:16px;
 
     font-family:"Kanit";
 
-    font-size:20px;
+    font-size:19px;
 
-    line-height:1.45;
+    line-height:1.4;
 
 }
 
@@ -597,49 +590,65 @@ PROJECT GRID
 
     color:var(--muted);
 
-    font-size:11px;
+    font-size:10px;
 
     line-height:1.8;
 
+    display:
+    -webkit-box;
+
+    -webkit-line-clamp:3;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
 }
+
+
+/* =====================================================
+PROJECT INFO
+===================================================== */
 
 .project-info{
 
-    margin-top:17px;
-
-    padding-top:14px;
-
-    border-top:
-    1px solid rgba(255,255,255,.06);
+    margin-top:16px;
 
     display:grid;
 
     grid-template-columns:
     1fr 1fr;
 
-    gap:10px;
+    gap:9px;
 
 }
 
-.info-item{
+.info{
+
+    padding:11px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.info-label{
 
     color:var(--muted);
 
-    font-size:10px;
+    font-size:8px;
 
 }
 
-.info-item strong{
+.info-value{
 
-    display:block;
+    margin-top:4px;
 
-    margin-top:3px;
+    color:#e2e8f0;
 
-    color:#dbeafe;
-
-    font-size:12px;
-
-    font-weight:500;
+    font-size:10px;
 
 }
 
@@ -648,13 +657,13 @@ PROJECT GRID
 PROGRESS
 ===================================================== */
 
-.progress-wrap{
+.progress-area{
 
     margin-top:16px;
 
 }
 
-.progress-label{
+.progress-head{
 
     display:flex;
 
@@ -662,15 +671,15 @@ PROGRESS
 
     color:var(--muted);
 
-    font-size:10px;
+    font-size:9px;
 
 }
 
-.progress{
-
-    height:7px;
+.progress-bar{
 
     margin-top:7px;
+
+    height:7px;
 
     overflow:hidden;
 
@@ -681,9 +690,7 @@ PROGRESS
 
 }
 
-.progress span{
-
-    display:block;
+.progress-fill{
 
     height:100%;
 
@@ -692,9 +699,231 @@ PROGRESS
     background:
     linear-gradient(
         90deg,
-        #0284c7,
-        #22d3ee
+        #16a34a,
+        #4ade80
     );
+
+}
+
+.project-footer{
+
+    margin-top:15px;
+
+    padding-top:12px;
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+BUDGET PANEL
+===================================================== */
+
+.budget-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:16px;
+
+}
+
+.panel{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.panel-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.panel-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.panel-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.budget-total{
+
+    margin-top:18px;
+
+    font-family:"Kanit";
+
+    font-size:32px;
+
+}
+
+.budget-label{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.budget-list{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.budget-item{
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.budget-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+}
+
+.budget-name{
+
+    font-size:11px;
+
+}
+
+.budget-value{
+
+    color:#86efac;
+
+    font-size:11px;
+
+}
+
+.budget-meta{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+.table-card{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.table-wrap{
+
+    margin-top:18px;
+
+    overflow-x:auto;
+
+}
+
+table{
+
+    width:100%;
+
+    min-width:1000px;
+
+    border-collapse:collapse;
+
+}
+
+th{
+
+    padding:14px 12px;
+
+    text-align:left;
+
+    color:#86efac;
+
+    font-size:11px;
+
+    font-weight:500;
+
+    background:
+    rgba(34,197,94,.04);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+td{
+
+    padding:13px 12px;
+
+    font-size:11px;
+
+    border-bottom:
+    1px solid rgba(255,255,255,.05);
 
 }
 
@@ -708,17 +937,9 @@ EMPTY
     grid-column:
     1 / -1;
 
-    padding:60px 20px;
+    padding:55px 20px;
 
     text-align:center;
-
-    border-radius:22px;
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
 
     color:var(--muted);
 
@@ -733,16 +954,16 @@ EMPTY
     font-size:42px;
 
     color:
-    rgba(34,211,238,.30);
+    rgba(34,197,94,.28);
 
 }
 
 
 /* =====================================================
-NOTE
+INFO
 ===================================================== */
 
-.note{
+.info-box{
 
     margin-top:20px;
 
@@ -755,20 +976,22 @@ NOTE
     gap:14px;
 
     background:
-    rgba(167,139,250,.06);
+    rgba(34,197,94,.05);
 
     border:
     1px solid
-    rgba(167,139,250,.15);
+    rgba(34,197,94,.13);
 
 }
 
-.note-icon{
+.info-icon{
 
     width:43px;
     height:43px;
 
     flex:none;
+
+    border-radius:13px;
 
     display:flex;
 
@@ -776,22 +999,20 @@ NOTE
 
     justify-content:center;
 
-    border-radius:13px;
-
-    color:#c4b5fd;
+    color:#86efac;
 
     background:
-    rgba(167,139,250,.08);
+    rgba(34,197,94,.08);
 
 }
 
-.note h3{
+.info-box h3{
 
     font-size:14px;
 
 }
 
-.note p{
+.info-box p{
 
     margin-top:5px;
 
@@ -812,8 +1033,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -835,7 +1055,7 @@ FOOTER
 RESPONSIVE
 ===================================================== */
 
-@media(max-width:850px){
+@media(max-width:950px){
 
     .stats{
 
@@ -847,13 +1067,20 @@ RESPONSIVE
     .project-grid{
 
         grid-template-columns:
+        1fr 1fr;
+
+    }
+
+    .budget-grid{
+
+        grid-template-columns:
         1fr;
 
     }
 
 }
 
-@media(max-width:600px){
+@media(max-width:620px){
 
     .container{
 
@@ -869,9 +1096,6 @@ RESPONSIVE
     }
 
     .stats{
-
-        grid-template-columns:
-        1fr 1fr;
 
         gap:10px;
 
@@ -889,16 +1113,16 @@ RESPONSIVE
 
     }
 
-    .search{
-
-        flex-direction:column;
-
-    }
-
-    .project-info{
+    .project-grid{
 
         grid-template-columns:
         1fr;
+
+    }
+
+    .search{
+
+        flex-direction:column;
 
     }
 
@@ -966,25 +1190,21 @@ onclick="location.href='../index.html'">
 <main class="container">
 
 
-<!-- =====================================================
-TITLE
-===================================================== -->
-
 <section class="page-head">
 
 <h2>
-โครงการพัฒนาหมู่บ้าน
+ศูนย์โครงการพัฒนาหมู่บ้าน
 </h2>
 
 <p>
-ติดตามโครงการ งบประมาณ และความก้าวหน้าของหมู่บ้าน
+ติดตามโครงการ งบประมาณ สถานะ และความคืบหน้าการพัฒนาบ้านร่องเข็ม
 </p>
 
 <div class="source">
 
 <i class="fa-solid fa-database"></i>
 
-ข้อมูลโครงการจากฐานข้อมูลหมู่บ้าน
+ข้อมูลโครงการจากฐานข้อมูลจริงของระบบ
 
 </div>
 
@@ -1003,7 +1223,7 @@ STATS
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-folder-open"></i>
+<i class="fa-solid fa-diagram-project"></i>
 
 </div>
 
@@ -1011,7 +1231,7 @@ STATS
 id="totalProjects"
 class="stat-value">
 
-0
+--
 
 </div>
 
@@ -1036,7 +1256,7 @@ class="stat-value">
 id="progressProjects"
 class="stat-value">
 
-0
+--
 
 </div>
 
@@ -1061,7 +1281,7 @@ class="stat-value">
 id="completedProjects"
 class="stat-value">
 
-0
+--
 
 </div>
 
@@ -1078,7 +1298,7 @@ class="stat-value">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-baht-sign"></i>
+<i class="fa-solid fa-coins"></i>
 
 </div>
 
@@ -1104,7 +1324,7 @@ class="stat-value">
 
 
 <!-- =====================================================
-FILTER
+CONTROL
 ===================================================== -->
 
 <section class="control">
@@ -1124,15 +1344,6 @@ onclick="setFilter('all',this)">
 
 <button
 class="filter"
-onclick="setFilter('วางแผน',this)">
-
-วางแผน
-
-</button>
-
-
-<button
-class="filter"
 onclick="setFilter('กำลังดำเนินการ',this)">
 
 กำลังดำเนินการ
@@ -1142,9 +1353,18 @@ onclick="setFilter('กำลังดำเนินการ',this)">
 
 <button
 class="filter"
-onclick="setFilter('เสร็จสิ้น',this)">
+onclick="setFilter('ดำเนินการแล้ว',this)">
 
-เสร็จสิ้น
+ดำเนินการแล้ว
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('รอดำเนินการ',this)">
+
+รอดำเนินการ
 
 </button>
 
@@ -1157,7 +1377,7 @@ onclick="setFilter('เสร็จสิ้น',this)">
 <input
 id="searchInput"
 type="search"
-placeholder="ค้นหาโครงการ..."
+placeholder="ค้นหาโครงการ สถานที่ หรือหน่วยงาน..."
 autocomplete="off">
 
 
@@ -1179,7 +1399,7 @@ onclick="loadProjects()">
 
 
 <!-- =====================================================
-PROJECTS
+PROJECT CARDS
 ===================================================== -->
 
 <section
@@ -1188,7 +1408,7 @@ class="project-grid">
 
 <div class="empty">
 
-<i class="fa-solid fa-folder-open"></i>
+<i class="fa-solid fa-diagram-project"></i>
 
 กำลังโหลดข้อมูลโครงการ...
 
@@ -1199,29 +1419,219 @@ class="project-grid">
 
 
 <!-- =====================================================
-NOTE
+BUDGET
 ===================================================== -->
 
-<section class="note">
+<section class="budget-grid">
 
-<div class="note-icon">
 
-<i class="fa-solid fa-shield-halved"></i>
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ภาพรวมงบประมาณ
+</div>
+
+<div class="panel-sub">
+คำนวณจากโครงการที่มีข้อมูลจริง
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-coins"
+style="color:#86efac;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="budgetTotal"
+class="budget-total">
+
+--
+
+</div>
+
+<div class="budget-label">
+งบประมาณรวม
+</div>
+
+
+<div
+id="budgetList"
+class="budget-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-coins"></i>
+
+ยังไม่มีข้อมูล
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+โครงการที่ต้องติดตาม
+</div>
+
+<div class="panel-sub">
+โครงการที่ยังไม่เสร็จสิ้น
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-list-check"
+style="color:#86efac;font-size:23px">
+</i>
+
+</div>
+
+
+<div
+id="trackingList"
+class="budget-list">
+
+<div class="empty">
+
+<i class="fa-solid fa-list-check"></i>
+
+ยังไม่มีข้อมูล
+
+</div>
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+TABLE
+===================================================== -->
+
+<section class="table-card">
+
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ทะเบียนโครงการ
+</div>
+
+<div class="panel-sub">
+ข้อมูลจากตาราง projects
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-table-list"
+style="color:#86efac;font-size:24px">
+</i>
+
+</div>
+
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ลำดับ</th>
+
+<th>ชื่อโครงการ</th>
+
+<th>ประเภท</th>
+
+<th>งบประมาณ</th>
+
+<th>สถานที่</th>
+
+<th>ผู้รับผิดชอบ</th>
+
+<th>สถานะ</th>
+
+</tr>
+
+</thead>
+
+
+<tbody
+id="projectTable">
+
+<tr>
+
+<td
+colspan="7"
+class="empty">
+
+<i class="fa-solid fa-database"></i>
+
+ยังไม่มีข้อมูลโครงการ
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+INFO
+===================================================== -->
+
+<section class="info-box">
+
+<div class="info-icon">
+
+<i class="fa-solid fa-circle-info"></i>
 
 </div>
 
 <div>
 
 <h3>
-หลักการเผยแพร่ข้อมูลโครงการ
+ระบบติดตามโครงการพัฒนาหมู่บ้าน
 </h3>
 
 <p>
 
-ระบบจะแสดงเฉพาะโครงการที่มีข้อมูลในฐานข้อมูล
-ไม่สร้างชื่อโครงการ งบประมาณ หรือเปอร์เซ็นต์ความก้าวหน้าขึ้นเอง
-หากมีข้อมูลจริงสามารถบันทึกงบประมาณ ผู้รับผิดชอบ
-ระยะเวลาดำเนินงาน และผลการดำเนินงานได้
+หน้าเว็บนี้ออกแบบให้ประชาชนสามารถติดตามภาพรวมโครงการได้
+โดยข้อมูลชื่อโครงการ งบประมาณ สถานที่ ผู้รับผิดชอบ
+และสถานะควรมาจากข้อมูลที่ผู้ดูแลระบบบันทึกไว้จริงเท่านั้น
 
 </p>
 
@@ -1244,6 +1654,7 @@ RONGKHEM e-VILLAGE
 ที่ทำการผู้ใหญ่บ้านออนไลน์
 
 </div>
+
 
 <div>
 
@@ -1284,11 +1695,12 @@ supabase.createClient(
 STATE
 ===================================================== */
 
-let currentFilter = "all";
+let currentFilter =
+"all";
 
 
 /* =====================================================
-ESCAPE
+HELPERS
 ===================================================== */
 
 function escapeHTML(value){
@@ -1306,11 +1718,7 @@ function escapeHTML(value){
 }
 
 
-/* =====================================================
-NUMBER
-===================================================== */
-
-function formatNumber(value){
+function numberFormat(value){
 
     if(
         value === null ||
@@ -1329,37 +1737,26 @@ function formatNumber(value){
 }
 
 
-/* =====================================================
-STATUS
-===================================================== */
-
-function statusClass(status){
+function money(value){
 
     if(
-        status === "กำลังดำเนินการ"
+        value === null ||
+        value === undefined ||
+        value === ""
     ){
 
-        return "progress";
+        return "--";
 
     }
 
-    if(
-        status === "เสร็จสิ้น"
-    ){
-
-        return "done";
-
-    }
-
-    if(
-        status === "ยกเลิก"
-    ){
-
-        return "cancel";
-
-    }
-
-    return "planned";
+    return Number(value)
+    .toLocaleString(
+        "th-TH",
+        {
+            minimumFractionDigits:0,
+            maximumFractionDigits:2
+        }
+    );
 
 }
 
@@ -1397,7 +1794,8 @@ async function loadProjects(){
         .order(
             "created_at",
             {
-                ascending:false
+                ascending:false,
+                nullsFirst:false
             }
         );
 
@@ -1419,7 +1817,7 @@ async function loadProjects(){
 
             query =
             query.or(
-                `title.ilike.%${keyword}%,description.ilike.%${keyword}%,responsible.ilike.%${keyword}%`
+                `name.ilike.%${keyword}%,title.ilike.%${keyword}%,description.ilike.%${keyword}%,location.ilike.%${keyword}%,organization.ilike.%${keyword}%`
             );
 
         }
@@ -1435,13 +1833,28 @@ async function loadProjects(){
             throw error;
 
 
+        const projects =
+        data || [];
+
+
         renderProjects(
-            data || []
+            projects
         );
 
+        renderTable(
+            projects
+        );
+
+        renderBudget(
+            projects
+        );
+
+        renderTracking(
+            projects
+        );
 
         updateStatistics(
-            data || []
+            projects
         );
 
 
@@ -1463,12 +1876,18 @@ async function loadProjects(){
 
             <br>
 
-            กรุณาเพิ่มข้อมูลจากระบบผู้ดูแล
+            กรุณานำเข้าข้อมูลจริงก่อนใช้งาน
 
         </div>
 
         `;
 
+
+        renderTable([]);
+
+        renderBudget([]);
+
+        renderTracking([]);
 
         updateStatistics([]);
 
@@ -1478,7 +1897,197 @@ async function loadProjects(){
 
 
 /* =====================================================
-RENDER
+GET PROJECT NAME
+===================================================== */
+
+function projectName(
+    item
+){
+
+    return (
+        item.name ||
+        item.title ||
+        item.project_name ||
+        "ไม่มีชื่อโครงการ"
+    );
+
+}
+
+
+/* =====================================================
+GET BUDGET
+===================================================== */
+
+function projectBudget(
+    item
+){
+
+    const value =
+        item.budget ??
+        item.amount ??
+        item.budget_amount;
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        return null;
+
+    }
+
+    const number =
+    Number(
+        String(value)
+        .replaceAll(",","")
+    );
+
+
+    return Number.isFinite(
+        number
+    )
+    ?
+    number
+    :
+    null;
+
+}
+
+
+/* =====================================================
+STATUS CLASS
+===================================================== */
+
+function statusClass(
+    status
+){
+
+    const text =
+    String(
+        status ||
+        ""
+    );
+
+
+    if(
+        text.includes("ดำเนินการแล้ว") ||
+        text.includes("เสร็จ")
+    ){
+
+        return "done";
+
+    }
+
+
+    if(
+        text.includes("รอ")
+    ){
+
+        return "wait";
+
+    }
+
+
+    if(
+        text.includes("ยกเลิก")
+    ){
+
+        return "cancel";
+
+    }
+
+
+    return "progress";
+
+}
+
+
+/* =====================================================
+PROGRESS
+===================================================== */
+
+function projectProgress(
+    item
+){
+
+    let value =
+        item.progress ??
+        item.progress_percent ??
+        item.percent;
+
+
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
+
+        const status =
+        String(
+            item.status ||
+            ""
+        );
+
+
+        if(
+            status.includes(
+                "ดำเนินการแล้ว"
+            )
+        ){
+
+            return 100;
+
+        }
+
+
+        if(
+            status.includes(
+                "รอดำเนินการ"
+            )
+        ){
+
+            return 0;
+
+        }
+
+
+        return 0;
+
+    }
+
+
+    value =
+    Number(
+        String(value)
+        .replace("%","")
+    );
+
+
+    if(
+        !Number.isFinite(
+            value
+        )
+    ){
+
+        return 0;
+
+    }
+
+
+    return Math.max(
+        0,
+        Math.min(
+            100,
+            value
+        )
+    );
+
+}
+
+
+/* =====================================================
+RENDER PROJECTS
 ===================================================== */
 
 function renderProjects(
@@ -1492,7 +2101,6 @@ function renderProjects(
 
 
     if(
-        !projects ||
         projects.length === 0
     ){
 
@@ -1518,15 +2126,14 @@ function renderProjects(
         item => {
 
             const progress =
-            Math.max(
-                0,
-                Math.min(
-                    100,
-                    Number(
-                        item.progress
-                    ) || 0
-                )
+            projectProgress(
+                item
             );
+
+
+            const status =
+            item.status ||
+            "ไม่ระบุสถานะ";
 
 
             return `
@@ -1552,13 +2159,10 @@ function renderProjects(
 
                     <span
                     class="status
-                    ${statusClass(
-                        item.status
-                    )}">
+                    ${statusClass(status)}">
 
                         ${escapeHTML(
-                            item.status ||
-                            "วางแผน"
+                            status
                         )}
 
                     </span>
@@ -1571,7 +2175,7 @@ function renderProjects(
                 class="project-title">
 
                     ${escapeHTML(
-                        item.title
+                        projectName(item)
                     )}
 
                 </div>
@@ -1581,7 +2185,9 @@ function renderProjects(
                 class="project-description">
 
                     ${escapeHTML(
-                        item.description
+                        item.description ||
+                        item.detail ||
+                        "ไม่มีรายละเอียดโครงการ"
                     )}
 
                 </div>
@@ -1591,74 +2197,84 @@ function renderProjects(
                 class="project-info">
 
 
-                    <div
-                    class="info-item">
+                    <div class="info">
 
-                        ผู้รับผิดชอบ
-
-                        <strong>
-
-                            ${escapeHTML(
-                                item.responsible ||
-                                "-"
-                            )}
-
-                        </strong>
-
-                    </div>
-
-
-                    <div
-                    class="info-item">
-
+                        <div class="info-label">
                         งบประมาณ
+                        </div>
 
-                        <strong>
+                        <div class="info-value">
 
                             ${
-                                item.budget !== null &&
-                                item.budget !== undefined
+                                projectBudget(item)
+                                !== null
                                 ?
-                                formatNumber(
-                                    item.budget
-                                ) + " บาท"
+                                money(
+                                    projectBudget(item)
+                                ) +
+                                " บาท"
                                 :
                                 "--"
                             }
 
-                        </strong>
+                        </div>
 
                     </div>
 
 
-                    <div
-                    class="info-item">
+                    <div class="info">
 
-                        เริ่มโครงการ
+                        <div class="info-label">
+                        ประเภท
+                        </div>
 
-                        <strong>
+                        <div class="info-value">
 
-                            ${formatDate(
-                                item.start_date
+                            ${escapeHTML(
+                                item.type ||
+                                item.category ||
+                                "-"
                             )}
 
-                        </strong>
+                        </div>
 
                     </div>
 
 
-                    <div
-                    class="info-item">
+                    <div class="info">
 
-                        สิ้นสุด
+                        <div class="info-label">
+                        สถานที่
+                        </div>
 
-                        <strong>
+                        <div class="info-value">
 
-                            ${formatDate(
-                                item.end_date
+                            ${escapeHTML(
+                                item.location ||
+                                "-"
                             )}
 
-                        </strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="info">
+
+                        <div class="info-label">
+                        ผู้รับผิดชอบ
+                        </div>
+
+                        <div class="info-value">
+
+                            ${escapeHTML(
+                                item.organization ||
+                                item.organizer ||
+                                item.responsible ||
+                                "-"
+                            )}
+
+                        </div>
 
                     </div>
 
@@ -1667,26 +2283,18 @@ function renderProjects(
 
 
                 <div
-                class="progress-wrap">
-
+                class="progress-area">
 
                     <div
-                    class="progress-label">
+                    class="progress-head">
 
                         <span>
-                            ความก้าวหน้า
+                        ความคืบหน้า
                         </span>
 
                         <span>
 
-                            ${
-                                item.progress !== null &&
-                                item.progress !== undefined
-                                ?
-                                progress + "%"
-                                :
-                                "--"
-                            }
+                            ${progress}%
 
                         </span>
 
@@ -1694,21 +2302,28 @@ function renderProjects(
 
 
                     <div
-                    class="progress">
+                    class="progress-bar">
 
-                        <span
-                        style="width:${
-                            item.progress !== null &&
-                            item.progress !== undefined
-                            ?
-                            progress
-                            :
-                            0
-                        }%">
-                        </span>
+                        <div
+                        class="progress-fill"
+                        style="
+                        width:${progress}%;
+                        ">
+                        </div>
 
                     </div>
 
+                </div>
+
+
+                <div
+                class="project-footer">
+
+                    <i
+                    class="fa-solid fa-chart-line">
+                    </i>
+
+                    ติดตามความคืบหน้าโครงการ
 
                 </div>
 
@@ -1724,132 +2339,476 @@ function renderProjects(
 
 
 /* =====================================================
-DATE
-===================================================== */
-
-function formatDate(
-    value
-){
-
-    if(!value)
-        return "-";
-
-
-    const date =
-    new Date(value);
-
-
-    if(
-        Number.isNaN(
-            date.getTime()
-        )
-    ){
-
-        return escapeHTML(
-            value
-        );
-
-    }
-
-
-    return date.toLocaleDateString(
-        "th-TH",
-        {
-            year:"numeric",
-            month:"short",
-            day:"numeric"
-        }
-    );
-
-}
-
-
-/* =====================================================
 STATISTICS
 ===================================================== */
 
 function updateStatistics(
-    data
+    projects
 ){
 
-    const total =
-    data.length;
-
-
     const progress =
-    data.filter(
+    projects.filter(
         item =>
-        item.status ===
-        "กำลังดำเนินการ"
+        String(
+            item.status || ""
+        ).includes(
+            "กำลังดำเนินการ"
+        )
     ).length;
 
 
     const completed =
-    data.filter(
+    projects.filter(
         item =>
-        item.status ===
-        "เสร็จสิ้น"
+        String(
+            item.status || ""
+        ).includes(
+            "ดำเนินการแล้ว"
+        )
+        ||
+        String(
+            item.status || ""
+        ).includes(
+            "เสร็จ"
+        )
     ).length;
 
 
-    let budget = 0;
+    const totalBudget =
+    projects.reduce(
+        (
+            total,
+            item
+        ) => {
 
-    let hasBudget = false;
+            const value =
+            projectBudget(item);
 
+            return total +
+            (
+                value === null
+                ?
+                0
+                :
+                value
+            );
 
-    data.forEach(
-        item => {
-
-            if(
-                item.budget !== null &&
-                item.budget !== undefined
-            ){
-
-                budget +=
-                Number(
-                    item.budget
-                ) || 0;
-
-                hasBudget = true;
-
-            }
-
-        }
+        },
+        0
     );
 
 
-    document.getElementById(
-        "totalProjects"
-    ).textContent =
-    total.toLocaleString(
-        "th-TH"
+    setValue(
+        "totalProjects",
+        projects.length
     );
 
 
-    document.getElementById(
-        "progressProjects"
-    ).textContent =
-    progress.toLocaleString(
-        "th-TH"
+    setValue(
+        "progressProjects",
+        progress
     );
 
 
-    document.getElementById(
-        "completedProjects"
-    ).textContent =
-    completed.toLocaleString(
-        "th-TH"
+    setValue(
+        "completedProjects",
+        completed
     );
 
 
     document.getElementById(
         "totalBudget"
     ).textContent =
-    hasBudget
+    totalBudget > 0
     ?
-    budget.toLocaleString(
-        "th-TH"
+    money(totalBudget)
+    :
+    "--";
+
+
+    document.getElementById(
+        "budgetTotal"
+    ).textContent =
+    totalBudget > 0
+    ?
+    money(totalBudget) +
+    " บาท"
+    :
+    "--";
+
+}
+
+
+/* =====================================================
+BUDGET LIST
+===================================================== */
+
+function renderBudget(
+    projects
+){
+
+    const list =
+    document.getElementById(
+        "budgetList"
+    );
+
+
+    const items =
+    projects
+    .filter(
+        item =>
+        projectBudget(item) !== null
     )
+    .sort(
+        (a,b) =>
+        projectBudget(b) -
+        projectBudget(a)
+    )
+    .slice(0,6);
+
+
+    if(
+        items.length === 0
+    ){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-coins"></i>
+
+            ยังไม่มีข้อมูลงบประมาณ
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    items.map(
+        item => `
+
+        <div class="budget-item">
+
+            <div class="budget-top">
+
+                <div class="budget-name">
+
+                    ${escapeHTML(
+                        projectName(item)
+                    )}
+
+                </div>
+
+                <div class="budget-value">
+
+                    ${money(
+                        projectBudget(item)
+                    )}
+                    บาท
+
+                </div>
+
+            </div>
+
+
+            <div class="budget-meta">
+
+                ${
+                    escapeHTML(
+                        item.type ||
+                        item.category ||
+                        "โครงการ"
+                    )
+                }
+
+                ·
+
+                ${
+                    escapeHTML(
+                        item.status ||
+                        "ไม่ระบุสถานะ"
+                    )
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TRACKING
+===================================================== */
+
+function renderTracking(
+    projects
+){
+
+    const list =
+    document.getElementById(
+        "trackingList"
+    );
+
+
+    const tracking =
+    projects
+    .filter(
+        item => {
+
+            const status =
+            String(
+                item.status ||
+                ""
+            );
+
+
+            return !(
+                status.includes(
+                    "ดำเนินการแล้ว"
+                )
+                ||
+                status.includes(
+                    "เสร็จ"
+                )
+                ||
+                status.includes(
+                    "ยกเลิก"
+                )
+            );
+
+        }
+    )
+    .slice(0,6);
+
+
+    if(
+        tracking.length === 0
+    ){
+
+        list.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            ไม่มีโครงการที่ต้องติดตาม
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+    tracking.map(
+        item => `
+
+        <div class="budget-item">
+
+            <div class="budget-top">
+
+                <div class="budget-name">
+
+                    ${escapeHTML(
+                        projectName(item)
+                    )}
+
+                </div>
+
+                <div class="budget-value">
+
+                    ${projectProgress(
+                        item
+                    )}%
+
+                </div>
+
+            </div>
+
+
+            <div class="budget-meta">
+
+                ${escapeHTML(
+                    item.status ||
+                    "ไม่ระบุสถานะ"
+                )}
+
+                ·
+
+                ${
+                    escapeHTML(
+                        item.location ||
+                        "ไม่ระบุสถานที่"
+                    )
+                }
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+function renderTable(
+    projects
+){
+
+    const table =
+    document.getElementById(
+        "projectTable"
+    );
+
+
+    if(
+        projects.length === 0
+    ){
+
+        table.innerHTML = `
+
+        <tr>
+
+            <td
+            colspan="7"
+            class="empty">
+
+                <i class="fa-solid fa-database"></i>
+
+                ยังไม่มีข้อมูลโครงการ
+
+            </td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    table.innerHTML =
+    projects.map(
+        (item,index) => `
+
+        <tr>
+
+            <td>
+                ${index + 1}
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    projectName(item)
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.type ||
+                    item.category ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${
+                    projectBudget(item)
+                    !== null
+                    ?
+                    money(
+                        projectBudget(item)
+                    ) +
+                    " บาท"
+                    :
+                    "--"
+                }
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.location ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.organization ||
+                    item.organizer ||
+                    item.responsible ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.status ||
+                    "-"
+                )}
+
+            </td>
+
+        </tr>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+SET VALUE
+===================================================== */
+
+function setValue(
+    id,
+    value
+){
+
+    const element =
+    document.getElementById(
+        id
+    );
+
+
+    if(!element)
+        return;
+
+
+    element.textContent =
+    value > 0
+    ?
+    numberFormat(value)
     :
     "--";
 
@@ -1874,8 +2833,8 @@ function setFilter(
         ".filter"
     )
     .forEach(
-        el =>
-        el.classList.remove(
+        item =>
+        item.classList.remove(
             "active"
         )
     );
@@ -1892,7 +2851,7 @@ function setFilter(
 
 
 /* =====================================================
-ENTER
+SEARCH
 ===================================================== */
 
 document
