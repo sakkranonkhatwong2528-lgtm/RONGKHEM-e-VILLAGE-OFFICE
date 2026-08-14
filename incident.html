@@ -1,0 +1,3813 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+แจ้งเหตุ / ร้องเรียน | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* =====================================================
+ROOT
+===================================================== */
+
+:root{
+
+--bg:#03101a;
+
+--panel:rgba(4,29,43,.94);
+
+--border:rgba(112,190,220,.24);
+
+--text:#ffffff;
+
+--muted:#9db5be;
+
+--green:#4cff70;
+
+--cyan:#45e8ff;
+
+--purple:#d78cff;
+
+--orange:#ffb53d;
+
+--red:#ff5d5d;
+
+--sidebar:260px;
+
+}
+
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+
+box-sizing:border-box;
+
+margin:0;
+
+padding:0;
+
+}
+
+
+body{
+
+min-height:100vh;
+
+font-family:
+"Prompt",
+"Kanit",
+sans-serif;
+
+color:var(--text);
+
+background:
+
+linear-gradient(
+rgba(0,12,20,.92),
+rgba(0,12,20,.97)
+),
+
+url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
+center/cover fixed no-repeat;
+
+}
+
+
+button,
+input,
+textarea,
+select{
+
+font-family:inherit;
+
+}
+
+
+button{
+
+cursor:pointer;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+bottom:0;
+
+width:var(--sidebar);
+
+padding:20px 14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(1,18,30,.99),
+rgba(1,10,18,.98)
+);
+
+border-right:
+1px solid
+rgba(120,201,230,.18);
+
+z-index:1000;
+
+overflow-y:auto;
+
+}
+
+
+.sidebar-brand{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:
+5px
+9px
+20px;
+
+margin-bottom:13px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.09);
+
+}
+
+
+.logo{
+
+width:54px;
+
+height:54px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:15px;
+
+font-size:29px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,188,49,.17),
+rgba(4,38,51,.4)
+);
+
+border:
+1px solid
+rgba(255,190,54,.27);
+
+}
+
+
+.brand-title{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1.1;
+
+}
+
+
+.brand-title span{
+
+color:#b6ff43;
+
+}
+
+
+.brand-sub{
+
+color:#9eb8c2;
+
+font-size:10px;
+
+margin-top:3px;
+
+}
+
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:4px;
+
+}
+
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:
+12px
+13px;
+
+color:#d6e3e8;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:13px;
+
+border:
+1px solid
+transparent;
+
+transition:.2s;
+
+}
+
+
+.menu a:hover{
+
+background:
+rgba(51,205,104,.08);
+
+border-color:
+rgba(65,231,108,.14);
+
+transform:
+translateX(2px);
+
+}
+
+
+.menu a.active{
+
+background:
+
+linear-gradient(
+100deg,
+rgba(31,190,75,.42),
+rgba(19,90,52,.22)
+);
+
+border-color:
+rgba(84,238,106,.7);
+
+color:#ffffff;
+
+}
+
+
+.icon{
+
+width:28px;
+
+text-align:center;
+
+font-size:20px;
+
+}
+
+
+.contact{
+
+margin-top:18px;
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(7,40,55,.9),
+rgba(3,22,33,.9)
+);
+
+border:
+1px solid
+rgba(116,196,219,.23);
+
+}
+
+
+.contact h3{
+
+font-family:"Kanit";
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+
+.contact p{
+
+color:#b7cbd3;
+
+font-size:10px;
+
+margin:7px 0;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+position:fixed;
+
+left:var(--sidebar);
+
+right:0;
+
+top:0;
+
+height:78px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 25px;
+
+background:
+rgba(3,22,35,.91);
+
+backdrop-filter:
+blur(18px);
+
+border-bottom:
+1px solid
+var(--border);
+
+z-index:900;
+
+}
+
+
+.page-title{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.big-icon{
+
+width:44px;
+
+height:44px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(255,93,93,.08);
+
+border:
+1px solid
+rgba(255,93,93,.25);
+
+font-size:24px;
+
+}
+
+
+.page-title h1{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+font-weight:500;
+
+}
+
+
+.page-title p{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.clock{
+
+text-align:right;
+
+}
+
+
+.time{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.today{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.mobile-button{
+
+display:none;
+
+width:42px;
+
+height:42px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color:#ffffff;
+
+font-size:20px;
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.main{
+
+margin-left:var(--sidebar);
+
+padding-top:78px;
+
+min-height:100vh;
+
+}
+
+
+.content{
+
+max-width:1550px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+.summary{
+
+display:grid;
+
+grid-template-columns:
+repeat(5,1fr);
+
+gap:14px;
+
+margin-bottom:18px;
+
+}
+
+
+.summary-card{
+
+padding:18px;
+
+border-radius:17px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(5,36,51,.92),
+rgba(2,20,30,.91)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 40px
+rgba(0,0,0,.25);
+
+}
+
+
+.summary-icon{
+
+font-size:25px;
+
+}
+
+
+.summary-title{
+
+color:#94adb7;
+
+font-size:10px;
+
+margin-top:6px;
+
+}
+
+
+.summary-number{
+
+font-family:"Kanit";
+
+font-size:29px;
+
+line-height:1.1;
+
+margin-top:2px;
+
+}
+
+
+.summary-card.green{
+
+border-color:
+rgba(76,255,112,.28);
+
+}
+
+
+.summary-card.cyan{
+
+border-color:
+rgba(69,232,255,.28);
+
+}
+
+
+.summary-card.orange{
+
+border-color:
+rgba(255,181,61,.28);
+
+}
+
+
+.summary-card.red{
+
+border-color:
+rgba(255,93,93,.28);
+
+}
+
+
+.summary-card.purple{
+
+border-color:
+rgba(215,140,255,.28);
+
+}
+
+
+/* =====================================================
+TOOLBAR
+===================================================== */
+
+.toolbar{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:12px;
+
+padding:16px;
+
+margin-bottom:18px;
+
+border-radius:17px;
+
+background:
+rgba(4,29,43,.88);
+
+border:
+1px solid
+var(--border);
+
+}
+
+
+.search-area{
+
+display:flex;
+
+gap:8px;
+
+flex:1;
+
+max-width:850px;
+
+}
+
+
+.search{
+
+flex:1;
+
+min-width:0;
+
+padding:
+12px
+15px;
+
+border-radius:11px;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+background:
+rgba(255,255,255,.045);
+
+color:#ffffff;
+
+outline:none;
+
+font-size:12px;
+
+}
+
+
+.search:focus{
+
+border-color:
+rgba(69,232,255,.55);
+
+}
+
+
+.filter{
+
+padding:
+12px
+14px;
+
+border-radius:11px;
+
+background:
+rgba(255,255,255,.045);
+
+color:#ffffff;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+outline:none;
+
+font-size:11px;
+
+}
+
+
+.filter option{
+
+background:#071c28;
+
+}
+
+
+.btn{
+
+border:0;
+
+padding:
+11px
+17px;
+
+border-radius:11px;
+
+font-size:11px;
+
+font-weight:500;
+
+color:#02150a;
+
+background:#48dc68;
+
+box-shadow:
+0 7px 20px
+rgba(72,220,104,.13);
+
+}
+
+
+.btn:hover{
+
+filter:brightness(1.08);
+
+}
+
+
+/* =====================================================
+INCIDENT GRID
+===================================================== */
+
+.incident-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:18px;
+
+}
+
+
+.incident-card{
+
+position:relative;
+
+padding:20px;
+
+border-radius:19px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.28);
+
+transition:.25s;
+
+}
+
+
+.incident-card:hover{
+
+transform:
+translateY(-3px);
+
+border-color:
+rgba(69,232,255,.35);
+
+}
+
+
+.incident-top{
+
+display:flex;
+
+align-items:flex-start;
+
+justify-content:space-between;
+
+gap:10px;
+
+}
+
+
+.incident-id{
+
+font-family:"Kanit";
+
+font-size:10px;
+
+color:#6f8c97;
+
+}
+
+
+.priority{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:5px;
+
+padding:
+5px
+9px;
+
+border-radius:7px;
+
+font-size:8px;
+
+}
+
+
+.priority-urgent{
+
+color:#ffabab;
+
+background:
+rgba(255,60,60,.13);
+
+border:
+1px solid
+rgba(255,90,90,.3);
+
+}
+
+
+.priority-important{
+
+color:#ffd38e;
+
+background:
+rgba(255,181,61,.12);
+
+border:
+1px solid
+rgba(255,181,61,.3);
+
+}
+
+
+.priority-normal{
+
+color:#91f39e;
+
+background:
+rgba(72,220,104,.1);
+
+border:
+1px solid
+rgba(72,220,104,.25);
+
+}
+
+
+.incident-title{
+
+font-family:"Kanit";
+
+font-size:19px;
+
+font-weight:500;
+
+line-height:1.35;
+
+margin-top:13px;
+
+}
+
+
+.incident-description{
+
+color:#9bb2ba;
+
+font-size:10px;
+
+line-height:1.7;
+
+margin-top:7px;
+
+}
+
+
+.info-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:8px;
+
+margin-top:15px;
+
+}
+
+
+.info{
+
+padding:9px;
+
+border-radius:9px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+.info-label{
+
+color:#66828d;
+
+font-size:7px;
+
+}
+
+
+.info-value{
+
+color:#c9d9de;
+
+font-size:9px;
+
+margin-top:2px;
+
+}
+
+
+.status{
+
+display:flex;
+
+align-items:center;
+
+gap:7px;
+
+margin-top:15px;
+
+padding:
+10px 12px;
+
+border-radius:10px;
+
+font-size:9px;
+
+}
+
+
+.status-received{
+
+color:#9eeeff;
+
+background:
+rgba(69,232,255,.07);
+
+border:
+1px solid
+rgba(69,232,255,.15);
+
+}
+
+
+.status-progress{
+
+color:#ffd48d;
+
+background:
+rgba(255,181,61,.07);
+
+border:
+1px solid
+rgba(255,181,61,.15);
+
+}
+
+
+.status-done{
+
+color:#8ff59d;
+
+background:
+rgba(72,220,104,.07);
+
+border:
+1px solid
+rgba(72,220,104,.15);
+
+}
+
+
+.status-dot{
+
+width:7px;
+
+height:7px;
+
+border-radius:50%;
+
+background:currentColor;
+
+box-shadow:
+0 0 8px currentColor;
+
+}
+
+
+.incident-actions{
+
+display:flex;
+
+gap:6px;
+
+margin-top:13px;
+
+}
+
+
+.action{
+
+padding:
+7px
+10px;
+
+border-radius:8px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background:
+rgba(255,255,255,.04);
+
+color:#dce8ec;
+
+font-size:9px;
+
+}
+
+
+.action:hover{
+
+background:
+rgba(69,232,255,.08);
+
+}
+
+
+.action.green{
+
+color:#8df19e;
+
+background:
+rgba(72,220,104,.08);
+
+border-color:
+rgba(72,220,104,.2);
+
+}
+
+
+.action.red{
+
+color:#ffaaaa;
+
+}
+
+
+/* =====================================================
+STATUS BAR
+===================================================== */
+
+.progress{
+
+display:flex;
+
+gap:4px;
+
+margin-top:12px;
+
+}
+
+
+.progress-step{
+
+height:4px;
+
+flex:1;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.08);
+
+}
+
+
+.progress-step.active{
+
+background:#45e8ff;
+
+}
+
+
+.progress-step.done{
+
+background:#48dc68;
+
+}
+
+
+/* =====================================================
+MODAL
+===================================================== */
+
+.modal{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:20px;
+
+background:
+rgba(0,0,0,.72);
+
+backdrop-filter:
+blur(8px);
+
+z-index:3000;
+
+}
+
+
+.modal.show{
+
+display:flex;
+
+}
+
+
+.modal-box{
+
+width:min(720px,100%);
+
+max-height:90vh;
+
+overflow-y:auto;
+
+border-radius:20px;
+
+background:
+
+linear-gradient(
+145deg,
+#082a3a,
+#031721
+);
+
+border:
+1px solid
+rgba(100,210,235,.28);
+
+box-shadow:
+0 25px 80px
+rgba(0,0,0,.6);
+
+}
+
+
+.modal-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+18px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.08);
+
+}
+
+
+.modal-head h3{
+
+font-family:"Kanit";
+
+font-size:19px;
+
+font-weight:500;
+
+}
+
+
+.close{
+
+width:34px;
+
+height:34px;
+
+border-radius:9px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background:
+rgba(255,255,255,.05);
+
+color:#ffffff;
+
+font-size:18px;
+
+}
+
+
+.form{
+
+padding:20px;
+
+display:grid;
+
+grid-template-columns:
+repeat(2,1fr);
+
+gap:14px;
+
+}
+
+
+.form-group{
+
+display:flex;
+
+flex-direction:column;
+
+gap:5px;
+
+}
+
+
+.form-group.full{
+
+grid-column:1/-1;
+
+}
+
+
+.form-group label{
+
+color:#9bb4bd;
+
+font-size:10px;
+
+}
+
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+padding:11px;
+
+border-radius:9px;
+
+background:
+rgba(255,255,255,.045);
+
+color:#ffffff;
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+outline:none;
+
+font-size:11px;
+
+}
+
+
+.form-group textarea{
+
+min-height:100px;
+
+resize:vertical;
+
+}
+
+
+.form-group select option{
+
+background:#06202e;
+
+}
+
+
+.modal-actions{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:8px;
+
+padding:
+0 20px
+20px;
+
+}
+
+
+.btn-cancel{
+
+color:#d5e0e4;
+
+background:
+rgba(255,255,255,.07);
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+}
+
+
+/* =====================================================
+DETAIL MODAL
+===================================================== */
+
+.detail-box{
+
+padding:20px;
+
+}
+
+
+.detail-row{
+
+display:grid;
+
+grid-template-columns:
+130px 1fr;
+
+gap:15px;
+
+padding:
+11px 0;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+
+.detail-label{
+
+color:#6f8c96;
+
+font-size:9px;
+
+}
+
+
+.detail-value{
+
+color:#d5e3e7;
+
+font-size:10px;
+
+line-height:1.6;
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1200px){
+
+:root{
+
+--sidebar:230px;
+
+}
+
+.summary{
+
+grid-template-columns:
+repeat(3,1fr);
+
+}
+
+}
+
+
+@media(max-width:1000px){
+
+.sidebar{
+
+transform:
+translateX(-100%);
+
+transition:.3s;
+
+}
+
+.sidebar.open{
+
+transform:
+translateX(0);
+
+}
+
+.topbar{
+
+left:0;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.mobile-button{
+
+display:block;
+
+}
+
+.page-title p{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:750px){
+
+.content{
+
+padding:13px;
+
+}
+
+.summary{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.toolbar{
+
+flex-direction:column;
+
+align-items:stretch;
+
+}
+
+.search-area{
+
+max-width:none;
+
+flex-direction:column;
+
+}
+
+.incident-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.form{
+
+grid-template-columns:1fr;
+
+}
+
+.form-group.full{
+
+grid-column:auto;
+
+}
+
+.clock{
+
+display:none;
+
+}
+
+.page-title h1{
+
+font-size:17px;
+
+}
+
+}
+
+
+@media(max-width:480px){
+
+.summary{
+
+grid-template-columns:1fr;
+
+}
+
+.page-title .big-icon{
+
+width:38px;
+
+height:38px;
+
+}
+
+.info-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.detail-row{
+
+grid-template-columns:1fr;
+
+gap:4px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<aside
+class="sidebar"
+id="sidebar"
+>
+
+<div class="sidebar-brand">
+
+<div class="logo">
+🏛️
+</div>
+
+<div>
+
+<div class="brand-title">
+
+RONGKHEM
+<span>e-VILLAGE</span>
+
+</div>
+
+<div class="brand-sub">
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="menu">
+
+
+<a href="index.html">
+
+<span class="icon">
+🏠
+</span>
+
+หน้าหลัก
+
+</a>
+
+
+<a href="citizen.html">
+
+<span class="icon">
+👥
+</span>
+
+ข้อมูลประชาชน
+
+</a>
+
+
+<a href="household.html">
+
+<span class="icon">
+🏠
+</span>
+
+ข้อมูลครัวเรือน
+
+</a>
+
+
+<a href="leader.html">
+
+<span class="icon">
+👔
+</span>
+
+ผู้นำชุมชน
+
+</a>
+
+
+<a href="news.html">
+
+<span class="icon">
+📢
+</span>
+
+ข่าวประชาสัมพันธ์
+
+</a>
+
+
+<a href="activity.html">
+
+<span class="icon">
+📅
+</span>
+
+กิจกรรม / ปฏิทิน
+
+</a>
+
+
+<a
+href="incident.html"
+class="active"
+>
+
+<span class="icon">
+🚨
+</span>
+
+แจ้งเหตุ / ร้องเรียน
+
+</a>
+
+
+<a href="service.html">
+
+<span class="icon">
+🤝
+</span>
+
+บริการประชาชน
+
+</a>
+
+
+<a href="project.html">
+
+<span class="icon">
+🏗️
+</span>
+
+โครงการพัฒนาหมู่บ้าน
+
+</a>
+
+
+<a href="environment.html">
+
+<span class="icon">
+🌱
+</span>
+
+สิ่งแวดล้อม / PM2.5
+
+</a>
+
+
+<a href="wetland.html">
+
+<span class="icon">
+💧
+</span>
+
+แหล่งซับน้ำจำ
+
+</a>
+
+
+<a href="rice.html">
+
+<span class="icon">
+🍚
+</span>
+
+กลุ่มข้าวสาร
+
+</a>
+
+
+<a href="statistics.html">
+
+<span class="icon">
+📊
+</span>
+
+สถิติหมู่บ้าน
+
+</a>
+
+
+<a href="admin.html">
+
+<span class="icon">
+⚙️
+</span>
+
+ตั้งค่าระบบ
+
+</a>
+
+
+</nav>
+
+
+<div class="contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+📞 โทร. 088-888-8888
+</p>
+
+<p>
+🟢 LINE ID: rongkhem.village
+</p>
+
+<p>
+🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
+</p>
+
+</div>
+
+</aside>
+
+
+<!-- =====================================================
+TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+
+<div class="page-title">
+
+
+<button
+class="mobile-button"
+id="mobileButton"
+>
+☰
+</button>
+
+
+<div class="big-icon">
+🚨
+</div>
+
+
+<div>
+
+<h1>
+แจ้งเหตุ / ร้องเรียนออนไลน์
+</h1>
+
+<p>
+ศูนย์รับเรื่องประชาชน ที่ทำการผู้ใหญ่บ้านออนไลน์
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="clock">
+
+<div
+class="time"
+id="time"
+>
+00:00:00
+</div>
+
+<div
+class="today"
+id="today"
+>
+กำลังโหลด...
+</div>
+
+</div>
+
+
+</header>
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main">
+
+<div class="content">
+
+
+<!-- SUMMARY -->
+
+<section class="summary">
+
+
+<div class="summary-card cyan">
+
+<div class="summary-icon">
+📋
+</div>
+
+<div class="summary-title">
+เรื่องทั้งหมด
+</div>
+
+<div
+class="summary-number"
+id="total"
+>
+12
+</div>
+
+</div>
+
+
+<div class="summary-card red">
+
+<div class="summary-icon">
+🚨
+</div>
+
+<div class="summary-title">
+เรื่องด่วน
+</div>
+
+<div
+class="summary-number"
+id="urgent"
+>
+2
+</div>
+
+</div>
+
+
+<div class="summary-card orange">
+
+<div class="summary-icon">
+🔧
+</div>
+
+<div class="summary-title">
+กำลังดำเนินการ
+</div>
+
+<div
+class="summary-number"
+id="progress"
+>
+5
+</div>
+
+</div>
+
+
+<div class="summary-card green">
+
+<div class="summary-icon">
+✅
+</div>
+
+<div class="summary-title">
+ดำเนินการแล้ว
+</div>
+
+<div
+class="summary-number"
+id="done"
+>
+5
+</div>
+
+</div>
+
+
+<div class="summary-card purple">
+
+<div class="summary-icon">
+⏳
+</div>
+
+<div class="summary-title">
+รอรับเรื่อง
+</div>
+
+<div
+class="summary-number"
+id="received"
+>
+2
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- TOOLBAR -->
+
+<section class="toolbar">
+
+
+<div class="search-area">
+
+
+<input
+type="search"
+class="search"
+id="searchInput"
+placeholder="🔎 ค้นหาเลขที่แจ้ง ชื่อเรื่อง หรือสถานที่..."
+>
+
+
+<select
+class="filter"
+id="categoryFilter"
+>
+
+<option value="">
+ประเภททั้งหมด
+</option>
+
+<option value="ถนน">
+🛣️ ถนน
+</option>
+
+<option value="ไฟฟ้า">
+💡 ไฟฟ้า
+</option>
+
+<option value="น้ำประปา">
+💧 น้ำประปา
+</option>
+
+<option value="ขยะ">
+🗑️ ขยะ
+</option>
+
+<option value="PM2.5">
+🌫️ PM2.5
+</option>
+
+<option value="เหตุฉุกเฉิน">
+🚨 เหตุฉุกเฉิน
+</option>
+
+<option value="ร้องเรียนทั่วไป">
+📋 ร้องเรียนทั่วไป
+</option>
+
+</select>
+
+
+<select
+class="filter"
+id="statusFilter"
+>
+
+<option value="">
+สถานะทั้งหมด
+</option>
+
+<option value="รับเรื่อง">
+⏳ รับเรื่อง
+</option>
+
+<option value="กำลังดำเนินการ">
+🔧 กำลังดำเนินการ
+</option>
+
+<option value="ดำเนินการแล้ว">
+✅ ดำเนินการแล้ว
+</option>
+
+</select>
+
+
+</div>
+
+
+<button
+class="btn"
+id="addButton"
+>
+
+＋ แจ้งเรื่องใหม่
+
+</button>
+
+
+</section>
+
+
+<!-- INCIDENT LIST -->
+
+<section
+class="incident-grid"
+id="incidentGrid"
+></section>
+
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+FORM MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="modal"
+>
+
+
+<div class="modal-box">
+
+
+<div class="modal-head">
+
+<h3
+id="modalTitle"
+>
+แจ้งเหตุ / ร้องเรียน
+</h3>
+
+
+<button
+class="close"
+id="closeModal"
+>
+×
+</button>
+
+</div>
+
+
+<form
+class="form"
+id="incidentForm"
+>
+
+
+<input
+type="hidden"
+id="editId"
+>
+
+
+<div class="form-group">
+
+<label>
+ชื่อผู้แจ้ง
+</label>
+
+<input
+id="reporter"
+required
+placeholder="ชื่อ - นามสกุล"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+เบอร์โทรศัพท์
+</label>
+
+<input
+id="phone"
+placeholder="08x-xxx-xxxx"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+ประเภทเรื่อง
+</label>
+
+<select
+id="category"
+required
+>
+
+<option value="ถนน">
+🛣️ ถนน
+</option>
+
+<option value="ไฟฟ้า">
+💡 ไฟฟ้า
+</option>
+
+<option value="น้ำประปา">
+💧 น้ำประปา
+</option>
+
+<option value="ขยะ">
+🗑️ ขยะ
+</option>
+
+<option value="PM2.5">
+🌫️ PM2.5
+</option>
+
+<option value="เหตุฉุกเฉิน">
+🚨 เหตุฉุกเฉิน
+</option>
+
+<option value="ร้องเรียนทั่วไป">
+📋 ร้องเรียนทั่วไป
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+ระดับความสำคัญ
+</label>
+
+<select
+id="priority"
+required
+>
+
+<option value="ทั่วไป">
+🟢 ทั่วไป
+</option>
+
+<option value="สำคัญ">
+🟠 สำคัญ
+</option>
+
+<option value="ด่วน">
+🔴 ด่วน
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+หัวข้อเรื่อง
+</label>
+
+<input
+id="title"
+required
+placeholder="เช่น ถนนหน้าหมู่บ้านมีหลุมขนาดใหญ่"
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+สถานที่เกิดเหตุ / จุดที่ต้องการให้ตรวจสอบ
+</label>
+
+<input
+id="location"
+required
+placeholder="ระบุสถานที่หรือจุดสังเกต"
+>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>
+รายละเอียด
+</label>
+
+<textarea
+id="description"
+required
+placeholder="อธิบายรายละเอียดของปัญหา..."
+></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+สถานะ
+</label>
+
+<select
+id="status"
+>
+
+<option value="รับเรื่อง">
+⏳ รับเรื่อง
+</option>
+
+<option value="กำลังดำเนินการ">
+🔧 กำลังดำเนินการ
+</option>
+
+<option value="ดำเนินการแล้ว">
+✅ ดำเนินการแล้ว
+</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+หน่วยงาน / ผู้รับผิดชอบ
+</label>
+
+<input
+id="assignee"
+placeholder="เช่น ผู้ใหญ่บ้าน / อบต."
+>
+
+</div>
+
+
+</form>
+
+
+<div class="modal-actions">
+
+
+<button
+class="btn btn-cancel"
+id="cancelButton"
+>
+ยกเลิก
+</button>
+
+
+<button
+class="btn"
+id="saveButton"
+>
+💾 บันทึกเรื่อง
+</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<!-- =====================================================
+DETAIL MODAL
+===================================================== -->
+
+<div
+class="modal"
+id="detailModal"
+>
+
+
+<div class="modal-box">
+
+
+<div class="modal-head">
+
+<h3>
+รายละเอียดเรื่องแจ้ง
+</h3>
+
+
+<button
+class="close"
+id="closeDetail"
+>
+×
+</button>
+
+</div>
+
+
+<div
+class="detail-box"
+id="detailContent"
+></div>
+
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+DATA
+===================================================== */
+
+let incidents=[
+
+{
+id:1001,
+
+reporter:"สมชาย ใจดี",
+
+phone:"089-111-1111",
+
+category:"ถนน",
+
+priority:"ด่วน",
+
+title:"ถนนหน้าหมู่บ้านมีหลุมขนาดใหญ่",
+
+location:"ถนนทางเข้าหมู่บ้านร่องเข็ม",
+
+description:"พบหลุมขนาดใหญ่บนผิวถนน รถจักรยานยนต์สัญจรลำบากและอาจเกิดอุบัติเหตุ",
+
+status:"กำลังดำเนินการ",
+
+assignee:"ฝ่ายปกครอง / อบต.",
+
+date:"2026-08-14"
+
+},
+
+
+{
+id:1002,
+
+reporter:"มาลี วงศ์คำ",
+
+phone:"089-222-2222",
+
+category:"ไฟฟ้า",
+
+priority:"สำคัญ",
+
+title:"ไฟส่องสว่างบริเวณทางแยกดับ",
+
+location:"ทางแยกกลางหมู่บ้าน",
+
+description:"ไฟส่องสว่างดับหลายวัน ทำให้บริเวณดังกล่าวมืดในเวลากลางคืน",
+
+status:"รับเรื่อง",
+
+assignee:"อยู่ระหว่างประสานงาน",
+
+date:"2026-08-13"
+
+},
+
+
+{
+id:1003,
+
+reporter:"วิชัย แสนดี",
+
+phone:"089-333-3333",
+
+category:"ขยะ",
+
+priority:"ทั่วไป",
+
+title:"ขยะตกค้างบริเวณพื้นที่สาธารณะ",
+
+location:"ข้างศาลาประชาคม",
+
+description:"พบขยะตกค้างจำนวนมาก ขอให้ช่วยตรวจสอบและดำเนินการจัดเก็บ",
+
+status:"ดำเนินการแล้ว",
+
+assignee:"ฝ่ายสิ่งแวดล้อมหมู่บ้าน",
+
+date:"2026-08-12"
+
+},
+
+
+{
+id:1004,
+
+reporter:"จันทร์เพ็ญ บุญมา",
+
+phone:"089-444-4444",
+
+category:"น้ำประปา",
+
+priority:"สำคัญ",
+
+title:"น้ำประปาไหลอ่อน",
+
+location:"บ้านเลขที่ 85",
+
+description:"น้ำประปาไหลอ่อนในช่วงเช้าและเย็น",
+
+status:"กำลังดำเนินการ",
+
+assignee:"คณะกรรมการประปาหมู่บ้าน",
+
+date:"2026-08-11"
+
+},
+
+
+{
+id:1005,
+
+reporter:"บุญมี คำปัน",
+
+phone:"089-555-5555",
+
+category:"PM2.5",
+
+priority:"ด่วน",
+
+title:"พบกลุ่มควันในพื้นที่การเกษตร",
+
+location:"พื้นที่ทุ่งนาท้ายหมู่บ้าน",
+
+description:"พบกลุ่มควันจำนวนมาก ขอให้ฝ่ายปกครองตรวจสอบพื้นที่",
+
+status:"กำลังดำเนินการ",
+
+assignee:"ฝ่ายปกครอง / ชรบ.",
+
+date:"2026-08-10"
+
+},
+
+
+{
+id:1006,
+
+reporter:"นางสาวสายใจ ดีมาก",
+
+phone:"089-666-6666",
+
+category:"ร้องเรียนทั่วไป",
+
+priority:"ทั่วไป",
+
+title:"ขอเสนอให้ติดตั้งถังขยะเพิ่ม",
+
+location:"บริเวณชุมชนด้านเหนือ",
+
+description:"ต้องการให้เพิ่มจุดทิ้งขยะเพื่ออำนวยความสะดวกแก่ประชาชน",
+
+status:"รับเรื่อง",
+
+assignee:"ผู้ใหญ่บ้าน",
+
+date:"2026-08-09"
+
+},
+
+
+{
+id:1007,
+
+reporter:"ประเสริฐ คำดี",
+
+phone:"089-777-7777",
+
+category:"ถนน",
+
+priority:"ทั่วไป",
+
+title:"ขอให้ตัดกิ่งไม้ริมถนน",
+
+location:"ถนนสายบ้านร่องเข็ม - ตลาด",
+
+description:"กิ่งไม้ยื่นเข้ามาบนถนนบดบังทัศนวิสัย",
+
+status:"ดำเนินการแล้ว",
+
+assignee:"ทีมจิตอาสาหมู่บ้าน",
+
+date:"2026-08-08"
+
+},
+
+
+{
+id:1008,
+
+reporter:"สมศรี ใจดี",
+
+phone:"089-888-8888",
+
+category:"เหตุฉุกเฉิน",
+
+priority:"ด่วน",
+
+title:"ขอความช่วยเหลือกรณีผู้สูงอายุ",
+
+location:"บ้านเลขที่ 120",
+
+description:"ขอให้ผู้นำชุมชนช่วยประสานงานเพื่อให้ความช่วยเหลือเบื้องต้น",
+
+status:"ดำเนินการแล้ว",
+
+assignee:"ผู้นำชุมชน / อสม.",
+
+date:"2026-08-07"
+
+}
+
+];
+
+
+/* =====================================================
+ELEMENTS
+===================================================== */
+
+const grid=
+document.getElementById(
+"incidentGrid"
+);
+
+const search=
+document.getElementById(
+"searchInput"
+);
+
+const categoryFilter=
+document.getElementById(
+"categoryFilter"
+);
+
+const statusFilter=
+document.getElementById(
+"statusFilter"
+);
+
+const modal=
+document.getElementById(
+"modal"
+);
+
+const detailModal=
+document.getElementById(
+"detailModal"
+);
+
+const form=
+document.getElementById(
+"incidentForm"
+);
+
+
+/* =====================================================
+HELPERS
+===================================================== */
+
+function priorityInfo(priority){
+
+if(priority==="ด่วน"){
+
+return{
+icon:"🔴",
+className:"priority-urgent"
+};
+
+}
+
+if(priority==="สำคัญ"){
+
+return{
+icon:"🟠",
+className:"priority-important"
+};
+
+}
+
+return{
+icon:"🟢",
+className:"priority-normal"
+};
+
+}
+
+
+function statusInfo(status){
+
+if(status==="ดำเนินการแล้ว"){
+
+return{
+icon:"✅",
+className:"status-done"
+};
+
+}
+
+if(status==="กำลังดำเนินการ"){
+
+return{
+icon:"🔧",
+className:"status-progress"
+};
+
+}
+
+return{
+icon:"⏳",
+className:"status-received"
+};
+
+}
+
+
+function categoryIcon(category){
+
+const icons={
+
+"ถนน":"🛣️",
+
+"ไฟฟ้า":"💡",
+
+"น้ำประป":"💧",
+
+"ขยะ":"🗑️",
+
+"PM2.5":"🌫️",
+
+"เหตุฉุกเฉิน":"🚨",
+
+"ร้องเรียนทั่วไป":"📋"
+
+};
+
+return icons[category]||"📋";
+
+}
+
+
+function formatDate(value){
+
+const date=
+new Date(
+value+"T00:00:00"
+);
+
+return date.toLocaleDateString(
+"th-TH",
+{
+day:"numeric",
+month:"short",
+year:"numeric"
+}
+);
+
+}
+
+
+/* =====================================================
+FILTER
+===================================================== */
+
+function filteredIncidents(){
+
+const keyword=
+search.value
+.trim()
+.toLowerCase();
+
+const category=
+categoryFilter.value;
+
+const status=
+statusFilter.value;
+
+
+return incidents.filter(item=>{
+
+const text=
+
+(
+item.id+
+" "+
+item.reporter+
+" "+
+item.title+
+" "+
+item.location+
+" "+
+item.description
+)
+.toLowerCase();
+
+
+return(
+
+(!keyword||
+text.includes(keyword))
+
+&&
+
+(!category||
+item.category===category)
+
+&&
+
+(!status||
+item.status===status)
+
+);
+
+});
+
+}
+
+
+/* =====================================================
+RENDER
+===================================================== */
+
+function renderIncidents(){
+
+const data=
+filteredIncidents();
+
+
+grid.innerHTML="";
+
+
+data.forEach(item=>{
+
+const card=
+document.createElement(
+"article"
+);
+
+const priority=
+priorityInfo(
+item.priority
+);
+
+const status=
+statusInfo(
+item.status
+);
+
+
+card.className=
+"incident-card";
+
+
+let progressClass="";
+
+if(item.status==="รับเรื่อง"){
+
+progressClass=`
+<div class="progress">
+
+<div class="progress-step active"></div>
+
+<div class="progress-step"></div>
+
+<div class="progress-step"></div>
+
+</div>
+`;
+
+}
+
+else if(
+item.status==="กำลังดำเนินการ"
+){
+
+progressClass=`
+<div class="progress">
+
+<div class="progress-step done"></div>
+
+<div class="progress-step active"></div>
+
+<div class="progress-step"></div>
+
+</div>
+`;
+
+}
+
+else{
+
+progressClass=`
+<div class="progress">
+
+<div class="progress-step done"></div>
+
+<div class="progress-step done"></div>
+
+<div class="progress-step done"></div>
+
+</div>
+`;
+
+}
+
+
+card.innerHTML=`
+
+<div class="incident-top">
+
+<div class="incident-id">
+
+#${item.id}
+
+</div>
+
+
+<div class="priority ${priority.className}">
+
+${priority.icon}
+
+${item.priority}
+
+</div>
+
+</div>
+
+
+<div class="incident-title">
+
+${categoryIcon(item.category)}
+
+${item.title}
+
+</div>
+
+
+<div class="incident-description">
+
+${item.description}
+
+</div>
+
+
+<div class="info-grid">
+
+
+<div class="info">
+
+<div class="info-label">
+ผู้แจ้ง
+</div>
+
+<div class="info-value">
+${item.reporter}
+</div>
+
+</div>
+
+
+<div class="info">
+
+<div class="info-label">
+ประเภท
+</div>
+
+<div class="info-value">
+${item.category}
+</div>
+
+</div>
+
+
+<div class="info">
+
+<div class="info-label">
+สถานที่
+</div>
+
+<div class="info-value">
+${item.location}
+</div>
+
+</div>
+
+
+<div class="info">
+
+<div class="info-label">
+วันที่แจ้ง
+</div>
+
+<div class="info-value">
+${formatDate(item.date)}
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="status ${status.className}">
+
+<span class="status-dot"></span>
+
+${status.icon}
+
+${item.status}
+
+</div>
+
+
+${progressClass}
+
+
+<div class="incident-actions">
+
+<button
+class="action green"
+onclick="viewIncident(${item.id})"
+>
+👁️ ดูรายละเอียด
+</button>
+
+<button
+class="action"
+onclick="editIncident(${item.id})"
+>
+✏️ แก้ไข
+</button>
+
+<button
+class="action red"
+onclick="deleteIncident(${item.id})"
+>
+🗑️ ลบ
+</button>
+
+</div>
+
+`;
+
+
+grid.appendChild(card);
+
+});
+
+
+updateSummary();
+
+}
+
+
+/* =====================================================
+SUMMARY
+===================================================== */
+
+function updateSummary(){
+
+const total=
+incidents.length;
+
+
+const urgent=
+incidents.filter(
+x=>x.priority==="ด่วน"
+).length;
+
+
+const progress=
+incidents.filter(
+x=>x.status==="กำลังดำเนินการ"
+).length;
+
+
+const done=
+incidents.filter(
+x=>x.status==="ดำเนินการแล้ว"
+).length;
+
+
+const received=
+incidents.filter(
+x=>x.status==="รับเรื่อง"
+).length;
+
+
+document.getElementById(
+"total"
+).textContent=
+total;
+
+
+document.getElementById(
+"urgent"
+).textContent=
+urgent;
+
+
+document.getElementById(
+"progress"
+).textContent=
+progress;
+
+
+document.getElementById(
+"done"
+).textContent=
+done;
+
+
+document.getElementById(
+"received"
+).textContent=
+received;
+
+}
+
+
+/* =====================================================
+ADD
+===================================================== */
+
+document
+.getElementById("addButton")
+.addEventListener(
+"click",
+()=>{
+
+form.reset();
+
+
+document.getElementById(
+"editId"
+).value="";
+
+
+document.getElementById(
+"status"
+).value=
+"รับเรื่อง";
+
+
+document.getElementById(
+"priority"
+).value=
+"ทั่วไป";
+
+
+document.getElementById(
+"modalTitle"
+).textContent=
+"แจ้งเหตุ / ร้องเรียนใหม่";
+
+
+modal.classList.add(
+"show"
+);
+
+}
+);
+
+
+/* =====================================================
+CLOSE
+===================================================== */
+
+function closeModal(){
+
+modal.classList.remove(
+"show"
+);
+
+}
+
+
+document
+.getElementById("closeModal")
+.addEventListener(
+"click",
+closeModal
+);
+
+
+document
+.getElementById("cancelButton")
+.addEventListener(
+"click",
+closeModal
+);
+
+
+document
+.getElementById("closeDetail")
+.addEventListener(
+"click",
+()=>{
+detailModal.classList.remove(
+"show"
+);
+}
+);
+
+
+modal.addEventListener(
+"click",
+event=>{
+
+if(
+event.target===modal
+){
+
+closeModal();
+
+}
+
+}
+);
+
+
+detailModal.addEventListener(
+"click",
+event=>{
+
+if(
+event.target===detailModal
+){
+
+detailModal.classList.remove(
+"show"
+);
+
+}
+
+}
+);
+
+
+/* =====================================================
+SAVE
+===================================================== */
+
+document
+.getElementById("saveButton")
+.addEventListener(
+"click",
+saveIncident
+);
+
+
+function saveIncident(){
+
+if(!form.checkValidity()){
+
+form.reportValidity();
+
+return;
+
+}
+
+
+const id=
+document.getElementById(
+"editId"
+).value;
+
+
+const item={
+
+id:
+id
+?Number(id)
+:Date.now(),
+
+reporter:
+document.getElementById(
+"reporter"
+).value.trim(),
+
+phone:
+document.getElementById(
+"phone"
+).value.trim(),
+
+category:
+document.getElementById(
+"category"
+).value,
+
+priority:
+document.getElementById(
+"priority"
+).value,
+
+title:
+document.getElementById(
+"title"
+).value.trim(),
+
+location:
+document.getElementById(
+"location"
+).value.trim(),
+
+description:
+document.getElementById(
+"description"
+).value.trim(),
+
+status:
+document.getElementById(
+"status"
+).value,
+
+assignee:
+document.getElementById(
+"assignee"
+).value.trim(),
+
+date:
+new Date()
+.toISOString()
+.slice(0,10)
+
+};
+
+
+if(id){
+
+const index=
+incidents.findIndex(
+x=>x.id===Number(id)
+);
+
+
+if(index!==-1){
+
+item.date=
+incidents[index].date;
+
+incidents[index]=
+item;
+
+}
+
+}else{
+
+incidents.unshift(
+item
+);
+
+}
+
+
+closeModal();
+
+renderIncidents();
+
+}
+
+
+/* =====================================================
+VIEW
+===================================================== */
+
+function viewIncident(id){
+
+const item=
+incidents.find(
+x=>x.id===id
+);
+
+
+if(!item)
+return;
+
+
+const priority=
+priorityInfo(
+item.priority
+);
+
+const status=
+statusInfo(
+item.status
+);
+
+
+document.getElementById(
+"detailContent"
+).innerHTML=`
+
+<div class="detail-row">
+
+<div class="detail-label">
+เลขที่เรื่อง
+</div>
+
+<div class="detail-value">
+#${item.id}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+หัวข้อ
+</div>
+
+<div class="detail-value">
+${item.title}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+ประเภท
+</div>
+
+<div class="detail-value">
+${categoryIcon(item.category)}
+${item.category}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+ระดับ
+</div>
+
+<div class="detail-value">
+${priority.icon}
+${item.priority}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+ผู้แจ้ง
+</div>
+
+<div class="detail-value">
+${item.reporter}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+โทรศัพท์
+</div>
+
+<div class="detail-value">
+${item.phone||"ไม่ระบุ"}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+สถานที่
+</div>
+
+<div class="detail-value">
+${item.location}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+รายละเอียด
+</div>
+
+<div class="detail-value">
+${item.description}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+ผู้รับผิดชอบ
+</div>
+
+<div class="detail-value">
+${item.assignee||"ยังไม่ได้มอบหมาย"}
+</div>
+
+</div>
+
+
+<div class="detail-row">
+
+<div class="detail-label">
+สถานะ
+</div>
+
+<div class="detail-value">
+${status.icon}
+${item.status}
+</div>
+
+</div>
+
+`;
+
+
+detailModal.classList.add(
+"show"
+);
+
+}
+
+
+/* =====================================================
+EDIT
+===================================================== */
+
+function editIncident(id){
+
+const item=
+incidents.find(
+x=>x.id===id
+);
+
+
+if(!item)
+return;
+
+
+document.getElementById(
+"editId"
+).value=
+item.id;
+
+
+document.getElementById(
+"reporter"
+).value=
+item.reporter;
+
+
+document.getElementById(
+"phone"
+).value=
+item.phone||"";
+
+
+document.getElementById(
+"category"
+).value=
+item.category;
+
+
+document.getElementById(
+"priority"
+).value=
+item.priority;
+
+
+document.getElementById(
+"title"
+).value=
+item.title;
+
+
+document.getElementById(
+"location"
+).value=
+item.location;
+
+
+document.getElementById(
+"description"
+).value=
+item.description;
+
+
+document.getElementById(
+"status"
+).value=
+item.status;
+
+
+document.getElementById(
+"assignee"
+).value=
+item.assignee||"";
+
+
+document.getElementById(
+"modalTitle"
+).textContent=
+"แก้ไขเรื่องแจ้ง";
+
+
+modal.classList.add(
+"show"
+);
+
+}
+
+
+/* =====================================================
+DELETE
+===================================================== */
+
+function deleteIncident(id){
+
+const item=
+incidents.find(
+x=>x.id===id
+);
+
+
+if(!item)
+return;
+
+
+const confirmed=
+confirm(
+`ต้องการลบเรื่อง #${item.id} หรือไม่?`
+);
+
+
+if(!confirmed)
+return;
+
+
+incidents=
+incidents.filter(
+x=>x.id!==id
+);
+
+
+renderIncidents();
+
+}
+
+
+/* =====================================================
+FILTER
+===================================================== */
+
+search.addEventListener(
+"input",
+renderIncidents
+);
+
+
+categoryFilter.addEventListener(
+"change",
+renderIncidents
+);
+
+
+statusFilter.addEventListener(
+"change",
+renderIncidents
+);
+
+
+/* =====================================================
+CLOCK
+===================================================== */
+
+function updateClock(){
+
+const now=
+new Date();
+
+
+document.getElementById(
+"time"
+).textContent=
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}
+);
+
+
+document.getElementById(
+"today"
+).textContent=
+now.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+document
+.getElementById("mobileButton")
+.addEventListener(
+"click",
+()=>{
+
+document
+.getElementById("sidebar")
+.classList.toggle(
+"open"
+);
+
+}
+);
+
+
+/* =====================================================
+START
+===================================================== */
+
+renderIncidents();
+
+updateSummary();
+
+</script>
+
+</body>
+
+</html>
