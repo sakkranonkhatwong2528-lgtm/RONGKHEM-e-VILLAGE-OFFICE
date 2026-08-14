@@ -78,7 +78,7 @@ button,input{font:inherit}button{cursor:pointer}.top{background:linear-gradient(
 <div class="field"><label>ผู้ตอบแบบสำรวจ</label><input id="eSurvey" type="number"></div>
 </div>
 <div class="actions"><button class="btn primary" id="saveStats">บันทึกสถิติ</button><button class="btn secondary" id="resetStats">คืนค่าข้อมูล VERIFIED</button></div>
-<div class="notice">ข้อมูลสถิติในเวอร์ชันนี้จะถูกบันทึกในเครื่องด้วย localStorage จนกว่าจะเชื่อม Supabase กลาง</div>
+<div class="notice">ระบบจะบันทึกลง Supabase เมื่อ config.js และ supabase.js เชื่อมต่อสำเร็จ หากเชื่อมต่อไม่ได้จะเก็บสำรองในเครื่อง</div>
 </div>
 </section>
 
@@ -124,8 +124,64 @@ function fill(){
 }
 function save(){localStorage.setItem("RONGKHEM_ADMIN_DATA",JSON.stringify(DATA));toast("✓ บันทึกข้อมูลแล้ว")}
 document.querySelectorAll(".nav[data-target]").forEach(b=>b.onclick=()=>{document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));document.getElementById(b.dataset.target).classList.add("active")});
-saveLeader.onclick=()=>{DATA.leader={name:leaderName.value,role:leaderRole.value,phone:leaderPhone.value,line:leaderLine.value};save()};
-saveStats.onclick=()=>{DATA.stats={total:+eTotal.value,male:+eMale.value,female:+eFemale.value,house:+eHouse.value,elderly:+eElderly.value,disabled:+eDisabled.value,chronic:+eChronic.value,vulnerable:+eVulnerable.value,survey:+eSurvey.value};save();fill()};
+saveLeader.onclick=async()=>{
+  DATA.leader={name:leaderName.value.trim(),role:leaderRole.value.trim(),phone:leaderPhone.value.trim(),line:leaderLine.value.trim()};
+  try{
+    if(window.RongkhemDB){
+      await RongkhemDB.updateVillage({
+        leader_name:DATA.leader.name,
+        leader_position:DATA.leader.role,
+        phone:DATA.leader.phone,
+        line_id:DATA.leader.line
+      });
+      toast("✓ บันทึกข้อมูลผู้ใหญ่บ้านลงฐานข้อมูลแล้ว");
+    }else{
+      save();
+      toast("⚠️ ยังไม่พบตัวเชื่อม Supabase จึงบันทึกไว้ในเครื่อง");
+    }
+  }catch(err){
+    console.error(err);
+    toast("❌ บันทึกไม่สำเร็จ: "+(err.message||"ตรวจสอบ Supabase"));
+  }
+};
+
+saveStats.onclick=async()=>{
+  const payload={
+    population_total:+eTotal.value,
+    population_male:+eMale.value,
+    population_female:+eFemale.value,
+    households_total:+eHouse.value,
+    elderly_60_plus:+eElderly.value,
+    elderly_percent:(+eSurvey.value ? (+eElderly.value/+eSurvey.value*100) : 0),
+    disabled_total:+eDisabled.value,
+    chronic_disease_total:+eChronic.value,
+    vulnerable_selections:+eVulnerable.value,
+    survey_total:+eSurvey.value,
+    survey_households:+eSurvey.value,
+    source:"VERIFIED DATA BUILD",
+    verified:true
+  };
+  try{
+    if(window.RongkhemDB){
+      const saved=await RongkhemDB.updateStatistics(payload);
+      DATA.stats={
+        total:saved.population_total,male:saved.population_male,female:saved.population_female,
+        house:saved.households_total,elderly:saved.elderly_60_plus,
+        disabled:saved.disabled_total,chronic:saved.chronic_disease_total,
+        vulnerable:saved.vulnerable_selections,survey:saved.survey_total
+      };
+      save(); fill();
+      toast("✓ บันทึกสถิติลงฐานข้อมูลจริงแล้ว");
+    }else{
+      DATA.stats={total:payload.population_total,male:payload.population_male,female:payload.population_female,house:payload.households_total,elderly:payload.elderly_60_plus,disabled:payload.disabled_total,chronic:payload.chronic_disease_total,vulnerable:payload.vulnerable_selections,survey:payload.survey_total};
+      save(); fill();
+      toast("⚠️ ยังไม่พบ Supabase จึงบันทึกไว้ในเครื่อง");
+    }
+  }catch(err){
+    console.error(err);
+    toast("❌ บันทึกไม่สำเร็จ: "+(err.message||"ตรวจสอบ Supabase"));
+  }
+};
 resetStats.onclick=()=>{DATA.stats={...VERIFIED.stats};save();fill();toast("คืนค่าข้อมูล VERIFIED แล้ว")};
 let photoData=null;try{photoData=localStorage.getItem("RONGKHEM_LEADER_PHOTO")}catch(e){}
 function showPhoto(src){photoPreview.innerHTML="<img src='"+src.replaceAll("'","&#39;")+"' alt='รูปผู้ใหญ่บ้าน'>"}
