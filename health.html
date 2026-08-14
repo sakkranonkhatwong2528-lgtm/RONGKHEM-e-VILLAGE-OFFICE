@@ -1,0 +1,2138 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>
+สุขภาพชุมชน | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+
+:root{
+
+    --bg:#07111f;
+    --card:rgba(15,29,48,.88);
+    --border:rgba(255,255,255,.08);
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --cyan:#22d3ee;
+    --blue:#38bdf8;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --red:#ef4444;
+    --purple:#a78bfa;
+
+    --radius:22px;
+
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+
+    font-family:"Prompt",sans-serif;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(34,211,238,.10),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(59,130,246,.10),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
+    );
+
+}
+
+.container{
+
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
+
+    margin:auto;
+
+}
+
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.header{
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:
+    rgba(4,11,20,.86);
+
+    backdrop-filter:
+    blur(18px);
+
+    border-bottom:
+    1px solid var(--border);
+
+}
+
+.header-inner{
+
+    min-height:76px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+.brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+}
+
+.logo{
+
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0284c7,
+        #22d3ee
+    );
+
+}
+
+.brand h1{
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
+}
+
+.brand p{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+.back{
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:white;
+
+    padding:
+    9px 14px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+}
+
+
+/* =====================================================
+TITLE
+===================================================== */
+
+.page-head{
+
+    margin-top:30px;
+
+}
+
+.page-head h2{
+
+    font-family:"Kanit";
+
+    font-size:36px;
+
+}
+
+.page-head p{
+
+    color:var(--muted);
+
+    margin-top:5px;
+
+    font-size:13px;
+
+}
+
+.source{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:12px;
+
+    padding:
+    8px 12px;
+
+    border-radius:10px;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.07);
+
+    border:
+    1px solid
+    rgba(34,211,238,.16);
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+WARNING
+===================================================== */
+
+.warning{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:22px;
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+    background:
+    rgba(250,204,21,.06);
+
+    border:
+    1px solid
+    rgba(250,204,21,.18);
+
+}
+
+.warning-icon{
+
+    width:44px;
+    height:44px;
+
+    flex:none;
+
+    border-radius:13px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--yellow);
+
+    background:
+    rgba(250,204,21,.08);
+
+}
+
+.warning h3{
+
+    font-size:15px;
+
+}
+
+.warning p{
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+STATISTICS
+===================================================== */
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
+    margin-top:20px;
+
+}
+
+.stat{
+
+    padding:22px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.stat-icon{
+
+    width:45px;
+    height:45px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.stat-value{
+
+    margin-top:12px;
+
+    font-family:"Kanit";
+
+    font-size:34px;
+
+}
+
+.stat-label{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+/* =====================================================
+SECTION
+===================================================== */
+
+.section{
+
+    margin-top:22px;
+
+}
+
+.section-title{
+
+    font-family:"Kanit";
+
+    font-size:24px;
+
+}
+
+.section-sub{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    margin-top:2px;
+
+}
+
+
+/* =====================================================
+GRID
+===================================================== */
+
+.grid{
+
+    margin-top:15px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:15px;
+
+}
+
+.card{
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.card-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:17px;
+
+}
+
+.card-title{
+
+    font-family:"Kanit";
+
+    font-size:20px;
+
+}
+
+.card-sub{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+BARS
+===================================================== */
+
+.bar-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:13px;
+
+}
+
+.bar-item{
+
+    display:grid;
+
+    grid-template-columns:
+    120px 1fr 45px;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.bar-label{
+
+    font-size:12px;
+
+}
+
+.bar{
+
+    height:10px;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+    background:
+    rgba(255,255,255,.07);
+
+}
+
+.bar span{
+
+    display:block;
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+        90deg,
+        #0284c7,
+        #22d3ee
+    );
+
+}
+
+.bar-value{
+
+    text-align:right;
+
+    font-family:"Kanit";
+
+    color:#67e8f9;
+
+}
+
+
+/* =====================================================
+HEALTH PROBLEMS
+===================================================== */
+
+.problem-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.problem{
+
+    display:grid;
+
+    grid-template-columns:
+    35px 1fr auto;
+
+    gap:10px;
+
+    align-items:center;
+
+    padding:14px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.rank{
+
+    width:30px;
+    height:30px;
+
+    border-radius:9px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+    font-size:12px;
+
+}
+
+.problem-name{
+
+    font-size:13px;
+
+}
+
+.problem-score{
+
+    font-family:"Kanit";
+
+    color:#67e8f9;
+
+}
+
+
+/* =====================================================
+SIMPLE CARDS
+===================================================== */
+
+.mini-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:11px;
+
+}
+
+.mini{
+
+    padding:17px;
+
+    border-radius:16px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.mini-value{
+
+    font-family:"Kanit";
+
+    font-size:25px;
+
+    color:#67e8f9;
+
+}
+
+.mini-label{
+
+    color:var(--muted);
+
+    font-size:11px;
+
+}
+
+
+/* =====================================================
+DISEASE SURVEILLANCE
+===================================================== */
+
+.disease-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.disease{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px;
+
+    border-radius:15px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.disease-name{
+
+    font-size:13px;
+
+}
+
+.disease-area{
+
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+.disease-count{
+
+    font-family:"Kanit";
+
+    color:#67e8f9;
+
+    font-size:22px;
+
+}
+
+.disease-count span{
+
+    font-family:"Prompt";
+
+    font-size:10px;
+
+    color:var(--muted);
+
+}
+
+
+/* =====================================================
+SOURCE
+===================================================== */
+
+.source-box{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.source-box h3{
+
+    font-family:"Kanit";
+
+    font-size:18px;
+
+}
+
+.source-box p{
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:45px;
+
+    padding:
+    25px 0;
+
+    border-top:
+    1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:950px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+
+        width:
+        calc(100% - 20px);
+
+    }
+
+    .page-head h2{
+
+        font-size:29px;
+
+    }
+
+    .stats{
+
+        grid-template-columns:
+        1fr 1fr;
+
+        gap:10px;
+
+    }
+
+    .stat{
+
+        padding:16px;
+
+    }
+
+    .stat-value{
+
+        font-size:28px;
+
+    }
+
+    .bar-item{
+
+        grid-template-columns:
+        90px 1fr 35px;
+
+    }
+
+    .footer{
+
+        display:block;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+
+<div class="container header-inner">
+
+<div class="brand">
+
+<div class="logo">
+
+<i class="fa-solid fa-heart-pulse"></i>
+
+</div>
+
+<div>
+
+<h1>
+RONGKHEM e-VILLAGE
+</h1>
+
+<p>
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+</p>
+
+</div>
+
+</div>
+
+
+<button
+class="back"
+onclick="location.href='../index.html'">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+กลับหน้าหลัก
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<main class="container">
+
+
+<!-- =====================================================
+TITLE
+===================================================== -->
+
+<section class="page-head">
+
+<h2>
+สุขภาพชุมชน
+</h2>
+
+<p>
+ข้อมูลสุขภาพจากรายงานการวินิจฉัยชุมชนบ้านร่องเข็ม
+</p>
+
+<div class="source">
+
+<i class="fa-solid fa-file-medical"></i>
+
+รายงานผลการวินิจฉัยชุมชน ปีการศึกษา 2568
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+IMPORTANT WARNING
+===================================================== -->
+
+<section class="warning">
+
+<div class="warning-icon">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+</div>
+
+<div>
+
+<h3>
+ขอบเขตของข้อมูล
+</h3>
+
+<p>
+
+ข้อมูลสุขภาพในส่วนนี้เป็นผลจาก
+<strong>กลุ่มตัวอย่าง 22 คน</strong>
+ตามรายงาน ไม่ใช่ข้อมูลสุขภาพของประชากรทั้งหมู่บ้าน 960 คน
+จึงไม่ควรนำตัวเลขเหล่านี้ไปตีความว่าเป็นจำนวนผู้ป่วยของทั้งหมู่บ้าน
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+MAIN STATS
+===================================================== -->
+
+<section class="stats">
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-users"></i>
+
+</div>
+
+<div
+id="sample"
+class="stat-value">
+
+22
+
+</div>
+
+<div class="stat-label">
+
+กลุ่มตัวอย่าง
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-heart-pulse"></i>
+
+</div>
+
+<div
+id="chronic"
+class="stat-value">
+
+17
+
+</div>
+
+<div class="stat-label">
+
+มีโรคประจำตัว
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-droplet"></i>
+
+</div>
+
+<div
+id="bp"
+class="stat-value">
+
+8
+
+</div>
+
+<div class="stat-label">
+
+ความดันโลหิต
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-tractor"></i>
+
+</div>
+
+<div
+id="agriculture"
+class="stat-value">
+
+10
+
+</div>
+
+<div class="stat-label">
+
+เกษตรกรรม
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+DEMOGRAPHICS
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+ข้อมูลพื้นฐานกลุ่มตัวอย่าง
+</div>
+
+<div class="section-sub">
+n = 22 คน
+</div>
+
+
+<div class="grid">
+
+
+<!-- GENDER -->
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+เพศ
+</div>
+
+<div class="card-sub">
+กลุ่มตัวอย่าง 22 คน
+</div>
+
+</div>
+
+<i class="fa-solid fa-people-group"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="genderBars"
+class="bar-list">
+
+</div>
+
+</div>
+
+
+
+<!-- AGE -->
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+ช่วงอายุ
+</div>
+
+<div class="card-sub">
+กลุ่มตัวอย่าง 22 คน
+</div>
+
+</div>
+
+<i class="fa-solid fa-cake-candles"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="ageBars"
+class="bar-list">
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+OCCUPATION + BEHAVIOR
+===================================================== -->
+
+<section class="section">
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+อาชีพ
+</div>
+
+<div class="card-sub">
+ข้อมูลกลุ่มตัวอย่าง
+</div>
+
+</div>
+
+<i class="fa-solid fa-briefcase"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="occupationBars"
+class="bar-list">
+
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+พฤติกรรมสุขภาพ
+</div>
+
+<div class="card-sub">
+การสูบบุหรี่และการดื่มสุรา
+</div>
+
+</div>
+
+<i class="fa-solid fa-person-running"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="behaviorGrid"
+class="mini-grid">
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+HEALTH PROBLEMS
+===================================================== -->
+
+<section class="section">
+
+<div class="section-title">
+ปัญหาสุขภาพชุมชน
+</div>
+
+<div class="section-sub">
+จัดลำดับตามข้อมูลในรายงาน
+</div>
+
+
+<div class="card"
+style="margin-top:15px">
+
+<div
+id="healthProblems"
+class="problem-list">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+CHRONIC CONDITIONS
+===================================================== -->
+
+<section class="section">
+
+<div class="grid">
+
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+โรคประจำตัว
+</div>
+
+<div class="card-sub">
+ข้อมูลกลุ่มตัวอย่าง
+</div>
+
+</div>
+
+<i class="fa-solid fa-notes-medical"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="chronicList"
+class="problem-list">
+
+</div>
+
+</div>
+
+
+
+<!-- SURVEILLANCE -->
+
+<div class="card">
+
+<div class="card-head">
+
+<div>
+
+<div class="card-title">
+โรคเฝ้าระวัง
+</div>
+
+<div class="card-sub">
+ข้อมูลตามพื้นที่ที่ระบุในรายงาน
+</div>
+
+</div>
+
+<i class="fa-solid fa-shield-virus"
+style="color:#22d3ee">
+</i>
+
+</div>
+
+
+<div
+id="diseaseList"
+class="disease-list">
+
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+SOURCE
+===================================================== -->
+
+<section class="source-box">
+
+<h3>
+
+<i class="fa-solid fa-book"></i>
+
+แหล่งข้อมูลและข้อควรระวัง
+
+</h3>
+
+<p>
+
+แหล่งข้อมูลหลัก:
+รายงานผลการวินิจฉัยชุมชน บ้านร่องเข็ม หมู่ที่ 6
+ปีการศึกษา 2568
+
+</p>
+
+<p>
+
+ข้อมูลสุขภาพหลายรายการเป็นข้อมูลจากกลุ่มตัวอย่าง
+จึงต้องแสดงขอบเขตของข้อมูลทุกครั้งเมื่อเผยแพร่ต่อสาธารณะ
+
+</p>
+
+<p>
+
+ข้อมูลโรคเฝ้าระวังจะระบุพื้นที่ตามรายงาน
+และจะไม่ตีความว่าเป็นจำนวนผู้ป่วยเฉพาะบ้านร่องเข็ม
+หากเอกสารไม่ได้ระบุเช่นนั้น
+
+</p>
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+<div>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</div>
+
+</footer>
+
+
+</main>
+
+
+
+<script>
+
+/* =====================================================
+SUPABASE
+===================================================== */
+
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
+
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
+
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =====================================================
+HELPER
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
+
+/* =====================================================
+LOAD HEALTH SUMMARY
+===================================================== */
+
+async function loadHealthSummary(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "health_survey_summary"
+        )
+
+        .select("*")
+
+        .eq(
+            "survey_year",
+            2568
+        );
+
+
+        if(error)
+            throw error;
+
+
+        if(!data)
+            return;
+
+
+        function amount(
+            category,
+            item
+        ){
+
+            const row =
+            data.find(
+                x =>
+                x.category === category &&
+                x.item_name === item
+            );
+
+            return row
+            ? Number(row.amount)
+            : 0;
+
+        }
+
+
+        const chronic =
+        amount(
+            "โรคประจำตัว",
+            "มีโรคประจำตัว"
+        );
+
+
+        const bp =
+        amount(
+            "โรคประจำตัว",
+            "ความดันโลหิต"
+        );
+
+
+        const agriculture =
+        amount(
+            "อาชีพ",
+            "เกษตรกรรม"
+        );
+
+
+        document.getElementById(
+            "chronic"
+        ).textContent =
+        chronic;
+
+
+        document.getElementById(
+            "bp"
+        ).textContent =
+        bp;
+
+
+        document.getElementById(
+            "agriculture"
+        ).textContent =
+        agriculture;
+
+
+        /* GENDER */
+
+        renderBars(
+            "genderBars",
+            data.filter(
+                x =>
+                x.category === "เพศ"
+            ),
+            22
+        );
+
+
+        /* AGE */
+
+        renderBars(
+            "ageBars",
+            data.filter(
+                x =>
+                x.category === "อายุ"
+            ),
+            22
+        );
+
+
+        /* OCCUPATION */
+
+        renderBars(
+            "occupationBars",
+            data.filter(
+                x =>
+                x.category === "อาชีพ"
+            ),
+            22
+        );
+
+
+        /* BEHAVIOR */
+
+        renderBehavior(
+            data
+        );
+
+
+        /* CHRONIC */
+
+        renderChronic(
+            data
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Health summary:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+BARS
+===================================================== */
+
+function renderBars(
+    id,
+    rows,
+    total
+){
+
+    const container =
+    document.getElementById(id);
+
+
+    if(
+        !rows ||
+        rows.length === 0
+    ){
+
+        container.innerHTML = `
+        <div style="color:#94a3b8;font-size:12px">
+            ไม่มีข้อมูล
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    rows.map(
+        row => {
+
+            const amount =
+            Number(row.amount || 0);
+
+            const percent =
+            total > 0
+            ? amount / total * 100
+            : 0;
+
+
+            return `
+
+            <div class="bar-item">
+
+                <div class="bar-label">
+
+                    ${escapeHTML(
+                        row.item_name
+                    )}
+
+                </div>
+
+                <div class="bar">
+
+                    <span
+                    style="width:${Math.min(
+                        percent,
+                        100
+                    )}%">
+
+                    </span>
+
+                </div>
+
+                <div class="bar-value">
+
+                    ${amount}
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =====================================================
+BEHAVIOR
+===================================================== */
+
+function renderBehavior(
+    data
+){
+
+    const container =
+    document.getElementById(
+        "behaviorGrid"
+    );
+
+
+    const rows = [
+
+        {
+            category:"การสูบบุหรี่",
+            item:"สูบ",
+            label:"สูบบุหรี่"
+        },
+
+        {
+            category:"การสูบบุหรี่",
+            item:"ไม่สูบ",
+            label:"ไม่สูบบุหรี่"
+        },
+
+        {
+            category:"การดื่มสุรา",
+            item:"ดื่ม",
+            label:"ดื่มสุรา"
+        },
+
+        {
+            category:"การดื่มสุรา",
+            item:"ไม่ดื่ม",
+            label:"ไม่ดื่มสุรา"
+        }
+
+    ];
+
+
+    container.innerHTML =
+    rows.map(
+        item => {
+
+            const row =
+            data.find(
+                x =>
+                x.category === item.category &&
+                x.item_name === item.item
+            );
+
+
+            const amount =
+            row
+            ? row.amount
+            : "--";
+
+
+            return `
+
+            <div class="mini">
+
+                <div class="mini-value">
+
+                    ${amount}
+
+                </div>
+
+                <div class="mini-label">
+
+                    ${item.label}
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+    ).join("");
+
+}
+
+
+/* =====================================================
+CHRONIC CONDITIONS
+===================================================== */
+
+function renderChronic(
+    data
+){
+
+    const container =
+    document.getElementById(
+        "chronicList"
+    );
+
+
+    const rows =
+    data.filter(
+        x =>
+        x.category === "โรคประจำตัว" &&
+        x.item_name !== "ไม่มี" &&
+        x.item_name !== "มีโรคประจำตัว"
+    );
+
+
+    container.innerHTML =
+    rows.map(
+        (row,index) => `
+
+        <div class="problem">
+
+            <div class="rank">
+
+                ${index + 1}
+
+            </div>
+
+            <div class="problem-name">
+
+                ${escapeHTML(
+                    row.item_name
+                )}
+
+            </div>
+
+            <div class="problem-score">
+
+                ${row.amount}
+
+            </div>
+
+        </div>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+HEALTH PROBLEMS
+===================================================== */
+
+async function loadHealthProblems(){
+
+    const container =
+    document.getElementById(
+        "healthProblems"
+    );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "community_health_problems"
+        )
+
+        .select("*")
+
+        .order(
+            "priority_rank",
+            {
+                ascending:true
+            }
+        );
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            container.innerHTML = `
+
+            <div class="problem">
+
+                <div class="rank">
+                -
+                </div>
+
+                <div class="problem-name">
+                ยังไม่มีข้อมูล
+                </div>
+
+            </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+        data.map(
+            (row,index) => `
+
+            <div class="problem">
+
+                <div class="rank">
+
+                    ${row.priority_rank ||
+                      index + 1}
+
+                </div>
+
+
+                <div class="problem-name">
+
+                    ${escapeHTML(
+                        row.problem_name
+                    )}
+
+                </div>
+
+
+                <div class="problem-score">
+
+                    ${row.total_multiplication ?? "-"}
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        console.error(
+            "Health problems:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+DISEASE SURVEILLANCE
+===================================================== */
+
+async function loadDiseases(){
+
+    const container =
+    document.getElementById(
+        "diseaseList"
+    );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "epidemiology_surveillance"
+        )
+
+        .select("*")
+
+        .order(
+            "amount",
+            {
+                ascending:false
+            }
+        );
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            container.innerHTML = `
+
+            <div class="disease">
+
+                <div>
+
+                    <div class="disease-name">
+                    ไม่มีข้อมูล
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        container.innerHTML =
+        data.map(
+            row => `
+
+            <div class="disease">
+
+                <div>
+
+                    <div class="disease-name">
+
+                        ${escapeHTML(
+                            row.disease_name
+                        )}
+
+                    </div>
+
+                    <div class="disease-area">
+
+                        ${escapeHTML(
+                            row.area
+                        )}
+
+                    </div>
+
+                </div>
+
+
+                <div class="disease-count">
+
+                    ${row.amount}
+
+                    <span>
+                    คน
+                    </span>
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+
+    }catch(error){
+
+        console.error(
+            "Disease:",
+            error
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+INIT
+===================================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
+
+        await Promise.all([
+
+            loadHealthSummary(),
+
+            loadHealthProblems(),
+
+            loadDiseases()
+
+        ]);
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
