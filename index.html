@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#07111f">
-
 <title>
-RONGKHEM e-VILLAGE
-ที่ทำการผู้ใหญ่บ้านออนไลน์
+RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์
 </title>
 
-<!-- =====================================================
-     FONT
-===================================================== -->
+<meta name="description"
+content="ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
 
 <link rel="preconnect"
       href="https://fonts.gstatic.com"
@@ -25,141 +25,411 @@ RONGKHEM e-VILLAGE
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
 
-
-<!-- =====================================================
-     ICON
-===================================================== -->
-
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
 <style>
 
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
 
-    --bg:#07111f;
-    --bg2:#0b1728;
+    --bg:#050b14;
 
-    --card:rgba(16,31,51,.82);
+    --sidebar:#07111e;
 
-    --border:rgba(255,255,255,.09);
+    --card:rgba(14,27,44,.86);
 
-    --text:#f5f7fb;
-    --muted:#91a0b5;
+    --card2:rgba(17,34,54,.92);
+
+    --border:rgba(255,255,255,.075);
+
+    --text:#f8fafc;
+
+    --muted:#94a3b8;
+
+    --green:#22c55e;
+
+    --green2:#16a34a;
+
+    --cyan:#22d3ee;
 
     --blue:#38bdf8;
-    --cyan:#22d3ee;
-    --green:#22c55e;
-    --yellow:#facc15;
-    --red:#ef4444;
+
     --purple:#a78bfa;
 
-    --shadow:
-    0 20px 60px rgba(0,0,0,.35);
+    --orange:#fb923c;
 
-    --radius:24px;
+    --yellow:#facc15;
+
+    --red:#fb7185;
+
 }
 
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
+
     box-sizing:border-box;
+
     margin:0;
+
     padding:0;
+
 }
 
+html{
+
+    scroll-behavior:smooth;
+
+}
 
 body{
 
-    font-family:
-    "Prompt",
-    sans-serif;
+    min-height:100vh;
+
+    font-family:"Prompt",sans-serif;
+
+    color:var(--text);
 
     background:
 
     radial-gradient(
-        circle at 10% 10%,
-        rgba(34,211,238,.10),
-        transparent 30%
+        circle at 10% 0%,
+        rgba(34,197,94,.08),
+        transparent 28%
     ),
 
     radial-gradient(
-        circle at 90% 20%,
-        rgba(56,189,248,.10),
+        circle at 90% 10%,
+        rgba(56,189,248,.07),
         transparent 30%
     ),
 
-    linear-gradient(
-        135deg,
-        #040b14,
-        #07111f 45%,
-        #0b1728
-    );
+    #050b14;
 
-    color:var(--text);
+}
+
+
+/* =========================================================
+   LAYOUT
+========================================================= */
+
+.app{
 
     min-height:100vh;
 
-    overflow-x:hidden;
+    display:flex;
+
 }
 
 
-/* =====================================================
-   BACKGROUND EFFECT
-===================================================== */
+/* =========================================================
+   SIDEBAR
+========================================================= */
 
-body::before{
-
-    content:"";
+.sidebar{
 
     position:fixed;
 
-    inset:0;
+    top:0;
 
-    pointer-events:none;
+    left:0;
 
-    opacity:.25;
+    bottom:0;
 
-    background-image:
+    z-index:300;
+
+    width:275px;
+
+    padding:20px 14px;
+
+    overflow-y:auto;
+
+    background:
 
     linear-gradient(
-        rgba(255,255,255,.025) 1px,
-        transparent 1px
-    ),
-
-    linear-gradient(
-        90deg,
-        rgba(255,255,255,.025) 1px,
-        transparent 1px
+        180deg,
+        #06101c,
+        #071522
     );
 
-    background-size:
-    40px 40px;
+    border-right:
+    1px solid var(--border);
+
+    transition:
+    transform .25s ease;
 
 }
 
 
-/* =====================================================
-   HEADER
-===================================================== */
+.sidebar-brand{
 
-.header{
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:4px 8px 20px;
+
+}
+
+.sidebar-logo{
+
+    width:48px;
+
+    height:48px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:15px;
+
+    font-size:21px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #166534,
+        #22c55e
+    );
+
+    box-shadow:
+    0 10px 30px
+    rgba(34,197,94,.16);
+
+}
+
+.sidebar-title{
+
+    font-family:"Kanit";
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+.sidebar-title span{
+
+    color:#86efac;
+
+}
+
+.sidebar-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
+
+
+.menu{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+.menu-item{
+
+    min-height:48px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:9px 11px;
+
+    border-radius:13px;
+
+    color:#cbd5e1;
+
+    text-decoration:none;
+
+    font-size:11px;
+
+    transition:
+    background .2s ease,
+    color .2s ease;
+
+}
+
+.menu-item:hover{
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.045);
+
+}
+
+.menu-item.active{
+
+    color:white;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(22,163,74,.32),
+        rgba(34,197,94,.10)
+    );
+
+    border:
+    1px solid
+    rgba(34,197,94,.18);
+
+}
+
+.menu-icon{
+
+    width:30px;
+
+    height:30px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:9px;
+
+    font-size:14px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.menu-item.active
+.menu-icon{
+
+    background:
+    rgba(34,197,94,.15);
+
+    color:#86efac;
+
+}
+
+.menu-item small{
+
+    color:#64748b;
+
+    font-size:8px;
+
+}
+
+
+.sidebar-contact{
+
+    margin-top:20px;
+
+    padding:15px;
+
+    border-radius:17px;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.sidebar-contact-title{
+
+    font-family:"Kanit";
+
+    font-size:14px;
+
+}
+
+.contact-row{
+
+    margin-top:10px;
+
+    display:flex;
+
+    gap:8px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+    line-height:1.5;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+    width:calc(100% - 275px);
+
+    margin-left:275px;
+
+    min-width:0;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.top-header{
 
     position:sticky;
 
     top:0;
 
-    z-index:1000;
+    z-index:200;
+
+    min-height:82px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:18px;
+
+    padding:13px 28px;
 
     background:
-    rgba(4,11,20,.82);
+    rgba(5,11,20,.82);
 
     backdrop-filter:
     blur(18px);
@@ -169,45 +439,47 @@ body::before{
 
 }
 
+.mobile-menu{
 
-.header-inner{
+    display:none;
 
-    max-width:1450px;
+    width:42px;
 
-    margin:auto;
+    height:42px;
 
-    padding:
-    14px 24px;
+    border-radius:12px;
+
+    border:1px solid var(--border);
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.04);
+
+    cursor:pointer;
+
+}
+
+
+.brand-mini{
 
     display:flex;
 
     align-items:center;
 
-    justify-content:space-between;
+    gap:11px;
 
-    gap:20px;
-
-}
-
-
-.brand{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
+    min-width:0;
 
 }
-
 
 .brand-logo{
 
-    width:54px;
+    width:43px;
 
-    height:54px;
+    height:43px;
 
-    border-radius:16px;
+    flex:none;
 
     display:flex;
 
@@ -215,181 +487,223 @@ body::before{
 
     justify-content:center;
 
-    font-size:25px;
+    border-radius:13px;
 
     background:
-
-    linear-gradient(
-        135deg,
-        #0ea5e9,
-        #22d3ee
-    );
-
-    box-shadow:
-    0 0 30px
-    rgba(34,211,238,.25);
+    rgba(34,197,94,.10);
 
 }
 
-
-.brand-text h1{
+.brand-mini h1{
 
     font-family:"Kanit";
 
-    font-size:21px;
-
-    line-height:1.2;
+    font-size:17px;
 
 }
 
+.brand-mini h1 span{
 
-.brand-text p{
+    color:#86efac;
 
-    font-size:12px;
+}
+
+.brand-mini p{
 
     color:var(--muted);
 
+    font-size:9px;
+
 }
 
 
-.header-right{
+.clock-box{
+
+    text-align:right;
+
+}
+
+.clock{
+
+    font-family:"Kanit";
+
+    font-size:27px;
+
+    line-height:1;
+
+    letter-spacing:1px;
+
+}
+
+.date{
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+
+.user-box{
 
     display:flex;
 
     align-items:center;
 
-    gap:12px;
+    gap:9px;
 
 }
 
+.avatar{
 
-.status{
+    width:42px;
+
+    height:42px;
 
     display:flex;
 
     align-items:center;
 
-    gap:8px;
-
-    padding:
-    8px 13px;
-
-    border:
-    1px solid
-    rgba(34,197,94,.25);
-
-    background:
-    rgba(34,197,94,.07);
-
-    border-radius:999px;
-
-    font-size:12px;
-
-}
-
-
-.status-dot{
-
-    width:8px;
-
-    height:8px;
+    justify-content:center;
 
     border-radius:50%;
 
-    background:var(--green);
-
-    box-shadow:
-    0 0 12px var(--green);
-
-}
-
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.container{
-
-    width:min(
-        1450px,
-        calc(100% - 32px)
-    );
-
-    margin:auto;
-
-}
-
-
-/* =====================================================
-   HERO
-===================================================== */
-
-.hero{
-
-    margin-top:28px;
-
-    min-height:410px;
-
-    padding:48px;
+    background:
+    rgba(255,255,255,.06);
 
     border:
     1px solid var(--border);
 
-    border-radius:32px;
+}
+
+.user-name{
+
+    font-size:10px;
+
+}
+
+.user-role{
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+.online{
+
+    margin-top:2px;
+
+    color:#86efac;
+
+    font-size:8px;
+
+}
+
+.online-dot{
+
+    display:inline-block;
+
+    width:6px;
+
+    height:6px;
+
+    margin-right:4px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 10px
+    #22c55e;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+
+    padding:27px;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero{
 
     position:relative;
 
+    min-height:290px;
+
     overflow:hidden;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    padding:30px;
+
+    border-radius:25px;
 
     background:
 
-    radial-gradient(
-        circle at 85% 20%,
-        rgba(34,211,238,.18),
-        transparent 30%
+    linear-gradient(
+        90deg,
+        rgba(2,6,23,.94),
+        rgba(2,6,23,.60),
+        rgba(2,6,23,.25)
     ),
 
     radial-gradient(
-        circle at 15% 90%,
-        rgba(59,130,246,.16),
+        circle at 75% 30%,
+        rgba(34,197,94,.17),
         transparent 30%
     ),
 
     linear-gradient(
         135deg,
-        rgba(14,165,233,.08),
-        rgba(15,23,42,.85)
+        #10251d,
+        #102a3a
     );
 
-    box-shadow:
-    var(--shadow);
+    border:
+    1px solid var(--border);
 
 }
 
+.hero::after{
 
-.hero-grid{
+    content:"";
 
     position:absolute;
 
-    inset:0;
+    right:-100px;
 
-    background-image:
+    bottom:-140px;
 
-    linear-gradient(
-        rgba(56,189,248,.04) 1px,
-        transparent 1px
-    ),
+    width:480px;
 
-    linear-gradient(
-        90deg,
-        rgba(56,189,248,.04) 1px,
-        transparent 1px
+    height:480px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        rgba(34,197,94,.18),
+        transparent 65%
     );
 
-    background-size:45px 45px;
-
 }
-
 
 .hero-content{
 
@@ -397,116 +711,107 @@ body::before{
 
     z-index:2;
 
-    max-width:850px;
+    max-width:720px;
 
 }
 
-
-.badge{
+.live-badge{
 
     display:inline-flex;
 
     align-items:center;
 
-    gap:8px;
+    gap:7px;
 
-    padding:
-    8px 14px;
+    padding:7px 11px;
 
     border-radius:999px;
 
+    color:#86efac;
+
     background:
-    rgba(34,211,238,.08);
+    rgba(34,197,94,.09);
 
     border:
     1px solid
-    rgba(34,211,238,.22);
+    rgba(34,197,94,.18);
 
-    color:#67e8f9;
-
-    font-size:13px;
-
-    margin-bottom:20px;
+    font-size:9px;
 
 }
 
+.live-dot{
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:
+    0 0 12px #22c55e;
+
+    animation:pulse 1.7s infinite;
+
+}
 
 .hero h2{
 
+    margin-top:14px;
+
     font-family:"Kanit";
 
-    font-size:
-    clamp(35px,5vw,68px);
+    font-size:37px;
 
-    line-height:1.08;
-
-    letter-spacing:-1px;
+    line-height:1.25;
 
 }
-
 
 .hero h2 span{
 
-    background:
-
-    linear-gradient(
-        90deg,
-        #38bdf8,
-        #22d3ee,
-        #a78bfa
-    );
-
-    -webkit-background-clip:text;
-
-    background-clip:text;
-
-    color:transparent;
+    color:#86efac;
 
 }
-
 
 .hero p{
 
-    margin-top:20px;
+    margin-top:9px;
 
-    color:#aebbd0;
+    color:#cbd5e1;
 
-    font-size:16px;
+    font-size:12px;
 
     line-height:1.8;
 
-    max-width:750px;
-
 }
 
+.hero-motto{
+
+    margin-top:13px;
+
+    color:#fde68a;
+
+    font-family:"Kanit";
+
+    font-size:14px;
+
+}
 
 .hero-actions{
 
-    display:flex;
+    margin-top:17px;
 
-    gap:12px;
+    display:flex;
 
     flex-wrap:wrap;
 
-    margin-top:28px;
+    gap:9px;
 
 }
 
-
-.btn{
-
-    border:0;
-
-    padding:
-    13px 18px;
-
-    border-radius:14px;
-
-    font-family:"Prompt";
-
-    cursor:pointer;
-
-    transition:.2s;
+.hero-btn{
 
     display:inline-flex;
 
@@ -514,367 +819,62 @@ body::before{
 
     gap:8px;
 
-}
+    padding:10px 14px;
 
+    border-radius:11px;
 
-.btn:hover{
-
-    transform:
-    translateY(-2px);
-
-}
-
-
-.btn-primary{
-
-    background:
-    linear-gradient(
-        135deg,
-        #0284c7,
-        #06b6d4
-    );
+    text-decoration:none;
 
     color:white;
 
-    box-shadow:
-    0 10px 30px
-    rgba(6,182,212,.20);
-
-}
-
-
-.btn-dark{
+    font-size:10px;
 
     background:
-    rgba(255,255,255,.05);
-
-    color:white;
-
-    border:
-    1px solid var(--border);
-
-}
-
-
-/* =====================================================
-   DIGITAL CLOCK
-===================================================== */
-
-.clock-panel{
-
-    position:absolute;
-
-    right:35px;
-
-    bottom:35px;
-
-    width:300px;
-
-    padding:22px;
-
-    border-radius:22px;
-
-    background:
-    rgba(3,10,18,.68);
+    rgba(34,197,94,.16);
 
     border:
     1px solid
-    rgba(255,255,255,.08);
-
-    backdrop-filter:
-    blur(15px);
-
-    z-index:5;
+    rgba(34,197,94,.25);
 
 }
 
-
-.clock-label{
-
-    color:var(--muted);
-
-    font-size:12px;
-
-}
-
-
-.clock{
-
-    font-family:"Kanit";
-
-    font-size:42px;
-
-    letter-spacing:2px;
-
-    margin-top:4px;
-
-    color:#67e8f9;
-
-}
-
-
-.date{
-
-    color:#cbd5e1;
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   WEATHER
-===================================================== */
-
-.weather{
-
-    margin-top:22px;
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(3,1fr);
-
-    gap:16px;
-
-}
-
-
-.weather-card{
+.hero-btn.secondary{
 
     background:
-    var(--card);
+    rgba(255,255,255,.055);
 
-    border:
-    1px solid var(--border);
-
-    border-radius:
-    var(--radius);
-
-    padding:20px;
-
-    box-shadow:
-    var(--shadow);
+    border-color:
+    var(--border);
 
 }
 
 
-.weather-title{
+/* =========================================================
+   KPI
+========================================================= */
 
-    display:flex;
+.kpi-grid{
 
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:12px;
-
-}
-
-
-.weather-icon{
-
-    width:44px;
-
-    height:44px;
-
-    border-radius:14px;
-
-    background:
-    rgba(56,189,248,.10);
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--blue);
-
-}
-
-
-.weather-value{
-
-    font-family:"Kanit";
-
-    font-size:30px;
-
-}
-
-
-.weather-desc{
-
-    color:var(--muted);
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.section{
-
-    margin-top:32px;
-
-}
-
-
-.section-head{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:end;
-
-    margin-bottom:16px;
-
-}
-
-
-.section-title{
-
-    font-family:"Kanit";
-
-    font-size:25px;
-
-}
-
-
-.section-sub{
-
-    color:var(--muted);
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   STATISTICS
-===================================================== */
-
-.stats{
+    margin-top:17px;
 
     display:grid;
 
     grid-template-columns:
     repeat(4,1fr);
 
-    gap:16px;
+    gap:13px;
 
 }
 
-
-.stat-card{
+.kpi{
 
     position:relative;
 
-    padding:24px;
-
-    border-radius:
-    var(--radius);
-
-    background:
-    var(--card);
-
-    border:
-    1px solid var(--border);
-
     overflow:hidden;
 
-}
+    padding:19px;
 
-
-.stat-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:100px;
-
-    height:100px;
-
-    border-radius:50%;
-
-    right:-40px;
-
-    top:-40px;
-
-    background:
-    rgba(34,211,238,.07);
-
-}
-
-
-.stat-icon{
-
-    width:45px;
-
-    height:45px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:14px;
-
-    background:
-    rgba(56,189,248,.10);
-
-    color:var(--blue);
-
-    margin-bottom:15px;
-
-}
-
-
-.stat-number{
-
-    font-family:"Kanit";
-
-    font-size:38px;
-
-}
-
-
-.stat-label{
-
-    color:var(--muted);
-
-    font-size:13px;
-
-}
-
-
-/* =====================================================
-   MENU
-===================================================== */
-
-.menu-grid{
-
-    display:grid;
-
-    grid-template-columns:
-    repeat(6,1fr);
-
-    gap:14px;
-
-}
-
-
-.menu-card{
-
-    padding:22px 15px;
-
-    min-height:135px;
+    min-height:150px;
 
     border-radius:20px;
 
@@ -884,38 +884,34 @@ body::before{
     border:
     1px solid var(--border);
 
-    text-align:center;
-
-    cursor:pointer;
-
-    transition:.25s;
-
 }
 
+.kpi::after{
 
-.menu-card:hover{
+    content:"";
 
-    transform:
-    translateY(-5px);
+    position:absolute;
 
-    border-color:
-    rgba(56,189,248,.35);
+    width:100px;
+
+    height:100px;
+
+    right:-30px;
+
+    bottom:-35px;
+
+    border-radius:50%;
 
     background:
-    rgba(20,42,66,.9);
+    rgba(255,255,255,.025);
 
 }
 
+.kpi-icon{
 
-.menu-icon{
+    width:43px;
 
-    width:50px;
-
-    height:50px;
-
-    margin:0 auto 12px;
-
-    border-radius:15px;
+    height:43px;
 
     display:flex;
 
@@ -923,53 +919,120 @@ body::before{
 
     justify-content:center;
 
-    font-size:21px;
+    border-radius:13px;
 
-    color:#67e8f9;
+    font-size:18px;
+
+}
+
+.kpi.green .kpi-icon{
+
+    color:#86efac;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(34,197,94,.09);
 
 }
 
+.kpi.blue .kpi-icon{
 
-.menu-card h3{
+    color:#7dd3fc;
 
-    font-size:14px;
-
-    font-weight:500;
+    background:
+    rgba(56,189,248,.09);
 
 }
 
+.kpi.purple .kpi-icon{
 
-.menu-card p{
+    color:#c4b5fd;
 
-    margin-top:5px;
+    background:
+    rgba(167,139,250,.09);
+
+}
+
+.kpi.orange .kpi-icon{
+
+    color:#fdba74;
+
+    background:
+    rgba(251,146,60,.09);
+
+}
+
+.kpi-label{
+
+    margin-top:10px;
 
     color:var(--muted);
 
-    font-size:11px;
+    font-size:9px;
+
+}
+
+.kpi-value{
+
+    margin-top:3px;
+
+    font-family:"Kanit";
+
+    font-size:31px;
+
+}
+
+.kpi-unit{
+
+    margin-left:4px;
+
+    color:var(--muted);
+
+    font-family:"Prompt";
+
+    font-size:10px;
+
+}
+
+.kpi-detail{
+
+    margin-top:5px;
+
+    color:#64748b;
+
+    font-size:8px;
 
 }
 
 
-/* =====================================================
-   HEALTH
-===================================================== */
+/* =========================================================
+   DASH GRID
+========================================================= */
 
-.health-grid{
+.dashboard-grid{
+
+    margin-top:17px;
 
     display:grid;
 
     grid-template-columns:
-    1fr 1fr;
+    1.45fr
+    1fr
+    .85fr;
 
-    gap:18px;
+    gap:15px;
 
 }
 
 
-.health-card{
+/* =========================================================
+   PANEL
+========================================================= */
+
+.panel{
+
+    padding:20px;
+
+    border-radius:20px;
 
     background:
     var(--card);
@@ -977,323 +1040,549 @@ body::before{
     border:
     1px solid var(--border);
 
-    border-radius:
-    var(--radius);
-
-    padding:24px;
-
 }
 
-
-.health-list{
+.panel-head{
 
     display:flex;
 
-    flex-direction:column;
+    justify-content:space-between;
+
+    align-items:center;
 
     gap:12px;
 
-    margin-top:18px;
+}
+
+.panel-title{
+
+    font-family:"Kanit";
+
+    font-size:18px;
+
+}
+
+.panel-sub{
+
+    margin-top:2px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+}
+
+.panel-icon{
+
+    color:#86efac;
+
+    font-size:19px;
 
 }
 
 
-.health-item{
+/* =========================================================
+   WEATHER
+========================================================= */
+
+.weather{
+
+    min-height:220px;
+
+}
+
+.weather-main{
+
+    margin-top:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+.weather-icon{
+
+    width:67px;
+
+    height:67px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:20px;
+
+    color:#fde68a;
+
+    background:
+    rgba(250,204,21,.08);
+
+    font-size:32px;
+
+}
+
+.temperature{
+
+    font-family:"Kanit";
+
+    font-size:47px;
+
+    line-height:1;
+
+}
+
+.weather-desc{
+
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.weather-meta{
+
+    margin-top:18px;
 
     display:grid;
 
     grid-template-columns:
-    35px 1fr auto;
+    repeat(3,1fr);
 
-    align-items:center;
+    gap:8px;
 
-    gap:10px;
+}
 
-    padding:13px;
+.weather-item{
 
-    border-radius:14px;
+    padding:10px;
+
+    border-radius:12px;
 
     background:
     rgba(255,255,255,.035);
 
 }
 
-
-.rank{
-
-    width:30px;
-
-    height:30px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border-radius:10px;
-
-    background:
-    rgba(56,189,248,.10);
-
-    color:#67e8f9;
-
-    font-size:12px;
-
-}
-
-
-.health-name{
-
-    font-size:14px;
-
-}
-
-
-.health-score{
-
-    color:#67e8f9;
-
-    font-family:"Kanit";
-
-}
-
-
-/* =====================================================
-   TIMELINE
-===================================================== */
-
-.timeline{
-
-    position:relative;
-
-    margin-top:20px;
-
-    padding-left:25px;
-
-}
-
-
-.timeline::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:6px;
-
-    top:0;
-
-    bottom:0;
-
-    width:2px;
-
-    background:
-    rgba(56,189,248,.18);
-
-}
-
-
-.timeline-item{
-
-    position:relative;
-
-    padding:
-    0 0 24px 20px;
-
-}
-
-
-.timeline-dot{
-
-    position:absolute;
-
-    left:-1px;
-
-    top:5px;
-
-    width:14px;
-
-    height:14px;
-
-    border-radius:50%;
-
-    background:
-    #22d3ee;
-
-    box-shadow:
-    0 0 15px
-    rgba(34,211,238,.6);
-
-}
-
-
-.timeline-year{
-
-    color:#67e8f9;
-
-    font-family:"Kanit";
-
-}
-
-
-.timeline-title{
-
-    font-size:16px;
-
-    margin-top:3px;
-
-}
-
-
-.timeline-desc{
+.weather-label{
 
     color:var(--muted);
 
-    font-size:13px;
+    font-size:7px;
 
-    margin-top:5px;
+}
+
+.weather-value{
+
+    margin-top:4px;
+
+    font-size:10px;
 
 }
 
 
-/* =====================================================
-   AI
-===================================================== */
+/* =========================================================
+   PM
+========================================================= */
 
-.ai-card{
+.pm-card{
 
-    padding:28px;
-
-    border-radius:
-    var(--radius);
-
-    background:
-
-    linear-gradient(
-        135deg,
-        rgba(59,130,246,.12),
-        rgba(168,85,247,.10)
-    );
-
-    border:
-    1px solid
-    rgba(129,140,248,.20);
+    min-height:220px;
 
 }
 
-
-.ai-header{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-}
-
-
-.ai-icon{
-
-    width:52px;
-
-    height:52px;
-
-    border-radius:17px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #9333ea
-    );
-
-    font-size:22px;
-
-}
-
-
-.ai-card h3{
-
-    font-family:"Kanit";
-
-    font-size:23px;
-
-}
-
-
-.ai-card p{
-
-    color:#aebbd0;
-
-    font-size:13px;
-
-}
-
-
-.ai-input{
+.pm-number{
 
     margin-top:20px;
 
     display:flex;
+
+    align-items:flex-end;
+
+    gap:8px;
+
+}
+
+.pm-number strong{
+
+    font-family:"Kanit";
+
+    font-size:48px;
+
+    line-height:1;
+
+}
+
+.pm-number span{
+
+    padding-bottom:5px;
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.pm-status{
+
+    margin-top:12px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    padding:6px 10px;
+
+    border-radius:999px;
+
+    font-size:8px;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.08);
+
+}
+
+.pm-bar{
+
+    margin-top:18px;
+
+    height:8px;
+
+    border-radius:999px;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #22c55e 0%,
+        #22c55e 25%,
+        #facc15 45%,
+        #fb923c 65%,
+        #ef4444 82%,
+        #7f1d1d 100%
+    );
+
+}
+
+.pm-update{
+
+    margin-top:8px;
+
+    color:#64748b;
+
+    font-size:7px;
+
+}
+
+
+/* =========================================================
+   NEWS
+========================================================= */
+
+.news-list{
+
+    margin-top:14px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:9px;
+
+}
+
+.news-item{
+
+    display:block;
+
+    padding:12px;
+
+    border-radius:13px;
+
+    text-decoration:none;
+
+    color:white;
+
+    background:
+    rgba(255,255,255,.035);
+
+    border:
+    1px solid
+    transparent;
+
+}
+
+.news-item:hover{
+
+    border-color:
+    rgba(34,197,94,.18);
+
+}
+
+.news-tag{
+
+    display:inline-block;
+
+    padding:3px 7px;
+
+    border-radius:999px;
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.07);
+
+    font-size:7px;
+
+}
+
+.news-title{
+
+    margin-top:6px;
+
+    font-size:10px;
+
+    line-height:1.5;
+
+}
+
+.news-date{
+
+    margin-top:4px;
+
+    color:#64748b;
+
+    font-size:7px;
+
+}
+
+
+/* =========================================================
+   QUICK MENU
+========================================================= */
+
+.quick-grid{
+
+    margin-top:17px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(6,1fr);
 
     gap:10px;
 
 }
 
+.quick{
 
-.ai-input input{
+    padding:15px 9px;
 
-    flex:1;
+    text-align:center;
 
-    padding:15px;
+    text-decoration:none;
 
-    border-radius:14px;
+    color:white;
+
+    border-radius:15px;
+
+    background:
+    var(--card);
 
     border:
     1px solid var(--border);
 
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
+
+}
+
+.quick:hover{
+
+    transform:
+    translateY(-2px);
+
+    border-color:
+    rgba(34,197,94,.20);
+
+}
+
+.quick i{
+
+    width:38px;
+
+    height:38px;
+
+    margin:auto;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:12px;
+
+    color:#86efac;
+
     background:
-    rgba(0,0,0,.22);
+    rgba(34,197,94,.07);
 
-    color:white;
+}
 
-    outline:none;
+.quick-title{
 
-    font-family:"Prompt";
+    margin-top:8px;
+
+    font-size:9px;
+
+}
+
+.quick-sub{
+
+    margin-top:2px;
+
+    color:#64748b;
+
+    font-size:7px;
 
 }
 
 
-/* =====================================================
+/* =========================================================
+   ACTIVITY
+========================================================= */
+
+.activity-grid{
+
+    margin-top:17px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:15px;
+
+}
+
+.activity-list{
+
+    margin-top:15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:9px;
+
+}
+
+.activity{
+
+    display:flex;
+
+    gap:10px;
+
+    padding:11px;
+
+    border-radius:13px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.activity-icon{
+
+    width:36px;
+
+    height:36px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:11px;
+
+    color:#7dd3fc;
+
+    background:
+    rgba(56,189,248,.07);
+
+}
+
+.activity-title{
+
+    font-size:10px;
+
+}
+
+.activity-meta{
+
+    margin-top:3px;
+
+    color:#64748b;
+
+    font-size:7px;
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+
+    padding:30px 15px;
+
+    text-align:center;
+
+    color:#64748b;
+
+    font-size:9px;
+
+}
+
+.empty i{
+
+    display:block;
+
+    margin-bottom:9px;
+
+    color:
+    rgba(34,197,94,.22);
+
+    font-size:27px;
+
+}
+
+
+/* =========================================================
    FOOTER
-===================================================== */
+========================================================= */
 
 .footer{
 
-    margin-top:50px;
+    margin-top:28px;
 
-    padding:
-    30px 0;
-
-    border-top:
-    1px solid var(--border);
-
-    color:var(--muted);
-
-    font-size:12px;
-
-}
-
-
-.footer-inner{
+    padding:20px 0 30px;
 
     display:flex;
 
@@ -1301,171 +1590,570 @@ body::before{
 
     gap:20px;
 
-    flex-wrap:wrap;
+    color:#64748b;
+
+    font-size:8px;
+
+    border-top:
+    1px solid var(--border);
 
 }
 
 
-/* =====================================================
-   LOADING
-===================================================== */
+/* =========================================================
+   ANIMATION
+========================================================= */
 
-.loading{
+@keyframes pulse{
 
-    opacity:.5;
+    0%,100%{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        opacity:.5;
+
+        transform:scale(.85);
+
+    }
 
 }
 
 
-@media(max-width:1100px){
+/* =========================================================
+   RESPONSIVE
+========================================================= */
 
-    .menu-grid{
+@media(max-width:1200px){
+
+    .dashboard-grid{
+
+        grid-template-columns:
+        1fr 1fr;
+
+    }
+
+    .news-panel{
+
+        grid-column:
+        1 / -1;
+
+    }
+
+    .quick-grid{
 
         grid-template-columns:
         repeat(3,1fr);
 
     }
 
-    .stats{
+}
 
-        grid-template-columns:
-        repeat(2,1fr);
+
+@media(max-width:900px){
+
+    .sidebar{
+
+        transform:
+        translateX(-100%);
 
     }
 
-    .clock-panel{
+    .sidebar.open{
 
-        position:relative;
+        transform:
+        translateX(0);
 
-        right:auto;
+        box-shadow:
+        20px 0 60px
+        rgba(0,0,0,.45);
 
-        bottom:auto;
+    }
 
-        margin-top:30px;
+    .main{
+
+        width:100%;
+
+        margin-left:0;
+
+    }
+
+    .mobile-menu{
+
+        display:block;
+
+    }
+
+    .top-header{
+
+        padding:12px 16px;
+
+    }
+
+    .brand-mini{
+
+        display:none;
+
+    }
+
+    .kpi-grid{
+
+        grid-template-columns:
+        repeat(2,1fr);
 
     }
 
 }
 
 
-@media(max-width:700px){
+@media(max-width:650px){
 
-    .header-right .status{
+    .content{
+
+        padding:14px;
+
+    }
+
+    .clock{
+
+        font-size:21px;
+
+    }
+
+    .user-name{
 
         display:none;
 
     }
 
-    .header-inner{
-
-        padding:
-        12px 10px;
-
-    }
-
-    .brand-text h1{
-
-        font-size:17px;
-
-    }
-
-    .brand-logo{
-
-        width:44px;
-
-        height:44px;
-
-    }
-
     .hero{
 
-        padding:28px 20px;
+        min-height:310px;
 
-        min-height:auto;
+        padding:21px;
 
     }
 
     .hero h2{
 
-        font-size:39px;
+        font-size:29px;
 
     }
 
-    .weather{
+    .kpi-grid{
 
-        grid-template-columns:1fr;
+        gap:9px;
 
     }
 
-    .stats{
+    .kpi{
+
+        min-height:135px;
+
+        padding:15px;
+
+    }
+
+    .kpi-value{
+
+        font-size:27px;
+
+    }
+
+    .dashboard-grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .news-panel{
+
+        grid-column:auto;
+
+    }
+
+    .quick-grid{
 
         grid-template-columns:
         repeat(2,1fr);
 
     }
 
-    .stat-card{
-
-        padding:17px;
-
-    }
-
-    .stat-number{
-
-        font-size:30px;
-
-    }
-
-    .menu-grid{
+    .activity-grid{
 
         grid-template-columns:
-        repeat(2,1fr);
+        1fr;
 
     }
 
-    .health-grid{
+    .footer{
 
-        grid-template-columns:1fr;
-
-    }
-
-    .ai-input{
-
-        flex-direction:column;
+        display:block;
 
     }
 
 }
 
 </style>
+
 </head>
 
 
 <body>
 
 
+<div class="app">
+
+
 <!-- =====================================================
-     HEADER
+SIDEBAR
 ===================================================== -->
 
-<header class="header">
+<aside
+class="sidebar"
+id="sidebar">
 
-<div class="header-inner">
 
-<div class="brand">
+<div class="sidebar-brand">
 
-<div class="brand-logo">
-<i class="fa-solid fa-building-columns"></i>
+<div class="sidebar-logo">
+🏛️
 </div>
 
-<div class="brand-text">
+<div>
+
+<div class="sidebar-title">
+
+RONGKHEM
+<span>e-VILLAGE</span>
+
+</div>
+
+<div class="sidebar-sub">
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<nav class="menu">
+
+
+<a
+href="index.html"
+class="menu-item active">
+
+<span class="menu-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+
+<span>
+
+หน้าหลัก<br>
+
+<small>
+ศูนย์บัญชาการ
+</small>
+
+</span>
+
+</a>
+
+
+
+<a
+href="pages/citizen.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-users"></i>
+</span>
+
+<span>
+ข้อมูลประชาชน
+</span>
+
+</a>
+
+
+
+<a
+href="pages/household.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-house"></i>
+</span>
+
+<span>
+ข้อมูลครัวเรือน
+</span>
+
+</a>
+
+
+
+<a
+href="pages/leader.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-user-tie"></i>
+</span>
+
+<span>
+ผู้นำชุมชน
+</span>
+
+</a>
+
+
+
+<a
+href="pages/news.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-bullhorn"></i>
+</span>
+
+<span>
+ข่าวประชาสัมพันธ์
+</span>
+
+</a>
+
+
+
+<a
+href="pages/activity.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-calendar-days"></i>
+</span>
+
+<span>
+กิจกรรม / ปฏิทิน
+</span>
+
+</a>
+
+
+
+<a
+href="pages/service.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-headset"></i>
+</span>
+
+<span>
+บริการประชาชน
+</span>
+
+</a>
+
+
+
+<a
+href="pages/project.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-diagram-project"></i>
+</span>
+
+<span>
+โครงการพัฒนาหมู่บ้าน
+</span>
+
+</a>
+
+
+
+<a
+href="pages/environment.html"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-leaf"></i>
+</span>
+
+<span>
+สิ่งแวดล้อม / PM2.5
+</span>
+
+</a>
+
+
+
+<a
+href="#"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-water"></i>
+</span>
+
+<span>
+แหล่งซับน้ำจำ
+</span>
+
+</a>
+
+
+
+<a
+href="#"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-bowl-rice"></i>
+</span>
+
+<span>
+กลุ่มข้าวสาร
+</span>
+
+</a>
+
+
+
+<a
+href="#"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-chart-pie"></i>
+</span>
+
+<span>
+สถิติหมู่บ้าน
+</span>
+
+</a>
+
+
+
+<a
+href="#"
+class="menu-item">
+
+<span class="menu-icon">
+<i class="fa-solid fa-gear"></i>
+</span>
+
+<span>
+ตั้งค่าระบบ
+</span>
+
+</a>
+
+
+</nav>
+
+
+
+<div class="sidebar-contact">
+
+<div class="sidebar-contact-title">
+
+ที่ทำการผู้ใหญ่บ้าน
+
+</div>
+
+
+<div class="contact-row">
+
+<i class="fa-solid fa-location-dot"></i>
+
+<span>
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา
+จังหวัดพะเยา
+</span>
+
+</div>
+
+
+<div class="contact-row">
+
+<i class="fa-solid fa-phone"></i>
+
+<span>
+ข้อมูลโทรศัพท์ให้ผู้ดูแลระบบกำหนด
+</span>
+
+</div>
+
+
+<div class="contact-row">
+
+<i class="fa-solid fa-clock"></i>
+
+<span>
+เวลาทำการให้ผู้ดูแลระบบกำหนด
+</span>
+
+</div>
+
+</div>
+
+
+</aside>
+
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<div class="main">
+
+
+<header class="top-header">
+
+
+<button
+class="mobile-menu"
+id="mobileMenu">
+
+<i class="fa-solid fa-bars"></i>
+
+</button>
+
+
+<div class="brand-mini">
+
+<div class="brand-logo">
+🏛️
+</div>
+
+<div>
 
 <h1>
-RONGKHEM e-VILLAGE
+RONGKHEM
+<span>e-VILLAGE</span>
 </h1>
 
 <p>
 ที่ทำการผู้ใหญ่บ้านออนไลน์
+•
+บ้านร่องเข็ม หมู่ 6
 </p>
 
 </div>
@@ -1473,104 +2161,8 @@ RONGKHEM e-VILLAGE
 </div>
 
 
-<div class="header-right">
 
-<div class="status">
-
-<span class="status-dot"></span>
-
-ระบบออนไลน์
-
-</div>
-
-</div>
-
-</div>
-
-</header>
-
-
-
-<main class="container">
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero">
-
-<div class="hero-grid"></div>
-
-<div class="hero-content">
-
-<div class="badge">
-
-<i class="fa-solid fa-satellite-dish"></i>
-
-SMART VILLAGE • DIGITAL OFFICE
-
-</div>
-
-
-<h2>
-
-ที่ทำการผู้ใหญ่บ้าน<br>
-
-<span>ออนไลน์</span>
-
-</h2>
-
-
-<p>
-
-ศูนย์กลางข้อมูลและการบริหารจัดการ
-บ้านร่องเข็ม หมู่ที่ 6
-ตำบลจำป่าหวาย
-อำเภอเมืองพะเยา จังหวัดพะเยา
-เพื่อการสื่อสารที่รวดเร็ว โปร่งใส
-และเข้าถึงประชาชนได้ทุกที่ทุกเวลา
-
-</p>
-
-
-<div class="hero-actions">
-
-<button
-class="btn btn-primary"
-onclick="scrollToSection('menu')">
-
-<i class="fa-solid fa-grid-2"></i>
-
-เข้าสู่ระบบบริการ
-
-</button>
-
-
-<button
-class="btn btn-dark"
-onclick="scrollToSection('health')">
-
-<i class="fa-solid fa-chart-line"></i>
-
-ข้อมูลชุมชน
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- CLOCK -->
-
-<div class="clock-panel">
-
-<div class="clock-label">
-
-เวลาปัจจุบัน
-
-</div>
+<div class="clock-box">
 
 <div
 id="clock"
@@ -1590,788 +2182,755 @@ class="date">
 
 </div>
 
-</section>
 
+
+<div class="user-box">
+
+<div class="avatar">
+👨🏻‍💼
+</div>
+
+<div>
+
+<div class="user-name">
+ผู้ดูแลระบบหมู่บ้าน
+</div>
+
+<div class="user-role">
+ผู้ใหญ่บ้าน หมู่ที่ 6
+</div>
+
+<div class="online">
+
+<span class="online-dot"></span>
+
+ระบบออนไลน์
+
+</div>
+
+</div>
+
+</div>
+
+
+</header>
+
+
+
+<main class="content">
 
 
 <!-- =====================================================
-     WEATHER
+HERO
 ===================================================== -->
 
-<section class="weather">
+<section class="hero">
 
 
-<div class="weather-card">
+<div class="hero-content">
 
-<div class="weather-title">
 
-<div>
+<div class="live-badge">
 
-<div class="weather-desc">
-สภาพอากาศ
-</div>
+<span class="live-dot"></span>
 
-<div
-id="weatherTemp"
-class="weather-value">
-
---
-
-</div>
-
-</div>
-
-<div class="weather-icon">
-
-<i class="fa-solid fa-cloud-sun"></i>
-
-</div>
-
-</div>
-
-<div
-id="weatherDesc"
-class="weather-desc">
-
-กำลังโหลดข้อมูล...
-
-</div>
+ข้อมูล ณ ปัจจุบัน
 
 </div>
 
 
+<h2>
 
-<div class="weather-card">
+ศูนย์บัญชาการข้อมูล
+<span>
+หมู่บ้านร่องเข็ม
+</span>
 
-<div class="weather-title">
+</h2>
 
-<div>
 
-<div class="weather-desc">
-PM2.5
-</div>
+<p>
 
-<div
-id="pm25"
-class="weather-value">
+ระบบบริหารจัดการข้อมูลชุมชน
+สำหรับที่ทำการผู้ใหญ่บ้านออนไลน์
+เชื่อมโยงข้อมูลเพื่อการบริหาร
+การติดตาม และการพัฒนาหมู่บ้าน
 
---
+</p>
 
-</div>
 
-</div>
+<div class="hero-motto">
 
-<div class="weather-icon">
-
-<i class="fa-solid fa-wind"></i>
-
-</div>
-
-</div>
-
-<div
-id="pm25Status"
-class="weather-desc">
-
-กำลังตรวจสอบคุณภาพอากาศ
-
-</div>
+“ร่วมคิด ร่วมทำ ร่วมพัฒนา
+เพื่อบ้านร่องเข็มของเรา”
 
 </div>
 
 
+<div class="hero-actions">
 
-<div class="weather-card">
+<a
+href="pages/citizen.html"
+class="hero-btn">
 
-<div class="weather-title">
+<i class="fa-solid fa-users"></i>
 
-<div>
+ดูข้อมูลประชาชน
 
-<div class="weather-desc">
-สถานะชุมชน
-</div>
+</a>
 
-<div class="weather-value">
 
-ONLINE
+<a
+href="pages/project.html"
+class="hero-btn secondary">
 
-</div>
+<i class="fa-solid fa-diagram-project"></i>
 
-</div>
+ติดตามโครงการ
 
-<div class="weather-icon">
-
-<i class="fa-solid fa-tower-broadcast"></i>
-
-</div>
+</a>
 
 </div>
 
-<div class="weather-desc">
-
-RONGKHEM SMART VILLAGE
 
 </div>
-
-</div>
-
 
 </section>
 
 
 
 <!-- =====================================================
-     STATISTICS
+KPI
 ===================================================== -->
 
-<section class="section">
-
-<div class="section-head">
-
-<div>
-
-<div class="section-title">
-
-ข้อมูลพื้นฐานหมู่บ้าน
-
-</div>
-
-<div class="section-sub">
-
-ข้อมูลจากรายงานผลการวินิจฉัยชุมชน
-
-</div>
-
-</div>
-
-</div>
+<section class="kpi-grid">
 
 
-<div class="stats">
+<div class="kpi green">
 
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-house"></i>
-
-</div>
-
-<div
-id="households"
-class="stat-number loading">
-
---
-
-</div>
-
-<div class="stat-label">
-
-ครัวเรือน
-
-</div>
-
-</div>
-
-
-
-<div class="stat-card">
-
-<div class="stat-icon">
+<div class="kpi-icon">
 
 <i class="fa-solid fa-users"></i>
 
 </div>
 
-<div
+<div class="kpi-label">
+ประชาชนทั้งหมด
+</div>
+
+<div>
+
+<span
 id="population"
-class="stat-number loading">
-
+class="kpi-value">
 --
+</span>
 
-</div>
-
-<div class="stat-label">
-
-ประชากรรวม
-
-</div>
-
-</div>
-
-
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-person"></i>
+<span class="kpi-unit">
+คน
+</span>
 
 </div>
 
 <div
-id="male"
-class="stat-number loading">
+id="populationDetail"
+class="kpi-detail">
 
+ข้อมูลจากฐานข้อมูลจริง
+
+</div>
+
+</div>
+
+
+
+<div class="kpi blue">
+
+<div class="kpi-icon">
+
+<i class="fa-solid fa-house"></i>
+
+</div>
+
+<div class="kpi-label">
+ครัวเรือนทั้งหมด
+</div>
+
+<div>
+
+<span
+id="households"
+class="kpi-value">
 --
+</span>
 
-</div>
-
-<div class="stat-label">
-
-ชาย
-
-</div>
-
-</div>
-
-
-
-<div class="stat-card">
-
-<div class="stat-icon">
-
-<i class="fa-solid fa-person-dress"></i>
+<span class="kpi-unit">
+ครัวเรือน
+</span>
 
 </div>
 
 <div
-id="female"
-class="stat-number loading">
+id="householdDetail"
+class="kpi-detail">
 
+ข้อมูลจากฐานข้อมูลจริง
+
+</div>
+
+</div>
+
+
+
+<div class="kpi purple">
+
+<div class="kpi-icon">
+
+<i class="fa-solid fa-person-cane"></i>
+
+</div>
+
+<div class="kpi-label">
+ผู้สูงอายุ
+</div>
+
+<div>
+
+<span
+id="elderly"
+class="kpi-value">
 --
+</span>
+
+<span class="kpi-unit">
+คน
+</span>
 
 </div>
 
-<div class="stat-label">
+<div class="kpi-detail">
 
-หญิง
+ข้อมูลจากทะเบียนผู้สูงอายุ
+
+</div>
+
+</div>
+
+
+
+<div class="kpi orange">
+
+<div class="kpi-icon">
+
+<i class="fa-solid fa-hand-holding-heart"></i>
+
+</div>
+
+<div class="kpi-label">
+กลุ่มเปราะบาง
+</div>
+
+<div>
+
+<span
+id="vulnerable"
+class="kpi-value">
+--
+</span>
+
+<span class="kpi-unit">
+คน
+</span>
+
+</div>
+
+<div class="kpi-detail">
+
+ข้อมูลจากฐานข้อมูลสุขภาพ/สังคม
 
 </div>
 
 </div>
 
-
-</div>
 
 </section>
 
 
 
 <!-- =====================================================
-     MENU
+WEATHER / PM / NEWS
 ===================================================== -->
 
-<section
-id="menu"
-class="section">
+<section class="dashboard-grid">
 
-<div class="section-head">
+
+<!-- WEATHER -->
+
+<div class="panel weather">
+
+<div class="panel-head">
 
 <div>
 
-<div class="section-title">
-
-ศูนย์บริการประชาชน
-
+<div class="panel-title">
+สภาพอากาศวันนี้
 </div>
 
-<div class="section-sub">
-
-บริการข้อมูลชุมชนออนไลน์
-
+<div class="panel-sub">
+ข้อมูลสภาพอากาศจะแสดงเมื่อเชื่อมต่อแหล่งข้อมูลจริง
 </div>
 
 </div>
 
+<i
+class="fa-solid fa-cloud-sun panel-icon">
+</i>
+
 </div>
 
 
-<div class="menu-grid">
+<div class="weather-main">
+
+<div class="weather-icon">
+
+<i
+id="weatherIcon"
+class="fa-solid fa-cloud">
+</i>
+
+</div>
+
+
+<div>
+
+<div>
+
+<span
+id="temperature"
+class="temperature">
+
+--
+
+</span>
+
+<span
+style="
+color:#94a3b8;
+font-size:10px;
+">
+
+°C
+
+</span>
+
+</div>
 
 
 <div
-class="menu-card"
-onclick="go('pages/dashboard.html')">
+id="weatherDescription"
+class="weather-desc">
 
-<div class="menu-icon">
-
-<i class="fa-solid fa-chart-pie"></i>
+ยังไม่มีข้อมูลสภาพอากาศ
 
 </div>
 
-<h3>
-ศูนย์บัญชาการ
-</h3>
-
-<p>
-Dashboard
-</p>
+</div>
 
 </div>
 
+
+<div class="weather-meta">
+
+
+<div class="weather-item">
+
+<div class="weather-label">
+ฝน
+</div>
+
+<div
+id="rain"
+class="weather-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="weather-item">
+
+<div class="weather-label">
+ความชื้น
+</div>
+
+<div
+id="humidity"
+class="weather-value">
+
+--
+
+</div>
+
+</div>
+
+
+<div class="weather-item">
+
+<div class="weather-label">
+ลม
+</div>
+
+<div
+id="wind"
+class="weather-value">
+
+--
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- PM -->
+
+<div class="panel pm-card">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+PM2.5
+</div>
+
+<div class="panel-sub">
+คุณภาพอากาศจากข้อมูลที่ระบบบันทึก
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-wind panel-icon">
+</i>
+
+</div>
+
+
+<div class="pm-number">
+
+<strong
+id="pmValue">
+
+--
+
+</strong>
+
+<span>
+µg/m³
+</span>
+
+</div>
 
 
 <div
-class="menu-card"
-onclick="go('pages/leader.html')">
+id="pmStatus"
+class="pm-status">
 
-<div class="menu-icon">
+<i class="fa-solid fa-circle-question"></i>
 
-<i class="fa-solid fa-user-tie"></i>
-
-</div>
-
-<h3>
-ทำเนียบผู้นำ
-</h3>
-
-<p>
-ผู้นำชุมชน
-</p>
+ยังไม่มีข้อมูล
 
 </div>
 
+
+<div class="pm-bar"></div>
 
 
 <div
-class="menu-card"
-onclick="go('pages/household.html')">
+id="pmUpdate"
+class="pm-update">
 
-<div class="menu-icon">
-
-<i class="fa-solid fa-house-user"></i>
+ยังไม่มีข้อมูลล่าสุด
 
 </div>
 
-<h3>
-ครัวเรือน
-</h3>
+</div>
 
-<p>
-ข้อมูลครัวเรือน
-</p>
+
+
+<!-- NEWS -->
+
+<div class="panel news-panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+ข่าวประชาสัมพันธ์
+</div>
+
+<div class="panel-sub">
+ข่าวสารล่าสุดจากระบบ
+</div>
 
 </div>
 
+<a
+href="pages/news.html"
+style="
+color:#86efac;
+font-size:9px;
+text-decoration:none;
+">
+
+ดูทั้งหมด
+
+</a>
+
+</div>
 
 
 <div
-class="menu-card"
-onclick="go('pages/citizen.html')">
+id="newsList"
+class="news-list">
 
-<div class="menu-icon">
+<div class="empty">
 
-<i class="fa-solid fa-people-group"></i>
+<i class="fa-solid fa-newspaper"></i>
+
+กำลังโหลดข่าว...
 
 </div>
 
-<h3>
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+QUICK MENU
+===================================================== -->
+
+<section class="quick-grid">
+
+
+<a
+href="pages/citizen.html"
+class="quick">
+
+<i class="fa-solid fa-users"></i>
+
+<div class="quick-title">
 ประชาชน
-</h3>
-
-<p>
-ข้อมูลประชาชน
-</p>
-
 </div>
 
+<div class="quick-sub">
+ข้อมูลประชาชน
+</div>
+
+</a>
 
 
-<div
-class="menu-card"
-onclick="go('pages/health.html')">
 
-<div class="menu-icon">
+<a
+href="pages/household.html"
+class="quick">
+
+<i class="fa-solid fa-house"></i>
+
+<div class="quick-title">
+ครัวเรือน
+</div>
+
+<div class="quick-sub">
+ข้อมูลครัวเรือน
+</div>
+
+</a>
+
+
+
+<a
+href="pages/health.html"
+class="quick">
 
 <i class="fa-solid fa-heart-pulse"></i>
 
+<div class="quick-title">
+สุขภาพ
 </div>
 
-<h3>
-สุขภาพชุมชน
-</h3>
-
-<p>
+<div class="quick-sub">
 ข้อมูลสุขภาพ
-</p>
-
 </div>
 
+</a>
 
 
-<div
-class="menu-card"
-onclick="go('pages/news.html')">
 
-<div class="menu-icon">
+<a
+href="pages/project.html"
+class="quick">
+
+<i class="fa-solid fa-folder-open"></i>
+
+<div class="quick-title">
+โครงการ
+</div>
+
+<div class="quick-sub">
+ติดตามโครงการ
+</div>
+
+</a>
+
+
+
+<a
+href="pages/news.html"
+class="quick">
 
 <i class="fa-solid fa-bullhorn"></i>
 
-</div>
-
-<h3>
+<div class="quick-title">
 ข่าวสาร
-</h3>
+</div>
 
-<p>
-ประกาศหมู่บ้าน
-</p>
+<div class="quick-sub">
+ประชาสัมพันธ์
+</div>
+
+</a>
+
+
+
+<a
+href="pages/service.html"
+class="quick">
+
+<i class="fa-solid fa-headset"></i>
+
+<div class="quick-title">
+บริการ
+</div>
+
+<div class="quick-sub">
+บริการประชาชน
+</div>
+
+</a>
+
+
+</section>
+
+
+
+<!-- =====================================================
+ACTIVITY
+===================================================== -->
+
+<section class="activity-grid">
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+กิจกรรมล่าสุด
+</div>
+
+<div class="panel-sub">
+ข้อมูลจากปฏิทินชุมชน
+</div>
 
 </div>
 
+<i
+class="fa-solid fa-calendar-days panel-icon">
+</i>
+
+</div>
 
 
 <div
-class="menu-card"
-onclick="go('pages/activity.html')">
+id="activityList"
+class="activity-list">
 
-<div class="menu-icon">
+<div class="empty">
 
-<i class="fa-solid fa-calendar-check"></i>
+<i class="fa-solid fa-calendar-days"></i>
 
-</div>
-
-<h3>
-กิจกรรม
-</h3>
-
-<p>
-ปฏิทินชุมชน
-</p>
+ยังไม่มีข้อมูลกิจกรรม
 
 </div>
 
+</div>
+
+</div>
+
+
+
+<div class="panel">
+
+<div class="panel-head">
+
+<div>
+
+<div class="panel-title">
+สถานะโครงการ
+</div>
+
+<div class="panel-sub">
+ภาพรวมโครงการพัฒนาหมู่บ้าน
+</div>
+
+</div>
+
+<i
+class="fa-solid fa-chart-line panel-icon">
+</i>
+
+</div>
 
 
 <div
-class="menu-card"
-onclick="go('pages/project.html')">
+id="projectList"
+class="activity-list">
 
-<div class="menu-icon">
+<div class="empty">
 
 <i class="fa-solid fa-diagram-project"></i>
 
-</div>
-
-<h3>
-โครงการ
-</h3>
-
-<p>
-โครงการหมู่บ้าน
-</p>
+ยังไม่มีข้อมูลโครงการ
 
 </div>
 
-
-
-<div
-class="menu-card"
-onclick="go('pages/history.html')">
-
-<div class="menu-icon">
-
-<i class="fa-solid fa-timeline"></i>
+</div>
 
 </div>
 
-<h3>
-ประวัติหมู่บ้าน
-</h3>
-
-<p>
-เรื่องราวร่องเข็ม
-</p>
-
-</div>
-
-
-
-<div
-class="menu-card"
-onclick="go('pages/vulnerable.html')">
-
-<div class="menu-icon">
-
-<i class="fa-solid fa-hands-helping"></i>
-
-</div>
-
-<h3>
-กลุ่มเปราะบาง
-</h3>
-
-<p>
-ระบบช่วยเหลือ
-</p>
-
-</div>
-
-
-
-<div
-class="menu-card"
-onclick="go('pages/subnamjam.html')">
-
-<div class="menu-icon">
-
-<i class="fa-solid fa-water"></i>
-
-</div>
-
-<h3>
-แหล่งซับน้ำจำ
-</h3>
-
-<p>
-ทรัพยากรชุมชน
-</p>
-
-</div>
-
-
-
-<div
-class="menu-card"
-onclick="go('pages/admin.html')">
-
-<div class="menu-icon">
-
-<i class="fa-solid fa-gears"></i>
-
-</div>
-
-<h3>
-ผู้ดูแลระบบ
-</h3>
-
-<p>
-Admin
-</p>
-
-</div>
-
-
-</div>
 
 </section>
 
 
-
-<!-- =====================================================
-     HEALTH
-===================================================== -->
-
-<section
-id="health"
-class="section">
-
-<div class="section-head">
-
-<div>
-
-<div class="section-title">
-
-สถานการณ์สุขภาพชุมชน
-
-</div>
-
-<div class="section-sub">
-
-ข้อมูลจากกลุ่มตัวอย่าง n = 22
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="health-grid">
-
-
-<div class="health-card">
-
-<h3>
-อันดับปัญหาสุขภาพ
-</h3>
-
-<div
-id="healthList"
-class="health-list">
-
-<div class="health-item">
-
-<div class="rank">-</div>
-
-<div class="health-name">
-กำลังโหลดข้อมูล
-</div>
-
-<div class="health-score">
---
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="health-card">
-
-<h3>
-ข้อมูลสำคัญจากการสำรวจ
-</h3>
-
-<div
-id="healthSummary"
-class="health-list">
-
-</div>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     HISTORY
-===================================================== -->
-
-<section class="section">
-
-<div class="section-head">
-
-<div>
-
-<div class="section-title">
-
-ประวัติศาสตร์บ้านร่องเข็ม
-
-</div>
-
-<div class="section-sub">
-
-จากอดีตสู่การเป็นชุมชนดิจิทัล
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="health-card">
-
-<div
-id="timeline"
-class="timeline">
-
-<div class="timeline-item">
-
-<div class="timeline-dot"></div>
-
-<div class="timeline-year">
-กำลังโหลด...
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     AI
-===================================================== -->
-
-<section class="section">
-
-<div class="ai-card">
-
-<div class="ai-header">
-
-<div class="ai-icon">
-
-<i class="fa-solid fa-robot"></i>
-
-</div>
-
-<div>
-
-<h3>
-RONGKHEM AI ASSISTANT
-</h3>
-
-<p>
-ผู้ช่วยข้อมูลที่ทำการผู้ใหญ่บ้านออนไลน์
-</p>
-
-</div>
-
-</div>
-
-
-<div class="ai-input">
-
-<input
-id="aiInput"
-type="text"
-placeholder="ถามข้อมูลหมู่บ้าน เช่น บ้านร่องเข็มมีกี่ครัวเรือน?">
-
-
-<button
-class="btn btn-primary"
-onclick="askAI()">
-
-<i class="fa-solid fa-paper-plane"></i>
-
-ถาม AI
-
-</button>
-
-</div>
-
-
-<div
-id="aiAnswer"
-style="
-margin-top:15px;
-color:#cbd5e1;
-font-size:14px;
-line-height:1.8;
-">
-
-AI พร้อมให้บริการข้อมูลชุมชน
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
 
 <footer class="footer">
-
-<div class="footer-inner">
 
 <div>
 
@@ -2382,20 +2941,16 @@ RONGKHEM e-VILLAGE
 <br>
 
 ที่ทำการผู้ใหญ่บ้านออนไลน์
-บ้านร่องเข็ม หมู่ที่ 6
 
 </div>
 
 
 <div>
 
-ระบบบริหารจัดการหมู่บ้านอัจฉริยะ
-
-<br>
-
-© 2569 RONGKHEM SMART VILLAGE
-
-</div>
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา
+จังหวัดพะเยา
 
 </div>
 
@@ -2404,13 +2959,17 @@ RONGKHEM e-VILLAGE
 
 </main>
 
+</div>
+
+</div>
+
 
 
 <script>
 
-/* =====================================================
-   SUPABASE CONFIG
-===================================================== */
+/* =========================================================
+   SUPABASE
+========================================================= */
 
 const SUPABASE_URL =
 "ใส่_URL_SUPABASE_ของคุณ";
@@ -2426,36 +2985,104 @@ supabase.createClient(
 );
 
 
-/* =====================================================
-   NUMBER FORMAT
-===================================================== */
+/* =========================================================
+   HELPER
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
+}
+
 
 function numberFormat(value){
 
-    if(value === null ||
-       value === undefined ||
-       value === ""){
+    if(
+        value === null ||
+        value === undefined ||
+        value === ""
+    ){
 
         return "--";
 
     }
 
-    return Number(value)
-        .toLocaleString("th-TH");
+    const number =
+    Number(value);
+
+
+    if(
+        !Number.isFinite(number)
+    ){
+
+        return "--";
+
+    }
+
+    return number.toLocaleString(
+        "th-TH"
+    );
 
 }
 
 
-/* =====================================================
+function formatDate(value){
+
+    if(!value)
+        return "-";
+
+
+    const date =
+    new Date(value);
+
+
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
+
+        return escapeHTML(
+            value
+        );
+
+    }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
    CLOCK
-===================================================== */
+========================================================= */
 
 function updateClock(){
 
     const now =
     new Date();
 
-    const time =
+
+    document.getElementById(
+        "clock"
+    ).textContent =
     now.toLocaleTimeString(
         "th-TH",
         {
@@ -2465,7 +3092,10 @@ function updateClock(){
         }
     );
 
-    const date =
+
+    document.getElementById(
+        "date"
+    ).textContent =
     now.toLocaleDateString(
         "th-TH",
         {
@@ -2475,12 +3105,6 @@ function updateClock(){
             day:"numeric"
         }
     );
-
-    document.getElementById("clock")
-        .textContent = time;
-
-    document.getElementById("date")
-        .textContent = date;
 
 }
 
@@ -2493,164 +3117,35 @@ setInterval(
 );
 
 
-/* =====================================================
-   NAVIGATION
-===================================================== */
+/* =========================================================
+   MOBILE MENU
+========================================================= */
 
-function go(url){
+document
+.getElementById(
+    "mobileMenu"
+)
+.addEventListener(
+    "click",
+    () => {
 
-    window.location.href = url;
-
-}
-
-
-function scrollToSection(id){
-
-    const el =
-    document.getElementById(id);
-
-    if(el){
-
-        el.scrollIntoView({
-            behavior:"smooth"
-        });
+        document
+        .getElementById(
+            "sidebar"
+        )
+        .classList.toggle(
+            "open"
+        );
 
     }
-
-}
-
-
-/* =====================================================
-   LOAD VILLAGE STATISTICS
-===================================================== */
-
-async function loadVillageStats(){
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from("statistics")
-
-        .select("*")
-
-        .eq("year",2568)
-
-        .limit(1)
-
-        .maybeSingle();
+);
 
 
-        if(error){
+/* =========================================================
+   LOAD POPULATION
+========================================================= */
 
-            console.error(
-                "statistics:",
-                error
-            );
-
-            return;
-
-        }
-
-
-        if(!data){
-
-            console.warn(
-                "ไม่พบข้อมูล statistics"
-            );
-
-            return;
-
-        }
-
-
-        setText(
-            "population",
-            numberFormat(data.population)
-        );
-
-
-        setText(
-            "male",
-            numberFormat(data.male)
-        );
-
-
-        setText(
-            "female",
-            numberFormat(data.female)
-        );
-
-
-        setText(
-            "households",
-            numberFormat(data.households)
-        );
-
-
-        removeLoading();
-
-
-    }catch(error){
-
-        console.error(error);
-
-    }
-
-}
-
-
-/* =====================================================
-   SET TEXT
-===================================================== */
-
-function setText(
-    id,
-    value
-){
-
-    const el =
-    document.getElementById(id);
-
-    if(el){
-
-        el.textContent =
-        value;
-
-    }
-
-}
-
-
-function removeLoading(){
-
-    document
-    .querySelectorAll(".loading")
-    .forEach(el => {
-
-        el.classList.remove(
-            "loading"
-        );
-
-    });
-
-}
-
-
-/* =====================================================
-   LOAD HEALTH PROBLEMS
-===================================================== */
-
-async function loadHealthProblems(){
-
-    const container =
-    document.getElementById(
-        "healthList"
-    );
+async function loadPopulation(){
 
     try{
 
@@ -2661,42 +3156,286 @@ async function loadHealthProblems(){
         await supabaseClient
 
         .from(
-            "community_health_problems"
+            "citizens"
+        )
+
+        .select(
+            "id,gender"
+        );
+
+
+        if(error)
+            throw error;
+
+
+        const citizens =
+        data || [];
+
+
+        document.getElementById(
+            "population"
+        ).textContent =
+        citizens.length
+        ?
+        numberFormat(
+            citizens.length
+        )
+        :
+        "--";
+
+
+        const male =
+        citizens.filter(
+            item =>
+            String(
+                item.gender || ""
+            ).includes("ชาย")
+        ).length;
+
+
+        const female =
+        citizens.filter(
+            item =>
+            String(
+                item.gender || ""
+            ).includes("หญิง")
+        ).length;
+
+
+        if(
+            male ||
+            female
+        ){
+
+            document.getElementById(
+                "populationDetail"
+            ).textContent =
+            `ชาย ${numberFormat(male)} คน · หญิง ${numberFormat(female)} คน`;
+
+        }
+
+    }
+    catch(error){
+
+        console.log(
+            "citizens:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD HOUSEHOLDS
+========================================================= */
+
+async function loadHouseholds(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "households"
+        )
+
+        .select("id");
+
+
+        if(error)
+            throw error;
+
+
+        const households =
+        data || [];
+
+
+        document.getElementById(
+            "households"
+        ).textContent =
+        households.length
+        ?
+        numberFormat(
+            households.length
+        )
+        :
+        "--";
+
+    }
+    catch(error){
+
+        console.log(
+            "households:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD ELDERLY
+========================================================= */
+
+async function loadElderly(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "elderly"
+        )
+
+        .select("id");
+
+
+        if(error)
+            throw error;
+
+
+        document.getElementById(
+            "elderly"
+        ).textContent =
+        data &&
+        data.length
+        ?
+        numberFormat(
+            data.length
+        )
+        :
+        "--";
+
+    }
+    catch(error){
+
+        console.log(
+            "elderly:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD VULNERABLE
+========================================================= */
+
+async function loadVulnerable(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "vulnerable"
+        )
+
+        .select("id");
+
+
+        if(error)
+            throw error;
+
+
+        document.getElementById(
+            "vulnerable"
+        ).textContent =
+        data &&
+        data.length
+        ?
+        numberFormat(
+            data.length
+        )
+        :
+        "--";
+
+    }
+    catch(error){
+
+        console.log(
+            "vulnerable:",
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD NEWS
+========================================================= */
+
+async function loadNews(){
+
+    const box =
+    document.getElementById(
+        "newsList"
+    );
+
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "news"
         )
 
         .select("*")
 
         .order(
-            "priority_rank",
+            "created_at",
             {
-                ascending:true
+                ascending:false,
+                nullsFirst:false
             }
-        );
+        )
+
+        .limit(4);
 
 
-        if(error){
-
+        if(error)
             throw error;
 
-        }
+
+        const news =
+        data || [];
 
 
-        if(!data ||
-           data.length === 0){
+        if(
+            news.length === 0
+        ){
 
-            container.innerHTML = `
+            box.innerHTML = `
 
-            <div class="health-item">
+            <div class="empty">
 
-                <div class="rank">-</div>
+                <i class="fa-solid fa-newspaper"></i>
 
-                <div class="health-name">
-                ยังไม่มีข้อมูล
-                </div>
-
-                <div class="health-score">
-                --
-                </div>
+                ยังไม่มีข่าวประชาสัมพันธ์
 
             </div>
 
@@ -2707,54 +3446,65 @@ async function loadHealthProblems(){
         }
 
 
-        container.innerHTML =
-        data.map(
-            (item,index) => `
+        box.innerHTML =
+        news.map(
+            item => `
 
-            <div class="health-item">
+            <a
+            class="news-item"
+            href="pages/news.html">
 
-                <div class="rank">
-                    ${item.priority_rank || index+1}
-                </div>
+                <span
+                class="news-tag">
 
-                <div class="health-name">
                     ${escapeHTML(
-                        item.problem_name
+                        item.category ||
+                        "ประชาสัมพันธ์"
                     )}
+
+                </span>
+
+                <div
+                class="news-title">
+
+                    ${escapeHTML(
+                        item.title ||
+                        item.name ||
+                        "ไม่มีหัวข้อข่าว"
+                    )}
+
                 </div>
 
-                <div class="health-score">
-                    ${item.total_multiplication ?? "-"}
+                <div
+                class="news-date">
+
+                    ${
+                        item.created_at
+                        ?
+                        formatDate(
+                            item.created_at
+                        )
+                        :
+                        "-"
+                    }
+
                 </div>
 
-            </div>
+            </a>
 
             `
         ).join("");
 
+    }
+    catch(error){
 
-    }catch(error){
+        box.innerHTML = `
 
-        console.error(
-            "health:",
-            error
-        );
+        <div class="empty">
 
-        container.innerHTML = `
+            <i class="fa-solid fa-newspaper"></i>
 
-        <div class="health-item">
-
-            <div class="rank">
-            !
-            </div>
-
-            <div class="health-name">
-            ไม่สามารถโหลดข้อมูล
-            </div>
-
-            <div class="health-score">
-            --
-            </div>
+            ยังไม่มีข้อมูลข่าว
 
         </div>
 
@@ -2765,16 +3515,17 @@ async function loadHealthProblems(){
 }
 
 
-/* =====================================================
-   LOAD HEALTH SUMMARY
-===================================================== */
+/* =========================================================
+   LOAD ACTIVITIES
+========================================================= */
 
-async function loadHealthSummary(){
+async function loadActivities(){
 
-    const container =
+    const box =
     document.getElementById(
-        "healthSummary"
+        "activityList"
     );
+
 
     try{
 
@@ -2785,165 +3536,41 @@ async function loadHealthSummary(){
         await supabaseClient
 
         .from(
-            "health_survey_summary"
-        )
-
-        .select("*")
-
-        .eq(
-            "survey_year",
-            2568
-        );
-
-
-        if(error){
-
-            throw error;
-
-        }
-
-
-        const items = [
-
-            {
-                label:
-                "กลุ่มตัวอย่าง",
-                value:
-                "22 คน"
-            },
-
-            {
-                label:
-                "มีโรคประจำตัว",
-                value:
-                "17 คน"
-            },
-
-            {
-                label:
-                "ความดันโลหิต",
-                value:
-                "8 คน"
-            },
-
-            {
-                label:
-                "ทำอาชีพเกษตรกรรม",
-                value:
-                "10 คน"
-            },
-
-            {
-                label:
-                "ไม่สูบบุหรี่",
-                value:
-                "19 คน"
-            },
-
-            {
-                label:
-                "ไม่ดื่มสุรา",
-                value:
-                "18 คน"
-            }
-
-        ];
-
-
-        container.innerHTML =
-        items.map(
-            item => `
-
-            <div class="health-item">
-
-                <div class="rank">
-
-                    <i class="fa-solid fa-chart-simple"></i>
-
-                </div>
-
-                <div class="health-name">
-
-                    ${item.label}
-
-                </div>
-
-                <div class="health-score">
-
-                    ${item.value}
-
-                </div>
-
-            </div>
-
-            `
-        ).join("");
-
-
-    }catch(error){
-
-        console.error(
-            "health summary:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   LOAD HISTORY
-===================================================== */
-
-async function loadHistory(){
-
-    const container =
-    document.getElementById(
-        "timeline"
-    );
-
-    try{
-
-        const {
-            data,
-            error
-        } =
-        await supabaseClient
-
-        .from(
-            "community_history"
+            "activities"
         )
 
         .select("*")
 
         .order(
-            "sort_order",
+            "date",
             {
-                ascending:true
+                ascending:true,
+                nullsFirst:false
             }
-        );
+        )
+
+        .limit(5);
 
 
-        if(error){
-
+        if(error)
             throw error;
 
-        }
+
+        const activities =
+        data || [];
 
 
-        if(!data ||
-           data.length === 0){
+        if(
+            activities.length === 0
+        ){
 
-            container.innerHTML = `
+            box.innerHTML = `
 
-            <div class="timeline-item">
+            <div class="empty">
 
-                <div class="timeline-dot"></div>
+                <i class="fa-solid fa-calendar-days"></i>
 
-                <div class="timeline-title">
-                ยังไม่มีข้อมูลประวัติ
-                </div>
+                ยังไม่มีข้อมูลกิจกรรม
 
             </div>
 
@@ -2954,34 +3581,50 @@ async function loadHistory(){
         }
 
 
-        container.innerHTML =
-        data.map(
+        box.innerHTML =
+        activities.map(
             item => `
 
-            <div class="timeline-item">
+            <div class="activity">
 
-                <div class="timeline-dot"></div>
+                <div class="activity-icon">
 
-                <div class="timeline-year">
-
-                    พ.ศ.
-                    ${item.year_buddhist}
+                    <i class="fa-solid fa-calendar-check"></i>
 
                 </div>
 
-                <div class="timeline-title">
+                <div>
 
-                    ${escapeHTML(
-                        item.title
-                    )}
+                    <div class="activity-title">
 
-                </div>
+                        ${escapeHTML(
+                            item.title ||
+                            item.name ||
+                            "กิจกรรม"
+                        )}
 
-                <div class="timeline-desc">
+                    </div>
 
-                    ${escapeHTML(
-                        item.description || ""
-                    )}
+                    <div class="activity-meta">
+
+                        ${
+                            item.date
+                            ?
+                            formatDate(
+                                item.date
+                            )
+                            :
+                            "-"
+                        }
+
+                        ·
+
+                        ${escapeHTML(
+                            item.location ||
+                            "-"
+                        )}
+
+                    </div>
 
                 </div>
 
@@ -2990,12 +3633,303 @@ async function loadHistory(){
             `
         ).join("");
 
+    }
+    catch(error){
 
-    }catch(error){
+        box.innerHTML = `
 
-        console.error(
-            "history:",
+        <div class="empty">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            ยังไม่มีข้อมูลกิจกรรม
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD PROJECTS
+========================================================= */
+
+async function loadProjects(){
+
+    const box =
+    document.getElementById(
+        "projectList"
+    );
+
+
+    try{
+
+        const {
+            data,
             error
+        } =
+        await supabaseClient
+
+        .from(
+            "projects"
+        )
+
+        .select("*")
+
+        .order(
+            "created_at",
+            {
+                ascending:false,
+                nullsFirst:false
+            }
+        )
+
+        .limit(5);
+
+
+        if(error)
+            throw error;
+
+
+        const projects =
+        data || [];
+
+
+        if(
+            projects.length === 0
+        ){
+
+            box.innerHTML = `
+
+            <div class="empty">
+
+                <i class="fa-solid fa-diagram-project"></i>
+
+                ยังไม่มีข้อมูลโครงการ
+
+            </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        box.innerHTML =
+        projects.map(
+            item => `
+
+            <div class="activity">
+
+                <div class="activity-icon">
+
+                    <i class="fa-solid fa-diagram-project"></i>
+
+                </div>
+
+                <div>
+
+                    <div class="activity-title">
+
+                        ${escapeHTML(
+                            item.name ||
+                            item.title ||
+                            item.project_name ||
+                            "โครงการ"
+                        )}
+
+                    </div>
+
+                    <div class="activity-meta">
+
+                        ${escapeHTML(
+                            item.status ||
+                            "ไม่ระบุสถานะ"
+                        )}
+
+                        ·
+
+                        ${
+                            item.budget
+                            ?
+                            Number(
+                                item.budget
+                            ).toLocaleString(
+                                "th-TH"
+                            ) +
+                            " บาท"
+                            :
+                            "ไม่ระบุงบประมาณ"
+                        }
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            `
+        ).join("");
+
+    }
+    catch(error){
+
+        box.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-diagram-project"></i>
+
+            ยังไม่มีข้อมูลโครงการ
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD PM2.5
+========================================================= */
+
+async function loadPM(){
+
+    try{
+
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+
+        .from(
+            "environment"
+        )
+
+        .select("*")
+
+        .eq(
+            "type",
+            "PM2.5"
+        )
+
+        .order(
+            "recorded_at",
+            {
+                ascending:false,
+                nullsFirst:false
+            }
+        )
+
+        .limit(1);
+
+
+        if(error)
+            throw error;
+
+
+        if(
+            !data ||
+            data.length === 0
+        ){
+
+            return;
+
+        }
+
+
+        const item =
+        data[0];
+
+
+        const value =
+        item.value ??
+        item.pm25 ??
+        item.pm2_5;
+
+
+        if(
+            value === null ||
+            value === undefined
+        ){
+
+            return;
+
+        }
+
+
+        document.getElementById(
+            "pmValue"
+        ).textContent =
+        Number(value)
+        .toLocaleString(
+            "th-TH",
+            {
+                maximumFractionDigits:1
+            }
+        );
+
+
+        let status =
+        "คุณภาพอากาศ";
+
+
+        if(Number(value) <= 15)
+            status =
+            "คุณภาพอากาศดี";
+
+
+        else if(Number(value) <= 25)
+            status =
+            "เริ่มเฝ้าระวัง";
+
+
+        else if(Number(value) <= 37.5)
+            status =
+            "ควรเฝ้าระวัง";
+
+
+        else
+            status =
+            "ค่าฝุ่นสูง";
+
+
+        document.getElementById(
+            "pmStatus"
+        ).innerHTML = `
+
+        <i class="fa-solid fa-wind"></i>
+
+        ${status}
+
+        `;
+
+
+        document.getElementById(
+            "pmUpdate"
+        ).textContent =
+        item.recorded_at
+        ?
+        "อัปเดต " +
+        formatDate(
+            item.recorded_at
+        )
+        :
+        "มีข้อมูล PM2.5";
+
+    }
+    catch(error){
+
+        console.log(
+            "PM2.5:",
+            error.message
         );
 
     }
@@ -3003,184 +3937,85 @@ async function loadHistory(){
 }
 
 
-/* =====================================================
-   WEATHER DEMO PLACEHOLDER
-   เตรียมจุดเชื่อม API จริง
-===================================================== */
+/* =========================================================
+   WEATHER
+========================================================= */
 
 async function loadWeather(){
 
-    setText(
-        "weatherTemp",
-        "-- °C"
-    );
-
-    setText(
-        "weatherDesc",
-        "ระบบพร้อมเชื่อมต่อข้อมูลสภาพอากาศ"
-    );
-
-
-    setText(
-        "pm25",
-        "--"
-    );
-
-    setText(
-        "pm25Status",
-        "ระบบพร้อมเชื่อมต่อข้อมูล PM2.5"
-    );
+    /*
+     * ยังไม่ใส่ค่าปลอม
+     * เมื่อเชื่อม API สภาพอากาศจริง
+     * สามารถนำข้อมูลมาแสดงตรงนี้ได้
+     */
 
 }
 
 
-/* =====================================================
-   AI LOCAL KNOWLEDGE
-===================================================== */
-
-function askAI(){
-
-    const input =
-    document.getElementById(
-        "aiInput"
-    );
-
-    const answer =
-    document.getElementById(
-        "aiAnswer"
-    );
-
-
-    const question =
-    input.value
-    .trim()
-    .toLowerCase();
-
-
-    if(!question){
-
-        answer.textContent =
-        "กรุณาพิมพ์คำถามก่อนครับ";
-
-        return;
-
-    }
-
-
-    let response =
-    "ผมยังไม่มีข้อมูลสำหรับคำถามนี้";
-
-
-    if(
-        question.includes("ครัวเรือน") ||
-        question.includes("บ้านมีกี่หลัง")
-    ){
-
-        response =
-        "บ้านร่องเข็ม หมู่ที่ 6 มีจำนวน 352 หลังคาเรือน";
-
-    }
-
-
-    else if(
-        question.includes("ประชากร") ||
-        question.includes("คน")
-    ){
-
-        response =
-        "ข้อมูลจากรายงานระบุว่า บ้านร่องเข็มมีประชากรรวม 960 คน แบ่งเป็นชาย 471 คน และหญิง 489 คน";
-
-    }
-
-
-    else if(
-        question.includes("ผู้ใหญ่บ้าน")
-    ){
-
-        response =
-        "ผู้ใหญ่บ้านบ้านร่องเข็ม หมู่ที่ 6 ปัจจุบันคือ นายศักรนนทน์ ขัติย์วงศ์";
-
-    }
-
-
-    else if(
-        question.includes("ความดัน")
-    ){
-
-        response =
-        "จากกลุ่มตัวอย่าง 22 คน พบผู้มีปัญหาความดันโลหิต 8 คน และความดันโลหิตเป็นปัญหาสุขภาพอันดับ 1 ในรายงาน";
-
-    }
-
-
-    else if(
-        question.includes("อสม.")
-    ){
-
-        response =
-        "บ้านร่องเข็มมีอาสาสมัครสาธารณสุขประจำหมู่บ้าน (อสม.) จำนวน 26 คน";
-
-    }
-
-
-    else if(
-        question.includes("พื้นที่")
-    ){
-
-        response =
-        "บ้านร่องเข็มมีพื้นที่ประมาณ 13 ตารางกิโลเมตร หรือ 8,125 ไร่";
-
-    }
-
-
-    answer.innerHTML =
-    `<strong>RONGKHEM AI:</strong> ${response}`;
-
-}
-
-
-/* =====================================================
-   SECURITY
-===================================================== */
-
-function escapeHTML(value){
-
-    return String(value)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-
-}
-
-
-/* =====================================================
+/* =========================================================
    INIT
-===================================================== */
+========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    async () => {
+async function initDashboard(){
 
-        await Promise.all([
+    await Promise.allSettled([
 
-            loadVillageStats(),
+        loadPopulation(),
 
-            loadHealthProblems(),
+        loadHouseholds(),
 
-            loadHealthSummary(),
+        loadElderly(),
 
-            loadHistory(),
+        loadVulnerable(),
 
-            loadWeather()
+        loadNews(),
 
-        ]);
+        loadActivities(),
 
-    }
+        loadProjects(),
+
+        loadPM(),
+
+        loadWeather()
+
+    ]);
+
+}
+
+
+initDashboard();
+
+
+/* =========================================================
+   AUTO REFRESH
+========================================================= */
+
+setInterval(
+    () => {
+
+        loadPopulation();
+
+        loadHouseholds();
+
+        loadElderly();
+
+        loadVulnerable();
+
+        loadNews();
+
+        loadActivities();
+
+        loadProjects();
+
+        loadPM();
+
+    },
+    300000
 );
 
 </script>
 
+
 </body>
+
 </html>
