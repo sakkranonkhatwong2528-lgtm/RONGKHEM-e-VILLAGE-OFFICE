@@ -1,19 +1,37 @@
-const RONGKHEM_DATA = {
+/* =========================================================
+   RONGKHEM e-VILLAGE OFFICE
+   DATA.JS — VERIFIED DATA
+   ========================================================= */
 
+window.RONGKHEM_DATA = {
+
+    /* ข้อมูลหมู่บ้าน */
     village: {
         name: "บ้านร่องเข็ม",
         villageNo: 6,
         subdistrict: "จำป่าหวาย",
         district: "เมืองพะเยา",
-        province: "พะเยา"
+        province: "พะเยา",
+
+        fullAddress:
+            "บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา"
     },
 
+
+    /* ข้อมูลผู้ใหญ่บ้าน */
     leader: {
         name: "นายศักรนนท์ ขัติ์วงศ์",
         role: "ผู้ใหญ่บ้าน หมู่ที่ 6",
-        phone: "088-888-8888",
-        line: "rongkhem.village"
+        phone: "080-1202529",
+        line: "rongkhem.village",
+
+        photo: ""
     },
+
+
+    /* =====================================================
+       ข้อมูลประชากร
+       ===================================================== */
 
     population: {
         total: 960,
@@ -21,285 +39,103 @@ const RONGKHEM_DATA = {
         female: 489
     },
 
+
+    /* =====================================================
+       ข้อมูลครัวเรือน
+       ===================================================== */
+
     households: {
         total: 352
     },
 
+
+    /* =====================================================
+       ข้อมูลแบบสำรวจ
+       ===================================================== */
+
     survey: {
+
         respondents: 202,
+
         households: 202,
+
         elderly60Plus: 92,
+
         elderlyPercent: 45.5,
+
         disabled: 3,
+
         chronicDisease: 1,
+
         vulnerableSelections: 95
     },
 
+
+    /* =====================================================
+       สถานะข้อมูล
+       ===================================================== */
+
     verified: true,
-    source: "VERIFIED DATA BUILD"
+
+    verifiedText:
+        "VERIFIED DATA BUILD",
+
+    source:
+        "ข้อมูลที่ตรวจสอบแล้วจากเอกสารของหมู่บ้านร่องเข็ม",
+
+
+    /* =====================================================
+       ข้อมูลติดต่อ
+       ===================================================== */
+
+    contact: {
+
+        phone: "080-1202529",
+
+        line: "rongkhem.village",
+
+        officeHours:
+            "จันทร์ - ศุกร์ 08.30 - 16.30 น."
+    },
+
+
+    /* =====================================================
+       ข้อมูลกองทุนแม่ของแผ่นดิน
+       ===================================================== */
+
+    motherFund: {
+
+        enabled: true,
+
+        title:
+            "หมู่บ้านกองทุนแม่ของแผ่นดิน",
+
+        subtitle:
+            "บ้านร่องเข็ม หมู่ที่ 6",
+
+        description:
+            "ชุมชนเข้มแข็ง ร่วมใจพัฒนา"
+    }
+
 };
 
-window.RONGKHEM_DATA = RONGKHEM_DATA;
 
+/* =========================================================
+   GLOBAL SHORTCUT
+   ========================================================= */
 
-/* =========================================
-   AUTO RENDER
-========================================= */
+const RONGKHEM_DATA =
+    window.RONGKHEM_DATA;
 
-(function () {
 
-    function set(id, value) {
+/* =========================================================
+   EXPORT สำหรับระบบอื่น
+   ========================================================= */
 
-        const el =
-            document.getElementById(id);
-
-        if (el) {
-            el.textContent = value;
-        }
-
-    }
-
-
-    function nf(value) {
-
-        return Number(value)
-            .toLocaleString("th-TH");
-
-    }
-
-
-    function render() {
-
-        const D =
-            window.RONGKHEM_DATA;
-
-        if (!D) return;
-
-
-        /* ผู้ใหญ่บ้าน */
-
-        set(
-            "leaderName",
-            D.leader.name
-        );
-
-        set(
-            "leaderRole",
-            D.leader.role
-        );
-
-
-        set(
-            "phone",
-            D.leader.phone
-        );
-
-
-        set(
-            "line",
-            D.leader.line
-        );
-
-
-        /* ประชาชน */
-
-        set(
-            "popTotal",
-            nf(D.population.total)
-        );
-
-
-        const popDetail =
-            document.getElementById(
-                "popDetail"
-            );
-
-        if (popDetail) {
-
-            popDetail.innerHTML =
-                `หญิง ${nf(D.population.female)} คน<br>
-                 ชาย ${nf(D.population.male)} คน`;
-
-        }
-
-
-        /* ครัวเรือน */
-
-        set(
-            "houseTotal",
-            nf(D.households.total)
-        );
-
-
-        set(
-            "houseDetail",
-            `ข้อมูลที่ตรวจสอบแล้ว ${nf(D.households.total)} หลัง`
-        );
-
-
-        /* ผู้สูงอายุ */
-
-        set(
-            "elderlyTotal",
-            nf(D.survey.elderly60Plus)
-        );
-
-
-        const elderlyDetail =
-            document.getElementById(
-                "elderlyDetail"
-            );
-
-        if (elderlyDetail) {
-
-            elderlyDetail.innerHTML =
-                `อายุ 60 ปีขึ้นไป<br>
-                 ${D.survey.elderlyPercent}% ของผู้ตอบแบบสำรวจ`;
-
-        }
-
-
-        /* กลุ่มเปราะบาง */
-
-        set(
-            "vulnerableTotal",
-            nf(D.survey.vulnerableSelections)
-        );
-
-
-        set(
-            "disabledTotal",
-            nf(D.survey.disabled)
-        );
-
-
-        set(
-            "chronicTotal",
-            nf(D.survey.chronicDisease)
-        );
-
-
-        /* แบบสำรวจ */
-
-        set(
-            "surveyTotal",
-            nf(D.survey.respondents)
-        );
-
-
-        set(
-            "surveyHouseholds",
-            nf(D.survey.households)
-        );
-
-
-        /* รองรับ ID รุ่นใหม่ */
-
-        set(
-            "populationTotal",
-            nf(D.population.total)
-        );
-
-
-        set(
-            "populationMale",
-            nf(D.population.male)
-        );
-
-
-        set(
-            "populationFemale",
-            nf(D.population.female)
-        );
-
-
-        set(
-            "householdTotal",
-            nf(D.households.total)
-        );
-
-    }
-
-
-    /* =========================================
-       นาฬิกา
-    ========================================= */
-
-    function clock() {
-
-        const now =
-            new Date();
-
-
-        set(
-            "clock",
-            now.toLocaleTimeString(
-                "th-TH",
-                {
-                    hour12: false
-                }
-            )
-        );
-
-
-        set(
-            "date",
-            now.toLocaleDateString(
-                "th-TH",
-                {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric"
-                }
-            )
-        );
-
-
-        set(
-            "day",
-            "📅 " +
-            now.toLocaleDateString(
-                "th-TH",
-                {
-                    weekday: "long"
-                }
-            )
-        );
-
-    }
-
-
-    function start() {
-
-        render();
-
-        clock();
-
-        setInterval(
-            clock,
-            1000
-        );
-
-    }
-
-
-    if (
-        document.readyState ===
-        "loading"
-    ) {
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            start,
-            {
-                once: true
-            }
-        );
-
-    } else {
-
-        start();
-
-    }
-
-})();
+if (
+    typeof module !== "undefined" &&
+    module.exports
+) {
+    module.exports =
+        RONGKHEM_DATA;
+}
