@@ -2,22 +2,15 @@
 <html lang="th">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>
-ทะเบียนครัวเรือน | RONGKHEM e-VILLAGE
-</title>
+<title>ทะเบียนครัวเรือน | RONGKHEM e-VILLAGE</title>
 
-<link rel="preconnect"
-      href="https://fonts.googleapis.com">
-
-<link rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
@@ -27,46 +20,31 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
 <style>
 
 :root{
 
     --bg:#07111f;
-
     --card:rgba(15,29,48,.88);
-
     --border:rgba(255,255,255,.08);
 
     --text:#f8fafc;
-
     --muted:#94a3b8;
 
     --cyan:#22d3ee;
-
     --blue:#38bdf8;
-
     --green:#22c55e;
-
     --yellow:#facc15;
-
-    --red:#ef4444;
-
-    --radius:22px;
+    --orange:#fb923c;
+    --red:#fb7185;
 
 }
-
 
 *{
-
     box-sizing:border-box;
-
     margin:0;
-
     padding:0;
-
 }
-
 
 body{
 
@@ -98,7 +76,6 @@ body{
     );
 
 }
-
 
 .container{
 
@@ -135,21 +112,19 @@ HEADER
 
 }
 
-
 .header-inner{
 
     min-height:76px;
 
     display:flex;
 
-    justify-content:space-between;
-
     align-items:center;
+
+    justify-content:space-between;
 
     gap:20px;
 
 }
-
 
 .brand{
 
@@ -161,11 +136,9 @@ HEADER
 
 }
 
-
 .logo{
 
     width:48px;
-
     height:48px;
 
     border-radius:15px;
@@ -181,12 +154,11 @@ HEADER
     background:
     linear-gradient(
         135deg,
-        #0284c7,
+        #0369a1,
         #22d3ee
     );
 
 }
-
 
 .brand h1{
 
@@ -196,7 +168,6 @@ HEADER
 
 }
 
-
 .brand p{
 
     color:var(--muted);
@@ -205,21 +176,18 @@ HEADER
 
 }
 
-
 .back{
 
-    border:
-    1px solid var(--border);
+    padding:9px 14px;
+
+    border-radius:12px;
+
+    border:1px solid var(--border);
 
     background:
     rgba(255,255,255,.04);
 
     color:white;
-
-    padding:
-    9px 14px;
-
-    border-radius:12px;
 
     cursor:pointer;
 
@@ -229,7 +197,7 @@ HEADER
 
 
 /* =====================================================
-PAGE HEADER
+TITLE
 ===================================================== */
 
 .page-head{
@@ -237,7 +205,6 @@ PAGE HEADER
     margin-top:30px;
 
 }
-
 
 .page-head h2{
 
@@ -247,17 +214,15 @@ PAGE HEADER
 
 }
 
-
 .page-head p{
 
-    color:var(--muted);
-
     margin-top:5px;
+
+    color:var(--muted);
 
     font-size:13px;
 
 }
-
 
 .source{
 
@@ -269,8 +234,7 @@ PAGE HEADER
 
     margin-top:12px;
 
-    padding:
-    8px 12px;
+    padding:8px 12px;
 
     border-radius:10px;
 
@@ -289,10 +253,12 @@ PAGE HEADER
 
 
 /* =====================================================
-STATISTICS
+STATS
 ===================================================== */
 
 .stats{
+
+    margin-top:22px;
 
     display:grid;
 
@@ -301,17 +267,13 @@ STATISTICS
 
     gap:15px;
 
-    margin-top:24px;
-
 }
-
 
 .stat{
 
     padding:22px;
 
-    border-radius:
-    var(--radius);
+    border-radius:22px;
 
     background:
     var(--card);
@@ -321,19 +283,16 @@ STATISTICS
 
 }
 
-
 .stat-icon{
 
-    width:45px;
-
-    height:45px;
+    width:46px;
+    height:46px;
 
     border-radius:14px;
 
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
     color:#67e8f9;
@@ -343,17 +302,15 @@ STATISTICS
 
 }
 
-
-.stat-number{
+.stat-value{
 
     margin-top:12px;
 
     font-family:"Kanit";
 
-    font-size:36px;
+    font-size:34px;
 
 }
-
 
 .stat-label{
 
@@ -365,90 +322,16 @@ STATISTICS
 
 
 /* =====================================================
-NOTICE
+CONTROL
 ===================================================== */
 
-.notice{
+.control{
 
     margin-top:20px;
 
-    padding:20px;
+    padding:18px;
 
-    border-radius:
-    var(--radius);
-
-    background:
-    rgba(250,204,21,.06);
-
-    border:
-    1px solid
-    rgba(250,204,21,.16);
-
-    display:flex;
-
-    gap:14px;
-
-    align-items:flex-start;
-
-}
-
-
-.notice-icon{
-
-    width:42px;
-
-    height:42px;
-
-    flex:none;
-
-    border-radius:13px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    color:var(--yellow);
-
-    background:
-    rgba(250,204,21,.08);
-
-}
-
-
-.notice h3{
-
-    font-size:15px;
-
-}
-
-
-.notice p{
-
-    margin-top:4px;
-
-    color:var(--muted);
-
-    font-size:12px;
-
-    line-height:1.7;
-
-}
-
-
-/* =====================================================
-SEARCH
-===================================================== */
-
-.panel{
-
-    margin-top:20px;
-
-    padding:23px;
-
-    border-radius:
-    var(--radius);
+    border-radius:20px;
 
     background:
     var(--card);
@@ -458,41 +341,50 @@ SEARCH
 
 }
 
-
-.panel-head{
+.filters{
 
     display:flex;
 
-    justify-content:space-between;
+    flex-wrap:wrap;
 
-    align-items:center;
-
-    gap:15px;
-
-    margin-bottom:17px;
+    gap:9px;
 
 }
 
+.filter{
 
-.panel-title{
+    padding:9px 14px;
 
-    font-family:"Kanit";
+    border-radius:11px;
 
-    font-size:21px;
+    border:1px solid var(--border);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
 
 }
 
+.filter.active{
 
-.panel-sub{
+    color:white;
 
-    color:var(--muted);
+    background:
+    rgba(34,211,238,.10);
 
-    font-size:11px;
+    border-color:
+    rgba(34,211,238,.30);
 
 }
-
 
 .search{
+
+    margin-top:13px;
 
     display:flex;
 
@@ -500,20 +392,17 @@ SEARCH
 
 }
 
-
 .search input{
 
     flex:1;
 
     min-width:0;
 
-    padding:
-    14px 16px;
+    padding:13px 15px;
 
     border-radius:13px;
 
-    border:
-    1px solid var(--border);
+    border:1px solid var(--border);
 
     background:
     rgba(0,0,0,.20);
@@ -526,25 +415,19 @@ SEARCH
 
 }
 
-
-.search input:focus{
-
-    border-color:
-    rgba(34,211,238,.4);
-
-}
-
-
 .btn{
 
-    border:0;
+    padding:12px 17px;
 
-    padding:
-    12px 17px;
+    border:0;
 
     border-radius:13px;
 
     color:white;
+
+    cursor:pointer;
+
+    font-family:"Prompt";
 
     background:
     linear-gradient(
@@ -553,20 +436,159 @@ SEARCH
         #06b6d4
     );
 
-    cursor:pointer;
-
-    font-family:"Prompt";
-
 }
 
 
-.btn.secondary{
+/* =====================================================
+HOUSEHOLD GRID
+===================================================== */
+
+.household-grid{
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(3,1fr);
+
+    gap:15px;
+
+}
+
+.household-card{
+
+    padding:21px;
+
+    border-radius:21px;
 
     background:
-    rgba(255,255,255,.05);
+    var(--card);
 
     border:
     1px solid var(--border);
+
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
+
+}
+
+.household-card:hover{
+
+    transform:
+    translateY(-3px);
+
+    border-color:
+    rgba(34,211,238,.22);
+
+}
+
+.household-top{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+}
+
+.house-icon{
+
+    width:48px;
+    height:48px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
+}
+
+.house-number{
+
+    margin-top:16px;
+
+    font-family:"Kanit";
+
+    font-size:24px;
+
+}
+
+.house-name{
+
+    margin-top:3px;
+
+    color:#cbd5e1;
+
+    font-size:12px;
+
+}
+
+.house-info{
+
+    margin-top:17px;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:9px;
+
+}
+
+.info{
+
+    padding:11px;
+
+    border-radius:12px;
+
+    background:
+    rgba(255,255,255,.035);
+
+}
+
+.info-label{
+
+    color:var(--muted);
+
+    font-size:9px;
+
+}
+
+.info-value{
+
+    margin-top:3px;
+
+    color:#e2e8f0;
+
+    font-size:12px;
+
+}
+
+.house-footer{
+
+    margin-top:15px;
+
+    padding-top:12px;
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    color:var(--muted);
+
+    font-size:9px;
 
 }
 
@@ -574,6 +596,50 @@ SEARCH
 /* =====================================================
 TABLE
 ===================================================== */
+
+.table-card{
+
+    margin-top:20px;
+
+    padding:23px;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+}
+
+.table-head{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+
+}
+
+.table-title{
+
+    font-family:"Kanit";
+
+    font-size:21px;
+
+}
+
+.table-sub{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+}
 
 .table-wrap{
 
@@ -583,29 +649,25 @@ TABLE
 
 }
 
-
 table{
 
     width:100%;
 
-    border-collapse:
-    collapse;
+    min-width:750px;
 
-    min-width:720px;
+    border-collapse:collapse;
 
 }
 
-
 th{
 
-    padding:
-    14px 12px;
+    padding:14px 12px;
 
     text-align:left;
 
     color:#67e8f9;
 
-    font-size:12px;
+    font-size:11px;
 
     font-weight:500;
 
@@ -617,87 +679,97 @@ th{
 
 }
 
-
 td{
 
-    padding:
-    15px 12px;
+    padding:13px 12px;
 
-    font-size:12px;
+    font-size:11px;
 
     border-bottom:
     1px solid rgba(255,255,255,.05);
 
-    color:#dbe4ef;
-
 }
 
+.status{
 
-.empty{
+    display:inline-flex;
 
-    text-align:center;
+    padding:4px 8px;
 
-    padding:45px 20px;
+    border-radius:999px;
 
-    color:var(--muted);
+    color:#86efac;
 
-}
+    background:
+    rgba(34,197,94,.08);
 
-
-.empty i{
-
-    display:block;
-
-    font-size:38px;
-
-    color:
-    rgba(34,211,238,.35);
-
-    margin-bottom:12px;
+    font-size:9px;
 
 }
 
 
 /* =====================================================
-INFO CARDS
+EMPTY
 ===================================================== */
 
-.info-grid{
+.empty{
 
-    display:grid;
+    grid-column:
+    1 / -1;
 
-    grid-template-columns:
-    repeat(3,1fr);
+    padding:55px 20px;
 
-    gap:15px;
+    text-align:center;
 
-    margin-top:20px;
+    color:var(--muted);
+
+}
+
+.empty i{
+
+    display:block;
+
+    margin-bottom:13px;
+
+    font-size:42px;
+
+    color:
+    rgba(34,211,238,.30);
 
 }
 
 
-.info-card{
+/* =====================================================
+NOTE
+===================================================== */
+
+.note{
+
+    margin-top:20px;
 
     padding:20px;
 
     border-radius:20px;
 
+    display:flex;
+
+    gap:14px;
+
     background:
-    var(--card);
+    rgba(167,139,250,.06);
 
     border:
-    1px solid var(--border);
+    1px solid
+    rgba(167,139,250,.15);
 
 }
 
-
-.info-icon{
+.note-icon{
 
     width:43px;
-
     height:43px;
 
-    border-radius:13px;
+    flex:none;
 
     display:flex;
 
@@ -705,24 +777,22 @@ INFO CARDS
 
     justify-content:center;
 
-    color:#67e8f9;
+    border-radius:13px;
+
+    color:#c4b5fd;
 
     background:
-    rgba(34,211,238,.08);
+    rgba(167,139,250,.08);
 
 }
 
-
-.info-card h3{
-
-    margin-top:13px;
+.note h3{
 
     font-size:14px;
 
 }
 
-
-.info-card p{
+.note p{
 
     margin-top:5px;
 
@@ -730,7 +800,7 @@ INFO CARDS
 
     font-size:11px;
 
-    line-height:1.7;
+    line-height:1.8;
 
 }
 
@@ -743,8 +813,7 @@ FOOTER
 
     margin-top:45px;
 
-    padding:
-    25px 0;
+    padding:25px 0;
 
     border-top:
     1px solid var(--border);
@@ -775,7 +844,7 @@ RESPONSIVE
 
     }
 
-    .info-grid{
+    .household-grid{
 
         grid-template-columns:
         1fr 1fr;
@@ -784,26 +853,12 @@ RESPONSIVE
 
 }
 
-
-@media(max-width:600px){
+@media(max-width:620px){
 
     .container{
 
         width:
         calc(100% - 20px);
-
-    }
-
-    .header-inner{
-
-        padding:
-        0 5px;
-
-    }
-
-    .brand h1{
-
-        font-size:16px;
 
     }
 
@@ -815,9 +870,6 @@ RESPONSIVE
 
     .stats{
 
-        grid-template-columns:
-        1fr 1fr;
-
         gap:10px;
 
     }
@@ -828,21 +880,22 @@ RESPONSIVE
 
     }
 
-    .stat-number{
+    .stat-value{
 
-        font-size:29px;
+        font-size:28px;
+
+    }
+
+    .household-grid{
+
+        grid-template-columns:
+        1fr;
 
     }
 
     .search{
 
         flex-direction:column;
-
-    }
-
-    .info-grid{
-
-        grid-template-columns:1fr;
 
     }
 
@@ -871,7 +924,7 @@ RESPONSIVE
 
 <div class="logo">
 
-<i class="fa-solid fa-house-user"></i>
+<i class="fa-solid fa-house-chimney-user"></i>
 
 </div>
 
@@ -910,10 +963,6 @@ onclick="location.href='../index.html'">
 <main class="container">
 
 
-<!-- =====================================================
-TITLE
-===================================================== -->
-
 <section class="page-head">
 
 <h2>
@@ -921,14 +970,14 @@ TITLE
 </h2>
 
 <p>
-ข้อมูลครัวเรือนบ้านร่องเข็ม หมู่ที่ 6
+ข้อมูลครัวเรือนและบ้านเลขที่ของบ้านร่องเข็ม หมู่ที่ 6
 </p>
 
 <div class="source">
 
 <i class="fa-solid fa-database"></i>
 
-ข้อมูลจำนวนครัวเรือนอ้างอิงจากรายงาน ปีการศึกษา 2568
+ข้อมูลจากทะเบียนครัวเรือนในระบบ
 
 </div>
 
@@ -937,7 +986,7 @@ TITLE
 
 
 <!-- =====================================================
-STAT
+STATS
 ===================================================== -->
 
 <section class="stats">
@@ -953,15 +1002,15 @@ STAT
 
 <div
 id="totalHouseholds"
-class="stat-number">
+class="stat-value">
 
-352
+0
 
 </div>
 
 <div class="stat-label">
 
-ครัวเรือนตามรายงาน
+ครัวเรือนทั้งหมด
 
 </div>
 
@@ -977,16 +1026,16 @@ class="stat-number">
 </div>
 
 <div
-id="population"
-class="stat-number">
+id="totalPeople"
+class="stat-value">
 
-960
+--
 
 </div>
 
 <div class="stat-label">
 
-ประชากรรวม
+ประชากรที่บันทึก
 
 </div>
 
@@ -997,21 +1046,21 @@ class="stat-number">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-person"></i>
+<i class="fa-solid fa-user-tie"></i>
 
 </div>
 
 <div
-id="male"
-class="stat-number">
+id="heads"
+class="stat-value">
 
-471
+--
 
 </div>
 
 <div class="stat-label">
 
-ชาย
+หัวหน้าครัวเรือน
 
 </div>
 
@@ -1022,21 +1071,21 @@ class="stat-number">
 
 <div class="stat-icon">
 
-<i class="fa-solid fa-person-dress"></i>
+<i class="fa-solid fa-location-dot"></i>
 
 </div>
 
 <div
-id="female"
-class="stat-number">
+id="villages"
+class="stat-value">
 
-489
+1
 
 </div>
 
 <div class="stat-label">
 
-หญิง
+หมู่บ้าน
 
 </div>
 
@@ -1048,79 +1097,41 @@ class="stat-number">
 
 
 <!-- =====================================================
-IMPORTANT NOTICE
+FILTER
 ===================================================== -->
 
-<section class="notice">
-
-<div class="notice-icon">
-
-<i class="fa-solid fa-circle-info"></i>
-
-</div>
-
-<div>
-
-<h3>
-สถานะข้อมูลทะเบียนครัวเรือน
-</h3>
-
-<p>
-
-รายงานหลักระบุจำนวนครัวเรือนของบ้านร่องเข็ม
-จำนวน 352 ครัวเรือน แต่ไม่ได้ระบุทะเบียนรายชื่อ
-เลขที่บ้าน และสมาชิกแต่ละครัวเรือนครบทั้ง 352 ครัวเรือน
-ดังนั้นระบบจะยังไม่สร้างข้อมูลรายบุคคลขึ้นมาเอง
-
-</p>
-
-<p>
-
-เมื่อมีไฟล์ทะเบียนครัวเรือนจริง
-สามารถนำเข้าฐานข้อมูลได้ในภายหลัง
-
-</p>
-
-</div>
-
-</section>
+<section class="control">
 
 
-
-<!-- =====================================================
-SEARCH
-===================================================== -->
-
-<section class="panel">
-
-<div class="panel-head">
-
-<div>
-
-<div class="panel-title">
-
-ค้นหาทะเบียนครัวเรือน
-
-</div>
-
-<div class="panel-sub">
-
-ค้นหาจากข้อมูลทะเบียนที่นำเข้าสู่ระบบ
-
-</div>
-
-</div>
+<div class="filters">
 
 
 <button
-class="btn secondary"
-onclick="clearSearch()">
+class="filter active"
+onclick="setFilter('all',this)">
 
-<i class="fa-solid fa-rotate-left"></i>
-
-ล้าง
+ทั้งหมด
 
 </button>
+
+
+<button
+class="filter"
+onclick="setFilter('มีผู้อยู่อาศัย',this)">
+
+มีผู้อยู่อาศัย
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('ว่าง',this)">
+
+บ้านว่าง
+
+</button>
+
 
 </div>
 
@@ -1130,13 +1141,13 @@ onclick="clearSearch()">
 <input
 id="searchInput"
 type="search"
-placeholder="ค้นหาเลขที่บ้าน / ชื่อหัวหน้าครัวเรือน"
+placeholder="ค้นหาบ้านเลขที่ ชื่อ หรือข้อมูลครัวเรือน..."
 autocomplete="off">
 
 
 <button
 class="btn"
-onclick="searchHouseholds()">
+onclick="loadHouseholds()">
 
 <i class="fa-solid fa-magnifying-glass"></i>
 
@@ -1147,6 +1158,63 @@ onclick="searchHouseholds()">
 </div>
 
 
+</section>
+
+
+
+<!-- =====================================================
+HOUSEHOLD CARDS
+===================================================== -->
+
+<section
+id="householdGrid"
+class="household-grid">
+
+<div class="empty">
+
+<i class="fa-solid fa-house"></i>
+
+กำลังโหลดข้อมูลครัวเรือน...
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+TABLE
+===================================================== -->
+
+<section class="table-card">
+
+
+<div class="table-head">
+
+<div>
+
+<div class="table-title">
+
+ทะเบียนครัวเรือน
+
+</div>
+
+<div class="table-sub">
+
+รายละเอียดจากข้อมูลที่บันทึกในระบบ
+
+</div>
+
+</div>
+
+
+<i
+class="fa-solid fa-table-list"
+style="font-size:24px;color:#22d3ee">
+</i>
+
+</div>
+
 
 <div class="table-wrap">
 
@@ -1156,25 +1224,22 @@ onclick="searchHouseholds()">
 
 <tr>
 
-<th>
-เลขที่บ้าน
-</th>
+<th>ลำดับ</th>
 
-<th>
-หัวหน้าครัวเรือน
-</th>
+<th>บ้านเลขที่</th>
 
-<th>
-จำนวนสมาชิก
-</th>
+<th>หัวหน้าครัวเรือน</th>
 
-<th>
-หมายเหตุ
-</th>
+<th>สมาชิก</th>
+
+<th>โทรศัพท์</th>
+
+<th>สถานะ</th>
 
 </tr>
 
 </thead>
+
 
 <tbody
 id="householdTable">
@@ -1182,16 +1247,12 @@ id="householdTable">
 <tr>
 
 <td
-colspan="4"
+colspan="6"
 class="empty">
 
-<i class="fa-solid fa-house-circle-exclamation"></i>
+<i class="fa-solid fa-database"></i>
 
-ยังไม่มีทะเบียนครัวเรือนรายหลังคาเรือนในฐานข้อมูล
-
-<br>
-
-กรุณานำเข้าทะเบียนจริงก่อน
+ยังไม่มีข้อมูลทะเบียนครัวเรือน
 
 </td>
 
@@ -1203,90 +1264,38 @@ class="empty">
 
 </div>
 
+
 </section>
 
 
 
 <!-- =====================================================
-INFORMATION
+NOTE
 ===================================================== -->
 
-<section class="info-grid">
+<section class="note">
 
+<div class="note-icon">
 
-<div class="info-card">
-
-<div class="info-icon">
-
-<i class="fa-solid fa-file-lines"></i>
+<i class="fa-solid fa-shield-halved"></i>
 
 </div>
 
+<div>
+
 <h3>
-แหล่งข้อมูล
+การจัดการข้อมูลครัวเรือน
 </h3>
 
 <p>
 
-รายงานผลการวินิจฉัยชุมชน
-บ้านร่องเข็ม หมู่ที่ 6
-ปีการศึกษา 2568
+ข้อมูลทะเบียนครัวเรือนควรใช้สำหรับงานบริหารจัดการหมู่บ้าน
+และจำกัดการเข้าถึงข้อมูลส่วนบุคคลตามสิทธิ์ของผู้ใช้งาน
+หน้าสาธารณะควรเปิดเผยเฉพาะข้อมูลที่จำเป็นเท่านั้น
 
 </p>
 
 </div>
-
-
-
-<div class="info-card">
-
-<div class="info-icon">
-
-<i class="fa-solid fa-chart-column"></i>
-
-</div>
-
-<h3>
-ข้อมูลที่ยืนยันแล้ว
-</h3>
-
-<p>
-
-จำนวน 352 ครัวเรือน
-ประชากร 960 คน
-ชาย 471 คน
-หญิง 489 คน
-
-</p>
-
-</div>
-
-
-
-<div class="info-card">
-
-<div class="info-icon">
-
-<i class="fa-solid fa-database"></i>
-
-</div>
-
-<h3>
-ข้อมูลที่จะนำเข้าในอนาคต
-</h3>
-
-<p>
-
-เลขที่บ้าน
-ชื่อหัวหน้าครัวเรือน
-จำนวนสมาชิก
-ข้อมูลการติดต่อ และข้อมูลอื่น
-ตามสิทธิ์การเข้าถึง
-
-</p>
-
-</div>
-
 
 </section>
 
@@ -1343,122 +1352,66 @@ supabase.createClient(
 
 
 /* =====================================================
-HELPER
+STATE
+===================================================== */
+
+let currentFilter =
+"all";
+
+
+/* =====================================================
+ESCAPE
 ===================================================== */
 
 function escapeHTML(value){
 
-    return String(value ?? "")
+    return String(
+        value ?? ""
+    )
 
     .replaceAll("&","&amp;")
-
     .replaceAll("<","&lt;")
-
     .replaceAll(">","&gt;")
-
     .replaceAll('"',"&quot;")
-
     .replaceAll("'","&#039;");
 
 }
 
 
 /* =====================================================
-LOAD REAL STATISTICS
+NUMBER
 ===================================================== */
 
-async function loadStatistics(){
+function numberFormat(value){
 
-    try{
+    if(
+        value === null ||
+        value === undefined
+    ){
 
-        const {
-
-            data,
-            error
-
-        } = await supabaseClient
-
-        .from("statistics")
-
-        .select(
-            "population,male,female,households"
-        )
-
-        .eq(
-            "year",
-            2568
-        )
-
-        .limit(1)
-
-        .maybeSingle();
-
-
-        if(error)
-            throw error;
-
-
-        if(!data)
-            return;
-
-
-        document
-        .getElementById(
-            "totalHouseholds"
-        )
-        .textContent =
-        Number(
-            data.households
-        ).toLocaleString("th-TH");
-
-
-        document
-        .getElementById(
-            "population"
-        )
-        .textContent =
-        Number(
-            data.population
-        ).toLocaleString("th-TH");
-
-
-        document
-        .getElementById(
-            "male"
-        )
-        .textContent =
-        Number(
-            data.male
-        ).toLocaleString("th-TH");
-
-
-        document
-        .getElementById(
-            "female"
-        )
-        .textContent =
-        Number(
-            data.female
-        ).toLocaleString("th-TH");
-
-
-    }catch(error){
-
-        console.error(
-            "Statistics:",
-            error
-        );
+        return "--";
 
     }
+
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
 
 }
 
 
 /* =====================================================
-SEARCH HOUSEHOLDS
+LOAD
 ===================================================== */
 
-async function searchHouseholds(){
+async function loadHouseholds(){
+
+    const grid =
+    document.getElementById(
+        "householdGrid"
+    );
+
 
     const keyword =
     document
@@ -1469,36 +1422,305 @@ async function searchHouseholds(){
     .trim();
 
 
+    try{
+
+        let query =
+        supabaseClient
+
+        .from("households")
+
+        .select("*")
+
+        .order(
+            "house_number",
+            {
+                ascending:true,
+                nullsFirst:false
+            }
+        );
+
+
+        if(
+            currentFilter !== "all"
+        ){
+
+            query =
+            query.eq(
+                "status",
+                currentFilter
+            );
+
+        }
+
+
+        if(keyword){
+
+            query =
+            query.or(
+                `house_number.ilike.%${keyword}%,head_name.ilike.%${keyword}%,phone.ilike.%${keyword}%`
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } = await query;
+
+
+        if(error)
+            throw error;
+
+
+        renderHouseholds(
+            data || []
+        );
+
+
+        renderTable(
+            data || []
+        );
+
+
+        updateStatistics(
+            data || []
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Households:",
+            error
+        );
+
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-database"></i>
+
+            ยังไม่มีข้อมูลทะเบียนครัวเรือนในฐานข้อมูล
+
+            <br>
+
+            กรุณานำเข้าข้อมูลจริงจากไฟล์ก่อนใช้งาน
+
+        </div>
+
+        `;
+
+
+        renderTable([]);
+
+        updateStatistics([]);
+
+    }
+
+}
+
+
+/* =====================================================
+RENDER CARDS
+===================================================== */
+
+function renderHouseholds(
+    households
+){
+
+    const grid =
+    document.getElementById(
+        "householdGrid"
+    );
+
+
+    if(
+        households.length === 0
+    ){
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-house-circle-xmark"></i>
+
+            ไม่พบข้อมูลครัวเรือน
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+    households.map(
+        item => `
+
+        <article
+        class="household-card">
+
+
+            <div
+            class="household-top">
+
+
+                <div
+                class="house-icon">
+
+                    <i
+                    class="fa-solid
+                    fa-house">
+                    </i>
+
+                </div>
+
+
+                <span
+                class="status">
+
+                    ${escapeHTML(
+                        item.status ||
+                        "ไม่ระบุ"
+                    )}
+
+                </span>
+
+
+            </div>
+
+
+            <div
+            class="house-number">
+
+                บ้านเลขที่
+                ${escapeHTML(
+                    item.house_number ||
+                    "-"
+                )}
+
+            </div>
+
+
+            <div
+            class="house-name">
+
+                ${escapeHTML(
+                    item.head_name ||
+                    "ยังไม่มีข้อมูลหัวหน้าครัวเรือน"
+                )}
+
+            </div>
+
+
+            <div
+            class="house-info">
+
+
+                <div class="info">
+
+                    <div class="info-label">
+                    สมาชิก
+                    </div>
+
+                    <div class="info-value">
+
+                        ${
+                            item.member_count !== null &&
+                            item.member_count !== undefined
+                            ?
+                            numberFormat(
+                                item.member_count
+                            ) + " คน"
+                            :
+                            "--"
+                        }
+
+                    </div>
+
+                </div>
+
+
+                <div class="info">
+
+                    <div class="info-label">
+                    โทรศัพท์
+                    </div>
+
+                    <div class="info-value">
+
+                        ${escapeHTML(
+                            item.phone ||
+                            "-"
+                        )}
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <div
+            class="house-footer">
+
+                ${
+                    item.address
+                    ?
+                    escapeHTML(
+                        item.address
+                    )
+                    :
+                    "บ้านร่องเข็ม หมู่ที่ 6"
+                }
+
+            </div>
+
+
+        </article>
+
+        `
+    ).join("");
+
+}
+
+
+/* =====================================================
+TABLE
+===================================================== */
+
+function renderTable(
+    households
+){
+
     const table =
-    document
-    .getElementById(
+    document.getElementById(
         "householdTable"
     );
 
 
-    /*
-      ตอนนี้ยังไม่มีตาราง households
-      สำหรับทะเบียน 352 หลังคาเรือนจริง
-
-      จึงไม่ค้นหาข้อมูลสมมติ
-    */
-
-
-    if(!keyword){
+    if(
+        households.length === 0
+    ){
 
         table.innerHTML = `
 
         <tr>
 
-        <td
-        colspan="4"
-        class="empty">
+            <td
+            colspan="6"
+            class="empty">
 
-        <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-database"></i>
 
-        กรุณาระบุข้อมูลสำหรับค้นหา
+                ยังไม่มีข้อมูล
 
-        </td>
+            </td>
 
         </tr>
 
@@ -1509,75 +1731,191 @@ async function searchHouseholds(){
     }
 
 
-    table.innerHTML = `
+    table.innerHTML =
+    households.map(
+        (item,index) => `
 
-    <tr>
+        <tr>
 
-    <td
-    colspan="4"
-    class="empty">
+            <td>
+                ${index + 1}
+            </td>
 
-    <i class="fa-solid fa-database"></i>
+            <td>
 
-    ยังไม่มีทะเบียนรายครัวเรือนในฐานข้อมูล
+                ${escapeHTML(
+                    item.house_number ||
+                    "-"
+                )}
 
-    <br>
+            </td>
 
-    ระบบจะไม่สร้างข้อมูลขึ้นเอง
+            <td>
 
-    </td>
+                ${escapeHTML(
+                    item.head_name ||
+                    "-"
+                )}
 
-    </tr>
+            </td>
 
-    `;
+            <td>
+
+                ${
+                    item.member_count !== null &&
+                    item.member_count !== undefined
+                    ?
+                    numberFormat(
+                        item.member_count
+                    )
+                    :
+                    "--"
+                }
+
+            </td>
+
+            <td>
+
+                ${escapeHTML(
+                    item.phone ||
+                    "-"
+                )}
+
+            </td>
+
+            <td>
+
+                <span class="status">
+
+                    ${escapeHTML(
+                        item.status ||
+                        "ไม่ระบุ"
+                    )}
+
+                </span>
+
+            </td>
+
+        </tr>
+
+        `
+    ).join("");
 
 }
 
 
 /* =====================================================
-CLEAR
+STATISTICS
 ===================================================== */
 
-function clearSearch(){
+function updateStatistics(
+    households
+){
 
-    document
-    .getElementById(
-        "searchInput"
-    )
-    .value = "";
+    const total =
+    households.length;
 
 
-    document
-    .getElementById(
-        "householdTable"
-    )
-    .innerHTML = `
+    let people = 0;
 
-    <tr>
+    let heads = 0;
 
-    <td
-    colspan="4"
-    class="empty">
 
-    <i class="fa-solid fa-house-circle-exclamation"></i>
+    households.forEach(
+        item => {
 
-    ยังไม่มีทะเบียนครัวเรือนรายหลังคาเรือนในฐานข้อมูล
+            if(
+                item.member_count !== null &&
+                item.member_count !== undefined
+            ){
 
-    <br>
+                people +=
+                Number(
+                    item.member_count
+                ) || 0;
 
-    กรุณานำเข้าทะเบียนจริงก่อน
+            }
 
-    </td>
 
-    </tr>
+            if(
+                item.head_name
+            ){
 
-    `;
+                heads++;
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "totalHouseholds"
+    ).textContent =
+    total.toLocaleString(
+        "th-TH"
+    );
+
+
+    document.getElementById(
+        "totalPeople"
+    ).textContent =
+    people > 0
+    ?
+    people.toLocaleString("th-TH")
+    :
+    "--";
+
+
+    document.getElementById(
+        "heads"
+    ).textContent =
+    heads > 0
+    ?
+    heads.toLocaleString("th-TH")
+    :
+    "--";
 
 }
 
 
 /* =====================================================
-ENTER KEY
+FILTER
+===================================================== */
+
+function setFilter(
+    filter,
+    button
+){
+
+    currentFilter =
+    filter;
+
+
+    document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        item =>
+        item.classList.remove(
+            "active"
+        )
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    loadHouseholds();
+
+}
+
+
+/* =====================================================
+ENTER SEARCH
 ===================================================== */
 
 document
@@ -1592,7 +1930,7 @@ document
             event.key === "Enter"
         ){
 
-            searchHouseholds();
+            loadHouseholds();
 
         }
 
@@ -1608,7 +1946,7 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        loadStatistics();
+        loadHouseholds();
 
     }
 );
@@ -1617,4 +1955,5 @@ document.addEventListener(
 
 
 </body>
+
 </html>
