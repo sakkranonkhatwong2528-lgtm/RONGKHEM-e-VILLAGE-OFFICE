@@ -1,0 +1,3460 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+ศูนย์ควบคุมระบบ | RONGKHEM e-VILLAGE
+</title>
+
+<link rel="preconnect"
+href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+rel="stylesheet">
+
+<style>
+
+/* =====================================================
+ROOT
+===================================================== */
+
+:root{
+
+--bg:#03101a;
+--panel:rgba(4,29,43,.96);
+--border:rgba(112,190,220,.23);
+
+--text:#fff;
+--muted:#91aab3;
+
+--green:#4cff70;
+--cyan:#45e8ff;
+--blue:#579fff;
+--purple:#d78cff;
+--orange:#ffb53d;
+--red:#ff5d5d;
+
+--sidebar:260px;
+
+}
+
+
+/* =====================================================
+RESET
+===================================================== */
+
+*{
+
+box-sizing:border-box;
+margin:0;
+padding:0;
+
+}
+
+
+body{
+
+min-height:100vh;
+
+font-family:
+"Prompt",
+"Kanit",
+sans-serif;
+
+color:var(--text);
+
+background:
+
+linear-gradient(
+rgba(0,10,18,.95),
+rgba(0,10,18,.98)
+),
+
+url("https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2200&q=85")
+center/cover fixed no-repeat;
+
+}
+
+
+button,
+input,
+select,
+textarea{
+
+font-family:inherit;
+
+}
+
+
+button{
+
+cursor:pointer;
+
+}
+
+
+/* =====================================================
+SIDEBAR
+===================================================== */
+
+.sidebar{
+
+position:fixed;
+
+left:0;
+top:0;
+bottom:0;
+
+width:var(--sidebar);
+
+padding:20px 14px;
+
+background:
+
+linear-gradient(
+180deg,
+rgba(1,18,30,.99),
+rgba(1,10,18,.98)
+);
+
+border-right:
+1px solid
+rgba(120,201,230,.18);
+
+z-index:1000;
+
+overflow-y:auto;
+
+}
+
+
+.sidebar-brand{
+
+display:flex;
+
+align-items:center;
+
+gap:11px;
+
+padding:
+5px
+9px
+20px;
+
+margin-bottom:13px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.09);
+
+}
+
+
+.logo{
+
+width:54px;
+height:54px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:15px;
+
+font-size:29px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(255,188,49,.17),
+rgba(4,38,51,.4)
+);
+
+border:
+1px solid
+rgba(255,190,54,.27);
+
+}
+
+
+.brand-title{
+
+font-family:"Kanit";
+
+font-size:17px;
+
+line-height:1.1;
+
+}
+
+
+.brand-title span{
+
+color:#b6ff43;
+
+}
+
+
+.brand-sub{
+
+color:#9eb8c2;
+
+font-size:10px;
+
+margin-top:3px;
+
+}
+
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:4px;
+
+}
+
+
+.menu a{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:
+12px
+13px;
+
+color:#d6e3e8;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-size:13px;
+
+border:
+1px solid
+transparent;
+
+transition:.2s;
+
+}
+
+
+.menu a:hover{
+
+background:
+rgba(51,205,104,.08);
+
+border-color:
+rgba(65,231,108,.14);
+
+transform:
+translateX(2px);
+
+}
+
+
+.menu a.active{
+
+background:
+
+linear-gradient(
+100deg,
+rgba(31,190,75,.42),
+rgba(19,90,52,.22)
+);
+
+border-color:
+rgba(84,238,106,.7);
+
+color:#fff;
+
+}
+
+
+.icon{
+
+width:28px;
+
+text-align:center;
+
+font-size:20px;
+
+}
+
+
+.contact{
+
+margin-top:18px;
+
+padding:14px;
+
+border-radius:15px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(7,40,55,.9),
+rgba(3,22,33,.9)
+);
+
+border:
+1px solid
+rgba(116,196,219,.23);
+
+}
+
+
+.contact h3{
+
+font-family:"Kanit";
+
+font-size:16px;
+
+margin-bottom:10px;
+
+}
+
+
+.contact p{
+
+color:#b7cbd3;
+
+font-size:10px;
+
+margin:7px 0;
+
+}
+
+
+/* =====================================================
+TOPBAR
+===================================================== */
+
+.topbar{
+
+position:fixed;
+
+left:var(--sidebar);
+right:0;
+top:0;
+
+height:78px;
+
+display:flex;
+
+align-items:center;
+justify-content:space-between;
+
+padding:0 25px;
+
+background:
+rgba(3,22,35,.92);
+
+backdrop-filter:
+blur(18px);
+
+border-bottom:
+1px solid
+var(--border);
+
+z-index:900;
+
+}
+
+
+.page-title{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+}
+
+
+.big-icon{
+
+width:44px;
+height:44px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:12px;
+
+background:
+rgba(215,140,255,.08);
+
+border:
+1px solid
+rgba(215,140,255,.25);
+
+font-size:24px;
+
+}
+
+
+.page-title h1{
+
+font-family:"Kanit";
+
+font-size:21px;
+
+font-weight:500;
+
+}
+
+
+.page-title p{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.clock{
+
+text-align:right;
+
+}
+
+
+.time{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.today{
+
+color:#8ea7b1;
+
+font-size:10px;
+
+}
+
+
+.mobile-button{
+
+display:none;
+
+width:42px;
+height:42px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.05);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color:#fff;
+
+font-size:20px;
+
+}
+
+
+/* =====================================================
+MAIN
+===================================================== */
+
+.main{
+
+margin-left:var(--sidebar);
+
+padding-top:78px;
+
+min-height:100vh;
+
+}
+
+
+.content{
+
+max-width:1550px;
+
+margin:auto;
+
+padding:25px;
+
+}
+
+
+/* =====================================================
+ADMIN HERO
+===================================================== */
+
+.admin-hero{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:26px;
+
+margin-bottom:18px;
+
+border-radius:21px;
+
+background:
+
+linear-gradient(
+135deg,
+rgba(72,45,100,.48),
+rgba(4,30,44,.97)
+);
+
+border:
+1px solid
+rgba(215,140,255,.22);
+
+}
+
+
+.hero-left{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+
+.hero-icon{
+
+width:62px;
+height:62px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:17px;
+
+background:
+rgba(215,140,255,.09);
+
+border:
+1px solid
+rgba(215,140,255,.23);
+
+font-size:31px;
+
+}
+
+
+.hero-title{
+
+font-family:"Kanit";
+
+font-size:25px;
+
+}
+
+
+.hero-sub{
+
+color:#8fa8b1;
+
+font-size:9px;
+
+margin-top:4px;
+
+}
+
+
+.system-status{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+color:#8ef49b;
+
+font-size:9px;
+
+}
+
+
+.status-dot{
+
+width:9px;
+height:9px;
+
+border-radius:50%;
+
+background:#4cff70;
+
+box-shadow:
+0 0 14px
+#4cff70;
+
+}
+
+
+/* =====================================================
+ADMIN CARDS
+===================================================== */
+
+.admin-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:14px;
+
+margin-bottom:18px;
+
+}
+
+
+.admin-card{
+
+padding:19px;
+
+border-radius:17px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(5,36,51,.96),
+rgba(2,20,30,.94)
+);
+
+border:
+1px solid
+var(--border);
+
+transition:.2s;
+
+}
+
+
+.admin-card:hover{
+
+transform:
+translateY(-3px);
+
+border-color:
+rgba(215,140,255,.3);
+
+}
+
+
+.admin-card-top{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+
+.admin-icon{
+
+font-size:27px;
+
+}
+
+
+.admin-label{
+
+color:#78949e;
+
+font-size:9px;
+
+margin-top:10px;
+
+}
+
+
+.admin-value{
+
+font-family:"Kanit";
+
+font-size:27px;
+
+margin-top:2px;
+
+}
+
+
+.admin-description{
+
+font-size:7px;
+
+color:#607c86;
+
+margin-top:3px;
+
+}
+
+
+/* =====================================================
+CONTROL GRID
+===================================================== */
+
+.control-grid{
+
+display:grid;
+
+grid-template-columns:
+1.25fr
+.75fr;
+
+gap:18px;
+
+margin-bottom:18px;
+
+}
+
+
+/* =====================================================
+PANEL
+===================================================== */
+
+.panel{
+
+border-radius:19px;
+
+background:
+
+linear-gradient(
+145deg,
+rgba(4,31,45,.97),
+rgba(2,18,29,.95)
+);
+
+border:
+1px solid
+var(--border);
+
+box-shadow:
+0 15px 45px
+rgba(0,0,0,.27);
+
+overflow:hidden;
+
+}
+
+
+.panel-head{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:
+17px
+20px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.07);
+
+}
+
+
+.panel-head h2{
+
+font-family:"Kanit";
+
+font-size:18px;
+
+font-weight:500;
+
+}
+
+
+.panel-head span{
+
+font-size:8px;
+
+color:#718d97;
+
+}
+
+
+/* =====================================================
+QUICK ACTION
+===================================================== */
+
+.quick-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:11px;
+
+padding:18px;
+
+}
+
+
+.quick{
+
+padding:17px;
+
+border-radius:14px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.07);
+
+transition:.2s;
+
+text-align:left;
+
+}
+
+
+.quick:hover{
+
+transform:
+translateY(-3px);
+
+background:
+rgba(255,255,255,.045);
+
+border-color:
+rgba(69,232,255,.25);
+
+}
+
+
+.quick-icon{
+
+font-size:27px;
+
+}
+
+
+.quick-title{
+
+font-family:"Kanit";
+
+font-size:14px;
+
+margin-top:9px;
+
+}
+
+
+.quick-desc{
+
+font-size:7px;
+
+color:#708a94;
+
+line-height:1.6;
+
+margin-top:3px;
+
+}
+
+
+/* =====================================================
+SYSTEM
+===================================================== */
+
+.system-list{
+
+padding:10px 18px 18px;
+
+}
+
+
+.system-row{
+
+display:grid;
+
+grid-template-columns:
+42px
+1fr
+80px;
+
+align-items:center;
+
+gap:10px;
+
+padding:13px 3px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.system-row:last-child{
+
+border-bottom:0;
+
+}
+
+
+.system-icon{
+
+width:36px;
+height:36px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:10px;
+
+background:
+rgba(69,232,255,.07);
+
+font-size:18px;
+
+}
+
+
+.system-name{
+
+font-size:9px;
+
+}
+
+
+.system-detail{
+
+font-size:7px;
+
+color:#66818b;
+
+margin-top:3px;
+
+}
+
+
+.system-status-badge{
+
+text-align:right;
+
+font-size:7px;
+
+}
+
+
+.online{
+
+color:#8ef49b;
+
+}
+
+
+.offline{
+
+color:#ff8585;
+
+}
+
+
+/* =====================================================
+SETTING
+===================================================== */
+
+.setting-list{
+
+padding:9px 18px 18px;
+
+}
+
+
+.setting-row{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+padding:14px 3px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.setting-row:last-child{
+
+border-bottom:0;
+
+}
+
+
+.setting-info{
+
+flex:1;
+
+}
+
+
+.setting-title{
+
+font-size:9px;
+
+}
+
+
+.setting-desc{
+
+font-size:7px;
+
+color:#66818b;
+
+margin-top:3px;
+
+}
+
+
+.toggle{
+
+position:relative;
+
+width:43px;
+height:23px;
+
+border-radius:20px;
+
+background:
+rgba(255,255,255,.1);
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+transition:.2s;
+
+}
+
+
+.toggle.on{
+
+background:
+rgba(72,220,104,.25);
+
+border-color:
+rgba(72,220,104,.5);
+
+}
+
+
+.toggle::after{
+
+content:"";
+
+position:absolute;
+
+width:17px;
+height:17px;
+
+top:2px;
+left:2px;
+
+border-radius:50%;
+
+background:#8da7af;
+
+transition:.2s;
+
+}
+
+
+.toggle.on::after{
+
+left:22px;
+
+background:#4cff70;
+
+}
+
+
+/* =====================================================
+ACTIVITY
+===================================================== */
+
+.activity{
+
+margin-bottom:18px;
+
+}
+
+
+.activity-list{
+
+padding:10px 18px 18px;
+
+}
+
+
+.activity-item{
+
+display:grid;
+
+grid-template-columns:
+80px
+40px
+1fr
+70px;
+
+align-items:center;
+
+gap:12px;
+
+padding:13px 4px;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
+}
+
+
+.activity-item:last-child{
+
+border-bottom:0;
+
+}
+
+
+.activity-time{
+
+font-size:7px;
+
+color:#67838d;
+
+}
+
+
+.activity-icon{
+
+width:35px;
+height:35px;
+
+display:flex;
+
+align-items:center;
+justify-content:center;
+
+border-radius:9px;
+
+background:
+rgba(215,140,255,.07);
+
+font-size:17px;
+
+}
+
+
+.activity-title{
+
+font-size:9px;
+
+}
+
+
+.activity-user{
+
+font-size:7px;
+
+color:#66818b;
+
+margin-top:3px;
+
+}
+
+
+.activity-type{
+
+text-align:right;
+
+font-size:7px;
+
+color:#8bdff0;
+
+}
+
+
+/* =====================================================
+BACKUP
+===================================================== */
+
+.backup-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:12px;
+
+padding:18px;
+
+}
+
+
+.backup-card{
+
+padding:16px;
+
+border-radius:14px;
+
+background:
+rgba(255,255,255,.025);
+
+border:
+1px solid
+rgba(255,255,255,.07);
+
+}
+
+
+.backup-icon{
+
+font-size:25px;
+
+}
+
+
+.backup-title{
+
+font-family:"Kanit";
+
+font-size:14px;
+
+margin-top:8px;
+
+}
+
+
+.backup-desc{
+
+font-size:7px;
+
+color:#718c96;
+
+line-height:1.6;
+
+margin-top:3px;
+
+}
+
+
+.backup-btn{
+
+margin-top:12px;
+
+padding:
+8px
+11px;
+
+border-radius:8px;
+
+border:
+1px solid
+rgba(69,232,255,.2);
+
+background:
+rgba(69,232,255,.06);
+
+color:#9befff;
+
+font-size:8px;
+
+}
+
+
+/* =====================================================
+LOG
+===================================================== */
+
+.log{
+
+margin-top:18px;
+
+}
+
+
+.log-table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+.log-table th{
+
+padding:
+11px
+15px;
+
+font-size:8px;
+
+font-weight:400;
+
+color:#6f8993;
+
+text-align:left;
+
+background:
+rgba(255,255,255,.025);
+
+}
+
+
+.log-table td{
+
+padding:
+12px
+15px;
+
+font-size:8px;
+
+border-top:
+1px solid
+rgba(255,255,255,.05);
+
+color:#b6c9cf;
+
+}
+
+
+.log-success{
+
+color:#8ef49b;
+
+}
+
+
+.log-admin{
+
+color:#c995ff;
+
+}
+
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer{
+
+padding:20px;
+
+text-align:center;
+
+color:#5e7882;
+
+font-size:8px;
+
+border-top:
+1px solid
+rgba(255,255,255,.06);
+
+margin-top:18px;
+
+}
+
+
+/* =====================================================
+TOAST
+===================================================== */
+
+.toast{
+
+position:fixed;
+
+right:25px;
+
+bottom:25px;
+
+padding:
+13px
+17px;
+
+border-radius:11px;
+
+background:
+rgba(6,35,48,.97);
+
+border:
+1px solid
+rgba(69,232,255,.3);
+
+box-shadow:
+0 15px 40px
+rgba(0,0,0,.4);
+
+color:#bdf5ff;
+
+font-size:9px;
+
+opacity:0;
+
+transform:
+translateY(20px);
+
+pointer-events:none;
+
+transition:.25s;
+
+z-index:4000;
+
+}
+
+
+.toast.show{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:1250px){
+
+:root{
+
+--sidebar:230px;
+
+}
+
+.admin-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.control-grid{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:1000px){
+
+.sidebar{
+
+transform:
+translateX(-100%);
+
+transition:.3s;
+
+}
+
+.sidebar.open{
+
+transform:
+translateX(0);
+
+}
+
+.topbar{
+
+left:0;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.mobile-button{
+
+display:block;
+
+}
+
+.page-title p{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:700px){
+
+.content{
+
+padding:13px;
+
+}
+
+.admin-hero{
+
+align-items:flex-start;
+
+flex-direction:column;
+
+}
+
+.quick-grid{
+
+grid-template-columns:
+repeat(2,1fr);
+
+}
+
+.backup-grid{
+
+grid-template-columns:
+1fr;
+
+}
+
+.activity-item{
+
+grid-template-columns:
+65px
+38px
+1fr;
+
+}
+
+.activity-type{
+
+display:none;
+
+}
+
+.clock{
+
+display:none;
+
+}
+
+}
+
+
+@media(max-width:480px){
+
+.admin-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.quick-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.hero-title{
+
+font-size:20px;
+
+}
+
+.page-title h1{
+
+font-size:17px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+SIDEBAR
+===================================================== -->
+
+<aside
+class="sidebar"
+id="sidebar"
+>
+
+<div class="sidebar-brand">
+
+<div class="logo">
+🏛️
+</div>
+
+<div>
+
+<div class="brand-title">
+
+RONGKHEM
+<span>e-VILLAGE</span>
+
+</div>
+
+<div class="brand-sub">
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+</div>
+
+</div>
+
+
+<nav class="menu">
+
+
+<a href="index.html">
+<span class="icon">🏠</span>
+หน้าหลัก
+</a>
+
+
+<a href="citizen.html">
+<span class="icon">👥</span>
+ข้อมูลประชาชน
+</a>
+
+
+<a href="household.html">
+<span class="icon">🏠</span>
+ข้อมูลครัวเรือน
+</a>
+
+
+<a href="leader.html">
+<span class="icon">👔</span>
+ผู้นำชุมชน
+</a>
+
+
+<a href="news.html">
+<span class="icon">📢</span>
+ข่าวประชาสัมพันธ์
+</a>
+
+
+<a href="activity.html">
+<span class="icon">📅</span>
+กิจกรรม / ปฏิทิน
+</a>
+
+
+<a href="incident.html">
+<span class="icon">🚨</span>
+แจ้งเหตุ / ร้องเรียน
+</a>
+
+
+<a href="service.html">
+<span class="icon">🤝</span>
+บริการประชาชน
+</a>
+
+
+<a href="project.html">
+<span class="icon">🏗️</span>
+โครงการพัฒนาหมู่บ้าน
+</a>
+
+
+<a href="environment.html">
+<span class="icon">🌱</span>
+สิ่งแวดล้อม / PM2.5
+</a>
+
+
+<a href="wetland.html">
+<span class="icon">💧</span>
+แหล่งซับน้ำจำ
+</a>
+
+
+<a href="rice.html">
+<span class="icon">🍚</span>
+กลุ่มข้าวสาร
+</a>
+
+
+<a href="statistics.html">
+<span class="icon">📊</span>
+สถิติหมู่บ้าน
+</a>
+
+
+<a
+href="admin.html"
+class="active"
+>
+<span class="icon">⚙️</span>
+ตั้งค่าระบบ
+</a>
+
+
+</nav>
+
+
+<div class="contact">
+
+<h3>
+ที่ทำการผู้ใหญ่บ้าน
+</h3>
+
+<p>
+📞 โทร. 088-888-8888
+</p>
+
+<p>
+🟢 LINE ID: rongkhem.village
+</p>
+
+<p>
+🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.
+</p>
+
+</div>
+
+</aside>
+
+
+<!-- =====================================================
+TOPBAR
+===================================================== -->
+
+<header class="topbar">
+
+
+<div class="page-title">
+
+
+<button
+class="mobile-button"
+id="mobileButton"
+>
+☰
+</button>
+
+
+<div class="big-icon">
+⚙️
+</div>
+
+
+<div>
+
+<h1>
+ศูนย์ควบคุมระบบ
+</h1>
+
+<p>
+ผู้ดูแลระบบ • ที่ทำการผู้ใหญ่บ้านออนไลน์
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="clock">
+
+<div
+class="time"
+id="time"
+>
+00:00:00
+</div>
+
+<div
+class="today"
+id="today"
+>
+กำลังโหลด...
+</div>
+
+</div>
+
+
+</header>
+
+
+<!-- =====================================================
+MAIN
+===================================================== -->
+
+<main class="main">
+
+<div class="content">
+
+
+<!-- HERO -->
+
+<section class="admin-hero">
+
+
+<div class="hero-left">
+
+
+<div class="hero-icon">
+⚙️
+</div>
+
+
+<div>
+
+<div class="hero-title">
+ศูนย์ควบคุมระบบ
+</div>
+
+<div class="hero-sub">
+จัดการข้อมูลทั้งหมดของ RONGKHEM e-VILLAGE
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="system-status">
+
+<div class="status-dot"></div>
+
+ระบบทำงานปกติ
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+ADMIN SUMMARY
+===================================================== -->
+
+<section class="admin-grid">
+
+
+<div class="admin-card">
+
+<div class="admin-card-top">
+
+<div class="admin-icon">
+👥
+</div>
+
+<div
+style="color:#8ef49b;font-size:8px;"
+>
+ONLINE
+</div>
+
+</div>
+
+<div class="admin-label">
+ผู้ใช้งานระบบ
+</div>
+
+<div class="admin-value">
+3
+</div>
+
+<div class="admin-description">
+ผู้ดูแลและเจ้าหน้าที่
+</div>
+
+</div>
+
+
+<div class="admin-card">
+
+<div class="admin-card-top">
+
+<div class="admin-icon">
+💾
+</div>
+
+<div
+style="color:#8ef49b;font-size:8px;"
+>
+GOOD
+</div>
+
+</div>
+
+<div class="admin-label">
+ฐานข้อมูล
+</div>
+
+<div class="admin-value">
+99.9%
+</div>
+
+<div class="admin-description">
+สถานะการเชื่อมต่อ
+</div>
+
+</div>
+
+
+<div class="admin-card">
+
+<div class="admin-card-top">
+
+<div class="admin-icon">
+📦
+</div>
+
+<div
+style="color:#8ef49b;font-size:8px;"
+>
+READY
+</div>
+
+</div>
+
+<div class="admin-label">
+ข้อมูลทั้งหมด
+</div>
+
+<div class="admin-value">
+2,486
+</div>
+
+<div class="admin-description">
+รายการข้อมูลในระบบ
+</div>
+
+</div>
+
+
+<div class="admin-card">
+
+<div class="admin-card-top">
+
+<div class="admin-icon">
+🔐
+</div>
+
+<div
+style="color:#8ef49b;font-size:8px;"
+>
+SECURE
+</div>
+
+</div>
+
+<div class="admin-label">
+ความปลอดภัย
+</div>
+
+<div class="admin-value">
+ปกติ
+</div>
+
+<div class="admin-description">
+ระบบตรวจสอบการเข้าใช้งาน
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+CONTROL
+===================================================== -->
+
+<section class="control-grid">
+
+
+<!-- QUICK ACTION -->
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+⚡ คำสั่งด่วน
+</h2>
+
+<span>
+Quick Actions
+</span>
+
+</div>
+
+
+<div class="quick-grid">
+
+
+<button
+class="quick"
+onclick="go('news.html')"
+>
+
+<div class="quick-icon">
+📢
+</div>
+
+<div class="quick-title">
+เพิ่มประกาศ
+</div>
+
+<div class="quick-desc">
+สร้างข่าวประชาสัมพันธ์ใหม่
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="go('citizen.html')"
+>
+
+<div class="quick-icon">
+👥
+</div>
+
+<div class="quick-title">
+จัดการประชาชน
+</div>
+
+<div class="quick-desc">
+เพิ่ม แก้ไข และค้นหาข้อมูล
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="go('household.html')"
+>
+
+<div class="quick-icon">
+🏠
+</div>
+
+<div class="quick-title">
+จัดการครัวเรือน
+</div>
+
+<div class="quick-desc">
+ข้อมูลบ้านและสมาชิกครัวเรือน
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="go('leader.html')"
+>
+
+<div class="quick-icon">
+👔
+</div>
+
+<div class="quick-title">
+จัดการผู้นำ
+</div>
+
+<div class="quick-desc">
+ทำเนียบผู้นำและคณะกรรมการ
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="go('project.html')"
+>
+
+<div class="quick-icon">
+🏗️
+</div>
+
+<div class="quick-title">
+จัดการโครงการ
+</div>
+
+<div class="quick-desc">
+ติดตามความก้าวหน้าโครงการ
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="go('rice.html')"
+>
+
+<div class="quick-icon">
+🍚
+</div>
+
+<div class="quick-title">
+กลุ่มข้าวสาร
+</div>
+
+<div class="quick-desc">
+สมาชิก สต็อก และงานศพ
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="backup()"
+>
+
+<div class="quick-icon">
+💾
+</div>
+
+<div class="quick-title">
+สำรองข้อมูล
+</div>
+
+<div class="quick-desc">
+สร้างไฟล์สำรองข้อมูลระบบ
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="systemCheck()"
+>
+
+<div class="quick-icon">
+🩺
+</div>
+
+<div class="quick-title">
+ตรวจสอบระบบ
+</div>
+
+<div class="quick-desc">
+ตรวจสอบสถานะการทำงาน
+</div>
+
+</button>
+
+
+<button
+class="quick"
+onclick="showSettings()"
+>
+
+<div class="quick-icon">
+🔧
+</div>
+
+<div class="quick-title">
+ตั้งค่าหมู่บ้าน
+</div>
+
+<div class="quick-desc">
+ข้อมูลพื้นฐานและการแสดงผล
+</div>
+
+</button>
+
+
+</div>
+
+</div>
+
+
+<!-- SYSTEM STATUS -->
+
+<div class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+🖥️ สถานะระบบ
+</h2>
+
+<span>
+Live Monitor
+</span>
+
+</div>
+
+
+<div class="system-list">
+
+
+<div class="system-row">
+
+<div class="system-icon">
+🌐
+</div>
+
+<div>
+
+<div class="system-name">
+เว็บไซต์หลัก
+</div>
+
+<div class="system-detail">
+RONGKHEM e-VILLAGE
+</div>
+
+</div>
+
+<div class="system-status-badge online">
+● ONLINE
+</div>
+
+</div>
+
+
+<div class="system-row">
+
+<div class="system-icon">
+💾
+</div>
+
+<div>
+
+<div class="system-name">
+ฐานข้อมูล
+</div>
+
+<div class="system-detail">
+Database Service
+</div>
+
+</div>
+
+<div class="system-status-badge online">
+● ONLINE
+</div>
+
+</div>
+
+
+<div class="system-row">
+
+<div class="system-icon">
+☁️
+</div>
+
+<div>
+
+<div class="system-name">
+ระบบสำรองข้อมูล
+</div>
+
+<div class="system-detail">
+Backup Service
+</div>
+
+</div>
+
+<div class="system-status-badge online">
+● READY
+</div>
+
+</div>
+
+
+<div class="system-row">
+
+<div class="system-icon">
+🌤️
+</div>
+
+<div>
+
+<div class="system-name">
+ข้อมูลสภาพอากาศ
+</div>
+
+<div class="system-detail">
+Weather API
+</div>
+
+</div>
+
+<div class="system-status-badge online">
+● ONLINE
+</div>
+
+</div>
+
+
+<div class="system-row">
+
+<div class="system-icon">
+🌫️
+</div>
+
+<div>
+
+<div class="system-name">
+ระบบ PM2.5
+</div>
+
+<div class="system-detail">
+Air Quality API
+</div>
+
+</div>
+
+<div class="system-status-badge online">
+● ONLINE
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+</section>
+
+
+<!-- =====================================================
+SETTINGS
+===================================================== -->
+
+<section class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+🔧 การตั้งค่าระบบ
+</h2>
+
+<span>
+System Settings
+</span>
+
+</div>
+
+
+<div class="setting-list">
+
+
+<div class="setting-row">
+
+<div class="setting-info">
+
+<div class="setting-title">
+แสดงเว็บไซต์ต่อสาธารณะ
+</div>
+
+<div class="setting-desc">
+ประชาชนสามารถเข้าดูข้อมูลหมู่บ้านได้
+</div>
+
+</div>
+
+<div
+class="toggle on"
+onclick="toggleSetting(this)"
+>
+</div>
+
+</div>
+
+
+<div class="setting-row">
+
+<div class="setting-info">
+
+<div class="setting-title">
+แจ้งเตือนเหตุฉุกเฉิน
+</div>
+
+<div class="setting-desc">
+เปิดการแจ้งเตือนเหตุสำคัญให้ผู้ดูแล
+</div>
+
+</div>
+
+<div
+class="toggle on"
+onclick="toggleSetting(this)"
+>
+</div>
+
+</div>
+
+
+<div class="setting-row">
+
+<div class="setting-info">
+
+<div class="setting-title">
+ระบบสำรองข้อมูลอัตโนมัติ
+</div>
+
+<div class="setting-desc">
+สำรองข้อมูลเป็นระยะ
+</div>
+
+</div>
+
+<div
+class="toggle on"
+onclick="toggleSetting(this)"
+>
+</div>
+
+</div>
+
+
+<div class="setting-row">
+
+<div class="setting-info">
+
+<div class="setting-title">
+แสดง PM2.5 หน้าแรก
+</div>
+
+<div class="setting-desc">
+แสดงค่าฝุ่นใน Dashboard
+</div>
+
+</div>
+
+<div
+class="toggle on"
+onclick="toggleSetting(this)"
+>
+</div>
+
+</div>
+
+
+<div class="setting-row">
+
+<div class="setting-info">
+
+<div class="setting-title">
+โหมดบำรุงรักษา
+</div>
+
+<div class="setting-desc">
+ปิดเว็บไซต์ชั่วคราวเพื่อปรับปรุงระบบ
+</div>
+
+</div>
+
+<div
+class="toggle"
+onclick="toggleSetting(this)"
+>
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+ACTIVITY
+===================================================== -->
+
+<section class="panel activity">
+
+
+<div class="panel-head">
+
+<h2>
+🕘 กิจกรรมล่าสุด
+</h2>
+
+<span>
+Audit Log
+</span>
+
+</div>
+
+
+<div class="activity-list">
+
+
+<div class="activity-item">
+
+<div class="activity-time">
+วันนี้ 12:48
+</div>
+
+<div class="activity-icon">
+📢
+</div>
+
+<div>
+
+<div class="activity-title">
+เพิ่มประกาศประชาสัมพันธ์
+</div>
+
+<div class="activity-user">
+โดย ผู้ดูแลระบบ
+</div>
+
+</div>
+
+<div class="activity-type">
+ข่าวสาร
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-time">
+วันนี้ 11:32
+</div>
+
+<div class="activity-icon">
+🍚
+</div>
+
+<div>
+
+<div class="activity-title">
+อัปเดตข้อมูลกลุ่มข้าวสาร
+</div>
+
+<div class="activity-user">
+สมาชิก 192 ครัวเรือน
+</div>
+
+</div>
+
+<div class="activity-type">
+ข้อมูล
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-time">
+วันนี้ 10:15
+</div>
+
+<div class="activity-icon">
+💧
+</div>
+
+<div>
+
+<div class="activity-title">
+อัปเดตระดับน้ำแหล่งซับน้ำจำ
+</div>
+
+<div class="activity-user">
+ระดับน้ำ 63%
+</div>
+
+</div>
+
+<div class="activity-type">
+สิ่งแวดล้อม
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-time">
+เมื่อวาน 16:40
+</div>
+
+<div class="activity-icon">
+🏗️
+</div>
+
+<div>
+
+<div class="activity-title">
+อัปเดตความก้าวหน้าโครงการ
+</div>
+
+<div class="activity-user">
+โครงการพัฒนา 12 รายการ
+</div>
+
+</div>
+
+<div class="activity-type">
+โครงการ
+</div>
+
+</div>
+
+
+<div class="activity-item">
+
+<div class="activity-time">
+เมื่อวาน 09:10
+</div>
+
+<div class="activity-icon">
+💾
+</div>
+
+<div>
+
+<div class="activity-title">
+สำรองข้อมูลระบบ
+</div>
+
+<div class="activity-user">
+Backup สำเร็จ
+</div>
+
+</div>
+
+<div class="activity-type">
+ระบบ
+</div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+BACKUP
+===================================================== -->
+
+<section class="panel">
+
+
+<div class="panel-head">
+
+<h2>
+💾 สำรองและจัดการข้อมูล
+</h2>
+
+<span>
+Data Management
+</span>
+
+</div>
+
+
+<div class="backup-grid">
+
+
+<div class="backup-card">
+
+<div class="backup-icon">
+💾
+</div>
+
+<div class="backup-title">
+สำรองข้อมูล
+</div>
+
+<div class="backup-desc">
+สร้างไฟล์สำรองข้อมูลทั้งหมดของระบบ
+</div>
+
+<button
+class="backup-btn"
+onclick="backup()"
+>
+สร้าง Backup
+</button>
+
+</div>
+
+
+<div class="backup-card">
+
+<div class="backup-icon">
+📥
+</div>
+
+<div class="backup-title">
+นำเข้าข้อมูล
+</div>
+
+<div class="backup-desc">
+นำข้อมูลจากไฟล์สำรองกลับเข้าสู่ระบบ
+</div>
+
+<button
+class="backup-btn"
+onclick="importData()"
+>
+นำเข้าข้อมูล
+</button>
+
+</div>
+
+
+<div class="backup-card">
+
+<div class="backup-icon">
+📊
+</div>
+
+<div class="backup-title">
+รายงานระบบ
+</div>
+
+<div class="backup-desc">
+สร้างรายงานภาพรวมข้อมูลหมู่บ้าน
+</div>
+
+<button
+class="backup-btn"
+onclick="report()"
+>
+สร้างรายงาน
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+LOG
+===================================================== -->
+
+<section class="panel log">
+
+
+<div class="panel-head">
+
+<h2>
+🔐 บันทึกการเข้าใช้งาน
+</h2>
+
+<span>
+Security Log
+</span>
+
+</div>
+
+
+<div style="overflow-x:auto;">
+
+<table class="log-table">
+
+<thead>
+
+<tr>
+
+<th>
+วันเวลา
+</th>
+
+<th>
+ผู้ใช้งาน
+</th>
+
+<th>
+กิจกรรม
+</th>
+
+<th>
+สถานะ
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+<tr>
+
+<td>
+14 ส.ค. 2569 12:48
+</td>
+
+<td class="log-admin">
+ผู้ดูแลระบบ
+</td>
+
+<td>
+เข้าสู่ระบบ Admin
+</td>
+
+<td class="log-success">
+สำเร็จ
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+14 ส.ค. 2569 11:32
+</td>
+
+<td class="log-admin">
+ผู้ใหญ่บ้าน
+</td>
+
+<td>
+แก้ไขข้อมูลกลุ่มข้าวสาร
+</td>
+
+<td class="log-success">
+สำเร็จ
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+14 ส.ค. 2569 10:15
+</td>
+
+<td class="log-admin">
+ผู้ใหญ่บ้าน
+</td>
+
+<td>
+อัปเดตข้อมูลแหล่งซับน้ำจำ
+</td>
+
+<td class="log-success">
+สำเร็จ
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>
+13 ส.ค. 2569 16:40
+</td>
+
+<td class="log-admin">
+ผู้ดูแลระบบ
+</td>
+
+<td>
+สำรองข้อมูล
+</td>
+
+<td class="log-success">
+สำเร็จ
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</section>
+
+
+<footer class="footer">
+
+🏛️ RONGKHEM e-VILLAGE
+•
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+<br>
+
+ระบบบริหารจัดการหมู่บ้านอัจฉริยะ บ้านร่องเข็ม หมู่ที่ 6
+
+</footer>
+
+
+</div>
+
+</main>
+
+
+<!-- =====================================================
+TOAST
+===================================================== -->
+
+<div
+class="toast"
+id="toast"
+>
+ดำเนินการสำเร็จ
+</div>
+
+
+<script>
+
+/* =====================================================
+CLOCK
+===================================================== */
+
+function updateClock(){
+
+const now =
+new Date();
+
+
+document.getElementById(
+"time"
+).textContent =
+
+now.toLocaleTimeString(
+"th-TH",
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit",
+hour12:false
+}
+);
+
+
+document.getElementById(
+"today"
+).textContent =
+
+now.toLocaleDateString(
+"th-TH",
+{
+weekday:"long",
+day:"numeric",
+month:"long",
+year:"numeric"
+}
+);
+
+}
+
+
+updateClock();
+
+setInterval(
+updateClock,
+1000
+);
+
+
+/* =====================================================
+MOBILE
+===================================================== */
+
+document
+.getElementById(
+"mobileButton"
+)
+.addEventListener(
+"click",
+function(){
+
+document
+.getElementById(
+"sidebar"
+)
+.classList.toggle(
+"open"
+);
+
+}
+);
+
+
+/* =====================================================
+TOAST
+===================================================== */
+
+let toastTimer;
+
+
+function showToast(
+message
+){
+
+const toast =
+document.getElementById(
+"toast"
+);
+
+
+toast.textContent =
+message;
+
+
+toast.classList.add(
+"show"
+);
+
+
+clearTimeout(
+toastTimer
+);
+
+
+toastTimer =
+setTimeout(
+function(){
+
+toast.classList.remove(
+"show"
+);
+
+},
+2500
+);
+
+}
+
+
+/* =====================================================
+NAVIGATION
+===================================================== */
+
+function go(
+page
+){
+
+showToast(
+"กำลังเปิดหน้า " + page
+);
+
+
+setTimeout(
+function(){
+
+window.location.href =
+page;
+
+},
+500
+);
+
+}
+
+
+/* =====================================================
+TOGGLE
+===================================================== */
+
+function toggleSetting(
+element
+){
+
+element.classList.toggle(
+"on"
+);
+
+
+if(
+element.classList.contains(
+"on"
+)
+){
+
+showToast(
+"เปิดใช้งานการตั้งค่าแล้ว"
+);
+
+}else{
+
+showToast(
+"ปิดการตั้งค่าแล้ว"
+);
+
+}
+
+}
+
+
+/* =====================================================
+BACKUP
+===================================================== */
+
+function backup(){
+
+const data = {
+
+system:
+"RONGKHEM e-VILLAGE",
+
+backupDate:
+new Date().toISOString(),
+
+village:
+"บ้านร่องเข็ม หมู่ที่ 6",
+
+population:642,
+
+households:192,
+
+riceMembers:192,
+
+riceStock:147,
+
+waterLevel:63,
+
+projects:12,
+
+complaints:18
+
+};
+
+
+const blob =
+new Blob(
+[
+JSON.stringify(
+data,
+null,
+2
+)
+],
+{
+type:
+"application/json"
+}
+);
+
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+const a =
+document.createElement(
+"a"
+);
+
+
+a.href =
+url;
+
+
+a.download =
+"rongkhem-backup-" +
+Date.now() +
+".json";
+
+
+a.click();
+
+
+URL.revokeObjectURL(
+url
+);
+
+
+showToast(
+"สร้างไฟล์สำรองข้อมูลเรียบร้อยแล้ว"
+);
+
+}
+
+
+/* =====================================================
+IMPORT
+===================================================== */
+
+function importData(){
+
+const input =
+document.createElement(
+"input"
+);
+
+
+input.type =
+"file";
+
+
+input.accept =
+".json";
+
+
+input.onchange =
+function(){
+
+const file =
+input.files[0];
+
+
+if(!file)
+return;
+
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(){
+
+try{
+
+JSON.parse(
+reader.result
+);
+
+showToast(
+"อ่านไฟล์ข้อมูลสำเร็จ"
+);
+
+}catch{
+
+showToast(
+"ไฟล์ข้อมูลไม่ถูกต้อง"
+);
+
+}
+
+};
+
+
+reader.readAsText(
+file
+);
+
+};
+
+
+input.click();
+
+}
+
+
+/* =====================================================
+SYSTEM CHECK
+===================================================== */
+
+function systemCheck(){
+
+showToast(
+"กำลังตรวจสอบระบบ..."
+);
+
+
+setTimeout(
+function(){
+
+showToast(
+"ระบบทั้งหมดทำงานปกติ ✓"
+);
+
+},
+1200
+);
+
+}
+
+
+/* =====================================================
+REPORT
+===================================================== */
+
+function report(){
+
+const reportData = {
+
+title:
+"รายงานระบบ RONGKHEM e-VILLAGE",
+
+date:
+new Date().toLocaleString(
+"th-TH"
+),
+
+population:642,
+
+households:192,
+
+elderly:123,
+
+vulnerable:17,
+
+projects:12,
+
+riceMembers:192,
+
+riceStock:147,
+
+waterLevel:"63%",
+
+pm25:"18 µg/m³"
+
+};
+
+
+const blob =
+new Blob(
+[
+JSON.stringify(
+reportData,
+null,
+2
+)
+],
+{
+type:
+"application/json"
+}
+);
+
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+const a =
+document.createElement(
+"a"
+);
+
+
+a.href =
+url;
+
+
+a.download =
+"rongkhem-system-report.json";
+
+
+a.click();
+
+
+URL.revokeObjectURL(
+url
+);
+
+
+showToast(
+"สร้างรายงานเรียบร้อยแล้ว"
+);
+
+}
+
+
+/* =====================================================
+SETTINGS
+===================================================== */
+
+function showSettings(){
+
+showToast(
+"หน้าตั้งค่าหมู่บ้านพร้อมใช้งาน"
+);
+
+}
+
+</script>
+
+</body>
+
+</html>
