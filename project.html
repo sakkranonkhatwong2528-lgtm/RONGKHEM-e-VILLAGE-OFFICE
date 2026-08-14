@@ -1,1094 +1,944 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>โครงการพัฒนาหมู่บ้าน | RONGKHEM e-VILLAGE</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>
+โครงการพัฒนาหมู่บ้าน | RONGKHEM e-VILLAGE
+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
 :root{
---bg:#03101a;
---panel:rgba(4,29,43,.94);
---border:rgba(112,190,220,.24);
---text:#fff;
---muted:#9db5be;
---green:#4cff70;
---cyan:#45e8ff;
---purple:#d78cff;
---orange:#ffb53d;
---red:#ff5d5d;
---sidebar:260px;
+
+    --bg:#07111f;
+    --card:rgba(15,29,48,.88);
+    --border:rgba(255,255,255,.08);
+
+    --text:#f8fafc;
+    --muted:#94a3b8;
+
+    --cyan:#22d3ee;
+    --blue:#38bdf8;
+    --green:#22c55e;
+    --yellow:#facc15;
+    --orange:#fb923c;
+    --purple:#a78bfa;
+    --red:#fb7185;
+
+    --radius:22px;
+
 }
 
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
 }
 
 body{
-min-height:100vh;
-font-family:"Prompt","Kanit",sans-serif;
-color:var(--text);
 
-background:
-linear-gradient(
-rgba(0,12,20,.92),
-rgba(0,12,20,.97)
-),
-url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2200&q=85")
-center/cover fixed no-repeat;
+    font-family:"Prompt",sans-serif;
+
+    color:var(--text);
+
+    min-height:100vh;
+
+    background:
+
+    radial-gradient(
+        circle at 10% 0%,
+        rgba(34,211,238,.10),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 90% 20%,
+        rgba(59,130,246,.10),
+        transparent 30%
+    ),
+
+    linear-gradient(
+        135deg,
+        #040b14,
+        #07111f,
+        #0b1728
+    );
+
 }
 
-button,input,select,textarea{
-font-family:inherit;
+.container{
+
+    width:min(
+        1450px,
+        calc(100% - 32px)
+    );
+
+    margin:auto;
+
 }
 
-button{
-cursor:pointer;
+
+/* =====================================================
+HEADER
+===================================================== */
+
+.header{
+
+    position:sticky;
+    top:0;
+    z-index:100;
+
+    background:
+    rgba(4,11,20,.86);
+
+    backdrop-filter:
+    blur(18px);
+
+    border-bottom:
+    1px solid var(--border);
+
 }
 
-/* ================= SIDEBAR ================= */
+.header-inner{
 
-.sidebar{
-position:fixed;
-left:0;
-top:0;
-bottom:0;
-width:var(--sidebar);
-padding:20px 14px;
+    min-height:76px;
 
-background:
-linear-gradient(
-180deg,
-rgba(1,18,30,.99),
-rgba(1,10,18,.98)
-);
+    display:flex;
 
-border-right:1px solid rgba(120,201,230,.18);
+    align-items:center;
 
-z-index:1000;
-overflow-y:auto;
+    justify-content:space-between;
+
+    gap:20px;
+
 }
 
-.sidebar-brand{
-display:flex;
-align-items:center;
-gap:11px;
+.brand{
 
-padding:5px 9px 20px;
-margin-bottom:13px;
+    display:flex;
 
-border-bottom:1px solid rgba(255,255,255,.09);
+    align-items:center;
+
+    gap:13px;
+
 }
 
 .logo{
-width:54px;
-height:54px;
 
-display:flex;
-align-items:center;
-justify-content:center;
+    width:48px;
+    height:48px;
 
-border-radius:15px;
-font-size:29px;
+    border-radius:15px;
 
-background:
-linear-gradient(
-145deg,
-rgba(255,188,49,.17),
-rgba(4,38,51,.4)
-);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-border:1px solid rgba(255,190,54,.27);
+    font-size:21px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #0369a1,
+        #22d3ee
+    );
+
 }
 
-.brand-title{
-font-family:"Kanit";
-font-size:17px;
-line-height:1.1;
+.brand h1{
+
+    font-family:"Kanit";
+
+    font-size:19px;
+
 }
 
-.brand-title span{
-color:#b6ff43;
+.brand p{
+
+    color:var(--muted);
+
+    font-size:11px;
+
 }
 
-.brand-sub{
-color:#9eb8c2;
-font-size:10px;
-margin-top:3px;
+.back{
+
+    padding:
+    9px 14px;
+
+    border-radius:12px;
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(255,255,255,.04);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
 }
 
-.menu{
-display:flex;
-flex-direction:column;
-gap:4px;
+
+/* =====================================================
+TITLE
+===================================================== */
+
+.page-head{
+
+    margin-top:30px;
+
 }
 
-.menu a{
-display:flex;
-align-items:center;
-gap:12px;
+.page-head h2{
 
-padding:12px 13px;
+    font-family:"Kanit";
 
-color:#d6e3e8;
-text-decoration:none;
+    font-size:36px;
 
-border-radius:12px;
-font-size:13px;
-
-border:1px solid transparent;
-transition:.2s;
 }
 
-.menu a:hover{
-background:rgba(51,205,104,.08);
-border-color:rgba(65,231,108,.14);
-transform:translateX(2px);
+.page-head p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
 }
 
-.menu a.active{
-background:
-linear-gradient(
-100deg,
-rgba(31,190,75,.42),
-rgba(19,90,52,.22)
-);
+.source{
 
-border-color:rgba(84,238,106,.7);
-color:#fff;
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:12px;
+
+    padding:
+    8px 12px;
+
+    border-radius:10px;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.07);
+
+    border:
+    1px solid
+    rgba(34,211,238,.16);
+
+    font-size:11px;
+
 }
 
-.icon{
-width:28px;
-text-align:center;
-font-size:20px;
+
+/* =====================================================
+STATS
+===================================================== */
+
+.stats{
+
+    margin-top:22px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(4,1fr);
+
+    gap:15px;
+
 }
 
-.contact{
-margin-top:18px;
-padding:14px;
+.stat{
 
-border-radius:15px;
+    padding:22px;
 
-background:
-linear-gradient(
-145deg,
-rgba(7,40,55,.9),
-rgba(3,22,33,.9)
-);
+    border-radius:22px;
 
-border:1px solid rgba(116,196,219,.23);
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
 }
 
-.contact h3{
-font-family:"Kanit";
-font-size:16px;
-margin-bottom:10px;
+.stat-icon{
+
+    width:46px;
+    height:46px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
 }
 
-.contact p{
-color:#b7cbd3;
-font-size:10px;
-margin:7px 0;
+.stat-value{
+
+    margin-top:12px;
+
+    font-family:"Kanit";
+
+    font-size:34px;
+
 }
 
-/* ================= TOPBAR ================= */
+.stat-label{
 
-.topbar{
-position:fixed;
+    color:var(--muted);
 
-left:var(--sidebar);
-right:0;
-top:0;
+    font-size:12px;
 
-height:78px;
-
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-padding:0 25px;
-
-background:rgba(3,22,35,.91);
-
-backdrop-filter:blur(18px);
-
-border-bottom:1px solid var(--border);
-
-z-index:900;
 }
 
-.page-title{
-display:flex;
-align-items:center;
-gap:12px;
+
+/* =====================================================
+CONTROL
+===================================================== */
+
+.control{
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:20px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
 }
 
-.big-icon{
-width:44px;
-height:44px;
+.filters{
 
-display:flex;
-align-items:center;
-justify-content:center;
+    display:flex;
 
-border-radius:12px;
+    flex-wrap:wrap;
 
-background:rgba(255,181,61,.08);
-border:1px solid rgba(255,181,61,.25);
+    gap:9px;
 
-font-size:24px;
-}
-
-.page-title h1{
-font-family:"Kanit";
-font-size:21px;
-font-weight:500;
-}
-
-.page-title p{
-color:#8ea7b1;
-font-size:10px;
-}
-
-.clock{
-text-align:right;
-}
-
-.time{
-font-family:"Kanit";
-font-size:25px;
-}
-
-.today{
-color:#8ea7b1;
-font-size:10px;
-}
-
-.mobile-button{
-display:none;
-
-width:42px;
-height:42px;
-
-border-radius:10px;
-
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.12);
-
-color:#fff;
-font-size:20px;
-}
-
-/* ================= MAIN ================= */
-
-.main{
-margin-left:var(--sidebar);
-padding-top:78px;
-min-height:100vh;
-}
-
-.content{
-max-width:1550px;
-margin:auto;
-padding:25px;
-}
-
-/* ================= SUMMARY ================= */
-
-.summary{
-display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:14px;
-margin-bottom:18px;
-}
-
-.summary-card{
-padding:18px;
-border-radius:17px;
-
-background:
-linear-gradient(
-145deg,
-rgba(5,36,51,.92),
-rgba(2,20,30,.91)
-);
-
-border:1px solid var(--border);
-
-box-shadow:
-0 15px 40px rgba(0,0,0,.25);
-}
-
-.summary-icon{
-font-size:25px;
-}
-
-.summary-title{
-color:#94adb7;
-font-size:10px;
-margin-top:6px;
-}
-
-.summary-number{
-font-family:"Kanit";
-font-size:29px;
-line-height:1.1;
-margin-top:2px;
-}
-
-.green{
-border-color:rgba(76,255,112,.28);
-}
-
-.cyan{
-border-color:rgba(69,232,255,.28);
-}
-
-.orange{
-border-color:rgba(255,181,61,.28);
-}
-
-.red{
-border-color:rgba(255,93,93,.28);
-}
-
-.purple{
-border-color:rgba(215,140,255,.28);
-}
-
-/* ================= TOOLBAR ================= */
-
-.toolbar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
-
-padding:16px;
-margin-bottom:18px;
-
-border-radius:17px;
-
-background:rgba(4,29,43,.88);
-border:1px solid var(--border);
-}
-
-.search-area{
-display:flex;
-gap:8px;
-flex:1;
-}
-
-.search{
-flex:1;
-padding:12px 15px;
-
-border-radius:11px;
-
-border:1px solid rgba(255,255,255,.12);
-
-background:rgba(255,255,255,.045);
-
-color:#fff;
-outline:none;
-font-size:12px;
-}
-
-.search:focus{
-border-color:rgba(69,232,255,.55);
 }
 
 .filter{
-padding:12px 14px;
 
-border-radius:11px;
+    padding:
+    9px 14px;
 
-background:rgba(255,255,255,.045);
+    border-radius:11px;
 
-color:#fff;
+    border:
+    1px solid var(--border);
 
-border:1px solid rgba(255,255,255,.12);
+    background:
+    rgba(255,255,255,.04);
 
-outline:none;
+    color:#cbd5e1;
 
-font-size:11px;
+    cursor:pointer;
+
+    font-family:"Prompt";
+
 }
 
-.filter option{
-background:#071c28;
+.filter.active{
+
+    color:white;
+
+    background:
+    rgba(34,211,238,.10);
+
+    border-color:
+    rgba(34,211,238,.30);
+
+}
+
+.search{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:13px;
+
+}
+
+.search input{
+
+    flex:1;
+
+    min-width:0;
+
+    padding:
+    13px 15px;
+
+    border-radius:13px;
+
+    border:
+    1px solid var(--border);
+
+    background:
+    rgba(0,0,0,.20);
+
+    color:white;
+
+    outline:none;
+
+    font-family:"Prompt";
+
 }
 
 .btn{
-border:0;
 
-padding:11px 17px;
+    padding:
+    12px 17px;
 
-border-radius:11px;
+    border:0;
 
-font-size:11px;
+    border-radius:13px;
 
-font-weight:500;
+    color:white;
 
-color:#02150a;
+    cursor:pointer;
 
-background:#48dc68;
+    font-family:"Prompt";
 
-box-shadow:0 7px 20px rgba(72,220,104,.13);
+    background:
+    linear-gradient(
+        135deg,
+        #0284c7,
+        #06b6d4
+    );
+
 }
 
-.btn:hover{
-filter:brightness(1.08);
-}
 
-/* ================= PROJECT GRID ================= */
+/* =====================================================
+PROJECT GRID
+===================================================== */
 
 .project-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:18px;
+
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:16px;
+
 }
 
 .project-card{
-position:relative;
 
-padding:20px;
+    padding:23px;
 
-border-radius:19px;
+    border-radius:22px;
 
-background:
-linear-gradient(
-145deg,
-rgba(4,31,45,.97),
-rgba(2,18,29,.95)
-);
+    background:
+    var(--card);
 
-border:1px solid var(--border);
+    border:
+    1px solid var(--border);
 
-box-shadow:
-0 15px 45px rgba(0,0,0,.28);
+    transition:
+    transform .2s ease,
+    border-color .2s ease;
 
-transition:.25s;
 }
 
 .project-card:hover{
-transform:translateY(-4px);
-border-color:rgba(69,232,255,.4);
+
+    transform:
+    translateY(-3px);
+
+    border-color:
+    rgba(34,211,238,.22);
+
 }
 
 .project-top{
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:10px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:15px;
+
 }
 
 .project-icon{
-width:52px;
-height:52px;
 
-display:flex;
-align-items:center;
-justify-content:center;
+    width:48px;
+    height:48px;
 
-border-radius:14px;
+    border-radius:15px;
 
-font-size:27px;
+    display:flex;
 
-background:rgba(69,232,255,.08);
-border:1px solid rgba(69,232,255,.15);
+    align-items:center;
+
+    justify-content:center;
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.08);
+
 }
 
-.project-status{
-padding:5px 9px;
-border-radius:7px;
-font-size:8px;
+.status{
+
+    padding:
+    5px 10px;
+
+    border-radius:999px;
+
+    font-size:9px;
+
 }
 
-.status-planning{
-color:#ffd48d;
-background:rgba(255,181,61,.1);
+.status.planned{
+
+    color:#facc15;
+
+    background:
+    rgba(250,204,21,.09);
+
 }
 
-.status-working{
-color:#9eeeff;
-background:rgba(69,232,255,.1);
+.status.progress{
+
+    color:#67e8f9;
+
+    background:
+    rgba(34,211,238,.09);
+
 }
 
-.status-done{
-color:#8ff49b;
-background:rgba(72,220,104,.1);
+.status.done{
+
+    color:#86efac;
+
+    background:
+    rgba(34,197,94,.09);
+
 }
 
-.status-stop{
-color:#ffaaaa;
-background:rgba(255,93,93,.1);
+.status.cancel{
+
+    color:#fda4af;
+
+    background:
+    rgba(251,113,133,.09);
+
 }
 
 .project-title{
-font-family:"Kanit";
-font-size:18px;
-margin-top:14px;
-line-height:1.4;
+
+    margin-top:17px;
+
+    font-family:"Kanit";
+
+    font-size:20px;
+
+    line-height:1.45;
+
 }
 
 .project-description{
-color:#8faab4;
-font-size:9px;
-line-height:1.7;
-margin-top:5px;
-min-height:45px;
+
+    margin-top:7px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
 }
 
-.project-meta{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:8px;
-margin-top:15px;
+.project-info{
+
+    margin-top:17px;
+
+    padding-top:14px;
+
+    border-top:
+    1px solid rgba(255,255,255,.06);
+
+    display:grid;
+
+    grid-template-columns:
+    1fr 1fr;
+
+    gap:10px;
+
 }
 
-.meta{
-padding:9px;
+.info-item{
 
-border-radius:9px;
+    color:var(--muted);
 
-background:rgba(255,255,255,.025);
+    font-size:10px;
 
-border:1px solid rgba(255,255,255,.06);
 }
 
-.meta-label{
-color:#66828d;
-font-size:7px;
+.info-item strong{
+
+    display:block;
+
+    margin-top:3px;
+
+    color:#dbeafe;
+
+    font-size:12px;
+
+    font-weight:500;
+
 }
 
-.meta-value{
-color:#c9d9de;
-font-size:9px;
-margin-top:2px;
-}
 
-.progress-header{
-display:flex;
-align-items:center;
-justify-content:space-between;
+/* =====================================================
+PROGRESS
+===================================================== */
 
-margin-top:15px;
+.progress-wrap{
+
+    margin-top:16px;
+
 }
 
 .progress-label{
-color:#78949e;
-font-size:8px;
-}
 
-.progress-percent{
-font-family:"Kanit";
-font-size:13px;
-color:#8ff49b;
-}
+    display:flex;
 
-.progress-bar{
-height:7px;
+    justify-content:space-between;
 
-margin-top:6px;
+    color:var(--muted);
 
-border-radius:10px;
-
-background:rgba(255,255,255,.07);
-
-overflow:hidden;
-}
-
-.progress-fill{
-height:100%;
-
-border-radius:10px;
-
-background:
-linear-gradient(
-90deg,
-#27b95a,
-#69f08a
-);
-}
-
-.project-footer{
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-margin-top:15px;
-padding-top:12px;
-
-border-top:1px solid rgba(255,255,255,.06);
-}
-
-.owner{
-color:#78949e;
-font-size:8px;
-}
-
-.detail-btn{
-padding:7px 10px;
-
-border-radius:8px;
-
-background:rgba(69,232,255,.07);
-
-border:1px solid rgba(69,232,255,.17);
-
-color:#8feeff;
-
-font-size:8px;
-}
-
-.detail-btn:hover{
-background:rgba(69,232,255,.14);
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-position:fixed;
-inset:0;
-
-display:none;
-
-align-items:center;
-justify-content:center;
-
-padding:20px;
-
-background:rgba(0,0,0,.72);
-
-backdrop-filter:blur(8px);
-
-z-index:3000;
-}
-
-.modal.show{
-display:flex;
-}
-
-.modal-box{
-width:min(750px,100%);
-max-height:90vh;
-
-overflow-y:auto;
-
-border-radius:20px;
-
-background:
-linear-gradient(
-145deg,
-#082a3a,
-#031721
-);
-
-border:1px solid rgba(100,210,235,.28);
-
-box-shadow:
-0 25px 80px rgba(0,0,0,.6);
-}
-
-.modal-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-
-padding:18px 20px;
-
-border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.modal-head h3{
-font-family:"Kanit";
-font-size:19px;
-font-weight:500;
-}
-
-.close{
-width:34px;
-height:34px;
-
-border-radius:9px;
-
-border:1px solid rgba(255,255,255,.1);
-
-background:rgba(255,255,255,.05);
-
-color:#fff;
-
-font-size:18px;
-}
-
-.form{
-padding:20px;
-
-display:grid;
-
-grid-template-columns:repeat(2,1fr);
-
-gap:14px;
-}
-
-.form-group{
-display:flex;
-flex-direction:column;
-gap:5px;
-}
-
-.form-group.full{
-grid-column:1/-1;
-}
-
-.form-group label{
-color:#9bb4bd;
-font-size:10px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-padding:11px;
-
-border-radius:9px;
-
-background:rgba(255,255,255,.045);
-
-color:#fff;
-
-border:1px solid rgba(255,255,255,.12);
-
-outline:none;
-
-font-size:11px;
-}
-
-.form-group textarea{
-min-height:100px;
-resize:vertical;
-}
-
-.form-group select option{
-background:#06202e;
-}
-
-.modal-actions{
-display:flex;
-justify-content:flex-end;
-gap:8px;
-
-padding:0 20px 20px;
-}
-
-.btn-cancel{
-color:#d5e0e4;
-
-background:rgba(255,255,255,.07);
-
-border:1px solid rgba(255,255,255,.1);
-}
-
-/* ================= DETAIL ================= */
-
-.detail{
-padding:20px;
-}
-
-.detail-title{
-font-family:"Kanit";
-font-size:23px;
-}
-
-.detail-description{
-color:#9db5be;
-font-size:10px;
-line-height:1.8;
-margin-top:7px;
-}
-
-.detail-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-margin-top:18px;
-}
-
-.detail-item{
-padding:12px;
-
-border-radius:10px;
-
-background:rgba(255,255,255,.035);
-
-border:1px solid rgba(255,255,255,.07);
-}
-
-.detail-label{
-font-size:8px;
-color:#68838e;
-}
-
-.detail-value{
-font-size:10px;
-color:#d0dfe3;
-margin-top:3px;
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:1250px){
-
-:root{
---sidebar:230px;
-}
-
-.project-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.summary{
-grid-template-columns:repeat(3,1fr);
-}
+    font-size:10px;
 
 }
 
-@media(max-width:1000px){
+.progress{
 
-.sidebar{
-transform:translateX(-100%);
-transition:.3s;
-}
+    height:7px;
 
-.sidebar.open{
-transform:translateX(0);
-}
+    margin-top:7px;
 
-.topbar{
-left:0;
-}
+    overflow:hidden;
 
-.main{
-margin-left:0;
-}
+    border-radius:999px;
 
-.mobile-button{
-display:block;
-}
-
-.page-title p{
-display:none;
-}
+    background:
+    rgba(255,255,255,.07);
 
 }
 
-@media(max-width:750px){
+.progress span{
 
-.content{
-padding:13px;
-}
+    display:block;
 
-.summary{
-grid-template-columns:repeat(2,1fr);
-}
+    height:100%;
 
-.toolbar{
-flex-direction:column;
-align-items:stretch;
-}
+    border-radius:999px;
 
-.search-area{
-flex-direction:column;
-}
-
-.project-grid{
-grid-template-columns:1fr;
-}
-
-.clock{
-display:none;
-}
-
-.form{
-grid-template-columns:1fr;
-}
-
-.form-group.full{
-grid-column:auto;
-}
-
-.detail-grid{
-grid-template-columns:1fr;
-}
+    background:
+    linear-gradient(
+        90deg,
+        #0284c7,
+        #22d3ee
+    );
 
 }
 
-@media(max-width:480px){
 
-.summary{
-grid-template-columns:1fr;
+/* =====================================================
+EMPTY
+===================================================== */
+
+.empty{
+
+    grid-column:
+    1 / -1;
+
+    padding:60px 20px;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    background:
+    var(--card);
+
+    border:
+    1px solid var(--border);
+
+    color:var(--muted);
+
 }
 
-.page-title h1{
-font-size:17px;
+.empty i{
+
+    display:block;
+
+    margin-bottom:13px;
+
+    font-size:42px;
+
+    color:
+    rgba(34,211,238,.30);
+
 }
 
-.project-title{
-font-size:17px;
+
+/* =====================================================
+NOTE
+===================================================== */
+
+.note{
+
+    margin-top:20px;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    display:flex;
+
+    gap:14px;
+
+    background:
+    rgba(167,139,250,.06);
+
+    border:
+    1px solid
+    rgba(167,139,250,.15);
+
 }
+
+.note-icon{
+
+    width:43px;
+    height:43px;
+
+    flex:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:13px;
+
+    color:#c4b5fd;
+
+    background:
+    rgba(167,139,250,.08);
+
+}
+
+.note h3{
+
+    font-size:14px;
+
+}
+
+.note p{
+
+    margin-top:5px;
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+FOOTER
+===================================================== */
+
+.footer{
+
+    margin-top:45px;
+
+    padding:
+    25px 0;
+
+    border-top:
+    1px solid var(--border);
+
+    color:var(--muted);
+
+    font-size:11px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+}
+
+
+/* =====================================================
+RESPONSIVE
+===================================================== */
+
+@media(max-width:850px){
+
+    .stats{
+
+        grid-template-columns:
+        repeat(2,1fr);
+
+    }
+
+    .project-grid{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+
+        width:
+        calc(100% - 20px);
+
+    }
+
+    .page-head h2{
+
+        font-size:29px;
+
+    }
+
+    .stats{
+
+        grid-template-columns:
+        1fr 1fr;
+
+        gap:10px;
+
+    }
+
+    .stat{
+
+        padding:16px;
+
+    }
+
+    .stat-value{
+
+        font-size:28px;
+
+    }
+
+    .search{
+
+        flex-direction:column;
+
+    }
+
+    .project-info{
+
+        grid-template-columns:
+        1fr;
+
+    }
+
+    .footer{
+
+        display:block;
+
+    }
 
 }
 
 </style>
+
 </head>
+
 
 <body>
 
-<!-- ================= SIDEBAR ================= -->
 
-<aside class="sidebar" id="sidebar">
+<header class="header">
 
-<div class="sidebar-brand">
-
-<div class="logo">🏛️</div>
-
-<div>
-
-<div class="brand-title">
-RONGKHEM <span>e-VILLAGE</span>
-</div>
-
-<div class="brand-sub">
-ที่ทำการผู้ใหญ่บ้านออนไลน์
-</div>
-
-</div>
-
-</div>
+<div class="container header-inner">
 
 
-<nav class="menu">
+<div class="brand">
 
-<a href="index.html">
-<span class="icon">🏠</span>
-หน้าหลัก
-</a>
+<div class="logo">
 
-<a href="citizen.html">
-<span class="icon">👥</span>
-ข้อมูลประชาชน
-</a>
+<i class="fa-solid fa-diagram-project"></i>
 
-<a href="household.html">
-<span class="icon">🏠</span>
-ข้อมูลครัวเรือน
-</a>
-
-<a href="leader.html">
-<span class="icon">👔</span>
-ผู้นำชุมชน
-</a>
-
-<a href="news.html">
-<span class="icon">📢</span>
-ข่าวประชาสัมพันธ์
-</a>
-
-<a href="activity.html">
-<span class="icon">📅</span>
-กิจกรรม / ปฏิทิน
-</a>
-
-<a href="incident.html">
-<span class="icon">🚨</span>
-แจ้งเหตุ / ร้องเรียน
-</a>
-
-<a href="service.html">
-<span class="icon">🤝</span>
-บริการประชาชน
-</a>
-
-<a href="project.html" class="active">
-<span class="icon">🏗️</span>
-โครงการพัฒนาหมู่บ้าน
-</a>
-
-<a href="environment.html">
-<span class="icon">🌱</span>
-สิ่งแวดล้อม / PM2.5
-</a>
-
-<a href="wetland.html">
-<span class="icon">💧</span>
-แหล่งซับน้ำจำ
-</a>
-
-<a href="rice.html">
-<span class="icon">🍚</span>
-กลุ่มข้าวสาร
-</a>
-
-<a href="statistics.html">
-<span class="icon">📊</span>
-สถิติหมู่บ้าน
-</a>
-
-<a href="admin.html">
-<span class="icon">⚙️</span>
-ตั้งค่าระบบ
-</a>
-
-</nav>
-
-
-<div class="contact">
-
-<h3>ที่ทำการผู้ใหญ่บ้าน</h3>
-
-<p>📞 โทร. 088-888-8888</p>
-
-<p>🟢 LINE ID: rongkhem.village</p>
-
-<p>🕐 จันทร์ - ศุกร์ 08.30 - 16.30 น.</p>
-
-</div>
-
-</aside>
-
-
-<!-- ================= TOPBAR ================= -->
-
-<header class="topbar">
-
-<div class="page-title">
-
-<button class="mobile-button" id="mobileButton">
-☰
-</button>
-
-<div class="big-icon">
-🏗️
 </div>
 
 <div>
 
 <h1>
-โครงการพัฒนาหมู่บ้าน
+RONGKHEM e-VILLAGE
 </h1>
 
 <p>
-ศูนย์ติดตามโครงการและงบประมาณ บ้านร่องเข็ม หมู่ที่ 6
+ที่ทำการผู้ใหญ่บ้านออนไลน์
 </p>
 
 </div>
@@ -1096,664 +946,533 @@ RONGKHEM <span>e-VILLAGE</span>
 </div>
 
 
-<div class="clock">
+<button
+class="back"
+onclick="location.href='../index.html'">
 
-<div class="time" id="time">
-00:00:00
-</div>
+<i class="fa-solid fa-arrow-left"></i>
 
-<div class="today" id="today">
-กำลังโหลด...
-</div>
+กลับหน้าหลัก
+
+</button>
+
 
 </div>
 
 </header>
 
 
-<!-- ================= MAIN ================= -->
 
-<main class="main">
-
-<div class="content">
+<main class="container">
 
 
-<!-- SUMMARY -->
+<!-- =====================================================
+TITLE
+===================================================== -->
 
-<section class="summary">
+<section class="page-head">
 
-<div class="summary-card cyan">
+<h2>
+โครงการพัฒนาหมู่บ้าน
+</h2>
 
-<div class="summary-icon">
-🏗️
-</div>
+<p>
+ติดตามโครงการ งบประมาณ และความก้าวหน้าของหมู่บ้าน
+</p>
 
-<div class="summary-title">
-โครงการทั้งหมด
-</div>
+<div class="source">
 
-<div class="summary-number" id="total">
-8
-</div>
+<i class="fa-solid fa-database"></i>
 
-</div>
-
-
-<div class="summary-card orange">
-
-<div class="summary-icon">
-🔧
-</div>
-
-<div class="summary-title">
-กำลังดำเนินการ
-</div>
-
-<div class="summary-number" id="working">
-4
-</div>
-
-</div>
-
-
-<div class="summary-card green">
-
-<div class="summary-icon">
-✅
-</div>
-
-<div class="summary-title">
-ดำเนินการแล้ว
-</div>
-
-<div class="summary-number" id="done">
-2
-</div>
-
-</div>
-
-
-<div class="summary-card purple">
-
-<div class="summary-icon">
-📊
-</div>
-
-<div class="summary-title">
-งบประมาณรวม
-</div>
-
-<div class="summary-number" id="budget">
-0
-</div>
-
-</div>
-
-
-<div class="summary-card red">
-
-<div class="summary-icon">
-📈
-</div>
-
-<div class="summary-title">
-ความคืบหน้าเฉลี่ย
-</div>
-
-<div class="summary-number" id="average">
-0%
-</div>
+ข้อมูลโครงการจากฐานข้อมูลหมู่บ้าน
 
 </div>
 
 </section>
 
 
-<!-- TOOLBAR -->
 
-<section class="toolbar">
+<!-- =====================================================
+STATS
+===================================================== -->
 
-<div class="search-area">
+<section class="stats">
 
-<input
-type="search"
-id="search"
-class="search"
-placeholder="🔎 ค้นหาโครงการ..."
->
 
-<select
-id="statusFilter"
-class="filter"
->
+<div class="stat">
 
-<option value="">
-สถานะทั้งหมด
-</option>
+<div class="stat-icon">
 
-<option value="กำลังดำเนินการ">
-🔧 กำลังดำเนินการ
-</option>
-
-<option value="ดำเนินการแล้ว">
-✅ ดำเนินการแล้ว
-</option>
-
-<option value="เตรียมดำเนินการ">
-📋 เตรียมดำเนินการ
-</option>
-
-<option value="ระงับชั่วคราว">
-⛔ ระงับชั่วคราว
-</option>
-
-</select>
-
-</div>
-
-
-<button
-class="btn"
-id="addButton"
->
-＋ เพิ่มโครงการ
-</button>
-
-</section>
-
-
-<!-- PROJECT GRID -->
-
-<section
-class="project-grid"
-id="projectGrid"
-></section>
-
-
-</div>
-
-</main>
-
-
-<!-- ================= FORM MODAL ================= -->
-
-<div class="modal" id="modal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h3 id="modalTitle">
-เพิ่มโครงการ
-</h3>
-
-<button
-class="close"
-id="closeModal"
->
-×
-</button>
-
-</div>
-
-
-<form class="form" id="projectForm">
-
-<input
-type="hidden"
-id="editId"
->
-
-
-<div class="form-group full">
-
-<label>
-ชื่อโครงการ
-</label>
-
-<input
-id="title"
-required
-placeholder="เช่น โครงการปรับปรุงถนนภายในหมู่บ้าน"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-ประเภทโครงการ
-</label>
-
-<select id="category">
-
-<option>
-โครงสร้างพื้นฐาน
-</option>
-
-<option>
-สิ่งแวดล้อม
-</option>
-
-<option>
-สาธารณสุข
-</option>
-
-<option>
-พัฒนาชุมชน
-</option>
-
-<option>
-การเกษตร
-</option>
-
-<option>
-สังคมและสวัสดิการ
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-สถานะ
-</label>
-
-<select id="status">
-
-<option>
-เตรียมดำเนินการ
-</option>
-
-<option>
-กำลังดำเนินการ
-</option>
-
-<option>
-ดำเนินการแล้ว
-</option>
-
-<option>
-ระงับชั่วคราว
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-งบประมาณ (บาท)
-</label>
-
-<input
-type="number"
-id="budgetInput"
-min="0"
-required
-placeholder="0"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-ความคืบหน้า (%)
-</label>
-
-<input
-type="number"
-id="progressInput"
-min="0"
-max="100"
-required
-placeholder="0"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-ผู้รับผิดชอบ
-</label>
-
-<input
-id="owner"
-placeholder="ผู้ใหญ่บ้าน / คณะกรรมการ"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-กำหนดแล้วเสร็จ
-</label>
-
-<input
-type="date"
-id="deadline"
->
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-รายละเอียดโครงการ
-</label>
-
-<textarea
-id="description"
-required
-placeholder="รายละเอียด วัตถุประสงค์ และประโยชน์ของโครงการ"
-></textarea>
-
-</div>
-
-</form>
-
-
-<div class="modal-actions">
-
-<button
-class="btn btn-cancel"
-id="cancelButton"
->
-ยกเลิก
-</button>
-
-<button
-class="btn"
-id="saveButton"
->
-💾 บันทึกโครงการ
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= DETAIL MODAL ================= -->
-
-<div class="modal" id="detailModal">
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h3>
-รายละเอียดโครงการ
-</h3>
-
-<button
-class="close"
-id="closeDetail"
->
-×
-</button>
+<i class="fa-solid fa-folder-open"></i>
 
 </div>
 
 <div
-class="detail"
-id="detailContent"
-></div>
+id="totalProjects"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+โครงการทั้งหมด
 
 </div>
 
 </div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-spinner"></i>
+
+</div>
+
+<div
+id="progressProjects"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+กำลังดำเนินการ
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-circle-check"></i>
+
+</div>
+
+<div
+id="completedProjects"
+class="stat-value">
+
+0
+
+</div>
+
+<div class="stat-label">
+
+ดำเนินการแล้ว
+
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-icon">
+
+<i class="fa-solid fa-baht-sign"></i>
+
+</div>
+
+<div
+id="totalBudget"
+class="stat-value">
+
+--
+
+</div>
+
+<div class="stat-label">
+
+งบประมาณรวม
+
+</div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+FILTER
+===================================================== -->
+
+<section class="control">
+
+
+<div class="filters">
+
+
+<button
+class="filter active"
+onclick="setFilter('all',this)">
+
+ทั้งหมด
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('วางแผน',this)">
+
+วางแผน
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('กำลังดำเนินการ',this)">
+
+กำลังดำเนินการ
+
+</button>
+
+
+<button
+class="filter"
+onclick="setFilter('เสร็จสิ้น',this)">
+
+เสร็จสิ้น
+
+</button>
+
+
+</div>
+
+
+<div class="search">
+
+<input
+id="searchInput"
+type="search"
+placeholder="ค้นหาโครงการ..."
+autocomplete="off">
+
+
+<button
+class="btn"
+onclick="loadProjects()">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+ค้นหา
+
+</button>
+
+</div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+PROJECTS
+===================================================== -->
+
+<section
+id="projectGrid"
+class="project-grid">
+
+<div class="empty">
+
+<i class="fa-solid fa-folder-open"></i>
+
+กำลังโหลดข้อมูลโครงการ...
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+NOTE
+===================================================== -->
+
+<section class="note">
+
+<div class="note-icon">
+
+<i class="fa-solid fa-shield-halved"></i>
+
+</div>
+
+<div>
+
+<h3>
+หลักการเผยแพร่ข้อมูลโครงการ
+</h3>
+
+<p>
+
+ระบบจะแสดงเฉพาะโครงการที่มีข้อมูลในฐานข้อมูล
+ไม่สร้างชื่อโครงการ งบประมาณ หรือเปอร์เซ็นต์ความก้าวหน้าขึ้นเอง
+หากมีข้อมูลจริงสามารถบันทึกงบประมาณ ผู้รับผิดชอบ
+ระยะเวลาดำเนินงาน และผลการดำเนินงานได้
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<footer class="footer">
+
+<div>
+
+<strong>
+RONGKHEM e-VILLAGE
+</strong>
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</div>
+
+<div>
+
+บ้านร่องเข็ม หมู่ที่ 6
+ตำบลจำป่าหวาย
+อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</div>
+
+</footer>
+
+
+</main>
+
 
 
 <script>
 
 /* =====================================================
-DATA
+SUPABASE
 ===================================================== */
 
-let projects=[
+const SUPABASE_URL =
+"ใส่_URL_SUPABASE_ของคุณ";
 
-{
-id:1,
-icon:"🛣️",
-title:"โครงการปรับปรุงถนนภายในหมู่บ้าน",
-category:"โครงสร้างพื้นฐาน",
-status:"กำลังดำเนินการ",
-budget:250000,
-progress:65,
-owner:"คณะกรรมการหมู่บ้าน",
-deadline:"2026-09-30",
-description:"ปรับปรุงถนนที่ชำรุดภายในหมู่บ้าน เพื่อเพิ่มความปลอดภัยและความสะดวกในการเดินทางของประชาชน"
-},
+const SUPABASE_KEY =
+"ใส่_ANON_KEY_ของคุณ";
 
-{
-id:2,
-icon:"💡",
-title:"โครงการติดตั้งไฟส่องสว่างพลังงานแสงอาทิตย์",
-category:"โครงสร้างพื้นฐาน",
-status:"กำลังดำเนินการ",
-budget:180000,
-progress:45,
-owner:"ฝ่ายพัฒนาหมู่บ้าน",
-deadline:"2026-10-15",
-description:"ติดตั้งไฟส่องสว่างพลังงานแสงอาทิตย์บริเวณจุดเสี่ยงและเส้นทางสัญจรภายในหมู่บ้าน"
-},
 
-{
-id:3,
-icon:"🌱",
-title:"โครงการลดการเผาและคุ้มครองสุขภาพ",
-category:"สิ่งแวดล้อม",
-status:"กำลังดำเนินการ",
-budget:95000,
-progress:72,
-owner:"ฝ่ายสิ่งแวดล้อม",
-deadline:"2026-12-31",
-description:"รณรงค์ลดการเผาในพื้นที่ ส่งเสริมการจัดการเศษวัสดุทางการเกษตร และสร้างความรู้เรื่อง PM2.5"
-},
+const supabaseClient =
+supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
-{
-id:4,
-icon:"💧",
-title:"โครงการพัฒนาระบบประปาหมู่บ้าน",
-category:"โครงสร้างพื้นฐาน",
-status:"กำลังดำเนินการ",
-budget:320000,
-progress:38,
-owner:"คณะกรรมการประปา",
-deadline:"2026-11-30",
-description:"ปรับปรุงระบบประปาและเพิ่มประสิทธิภาพการจ่ายน้ำให้ครอบคลุมพื้นที่ชุมชน"
-},
 
-{
-id:5,
-icon:"🏡",
-title:"โครงการพัฒนาพื้นที่สาธารณะ",
-category:"พัฒนาชุมชน",
-status:"ดำเนินการแล้ว",
-budget:85000,
-progress:100,
-owner:"ผู้นำชุมชน",
-deadline:"2026-07-31",
-description:"ปรับปรุงภูมิทัศน์และพื้นที่สาธารณะเพื่อให้ประชาชนสามารถใช้ประโยชน์ร่วมกัน"
-},
+/* =====================================================
+STATE
+===================================================== */
 
-{
-id:6,
-icon:"🩺",
-title:"โครงการส่งเสริมสุขภาพประชาชน",
-category:"สาธารณสุข",
-status:"ดำเนินการแล้ว",
-budget:60000,
-progress:100,
-owner:"อสม. หมู่บ้าน",
-deadline:"2026-08-01",
-description:"ส่งเสริมการดูแลสุขภาพและการป้องกันโรคในชุมชน"
-},
+let currentFilter = "all";
 
-{
-id:7,
-icon:"🌾",
-title:"โครงการส่งเสริมการเกษตรชุมชน",
-category:"การเกษตร",
-status:"เตรียมดำเนินการ",
-budget:150000,
-progress:15,
-owner:"กลุ่มเกษตรกร",
-deadline:"2026-12-15",
-description:"ส่งเสริมการลดต้นทุนการผลิตและเพิ่มช่องทางการตลาดสำหรับเกษตรกรในชุมชน"
-},
 
-{
-id:8,
-icon:"♻️",
-title:"โครงการจัดการขยะชุมชน",
-category:"สิ่งแวดล้อม",
-status:"เตรียมดำเนินการ",
-budget:120000,
-progress:10,
-owner:"ฝ่ายสิ่งแวดล้อม",
-deadline:"2027-01-31",
-description:"ส่งเสริมการคัดแยกขยะจากต้นทาง การนำกลับมาใช้ประโยชน์ และการจัดการขยะอย่างเป็นระบบ"
+/* =====================================================
+ESCAPE
+===================================================== */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+
 }
 
-];
-
 
 /* =====================================================
-ELEMENTS
+NUMBER
 ===================================================== */
 
-const grid=
-document.getElementById("projectGrid");
+function formatNumber(value){
 
-const search=
-document.getElementById("search");
+    if(
+        value === null ||
+        value === undefined
+    ){
 
-const filter=
-document.getElementById("statusFilter");
+        return "--";
 
-const modal=
-document.getElementById("modal");
+    }
 
-const detailModal=
-document.getElementById("detailModal");
+    return Number(value)
+    .toLocaleString(
+        "th-TH"
+    );
 
-const form=
-document.getElementById("projectForm");
+}
 
 
 /* =====================================================
-HELPERS
+STATUS
 ===================================================== */
 
 function statusClass(status){
 
-if(status==="ดำเนินการแล้ว")
-return "status-done";
+    if(
+        status === "กำลังดำเนินการ"
+    ){
 
-if(status==="กำลังดำเนินการ")
-return "status-working";
+        return "progress";
 
-if(status==="ระงับชั่วคราว")
-return "status-stop";
+    }
 
-return "status-planning";
+    if(
+        status === "เสร็จสิ้น"
+    ){
 
-}
+        return "done";
 
+    }
 
-function iconForCategory(category){
+    if(
+        status === "ยกเลิก"
+    ){
 
-const icons={
-"โครงสร้างพื้นฐาน":"🏗️",
-"สิ่งแวดล้อม":"🌱",
-"สาธารณสุข":"🩺",
-"พัฒนาชุมชน":"🏡",
-"การเกษตร":"🌾",
-"สังคมและสวัสดิการ":"🤝"
-};
+        return "cancel";
 
-return icons[category]||"🏗️";
+    }
 
-}
-
-
-function money(value){
-
-return Number(value||0)
-.toLocaleString("th-TH");
-
-}
-
-
-function formatDate(value){
-
-if(!value)
-return "-";
-
-return new Date(
-value+"T00:00:00"
-).toLocaleDateString(
-"th-TH",
-{
-day:"numeric",
-month:"short",
-year:"numeric"
-}
-);
+    return "planned";
 
 }
 
 
 /* =====================================================
-FILTER
+LOAD PROJECTS
 ===================================================== */
 
-function filteredProjects(){
+async function loadProjects(){
 
-const keyword=
-search.value.trim().toLowerCase();
-
-const status=
-filter.value;
-
-
-return projects.filter(project=>{
-
-const text=(
-project.title+
-" "+
-project.category+
-" "+
-project.description+
-" "+
-project.owner
-).toLowerCase();
+    const grid =
+    document.getElementById(
+        "projectGrid"
+    );
 
 
-return(
-(!keyword||text.includes(keyword))
-&&
-(!status||project.status===status)
-);
+    const keyword =
+    document
+    .getElementById(
+        "searchInput"
+    )
+    .value
+    .trim();
 
-});
+
+    try{
+
+        let query =
+        supabaseClient
+
+        .from("projects")
+
+        .select("*")
+
+        .order(
+            "created_at",
+            {
+                ascending:false
+            }
+        );
+
+
+        if(
+            currentFilter !== "all"
+        ){
+
+            query =
+            query.eq(
+                "status",
+                currentFilter
+            );
+
+        }
+
+
+        if(keyword){
+
+            query =
+            query.or(
+                `title.ilike.%${keyword}%,description.ilike.%${keyword}%,responsible.ilike.%${keyword}%`
+            );
+
+        }
+
+
+        const {
+            data,
+            error
+        } = await query;
+
+
+        if(error)
+            throw error;
+
+
+        renderProjects(
+            data || []
+        );
+
+
+        updateStatistics(
+            data || []
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "Projects:",
+            error
+        );
+
+
+        grid.innerHTML = `
+
+        <div class="empty">
+
+            <i class="fa-solid fa-database"></i>
+
+            ยังไม่มีข้อมูลโครงการในฐานข้อมูล
+
+            <br>
+
+            กรุณาเพิ่มข้อมูลจากระบบผู้ดูแล
+
+        </div>
+
+        `;
+
+
+        updateStatistics([]);
+
+    }
 
 }
 
@@ -1762,621 +1481,377 @@ return(
 RENDER
 ===================================================== */
 
-function renderProjects(){
+function renderProjects(
+    projects
+){
 
-grid.innerHTML="";
+    const grid =
+    document.getElementById(
+        "projectGrid"
+    );
 
-const data=
-filteredProjects();
 
+    if(
+        !projects ||
+        projects.length === 0
+    ){
 
-data.forEach(project=>{
+        grid.innerHTML = `
 
-const card=
-document.createElement("article");
+        <div class="empty">
 
-card.className="project-card";
+            <i class="fa-solid fa-folder-open"></i>
 
+            ไม่พบข้อมูลโครงการ
 
-card.innerHTML=`
+        </div>
 
-<div class="project-top">
+        `;
 
-<div class="project-icon">
-${project.icon||iconForCategory(project.category)}
-</div>
+        return;
 
-<div class="project-status ${statusClass(project.status)}">
-${project.status}
-</div>
+    }
 
-</div>
 
+    grid.innerHTML =
+    projects.map(
+        item => {
 
-<div class="project-title">
-${project.title}
-</div>
+            const progress =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    Number(
+                        item.progress
+                    ) || 0
+                )
+            );
 
 
-<div class="project-description">
-${project.description}
-</div>
+            return `
 
+            <article
+            class="project-card">
 
-<div class="project-meta">
 
+                <div
+                class="project-top">
 
-<div class="meta">
 
-<div class="meta-label">
-ประเภท
-</div>
+                    <div
+                    class="project-icon">
 
-<div class="meta-value">
-${project.category}
-</div>
+                        <i
+                        class="fa-solid
+                        fa-diagram-project">
+                        </i>
 
-</div>
+                    </div>
 
 
-<div class="meta">
+                    <span
+                    class="status
+                    ${statusClass(
+                        item.status
+                    )}">
 
-<div class="meta-label">
-งบประมาณ
-</div>
+                        ${escapeHTML(
+                            item.status ||
+                            "วางแผน"
+                        )}
 
-<div class="meta-value">
-${money(project.budget)} บาท
-</div>
+                    </span>
 
-</div>
 
+                </div>
 
-<div class="meta">
 
-<div class="meta-label">
-ผู้รับผิดชอบ
-</div>
+                <div
+                class="project-title">
 
-<div class="meta-value">
-${project.owner||"-"}
-</div>
+                    ${escapeHTML(
+                        item.title
+                    )}
 
-</div>
+                </div>
 
 
-<div class="meta">
+                <div
+                class="project-description">
 
-<div class="meta-label">
-กำหนดแล้วเสร็จ
-</div>
+                    ${escapeHTML(
+                        item.description
+                    )}
 
-<div class="meta-value">
-${formatDate(project.deadline)}
-</div>
+                </div>
 
-</div>
 
+                <div
+                class="project-info">
 
-</div>
 
+                    <div
+                    class="info-item">
 
-<div class="progress-header">
+                        ผู้รับผิดชอบ
 
-<span class="progress-label">
-ความคืบหน้า
-</span>
+                        <strong>
 
-<span class="progress-percent">
-${project.progress}%
-</span>
+                            ${escapeHTML(
+                                item.responsible ||
+                                "-"
+                            )}
 
-</div>
+                        </strong>
 
+                    </div>
 
-<div class="progress-bar">
 
-<div
-class="progress-fill"
-style="width:${project.progress}%"
-></div>
+                    <div
+                    class="info-item">
 
-</div>
+                        งบประมาณ
 
+                        <strong>
 
-<div class="project-footer">
+                            ${
+                                item.budget !== null &&
+                                item.budget !== undefined
+                                ?
+                                formatNumber(
+                                    item.budget
+                                ) + " บาท"
+                                :
+                                "--"
+                            }
 
-<div class="owner">
-📋 โครงการ #${String(project.id).padStart(3,"0")}
-</div>
+                        </strong>
 
+                    </div>
 
-<div style="display:flex;gap:5px;">
 
-<button
-class="detail-btn"
-onclick="viewProject(${project.id})"
->
-👁️ ดูรายละเอียด
-</button>
+                    <div
+                    class="info-item">
 
-<button
-class="detail-btn"
-onclick="editProject(${project.id})"
->
-✏️
-</button>
+                        เริ่มโครงการ
 
-</div>
+                        <strong>
 
-</div>
+                            ${formatDate(
+                                item.start_date
+                            )}
 
-`;
+                        </strong>
 
+                    </div>
 
-grid.appendChild(card);
 
-});
+                    <div
+                    class="info-item">
 
+                        สิ้นสุด
 
-updateSummary();
+                        <strong>
+
+                            ${formatDate(
+                                item.end_date
+                            )}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <div
+                class="progress-wrap">
+
+
+                    <div
+                    class="progress-label">
+
+                        <span>
+                            ความก้าวหน้า
+                        </span>
+
+                        <span>
+
+                            ${
+                                item.progress !== null &&
+                                item.progress !== undefined
+                                ?
+                                progress + "%"
+                                :
+                                "--"
+                            }
+
+                        </span>
+
+                    </div>
+
+
+                    <div
+                    class="progress">
+
+                        <span
+                        style="width:${
+                            item.progress !== null &&
+                            item.progress !== undefined
+                            ?
+                            progress
+                            :
+                            0
+                        }%">
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+            `;
+
+        }
+    ).join("");
 
 }
 
 
 /* =====================================================
-SUMMARY
+DATE
 ===================================================== */
 
-function updateSummary(){
+function formatDate(
+    value
+){
 
-const total=
-projects.length;
-
-const working=
-projects.filter(
-x=>x.status==="กำลังดำเนินการ"
-).length;
-
-const done=
-projects.filter(
-x=>x.status==="ดำเนินการแล้ว"
-).length;
-
-const budget=
-projects.reduce(
-(sum,x)=>sum+Number(x.budget||0),
-0
-);
-
-const average=
-total
-?
-Math.round(
-projects.reduce(
-(sum,x)=>sum+Number(x.progress||0),
-0
-)/total
-)
-:0;
+    if(!value)
+        return "-";
 
 
-document.getElementById("total")
-.textContent=total;
+    const date =
+    new Date(value);
 
-document.getElementById("working")
-.textContent=working;
 
-document.getElementById("done")
-.textContent=done;
+    if(
+        Number.isNaN(
+            date.getTime()
+        )
+    ){
 
-document.getElementById("budget")
-.textContent=
-budget>=1000000
-?
-(budget/1000000).toFixed(2)+" ล."
-:
-Math.round(budget/1000)+" พัน";
+        return escapeHTML(
+            value
+        );
 
-document.getElementById("average")
-.textContent=
-average+"%";
+    }
+
+
+    return date.toLocaleDateString(
+        "th-TH",
+        {
+            year:"numeric",
+            month:"short",
+            day:"numeric"
+        }
+    );
 
 }
 
 
 /* =====================================================
-ADD
+STATISTICS
 ===================================================== */
 
-document
-.getElementById("addButton")
-.addEventListener(
-"click",
-()=>{
+function updateStatistics(
+    data
+){
 
-form.reset();
+    const total =
+    data.length;
 
-document.getElementById(
-"editId"
-).value="";
 
-document.getElementById(
-"progressInput"
-).value=0;
+    const progress =
+    data.filter(
+        item =>
+        item.status ===
+        "กำลังดำเนินการ"
+    ).length;
 
-document.getElementById(
-"status"
-).value="เตรียมดำเนินการ";
 
-document.getElementById(
-"modalTitle"
-).textContent=
-"เพิ่มโครงการ";
+    const completed =
+    data.filter(
+        item =>
+        item.status ===
+        "เสร็จสิ้น"
+    ).length;
 
-modal.classList.add("show");
 
-}
-);
+    let budget = 0;
 
+    let hasBudget = false;
 
-/* =====================================================
-CLOSE
-===================================================== */
 
-function closeModal(){
+    data.forEach(
+        item => {
 
-modal.classList.remove("show");
+            if(
+                item.budget !== null &&
+                item.budget !== undefined
+            ){
 
-}
+                budget +=
+                Number(
+                    item.budget
+                ) || 0;
 
+                hasBudget = true;
 
-document
-.getElementById("closeModal")
-.addEventListener(
-"click",
-closeModal
-);
+            }
 
+        }
+    );
 
-document
-.getElementById("cancelButton")
-.addEventListener(
-"click",
-closeModal
-);
 
+    document.getElementById(
+        "totalProjects"
+    ).textContent =
+    total.toLocaleString(
+        "th-TH"
+    );
 
-document
-.getElementById("closeDetail")
-.addEventListener(
-"click",
-()=>{
-detailModal.classList.remove("show");
-}
-);
 
+    document.getElementById(
+        "progressProjects"
+    ).textContent =
+    progress.toLocaleString(
+        "th-TH"
+    );
 
-modal.addEventListener(
-"click",
-e=>{
-if(e.target===modal)
-closeModal();
-}
-);
 
+    document.getElementById(
+        "completedProjects"
+    ).textContent =
+    completed.toLocaleString(
+        "th-TH"
+    );
 
-detailModal.addEventListener(
-"click",
-e=>{
-if(e.target===detailModal)
-detailModal.classList.remove("show");
-}
-);
 
-
-/* =====================================================
-SAVE
-===================================================== */
-
-document
-.getElementById("saveButton")
-.addEventListener(
-"click",
-saveProject
-);
-
-
-function saveProject(){
-
-if(!form.checkValidity()){
-
-form.reportValidity();
-
-return;
-
-}
-
-
-const editId=
-document.getElementById(
-"editId"
-).value;
-
-
-const project={
-
-id:
-editId
-?
-Number(editId)
-:
-Date.now(),
-
-icon:
-iconForCategory(
-document.getElementById("category").value
-),
-
-title:
-document.getElementById("title").value.trim(),
-
-category:
-document.getElementById("category").value,
-
-status:
-document.getElementById("status").value,
-
-budget:
-Number(
-document.getElementById("budgetInput").value
-),
-
-progress:
-Math.min(
-100,
-Math.max(
-0,
-Number(
-document.getElementById("progressInput").value
-)
-)
-),
-
-owner:
-document.getElementById("owner").value.trim(),
-
-deadline:
-document.getElementById("deadline").value,
-
-description:
-document.getElementById("description").value.trim()
-
-};
-
-
-if(editId){
-
-const index=
-projects.findIndex(
-x=>x.id===Number(editId)
-);
-
-if(index!==-1){
-
-projects[index]=project;
-
-}
-
-}else{
-
-projects.push(project);
-
-}
-
-
-closeModal();
-
-renderProjects();
-
-}
-
-
-/* =====================================================
-VIEW
-===================================================== */
-
-function viewProject(id){
-
-const project=
-projects.find(
-x=>x.id===id
-);
-
-if(!project)
-return;
-
-
-document.getElementById(
-"detailContent"
-).innerHTML=`
-
-<div class="detail-title">
-
-${project.icon}
-${project.title}
-
-</div>
-
-
-<div class="detail-description">
-
-${project.description}
-
-</div>
-
-
-<div class="detail-grid">
-
-
-<div class="detail-item">
-
-<div class="detail-label">
-ประเภทโครงการ
-</div>
-
-<div class="detail-value">
-${project.category}
-</div>
-
-</div>
-
-
-<div class="detail-item">
-
-<div class="detail-label">
-สถานะ
-</div>
-
-<div class="detail-value">
-${project.status}
-</div>
-
-</div>
-
-
-<div class="detail-item">
-
-<div class="detail-label">
-งบประมาณ
-</div>
-
-<div class="detail-value">
-${money(project.budget)} บาท
-</div>
-
-</div>
-
-
-<div class="detail-item">
-
-<div class="detail-label">
-ความคืบหน้า
-</div>
-
-<div class="detail-value">
-${project.progress}%
-</div>
-
-</div>
-
-
-<div class="detail-item">
-
-<div class="detail-label">
-ผู้รับผิดชอบ
-</div>
-
-<div class="detail-value">
-${project.owner||"-"}
-</div>
-
-</div>
-
-
-<div class="detail-item">
-
-<div class="detail-label">
-กำหนดแล้วเสร็จ
-</div>
-
-<div class="detail-value">
-${formatDate(project.deadline)}
-</div>
-
-</div>
-
-</div>
-
-<div style="margin-top:20px;">
-
-<div class="progress-bar">
-
-<div
-class="progress-fill"
-style="width:${project.progress}%"
-></div>
-
-</div>
-
-</div>
-
-`;
-
-
-detailModal.classList.add("show");
-
-}
-
-
-/* =====================================================
-EDIT
-===================================================== */
-
-function editProject(id){
-
-const project=
-projects.find(
-x=>x.id===id
-);
-
-if(!project)
-return;
-
-
-document.getElementById(
-"editId"
-).value=project.id;
-
-document.getElementById(
-"title"
-).value=project.title;
-
-document.getElementById(
-"category"
-).value=project.category;
-
-document.getElementById(
-"status"
-).value=project.status;
-
-document.getElementById(
-"budgetInput"
-).value=project.budget;
-
-document.getElementById(
-"progressInput"
-).value=project.progress;
-
-document.getElementById(
-"owner"
-).value=project.owner||"";
-
-document.getElementById(
-"deadline"
-).value=project.deadline||"";
-
-document.getElementById(
-"description"
-).value=project.description;
-
-document.getElementById(
-"modalTitle"
-).textContent=
-"แก้ไขโครงการ";
-
-
-modal.classList.add("show");
+    document.getElementById(
+        "totalBudget"
+    ).textContent =
+    hasBudget
+    ?
+    budget.toLocaleString(
+        "th-TH"
+    )
+    :
+    "--";
 
 }
 
@@ -2385,86 +1860,77 @@ modal.classList.add("show");
 FILTER
 ===================================================== */
 
-search.addEventListener(
-"input",
-renderProjects
-);
+function setFilter(
+    filter,
+    button
+){
 
-filter.addEventListener(
-"change",
-renderProjects
-);
+    currentFilter =
+    filter;
+
+
+    document
+    .querySelectorAll(
+        ".filter"
+    )
+    .forEach(
+        el =>
+        el.classList.remove(
+            "active"
+        )
+    );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    loadProjects();
+
+}
 
 
 /* =====================================================
-CLOCK
-===================================================== */
-
-function updateClock(){
-
-const now=new Date();
-
-document.getElementById(
-"time"
-).textContent=
-now.toLocaleTimeString(
-"th-TH",
-{
-hour:"2-digit",
-minute:"2-digit",
-second:"2-digit",
-hour12:false
-}
-);
-
-document.getElementById(
-"today"
-).textContent=
-now.toLocaleDateString(
-"th-TH",
-{
-weekday:"long",
-day:"numeric",
-month:"long",
-year:"numeric"
-}
-);
-
-}
-
-updateClock();
-
-setInterval(
-updateClock,
-1000
-);
-
-
-/* =====================================================
-MOBILE
+ENTER
 ===================================================== */
 
 document
-.getElementById("mobileButton")
+.getElementById(
+    "searchInput"
+)
 .addEventListener(
-"click",
-()=>{
-document
-.getElementById("sidebar")
-.classList.toggle("open");
-}
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter"
+        ){
+
+            loadProjects();
+
+        }
+
+    }
 );
 
 
 /* =====================================================
-START
+INIT
 ===================================================== */
 
-renderProjects();
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-updateSummary();
+        loadProjects();
+
+    }
+);
 
 </script>
 
+
 </body>
+
 </html>
