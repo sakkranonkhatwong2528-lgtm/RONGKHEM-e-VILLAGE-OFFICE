@@ -1,366 +1,163 @@
 /* =========================================================
    RONGKHEM e-VILLAGE OFFICE
-   DATA.JS
+   DATA.JS — RECOVERY VERSION
+   อ่านข้อมูลเดิมกลับมา
    ========================================================= */
 
-const DATA = {
+const CORRECT_LEADER_NAME =
+    "นายศักรนนทน์ ขัติย์วงศ์";
 
-    /* =====================================================
-       ข้อมูลประชาชน
-       ===================================================== */
-
-    population: {
-
-        total: 960,
-
-        male: 471,
-
-        female: 489
-
-    },
-
-
-    /* =====================================================
-       ข้อมูลครัวเรือน
-       ===================================================== */
-
-    households: {
-
-        total: 352
-
-    },
-
-
-    /* =====================================================
-       ข้อมูลแบบสำรวจ
-       ===================================================== */
-
-    survey: {
-
-        respondents: 202,
-
-        households: 202,
-
-        elderly60Plus: 92,
-
-        vulnerableSelections: 95
-
-    },
-
-
-    /* =====================================================
-       ผู้สูงอายุ
-       ===================================================== */
-
-    elderly: {
-
-        total: 92
-
-    },
-
-
-    /* =====================================================
-       กลุ่มเปราะบาง
-       ===================================================== */
-
-    vulnerable: {
-
-        total: 95,
-
-        disabled: 3,
-
-        chronicDisease: 1
-
-    },
-
-
-    /* =====================================================
-       หมู่บ้าน
-       ===================================================== */
+const DEFAULT_RONGKHEM_DATA = {
 
     village: {
-
-        name:
-            "บ้านร่องเข็ม",
-
-        moo:
-            "หมู่ที่ 6",
-
-        tambon:
-            "จำป่าหวาย",
-
-        district:
-            "เมืองพะเยา",
-
-        province:
-            "พะเยา",
-
-        phone:
-            "080-1202529",
-
-        line:
-            "rongkhem.village"
-
-    }
-
-};
-
-
-/* =========================================================
-   DEFAULT DATA
-   ใช้กรณีเปิดระบบครั้งแรก
-   ========================================================= */
-
-const DEFAULT_DATA = {
-
-    news: [],
-
-    activity: [],
-
-    alert: [],
-
-    leaders: [],
-
-    services: [],
-
-    projects: [],
-
-    pm: [],
-
-    wetland: [],
-
-    rice: [],
-
-    statistics: [],
-
-    population: [],
-
-    households: []
-
-};
-
-
-/* =========================================================
-   STORAGE KEYS
-   ========================================================= */
-
-const STORAGE_KEYS = {
-
-    news:
-        "RONGKHEM_NEWS",
-
-    activity:
-        "RONGKHEM_ACTIVITY",
-
-    alert:
-        "RONGKHEM_ALERT",
-
-    leaders:
-        "RONGKHEM_LEADERS",
-
-    services:
-        "RONGKHEM_SERVICES",
-
-    projects:
-        "RONGKHEM_PROJECTS",
-
-    pm:
-        "RONGKHEM_PM",
-
-    wetland:
-        "RONGKHEM_WETLAND",
-
-    rice:
-        "RONGKHEM_RICE",
-
-    statistics:
-        "RONGKHEM_STATISTICS",
-
-    population:
-        "RONGKHEM_POPULATION",
-
-    households:
-        "RONGKHEM_HOUSEHOLDS"
-
-};
-
-
-/* =========================================================
-   DEFAULT ALERT
-   ========================================================= */
-
-const DEFAULT_ALERTS = [
-
-    {
-        id:
-            "alert-001",
-
-        title:
-            "ประชุมประจำเดือนกำนันผู้ใหญ่บ้าน",
-
-        date:
-            "2569-08-15",
-
-        time:
-            "09:00",
-
-        location:
-            "",
-
-        status:
-            "กำหนดการ",
-
-        detail:
-            "",
-
-        image:
-            ""
+        name: "บ้านร่องเข็ม",
+        moo: "หมู่ที่ 6",
+        tambon: "จำป่าหวาย",
+        district: "เมืองพะเยา",
+        province: "พะเยา"
     },
 
-    {
-        id:
-            "alert-002",
-
-        title:
-            "โครงการ Big Cleaning Day",
-
-        date:
-            "2569-08-17",
-
-        time:
-            "08:00",
-
-        location:
-            "บ้านร่องเข็ม หมู่ที่ 6",
-
-        status:
-            "กำหนดการ",
-
-        detail:
-            "",
-
-        image:
-            ""
+    leader: {
+        name: CORRECT_LEADER_NAME,
+        role: "ผู้ใหญ่บ้าน หมู่ที่ 6",
+        phone: "080-1202529",
+        line: "rongkhem.village"
     },
 
-    {
-        id:
-            "alert-003",
+    population: {
+        total: 960,
+        male: 471,
+        female: 489
+    },
 
-        title:
-            "รณรงค์ป้องกัน PM2.5",
+    households: {
+        total: 352
+    },
 
-        date:
-            "2569-08-20",
+    survey: {
+        respondents: 202,
+        households: 202,
+        elderly60Plus: 92,
+        elderlyPercent: 45.5,
+        disabled: 3,
+        chronicDisease: 1,
+        vulnerableSelections: 95
+    },
 
-        time:
-            "09:00",
+    verified: true,
 
-        location:
-            "บ้านร่องเข็ม",
-
-        status:
-            "กำหนดการ",
-
-        detail:
-            "",
-
-        image:
-            ""
-    }
-
-];
+    source: "VERIFIED DATA BUILD"
+};
 
 
 /* =========================================================
-   SAFE JSON
+   อ่านข้อมูล Dashboard เดิม
    ========================================================= */
 
-function getJSON(
-    key,
-    fallback
-) {
+function loadOldDashboardData() {
 
     try {
 
-        const value =
+        const saved =
             localStorage.getItem(
-                key
+                "RONGKHEM_DASHBOARD_DATA"
             );
 
-        if (
-            value === null
-        ) {
+        if (!saved) {
 
-            return fallback;
+            return DEFAULT_RONGKHEM_DATA;
         }
 
-        const parsed =
-            JSON.parse(
-                value
-            );
+        const old =
+            JSON.parse(saved);
 
-        return parsed;
+        return {
 
-    } catch (error) {
+            ...DEFAULT_RONGKHEM_DATA,
+
+            ...old,
+
+            village: {
+                ...DEFAULT_RONGKHEM_DATA.village,
+                ...(old.village || {})
+            },
+
+            leader: {
+                ...DEFAULT_RONGKHEM_DATA.leader,
+                ...(old.leader || {})
+            },
+
+            population: {
+                ...DEFAULT_RONGKHEM_DATA.population,
+                ...(old.population || {})
+            },
+
+            households: {
+                ...DEFAULT_RONGKHEM_DATA.households,
+                ...(old.households || {})
+            },
+
+            survey: {
+                ...DEFAULT_RONGKHEM_DATA.survey,
+                ...(old.survey || {})
+            }
+
+        };
+
+    } catch (e) {
 
         console.error(
-            "getJSON error:",
-            key,
-            error
+            "ไม่สามารถอ่านข้อมูล Dashboard เดิม",
+            e
         );
 
-        return fallback;
+        return DEFAULT_RONGKHEM_DATA;
     }
 }
 
 
 /* =========================================================
-   SAVE JSON
+   GLOBAL DATA
    ========================================================= */
 
-function saveJSON(
-    key,
-    value
-) {
+let RONGKHEM_DATA =
+    loadOldDashboardData();
+
+window.RONGKHEM_DATA =
+    RONGKHEM_DATA;
+
+
+/* =========================================================
+   ป้องกันชื่อผิด
+   ========================================================= */
+
+RONGKHEM_DATA.leader.name =
+    CORRECT_LEADER_NAME;
+
+
+/* =========================================================
+   ฟังก์ชันบันทึก Dashboard
+   ========================================================= */
+
+function saveDashboardData() {
 
     try {
 
         localStorage.setItem(
-            key,
+            "RONGKHEM_DASHBOARD_DATA",
             JSON.stringify(
-                value
+                RONGKHEM_DATA
             )
         );
 
         return true;
 
-    } catch (error) {
+    } catch (e) {
 
         console.error(
-            "saveJSON error:",
-            key,
-            error
+            "บันทึก Dashboard ไม่สำเร็จ",
+            e
         );
-
-
-        if (
-            error.name ===
-            "QuotaExceededError"
-        ) {
-
-            alert(
-                "พื้นที่จัดเก็บข้อมูลของเบราว์เซอร์เต็ม\n\n" +
-                "รูปภาพที่อัปโหลดอาจมีขนาดใหญ่เกินไป " +
-                "กรุณาใช้รูปขนาดเล็กลง"
-            );
-
-        } else {
-
-            alert(
-                "ไม่สามารถบันทึกข้อมูลได้"
-            );
-        }
 
         return false;
     }
@@ -368,373 +165,283 @@ function saveJSON(
 
 
 /* =========================================================
-   ESCAPE HTML
-   ป้องกัน HTML แปลกปลอมในข้อมูล
+   ฟังก์ชันอ่านข้อมูลโมดูล
    ========================================================= */
 
-function escapeHTML(
-    value
-) {
+function moduleKey(name) {
 
-    if (
-        value === null ||
-        value === undefined
-    ) {
-
-        return "";
-    }
-
-
-    return String(value)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-}
-
-
-/* =========================================================
-   SHORTCUT
-   ========================================================= */
-
-function $(
-    id
-) {
-
-    return document.getElementById(
-        id
+    return (
+        "RONGKHEM_MODULE_" +
+        String(name)
+            .toUpperCase()
     );
 }
 
 
-/* =========================================================
-   SETTINGS
-   ========================================================= */
+function loadModule(name) {
 
-function getSettings() {
+    try {
 
-    const saved =
-        getJSON(
-            "RONGKHEM_SETTINGS",
-            null
+        const key =
+            moduleKey(name);
+
+        const saved =
+            localStorage.getItem(key);
+
+        if (!saved) {
+
+            return [];
+        }
+
+        const data =
+            JSON.parse(saved);
+
+        return Array.isArray(data)
+            ? data
+            : [];
+
+    } catch (e) {
+
+        console.error(
+            "โหลดโมดูลไม่สำเร็จ",
+            name,
+            e
         );
 
-
-    if (
-        saved &&
-        typeof saved ===
-        "object"
-    ) {
-
-        return {
-
-            ...DEFAULT_LEADER,
-
-            ...saved
-
-        };
+        return [];
     }
+}
 
+
+function saveModule(
+    name,
+    data
+) {
+
+    try {
+
+        localStorage.setItem(
+            moduleKey(name),
+            JSON.stringify(data)
+        );
+
+        return true;
+
+    } catch (e) {
+
+        console.error(
+            "บันทึกโมดูลไม่สำเร็จ",
+            name,
+            e
+        );
+
+        return false;
+    }
+}
+
+
+/* =========================================================
+   ข้อมูลเมนูเดิม
+   ========================================================= */
+
+window.RONGKHEM_MODULE_DATA = {
+
+    leaders:
+        loadModule("LEADER"),
+
+    population:
+        loadModule("POPULATION"),
+
+    household:
+        loadModule("HOUSEHOLD"),
+
+    complaint:
+        loadModule("COMPLAINT"),
+
+    service:
+        loadModule("SERVICE"),
+
+    project:
+        loadModule("PROJECT"),
+
+    environment:
+        loadModule("ENVIRONMENT"),
+
+    wetland:
+        loadModule("WETLAND"),
+
+    rice:
+        loadModule("RICE"),
+
+    statistics:
+        loadModule("STATISTICS")
+
+};
+
+
+/* =========================================================
+   ข้อมูลเก่าแบบ KEY เดิม
+   เผื่อระบบเดิมใช้ชื่อเหล่านี้
+   ========================================================= */
+
+window.RONGKHEM_OLD_KEYS = {
+
+    news:
+        "RONGKHEM_NEWS",
+
+    activities:
+        "RONGKHEM_ACTIVITIES",
+
+    complaints:
+        "RONGKHEM_COMPLAINTS",
+
+    services:
+        "RONGKHEM_SERVICES",
+
+    projects:
+        "RONGKHEM_PROJECTS",
+
+    wetland:
+        "RONGKHEM_WETLAND",
+
+    rice:
+        "RONGKHEM_RICE"
+
+};
+
+
+/* =========================================================
+   อ่าน JSON อย่างปลอดภัย
+   ========================================================= */
+
+function getJSON(
+    key,
+    fallback = []
+) {
+
+    try {
+
+        const value =
+            localStorage.getItem(key);
+
+        if (!value) {
+
+            return fallback;
+        }
+
+        const data =
+            JSON.parse(value);
+
+        return data;
+
+    } catch (e) {
+
+        return fallback;
+    }
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /&/g,
+        "&amp;"
+    )
+    .replace(
+        /</g,
+        "&lt;"
+    )
+    .replace(
+        />/g,
+        "&gt;"
+    )
+    .replace(
+        /"/g,
+        "&quot;"
+    )
+    .replace(
+        /'/g,
+        "&#039;"
+    );
+
+}
+
+
+/* =========================================================
+   เรียกข้อมูลสถิติ
+   ========================================================= */
+
+function getDashboardStats() {
 
     return {
-        ...DEFAULT_LEADER
+
+        population:
+            RONGKHEM_DATA.population.total,
+
+        male:
+            RONGKHEM_DATA.population.male,
+
+        female:
+            RONGKHEM_DATA.population.female,
+
+        households:
+            RONGKHEM_DATA.households.total,
+
+        elderly:
+            RONGKHEM_DATA.survey.elderly60Plus,
+
+        elderlyPercent:
+            RONGKHEM_DATA.survey.elderlyPercent,
+
+        vulnerable:
+            RONGKHEM_DATA.survey.vulnerableSelections,
+
+        disabled:
+            RONGKHEM_DATA.survey.disabled,
+
+        chronic:
+            RONGKHEM_DATA.survey.chronicDisease,
+
+        survey:
+            RONGKHEM_DATA.survey.respondents
+
     };
+
 }
 
 
 /* =========================================================
-   LOAD LEADER
+   สำคัญ:
+   ห้ามลบ RONGKHEM_DASHBOARD_DATA
    ========================================================= */
 
-function loadLeader() {
-
-    const settings =
-        getSettings();
-
-
-    if (
-        $("leaderName")
-    ) {
-
-        $("leaderName")
-            .textContent =
-            settings.name;
-    }
-}
-
-
-/* =========================================================
-   LEADER PHOTO
-   ========================================================= */
-
-function loadLeaderPhoto() {
-
-    const photo =
-        localStorage.getItem(
-            "RONGKHEM_LEADER_PHOTO"
-        );
-
-
-    const box =
-        $("profilePic");
-
-
-    if (
-        !box ||
-        !photo
-    ) {
-
-        return;
-    }
-
-
-    box.innerHTML =
-        `
-        <img
-            src="${escapeHTML(photo)}"
-            alt="ผู้ใหญ่บ้าน"
-            style="
-                width:100%;
-                height:100%;
-                object-fit:cover;
-                border-radius:50%;
-                display:block;
-            "
-        >
-        `;
-}
-
-
-/* =========================================================
-   แก้ชื่อผู้ใหญ่บ้านเก่า
-   ========================================================= */
-
-function normalizeLeaderName() {
-
-    const correctName =
-        "นายศักรนนทน์ ขัติย์วงศ์";
-
-
-    const settings =
-        getJSON(
-            "RONGKHEM_SETTINGS",
-            null
-        );
-
-
-    if (
-        !settings ||
-        typeof settings !==
-        "object"
-    ) {
-
-        saveJSON(
-            "RONGKHEM_SETTINGS",
-            {
-                ...DEFAULT_LEADER,
-                name:
-                    correctName
-            }
-        );
-
-        return;
-    }
-
-
-    /*
-      ถ้าเป็นชื่อเก่าที่เคยบันทึกไว้
-      ให้แก้เป็นชื่อปัจจุบัน
-    */
-
-    const oldNames = [
-
-        "นายศักรนนท์ ขัติ์วงศ์",
-
-        "นายศักรนนท์ ขัติย์วงศ์",
-
-        "นายศักรนนท์ ขัติ์วงศ์"
-
-    ];
-
-
-    if (
-        oldNames.includes(
-            settings.name
-        )
-    ) {
-
-        settings.name =
-            correctName;
-
-
-        saveJSON(
-            "RONGKHEM_SETTINGS",
-            settings
-        );
-    }
-
-
-    if (
-        $("leaderName")
-    ) {
-
-        $("leaderName")
-            .textContent =
-            correctName;
-    }
-}
-
-
-/* =========================================================
-   CLOCK
-   ========================================================= */
-
-function updateClock() {
-
-    const now =
-        new Date();
-
-
-    const time =
-        now.toLocaleTimeString(
-            "th-TH",
-            {
-                hour:
-                    "2-digit",
-
-                minute:
-                    "2-digit",
-
-                second:
-                    "2-digit",
-
-                hour12:
-                    false
-            }
-        );
-
-
-    const date =
-        now.toLocaleDateString(
-            "th-TH",
-            {
-                weekday:
-                    "long",
-
-                day:
-                    "numeric",
-
-                month:
-                    "long",
-
-                year:
-                    "numeric"
-            }
-        );
-
-
-    if (
-        $("clock")
-    ) {
-
-        $("clock")
-            .textContent =
-            time;
-    }
-
-
-    if (
-        $("date")
-    ) {
-
-        $("date")
-            .textContent =
-            date;
-    }
-}
-
-
-/* =========================================================
-   สร้างข้อมูลตัวอย่างแจ้งเตือนครั้งแรก
-   ========================================================= */
-
-function initializeDefaultData() {
-
-    const alertKey =
-        STORAGE_KEYS.alert;
-
-
-    const current =
-        localStorage.getItem(
-            alertKey
-        );
-
-
-    if (
-        current === null
-    ) {
-
-        saveJSON(
-            alertKey,
-            DEFAULT_ALERTS
-        );
-    }
-
-
-    /*
-      สร้าง storage ว่างสำหรับเมนูอื่น
-      เฉพาะกรณียังไม่มี key
-    */
-
-    Object.keys(
-        STORAGE_KEYS
-    ).forEach(
-        key => {
-
-            const storage =
-                STORAGE_KEYS[key];
-
-
-            if (
-                localStorage.getItem(
-                    storage
-                ) === null
-            ) {
-
-                saveJSON(
-                    storage,
-                    DEFAULT_DATA[key]
-                    || []
-                );
-            }
-        }
-    );
-}
-
-
-/* =========================================================
-   เรียกเริ่มต้นข้อมูล
-   ========================================================= */
-
-initializeDefaultData();
-
-
-/* =========================================================
-   จบ DATA.JS
-   ========================================================= */
+console.log(
+    "✓ RONGKHEM DATA RECOVERY READY"
+);
+
+console.log(
+    "ประชาชน:",
+    RONGKHEM_DATA.population.total
+);
+
+console.log(
+    "ครัวเรือน:",
+    RONGKHEM_DATA.households.total
+);
+
+console.log(
+    "ผู้สูงอายุ:",
+    RONGKHEM_DATA.survey.elderly60Plus
+);
+
+console.log(
+    "ชื่อผู้ใหญ่บ้าน:",
+    RONGKHEM_DATA.leader.name
+);
