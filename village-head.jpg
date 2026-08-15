@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+
+<meta name="description"
+content="ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา">
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --primary:#123c69;
+    --primary2:#0b2545;
+    --gold:#d7a72c;
+    --bg:#f3f6fa;
+    --card:#ffffff;
+    --text:#1f2937;
+    --muted:#64748b;
+    --success:#16a34a;
+    --danger:#dc2626;
+    --warning:#f59e0b;
+    --border:#e2e8f0;
+    --shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+body{
+    font-family:
+    "Noto Sans Thai",
+    "Tahoma",
+    Arial,
+    sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:260px;
+    height:100vh;
+    background:
+    linear-gradient(
+        180deg,
+        var(--primary2),
+        var(--primary)
+    );
+    color:white;
+    padding:20px 14px;
+    z-index:1000;
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+    padding:10px 5px 25px;
+    border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+.logo-icon{
+    font-size:42px;
+}
+
+.logo h1{
+    font-size:19px;
+    margin-top:8px;
+}
+
+.logo p{
+    font-size:12px;
+    opacity:.75;
+    margin-top:4px;
+}
+
+.menu{
+    margin-top:20px;
+}
+
+.menu-title{
+    font-size:11px;
+    opacity:.55;
+    padding:12px 12px 7px;
+}
+
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:white;
+    text-decoration:none;
+    padding:12px 14px;
+    margin:4px 0;
+    border-radius:10px;
+    font-size:14px;
+    transition:.2s;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:rgba(255,255,255,.13);
+}
+
+.menu-icon{
+    width:24px;
+    text-align:center;
+    font-size:18px;
+}
+
+.security-menu{
+    margin-top:20px;
+    padding-top:15px;
+    border-top:1px solid rgba(255,255,255,.15);
+}
+
+.login-btn{
+    display:block;
+    background:var(--gold);
+    color:#172033;
+    text-align:center;
+    padding:12px;
+    border-radius:10px;
+    text-decoration:none;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-left:260px;
+    min-height:100vh;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    position:sticky;
+    top:0;
+    z-index:900;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    padding:13px 25px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.top-title{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.top-subtitle{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:3px;
+}
+
+.clock{
+    text-align:right;
+}
+
+.clock-time{
+    font-size:22px;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.clock-date{
+    font-size:11px;
+    color:var(--muted);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+    padding:25px;
+    max-width:1600px;
+    margin:auto;
+}
+
+.hero{
+    background:
+    linear-gradient(
+        120deg,
+        #0b2545,
+        #164d80
+    );
+    color:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.hero:after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,.05);
+    right:-80px;
+    top:-100px;
+}
+
+.hero-label{
+    color:#f6d36a;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.hero h2{
+    font-size:30px;
+    margin:7px 0;
+}
+
+.hero p{
+    font-size:14px;
+    opacity:.85;
+}
+
+.hero-location{
+    margin-top:18px;
+    font-size:13px;
+}
+
+/* =========================
+   STAT CARDS
+========================= */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+    repeat(4,1fr);
+    gap:16px;
+    margin-top:20px;
+}
+
+.stat{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:20px;
+    box-shadow:var(--shadow);
+}
+
+.stat-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.stat-icon{
+    width:45px;
+    height:45px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef4fb;
+    border-radius:12px;
+    font-size:23px;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.stat-value{
+    font-size:29px;
+    font-weight:800;
+    margin-top:10px;
+    color:var(--primary);
+}
+
+.stat-unit{
+    font-size:12px;
+    color:var(--muted);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    margin-top:25px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+}
+
+.section-title{
+    font-size:19px;
+    font-weight:800;
+}
+
+.section-more{
+    font-size:12px;
+    color:var(--primary);
+    text-decoration:none;
+}
+
+/* =========================
+   LEADERS
+========================= */
+
+.leaders{
+    display:grid;
+    grid-template-columns:
+    repeat(3,1fr);
+    gap:18px;
+}
+
+.leader-card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    text-align:center;
+}
+
+.leader-photo{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    object-position:center top;
+    background:#e5e7eb;
+}
+
+.leader-body{
+    padding:18px;
+}
+
+.leader-position{
+    color:var(--primary);
+    font-size:13px;
+    font-weight:bold;
+}
+
+.leader-name{
+    font-size:17px;
+    font-weight:800;
+    margin-top:6px;
+}
+
+.phone{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    margin-top:13px;
+    background:#eaf7ee;
+    color:#15803d;
+    padding:9px 17px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:bold;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid-2{
+    display:grid;
+    grid-template-columns:
+    repeat(2,1fr);
+    gap:18px;
+}
+
+.grid-3{
+    display:grid;
+    grid-template-columns:
+    repeat(3,1fr);
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:20px;
+    box-shadow:var(--shadow);
+}
+
+.card-title{
+    font-size:16px;
+    font-weight:800;
+    margin-bottom:16px;
+}
+
+/* =========================
+   GENDER CHART
+========================= */
+
+.gender-row{
+    margin-bottom:16px;
+}
+
+.gender-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    margin-bottom:7px;
+}
+
+.bar{
+    width:100%;
+    height:10px;
+    background:#edf2f7;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.bar-fill{
+    height:100%;
+    border-radius:99px;
+}
+
+.male{
+    width:49.1%;
+    background:#3978b9;
+}
+
+.female{
+    width:50.9%;
+    background:#b85c8a;
+}
+
+/* =========================
+   MINI CARDS
+========================= */
+
+.mini-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(2,1fr);
+    gap:12px;
+}
+
+.mini{
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px;
+}
+
+.mini-icon{
+    font-size:24px;
+}
+
+.mini-label{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:6px;
+}
+
+.mini-value{
+    font-size:22px;
+    font-weight:800;
+    margin-top:2px;
+}
+
+/* =========================
+   HEALTH
+========================= */
+
+.health-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.health-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:11px;
+    background:#f8fafc;
+    border-radius:10px;
+}
+
+.rank{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--primary);
+    color:white;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.health-name{
+    font-size:13px;
+}
+
+/* =========================
+   COMMUNITY
+========================= */
+
+.community-card{
+    min-height:210px;
+}
+
+.community-icon{
+    font-size:34px;
+}
+
+.community-title{
+    font-size:16px;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.community-text{
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+    margin-top:8px;
+}
+
+/* =========================
+   NEWS
+========================= */
+
+.news-item{
+    padding:13px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.news-item:last-child{
+    border-bottom:none;
+}
+
+.news-date{
+    font-size:11px;
+    color:var(--muted);
+}
+
+.news-title{
+    font-size:14px;
+    font-weight:bold;
+    margin-top:4px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    margin-top:35px;
+    background:var(--primary2);
+    color:white;
+    padding:25px;
+    text-align:center;
+}
+
+.footer-title{
+    font-weight:bold;
+}
+
+.footer-text{
+    font-size:12px;
+    opacity:.7;
+    margin-top:6px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-menu{
+    display:none;
+}
+
+@media(max-width:1100px){
+
+    .stats{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .leaders{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+    .grid-3{
+        grid-template-columns:
+        repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .sidebar{
+        transform:translateX(-100%);
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-left:0;
+    }
+
+    .mobile-menu{
+        display:block;
+        font-size:25px;
+        border:none;
+        background:none;
+        cursor:pointer;
+    }
+
+    .topbar{
+        padding:12px 16px;
+    }
+
+    .top-title{
+        font-size:15px;
+    }
+
+    .clock{
+        display:none;
+    }
+
+    .content{
+        padding:15px;
+    }
+
+    .hero{
+        padding:22px;
+    }
+
+    .hero h2{
+        font-size:23px;
+    }
+
+    .stats{
+        grid-template-columns:
+        repeat(2,1fr);
+        gap:10px;
+    }
+
+    .stat{
+        padding:15px;
+    }
+
+    .stat-value{
+        font-size:23px;
+    }
+
+    .leaders{
+        grid-template-columns:1fr;
+    }
+
+    .leader-photo{
+        height:360px;
+    }
+
+    .grid-2,
+    .grid-3{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:450px){
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .stat-label{
+        font-size:11px;
+    }
+
+    .stat-value{
+        font-size:20px;
+    }
+
+    .leader-photo{
+        height:390px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="logo">
+        <div class="logo-icon">🏛️</div>
+        <h1>RONGKHEM e-VILLAGE</h1>
+        <p>ที่ทำการผู้ใหญ่บ้านออนไลน์</p>
+    </div>
+
+    <nav class="menu">
+
+        <div class="menu-title">
+            MAIN MENU
+        </div>
+
+        <a href="#" class="active">
+            <span class="menu-icon">📊</span>
+            Dashboard
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🏘️</span>
+            ข้อมูลหมู่บ้าน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">👥</span>
+            ประชากร
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🏠</span>
+            ครัวเรือน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">👑</span>
+            ผู้นำหมู่บ้าน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🏛️</span>
+            องค์กรชุมชน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🏥</span>
+            สุขภาพชุมชน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">♻️</span>
+            ขยะและเตาเผา
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🌾</span>
+            เศรษฐกิจชุมชน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🛕</span>
+            วัฒนธรรม
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">📜</span>
+            ประวัติหมู่บ้าน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">📷</span>
+            กิจกรรม
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">🏆</span>
+            แฟ้มผลงาน
+        </a>
+
+        <a href="#">
+            <span class="menu-icon">📢</span>
+            ข่าวสาร
+        </a>
+
+        <div class="security-menu">
+
+            <div class="menu-title">
+                SECURITY
+            </div>
+
+            <a href="login.html" class="login-btn">
+                🔐 เข้าสู่ระบบผู้ใหญ่บ้าน
+            </a>
+
+        </div>
+
+    </nav>
+
+</aside>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+    <header class="topbar">
+
+        <div style="display:flex;align-items:center;gap:12px;">
+
+            <button
+                class="mobile-menu"
+                onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <div>
+                <div class="top-title">
+                    📊 ศูนย์ข้อมูลหมู่บ้าน
+                </div>
+
+                <div class="top-subtitle">
+                    บ้านร่องเข็ม หมู่ที่ 6
+                </div>
+            </div>
+
+        </div>
+
+        <div class="clock">
+
+            <div
+                class="clock-time"
+                id="clock">
+                00:00:00
+            </div>
+
+            <div
+                class="clock-date"
+                id="date">
+                -
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <section class="content">
+
+
+        <!-- =========================
+             HERO
+        ========================= -->
+
+        <div class="hero">
+
+            <div class="hero-label">
+                🏛️ RONGKHEM e-VILLAGE
+            </div>
+
+            <h2>
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
+            </h2>
+
+            <p>
+                ระบบข้อมูลชุมชนอัจฉริยะ
+                บ้านร่องเข็ม หมู่ที่ 6
+            </p>
+
+            <div class="hero-location">
+                📍 ตำบลจำป่าหวาย
+                อำเภอเมืองพะเยา
+                จังหวัดพะเยา
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             STATISTICS
+        ========================= -->
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        ประชากรทั้งหมด
+                    </div>
+
+                    <div class="stat-icon">
+                        👥
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    960
+                </div>
+
+                <div class="stat-unit">
+                    คน
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        ครัวเรือน
+                    </div>
+
+                    <div class="stat-icon">
+                        🏠
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    352
+                </div>
+
+                <div class="stat-unit">
+                    ครัวเรือน
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        ชาย
+                    </div>
+
+                    <div class="stat-icon">
+                        👨
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    471
+                </div>
+
+                <div class="stat-unit">
+                    คน
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-top">
+
+                    <div class="stat-label">
+                        หญิง
+                    </div>
+
+                    <div class="stat-icon">
+                        👩
+                    </div>
+
+                </div>
+
+                <div class="stat-value">
+                    489
+                </div>
+
+                <div class="stat-unit">
+                    คน
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             LEADERS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div class="section-title">
+                    👑 ผู้นำและเจ้าหน้าที่ประจำหมู่บ้าน
+                </div>
+
+            </div>
+
+
+            <div class="leaders">
+
+
+                <!-- VILLAGE HEAD -->
+
+                <article class="leader-card">
+
+                    <img
+                        class="leader-photo"
+                        src="assets/leaders/village-head.jpg"
+                        alt="ผู้ใหญ่บ้าน">
+
+                    <div class="leader-body">
+
+                        <div class="leader-position">
+                            👑 ผู้ใหญ่บ้าน
+                        </div>
+
+                        <div class="leader-name">
+                            นายศักรนนทน์ ขัติย์วงศ์
+                        </div>
+
+                        <a
+                            class="phone"
+                            href="tel:0801202529">
+                            📞 080-120-2529
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ASSISTANT 1 -->
+
+                <article class="leader-card">
+
+                    <img
+                        class="leader-photo"
+                        src="assets/leaders/assistant-1.jpg"
+                        alt="ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1">
+
+                    <div class="leader-body">
+
+                        <div class="leader-position">
+                            👔 ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1
+                        </div>
+
+                        <div class="leader-name">
+                            นายจักร์กวัส ประพลรัตนัง
+                        </div>
+
+                        <a
+                            class="phone"
+                            href="tel:0851399849">
+                            📞 085-139-9849
+                        </a>
+
+                    </div>
+
+                </article>
+
+
+                <!-- ASSISTANT 2 -->
+
+                <article class="leader-card">
+
+                    <img
+                        class="leader-photo"
+                        src="assets/leaders/assistant-2.jpg"
+                        alt="ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2">
+
+                    <div class="leader-body">
+
+                        <div class="leader-position">
+                            👔 ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2
+                        </div>
+
+                        <div class="leader-name">
+                            น.ส.สุภาพร วังมูล
+                        </div>
+
+                        <a
+                            class="phone"
+                            href="tel:0989800089">
+                            📞 098-980-0089
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             POPULATION
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div class="section-title">
+                    👥 ภาพรวมประชากร
+                </div>
+
+            </div>
+
+
+            <div class="grid-2">
+
+
+                <div class="card">
+
+                    <div class="card-title">
+                        👨👩 ชาย / หญิง
+                    </div>
+
+                    <div class="gender-row">
+
+                        <div class="gender-head">
+                            <span>👨 ชาย</span>
+                            <strong>471 คน</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill male"></div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="gender-row">
+
+                        <div class="gender-head">
+                            <span>👩 หญิง</span>
+                            <strong>489 คน</strong>
+                        </div>
+
+                        <div class="bar">
+                            <div class="bar-fill female"></div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-title">
+                        📊 กลุ่มประชากร
+                    </div>
+
+                    <div class="mini-grid">
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                👶
+                            </div>
+
+                            <div class="mini-label">
+                                เด็กและเยาวชน
+                            </div>
+
+                            <div class="mini-value">
+                                —
+                            </div>
+                        </div>
+
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                👴
+                            </div>
+
+                            <div class="mini-label">
+                                ผู้สูงอายุ
+                            </div>
+
+                            <div class="mini-value">
+                                —
+                            </div>
+                        </div>
+
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                ♿
+                            </div>
+
+                            <div class="mini-label">
+                                กลุ่มเปราะบาง
+                            </div>
+
+                            <div class="mini-value">
+                                —
+                            </div>
+                        </div>
+
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                🏠
+                            </div>
+
+                            <div class="mini-label">
+                                ครัวเรือน
+                            </div>
+
+                            <div class="mini-value">
+                                352
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HEALTH
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div class="section-title">
+                    🏥 สุขภาพชุมชน
+                </div>
+
+            </div>
+
+
+            <div class="grid-2">
+
+
+                <div class="card">
+
+                    <div class="card-title">
+                        📊 ปัญหาสุขภาพที่สำคัญ
+                    </div>
+
+                    <div class="health-list">
+
+                        <div class="health-item">
+                            <div class="rank">1</div>
+                            <div class="health-name">
+                                ความดันโลหิต
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="rank">2</div>
+                            <div class="health-name">
+                                ไขมันในเลือดสูง
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="rank">3</div>
+                            <div class="health-name">
+                                ปวดเมื่อยร่างกาย
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="rank">4</div>
+                            <div class="health-name">
+                                เบาหวาน
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="rank">5</div>
+                            <div class="health-name">
+                                สูบบุหรี่
+                            </div>
+                        </div>
+
+                        <div class="health-item">
+                            <div class="rank">6</div>
+                            <div class="health-name">
+                                ดื่มแอลกอฮอล์
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-title">
+                        🩺 สุขภาพภาพรวม
+                    </div>
+
+                    <div class="mini-grid">
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                👩‍⚕️
+                            </div>
+
+                            <div class="mini-label">
+                                อสม.
+                            </div>
+
+                            <div class="mini-value">
+                                26
+                            </div>
+                        </div>
+
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                💊
+                            </div>
+
+                            <div class="mini-label">
+                                กลุ่มเฝ้าระวัง
+                            </div>
+
+                            <div class="mini-value">
+                                —
+                            </div>
+                        </div>
+
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                🩺
+                            </div>
+
+                            <div class="mini-label">
+                                กิจกรรมสุขภาพ
+                            </div>
+
+                            <div class="mini-value">
+                                —
+                            </div>
+                        </div>
+
+
+                        <div class="mini">
+                            <div class="mini-icon">
+                                📋
+                            </div>
+
+                            <div class="mini-label">
+                                โครงการ
+                            </div>
+
+                            <div class="mini-value">
+                                1
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMMUNITY
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div class="section-title">
+                    🏘️ ข้อมูลชุมชน
+                </div>
+
+            </div>
+
+
+            <div class="grid-3">
+
+
+                <div class="card community-card">
+
+                    <div class="community-icon">
+                        🌾
+                    </div>
+
+                    <div class="community-title">
+                        เศรษฐกิจชุมชน
+                    </div>
+
+                    <div class="community-text">
+                        เกษตรกรรมเป็นอาชีพหลัก
+                        มีการปลูกข้าว ข้าวโพด
+                        กระเทียม และหอมแดง
+                    </div>
+
+                </div>
+
+
+                <div class="card community-card">
+
+                    <div class="community-icon">
+                        ♻️
+                    </div>
+
+                    <div class="community-title">
+                        ขยะและสิ่งแวดล้อม
+                    </div>
+
+                    <div class="community-text">
+                        มีระบบจัดการขยะชุมชน
+                        และมีเตาเผาขยะชุมชน
+                    </div>
+
+                </div>
+
+
+                <div class="card community-card">
+
+                    <div class="community-icon">
+                        🗺️
+                    </div>
+
+                    <div class="community-title">
+                        แผนที่ชุมชน
+                    </div>
+
+                    <div class="community-text">
+                        พื้นที่หมู่บ้าน
+                        13 ตารางกิโลเมตร
+                        หรือ 8,125 ไร่
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WEATHER / PM2.5
+        ========================= -->
+
+        <section class="section">
+
+            <div class="grid-2">
+
+
+                <div class="card">
+
+                    <div class="card-title">
+                        🌤️ สภาพอากาศ
+                    </div>
+
+                    <div style="
+                        font-size:40px;
+                        font-weight:800;
+                        color:var(--primary);
+                    ">
+                        —
+                    </div>
+
+                    <div style="
+                        color:var(--muted);
+                        font-size:13px;
+                        margin-top:5px;
+                    ">
+                        รอเชื่อมต่อข้อมูลสภาพอากาศจริง
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-title">
+                        🌫️ PM2.5
+                    </div>
+
+                    <div style="
+                        font-size:40px;
+                        font-weight:800;
+                        color:var(--primary);
+                    ">
+                        —
+                    </div>
+
+                    <div style="
+                        color:var(--muted);
+                        font-size:13px;
+                        margin-top:5px;
+                    ">
+                        รอเชื่อมต่อสถานีตรวจวัดจริง
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             NEWS
+        ========================= -->
+
+        <section class="section">
+
+            <div class="section-header">
+
+                <div class="section-title">
+                    📢 ข่าวสารและประกาศ
+                </div>
+
+                <a href="#" class="section-more">
+                    ดูทั้งหมด →
+                </a>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="news-item">
+
+                    <div class="news-date">
+                        ข่าวสารจากที่ทำการผู้ใหญ่บ้าน
+                    </div>
+
+                    <div class="news-title">
+                        ยังไม่มีประกาศใหม่
+                    </div>
+
+                </div>
+
+
+                <div class="news-item">
+
+                    <div class="news-date">
+                        ระบบ
+                    </div>
+
+                    <div class="news-title">
+                        RONGKHEM e-VILLAGE
+                        กำลังพัฒนาระบบข้อมูลชุมชน
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FOOTER
+        ========================= -->
+
+        <footer class="footer">
+
+            <div class="footer-title">
+                🏛️ RONGKHEM e-VILLAGE
+            </div>
+
+            <div class="footer-text">
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
+                บ้านร่องเข็ม หมู่ที่ 6
+                ตำบลจำป่าหวาย
+                อำเภอเมืองพะเยา
+                จังหวัดพะเยา
+            </div>
+
+            <div class="footer-text">
+                ระบบข้อมูลชุมชนอัจฉริยะ
+            </div>
+
+        </footer>
+
+
+    </section>
+
+</main>
+
+
+<script>
+
+/* =========================
+   DIGITAL CLOCK
+========================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    const time =
+        now.toLocaleTimeString(
+            "th-TH",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:false
+            }
+        );
+
+    const date =
+        now.toLocaleDateString(
+            "th-TH",
+            {
+                weekday:"long",
+                year:"numeric",
+                month:"long",
+                day:"numeric"
+            }
+        );
+
+    document.getElementById("clock")
+        .textContent = time;
+
+    document.getElementById("date")
+        .textContent = date;
+
+}
+
+updateClock();
+
+setInterval(updateClock,1000);
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+function toggleMenu(){
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+</script>
+
+</body>
+</html>
