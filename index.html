@@ -1,136 +1,3011 @@
 <!doctype html>
 <html lang="th">
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RONGKHEM e-VILLAGE OFFICE — ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
+
+<meta
+  name="theme-color"
+  content="#073d7e"
+>
+
+<title>
+RONGKHEM e-VILLAGE OFFICE — ที่ทำการผู้ใหญ่บ้านออนไลน์
+</title>
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-:root{--blue:#06458f;--blue2:#0b63bd;--ink:#17324d;--muted:#6b7f92;--line:#e5edf5;--bg:#f5f8fc;--white:#fff;--green:#239b57;--red:#e43e43}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Kanit,sans-serif;color:var(--ink)}
-button{font-family:inherit;cursor:pointer}
-.top{background:#fff;border-bottom:1px solid #dfe8f1;padding:12px 28px;display:flex;align-items:center;gap:18px}
-.logo{width:70px;height:70px;border-radius:50%;background:linear-gradient(145deg,#eaf5ff,#cfe7ff);display:grid;place-items:center;font-size:37px;border:2px solid #d2e4f6}
-.brand{flex:1}.brand h1{margin:0;color:#084790;font-size:29px;font-weight:700}.brand h2{margin:0;font-size:19px}.brand p{margin:2px 0 0;color:#60758a;font-size:13px}
-.topstats{display:flex;gap:10px}.statbox{background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 16px;min-width:125px;box-shadow:0 2px 10px #0d3b6510}.statbox b{display:block;font-size:17px}.statbox small{color:var(--muted)}
-.login{background:#084a98;color:white;border:0;border-radius:10px;padding:12px 19px;font-size:14px;font-weight:600}
-.nav{background:#073d7e;color:#fff;display:flex;gap:6px;padding:7px 14px;overflow:auto;white-space:nowrap}.nav button{border:0;background:transparent;color:#fff;padding:10px 15px;border-radius:7px;font-size:14px}.nav button:hover,.nav button.active{background:#0c63bd}
-.container{max-width:1500px;margin:auto;padding:12px}
-.gridtop{display:grid;grid-template-columns:2fr 1.1fr;gap:12px}
-.hero{min-height:245px;border-radius:12px;overflow:hidden;position:relative;background:linear-gradient(90deg,#123d68dd,#123d6855),url('design-reference.png') center/cover;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff}.hero h2{font-size:31px;margin:0;text-shadow:0 2px 6px #000}.hero p{font-size:17px}
-.card{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 3px 14px #0b396c0b;padding:14px}.cardtitle{display:flex;align-items:center;justify-content:space-between;color:#084a98;font-size:20px;font-weight:600;margin-bottom:10px}.cardtitle small{font-size:12px;color:#0c63bd}
-.announce .row{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid #edf1f5;font-size:13px}.date{background:#0b5cad;color:#fff;border-radius:6px;padding:5px 7px;min-width:70px;text-align:center}
-.mid{display:grid;grid-template-columns:1.25fr 1fr 1.15fr;gap:12px;margin-top:12px}
-.leaders{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.leader{border:1px solid var(--line);border-radius:10px;padding:8px;text-align:center}.portrait{height:180px;border-radius:8px;background:linear-gradient(145deg,#eaf2fa,#d7e5f3);display:grid;place-items:center;font-size:80px}.badge{display:inline-block;background:#084a98;color:#fff;padding:3px 9px;border-radius:5px;font-size:11px;margin:6px 0}.leader b{display:block;color:#06458f;font-size:14px}.leader small{color:#647b91}
-.activity{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #edf1f5}.thumb{width:92px;height:65px;border-radius:7px;background:linear-gradient(135deg,#b8d8f0,#e9f3fb);display:grid;place-items:center;font-size:28px;flex:none}.activity b{font-size:13px}.activity small{display:block;color:#687d91;font-size:11px}
-.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px}.metric{border:1px solid var(--line);border-radius:10px;padding:13px;display:flex;align-items:center;gap:10px}.metric .ico{width:42px;height:42px;border-radius:50%;background:#eef7ff;display:grid;place-items:center;font-size:22px}.metric b{font-size:24px;color:#06458f;display:block;line-height:1}.metric small{color:#6c8194}
-.services{margin-top:12px}.servicegrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.service{border:1px solid var(--line);border-radius:11px;padding:16px;text-align:center;background:#fff}.service span{font-size:30px}.service b{display:block;margin-top:5px}
-.bottom{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}.contact{display:flex;align-items:center;gap:20px}.contactpic{width:145px;height:170px;border-radius:10px;background:linear-gradient(145deg,#d9e9f7,#f5f9fd);display:grid;place-items:center;font-size:70px}.social{background:#073d7e;color:#fff;border-radius:10px;padding:18px;text-align:center}
-footer{margin-top:14px;background:#062f64;color:#fff;padding:18px 25px;display:flex;justify-content:space-between;gap:20px;font-size:12px}
-.modal{position:fixed;inset:0;background:#001a3338;display:none;align-items:center;justify-content:center;padding:18px;z-index:20}.modal.open{display:flex}.modalbox{background:#fff;border-radius:16px;max-width:760px;width:100%;max-height:90vh;overflow:auto;padding:22px}.modalhead{display:flex;justify-content:space-between;align-items:center}.close{border:0;background:#eef3f8;border-radius:50%;width:35px;height:35px;font-size:20px}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{margin:10px 0}.field label{display:block;font-size:13px;margin-bottom:5px}.field input,.field textarea,.field select{width:100%;padding:10px;border:1px solid #ccd9e5;border-radius:8px;font:inherit}.field textarea{min-height:100px}.save{background:#084a98;color:#fff;border:0;border-radius:8px;padding:10px 18px}
-@media(max-width:1100px){.topstats{display:none}.mid{grid-template-columns:1fr}.gridtop{grid-template-columns:1fr}.servicegrid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:650px){.top{padding:9px 12px}.logo{width:50px;height:50px;font-size:25px}.brand h1{font-size:18px}.brand h2{font-size:14px}.brand p{font-size:9px}.login{padding:8px 10px;font-size:11px}.leaders{grid-template-columns:1fr}.servicegrid{grid-template-columns:1fr 1fr}.bottom{grid-template-columns:1fr}.hero{min-height:190px}.hero h2{font-size:23px}footer{display:block}.formrow{grid-template-columns:1fr}}
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+  --blue:#06458f;
+  --blue2:#0b63bd;
+  --ink:#17324d;
+  --muted:#6b7f92;
+  --line:#e5edf5;
+  --bg:#f5f8fc;
+  --white:#fff;
+  --green:#239b57;
+  --red:#e43e43;
+  --dark:#062f64;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans Thai",
+    sans-serif;
+  color:var(--ink);
+}
+
+button,
+input,
+textarea,
+select{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   TOP
+===================================================== */
+
+.top{
+  background:#fff;
+  border-bottom:1px solid #dfe8f1;
+  padding:12px 28px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.logo{
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  background:
+    linear-gradient(
+      145deg,
+      #eaf5ff,
+      #cfe7ff
+    );
+  display:grid;
+  place-items:center;
+  font-size:37px;
+  border:2px solid #d2e4f6;
+}
+
+.brand{
+  flex:1;
+}
+
+.brand h1{
+  margin:0;
+  color:#084790;
+  font-size:29px;
+  font-weight:700;
+}
+
+.brand h2{
+  margin:0;
+  font-size:19px;
+}
+
+.brand p{
+  margin:2px 0 0;
+  color:#60758a;
+  font-size:13px;
+}
+
+
+/* =====================================================
+   TOP STATS
+===================================================== */
+
+.topstats{
+  display:flex;
+  gap:10px;
+}
+
+.statbox{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:9px 16px;
+  min-width:125px;
+  box-shadow:0 2px 10px #0d3b6510;
+}
+
+.statbox b{
+  display:block;
+  font-size:17px;
+}
+
+.statbox small{
+  color:var(--muted);
+}
+
+
+/* =====================================================
+   LOGIN BUTTON
+===================================================== */
+
+.login{
+  background:#084a98;
+  color:white;
+  border:0;
+  border-radius:10px;
+  padding:12px 19px;
+  font-size:14px;
+  font-weight:600;
+}
+
+.login:hover{
+  background:#0b63bd;
+}
+
+
+/* =====================================================
+   NAV
+===================================================== */
+
+.nav{
+  background:#073d7e;
+  color:#fff;
+  display:flex;
+  gap:6px;
+  padding:7px 14px;
+  overflow:auto;
+  white-space:nowrap;
+}
+
+.nav button{
+  border:0;
+  background:transparent;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:7px;
+  font-size:14px;
+}
+
+.nav button:hover,
+.nav button.active{
+  background:#0c63bd;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container{
+  max-width:1500px;
+  margin:auto;
+  padding:12px;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.gridtop{
+  display:grid;
+  grid-template-columns:2fr 1.1fr;
+  gap:12px;
+}
+
+.hero{
+  min-height:245px;
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+
+  background:
+    linear-gradient(
+      90deg,
+      #123d68dd,
+      #123d6855
+    ),
+    linear-gradient(
+      135deg,
+      #1e5b91,
+      #6ca9d7
+    );
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:#fff;
+}
+
+.hero h2{
+  font-size:31px;
+  margin:0;
+  text-shadow:0 2px 6px #000;
+}
+
+.hero p{
+  font-size:17px;
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 3px 14px #0b396c0b;
+  padding:14px;
+}
+
+.cardtitle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:#084a98;
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.cardtitle small{
+  font-size:12px;
+  color:#0c63bd;
+}
+
+
+/* =====================================================
+   ANNOUNCEMENT
+===================================================== */
+
+.announce .row{
+  display:flex;
+  gap:10px;
+  padding:8px 0;
+  border-bottom:1px solid #edf1f5;
+  font-size:13px;
+}
+
+.date{
+  background:#0b5cad;
+  color:#fff;
+  border-radius:6px;
+  padding:5px 7px;
+  min-width:70px;
+  text-align:center;
+}
+
+
+/* =====================================================
+   MID
+===================================================== */
+
+.mid{
+  display:grid;
+  grid-template-columns:1.25fr 1fr 1.15fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+
+/* =====================================================
+   LEADERS
+===================================================== */
+
+.leaders{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+}
+
+.leader{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:8px;
+  text-align:center;
+}
+
+.portrait{
+  height:180px;
+  border-radius:8px;
+  background:
+    linear-gradient(
+      145deg,
+      #eaf2fa,
+      #d7e5f3
+    );
+  display:grid;
+  place-items:center;
+  font-size:80px;
+}
+
+.badge{
+  display:inline-block;
+  background:#084a98;
+  color:#fff;
+  padding:3px 9px;
+  border-radius:5px;
+  font-size:11px;
+  margin:6px 0;
+}
+
+.leader b{
+  display:block;
+  color:#06458f;
+  font-size:14px;
+}
+
+.leader small{
+  color:#647b91;
+}
+
+
+/* =====================================================
+   ACTIVITY
+===================================================== */
+
+.activity{
+  display:flex;
+  gap:10px;
+  padding:9px 0;
+  border-bottom:1px solid #edf1f5;
+}
+
+.thumb{
+  width:92px;
+  height:65px;
+  border-radius:7px;
+  background:
+    linear-gradient(
+      135deg,
+      #b8d8f0,
+      #e9f3fb
+    );
+  display:grid;
+  place-items:center;
+  font-size:28px;
+  flex:none;
+}
+
+.activity b{
+  font-size:13px;
+}
+
+.activity small{
+  display:block;
+  color:#687d91;
+  font-size:11px;
+}
+
+
+/* =====================================================
+   METRICS
+===================================================== */
+
+.metrics{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+
+.metric{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:13px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.metric .ico{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#eef7ff;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+}
+
+.metric b{
+  font-size:24px;
+  color:#06458f;
+  display:block;
+  line-height:1;
+}
+
+.metric small{
+  color:#6c8194;
+}
+
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services{
+  margin-top:12px;
+}
+
+.servicegrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+}
+
+.service{
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:16px;
+  text-align:center;
+  background:#fff;
+  transition:.2s;
+}
+
+.service:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px #0b396c12;
+}
+
+.service span{
+  font-size:30px;
+}
+
+.service b{
+  display:block;
+  margin-top:5px;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
+
+.contact{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.contactpic{
+  width:145px;
+  height:170px;
+  border-radius:10px;
+  background:
+    linear-gradient(
+      145deg,
+      #d9e9f7,
+      #f5f9fd
+    );
+  display:grid;
+  place-items:center;
+  font-size:70px;
+}
+
+.social{
+  background:#073d7e;
+  color:#fff;
+  border-radius:10px;
+  padding:18px;
+  text-align:center;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+  margin-top:14px;
+  background:#062f64;
+  color:#fff;
+  padding:18px 25px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  font-size:12px;
+}
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#001a3368;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:1000;
+  backdrop-filter:blur(4px);
+}
+
+.modal.open{
+  display:flex;
+}
+
+.modalbox{
+  background:#fff;
+  border-radius:18px;
+  max-width:760px;
+  width:100%;
+  max-height:90vh;
+  overflow:auto;
+  padding:22px;
+  box-shadow:0 25px 80px #0004;
+}
+
+.modalhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.close{
+  border:0;
+  background:#eef3f8;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  font-size:20px;
+}
+
+.formrow{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.field{
+  margin:10px 0;
+}
+
+.field label{
+  display:block;
+  font-size:13px;
+  margin-bottom:5px;
+  font-weight:600;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:11px;
+  border:1px solid #ccd9e5;
+  border-radius:8px;
+  font:inherit;
+  outline:none;
+}
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#0b63bd;
+  box-shadow:0 0 0 3px #0b63bd18;
+}
+
+.field textarea{
+  min-height:100px;
+}
+
+.save{
+  background:#084a98;
+  color:#fff;
+  border:0;
+  border-radius:8px;
+  padding:10px 18px;
+  font-weight:600;
+}
+
+.save:disabled{
+  opacity:.6;
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+.login-box{
+  max-width:430px;
+}
+
+.login-logo{
+  width:75px;
+  height:75px;
+  margin:0 auto 15px;
+  border-radius:22px;
+  background:
+    linear-gradient(
+      135deg,
+      #dbeafe,
+      #ccfbf1
+    );
+  display:grid;
+  place-items:center;
+  font-size:38px;
+}
+
+.login-title{
+  text-align:center;
+  color:#084a98;
+  margin:0;
+}
+
+.login-subtitle{
+  text-align:center;
+  color:#6b7f92;
+  font-size:13px;
+  margin:5px 0 20px;
+}
+
+.security{
+  background:#ecfdf5;
+  color:#166534;
+  border-radius:10px;
+  padding:10px;
+  font-size:12px;
+  text-align:center;
+  margin-bottom:18px;
+}
+
+.login-error{
+  display:none;
+  background:#fef2f2;
+  border:1px solid #fecaca;
+  color:#991b1b;
+  border-radius:9px;
+  padding:10px;
+  margin:10px 0;
+  font-size:13px;
+}
+
+.login-error.show{
+  display:block;
+}
+
+.login-success{
+  display:none;
+  background:#f0fdf4;
+  border:1px solid #bbf7d0;
+  color:#166534;
+  border-radius:9px;
+  padding:10px;
+  margin:10px 0;
+  font-size:13px;
+}
+
+.login-success.show{
+  display:block;
+}
+
+.login-submit{
+  width:100%;
+  padding:13px;
+  border:0;
+  border-radius:10px;
+  background:
+    linear-gradient(
+      135deg,
+      #084a98,
+      #0b63bd
+    );
+  color:#fff;
+  font-size:15px;
+  font-weight:700;
+}
+
+.login-submit:disabled{
+  opacity:.6;
+}
+
+
+/* =====================================================
+   ADMIN PANEL
+===================================================== */
+
+.admin-panel{
+  display:none;
+}
+
+.admin-panel.show{
+  display:block;
+}
+
+.admin-header{
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #134e4a
+    );
+  color:#fff;
+  border-radius:15px;
+  padding:22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:15px;
+}
+
+.admin-header h2{
+  margin:0 0 5px;
+}
+
+.admin-header p{
+  margin:0;
+  color:#cbd5e1;
+  font-size:13px;
+}
+
+.admin-user{
+  text-align:right;
+}
+
+.admin-user small{
+  display:block;
+  color:#cbd5e1;
+}
+
+.logout-btn{
+  margin-top:7px;
+  border:0;
+  background:#fee2e2;
+  color:#991b1b;
+  border-radius:8px;
+  padding:8px 12px;
+  font-weight:700;
+}
+
+.admin-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.admin-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:18px;
+}
+
+.admin-card .num{
+  font-size:30px;
+  font-weight:800;
+  color:#084a98;
+}
+
+.admin-card small{
+  color:#6b7f92;
+}
+
+.admin-note{
+  margin-top:12px;
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  color:#1e40af;
+  padding:12px;
+  border-radius:10px;
+  font-size:13px;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+
+.spinner{
+  width:17px;
+  height:17px;
+  border:2px solid #ffffff66;
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .7s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px){
+
+  .topstats{
+    display:none;
+  }
+
+  .mid{
+    grid-template-columns:1fr;
+  }
+
+  .gridtop{
+    grid-template-columns:1fr;
+  }
+
+  .servicegrid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  .admin-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+
+@media(max-width:650px){
+
+  .top{
+    padding:9px 12px;
+  }
+
+  .logo{
+    width:50px;
+    height:50px;
+    font-size:25px;
+  }
+
+  .brand h1{
+    font-size:18px;
+  }
+
+  .brand h2{
+    font-size:14px;
+  }
+
+  .brand p{
+    font-size:9px;
+  }
+
+  .login{
+    padding:8px 10px;
+    font-size:11px;
+  }
+
+  .leaders{
+    grid-template-columns:1fr;
+  }
+
+  .servicegrid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .bottom{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    min-height:190px;
+  }
+
+  .hero h2{
+    font-size:23px;
+  }
+
+  footer{
+    display:block;
+  }
+
+  .formrow{
+    grid-template-columns:1fr;
+  }
+
+  .admin-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .admin-header{
+    display:block;
+  }
+
+  .admin-user{
+    text-align:left;
+    margin-top:12px;
+  }
+
+}
+
+
+@media(max-width:430px){
+
+  .admin-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
 </style>
+
 </head>
+
+
 <body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
 <header class="top">
-  <div class="logo">🏛️</div>
+
+  <div class="logo">
+    🏛️
+  </div>
+
   <div class="brand">
-    <h1>RONGKHEM e-VILLAGE OFFICE</h1>
-    <h2>ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</h2>
-    <p>ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
+
+    <h1>
+      RONGKHEM e-VILLAGE OFFICE
+    </h1>
+
+    <h2>
+      ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6
+    </h2>
+
+    <p>
+      ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
+    </p>
+
   </div>
+
+
   <div class="topstats">
-    <div class="statbox">🕐 <b id="clock">--:-- น.</b><small id="date">--</small></div>
-    <div class="statbox">🌤️ <b>27°C</b><small>สภาพอากาศ</small></div>
-    <div class="statbox">🌿 <b>PM2.5 18</b><small>µg/m³ · คุณภาพอากาศดี</small></div>
+
+    <div class="statbox">
+
+      🕐
+
+      <b id="clock">
+        --:-- น.
+      </b>
+
+      <small id="date">
+        --
+      </small>
+
+    </div>
+
+
+    <div class="statbox">
+
+      🌤️
+
+      <b>
+        —
+      </b>
+
+      <small>
+        สภาพอากาศ
+      </small>
+
+    </div>
+
+
+    <div class="statbox">
+
+      🌿
+
+      <b>
+        —
+      </b>
+
+      <small>
+        PM2.5
+      </small>
+
+    </div>
+
   </div>
-  <button class="login" onclick="openLogin()">🔒 เข้าสู่ระบบ<br><small>สำหรับผู้ใหญ่บ้าน</small></button>
+
+
+  <button
+    class="login"
+    onclick="openLogin()"
+  >
+
+    🔒 เข้าสู่ระบบ
+
+    <br>
+
+    <small>
+      สำหรับผู้ใหญ่บ้าน
+    </small>
+
+  </button>
+
 </header>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
 <nav class="nav">
-<button class="active" onclick="go('home')">🏠 หน้าแรก</button>
-<button onclick="go('leaders')">👔 ผู้นำชุมชน</button>
-<button onclick="go('news')">📋 ข่าวสาร</button>
-<button onclick="go('activity')">📅 กิจกรรม</button>
-<button onclick="go('portfolio')">🏆 ผลงาน</button>
-<button onclick="go('project')">🏘️ โครงการ</button>
-<button onclick="go('service')">🤝 บริการประชาชน</button>
-<button onclick="go('village')">🏡 ข้อมูลหมู่บ้าน</button>
-<button onclick="go('stats')">📊 สถิติหมู่บ้าน</button>
-<button onclick="go('contact')">✉️ ติดต่อเรา</button>
+
+  <button
+    class="active"
+    onclick="go('home',this)"
+  >
+    🏠 หน้าแรก
+  </button>
+
+  <button
+    onclick="go('leaders',this)"
+  >
+    👔 ผู้นำชุมชน
+  </button>
+
+  <button
+    onclick="go('news',this)"
+  >
+    📋 ข่าวสาร
+  </button>
+
+  <button
+    onclick="go('activity',this)"
+  >
+    📅 กิจกรรม
+  </button>
+
+  <button
+    onclick="go('portfolio',this)"
+  >
+    🏆 ผลงาน
+  </button>
+
+  <button
+    onclick="go('project',this)"
+  >
+    🏘️ โครงการ
+  </button>
+
+  <button
+    onclick="go('service',this)"
+  >
+    🤝 บริการประชาชน
+  </button>
+
+  <button
+    onclick="go('village',this)"
+  >
+    🏡 ข้อมูลหมู่บ้าน
+  </button>
+
+  <button
+    onclick="go('stats',this)"
+  >
+    📊 สถิติหมู่บ้าน
+  </button>
+
+  <button
+    onclick="go('contact',this)"
+  >
+    ✉️ ติดต่อเรา
+  </button>
+
 </nav>
-<main class="container">
+
+
+<!-- =====================================================
+     PUBLIC CONTENT
+===================================================== -->
+
+<main class="container" id="publicContent">
+
+
 <section class="gridtop">
-  <div class="hero"><div><h2>ร่วมสร้าง ร่วมพัฒนา<br>บ้านร่องเข็มให้น่าอยู่ อย่างยั่งยืน</h2><p>ที่ทำการผู้ใหญ่บ้านออนไลน์ · ร่องเข็มโมเดล</p></div></div>
-  <div class="card announce"><div class="cardtitle">📢 ประกาศสำคัญ <small>ดูทั้งหมด</small></div>
-    <div class="row"><span class="date">14 พ.ค. 69</span><span>ประกาศการจัดเก็บภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569 <b>ใหม่</b></span></div>
-    <div class="row"><span class="date">10 พ.ค. 69</span><span>ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569 <b>ใหม่</b></span></div>
-    <div class="row"><span class="date">5 พ.ค. 69</span><span>เชิญร่วมกิจกรรม Big Cleaning Day <b>ใหม่</b></span></div>
-    <div class="row"><span class="date">1 พ.ค. 69</span><span>ประกาศรับสมัครอาสาสมัครสาธารณสุขประจำหมู่บ้าน</span></div>
+
+
+  <div class="hero">
+
+    <div>
+
+      <h2>
+        ร่วมสร้าง ร่วมพัฒนา
+        <br>
+        บ้านร่องเข็มให้น่าอยู่ อย่างยั่งยืน
+      </h2>
+
+      <p>
+        ที่ทำการผู้ใหญ่บ้านออนไลน์ · ร่องเข็มโมเดล
+      </p>
+
+    </div>
+
   </div>
+
+
+  <div class="card announce">
+
+    <div class="cardtitle">
+
+      📢 ประกาศสำคัญ
+
+      <small>
+        ดูทั้งหมด
+      </small>
+
+    </div>
+
+
+    <div class="row">
+
+      <span class="date">
+        ใหม่
+      </span>
+
+      <span>
+        ข่าวประชาสัมพันธ์จากที่ทำการผู้ใหญ่บ้าน
+      </span>
+
+    </div>
+
+
+    <div class="row">
+
+      <span class="date">
+        ระบบ
+      </span>
+
+      <span>
+        ศูนย์ข้อมูลบ้านร่องเข็มออนไลน์
+      </span>
+
+    </div>
+
+
+    <div class="row">
+
+      <span class="date">
+        ระบบ
+      </span>
+
+      <span>
+        ระบบบริการประชาชนออนไลน์
+      </span>
+
+    </div>
+
+
+  </div>
+
 </section>
+
+
+<!-- =====================================================
+     LEADERS / ACTIVITY / STATS
+===================================================== -->
 
 <section class="mid">
-  <div class="card">
-    <div class="cardtitle">👤 คณะผู้บริหารหมู่บ้าน</div>
+
+
+  <div
+    class="card"
+    id="leaders"
+  >
+
+    <div class="cardtitle">
+      👤 คณะผู้บริหารหมู่บ้าน
+    </div>
+
+
     <div class="leaders">
-      <div class="leader"><span class="badge">ผู้ใหญ่บ้าน</span><div class="portrait">👨🏻‍💼</div><b>นายศักรนนทน์ ขัติย์วงศ์</b><small>ผู้ใหญ่บ้าน หมู่ที่ 6</small><br><button class="save" onclick="leader()">ดูประวัติ</button></div>
-      <div class="leader"><span class="badge">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1</span><div class="portrait">👨🏻‍💼</div><b>รอระบุชื่อ</b><small>ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</small><br><button class="save" onclick="helper()">ดูประวัติ</button></div>
-      <div class="leader"><span class="badge">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2</span><div class="portrait">👨🏻‍💼</div><b>รอระบุชื่อ</b><small>ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</small><br><button class="save" onclick="helper()">ดูประวัติ</button></div>
+
+
+      <div class="leader">
+
+        <span class="badge">
+          ผู้ใหญ่บ้าน
+        </span>
+
+        <div class="portrait">
+          👨🏻‍💼
+        </div>
+
+        <b>
+          นายศักรนนทน์ ขัติย์วงศ์
+        </b>
+
+        <small>
+          ผู้ใหญ่บ้าน หมู่ที่ 6
+        </small>
+
+        <br>
+
+        <button
+          class="save"
+          onclick="leader()"
+        >
+          ดูประวัติ
+        </button>
+
+      </div>
+
+
+      <div class="leader">
+
+        <span class="badge">
+          ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1
+        </span>
+
+        <div class="portrait">
+          👨🏻‍💼
+        </div>
+
+        <b>
+          รอระบุชื่อ
+        </b>
+
+        <small>
+          ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6
+        </small>
+
+      </div>
+
+
+      <div class="leader">
+
+        <span class="badge">
+          ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2
+        </span>
+
+        <div class="portrait">
+          👨🏻‍💼
+        </div>
+
+        <b>
+          รอระบุชื่อ
+        </b>
+
+        <small>
+          ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6
+        </small>
+
+      </div>
+
+
     </div>
+
   </div>
-  <div class="card">
-    <div class="cardtitle">📅 กิจกรรมล่าสุด <small>ดูทั้งหมด</small></div>
-    <div class="activity"><div class="thumb">🌳</div><div><b>กิจกรรมพัฒนาพื้นที่สาธารณะ</b><small>15 พฤษภาคม 2569 · ศาลาประชาคมหมู่บ้าน</small><small>👥 65 คน</small></div></div>
-    <div class="activity"><div class="thumb">🏛️</div><div><b>ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</b><small>10 พฤษภาคม 2569 · ศาลาประชาคมหมู่บ้าน</small><small>👥 78 คน</small></div></div>
-    <div class="activity"><div class="thumb">🧹</div><div><b>Big Cleaning Day</b><small>5 พฤษภาคม 2569 · บริเวณหมู่บ้าน</small><small>👥 120 คน</small></div></div>
-    <div class="activity"><div class="thumb">🌱</div><div><b>โครงการปลูกต้นไม้เพิ่มพื้นที่สีเขียว</b><small>1 พฤษภาคม 2569 · ป่าชุมชนบ้านร่องเข็ม</small><small>👥 45 คน</small></div></div>
+
+
+  <!-- ACTIVITY -->
+
+  <div
+    class="card"
+    id="activity"
+  >
+
+    <div class="cardtitle">
+      📅 กิจกรรมล่าสุด
+    </div>
+
+    <div class="activity">
+
+      <div class="thumb">
+        🌳
+      </div>
+
+      <div>
+
+        <b>
+          กิจกรรมพัฒนาพื้นที่สาธารณะ
+        </b>
+
+        <small>
+          ระบบพร้อมบันทึกข้อมูลจริง
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="activity">
+
+      <div class="thumb">
+        🏛️
+      </div>
+
+      <div>
+
+        <b>
+          ประชุมประชาคมหมู่บ้าน
+        </b>
+
+        <small>
+          ระบบกิจกรรมชุมชน
+        </small>
+
+      </div>
+
+    </div>
+
+
+    <div class="activity">
+
+      <div class="thumb">
+        🧹
+      </div>
+
+      <div>
+
+        <b>
+          กิจกรรมพัฒนาหมู่บ้าน
+        </b>
+
+        <small>
+          ระบบพร้อมรับข้อมูล
+        </small>
+
+      </div>
+
+    </div>
+
+
   </div>
-  <div class="card">
-    <div class="cardtitle">📊 สถิติข้อมูลหมู่บ้าน <small>ดูทั้งหมด</small></div>
+
+
+  <!-- STATS -->
+
+  <div
+    class="card"
+    id="stats"
+  >
+
+    <div class="cardtitle">
+      📊 สถิติข้อมูลหมู่บ้าน
+    </div>
+
+
     <div class="metrics">
-      <div class="metric"><div class="ico">👥</div><div><b>960</b><small>ประชากรรวม</small></div></div>
-      <div class="metric"><div class="ico">🏠</div><div><b>352</b><small>ครัวเรือนทั้งหมด</small></div></div>
-      <div class="metric"><div class="ico">👶</div><div><b>—</b><small>เด็ก 0–5 ปี</small></div></div>
-      <div class="metric"><div class="ico">👴</div><div><b>92</b><small>ผู้สูงอายุ</small></div></div>
-      <div class="metric"><div class="ico">♿</div><div><b>3</b><small>ผู้พิการ</small></div></div>
-      <div class="metric"><div class="ico">❤️</div><div><b>95</b><small>กลุ่มเปราะบาง</small></div></div>
+
+
+      <div class="metric">
+
+        <div class="ico">
+          👥
+        </div>
+
+        <div>
+
+          <b id="publicPopulation">
+            —
+          </b>
+
+          <small>
+            ประชากรรวม
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="ico">
+          🏠
+        </div>
+
+        <div>
+
+          <b id="publicHouseholds">
+            —
+          </b>
+
+          <small>
+            ครัวเรือน
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="ico">
+          👶
+        </div>
+
+        <div>
+
+          <b>
+            —
+          </b>
+
+          <small>
+            เด็ก 0–5 ปี
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="ico">
+          👴
+        </div>
+
+        <div>
+
+          <b id="publicElderly">
+            —
+          </b>
+
+          <small>
+            ผู้สูงอายุ
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="ico">
+          ♿
+        </div>
+
+        <div>
+
+          <b id="publicDisabled">
+            —
+          </b>
+
+          <small>
+            ผู้พิการ
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="metric">
+
+        <div class="ico">
+          ❤️
+        </div>
+
+        <div>
+
+          <b id="publicVulnerable">
+            —
+          </b>
+
+          <small>
+            กลุ่มเปราะบาง
+          </small>
+
+        </div>
+
+      </div>
+
+
     </div>
+
   </div>
+
 </section>
 
-<section class="card services">
-<div class="cardtitle">🤝 บริการประชาชน</div>
-<div class="servicegrid">
-<div class="service" onclick="complaint()">🚨<b>แจ้งเหตุ / ร้องเรียน</b></div>
-<div class="service" onclick="form()">📄<b>แบบฟอร์มออนไลน์</b></div>
-<div class="service" onclick="qa()">💬<b>ถาม-ตอบ (Q&A)</b></div>
-<div class="service" onclick="contact()">☎️<b>เบอร์ติดต่อสำคัญ</b></div>
-<div class="service" onclick="map()">📍<b>แผนที่หมู่บ้าน</b></div>
-</div>
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section
+  class="card services"
+  id="service"
+>
+
+  <div class="cardtitle">
+    🤝 บริการประชาชน
+  </div>
+
+
+  <div class="servicegrid">
+
+
+    <div
+      class="service"
+      onclick="complaint()"
+    >
+
+      <span>
+        🚨
+      </span>
+
+      <b>
+        แจ้งเหตุ / ร้องเรียน
+      </b>
+
+    </div>
+
+
+    <div
+      class="service"
+      onclick="formService()"
+    >
+
+      <span>
+        📄
+      </span>
+
+      <b>
+        แบบฟอร์มออนไลน์
+      </b>
+
+    </div>
+
+
+    <div
+      class="service"
+      onclick="qa()"
+    >
+
+      <span>
+        💬
+      </span>
+
+      <b>
+        ถาม-ตอบ Q&A
+      </b>
+
+    </div>
+
+
+    <div
+      class="service"
+      onclick="contact()"
+    >
+
+      <span>
+        ☎️
+      </span>
+
+      <b>
+        เบอร์ติดต่อสำคัญ
+      </b>
+
+    </div>
+
+
+    <div
+      class="service"
+      onclick="mapService()"
+    >
+
+      <span>
+        📍
+      </span>
+
+      <b>
+        แผนที่หมู่บ้าน
+      </b>
+
+    </div>
+
+
+  </div>
+
 </section>
 
-<section class="bottom">
-<div class="social"><h3>ติดตามเรา</h3><p style="font-size:35px">f ▶️ LINE</p><small>ช่องทางประชาสัมพันธ์อย่างเป็นทางการของบ้านร่องเข็ม</small></div>
-<div class="card contact"><div class="contactpic">👨🏻‍💼</div><div><h2>ช่องทางติดต่อผู้ใหญ่บ้าน</h2><p>นายศักรนนทน์ ขัติย์วงศ์<br>ผู้ใหญ่บ้าน หมู่ที่ 6</p><button class="login" onclick="contact()">ติดต่อผู้ใหญ่บ้าน</button></div></div>
+
+<!-- =====================================================
+     BOTTOM
+===================================================== -->
+
+<section
+  class="bottom"
+  id="contact"
+>
+
+
+  <div class="social">
+
+    <h3>
+      ติดตามเรา
+    </h3>
+
+    <p style="font-size:35px">
+      f ▶️ LINE
+    </p>
+
+    <small>
+      ช่องทางประชาสัมพันธ์
+      อย่างเป็นทางการของบ้านร่องเข็ม
+    </small>
+
+  </div>
+
+
+  <div class="card contact">
+
+    <div class="contactpic">
+      👨🏻‍💼
+    </div>
+
+    <div>
+
+      <h2>
+        ช่องทางติดต่อผู้ใหญ่บ้าน
+      </h2>
+
+      <p>
+        นายศักรนนทน์ ขัติย์วงศ์
+        <br>
+        ผู้ใหญ่บ้าน หมู่ที่ 6
+      </p>
+
+      <button
+        class="login"
+        onclick="contact()"
+      >
+        ติดต่อผู้ใหญ่บ้าน
+      </button>
+
+    </div>
+
+  </div>
+
 </section>
+
+
+<!-- =====================================================
+     ADMIN PANEL
+===================================================== -->
+
+<section
+  class="admin-panel"
+  id="adminPanel"
+>
+
+
+  <div class="admin-header">
+
+    <div>
+
+      <h2>
+        📊 ศูนย์บัญชาการ
+      </h2>
+
+      <p>
+        ที่ทำการผู้ใหญ่บ้านออนไลน์
+        — ระบบหลังบ้าน
+      </p>
+
+    </div>
+
+
+    <div class="admin-user">
+
+      👑
+
+      <strong id="adminName">
+        ผู้ใหญ่บ้าน
+      </strong>
+
+      <small>
+        สิทธิ์:
+        <span id="adminRole">
+          admin
+        </span>
+      </small>
+
+      <button
+        class="logout-btn"
+        onclick="logoutAdmin()"
+      >
+        🚪 ออกจากระบบ
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="admin-grid">
+
+
+    <div class="admin-card">
+
+      📋
+
+      <div
+        class="num"
+        id="adminCases"
+      >
+        —
+      </div>
+
+      <small>
+        เรื่องร้องเรียน
+      </small>
+
+    </div>
+
+
+    <div class="admin-card">
+
+      👥
+
+      <div
+        class="num"
+        id="adminPeople"
+      >
+        —
+      </div>
+
+      <small>
+        ประชาชน
+      </small>
+
+    </div>
+
+
+    <div class="admin-card">
+
+      🏠
+
+      <div
+        class="num"
+        id="adminHomes"
+      >
+        —
+      </div>
+
+      <small>
+        ครัวเรือน
+      </small>
+
+    </div>
+
+
+    <div class="admin-card">
+
+      📅
+
+      <div
+        class="num"
+        id="adminActivities"
+      >
+        —
+      </div>
+
+      <small>
+        กิจกรรม
+      </small>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="admin-note">
+
+    🔐
+    คุณกำลังอยู่ในระบบหลังบ้าน
+    ข้อมูลส่วนนี้จะถูกควบคุมด้วย
+    Supabase Authentication,
+    Role และ RLS
+
+  </div>
+
+
+</section>
+
+
 </main>
-<footer><div>🏛️ RONGKHEM e-VILLAGE OFFICE · ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6<br>ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</div><div>© 2026 RONGKHEM e-VILLAGE OFFICE</div></footer>
 
-<div class="modal" id="modal"><div class="modalbox"><div class="modalhead"><h2 id="mtitle">ระบบ</h2><button class="close" onclick="closeM()">×</button></div><div id="mbody"></div></div></div>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+  <div>
+
+    🏛️ RONGKHEM e-VILLAGE OFFICE
+    · ที่ทำการผู้ใหญ่บ้านออนไลน์
+    บ้านร่องเข็ม หมู่ที่ 6
+
+    <br>
+
+    ตำบลจำป่าหวาย
+    อำเภอเมืองพะเยา
+    จังหวัดพะเยา
+
+  </div>
+
+
+  <div>
+    © 2026 RONGKHEM e-VILLAGE OFFICE
+  </div>
+
+</footer>
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+  <div class="modalbox">
+
+    <div class="modalhead">
+
+      <h2 id="mtitle">
+        ระบบ
+      </h2>
+
+      <button
+        class="close"
+        onclick="closeM()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div id="mbody"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
-function clock(){let d=new Date();document.getElementById('clock').textContent=d.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' น.';document.getElementById('date').textContent=d.toLocaleDateString('th-TH',{day:'numeric',month:'long',year:'numeric'});}
-clock();setInterval(clock,1000);
-const modal=document.getElementById('modal'),title=document.getElementById('mtitle'),body=document.getElementById('mbody');
-function openM(t,b){title.textContent=t;body.innerHTML=b;modal.classList.add('open')}function closeM(){modal.classList.remove('open')}
-function openLogin(){openM('🔒 เข้าสู่ระบบผู้ใหญ่บ้าน',`<p>ระบบหลังบ้านสำหรับ <b>ผู้ใหญ่บ้านเท่านั้น</b></p><div class="field"><label>ชื่อผู้ใช้</label><input type="text"></div><div class="field"><label>รหัสผ่าน</label><input type="password"></div><button class="save">เข้าสู่ระบบ</button><p style="font-size:12px;color:#777">ระบบจริงจะใช้ Authentication + MFA + สิทธิ์ฐานข้อมูล RLS</p>`)}
-function leader(){openM('👔 ประวัติผู้ใหญ่บ้าน',`<h2>นายศักรนนทน์ ขัติย์วงศ์</h2><p>ผู้ใหญ่บ้าน หมู่ที่ 6 บ้านร่องเข็ม</p><hr><h3>📘 ผลงานและกิจกรรม</h3><p>บันทึกกิจกรรม การพัฒนาหมู่บ้าน การช่วยเหลือประชาชน และโครงการต่าง ๆ เป็นแฟ้มผลงานรายปี</p>`)}
-function helper(){openM('👔 ผู้ช่วยผู้ใหญ่บ้าน',`<p>หน้านี้เตรียมไว้สำหรับข้อมูลผู้ช่วยผู้ใหญ่บ้าน คนที่ 1 และ คนที่ 2</p><p><b>หมายเหตุ:</b> ยังไม่ใส่ชื่อจนกว่าจะได้รับข้อมูลจริง</p>`)}
-function complaint(){openM('🚨 แจ้งเหตุ / ร้องเรียน',`<div class="field"><label>หัวข้อ</label><input></div><div class="field"><label>รายละเอียด</label><textarea></textarea></div><button class="save">ส่งเรื่อง</button>`)}
-function form(){openM('📄 แบบฟอร์มออนไลน์','<p>ศูนย์รวมแบบฟอร์มและคำขอบริการประชาชน</p>')}
-function qa(){openM('💬 Q&A','<p>ถามข้อมูลทั่วไปของหมู่บ้านได้ที่นี่ โดยไม่เปิดเผยข้อมูลส่วนบุคคล</p>')}
-function contact(){openM('☎️ ติดต่อผู้ใหญ่บ้าน','<p><b>นายศักรนนทน์ ขัติย์วงศ์</b><br>ผู้ใหญ่บ้าน หมู่ที่ 6</p><p>โทร. 080-1202529</p>')}
-function map(){openM('📍 แผนที่หมู่บ้าน','<p>พื้นที่สำหรับแสดงแผนที่และสถานที่สาธารณะของหมู่บ้าน</p>')}
-function go(x){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));event.target.classList.add('active');if(x==='home')window.scrollTo({top:0,behavior:'smooth'});else openM('เมนู '+x,'<p>ส่วนนี้จะเชื่อมกับระบบจริงของ RONGKHEM e-VILLAGE OFFICE</p>')}
+
+/* =====================================================
+   SUPABASE CONFIG
+=====================================================
+
+   สำคัญ:
+   ใส่ URL และ Publishable/Anon Key ของ Supabase จริง
+
+   ห้ามใส่ service_role key
+
+===================================================== */
+
+const SUPABASE_URL =
+  "YOUR_SUPABASE_URL";
+
+const SUPABASE_ANON_KEY =
+  "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY";
+
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+
+
+/* =====================================================
+   CLOCK
+===================================================== */
+
+function clock(){
+
+  const d =
+    new Date();
+
+  document
+    .getElementById("clock")
+    .textContent =
+      d.toLocaleTimeString(
+        "th-TH",
+        {
+          hour:"2-digit",
+          minute:"2-digit",
+          second:"2-digit"
+        }
+      )
+      +
+      " น.";
+
+
+  document
+    .getElementById("date")
+    .textContent =
+      d.toLocaleDateString(
+        "th-TH",
+        {
+          day:"numeric",
+          month:"long",
+          year:"numeric"
+        }
+      );
+
+}
+
+clock();
+
+setInterval(
+  clock,
+  1000
+);
+
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+const modal =
+  document.getElementById(
+    "modal"
+  );
+
+const title =
+  document.getElementById(
+    "mtitle"
+  );
+
+const body =
+  document.getElementById(
+    "mbody"
+  );
+
+
+function openM(
+  t,
+  b
+){
+
+  title.textContent =
+    t;
+
+  body.innerHTML =
+    b;
+
+  modal.classList.add(
+    "open"
+  );
+
+}
+
+
+function closeM(){
+
+  modal.classList.remove(
+    "open"
+  );
+
+}
+
+
+modal.addEventListener(
+  "click",
+  function(e){
+
+    if(
+      e.target === modal
+    ){
+
+      closeM();
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   REAL LOGIN
+===================================================== */
+
+function openLogin(){
+
+  openM(
+
+    "🔒 เข้าสู่ระบบผู้ใหญ่บ้าน",
+
+    `
+
+    <div class="login-box">
+
+      <div class="login-logo">
+        🏛️
+      </div>
+
+      <h2 class="login-title">
+        เข้าสู่ระบบผู้ใหญ่บ้าน
+      </h2>
+
+      <div class="login-subtitle">
+        RONGKHEM e-VILLAGE OFFICE
+        <br>
+        ระบบหลังบ้านสำหรับผู้มีสิทธิ์เท่านั้น
+      </div>
+
+      <div class="security">
+        🔐 Authentication Protected
+      </div>
+
+
+      <form
+        id="loginForm"
+        onsubmit="loginAdmin(event)"
+      >
+
+        <div class="field">
+
+          <label>
+            ชื่อผู้ใช้
+          </label>
+
+          <input
+            id="loginUsername"
+            type="text"
+            autocomplete="username"
+            placeholder="ชื่อผู้ใช้"
+            required
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            รหัสผ่าน
+          </label>
+
+          <input
+            id="loginPassword"
+            type="password"
+            autocomplete="current-password"
+            placeholder="รหัสผ่าน"
+            required
+          >
+
+        </div>
+
+
+        <div
+          id="loginError"
+          class="login-error"
+        ></div>
+
+
+        <div
+          id="loginSuccess"
+          class="login-success"
+        ></div>
+
+
+        <button
+          id="loginSubmit"
+          class="login-submit"
+          type="submit"
+        >
+          🔐 เข้าสู่ระบบ
+        </button>
+
+      </form>
+
+    </div>
+
+    `
+
+  );
+
+}
+
+
+/* =====================================================
+   LOGIN PROCESS
+===================================================== */
+
+async function loginAdmin(
+  event
+){
+
+  event.preventDefault();
+
+
+  const username =
+    document
+      .getElementById(
+        "loginUsername"
+      )
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const password =
+    document
+      .getElementById(
+        "loginPassword"
+      )
+      .value;
+
+
+  const button =
+    document
+      .getElementById(
+        "loginSubmit"
+      );
+
+
+  const errorBox =
+    document
+      .getElementById(
+        "loginError"
+      );
+
+
+  const successBox =
+    document
+      .getElementById(
+        "loginSuccess"
+      );
+
+
+  errorBox.classList.remove(
+    "show"
+  );
+
+  successBox.classList.remove(
+    "show"
+  );
+
+
+  button.disabled =
+    true;
+
+  button.innerHTML = `
+    <span class="loading">
+      <span class="spinner"></span>
+      กำลังตรวจสอบ...
+    </span>
+  `;
+
+
+  try{
+
+
+    if(
+      SUPABASE_URL ===
+      "YOUR_SUPABASE_URL"
+      ||
+      SUPABASE_ANON_KEY ===
+      "YOUR_SUPABASE_PUBLISHABLE_OR_ANON_KEY"
+    ){
+
+      throw new Error(
+        "ยังไม่ได้ตั้งค่า Supabase URL / Key"
+      );
+
+    }
+
+
+    /*
+      บัญชี:
+
+      sakkranon
+
+      จะใช้ Email ภายในระบบ:
+
+      sakkranon@rongkhem.local
+    */
+
+    const email =
+      username +
+      "@rongkhem.local";
+
+
+    /* ===============================
+       SUPABASE AUTH
+    =============================== */
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .signInWithPassword({
+
+          email:
+            email,
+
+          password:
+            password
+
+        });
+
+
+    if(error){
+
+      throw new Error(
+        "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
+      );
+
+    }
+
+
+    if(
+      !data ||
+      !data.user ||
+      !data.session
+    ){
+
+      throw new Error(
+        "ไม่สามารถสร้าง Session ได้"
+      );
+
+    }
+
+
+    /* ===============================
+       CHECK PROFILE
+    =============================== */
+
+    const {
+      data:profile,
+      error:profileError
+    } =
+      await supabaseClient
+
+        .from("profiles")
+
+        .select(
+          "id,username,display_name,role,active"
+        )
+
+        .eq(
+          "id",
+          data.user.id
+        )
+
+        .single();
+
+
+    if(
+      profileError ||
+      !profile
+    ){
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+      throw new Error(
+        "ไม่พบสิทธิ์ผู้ใช้งาน"
+      );
+
+    }
+
+
+    /* ===============================
+       CHECK ADMIN
+    =============================== */
+
+    if(
+      profile.active !== true
+      ||
+      profile.role !== "admin"
+    ){
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+      throw new Error(
+        "บัญชีนี้ไม่มีสิทธิ์ผู้ใหญ่บ้าน"
+      );
+
+    }
+
+
+    /* ===============================
+       AUDIT
+    =============================== */
+
+    await supabaseClient
+      .from("audit_logs")
+      .insert({
+
+        user_id:
+          data.user.id,
+
+        username:
+          profile.username,
+
+        action:
+          "LOGIN",
+
+        target:
+          "ADMIN",
+
+        details:{
+          source:"index.html"
+        }
+
+      });
+
+
+    /* ===============================
+       SUCCESS
+    =============================== */
+
+    successBox.textContent =
+      "✅ เข้าสู่ระบบสำเร็จ";
+
+
+    successBox.classList.add(
+      "show"
+    );
+
+
+    setTimeout(
+      function(){
+
+        closeM();
+
+        showAdminPanel(
+          profile
+        );
+
+      },
+      500
+    );
+
+
+  }catch(error){
+
+    console.error(
+      error
+    );
+
+
+    errorBox.textContent =
+      "❌ " +
+      error.message;
+
+
+    errorBox.classList.add(
+      "show"
+    );
+
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "🔐 เข้าสู่ระบบ";
+
+  }
+
+}
+
+
+/* =====================================================
+   SHOW ADMIN PANEL
+===================================================== */
+
+function showAdminPanel(
+  profile
+){
+
+  document
+    .getElementById(
+      "publicContent"
+    )
+    .style.display =
+      "none";
+
+
+  document
+    .getElementById(
+      "adminPanel"
+    )
+    .classList
+    .add("show");
+
+
+  document
+    .getElementById(
+      "adminName"
+    )
+    .textContent =
+      profile.display_name
+      ||
+      profile.username;
+
+
+  document
+    .getElementById(
+      "adminRole"
+    )
+    .textContent =
+      profile.role;
+
+
+  window.scrollTo(
+    {
+      top:0,
+      behavior:"smooth"
+    }
+  );
+
+}
+
+
+/* =====================================================
+   CHECK EXISTING SESSION
+===================================================== */
+
+async function checkExistingSession(){
+
+  try{
+
+    const {
+      data,
+      error
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+
+    if(error){
+
+      return;
+
+    }
+
+
+    if(
+      data &&
+      data.session
+    ){
+
+      const {
+        data:profile,
+        error:profileError
+      } =
+        await supabaseClient
+
+          .from("profiles")
+
+          .select(
+            "id,username,display_name,role,active"
+          )
+
+          .eq(
+            "id",
+            data.session.user.id
+          )
+
+          .single();
+
+
+      if(
+        !profileError &&
+        profile &&
+        profile.active === true &&
+        profile.role === "admin"
+      ){
+
+        showAdminPanel(
+          profile
+        );
+
+      }
+
+    }
+
+  }catch(error){
+
+    console.warn(
+      error
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+async function logoutAdmin(){
+
+  try{
+
+    const {
+      data
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+
+    if(
+      data &&
+      data.session
+    ){
+
+      await supabaseClient
+        .from("audit_logs")
+        .insert({
+
+          user_id:
+            data.session.user.id,
+
+          action:
+            "LOGOUT",
+
+          target:
+            "ADMIN",
+
+          details:{
+            source:"index.html"
+          }
+
+        });
+
+    }
+
+
+  }catch(error){
+
+    console.warn(
+      error
+    );
+
+  }
+
+
+  await supabaseClient
+    .auth
+    .signOut();
+
+
+  document
+    .getElementById(
+      "adminPanel"
+    )
+    .classList
+    .remove("show");
+
+
+  document
+    .getElementById(
+      "publicContent"
+    )
+    .style.display =
+      "";
+
+
+  window.scrollTo(
+    {
+      top:0,
+      behavior:"smooth"
+    }
+  );
+
+}
+
+
+/* =====================================================
+   LEADER
+===================================================== */
+
+function leader(){
+
+  openM(
+
+    "👔 ประวัติผู้ใหญ่บ้าน",
+
+    `
+
+    <h2>
+      นายศักรนนทน์ ขัติย์วงศ์
+    </h2>
+
+    <p>
+      ผู้ใหญ่บ้าน หมู่ที่ 6
+      บ้านร่องเข็ม
+    </p>
+
+    <hr>
+
+    <h3>
+      📘 ระบบแฟ้มผลงาน
+    </h3>
+
+    <p>
+      ใช้สำหรับบันทึกผลงาน
+      กิจกรรม
+      การพัฒนาหมู่บ้าน
+      และการช่วยเหลือประชาชน
+    </p>
+
+    `
+
+  );
+
+}
+
+
+/* =====================================================
+   COMPLAINT
+===================================================== */
+
+function complaint(){
+
+  openM(
+
+    "🚨 แจ้งเหตุ / ร้องเรียน",
+
+    `
+
+    <div class="field">
+
+      <label>
+        หัวข้อ
+      </label>
+
+      <input
+        id="complaintTitle"
+        placeholder="ระบุหัวข้อ"
+      >
+
+    </div>
+
+
+    <div class="field">
+
+      <label>
+        รายละเอียด
+      </label>
+
+      <textarea
+        id="complaintDetail"
+        placeholder="รายละเอียดเหตุการณ์"
+      ></textarea>
+
+    </div>
+
+
+    <button
+      class="save"
+      onclick="submitComplaint()"
+    >
+      📤 ส่งเรื่อง
+    </button>
+
+    `
+
+  );
+
+}
+
+
+async function submitComplaint(){
+
+  const title =
+    document
+      .getElementById(
+        "complaintTitle"
+      )
+      .value
+      .trim();
+
+
+  const detail =
+    document
+      .getElementById(
+        "complaintDetail"
+      )
+      .value
+      .trim();
+
+
+  if(!title || !detail){
+
+    alert(
+      "กรุณากรอกข้อมูลให้ครบ"
+    );
+
+    return;
+
+  }
+
+
+  /*
+    ยังไม่บันทึกลงตาราง
+    จนกว่าจะสร้างตาราง complaints
+  */
+
+  alert(
+    "รับข้อมูลแล้ว — โมดูลฐานข้อมูลเรื่องร้องเรียนจะเชื่อมในขั้นฐานข้อมูล"
+  );
+
+}
+
+
+/* =====================================================
+   OTHER SERVICES
+===================================================== */
+
+function formService(){
+
+  openM(
+    "📄 แบบฟอร์มออนไลน์",
+    `
+    <p>
+      ศูนย์รวมแบบฟอร์ม
+      และคำขอบริการประชาชน
+    </p>
+    `
+  );
+
+}
+
+
+function qa(){
+
+  openM(
+    "💬 Q&A",
+    `
+    <p>
+      ถามข้อมูลทั่วไปของหมู่บ้านได้ที่นี่
+    </p>
+
+    <p>
+      ระบบจะไม่เปิดเผยข้อมูลส่วนบุคคล
+    </p>
+    `
+  );
+
+}
+
+
+function contact(){
+
+  openM(
+    "☎️ ติดต่อผู้ใหญ่บ้าน",
+    `
+    <h3>
+      นายศักรนนทน์ ขัติย์วงศ์
+    </h3>
+
+    <p>
+      ผู้ใหญ่บ้าน หมู่ที่ 6
+    </p>
+
+    <p>
+      บ้านร่องเข็ม
+    </p>
+    `
+  );
+
+}
+
+
+function mapService(){
+
+  openM(
+    "📍 แผนที่หมู่บ้าน",
+    `
+    <p>
+      พื้นที่สำหรับแสดงแผนที่
+      และสถานที่สำคัญของหมู่บ้าน
+    </p>
+    `
+  );
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function go(
+  x,
+  button
+){
+
+  document
+    .querySelectorAll(
+      ".nav button"
+    )
+    .forEach(
+      b =>
+        b.classList.remove(
+          "active"
+        )
+    );
+
+
+  if(button){
+
+    button.classList.add(
+      "active"
+    );
+
+  }
+
+
+  if(
+    x === "home"
+  ){
+
+    window.scrollTo(
+      {
+        top:0,
+        behavior:"smooth"
+      }
+    );
+
+    return;
+
+  }
+
+
+  const target =
+    document.getElementById(
+      x
+    );
+
+
+  if(target){
+
+    target.scrollIntoView({
+      behavior:"smooth"
+    });
+
+    return;
+
+  }
+
+
+  openM(
+    "เมนู " + x,
+    `
+    <p>
+      ส่วนนี้เตรียมไว้สำหรับ
+      เชื่อมระบบจริง
+      ของ RONGKHEM e-VILLAGE OFFICE
+    </p>
+    `
+  );
+
+}
+
+
+/* =====================================================
+   AUTH STATE
+===================================================== */
+
+supabaseClient
+  .auth
+  .onAuthStateChange(
+    function(
+      event,
+      session
+    ){
+
+      console.log(
+        "AUTH:",
+        event
+      );
+
+      if(
+        event ===
+        "SIGNED_OUT"
+      ){
+
+        document
+          .getElementById(
+            "adminPanel"
+          )
+          .classList
+          .remove("show");
+
+        document
+          .getElementById(
+            "publicContent"
+          )
+          .style.display =
+            "";
+
+      }
+
+    }
+  );
+
+
+/* =====================================================
+   START
+===================================================== */
+
+checkExistingSession();
+
 </script>
-</body></html>
+
+</body>
+</html>
