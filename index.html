@@ -298,127 +298,231 @@ async function loadLive(){
 }
 loadLive();
 
+
 /* =========================================================
-   HERO BANNER UPLOAD
-   อัปโหลดรูปแบนเนอร์ได้โดยตรงจากหน้าเว็บ
-   RONGKHEM AI VOICE ASSISTANT SCRIPT
+   RONGKHEM — RESTORED CORE SCRIPT + ADMIN EDITOR
    ========================================================= */
-(function initHeroBannerUpload(){
-  const input = document.getElementById('heroImageInput');
-  const image = document.getElementById('heroBannerImage');
-  const reset = document.getElementById('heroResetButton');
-  if(!input || !image) return;
+const DATA={population:960,male:471,female:489,households:352,elderly:92,disabled:3,chronic:1,vulnerable:95,survey:202,leader:'นายศักรนนทน์ ขัติย์วงศ์',phone:'080-1202529',line:'rongkhem.village'};
+const $=id=>document.getElementById(id);
 
-  const DEFAULT_HERO = 'fund-mother-banner.png';
-  const STORAGE_KEY = 'RONGKHEM_HERO_BANNER_IMAGE';
+function clock(){
+  const d=new Date();
+  if($('clock')) $('clock').textContent=d.toLocaleTimeString('th-TH',{hour12:false});
+  if($('date')) $('date').textContent=d.toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'numeric'});
+}
+clock(); setInterval(clock,1000);
 
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if(saved) image.src = saved;
-  } catch(e) { console.warn('ไม่สามารถอ่านรูปแบนเนอร์ที่บันทึกไว้', e); }
+if($('mobile')) $('mobile').onclick=()=>$('sidebar').classList.toggle('open');
 
-  input.addEventListener('change', function(e){
-    const file = e.target.files && e.target.files[0];
-    if(!file) return;
-    if(!file.type.startsWith('image/')){
-      alert('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
-      input.value = '';
-      return;
-let thaiVoice = null;
-let isMuted = false;
-const welcomeText = "สวัสดีครับ ยินดีต้อนรับทุกท่านเข้าสู่ ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา ติดต่อสอบถามเรื่องใด หรือแจ้งปัญหาข้อร้องเรียนใดครับ";
+function getList(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch{return[]}}
+function putList(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function toast(t){if(!$('toast'))return;$('toast').textContent=t;$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2200)}
 
-function loadVoices() {
-    if ("speechSynthesis" in window) {
-        const voices = window.speechSynthesis.getVoices();
-        thaiVoice = voices.find(voice => voice.lang.includes("th") || voice.lang.includes("TH"));
-    }
-    if(file.size > 4 * 1024 * 1024){
-      alert('รูปใหญ่เกิน 4 MB กรุณาเลือกรูปที่มีขนาดเล็กลง');
-      input.value = '';
-      return;
+const MODULES={
+ population:['👥 ข้อมูลประชาชน','<div class="module-grid"><div class="module-card"><h3>ประชากรรวม</h3><p><b style="font-size:25px">960</b> คน</p></div><div class="module-card"><h3>ชาย</h3><p><b style="font-size:25px">471</b> คน</p></div><div class="module-card"><h3>หญิง</h3><p><b style="font-size:25px">489</b> คน</p></div></div>'],
+ households:['🏠 ข้อมูลครัวเรือน','<div class="tablewrap"><table class="table"><tr><th>รายการ</th><th>จำนวน</th><th>สถานะ</th></tr><tr><td>ครัวเรือนทั้งหมด</td><td>352</td><td>ตรวจสอบแล้ว</td></tr><tr><td>ผู้ตอบแบบสำรวจ</td><td>202</td><td>ยืนยันแล้ว</td></tr></table></div>'],
+ leader:['👥 ผู้นำชุมชน','<div class="module-grid"><div class="module-card"><h3>ผู้ใหญ่บ้าน</h3><p>นายศักรนนทน์ ขัติย์วงศ์<br>ผู้ใหญ่บ้าน หมู่ที่ 6<br>โทร. 080-1202529</p></div><div class="module-card"><h3>การติดต่อ</h3><p>LINE ID: rongkhem.village<br>ที่ทำการผู้ใหญ่บ้านออนไลน์</p></div></div>'],
+ news:['📣 ข่าวประชาสัมพันธ์','<div class="form"><label class="full">หัวข้อประกาศ<input id="newsTitle" placeholder="หัวข้อประกาศ"></label><label>วันที่<input id="newsDate" type="date"></label><label>ประเภท<select id="newsType"><option>ประกาศสำคัญ</option><option>ประชาสัมพันธ์</option><option>แจ้งเตือน</option></select></label><label class="full">รายละเอียด<textarea id="newsBody"></textarea></label></div><div class="actions"><button class="primary" onclick="saveNews()">💾 บันทึกประกาศ</button></div><div class="tablewrap" id="newsManage"></div>'],
+ activities:['📅 กิจกรรม / ปฏิทิน','<div class="form"><label>ชื่อกิจกรรม<input id="actTitle" placeholder="ชื่อกิจกรรม"></label><label>วันที่<input id="actDate" type="date"></label><label>เวลา<input id="actTime" type="time"></label><label>สถานที่<input id="actPlace" placeholder="สถานที่"></label><label class="full">รายละเอียด<textarea id="actBody"></textarea></label></div><div class="actions"><button class="primary" onclick="saveActivity()">💾 บันทึกกิจกรรม</button></div><div class="tablewrap" id="actManage"></div>'],
+ complaint:['🚨 แจ้งเหตุ / ร้องเรียน','<div class="form"><label>ชื่อผู้แจ้ง<input id="cpName"></label><label>โทรศัพท์<input id="cpPhone"></label><label>ประเภท<select id="cpType"><option>ถนน / ไฟฟ้า / น้ำ</option><option>สิ่งแวดล้อม</option><option>ความเดือดร้อน</option><option>อื่น ๆ</option></select></label><label class="full">รายละเอียด<textarea id="cpBody"></textarea></label></div><div class="actions"><button class="primary" onclick="saveComplaint()">ส่งเรื่องร้องเรียน</button></div><div class="tablewrap" id="cpList"></div>'],
+ service:['🤝 บริการประชาชน','<div class="module-grid"><div class="module-card"><h3>📄 ขอหนังสือรับรอง</h3><p>เตรียมข้อมูลสำหรับยื่นคำขอ</p><button onclick="toast(\'เปิดแบบฟอร์มคำขอ\')">เปิดบริการ</button></div><div class="module-card"><h3>📢 ประชาสัมพันธ์</h3><p>ข่าวสารและประกาศจากที่ทำการผู้ใหญ่บ้าน</p><button onclick="openModule(\'news\')">ดูประกาศ</button></div><div class="module-card"><h3>🚨 แจ้งเหตุ</h3><p>ส่งเรื่องร้องเรียนหรือแจ้งปัญหาในหมู่บ้าน</p><button onclick="openModule(\'complaint\')">แจ้งเหตุ</button></div></div>'],
+ project:['📁 โครงการพัฒนาหมู่บ้าน','<div class="module-grid"><div class="module-card"><h3>🏘️ พัฒนาชุมชน</h3><p>โครงการพัฒนาหมู่บ้านและโครงสร้างพื้นฐาน</p></div><div class="module-card"><h3>♻️ สิ่งแวดล้อม</h3><p>ลดการเผา จัดการขยะ และคุ้มครองสุขภาพ</p></div><div class="module-card"><h3>💧 แหล่งน้ำ</h3><p>ดูแลและพัฒนาแหล่งซับน้ำจำ</p></div></div>'],
+ environment:['🌿 สิ่งแวดล้อม / PM2.5','<div class="module-grid"><div class="module-card"><h3>🌫️ PM2.5</h3><p>ตรวจสอบค่าฝุ่นจากข้อมูลสดบน Dashboard</p></div><div class="module-card"><h3>🔥 ลดการเผา</h3><p>รณรงค์ลดการเผาและเฝ้าระวังจุดเสี่ยงในชุมชน</p></div><div class="module-card"><h3>♻️ ขยะ</h3><p>คัดแยกขยะ ขยะเปียก ปุ๋ยหมัก และการจัดการขยะชุมชน</p></div></div>'],
+ wetland:['💧 แหล่งซับน้ำจำ','<div class="module-grid"><div class="module-card"><h3>แหล่งซับน้ำจำ</h3><p>ทรัพยากรสำคัญของบ้านร่องเข็ม เชื่อมโยงการอนุรักษ์น้ำและพื้นที่ชุ่มน้ำ</p></div><div class="module-card"><h3>การพัฒนา</h3><p>รวบรวมข้อมูลกิจกรรมและโครงการที่เกี่ยวข้อง</p></div></div>'],
+ rice:['🍚 กลุ่มข้าวสาร','<div class="module-grid"><div class="module-card"><h3>สมาชิก</h3><p>ระบบกลุ่มข้าวสารสำหรับช่วยเหลืองานศพของสมาชิก</p><button onclick="toast(\'โมดูลกลุ่มข้าวสารพร้อมเชื่อมต่อระบบเดิม\')">เปิดระบบ</button></div><div class="module-card"><h3>กติกากลุ่ม</h3><p>ส่งข้าวสารตามกติกาของกลุ่ม และติดตามรายการค้างส่ง</p></div></div>'],
+ statistics:['📊 สถิติหมู่บ้าน','<div class="module-grid"><div class="module-card"><h3>ประชากร</h3><p>960 คน</p></div><div class="module-card"><h3>ครัวเรือน</h3><p>352 ครัวเรือน</p></div><div class="module-card"><h3>ผู้สูงอายุ</h3><p>92 คน</p></div><div class="module-card"><h3>แบบสำรวจ</h3><p>202 คน / 202 ครัวเรือน</p></div><div class="module-card"><h3>ผู้พิการ</h3><p>3 คน</p></div><div class="module-card"><h3>โรคเรื้อรัง</h3><p>1 คน</p></div></div>'],
+ settings:['⚙️ ตั้งค่าระบบ','<div class="form"><label>ชื่อผู้ใหญ่บ้าน<input id="setLeader" value="นายศักรนนทน์ ขัติย์วงศ์"></label><label>โทรศัพท์<input id="setPhone" value="080-1202529"></label><label>LINE ID<input id="setLine" value="rongkhem.village"></label><label>ชื่อหน่วยงาน<input id="setOffice" value="RONGKHEM e-VILLAGE OFFICE"></label></div><div class="actions"><button class="primary" onclick="saveSettings()">💾 บันทึก</button></div>']
+};
+
+function openModule(name){
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.toggle('active',a.dataset.module===name));
+  if(name==='home'){closeModal();return}
+  const m=MODULES[name]||MODULES.statistics;
+  $('modalTitle').textContent=m[0];$('modalBody').innerHTML=m[1];
+  $('moduleModal').classList.add('open');
+  if(name==='news')renderNews();
+  if(name==='activities')renderActivities();
+  if(name==='complaint')renderComplaints();
+  $('sidebar').classList.remove('open');
+}
+function closeModal(){
+  $('moduleModal').classList.remove('open');
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.toggle('active',a.dataset.module==='home'));
+}
+if($('moduleModal')) $('moduleModal').onclick=e=>{if(e.target.id==='moduleModal')closeModal()};
+document.querySelectorAll('.menu a').forEach(a=>a.onclick=e=>{e.preventDefault();openModule(a.dataset.module)});
+
+function saveNews(){
+  const t=$('newsTitle').value.trim(); if(!t)return toast('กรุณาใส่หัวข้อประกาศ');
+  const x=getList('RK_NEWS');x.unshift({title:t,date:$('newsDate').value||new Date().toISOString().slice(0,10),type:$('newsType').value,body:$('newsBody').value});
+  putList('RK_NEWS',x);toast('บันทึกประกาศแล้ว');renderNews();
+}
+function renderNews(){
+  const x=getList('RK_NEWS');$('newsManage').innerHTML=x.length?x.map(n=>`<div class="alert-item"><b>${escapeHtml(n.title)}</b><small>${escapeHtml(n.type)} · ${escapeHtml(n.date)}<br>${escapeHtml(n.body||'')}</small></div>`).join(''):'<p style="font-size:10px;color:#bcd0df">ยังไม่มีประกาศที่บันทึกไว้</p>';
+}
+function saveActivity(){
+  const t=$('actTitle').value.trim(); if(!t)return toast('กรุณาใส่ชื่อกิจกรรม');
+  const x=getList('RK_ACT');x.push({title:t,date:$('actDate').value,time:$('actTime').value,place:$('actPlace').value,body:$('actBody').value});
+  putList('RK_ACT',x);toast('บันทึกกิจกรรมแล้ว');renderActivities();
+}
+function renderActivities(){
+  const x=getList('RK_ACT');$('actManage').innerHTML=x.length?x.map(n=>`<div class="alert-item"><b>${escapeHtml(n.title)}</b><small>${escapeHtml(n.date||'')} ${escapeHtml(n.time||'')} · ${escapeHtml(n.place||'')}<br>${escapeHtml(n.body||'')}</small></div>`).join(''):'<p style="font-size:10px;color:#bcd0df">ยังไม่มีกิจกรรมที่บันทึกไว้</p>';
+}
+function saveComplaint(){
+  const x=getList('RK_CP');x.unshift({name:$('cpName').value,phone:$('cpPhone').value,type:$('cpType').value,body:$('cpBody').value,date:new Date().toLocaleString('th-TH')});
+  putList('RK_CP',x);toast('ส่งเรื่องร้องเรียนแล้ว');renderComplaints();
+}
+function renderComplaints(){
+  const x=getList('RK_CP');$('cpList').innerHTML=x.length?x.map(n=>`<div class="alert-item"><b>${escapeHtml(n.type)}</b><small>${escapeHtml(n.name||'ไม่ระบุชื่อ')} · ${escapeHtml(n.phone||'')}<br>${escapeHtml(n.body||'')}<br>${escapeHtml(n.date)}</small></div>`).join(''):'<p style="font-size:10px;color:#bcd0df">ยังไม่มีเรื่องร้องเรียน</p>';
+}
+function saveSettings(){
+  localStorage.setItem('RK_SETTINGS',JSON.stringify({
+    leader:$('setLeader').value,phone:$('setPhone').value,line:$('setLine').value,office:$('setOffice').value
+  })); toast('บันทึกการตั้งค่าเรียบร้อยแล้ว');
 }
 
-function speakText(text) {
-    if (isMuted || !("speechSynthesis" in window)) return;
-
-    window.speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(text);
-    if (thaiVoice) utterance.voice = thaiVoice;
-    utterance.lang = "th-TH";
-    utterance.rate = 1.0;
-
-    const statusElem = document.getElementById("aiVoiceStatus");
-    if (statusElem) statusElem.innerText = "กำลังพูด...";
-
-    utterance.onend = function () {
-        if (statusElem) statusElem.innerText = "พร้อมให้บริการ";
-    };
-
-    window.speechSynthesis.speak(utterance);
+/* ---------- avatar ---------- */
+if($('avatar')){
+  $('avatar').onclick=()=>$('avatarInput').click();
+  $('avatarInput').onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    if(!f.type.startsWith('image/'))return toast('กรุณาเลือกรูปภาพ');
+    const r=new FileReader();r.onload=ev=>{
+      localStorage.rkAvatar=ev.target.result;
+      $('avatarImg').src=ev.target.result;$('avatarImg').style.display='block';$('avatarFallback').style.display='none';
+    };r.readAsDataURL(f);
+  };
+}
+if(localStorage.rkAvatar&&$('avatarImg')){
+  $('avatarImg').src=localStorage.rkAvatar;$('avatarImg').style.display='block';$('avatarFallback').style.display='none';
 }
 
-function welcome() {
-    speakText(welcomeText);
-}
-
-function toggleAIVoice() {
-    isMuted = !isMuted;
-    const btn = document.getElementById("aiVoiceToggle");
-    if (isMuted) {
-        window.speechSynthesis.cancel();
-        if (btn) btn.innerText = "🔇";
-        const statusElem = document.getElementById("aiVoiceStatus");
-        if (statusElem) statusElem.innerText = "ปิดเสียงอยู่";
-    } else {
-        if (btn) btn.innerText = "🔊";
-        const statusElem = document.getElementById("aiVoiceStatus");
-        if (statusElem) statusElem.innerText = "พร้อมให้บริการ";
-    }
-    const reader = new FileReader();
-    reader.onload = function(ev){
-      const dataUrl = ev.target.result;
-      image.src = dataUrl;
-      try {
-        localStorage.setItem(STORAGE_KEY, dataUrl);
-        localStorage.setItem('rkHeroBanner', dataUrl);
-      } catch(err) {
-        alert('ไม่สามารถบันทึกรูปในเครื่องได้ กรุณาใช้รูปที่เล็กลง');
-        console.error(err);
-      }
-}
-
-if ("speechSynthesis" in window) {
-    window.speechSynthesis.onvoiceschanged = loadVoices;
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-    loadVoices();
-
-    const startButton = document.createElement("button");
-    startButton.id = "startWelcomeVoice";
-    startButton.innerHTML = "🔊 เปิดเสียงต้อนรับ";
-    startButton.className = "welcomeVoiceStart";
-    startButton.onclick = function () {
-        welcome();
-        startButton.remove();
-    };
-    reader.readAsDataURL(file);
+/* ---------- hero image ---------- */
+(function(){
+  const input=$('heroImageInput'),image=$('heroBannerImage'),reset=$('heroResetButton');
+  if(!input||!image)return;
+  const KEY='RONGKHEM_HERO_BANNER_IMAGE',DEF='fund-mother-banner.png';
+  try{const s=localStorage.getItem(KEY)||localStorage.getItem('rkHeroBanner');if(s)image.src=s}catch(e){}
+  input.addEventListener('change',e=>{
+    const f=e.target.files&&e.target.files[0];if(!f)return;
+    if(!f.type.startsWith('image/'))return toast('กรุณาเลือกไฟล์รูปภาพเท่านั้น');
+    if(f.size>4*1024*1024)return toast('รูปใหญ่เกิน 4 MB');
+    const r=new FileReader();r.onload=ev=>{
+      image.src=ev.target.result;
+      try{localStorage.setItem(KEY,ev.target.result);localStorage.setItem('rkHeroBanner',ev.target.result)}
+      catch(e){toast('ไม่สามารถบันทึกรูปในเครื่องได้')}
+    };r.readAsDataURL(f);
   });
-
-  if(reset){
-    reset.addEventListener('click', function(){
-      try {
-        localStorage.removeItem(STORAGE_KEY);
-        localStorage.removeItem('rkHeroBanner');
-      } catch(e) {}
-      image.src = DEFAULT_HERO;
-      input.value = '';
-    });
-  }
+  if(reset)reset.onclick=()=>{localStorage.removeItem(KEY);localStorage.removeItem('rkHeroBanner');image.src=DEF;input.value=''};
 })();
 
-    document.body.appendChild(startButton);
+/* ---------- weather + PM2.5 ---------- */
+async function loadLive(){
+  const lat=19.0446,lon=99.9765,tz='Asia/Bangkok';
+  try{
+    const u=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,is_day&hourly=precipitation_probability&forecast_hours=2&timezone=${encodeURIComponent(tz)}`;
+    const d=await fetch(u,{cache:'no-store'}).then(r=>r.json()),c=d.current;
+    const icon=code=>code===0?(c.is_day?'☀️':'🌙'):[1,2].includes(code)?'🌤️':code===3?'☁️':[45,48].includes(code)?'🌫️':[51,53,55,56,57].includes(code)?'🌦️':[61,63,65,80,81,82].includes(code)?'🌧️':[95,96,99].includes(code)?'⛈️':'🌤️';
+    const text=code=>({0:'ท้องฟ้าแจ่มใส',1:'มีเมฆเล็กน้อย',2:'มีเมฆบางส่วน',3:'เมฆมาก',45:'มีหมอก',51:'ฝนปรอย',61:'ฝนเล็กน้อย',63:'ฝนปานกลาง',65:'ฝนตกหนัก',95:'พายุฝนฟ้าคะนอง'}[code]||'สภาพอากาศปัจจุบัน');
+    if($('weatherIcon'))$('weatherIcon').textContent=icon(c.weather_code);
+    if($('miniIcon'))$('miniIcon').textContent=icon(c.weather_code);
+    if($('weatherTemp'))$('weatherTemp').textContent=Number(c.temperature_2m).toFixed(0);
+    if($('miniTemp'))$('miniTemp').textContent=Number(c.temperature_2m).toFixed(0)+'°C';
+    if($('weatherText'))$('weatherText').textContent=text(c.weather_code);
+    if($('weatherHumidity'))$('weatherHumidity').textContent=Math.round(c.relative_humidity_2m)+'%';
+    if($('weatherWind'))$('weatherWind').textContent=Math.round(c.wind_speed_10m)+' km/h';
+    if($('weatherRain'))$('weatherRain').textContent=(d.hourly?.precipitation_probability?.[0]??0)+'%';
+    if($('weatherUpdated'))$('weatherUpdated').textContent='อัปเดต '+new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){console.warn(e)}
+}
+async function loadPM(){
+  try{
+    const u='https://air-quality-api.open-meteo.com/v1/air-quality?latitude=19.0446&longitude=99.9765&current=pm2_5&timezone=Asia%2FBangkok';
+    const d=await fetch(u,{cache:'no-store'}).then(r=>r.json()),v=Number(d.current.pm2_5);
+    let face='😊',status='ดีมาก';
+    if(v>25&&v<=37){face='🙂';status='ดี'}else if(v<=50&&v>37){face='😐';status='ปานกลาง'}else if(v<=90){face='😷';status='เริ่มมีผล'}else if(v>90){face='🚨';status='มีผลกระทบ'}
+    if($('pmValue'))$('pmValue').textContent=v.toFixed(0);
+    if($('pmFace'))$('pmFace').textContent=face;
+    if($('pmStatus'))$('pmStatus').textContent=status;
+    if($('pmUpdated'))$('pmUpdated').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){console.warn(e)}
+}
+loadLive();loadPM();setInterval(loadLive,300000);setInterval(loadPM,300000);
+
+/* ---------- AI voice ---------- */
+let thaiVoice=null,isMuted=false;
+const welcomeText='สวัสดีครับ ยินดีต้อนรับทุกท่านเข้าสู่ ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา';
+function loadVoices(){
+  if(!('speechSynthesis'in window))return;
+  thaiVoice=speechSynthesis.getVoices().find(v=>v.lang&&v.lang.toLowerCase().startsWith('th'))||null;
+}
+function speakText(text){
+  if(isMuted||!('speechSynthesis'in window))return;
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);
+  if(thaiVoice)u.voice=thaiVoice;u.lang='th-TH';u.rate=1;
+  const s=$('aiVoiceStatus');if(s)s.textContent='กำลังพูด...';
+  u.onend=()=>{if(s)s.textContent='พร้อมให้บริการ'};speechSynthesis.speak(u);
+}
+function welcome(){speakText(welcomeText)}
+function toggleAIVoice(){
+  isMuted=!isMuted;const b=$('aiVoiceToggle'),s=$('aiVoiceStatus');
+  if(isMuted){speechSynthesis.cancel();if(b)b.textContent='🔇';if(s)s.textContent='ปิดเสียงอยู่'}
+  else{if(b)b.textContent='🔊';if(s)s.textContent='พร้อมให้บริการ'}
+}
+if('speechSynthesis'in window)window.speechSynthesis.onvoiceschanged=loadVoices;
+loadVoices();
+
+function openAI(){
+  openModule('ai');
+}
+MODULES.ai=['🤖 AI ผู้ช่วยผู้ใหญ่บ้าน','<div class="form"><label class="full">คำถาม<input id="aiQ" placeholder="เช่น บ้านร่องเข็มมีกี่คน?"></label></div><div class="actions"><button class="primary" onclick="askAI()">ถาม AI</button></div><div class="tablewrap"><div class="aimsg" id="aiModalReply">ผมตอบได้จากข้อมูล VERIFIED DATA ของระบบครับ</div></div>'];
+function askAI(){
+  const q=($('aiQ')?.value||'').toLowerCase();let r='ผมตอบได้จากข้อมูลประชากร ครัวเรือน ผู้สูงอายุ แบบสำรวจ ผู้พิการ กลุ่มเปราะบาง และการติดต่อผู้ใหญ่บ้านครับ';
+  if(q.includes('ประชากร')||q.includes('กี่คน'))r=`บ้านร่องเข็ม หมู่ที่ 6 มีประชากร ${DATA.population.toLocaleString('th-TH')} คน ชาย ${DATA.male} คน หญิง ${DATA.female} คนครับ`;
+  else if(q.includes('ครัวเรือน'))r=`มี ${DATA.households} ครัวเรือนครับ`;
+  else if(q.includes('สูงอายุ'))r=`มีผู้สูงอายุ 60 ปีขึ้นไป ${DATA.elderly} คนครับ`;
+  else if(q.includes('พิการ'))r=`มีผู้พิการ ${DATA.disabled} คนครับ`;
+  else if(q.includes('เปราะบาง'))r=`มีข้อมูลกลุ่มเปราะบาง ${DATA.vulnerable} รายการครับ`;
+  else if(q.includes('โทร')||q.includes('ติดต่อ'))r=`โทร. ${DATA.phone} หรือ LINE ID ${DATA.line} ครับ`;
+  if($('aiModalReply'))$('aiModalReply').textContent=r;if($('aiReply'))$('aiReply').textContent=r;speakText(r);
+}
+
+/* ---------- generic ADMIN editor ---------- */
+function openAdmin(){
+  const html=`<div class="form">
+    <label>เลือกเมนู<select id="adminModule">${Object.keys(MODULES).map(k=>`<option value="${k}">${escapeHtml(MODULES[k][0])}</option>`).join('')}</select></label>
+    <label>ชื่อเมนู<input id="adminTitle"></label>
+    <label class="full">ข้อความ/รายละเอียด<textarea id="adminText" placeholder="แก้ไขเนื้อหาของเมนูนี้"></textarea></label>
+    <label class="full">รูปภาพ<input id="adminImage" type="file" accept="image/*"></label>
+  </div>
+  <div class="actions"><button class="primary" onclick="saveAdminModule()">💾 บันทึกเมนู</button><button class="danger" onclick="resetAdminModule()">↺ คืนค่าเดิม</button></div>
+  <div class="tablewrap"><p style="font-size:11px;color:#c9d8e8">รุ่นนี้เก็บการแก้ไขในเบราว์เซอร์ก่อน เพื่อป้องกันข้อมูลเดิมหาย ขั้นถัดไปสามารถเชื่อม Supabase ให้ทุกเครื่องเห็นข้อมูลเดียวกันได้</p><img id="adminPreview" style="max-width:100%;max-height:180px;border-radius:10px;display:none"></div>`;
+  $('modalTitle').textContent='⚙️ ศูนย์จัดการระบบ';$('modalBody').innerHTML=html;$('moduleModal').classList.add('open');
+  const sel=$('adminModule');
+  function load(){const k=sel.value;const saved=getList('RK_MODULES')[k]||{};$('adminTitle').value=saved.title||MODULES[k][0];$('adminText').value=saved.text||'';const img=saved.image;if(img){$('adminPreview').src=img;$('adminPreview').style.display='block'}else $('adminPreview').style.display='none'}
+  sel.onchange=load;
+  $('adminImage').onchange=e=>{const f=e.target.files[0];if(!f)return;if(f.size>4*1024*1024)return toast('รูปใหญ่เกิน 4 MB');const r=new FileReader();r.onload=ev=>{$('adminPreview').src=ev.target.result;$('adminPreview').style.display='block';$('adminPreview').dataset.image=ev.target.result};r.readAsDataURL(f)};
+  load();
+}
+function saveAdminModule(){
+  const k=$('adminModule').value,x=getList('RK_MODULES');x[k]={title:$('adminTitle').value,text:$('adminText').value,image:$('adminPreview').dataset.image||x[k]?.image||''};putList('RK_MODULES',x);toast('บันทึกเมนูเรียบร้อยแล้ว');
+}
+function resetAdminModule(){
+  const k=$('adminModule').value,x=getList('RK_MODULES');delete x[k];putList('RK_MODULES',x);toast('คืนค่าเดิมแล้ว');openAdmin();
+}
+
+/* เพิ่มปุ่ม ADMIN แบบไม่รบกวนหน้าเดิม */
+(function(){
+  const user=$('.user');
+  if(!user)return;
+  const b=document.createElement('button');b.textContent='⚙️ Admin';b.style.cssText='background:#0867d9;color:#fff;border:0;border-radius:8px;padding:7px 10px;font:500 11px Kanit;cursor:pointer';
+  b.onclick=openAdmin;user.parentNode.insertBefore(b,user);
+})();
+
+/* เสียงต้อนรับ: ต้องกดปุ่มจากผู้ใช้เพื่อให้เบราว์เซอร์อนุญาต */
+document.addEventListener('DOMContentLoaded',()=>{
+  const b=document.createElement('button');b.id='startWelcomeVoice';b.className='welcomeVoiceStart';b.textContent='🔊 เปิดเสียงต้อนรับ';b.onclick=()=>{welcome();b.remove()};document.body.appendChild(b);
 });
 </script>
 </body>
