@@ -1,522 +1,2974 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0f172a">
-<title>Dashboard ผู้ใหญ่บ้าน | RONGKHEM e-VILLAGE OFFICE</title>
-<style>
-:root{
-  --bg:#f1f5f9;--card:#fff;--text:#0f172a;--muted:#64748b;
-  --line:#e2e8f0;--primary:#0f766e;--primary2:#14b8a6;
-  --danger:#dc2626;--warn:#d97706;--success:#16a34a;--blue:#2563eb;
-  --shadow:0 10px 30px rgba(15,23,42,.07);--radius:18px
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Thai",sans-serif;background:var(--bg);color:var(--text)}
-button{font:inherit;cursor:pointer}
-.app{display:flex;min-height:100vh}
-.sidebar{width:270px;background:#0f172a;color:#e2e8f0;position:fixed;inset:0 auto 0 0;z-index:30;overflow:auto}
-.brand{padding:22px 20px;border-bottom:1px solid rgba(255,255,255,.08)}
-.brand strong{display:block;font-size:18px;color:#fff}.brand small{color:#94a3b8}
-.nav{padding:14px 12px}.nav a{display:flex;align-items:center;gap:11px;padding:12px 13px;margin:3px 0;border-radius:12px;color:#cbd5e1;text-decoration:none}
-.nav a:hover,.nav a.active{background:rgba(20,184,166,.16);color:#fff}.nav .section{padding:15px 13px 7px;color:#64748b;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
-.main{margin-left:270px;width:calc(100% - 270px)}
-.topbar{height:72px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}
-.user{display:flex;align-items:center;gap:10px}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#ccfbf1;color:#115e59;font-weight:800}
-.mobile-menu{display:none;border:0;background:transparent;font-size:24px}
-.content{padding:26px;max-width:1600px;margin:auto}
-.hero{background:linear-gradient(135deg,#0f172a,#134e4a);color:#fff;border-radius:24px;padding:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:20px;align-items:center}
-.hero h1{margin:0 0 7px;font-size:28px}.hero p{margin:0;color:#cbd5e1}.hero .date{background:rgba(255,255,255,.1);padding:13px 16px;border-radius:14px;white-space:nowrap}
-.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.stat{padding:19px;position:relative;overflow:hidden}.stat .icon{font-size:26px}.stat .label{color:var(--muted);font-size:13px;margin-top:8px}.stat .num{font-size:29px;font-weight:800;margin-top:3px}.stat .sub{font-size:12px;color:var(--muted)}.stat .accent{position:absolute;width:7px;inset:0 auto 0 0;background:var(--primary)}
-.two{grid-template-columns:1.25fr .75fr;margin-top:18px}.three{grid-template-columns:1fr 1fr 1fr;margin-top:18px}
-.card-head{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}.card-head h2{font-size:16px;margin:0}.card-body{padding:18px 20px}
-.action-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.action{border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px;text-align:left;transition:.15s}.action:hover{border-color:#99f6e4;transform:translateY(-1px)}.action b{display:block;margin-top:8px}.action span{font-size:12px;color:var(--muted)}
-.list{display:grid;gap:10px}.item{display:flex;gap:12px;align-items:flex-start;padding:12px;border:1px solid var(--line);border-radius:13px}.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex:0 0 auto}.red{background:#ef4444}.yellow{background:#f59e0b}.green{background:#22c55e}.blue{background:#3b82f6}.item b{font-size:14px}.item small{display:block;color:var(--muted);margin-top:3px}
-.link{border:0;background:transparent;color:var(--blue);font-size:12px}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:4px 8px;font-size:11px;font-weight:700}.badge.green{background:#dcfce7;color:#166534}.badge.yellow{background:#fef3c7;color:#92400e}.badge.red{background:#fee2e2;color:#991b1b}.badge.blue{background:#dbeafe;color:#1e40af}
-.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.mini{padding:13px;border:1px solid var(--line);border-radius:14px}.mini strong{display:block;font-size:21px}.mini span{font-size:12px;color:var(--muted)}
-.progress{height:9px;background:#e2e8f0;border-radius:99px;overflow:hidden;margin-top:9px}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--primary),var(--primary2));border-radius:99px}
-.media-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.media{border-radius:14px;min-height:120px;background:linear-gradient(135deg,#ccfbf1,#e0f2fe);display:flex;flex-direction:column;justify-content:end;padding:12px}.media b{font-size:13px}.media small{font-size:11px;color:#475569}
-.footer{padding:25px;color:var(--muted);font-size:12px;text-align:center}
-.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:100;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-box{background:#fff;border-radius:20px;width:min(560px,100%);box-shadow:0 30px 80px rgba(0,0,0,.25)}.modal-head{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}.modal-body{padding:20px}.close{border:0;background:transparent;font-size:22px}.notice{padding:12px;border-radius:12px;background:#f8fafc;color:#475569;font-size:13px}
-@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.two,.three{grid-template-columns:1fr}.sidebar{transform:translateX(-100%);transition:.2s}.sidebar.open{transform:none}.main{margin-left:0;width:100%}.mobile-menu{display:block}}
-@media(max-width:650px){.content{padding:15px}.topbar{padding:0 15px}.hero{padding:20px;display:block}.hero .date{display:inline-block;margin-top:15px}.stats{grid-template-columns:1fr 1fr}.action-grid{grid-template-columns:1fr 1fr}.media-grid{grid-template-columns:1fr}.stat .num{font-size:24px}}
-</style>
-</head>
-<body>
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+  name="theme-color"
+  content="#0f172a"
+>
+
+<title>
+Dashboard ผู้ใหญ่บ้าน |
+RONGKHEM e-VILLAGE OFFICE
+</title>
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase.js"></script>
+
+
+<style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+
+  --bg:#f1f5f9;
+
+  --card:#ffffff;
+
+  --text:#0f172a;
+
+  --muted:#64748b;
+
+  --line:#e2e8f0;
+
+  --primary:#0f766e;
+
+  --primary2:#14b8a6;
+
+  --danger:#dc2626;
+
+  --warning:#d97706;
+
+  --success:#16a34a;
+
+  --blue:#2563eb;
+
+  --dark:#0f172a;
+
+  --shadow:
+    0 10px 30px
+    rgba(15,23,42,.07);
+
+  --radius:18px;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+
+  margin:0;
+
+  font-family:
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    "Noto Sans Thai",
+    sans-serif;
+
+  background:
+    var(--bg);
+
+  color:
+    var(--text);
+
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+
+/* =====================================================
+   APP
+===================================================== */
+
+.app{
+
+  display:flex;
+
+  min-height:100vh;
+
+}
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar{
+
+  width:270px;
+
+  background:
+    #0f172a;
+
+  color:#e2e8f0;
+
+  position:fixed;
+
+  inset:
+    0 auto 0 0;
+
+  z-index:30;
+
+  overflow:auto;
+
+}
+
+.brand{
+
+  padding:22px 20px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.08);
+
+}
+
+.brand strong{
+
+  display:block;
+
+  font-size:18px;
+
+  color:#fff;
+
+}
+
+.brand small{
+
+  color:#94a3b8;
+
+}
+
+.nav{
+
+  padding:14px 12px;
+
+}
+
+.nav a{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:11px;
+
+  padding:12px 13px;
+
+  margin:3px 0;
+
+  border-radius:12px;
+
+  color:#cbd5e1;
+
+  text-decoration:none;
+
+}
+
+.nav a:hover,
+.nav a.active{
+
+  background:
+    rgba(20,184,166,.16);
+
+  color:#fff;
+
+}
+
+.nav .section{
+
+  padding:
+    15px 13px 7px;
+
+  color:#64748b;
+
+  font-size:11px;
+
+  text-transform:uppercase;
+
+  letter-spacing:.08em;
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main{
+
+  margin-left:270px;
+
+  width:
+    calc(100% - 270px);
+
+}
+
+
+/* =====================================================
+   TOPBAR
+===================================================== */
+
+.topbar{
+
+  height:72px;
+
+  background:#fff;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:
+    0 28px;
+
+  position:sticky;
+
+  top:0;
+
+  z-index:20;
+
+}
+
+.top-left{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.top-title{
+
+  font-weight:800;
+
+  font-size:16px;
+
+}
+
+.user{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+.avatar{
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:50%;
+
+  display:grid;
+
+  place-items:center;
+
+  background:#ccfbf1;
+
+  color:#115e59;
+
+  font-weight:800;
+
+}
+
+.user-info{
+
+  line-height:1.3;
+
+}
+
+.user-info b{
+
+  display:block;
+
+  font-size:13px;
+
+}
+
+.user-info small{
+
+  color:#64748b;
+
+  font-size:11px;
+
+}
+
+.logout{
+
+  border:0;
+
+  background:#fee2e2;
+
+  color:#991b1b;
+
+  padding:
+    9px 13px;
+
+  border-radius:10px;
+
+  font-weight:700;
+
+  margin-left:8px;
+
+}
+
+.logout:hover{
+
+  background:#fecaca;
+
+}
+
+.mobile-menu{
+
+  display:none;
+
+  border:0;
+
+  background:transparent;
+
+  font-size:24px;
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.content{
+
+  padding:26px;
+
+  max-width:1600px;
+
+  margin:auto;
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #134e4a
+    );
+
+  color:#fff;
+
+  border-radius:24px;
+
+  padding:28px;
+
+  box-shadow:
+    var(--shadow);
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:20px;
+
+  align-items:center;
+
+}
+
+.hero h1{
+
+  margin:
+    0 0 7px;
+
+  font-size:28px;
+
+}
+
+.hero p{
+
+  margin:0;
+
+  color:#cbd5e1;
+
+}
+
+.hero .date{
+
+  background:
+    rgba(255,255,255,.1);
+
+  padding:
+    13px 16px;
+
+  border-radius:14px;
+
+  white-space:nowrap;
+
+}
+
+
+/* =====================================================
+   GRID
+===================================================== */
+
+.grid{
+
+  display:grid;
+
+  gap:16px;
+
+}
+
+.stats{
+
+  grid-template-columns:
+    repeat(4,minmax(0,1fr));
+
+  margin-top:18px;
+
+}
+
+.two{
+
+  grid-template-columns:
+    1.25fr .75fr;
+
+  margin-top:18px;
+
+}
+
+.three{
+
+  grid-template-columns:
+    1fr 1fr 1fr;
+
+  margin-top:18px;
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+.card{
+
+  background:
+    var(--card);
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:
+    var(--radius);
+
+  box-shadow:
+    var(--shadow);
+
+}
+
+.stat{
+
+  padding:19px;
+
+  position:relative;
+
+  overflow:hidden;
+
+}
+
+.stat .icon{
+
+  font-size:26px;
+
+}
+
+.stat .label{
+
+  color:var(--muted);
+
+  font-size:13px;
+
+  margin-top:8px;
+
+}
+
+.stat .num{
+
+  font-size:29px;
+
+  font-weight:800;
+
+  margin-top:3px;
+
+}
+
+.stat .sub{
+
+  font-size:12px;
+
+  color:var(--muted);
+
+}
+
+.stat .accent{
+
+  position:absolute;
+
+  width:7px;
+
+  inset:
+    0 auto 0 0;
+
+  background:
+    var(--primary);
+
+}
+
+
+/* =====================================================
+   CARD HEAD
+===================================================== */
+
+.card-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  padding:
+    18px 20px;
+
+  border-bottom:
+    1px solid
+    var(--line);
+
+}
+
+.card-head h2{
+
+  font-size:16px;
+
+  margin:0;
+
+}
+
+.card-body{
+
+  padding:
+    18px 20px;
+
+}
+
+
+/* =====================================================
+   ACTION
+===================================================== */
+
+.action-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+}
+
+.action{
+
+  border:
+    1px solid
+    var(--line);
+
+  background:#fff;
+
+  border-radius:14px;
+
+  padding:15px;
+
+  text-align:left;
+
+  transition:.15s;
+
+}
+
+.action:hover{
+
+  border-color:
+    #99f6e4;
+
+  transform:
+    translateY(-1px);
+
+}
+
+.action b{
+
+  display:block;
+
+  margin-top:8px;
+
+}
+
+.action span{
+
+  font-size:12px;
+
+  color:var(--muted);
+
+}
+
+
+/* =====================================================
+   LIST
+===================================================== */
+
+.list{
+
+  display:grid;
+
+  gap:10px;
+
+}
+
+.item{
+
+  display:flex;
+
+  gap:12px;
+
+  align-items:flex-start;
+
+  padding:12px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:13px;
+
+}
+
+.dot{
+
+  width:10px;
+
+  height:10px;
+
+  border-radius:50%;
+
+  margin-top:6px;
+
+  flex:
+    0 0 auto;
+
+}
+
+.red{
+  background:#ef4444;
+}
+
+.yellow{
+  background:#f59e0b;
+}
+
+.green{
+  background:#22c55e;
+}
+
+.blue{
+  background:#3b82f6;
+}
+
+.item b{
+
+  font-size:14px;
+
+}
+
+.item small{
+
+  display:block;
+
+  color:var(--muted);
+
+  margin-top:3px;
+
+}
+
+
+/* =====================================================
+   BADGE
+===================================================== */
+
+.badge{
+
+  display:inline-flex;
+
+  align-items:center;
+
+  border-radius:999px;
+
+  padding:
+    4px 8px;
+
+  font-size:11px;
+
+  font-weight:700;
+
+}
+
+.badge.green{
+
+  background:#dcfce7;
+
+  color:#166534;
+
+}
+
+.badge.yellow{
+
+  background:#fef3c7;
+
+  color:#92400e;
+
+}
+
+.badge.red{
+
+  background:#fee2e2;
+
+  color:#991b1b;
+
+}
+
+.badge.blue{
+
+  background:#dbeafe;
+
+  color:#1e40af;
+
+}
+
+
+/* =====================================================
+   MINI
+===================================================== */
+
+.mini-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:10px;
+
+}
+
+.mini{
+
+  padding:13px;
+
+  border:
+    1px solid
+    var(--line);
+
+  border-radius:14px;
+
+}
+
+.mini strong{
+
+  display:block;
+
+  font-size:21px;
+
+}
+
+.mini span{
+
+  font-size:12px;
+
+  color:var(--muted);
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+.progress{
+
+  height:9px;
+
+  background:#e2e8f0;
+
+  border-radius:99px;
+
+  overflow:hidden;
+
+  margin-top:9px;
+
+}
+
+.progress i{
+
+  display:block;
+
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--primary),
+      var(--primary2)
+    );
+
+  border-radius:99px;
+
+}
+
+
+/* =====================================================
+   MEDIA
+===================================================== */
+
+.media-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:10px;
+
+}
+
+.media{
+
+  border-radius:14px;
+
+  min-height:120px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ccfbf1,
+      #e0f2fe
+    );
+
+  display:flex;
+
+  flex-direction:column;
+
+  justify-content:end;
+
+  padding:12px;
+
+}
+
+.media b{
+
+  font-size:13px;
+
+}
+
+.media small{
+
+  font-size:11px;
+
+  color:#475569;
+
+}
+
+
+/* =====================================================
+   NOTICE
+===================================================== */
+
+.notice{
+
+  padding:12px;
+
+  border-radius:12px;
+
+  background:#f8fafc;
+
+  color:#475569;
+
+  font-size:13px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer{
+
+  padding:25px;
+
+  color:var(--muted);
+
+  font-size:12px;
+
+  text-align:center;
+
+}
+
+
+/* =====================================================
+   SECURITY
+===================================================== */
+
+.security-status{
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  padding:12px;
+
+  border-radius:12px;
+
+  background:#ecfdf5;
+
+  color:#166534;
+
+}
+
+.security-dot{
+
+  width:10px;
+
+  height:10px;
+
+  border-radius:50%;
+
+  background:#22c55e;
+
+}
+
+
+/* =====================================================
+   LOADING SCREEN
+===================================================== */
+
+#securityLoading{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:9999;
+
+  background:
+    linear-gradient(
+      135deg,
+      #0f172a,
+      #134e4a
+    );
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  color:#fff;
+
+}
+
+.loading-box{
+
+  text-align:center;
+
+}
+
+.loading-logo{
+
+  font-size:50px;
+
+  margin-bottom:15px;
+
+}
+
+.spinner{
+
+  width:35px;
+
+  height:35px;
+
+  border:
+    3px solid
+    rgba(255,255,255,.25);
+
+  border-top-color:#fff;
+
+  border-radius:50%;
+
+  margin:
+    20px auto;
+
+  animation:
+    spin .7s linear infinite;
+
+}
+
+@keyframes spin{
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1050px){
+
+  .stats{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+  .two,
+  .three{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .sidebar{
+
+    transform:
+      translateX(-100%);
+
+    transition:.2s;
+
+  }
+
+  .sidebar.open{
+
+    transform:none;
+
+  }
+
+  .main{
+
+    margin-left:0;
+
+    width:100%;
+
+  }
+
+  .mobile-menu{
+
+    display:block;
+
+  }
+
+}
+
+
+@media(max-width:650px){
+
+  .content{
+
+    padding:15px;
+
+  }
+
+  .topbar{
+
+    padding:
+      0 15px;
+
+  }
+
+  .hero{
+
+    padding:20px;
+
+    display:block;
+
+  }
+
+  .hero .date{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+  }
+
+  .stats{
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+  .action-grid{
+
+    grid-template-columns:
+      1fr 1fr;
+
+  }
+
+  .media-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .stat .num{
+
+    font-size:24px;
+
+  }
+
+  .user-info{
+
+    display:none;
+
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media(max-width:430px){
+
+  .stats{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .action-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .logout{
+
+    padding:
+      8px 10px;
+
+    font-size:12px;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     SECURITY LOADING
+===================================================== -->
+
+<div id="securityLoading">
+
+  <div class="loading-box">
+
+    <div class="loading-logo">
+      🏛️
+    </div>
+
+    <strong>
+      RONGKHEM e-VILLAGE
+    </strong>
+
+    <div>
+      กำลังตรวจสอบสิทธิ์...
+    </div>
+
+    <div class="spinner"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div class="app">
-<aside class="sidebar" id="sidebar">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
   <div class="brand">
-    <strong>🏛️ RONGKHEM e-VILLAGE</strong>
-    <small>ที่ทำการผู้ใหญ่บ้านออนไลน์</small>
+
+    <strong>
+      🏛️ RONGKHEM e-VILLAGE
+    </strong>
+
+    <small>
+      ที่ทำการผู้ใหญ่บ้านออนไลน์
+    </small>
+
   </div>
+
+
   <nav class="nav">
-    <div class="section">Dashboard</div>
-    <a class="active" href="#dashboard">📊 ศูนย์บัญชาการ</a>
-    <div class="section">งานผู้ใหญ่บ้าน</div>
-    <a href="#follow">🚨 เรื่องที่ต้องติดตาม</a>
-    <a href="#today">📅 งานวันนี้</a>
-    <a href="#activity">📷 กิจกรรม</a>
-    <a href="#works">🏆 แฟ้มผลงาน</a>
-    <div class="section">ข้อมูลภาพรวม</div>
-    <a href="#people">👥 ประชาชน</a>
-    <a href="#households">🏠 ครัวเรือน</a>
-    <a href="#children">👶 เด็กและเยาวชน</a>
-    <a href="#elderly">👴 ผู้สูงอายุ</a>
-    <a href="#vulnerable">♿ กลุ่มเปราะบาง</a>
-    <div class="section">ระบบชุมชน</div>
-    <a href="#rice">🍚 กลุ่มข้าวสาร</a>
-    <a href="#equipment">📦 คลังอุปกรณ์</a>
-    <a href="#waste">♻️ ขยะ / เตาเผาขยะ</a>
-    <a href="#service">🤝 ศูนย์บริการประชาชน</a>
-    <div class="section">ระบบ</div>
-    <a href="#reports">📊 รายงาน</a>
-    <a href="#backup">💾 สำรองข้อมูล</a>
-    <a href="#security">🛡️ Security / Audit</a>
+
+    <div class="section">
+      Dashboard
+    </div>
+
+    <a
+      class="active"
+      href="#dashboard"
+    >
+      📊 ศูนย์บัญชาการ
+    </a>
+
+
+    <div class="section">
+      งานผู้ใหญ่บ้าน
+    </div>
+
+    <a href="#follow">
+      🚨 เรื่องที่ต้องติดตาม
+    </a>
+
+    <a href="#today">
+      📅 งานวันนี้
+    </a>
+
+    <a href="#activity">
+      📷 กิจกรรม
+    </a>
+
+    <a href="#works">
+      🏆 แฟ้มผลงาน
+    </a>
+
+
+    <div class="section">
+      ข้อมูลภาพรวม
+    </div>
+
+    <a href="#people">
+      👥 ประชาชน
+    </a>
+
+    <a href="#households">
+      🏠 ครัวเรือน
+    </a>
+
+    <a href="#children">
+      👶 เด็กและเยาวชน
+    </a>
+
+    <a href="#elderly">
+      👴 ผู้สูงอายุ
+    </a>
+
+    <a href="#vulnerable">
+      ♿ กลุ่มเปราะบาง
+    </a>
+
+
+    <div class="section">
+      ระบบชุมชน
+    </div>
+
+    <a href="#rice">
+      🍚 กลุ่มข้าวสาร
+    </a>
+
+    <a href="#equipment">
+      📦 คลังอุปกรณ์
+    </a>
+
+    <a href="#waste">
+      ♻️ ขยะ / เตาเผาขยะ
+    </a>
+
+    <a href="#service">
+      🤝 ศูนย์บริการประชาชน
+    </a>
+
+
+    <div class="section">
+      ระบบ
+    </div>
+
+    <a href="#reports">
+      📊 รายงาน
+    </a>
+
+    <a href="#backup">
+      💾 สำรองข้อมูล
+    </a>
+
+    <a href="#security">
+      🛡️ Security / Audit
+    </a>
+
   </nav>
+
 </aside>
 
-<main class="main" id="dashboard">
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="main">
+
+
+<!-- =====================================================
+     TOPBAR
+===================================================== -->
+
 <header class="topbar">
-  <div style="display:flex;align-items:center;gap:10px">
-    <button class="mobile-menu" id="menuBtn" aria-label="เมนู">☰</button>
-    <strong>📊 Dashboard ผู้ใหญ่บ้าน</strong>
+
+  <div class="top-left">
+
+    <button
+      class="mobile-menu"
+      id="menuBtn"
+      aria-label="เปิดเมนู"
+    >
+      ☰
+    </button>
+
+    <div class="top-title">
+      📊 Dashboard ผู้ใหญ่บ้าน
+    </div>
+
   </div>
-  <div class="user"><div class="avatar">👑</div><div><b>ผู้ใหญ่บ้าน</b><div style="font-size:11px;color:#64748b">เข้าสู่ระบบแล้ว</div></div></div>
+
+
+  <div class="user">
+
+    <div class="avatar">
+      👑
+    </div>
+
+    <div class="user-info">
+
+      <b id="adminDisplayName">
+        ผู้ใหญ่บ้าน
+      </b>
+
+      <small>
+        สิทธิ์:
+        <span id="adminRole">
+          กำลังตรวจสอบ...
+        </span>
+      </small>
+
+    </div>
+
+
+    <button
+      class="logout"
+      id="logoutBtn"
+    >
+      🚪 ออกจากระบบ
+    </button>
+
+  </div>
+
 </header>
 
-<section class="content">
-  <div class="hero">
-    <div><h1>สวัสดีครับ ผู้ใหญ่บ้าน 👋</h1><p>ศูนย์บัญชาการงาน บ้านร่องเข็ม หมู่ที่ 6 — ภาพรวมสำหรับการบริหารงาน</p></div>
-    <div class="date" id="dateNow">กำลังโหลดวันที่…</div>
+
+<!-- =====================================================
+     CONTENT
+===================================================== -->
+
+<section
+  class="content"
+  id="dashboard"
+>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<div class="hero">
+
+  <div>
+
+    <h1>
+      สวัสดีครับ
+      ผู้ใหญ่บ้าน 👋
+    </h1>
+
+    <p>
+      ศูนย์บัญชาการงาน
+      บ้านร่องเข็ม หมู่ที่ 6
+      — ภาพรวมสำหรับการบริหารงาน
+    </p>
+
   </div>
 
-  <div class="grid stats">
-    <div class="card stat"><i class="accent"></i><div class="icon">📋</div><div class="label">เรื่องทั้งหมด</div><div class="num">86</div><div class="sub">รอดำเนินการ 8 เรื่อง</div></div>
-    <div class="card stat"><i class="accent" style="background:#2563eb"></i><div class="icon">📒</div><div class="label">งานที่บันทึกปีนี้</div><div class="num">86</div><div class="sub">อัปเดตจากสมุดงาน</div></div>
-    <div class="card stat"><i class="accent" style="background:#16a34a"></i><div class="icon">📅</div><div class="label">กิจกรรมปีนี้</div><div class="num">42</div><div class="sub">กิจกรรมที่บันทึกแล้ว</div></div>
-    <div class="card stat"><i class="accent" style="background:#d97706"></i><div class="icon">🏘️</div><div class="label">โครงการปีนี้</div><div class="num">12</div><div class="sub">สำเร็จ 9 • ดำเนินการ 3</div></div>
+
+  <div
+    class="date"
+    id="dateNow"
+  >
+    กำลังโหลดวันที่...
   </div>
 
-  <div class="grid two">
-    <div class="card" id="follow">
-      <div class="card-head"><h2>🚨 เรื่องที่ต้องติดตาม</h2><button class="link" onclick="openModal('follow')">ดูทั้งหมด</button></div>
-      <div class="card-body list">
-        <div class="item"><i class="dot red"></i><div><b>เรื่องร้องเรียนที่ต้องติดตาม</b><small>มี 3 เรื่องที่ต้องดำเนินการต่อ</small></div><span class="badge red" style="margin-left:auto">เร่งด่วน</span></div>
-        <div class="item"><i class="dot yellow"></i><div><b>เรื่องรอประสานหน่วยงาน</b><small>มี 2 เรื่องอยู่ระหว่างประสานงาน</small></div><span class="badge yellow" style="margin-left:auto">รอติดตาม</span></div>
-        <div class="item"><i class="dot yellow"></i><div><b>เอกสารรอตรวจสอบ</b><small>มี 4 รายการ</small></div><span class="badge yellow" style="margin-left:auto">รอตรวจ</span></div>
-      </div>
+</div>
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<div class="grid stats">
+
+
+  <div class="card stat">
+
+    <i
+      class="accent"
+    ></i>
+
+    <div class="icon">
+      📋
     </div>
 
-    <div class="card">
-      <div class="card-head"><h2>⚡ Quick Actions</h2></div>
-      <div class="card-body action-grid">
-        <button class="action" onclick="openModal('addWork')">➕<b>บันทึกงาน</b><span>เพิ่มรายการในสมุดงาน</span></button>
-        <button class="action" onclick="openModal('news')">📢<b>เพิ่มข่าว</b><span>ข่าวประชาสัมพันธ์</span></button>
-        <button class="action" onclick="openModal('activity')">📅<b>เพิ่มกิจกรรม</b><span>บันทึกกิจกรรมพร้อมรูป</span></button>
-        <button class="action" onclick="openModal('case')">📋<b>รับเรื่อง</b><span>ศูนย์บริการประชาชน</span></button>
-        <button class="action" onclick="openModal('meeting')">📝<b>ประชุม</b><span>บันทึกการประชุม</span></button>
-        <button class="action" onclick="openModal('project')">🏘️<b>โครงการ</b><span>เพิ่มโครงการพัฒนา</span></button>
-      </div>
+    <div class="label">
+      เรื่องทั้งหมด
     </div>
+
+    <div
+      class="num"
+      id="statCases"
+    >
+      —
+    </div>
+
+    <div class="sub">
+      ข้อมูลจากฐานข้อมูลจริง
+    </div>
+
   </div>
 
-  <div class="grid three" id="today">
-    <div class="card">
-      <div class="card-head"><h2>📅 งานวันนี้</h2><button class="link" onclick="openModal('calendar')">ปฏิทิน</button></div>
-      <div class="card-body list">
-        <div class="item"><i class="dot blue"></i><div><b>07:00 น. ประชุมหมู่บ้าน</b><small>อาคารอเนกประสงค์</small></div></div>
-        <div class="item"><i class="dot green"></i><div><b>09:30 น. ลงพื้นที่</b><small>ติดตามงานชุมชน</small></div></div>
-        <div class="item"><i class="dot yellow"></i><div><b>13:00 น. ติดตามเรื่อง</b><small>ศูนย์บริการประชาชน</small></div></div>
-      </div>
+
+  <div class="card stat">
+
+    <i
+      class="accent"
+      style="background:#2563eb"
+    ></i>
+
+    <div class="icon">
+      📒
     </div>
 
-    <div class="card" id="people">
-      <div class="card-head"><h2>👥 ภาพรวมหมู่บ้าน</h2></div>
-      <div class="card-body mini-grid">
-        <div class="mini"><strong>960</strong><span>ประชาชน</span></div>
-        <div class="mini"><strong>352</strong><span>ครัวเรือน</span></div>
-        <div class="mini"><strong>92</strong><span>ผู้สูงอายุ</span></div>
-        <div class="mini"><strong>XX</strong><span>เด็กและเยาวชน</span></div>
-      </div>
-      <div style="padding:0 20px 18px"><div class="notice">🔒 แสดงเฉพาะตัวเลขภาพรวม — ไม่มีรายชื่อหรือบ้านเลขที่ใน Dashboard</div></div>
+    <div class="label">
+      งานที่บันทึก
     </div>
 
-    <div class="card" id="works">
-      <div class="card-head"><h2>🏆 ผลงานปี 2569</h2><button class="link" onclick="openModal('works')">เปิดแฟ้ม</button></div>
-      <div class="card-body">
-        <div class="mini-grid">
-          <div class="mini"><strong>86</strong><span>งาน</span></div>
-          <div class="mini"><strong>42</strong><span>กิจกรรม</span></div>
-          <div class="mini"><strong>12</strong><span>โครงการ</span></div>
-          <div class="mini"><strong>34</strong><span>ช่วยเหลือประชาชน</span></div>
+    <div
+      class="num"
+      id="statWorks"
+    >
+      —
+    </div>
+
+    <div class="sub">
+      ข้อมูลจริง
+    </div>
+
+  </div>
+
+
+  <div class="card stat">
+
+    <i
+      class="accent"
+      style="background:#16a34a"
+    ></i>
+
+    <div class="icon">
+      📅
+    </div>
+
+    <div class="label">
+      กิจกรรม
+    </div>
+
+    <div
+      class="num"
+      id="statActivities"
+    >
+      —
+    </div>
+
+    <div class="sub">
+      ข้อมูลจริง
+    </div>
+
+  </div>
+
+
+  <div class="card stat">
+
+    <i
+      class="accent"
+      style="background:#d97706"
+    ></i>
+
+    <div class="icon">
+      🏘️
+    </div>
+
+    <div class="label">
+      โครงการ
+    </div>
+
+    <div
+      class="num"
+      id="statProjects"
+    >
+      —
+    </div>
+
+    <div class="sub">
+      ข้อมูลจริง
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FOLLOW + QUICK ACTIONS
+===================================================== -->
+
+<div class="grid two">
+
+
+  <div
+    class="card"
+    id="follow"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        🚨 เรื่องที่ต้องติดตาม
+      </h2>
+
+    </div>
+
+    <div class="card-body list">
+
+      <div class="item">
+
+        <i class="dot red"></i>
+
+        <div>
+
+          <b>
+            ระบบติดตามงาน
+          </b>
+
+          <small>
+            เชื่อมข้อมูลจริงจากฐานข้อมูล
+          </small>
+
         </div>
+
       </div>
+
+
+      <div class="item">
+
+        <i class="dot yellow"></i>
+
+        <div>
+
+          <b>
+            เรื่องรอประสานหน่วยงาน
+          </b>
+
+          <small>
+            ระบบจะแสดงข้อมูลจริงเมื่อมีรายการ
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <i class="dot blue"></i>
+
+        <div>
+
+          <b>
+            เอกสารรอตรวจสอบ
+          </b>
+
+          <small>
+            ระบบจะเชื่อมกับโมดูลเอกสาร
+          </small>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
 
-  <div class="grid two" style="margin-top:18px">
-    <div class="card" id="equipment">
-      <div class="card-head"><h2>📦 คลังอุปกรณ์ส่วนกลาง</h2><button class="link" onclick="openModal('equipment')">เปิดคลัง</button></div>
-      <div class="card-body list">
-        <div><b>🪑 เก้าอี้</b><div class="progress"><i style="width:82%"></i></div><small style="color:#64748b">82 / 100 พร้อมใช้งาน</small></div>
-        <div><b>🪑 โต๊ะ</b><div class="progress"><i style="width:88%"></i></div><small style="color:#64748b">35 / 40 พร้อมใช้งาน</small></div>
-        <div><b>🔊 เครื่องเสียง</b><div class="progress"><i style="width:100%"></i></div><small style="color:#64748b">2 / 2 พร้อมใช้งาน</small></div>
-      </div>
+
+  <!-- QUICK ACTION -->
+
+  <div class="card">
+
+    <div class="card-head">
+
+      <h2>
+        ⚡ Quick Actions
+      </h2>
+
     </div>
 
-    <div class="card" id="rice">
-      <div class="card-head"><h2>🍚 กลุ่มข้าวสาร</h2><button class="link" onclick="openModal('rice')">เปิดระบบ</button></div>
-      <div class="card-body mini-grid">
-        <div class="mini"><strong>XXX</strong><span>สมาชิก</span></div>
-        <div class="mini"><strong>XX</strong><span>ถุงคงเหลือ</span></div>
-        <div class="mini"><strong>XX</strong><span>งานฌาปนกิจปีนี้</span></div>
-        <div class="mini"><strong>XX%</strong><span>การดำเนินงาน</span></div>
-      </div>
+
+    <div class="card-body action-grid">
+
+      <button
+        class="action"
+        onclick="showComingSoon('บันทึกงาน')"
+      >
+
+        ➕
+
+        <b>
+          บันทึกงาน
+        </b>
+
+        <span>
+          เพิ่มรายการในสมุดงาน
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="showComingSoon('เพิ่มข่าว')"
+      >
+
+        📢
+
+        <b>
+          เพิ่มข่าว
+        </b>
+
+        <span>
+          ข่าวประชาสัมพันธ์
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="showComingSoon('เพิ่มกิจกรรม')"
+      >
+
+        📅
+
+        <b>
+          เพิ่มกิจกรรม
+        </b>
+
+        <span>
+          บันทึกกิจกรรม
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="showComingSoon('รับเรื่อง')"
+      >
+
+        📋
+
+        <b>
+          รับเรื่อง
+        </b>
+
+        <span>
+          ศูนย์บริการประชาชน
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="showComingSoon('ประชุม')"
+      >
+
+        📝
+
+        <b>
+          ประชุม
+        </b>
+
+        <span>
+          บันทึกการประชุม
+        </span>
+
+      </button>
+
+
+      <button
+        class="action"
+        onclick="showComingSoon('โครงการ')"
+      >
+
+        🏘️
+
+        <b>
+          โครงการ
+        </b>
+
+        <span>
+          เพิ่มโครงการพัฒนา
+        </span>
+
+      </button>
+
     </div>
+
   </div>
 
-  <div class="grid three" style="margin-top:18px">
-    <div class="card" id="waste">
-      <div class="card-head"><h2>♻️ ขยะ / เตาเผาขยะ</h2></div>
-      <div class="card-body">
-        <div class="mini"><strong>1 แห่ง</strong><span>เตาเผาขยะชุมชน</span></div>
-        <div style="margin-top:12px"><span class="badge green">🟢 พร้อมใช้งาน</span></div>
+</div>
+
+
+<!-- =====================================================
+     TODAY / VILLAGE / WORKS
+===================================================== -->
+
+<div
+  class="grid three"
+  id="today"
+>
+
+
+  <!-- TODAY -->
+
+  <div class="card">
+
+    <div class="card-head">
+
+      <h2>
+        📅 งานวันนี้
+      </h2>
+
+    </div>
+
+    <div class="card-body list">
+
+      <div class="item">
+
+        <i class="dot blue"></i>
+
+        <div>
+
+          <b>
+            ระบบปฏิทินงาน
+          </b>
+
+          <small>
+            พร้อมเชื่อมข้อมูลกำหนดการจริง
+          </small>
+
+        </div>
+
       </div>
-    </div>
-    <div class="card">
-      <div class="card-head"><h2>🌫️ PM2.5</h2><button class="link" onclick="openModal('pm25')">รายละเอียด</button></div>
-      <div class="card-body"><div class="mini"><strong>—</strong><span>รอเชื่อมแหล่งข้อมูลจริง</span></div><div class="notice" style="margin-top:12px">ไม่สร้างค่าฝุ่นขึ้นเอง</div></div>
-    </div>
-    <div class="card" id="service">
-      <div class="card-head"><h2>🤝 ศูนย์บริการประชาชน</h2></div>
-      <div class="card-body mini-grid">
-        <div class="mini"><strong>86</strong><span>เรื่องทั้งหมด</span></div>
-        <div class="mini"><strong>8</strong><span>รอดำเนินการ</span></div>
+
+
+      <div class="item">
+
+        <i class="dot green"></i>
+
+        <div>
+
+          <b>
+            กิจกรรมชุมชน
+          </b>
+
+          <small>
+            ข้อมูลจะแสดงจากระบบกิจกรรม
+          </small>
+
+        </div>
+
       </div>
+
+
+      <div class="item">
+
+        <i class="dot yellow"></i>
+
+        <div>
+
+          <b>
+            งานที่ต้องติดตาม
+          </b>
+
+          <small>
+            เชื่อมกับระบบงานผู้ใหญ่บ้าน
+          </small>
+
+        </div>
+
+      </div>
+
     </div>
+
   </div>
 
-  <div class="card" id="activity" style="margin-top:18px">
-    <div class="card-head"><h2>📷 กิจกรรมล่าสุด</h2><button class="link" onclick="openModal('activity')">เพิ่มกิจกรรม</button></div>
-    <div class="card-body media-grid">
-      <div class="media"><b>🏘️ พัฒนาชุมชน</b><small>15/08/2569</small></div>
-      <div class="media"><b>🌿 กิจกรรมสิ่งแวดล้อม</b><small>10/08/2569</small></div>
-      <div class="media"><b>📝 ประชุมหมู่บ้าน</b><small>08/08/2569</small></div>
+
+  <!-- VILLAGE -->
+
+  <div
+    class="card"
+    id="people"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        👥 ภาพรวมหมู่บ้าน
+      </h2>
+
     </div>
+
+    <div class="card-body mini-grid">
+
+
+      <div class="mini">
+
+        <strong id="statPopulation">
+          —
+        </strong>
+
+        <span>
+          ประชาชน
+        </span>
+
+      </div>
+
+
+      <div
+        class="mini"
+        id="households"
+      >
+
+        <strong id="statHouseholds">
+          —
+        </strong>
+
+        <span>
+          ครัวเรือน
+        </span>
+
+      </div>
+
+
+      <div
+        class="mini"
+        id="elderly"
+      >
+
+        <strong id="statElderly">
+          —
+        </strong>
+
+        <span>
+          ผู้สูงอายุ
+        </span>
+
+      </div>
+
+
+      <div
+        class="mini"
+        id="vulnerable"
+      >
+
+        <strong id="statVulnerable">
+          —
+        </strong>
+
+        <span>
+          กลุ่มเปราะบาง
+        </span>
+
+      </div>
+
+
+    </div>
+
+
+    <div
+      style="
+        padding:
+          0 20px 18px;
+      "
+    >
+
+      <div class="notice">
+
+        🔒
+        Dashboard แสดงเฉพาะ
+        ข้อมูลภาพรวม
+
+      </div>
+
+    </div>
+
   </div>
 
-  <div class="grid two" style="margin-top:18px">
-    <div class="card" id="reports">
-      <div class="card-head"><h2>📊 รายงานสรุป</h2></div>
-      <div class="card-body list">
-        <div class="item"><i class="dot green"></i><div><b>รายงานงานผู้ใหญ่บ้าน ปี 2569</b><small>รวบรวมงาน กิจกรรม โครงการ และผลงาน</small></div><button class="link" onclick="openModal('report')">ดู</button></div>
-        <div class="item"><i class="dot blue"></i><div><b>รายงานศูนย์บริการประชาชน</b><small>สรุปสถานะเรื่องร้องเรียนและคำร้อง</small></div><button class="link" onclick="openModal('report')">ดู</button></div>
-      </div>
+
+  <!-- WORKS -->
+
+  <div
+    class="card"
+    id="works"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        🏆 ผลงาน
+      </h2>
+
     </div>
-    <div class="card" id="security">
-      <div class="card-head"><h2>🛡️ ความปลอดภัย</h2></div>
-      <div class="card-body">
-        <div class="item"><i class="dot green"></i><div><b>สถานะระบบ</b><small>Dashboard นี้ไม่มีข้อมูลรายบุคคลแสดงบนหน้าหลัก</small></div><span class="badge green" style="margin-left:auto">ปกติ</span></div>
-        <div class="item" style="margin-top:10px"><i class="dot blue"></i><div><b>Audit Log</b><small>บันทึกการเข้าถึง/แก้ไขควรจัดการที่ฐานข้อมูลจริง</small></div></div>
+
+    <div class="card-body">
+
+      <div class="mini-grid">
+
+
+        <div class="mini">
+
+          <strong id="workCount">
+            —
+          </strong>
+
+          <span>
+            งาน
+          </span>
+
+        </div>
+
+
+        <div class="mini">
+
+          <strong id="activityCount">
+            —
+          </strong>
+
+          <span>
+            กิจกรรม
+          </span>
+
+        </div>
+
+
+        <div class="mini">
+
+          <strong id="projectCount">
+            —
+          </strong>
+
+          <span>
+            โครงการ
+          </span>
+
+        </div>
+
+
+        <div class="mini">
+
+          <strong>
+            —
+          </strong>
+
+          <span>
+            ช่วยเหลือประชาชน
+          </span>
+
+        </div>
+
+
       </div>
+
     </div>
+
   </div>
 
-  <div class="footer">RONGKHEM e-VILLAGE OFFICE • Dashboard ขั้นตอนที่ 1 • ข้อมูลตัวเลขตัวอย่างจะต้องเชื่อมฐานข้อมูลจริงก่อนใช้งานจริง</div>
+</div>
+
+
+<!-- =====================================================
+     EQUIPMENT / RICE
+===================================================== -->
+
+<div
+  class="grid two"
+  style="margin-top:18px"
+>
+
+
+  <!-- EQUIPMENT -->
+
+  <div
+    class="card"
+    id="equipment"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        📦 คลังอุปกรณ์ส่วนกลาง
+      </h2>
+
+    </div>
+
+
+    <div class="card-body list">
+
+
+      <div>
+
+        <b>
+          🪑 เก้าอี้
+        </b>
+
+        <div class="progress">
+
+          <i
+            style="width:0%"
+          ></i>
+
+        </div>
+
+        <small
+          style="color:#64748b"
+        >
+          ยังไม่มีข้อมูล
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <b>
+          🪑 โต๊ะ
+        </b>
+
+        <div class="progress">
+
+          <i
+            style="width:0%"
+          ></i>
+
+        </div>
+
+        <small
+          style="color:#64748b"
+        >
+          ยังไม่มีข้อมูล
+        </small>
+
+      </div>
+
+
+      <div>
+
+        <b>
+          🔊 เครื่องเสียง
+        </b>
+
+        <div class="progress">
+
+          <i
+            style="width:0%"
+          ></i>
+
+        </div>
+
+        <small
+          style="color:#64748b"
+        >
+          ยังไม่มีข้อมูล
+        </small>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- RICE -->
+
+  <div
+    class="card"
+    id="rice"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        🍚 กลุ่มข้าวสาร
+      </h2>
+
+    </div>
+
+
+    <div class="card-body mini-grid">
+
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          สมาชิก
+        </span>
+
+      </div>
+
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          ถุงคงเหลือ
+        </span>
+
+      </div>
+
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          งานฌาปนกิจ
+        </span>
+
+      </div>
+
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          การดำเนินงาน
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     WASTE / PM2.5 / SERVICE
+===================================================== -->
+
+<div
+  class="grid three"
+  style="margin-top:18px"
+>
+
+
+  <div
+    class="card"
+    id="waste"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        ♻️ ขยะ / เตาเผาขยะ
+      </h2>
+
+    </div>
+
+    <div class="card-body">
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          ข้อมูลเตาเผาขยะ
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <div class="card-head">
+
+      <h2>
+        🌫️ PM2.5
+      </h2>
+
+    </div>
+
+    <div class="card-body">
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          รอเชื่อม API จริง
+        </span>
+
+      </div>
+
+      <div
+        class="notice"
+        style="margin-top:12px"
+      >
+
+        ไม่สร้างค่าฝุ่นขึ้นเอง
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="card"
+    id="service"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        🤝 ศูนย์บริการประชาชน
+      </h2>
+
+    </div>
+
+    <div class="card-body mini-grid">
+
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          เรื่องทั้งหมด
+        </span>
+
+      </div>
+
+
+      <div class="mini">
+
+        <strong>
+          —
+        </strong>
+
+        <span>
+          รอดำเนินการ
+        </span>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     ACTIVITIES
+===================================================== -->
+
+<div
+  class="card"
+  id="activity"
+  style="margin-top:18px"
+>
+
+  <div class="card-head">
+
+    <h2>
+      📷 กิจกรรมล่าสุด
+    </h2>
+
+  </div>
+
+
+  <div
+    class="card-body media-grid"
+    id="activityGrid"
+  >
+
+    <div class="media">
+
+      <b>
+        📷 ยังไม่มีข้อมูล
+      </b>
+
+      <small>
+        เชื่อมฐานข้อมูลกิจกรรม
+      </small>
+
+    </div>
+
+
+    <div class="media">
+
+      <b>
+        📷 รอข้อมูลจริง
+      </b>
+
+      <small>
+        ระบบพร้อมรับข้อมูล
+      </small>
+
+    </div>
+
+
+    <div class="media">
+
+      <b>
+        📷 รอข้อมูลจริง
+      </b>
+
+      <small>
+        ระบบพร้อมรับข้อมูล
+      </small>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     REPORT / SECURITY
+===================================================== -->
+
+<div
+  class="grid two"
+  style="margin-top:18px"
+>
+
+
+  <!-- REPORT -->
+
+  <div
+    class="card"
+    id="reports"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        📊 รายงานสรุป
+      </h2>
+
+    </div>
+
+
+    <div class="card-body list">
+
+
+      <div class="item">
+
+        <i class="dot green"></i>
+
+        <div>
+
+          <b>
+            รายงานงานผู้ใหญ่บ้าน
+          </b>
+
+          <small>
+            สร้างจากข้อมูลจริงในฐานข้อมูล
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <i class="dot blue"></i>
+
+        <div>
+
+          <b>
+            รายงานศูนย์บริการประชาชน
+          </b>
+
+          <small>
+            สรุปจากข้อมูลจริง
+          </small>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+  <!-- SECURITY -->
+
+  <div
+    class="card"
+    id="security"
+  >
+
+    <div class="card-head">
+
+      <h2>
+        🛡️ ความปลอดภัย
+      </h2>
+
+    </div>
+
+
+    <div class="card-body">
+
+
+      <div class="security-status">
+
+        <span class="security-dot"></span>
+
+        <div>
+
+          <b>
+            ระบบรักษาความปลอดภัยทำงาน
+          </b>
+
+          <div
+            style="
+              font-size:12px;
+              margin-top:3px;
+            "
+          >
+
+            Supabase Authentication +
+            Role + RLS
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="item"
+        style="margin-top:10px"
+      >
+
+        <div>
+
+          <b>
+            👤 ผู้ใช้งาน
+          </b>
+
+          <small
+            id="securityUsername"
+          >
+            กำลังโหลด...
+          </small>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="item"
+        style="margin-top:10px"
+      >
+
+        <div>
+
+          <b>
+            🔐 สิทธิ์
+          </b>
+
+          <small
+            id="securityRole"
+          >
+            กำลังตรวจสอบ...
+          </small>
+
+        </div>
+
+        <span
+          class="badge green"
+          style="margin-left:auto"
+        >
+          ADMIN
+        </span>
+
+      </div>
+
+
+      <div
+        class="item"
+        style="margin-top:10px"
+      >
+
+        <div>
+
+          <b>
+            📝 Audit Log
+          </b>
+
+          <small>
+            บันทึกการเข้าสู่ระบบและการใช้งาน
+          </small>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<div class="footer">
+
+  RONGKHEM e-VILLAGE OFFICE
+
+  <br>
+
+  ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+  <br>
+
+  บ้านร่องเข็ม หมู่ที่ 6
+  ตำบลจำป่าหวาย
+  อำเภอเมืองพะเยา
+  จังหวัดพะเยา
+
+</div>
+
+
 </section>
+
 </main>
+
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="modal-head"><b id="modalTitle">รายละเอียด</b><button class="close" onclick="closeModal()">×</button></div>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
-</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+
+<script src="assets/js/config.js"></script>
+
+<script src="assets/js/auth.js"></script>
+
 
 <script>
-/* =========================================================
-   RONGKHEM e-VILLAGE OFFICE
-   DASHBOARD — REAL DATA BUILD
-   ใช้ Supabase เป็นฐานข้อมูลกลางเมื่อมีการโหลด supabase.js
-   ========================================================= */
 
-const DEFAULT_DATA = {
-  village: {name:"บ้านร่องเข็ม", moo:"หมู่ที่ 6"},
-  population: 960,
-  households: 352,
-  elderly: 92,
-  children: "—",
-  works: 86,
-  pending: 8,
-  activities: 42,
-  projects: 12
-};
+/* =====================================================
+   DASHBOARD START
+===================================================== */
 
-let activities = [];
-let works = [];
-let projects = [];
-let complaints = [];
-let dbReady = false;
+document.addEventListener(
+  "DOMContentLoaded",
+  async function(){
 
-const titles = {
-  follow:"🚨 เรื่องที่ต้องติดตาม", addWork:"➕ บันทึกงาน", news:"📢 เพิ่มข่าว",
-  activity:"📅 เพิ่มกิจกรรม", case:"📋 รับเรื่อง", meeting:"📝 บันทึกการประชุม",
-  project:"🏘️ เพิ่มโครงการ", calendar:"📅 ปฏิทิน", works:"🏆 แฟ้มผลงาน",
-  equipment:"📦 คลังอุปกรณ์", rice:"🍚 กลุ่มข้าวสาร", pm25:"🌫️ PM2.5", report:"📊 รายงาน"
-};
+    /*
+     * ตรวจสิทธิ์
+     */
 
-function esc(v){
-  return String(v ?? "").replace(/[&<>"']/g, m => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
-  }[m]));
+    const admin =
+      await requireAdmin();
+
+
+    if(!admin){
+
+      return;
+
+    }
+
+
+    /*
+     * แสดงชื่อ
+     */
+
+    const name =
+      document.getElementById(
+        "adminDisplayName"
+      );
+
+
+    if(name){
+
+      name.textContent =
+        admin.profile.display_name
+        ||
+        admin.profile.username
+        ||
+        "ผู้ใหญ่บ้าน";
+
+    }
+
+
+    /*
+     * แสดง Role
+     */
+
+    const role =
+      document.getElementById(
+        "adminRole"
+      );
+
+
+    if(role){
+
+      role.textContent =
+        admin.profile.role;
+
+    }
+
+
+    /*
+     * Security username
+     */
+
+    const securityUsername =
+      document.getElementById(
+        "securityUsername"
+      );
+
+
+    if(securityUsername){
+
+      securityUsername.textContent =
+        admin.profile.username;
+
+    }
+
+
+    /*
+     * Security role
+     */
+
+    const securityRole =
+      document.getElementById(
+        "securityRole"
+      );
+
+
+    if(securityRole){
+
+      securityRole.textContent =
+        admin.profile.role;
+
+    }
+
+
+    /*
+     * วันที่
+     */
+
+    const date =
+      document.getElementById(
+        "dateNow"
+      );
+
+
+    if(date){
+
+      date.textContent =
+        new Date()
+          .toLocaleDateString(
+            "th-TH",
+            {
+              weekday:"long",
+              year:"numeric",
+              month:"long",
+              day:"numeric"
+            }
+          );
+
+    }
+
+
+    /*
+     * Audit
+     */
+
+    await writeAuditLog(
+      "VIEW",
+      "ADMIN_DASHBOARD"
+    );
+
+
+    /*
+     * ซ่อนหน้าจอ Loading
+     */
+
+    const loading =
+      document.getElementById(
+        "securityLoading"
+      );
+
+
+    if(loading){
+
+      loading.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+document
+  .getElementById("logoutBtn")
+  .addEventListener(
+    "click",
+    async function(){
+
+      const confirmLogout =
+        confirm(
+          "ต้องการออกจากระบบหรือไม่?"
+        );
+
+
+      if(!confirmLogout){
+
+        return;
+
+      }
+
+
+      await logoutAdmin();
+
+    }
+  );
+
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+document
+  .getElementById("menuBtn")
+  .addEventListener(
+    "click",
+    function(){
+
+      document
+        .getElementById("sidebar")
+        .classList
+        .toggle("open");
+
+    }
+  );
+
+
+/* =====================================================
+   CLOSE MOBILE MENU
+===================================================== */
+
+document
+  .querySelectorAll(".nav a")
+  .forEach(
+    function(link){
+
+      link.addEventListener(
+        "click",
+        function(){
+
+          document
+            .getElementById("sidebar")
+            .classList
+            .remove("open");
+
+        }
+      );
+
+    }
+  );
+
+
+/* =====================================================
+   COMING SOON
+===================================================== */
+
+function showComingSoon(
+  module
+){
+
+  alert(
+    "โมดูล " +
+    module +
+    " จะเชื่อมกับฐานข้อมูลจริงในขั้นต่อไป"
+  );
+
 }
 
-function getDB(){
-  return window.rongkhemSupabase || null;
-}
-
-async function loadRealData(){
-  const db = getDB();
-  if(!db){
-    setStatus("ยังไม่ได้เชื่อม Supabase", false);
-    render(DEFAULT_DATA);
-    return;
-  }
-
-  try{
-    dbReady = true;
-
-    const [contentRes, statsRes] = await Promise.all([
-      db.from("contents")
-        .select("*")
-        .order("created_at", {ascending:false}),
-      db.from("village_stats")
-        .select("*")
-        .limit(1)
-        .maybeSingle()
-    ]);
-
-    if(contentRes.error) throw contentRes.error;
-
-    const rows = contentRes.data || [];
-    activities = rows.filter(x => x.content_type === "activity");
-    works = rows.filter(x => ["work","works"].includes(x.content_type));
-    projects = rows.filter(x => x.content_type === "project");
-    complaints = rows.filter(x => ["complaint","case","service"].includes(x.content_type));
-
-    const s = statsRes.data || {};
-    render({
-      ...DEFAULT_DATA,
-      population: s.population ?? s.total_population ?? DEFAULT_DATA.population,
-      households: s.households ?? s.total_households ?? DEFAULT_DATA.households,
-      elderly: s.elderly ?? DEFAULT_DATA.elderly,
-      children: s.children ?? DEFAULT_DATA.children,
-      works: works.length || s.works || 0,
-      activities: activities.length || s.activities || 0,
-      projects: projects.length || s.projects || 0,
-      pending: s.pending ?? complaints.filter(x => /รอ|pending/i.test(x.status_text || "")).length
-    });
-
-    setStatus("เชื่อมฐานข้อมูลจริงแล้ว", true);
-  }catch(err){
-    console.error(err);
-    setStatus("เชื่อม Supabase ไม่สำเร็จ", false);
-    render(DEFAULT_DATA);
-  }
-}
-
-function setStatus(text, ok){
-  const el = document.getElementById("dbStatus");
-  if(el){
-    el.textContent = ok ? "🟢 " + text : "🟠 " + text;
-    el.style.color = ok ? "#166534" : "#92400e";
-  }
-}
-
-function render(data){
-  const nums = document.querySelectorAll(".stats .num");
-  if(nums.length >= 4){
-    nums[0].textContent = Number(data.works || 0).toLocaleString("th-TH");
-    nums[1].textContent = Number(data.works || 0).toLocaleString("th-TH");
-    nums[2].textContent = Number(data.activities || 0).toLocaleString("th-TH");
-    nums[3].textContent = Number(data.projects || 0).toLocaleString("th-TH");
-  }
-
-  const mini = document.querySelectorAll("#people .mini strong");
-  if(mini.length >= 4){
-    mini[0].textContent = Number(data.population || 0).toLocaleString("th-TH");
-    mini[1].textContent = Number(data.households || 0).toLocaleString("th-TH");
-    mini[2].textContent = Number(data.elderly || 0).toLocaleString("th-TH");
-    mini[3].textContent = data.children ?? "—";
-  }
-
-  const workMini = document.querySelectorAll("#works .mini strong");
-  if(workMini.length >= 4){
-    workMini[0].textContent = Number(data.works || 0).toLocaleString("th-TH");
-    workMini[1].textContent = Number(data.activities || 0).toLocaleString("th-TH");
-    workMini[2].textContent = Number(data.projects || 0).toLocaleString("th-TH");
-  }
-
-  const serviceMini = document.querySelectorAll("#service .mini strong");
-  if(serviceMini.length >= 2){
-    serviceMini[0].textContent = Number(complaints.length || 0).toLocaleString("th-TH");
-    serviceMini[1].textContent = Number(data.pending || 0).toLocaleString("th-TH");
-  }
-
-  renderActivities();
-  renderFollow();
-}
-
-function renderActivities(){
-  const box = document.querySelector("#activity .media-grid");
-  if(!box) return;
-
-  const rows = activities.slice(0,3);
-  if(!rows.length){
-    box.innerHTML = `
-      <div class="media"><b>ยังไม่มีกิจกรรม</b><small>เพิ่มกิจกรรมจากระบบฐานข้อมูลจริง</small></div>
-      <div class="media"><b>ข้อมูลพร้อมใช้งาน</b><small>รอรายการจาก Supabase</small></div>
-      <div class="media"><b>ไม่ใช้ข้อมูลสมมติ</b><small>ระบบจะแสดงเมื่อมีการบันทึกจริง</small></div>`;
-    return;
-  }
-
-  box.innerHTML = rows.map(x => `
-    <div class="media" style="${x.image_url ? `background-image:url('${esc(x.image_url)}');background-size:cover;background-position:center;color:#fff` : ''}">
-      <b>${esc(x.title || "กิจกรรมชุมชน")}</b>
-      <small>${esc(x.date_text || x.created_at ? new Date(x.created_at || Date.now()).toLocaleDateString("th-TH") : "")}</small>
-    </div>`).join("");
-}
-
-function renderFollow(){
-  const box = document.querySelector("#follow .card-body");
-  if(!box) return;
-
-  const pending = complaints.filter(x => /รอ|pending/i.test(x.status_text || ""));
-  if(!pending.length){
-    box.innerHTML = `<div class="item"><i class="dot green"></i><div><b>ไม่มีรายการค้างติดตาม</b><small>ระบบฐานข้อมูลยังไม่พบเรื่องที่อยู่ระหว่างดำเนินการ</small></div><span class="badge green" style="margin-left:auto">ปกติ</span></div>`;
-    return;
-  }
-
-  box.innerHTML = pending.slice(0,5).map(x => `
-    <div class="item">
-      <i class="dot yellow"></i>
-      <div><b>${esc(x.title || "เรื่องร้องเรียน")}</b><small>${esc(x.status_text || "รอติดตาม")}</small></div>
-      <span class="badge yellow" style="margin-left:auto">รอติดตาม</span>
-    </div>`).join("");
-}
-
-function openModal(type){
-  document.getElementById("modalTitle").textContent = titles[type] || "รายละเอียด";
-
-  let body = '<div class="notice">ระบบกำลังเชื่อมข้อมูลจริง…</div>';
-
-  if(type === "activity"){
-    body = `<form onsubmit="return saveContent(event,'activity')">
-      <label>ชื่อกิจกรรม</label>
-      <input id="f_title" required placeholder="เช่น ประชุมหมู่บ้าน" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
-      <label>รายละเอียด</label>
-      <textarea id="f_detail" rows="4" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px"></textarea>
-      <label>วันที่</label>
-      <input id="f_date" type="date" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
-      <button class="btn" type="submit">บันทึกลงฐานข้อมูลจริง</button>
-    </form>`;
-  }else if(type === "project"){
-    body = `<form onsubmit="return saveContent(event,'project')">
-      <label>ชื่อโครงการ</label>
-      <input id="f_title" required placeholder="ชื่อโครงการ" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
-      <label>รายละเอียด</label>
-      <textarea id="f_detail" rows="4" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px"></textarea>
-      <button class="btn" type="submit">บันทึกโครงการจริง</button>
-    </form>`;
-  }else if(type === "addWork"){
-    body = `<form onsubmit="return saveContent(event,'work')">
-      <label>ชื่องาน</label>
-      <input id="f_title" required placeholder="รายการงาน" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
-      <label>รายละเอียด</label>
-      <textarea id="f_detail" rows="4" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px"></textarea>
-      <button class="btn" type="submit">บันทึกงานจริง</button>
-    </form>`;
-  }else{
-    body = `<div class="notice">โมดูลนี้จะเชื่อมกับฐานข้อมูลจริงในขั้นตอนของโมดูลนั้นโดยตรง เพื่อไม่ให้ข้อมูลถูกสร้างซ้ำหรือสูญหาย</div>`;
-  }
-
-  document.getElementById("modalBody").innerHTML = body;
-  document.getElementById("modal").classList.add("show");
-}
-
-async function saveContent(event, type){
-  event.preventDefault();
-  const db = getDB();
-  if(!db){
-    alert("ยังไม่ได้เชื่อม Supabase กรุณาตั้งค่า URL และ ANON KEY ใน supabase.js ก่อน");
-    return false;
-  }
-
-  const payload = {
-    content_type:type,
-    title:document.getElementById("f_title").value.trim(),
-    detail:document.getElementById("f_detail").value.trim(),
-    date_text:document.getElementById("f_date")?.value || "",
-    time_text:"",
-    location:"",
-    value_text:"",
-    status_text:"บันทึกแล้ว",
-    image_url:null,
-    sort_order:0
-  };
-
-  const {error} = await db.from("contents").insert(payload);
-  if(error){
-    console.error(error);
-    alert("บันทึกไม่สำเร็จ: " + error.message);
-    return false;
-  }
-
-  closeModal();
-  await loadRealData();
-  alert("บันทึกข้อมูลลงฐานข้อมูลจริงเรียบร้อยแล้ว");
-  return false;
-}
-
-function closeModal(){
-  document.getElementById("modal").classList.remove("show");
-}
-
-document.getElementById("modal").addEventListener("click",e=>{
-  if(e.target.id==="modal") closeModal();
-});
-
-document.getElementById("menuBtn").addEventListener("click",()=>{
-  document.getElementById("sidebar").classList.toggle("open");
-});
-
-document.querySelectorAll(".nav a").forEach(a=>{
-  a.addEventListener("click",()=>document.getElementById("sidebar").classList.remove("open"));
-});
-
-function updateClock(){
-  document.getElementById("dateNow").textContent =
-    new Date().toLocaleDateString("th-TH",{
-      weekday:"long",year:"numeric",month:"long",day:"numeric"
-    });
-}
-updateClock();
-
-const status = document.createElement("div");
-status.id = "dbStatus";
-status.style.cssText =
-  "position:fixed;right:18px;bottom:18px;background:#fff;padding:9px 13px;border:1px solid #e2e8f0;border-radius:999px;font-size:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:120";
-status.textContent = "🟡 กำลังตรวจสอบฐานข้อมูล…";
-document.body.appendChild(status);
-
-loadRealData();
 </script>
+
+
 </body>
+
 </html>
