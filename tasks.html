@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ติดตามงาน | RONGKHEM e-VILLAGE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/supabase-config.js"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f4f7f8;
+    color:#173042;
+}
+
+/* HEADER */
+
+.top{
+    background:linear-gradient(
+        135deg,
+        #063b2a,
+        #12613f
+    );
+    color:white;
+    padding:24px;
+}
+
+.top h1{
+    margin:8px 0 5px;
+    font-size:26px;
+}
+
+.wrap{
+    max-width:1180px;
+    margin:auto;
+    padding:18px;
+}
+
+.back{
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    opacity:.9;
+}
+
+/* GRID */
+
+.grid{
+    display:grid;
+    grid-template-columns:360px 1fr;
+    gap:18px;
+}
+
+/* CARD */
+
+.card,
+.stat{
+    background:#fff;
+    border-radius:18px;
+    padding:18px;
+    box-shadow:0 7px 24px #1232;
+}
+
+/* FORM */
+
+.field{
+    margin:9px 0;
+}
+
+.field label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:5px;
+}
+
+input,
+textarea,
+select{
+    width:100%;
+    padding:11px;
+    border:1px solid #d6e0e5;
+    border-radius:10px;
+    font:inherit;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+/* BUTTON */
+
+.btn{
+    border:0;
+    border-radius:10px;
+    padding:11px 15px;
+    font-weight:800;
+    cursor:pointer;
+}
+
+.primary{
+    background:#12613f;
+    color:#fff;
+}
+
+.muted{
+    background:#edf2f5;
+}
+
+.danger{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:10px;
+    margin-bottom:14px;
+}
+
+.num{
+    font-size:27px;
+    font-weight:900;
+    color:#12613f;
+}
+
+.label{
+    font-size:12px;
+    color:#65747d;
+}
+
+/* TASK */
+
+.task{
+    border:1px solid #e2e9ed;
+    border-radius:14px;
+    padding:14px;
+    margin:9px 0;
+}
+
+.task h3{
+    margin:0 0 6px;
+    font-size:17px;
+}
+
+/* BADGE */
+
+.badge{
+    display:inline-block;
+    padding:4px 8px;
+    border-radius:999px;
+    background:#edf2f5;
+    font-size:11px;
+    font-weight:800;
+    margin:2px;
+}
+
+.urgent{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.high{
+    background:#fff3cd;
+    color:#8a5a00;
+}
+
+.done{
+    background:#dcfce7;
+    color:#166534;
+}
+
+/* META */
+
+.meta{
+    font-size:12px;
+    color:#66757e;
+    line-height:1.8;
+}
+
+/* ROW */
+
+.row{
+    display:flex;
+    gap:7px;
+    align-items:center;
+    flex-wrap:wrap;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="top">
+
+<div class="wrap">
+
+<a
+    class="back"
+    href="../admin.html"
+>
+← กลับ Admin Center
+</a>
+
+<h1>
+✅ ระบบติดตามงานผู้ใหญ่บ้าน
+</h1>
+
+<div>
+บันทึกงาน • ผู้รับผิดชอบ • กำหนดเวลา • สถานะ
+</div>
+
+</div>
+
+</header>
+
+
+<!-- MAIN -->
+
+<main class="wrap">
+
+
+<!-- SUMMARY -->
+
+<div
+    class="stats"
+    id="stats"
+>
+</div>
+
+
+<div class="grid">
+
+
+<!-- ADD TASK -->
+
+<section class="card">
+
+<h2>
+➕ เพิ่มงาน
+</h2>
+
+
+<div class="field">
+
+<label>
+ชื่องาน
+</label>
+
+<input
+    id="title"
+    placeholder="เช่น เตรียมประชุมหมู่บ้าน"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+รายละเอียด
+</label>
+
+<textarea
+    id="description"
+></textarea>
+
+</div>
+
+
+<div class="field">
+
+<label>
+หมวดงาน
+</label>
+
+<select id="category">
+
+<option>
+ทั่วไป
+</option>
+
+<option>
+ประชุม
+</option>
+
+<option>
+ประชาสัมพันธ์
+</option>
+
+<option>
+ขยะและสิ่งแวดล้อม
+</option>
+
+<option>
+ความปลอดภัย
+</option>
+
+<option>
+สาธารณสุข
+</option>
+
+<option>
+โครงสร้างพื้นฐาน
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+ความสำคัญ
+</label>
+
+<select id="priority">
+
+<option>
+ปกติ
+</option>
+
+<option>
+ต่ำ
+</option>
+
+<option>
+สูง
+</option>
+
+<option>
+ด่วน
+</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+ผู้รับผิดชอบ
+</label>
+
+<input
+    id="assigned_to"
+    placeholder="ชื่อผู้รับผิดชอบ"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+กำหนดเสร็จ
+</label>
+
+<input
+    id="due_at"
+    type="datetime-local"
+>
+
+</div>
+
+
+<button
+    class="btn primary"
+    id="add"
+>
+💾 บันทึกงาน
+</button>
+
+
+<span id="msg"></span>
+
+</section>
+
+
+<!-- TASK LIST -->
+
+<section class="card">
+
+<div class="row">
+
+<h2 style="margin-right:auto">
+
+📋 งานทั้งหมด
+
+</h2>
+
+
+<select
+    id="filter"
+    class="btn muted"
+>
+
+<option value="">
+ทั้งหมด
+</option>
+
+<option>
+รอดำเนินการ
+</option>
+
+<option>
+กำลังดำเนินการ
+</option>
+
+<option>
+เสร็จแล้ว
+</option>
+
+<option>
+ยกเลิก
+</option>
+
+</select>
+
+</div>
+
+
+<div id="list">
+
+กำลังโหลด...
+
+</div>
+
+</section>
+
+
+</div>
+
+</main>
+
+
+<script>
+
+/* ==============================
+   SECURITY / HTML ESCAPE
+============================== */
+
+const esc = s =>
+    String(s ?? '')
+    .replace(
+        /[&<>"']/g,
+        m => ({
+            '&':'&amp;',
+            '<':'&lt;',
+            '>':'&gt;',
+            '"':'&quot;',
+            "'":'&#039;'
+        }[m])
+    );
+
+
+/* ==============================
+   LOAD TASKS
+============================== */
+
+async function load(){
+
+    const result =
+        await db
+        .from('village_tasks')
+        .select('*')
+        .order(
+            'created_at',
+            {
+                ascending:false
+            }
+        );
+
+
+    if(result.error){
+
+        document
+        .getElementById('list')
+        .innerHTML =
+        `
+        <b style="color:#b91c1c">
+        ❌ ${esc(result.error.message)}
+        </b>
+
+        <p>
+        กรุณารัน schema-v9-tasks.sql
+        ใน Supabase ก่อน
+        </p>
+        `;
+
+        return;
+    }
+
+
+    const all =
+        result.data || [];
+
+
+    const filter =
+        document
+        .getElementById('filter')
+        .value;
+
+
+    const data =
+        filter
+        ?
+        all.filter(
+            x => x.status === filter
+        )
+        :
+        all;
+
+
+    /* SUMMARY */
+
+    const statuses = [
+
+        'รอดำเนินการ',
+
+        'กำลังดำเนินการ',
+
+        'เสร็จแล้ว',
+
+        'ยกเลิก'
+
+    ];
+
+
+    document
+    .getElementById('stats')
+    .innerHTML =
+
+        statuses
+        .map(status => {
+
+            const count =
+                all.filter(
+                    x =>
+                    x.status === status
+                ).length;
+
+
+            return `
+
+            <div class="stat">
+
+                <div class="num">
+                    ${count}
+                </div>
+
+                <div class="label">
+                    ${status}
+                </div>
+
+            </div>
+
+            `;
+
+        })
+        .join('');
+
+
+    /* TASK LIST */
+
+    document
+    .getElementById('list')
+    .innerHTML =
+
+        data.length
+
+        ?
+
+        data.map(x => {
+
+            const overdue =
+
+                x.due_at &&
+
+                new Date(x.due_at)
+                < new Date()
+
+                &&
+
+                ![
+                    'เสร็จแล้ว',
+                    'ยกเลิก'
+                ]
+                .includes(
+                    x.status
+                );
+
+
+            const priorityClass =
+
+                x.priority === 'ด่วน'
+
+                ?
+
+                'urgent'
+
+                :
+
+                x.priority === 'สูง'
+
+                ?
+
+                'high'
+
+                :
+
+                '';
+
+
+            const statusClass =
+
+                x.status === 'เสร็จแล้ว'
+
+                ?
+
+                'done'
+
+                :
+
+                '';
+
+
+            return `
+
+            <article class="task">
+
+                <h3>
+                    ${esc(x.title)}
+                </h3>
+
+
+                <span class="badge">
+                    ${esc(x.category)}
+                </span>
+
+
+                <span
+                    class="badge ${priorityClass}"
+                >
+                    ${esc(x.priority)}
+                </span>
+
+
+                <span
+                    class="badge ${statusClass}"
+                >
+                    ${esc(x.status)}
+                </span>
+
+
+                ${
+                    overdue
+
+                    ?
+
+                    `
+                    <span
+                        class="badge urgent"
+                    >
+                        เลยกำหนด
+                    </span>
+                    `
+
+                    :
+
+                    ''
+                }
+
+
+                <div class="meta">
+
+                    ${esc(
+                        x.description || ''
+                    )}
+
+                    <br>
+
+                    👤
+                    ${esc(
+                        x.assigned_to ||
+                        'ไม่ระบุ'
+                    )}
+
+                    <br>
+
+                    📅
+
+                    ${
+                        x.due_at
+
+                        ?
+
+                        new Date(
+                            x.due_at
+                        )
+                        .toLocaleString(
+                            'th-TH'
+                        )
+
+                        :
+
+                        'ไม่กำหนด'
+                    }
+
+                </div>
+
+
+                <div
+                    class="row"
+                    style="margin-top:8px"
+                >
+
+                    <select
+                        onchange="
+                            changeStatus(
+                                '${x.id}',
+                                this.value
+                            )
+                        "
+                        class="btn muted"
+                    >
+
+                        <option
+                            ${
+                                x.status ===
+                                'รอดำเนินการ'
+                                ?
+                                'selected'
+                                :
+                                ''
+                            }
+                        >
+                            รอดำเนินการ
+                        </option>
+
+
+                        <option
+                            ${
+                                x.status ===
+                                'กำลังดำเนินการ'
+                                ?
+                                'selected'
+                                :
+                                ''
+                            }
+                        >
+                            กำลังดำเนินการ
+                        </option>
+
+
+                        <option
+                            ${
+                                x.status ===
+                                'เสร็จแล้ว'
+                                ?
+                                'selected'
+                                :
+                                ''
+                            }
+                        >
+                            เสร็จแล้ว
+                        </option>
+
+
+                        <option
+                            ${
+                                x.status ===
+                                'ยกเลิก'
+                                ?
+                                'selected'
+                                :
+                                ''
+                            }
+                        >
+                            ยกเลิก
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        class="btn danger"
+                        onclick="
+                            removeTask(
+                                '${x.id}'
+                            )
+                        "
+                    >
+                        🗑️ ลบ
+                    </button>
+
+                </div>
+
+            </article>
+
+            `;
+
+        })
+        .join('')
+
+        :
+
+        '<p>ไม่มีงาน</p>';
+
+}
+
+
+/* ==============================
+   CHANGE STATUS
+============================== */
+
+async function changeStatus(
+    id,
+    status
+){
+
+    const result =
+        await db
+        .from('village_tasks')
+        .update({
+
+            status:
+
+                status,
+
+            updated_at:
+
+                new Date()
+                .toISOString()
+
+        })
+        .eq(
+            'id',
+            id
+        );
+
+
+    if(result.error){
+
+        alert(
+            result.error.message
+        );
+
+        return;
+    }
+
+
+    await load();
+
+}
+
+
+/* ==============================
+   DELETE TASK
+============================== */
+
+async function removeTask(
+    id
+){
+
+    if(
+        !confirm(
+            'ต้องการลบงานนี้หรือไม่?'
+        )
+    ){
+
+        return;
+    }
+
+
+    const result =
+        await db
+        .from('village_tasks')
+        .delete()
+        .eq(
+            'id',
+            id
+        );
+
+
+    if(result.error){
+
+        alert(
+            result.error.message
+        );
+
+        return;
+    }
+
+
+    await load();
+
+}
+
+
+/* ==============================
+   GLOBAL FUNCTIONS
+============================== */
+
+window.changeStatus =
+    changeStatus;
+
+window.removeTask =
+    removeTask;
+
+
+/* ==============================
+   FILTER
+============================== */
+
+document
+.getElementById('filter')
+.addEventListener(
+    'change',
+    load
+);
+
+
+/* ==============================
+   ADD TASK
+============================== */
+
+document
+.getElementById('add')
+.addEventListener(
+    'click',
+    async function(){
+
+        const userResult =
+            await db.auth.getUser();
+
+
+        const user =
+            userResult
+            ?.data
+            ?.user;
+
+
+        if(!user){
+
+            document
+            .getElementById('msg')
+            .textContent =
+            '❌ กรุณา Login ด้วย Supabase ก่อน';
+
+            return;
+        }
+
+
+        const title =
+            document
+            .getElementById('title')
+            .value
+            .trim();
+
+
+        if(!title){
+
+            document
+            .getElementById('msg')
+            .textContent =
+            'กรุณาใส่ชื่องาน';
+
+            return;
+        }
+
+
+        const description =
+            document
+            .getElementById(
+                'description'
+            )
+            .value
+            .trim();
+
+
+        const category =
+            document
+            .getElementById(
+                'category'
+            )
+            .value;
+
+
+        const priority =
+            document
+            .getElementById(
+                'priority'
+            )
+            .value;
+
+
+        const assigned =
+            document
+            .getElementById(
+                'assigned_to'
+            )
+            .value
+            .trim();
+
+
+        const due =
+            document
+            .getElementById(
+                'due_at'
+            )
+            .value;
+
+
+        const result =
+
+            await db
+            .from(
+                'village_tasks'
+            )
+            .insert({
+
+                title:
+
+                    title,
+
+                description:
+
+                    description,
+
+                category:
+
+                    category,
+
+                priority:
+
+                    priority,
+
+                assigned_to:
+
+                    assigned ||
+                    null,
+
+                due_at:
+
+                    due
+
+                    ?
+
+                    new Date(
+                        due
+                    )
+                    .toISOString()
+
+                    :
+
+                    null,
+
+                created_by:
+
+                    user.id
+
+            });
+
+
+        if(result.error){
+
+            document
+            .getElementById('msg')
+            .textContent =
+            '❌ ' +
+            result.error.message;
+
+            return;
+        }
+
+
+        document
+        .getElementById('msg')
+        .textContent =
+        '✅ บันทึกงานแล้ว';
+
+
+        /* CLEAR FORM */
+
+        document
+        .getElementById('title')
+        .value = '';
+
+
+        document
+        .getElementById(
+            'description'
+        )
+        .value = '';
+
+
+        document
+        .getElementById(
+            'assigned_to'
+        )
+        .value = '';
+
+
+        document
+        .getElementById(
+            'due_at'
+        )
+        .value = '';
+
+
+        await load();
+
+    }
+);
+
+
+/* ==============================
+   INITIAL LOAD
+============================== */
+
+load();
+
+</script>
+
+</body>
+</html>
