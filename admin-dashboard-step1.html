@@ -46,6 +46,9 @@ button{font:inherit;cursor:pointer}
 </style>
 </head>
 <body>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+
 <div class="app">
 <aside class="sidebar" id="sidebar">
   <div class="brand">
@@ -238,38 +241,282 @@ button{font:inherit;cursor:pointer}
 </div>
 
 <script>
-const titles={
- follow:"🚨 เรื่องที่ต้องติดตาม",addWork:"➕ บันทึกงาน",news:"📢 เพิ่มข่าว",
- activity:"📅 เพิ่มกิจกรรม",case:"📋 รับเรื่อง",meeting:"📝 บันทึกการประชุม",
- project:"🏘️ เพิ่มโครงการ",calendar:"📅 ปฏิทิน",works:"🏆 แฟ้มผลงาน",
- equipment:"📦 คลังอุปกรณ์",rice:"🍚 กลุ่มข้าวสาร",pm25:"🌫️ PM2.5",report:"📊 รายงาน"
+/* =========================================================
+   RONGKHEM e-VILLAGE OFFICE
+   DASHBOARD — REAL DATA BUILD
+   ใช้ Supabase เป็นฐานข้อมูลกลางเมื่อมีการโหลด supabase.js
+   ========================================================= */
+
+const DEFAULT_DATA = {
+  village: {name:"บ้านร่องเข็ม", moo:"หมู่ที่ 6"},
+  population: 960,
+  households: 352,
+  elderly: 92,
+  children: "—",
+  works: 86,
+  pending: 8,
+  activities: 42,
+  projects: 12
 };
-function openModal(type){
- document.getElementById("modalTitle").textContent=titles[type]||"รายละเอียด";
- const bodies={
-  follow:`<div class="list"><div class="item"><i class="dot red"></i><div><b>เรื่องเร่งด่วน 3 เรื่อง</b><small>รายละเอียดจริงจะดึงจากฐานข้อมูลเมื่อเชื่อมระบบ</small></div></div><div class="item"><i class="dot yellow"></i><div><b>เรื่องรอติดตาม 2 เรื่อง</b></div></div></div>`,
-  addWork:`<div class="notice">แบบฟอร์มบันทึกงานจะเชื่อมกับ “สมุดงานผู้ใหญ่บ้าน” ในขั้นตอนถัดไป</div>`,
-  news:`<div class="notice">ระบบเพิ่มข่าว + อัปโหลดรูป + เลือก Public/Private จะเชื่อมในโมดูลข่าว</div>`,
-  activity:`<div class="notice">ระบบกิจกรรมรองรับรูปภาพหลายรูปและเชื่อมแฟ้มผลงาน</div>`,
-  case:`<div class="notice">ข้อมูลผู้ร้องเรียนจะเป็น Private และไม่แสดงใน Dashboard สาธารณะ</div>`,
-  meeting:`<div class="notice">ระบบบันทึกการประชุมจะเก็บวันที่ วาระ มติ และเอกสาร</div>`,
-  project:`<div class="notice">ระบบโครงการจะเชื่อมรูปก่อน–ระหว่าง–หลัง เอกสาร งบประมาณ และแฟ้มผลงาน</div>`,
-  calendar:`<div class="notice">ปฏิทินงานจะเชื่อมกับกิจกรรมและกำหนดการของผู้ใหญ่บ้าน</div>`,
-  works:`<div class="notice">แฟ้มผลงานจะรวบรวมงาน กิจกรรม โครงการ และหลักฐานที่เลือกนำเข้าโดยไม่ต้องบันทึกซ้ำ</div>`,
-  equipment:`<div class="notice">คลังอุปกรณ์จะเชื่อมสต็อก ยืม–คืน รูปภาพ และประวัติการใช้งาน</div>`,
-  rice:`<div class="notice">กลุ่มข้าวสารจะเชื่อมสมาชิก คลัง รับ–จ่าย และงานฌาปนกิจ โดยข้อมูลสมาชิกเป็น Private</div>`,
-  pm25:`<div class="notice">ยังไม่ใส่ค่าฝุ่นสมมติ ระบบควรดึงจากแหล่งข้อมูลจริงเมื่อเชื่อม API</div>`,
-  report:`<div class="notice">รายงานจะสร้างจากข้อมูลจริงในฐานข้อมูล ไม่ใช้ตัวเลขสมมติ</div>`
- };
- document.getElementById("modalBody").innerHTML=bodies[type]||'<div class="notice">กำลังเตรียมระบบ</div>';
- document.getElementById("modal").classList.add("show");
+
+let activities = [];
+let works = [];
+let projects = [];
+let complaints = [];
+let dbReady = false;
+
+const titles = {
+  follow:"🚨 เรื่องที่ต้องติดตาม", addWork:"➕ บันทึกงาน", news:"📢 เพิ่มข่าว",
+  activity:"📅 เพิ่มกิจกรรม", case:"📋 รับเรื่อง", meeting:"📝 บันทึกการประชุม",
+  project:"🏘️ เพิ่มโครงการ", calendar:"📅 ปฏิทิน", works:"🏆 แฟ้มผลงาน",
+  equipment:"📦 คลังอุปกรณ์", rice:"🍚 กลุ่มข้าวสาร", pm25:"🌫️ PM2.5", report:"📊 รายงาน"
+};
+
+function esc(v){
+  return String(v ?? "").replace(/[&<>"']/g, m => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
 }
-function closeModal(){document.getElementById("modal").classList.remove("show")}
-document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
-document.getElementById("menuBtn").addEventListener("click",()=>document.getElementById("sidebar").classList.toggle("open"));
-document.querySelectorAll(".nav a").forEach(a=>a.addEventListener("click",()=>document.getElementById("sidebar").classList.remove("open")));
-const d=new Date();
-document.getElementById("dateNow").textContent=d.toLocaleDateString("th-TH",{weekday:"long",year:"numeric",month:"long",day:"numeric"});
+
+function getDB(){
+  return window.rongkhemSupabase || null;
+}
+
+async function loadRealData(){
+  const db = getDB();
+  if(!db){
+    setStatus("ยังไม่ได้เชื่อม Supabase", false);
+    render(DEFAULT_DATA);
+    return;
+  }
+
+  try{
+    dbReady = true;
+
+    const [contentRes, statsRes] = await Promise.all([
+      db.from("contents")
+        .select("*")
+        .order("created_at", {ascending:false}),
+      db.from("village_stats")
+        .select("*")
+        .limit(1)
+        .maybeSingle()
+    ]);
+
+    if(contentRes.error) throw contentRes.error;
+
+    const rows = contentRes.data || [];
+    activities = rows.filter(x => x.content_type === "activity");
+    works = rows.filter(x => ["work","works"].includes(x.content_type));
+    projects = rows.filter(x => x.content_type === "project");
+    complaints = rows.filter(x => ["complaint","case","service"].includes(x.content_type));
+
+    const s = statsRes.data || {};
+    render({
+      ...DEFAULT_DATA,
+      population: s.population ?? s.total_population ?? DEFAULT_DATA.population,
+      households: s.households ?? s.total_households ?? DEFAULT_DATA.households,
+      elderly: s.elderly ?? DEFAULT_DATA.elderly,
+      children: s.children ?? DEFAULT_DATA.children,
+      works: works.length || s.works || 0,
+      activities: activities.length || s.activities || 0,
+      projects: projects.length || s.projects || 0,
+      pending: s.pending ?? complaints.filter(x => /รอ|pending/i.test(x.status_text || "")).length
+    });
+
+    setStatus("เชื่อมฐานข้อมูลจริงแล้ว", true);
+  }catch(err){
+    console.error(err);
+    setStatus("เชื่อม Supabase ไม่สำเร็จ", false);
+    render(DEFAULT_DATA);
+  }
+}
+
+function setStatus(text, ok){
+  const el = document.getElementById("dbStatus");
+  if(el){
+    el.textContent = ok ? "🟢 " + text : "🟠 " + text;
+    el.style.color = ok ? "#166534" : "#92400e";
+  }
+}
+
+function render(data){
+  const nums = document.querySelectorAll(".stats .num");
+  if(nums.length >= 4){
+    nums[0].textContent = Number(data.works || 0).toLocaleString("th-TH");
+    nums[1].textContent = Number(data.works || 0).toLocaleString("th-TH");
+    nums[2].textContent = Number(data.activities || 0).toLocaleString("th-TH");
+    nums[3].textContent = Number(data.projects || 0).toLocaleString("th-TH");
+  }
+
+  const mini = document.querySelectorAll("#people .mini strong");
+  if(mini.length >= 4){
+    mini[0].textContent = Number(data.population || 0).toLocaleString("th-TH");
+    mini[1].textContent = Number(data.households || 0).toLocaleString("th-TH");
+    mini[2].textContent = Number(data.elderly || 0).toLocaleString("th-TH");
+    mini[3].textContent = data.children ?? "—";
+  }
+
+  const workMini = document.querySelectorAll("#works .mini strong");
+  if(workMini.length >= 4){
+    workMini[0].textContent = Number(data.works || 0).toLocaleString("th-TH");
+    workMini[1].textContent = Number(data.activities || 0).toLocaleString("th-TH");
+    workMini[2].textContent = Number(data.projects || 0).toLocaleString("th-TH");
+  }
+
+  const serviceMini = document.querySelectorAll("#service .mini strong");
+  if(serviceMini.length >= 2){
+    serviceMini[0].textContent = Number(complaints.length || 0).toLocaleString("th-TH");
+    serviceMini[1].textContent = Number(data.pending || 0).toLocaleString("th-TH");
+  }
+
+  renderActivities();
+  renderFollow();
+}
+
+function renderActivities(){
+  const box = document.querySelector("#activity .media-grid");
+  if(!box) return;
+
+  const rows = activities.slice(0,3);
+  if(!rows.length){
+    box.innerHTML = `
+      <div class="media"><b>ยังไม่มีกิจกรรม</b><small>เพิ่มกิจกรรมจากระบบฐานข้อมูลจริง</small></div>
+      <div class="media"><b>ข้อมูลพร้อมใช้งาน</b><small>รอรายการจาก Supabase</small></div>
+      <div class="media"><b>ไม่ใช้ข้อมูลสมมติ</b><small>ระบบจะแสดงเมื่อมีการบันทึกจริง</small></div>`;
+    return;
+  }
+
+  box.innerHTML = rows.map(x => `
+    <div class="media" style="${x.image_url ? `background-image:url('${esc(x.image_url)}');background-size:cover;background-position:center;color:#fff` : ''}">
+      <b>${esc(x.title || "กิจกรรมชุมชน")}</b>
+      <small>${esc(x.date_text || x.created_at ? new Date(x.created_at || Date.now()).toLocaleDateString("th-TH") : "")}</small>
+    </div>`).join("");
+}
+
+function renderFollow(){
+  const box = document.querySelector("#follow .card-body");
+  if(!box) return;
+
+  const pending = complaints.filter(x => /รอ|pending/i.test(x.status_text || ""));
+  if(!pending.length){
+    box.innerHTML = `<div class="item"><i class="dot green"></i><div><b>ไม่มีรายการค้างติดตาม</b><small>ระบบฐานข้อมูลยังไม่พบเรื่องที่อยู่ระหว่างดำเนินการ</small></div><span class="badge green" style="margin-left:auto">ปกติ</span></div>`;
+    return;
+  }
+
+  box.innerHTML = pending.slice(0,5).map(x => `
+    <div class="item">
+      <i class="dot yellow"></i>
+      <div><b>${esc(x.title || "เรื่องร้องเรียน")}</b><small>${esc(x.status_text || "รอติดตาม")}</small></div>
+      <span class="badge yellow" style="margin-left:auto">รอติดตาม</span>
+    </div>`).join("");
+}
+
+function openModal(type){
+  document.getElementById("modalTitle").textContent = titles[type] || "รายละเอียด";
+
+  let body = '<div class="notice">ระบบกำลังเชื่อมข้อมูลจริง…</div>';
+
+  if(type === "activity"){
+    body = `<form onsubmit="return saveContent(event,'activity')">
+      <label>ชื่อกิจกรรม</label>
+      <input id="f_title" required placeholder="เช่น ประชุมหมู่บ้าน" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
+      <label>รายละเอียด</label>
+      <textarea id="f_detail" rows="4" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px"></textarea>
+      <label>วันที่</label>
+      <input id="f_date" type="date" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
+      <button class="btn" type="submit">บันทึกลงฐานข้อมูลจริง</button>
+    </form>`;
+  }else if(type === "project"){
+    body = `<form onsubmit="return saveContent(event,'project')">
+      <label>ชื่อโครงการ</label>
+      <input id="f_title" required placeholder="ชื่อโครงการ" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
+      <label>รายละเอียด</label>
+      <textarea id="f_detail" rows="4" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px"></textarea>
+      <button class="btn" type="submit">บันทึกโครงการจริง</button>
+    </form>`;
+  }else if(type === "addWork"){
+    body = `<form onsubmit="return saveContent(event,'work')">
+      <label>ชื่องาน</label>
+      <input id="f_title" required placeholder="รายการงาน" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px">
+      <label>รายละเอียด</label>
+      <textarea id="f_detail" rows="4" style="width:100%;padding:11px;margin:7px 0 12px;border:1px solid #e2e8f0;border-radius:10px"></textarea>
+      <button class="btn" type="submit">บันทึกงานจริง</button>
+    </form>`;
+  }else{
+    body = `<div class="notice">โมดูลนี้จะเชื่อมกับฐานข้อมูลจริงในขั้นตอนของโมดูลนั้นโดยตรง เพื่อไม่ให้ข้อมูลถูกสร้างซ้ำหรือสูญหาย</div>`;
+  }
+
+  document.getElementById("modalBody").innerHTML = body;
+  document.getElementById("modal").classList.add("show");
+}
+
+async function saveContent(event, type){
+  event.preventDefault();
+  const db = getDB();
+  if(!db){
+    alert("ยังไม่ได้เชื่อม Supabase กรุณาตั้งค่า URL และ ANON KEY ใน supabase.js ก่อน");
+    return false;
+  }
+
+  const payload = {
+    content_type:type,
+    title:document.getElementById("f_title").value.trim(),
+    detail:document.getElementById("f_detail").value.trim(),
+    date_text:document.getElementById("f_date")?.value || "",
+    time_text:"",
+    location:"",
+    value_text:"",
+    status_text:"บันทึกแล้ว",
+    image_url:null,
+    sort_order:0
+  };
+
+  const {error} = await db.from("contents").insert(payload);
+  if(error){
+    console.error(error);
+    alert("บันทึกไม่สำเร็จ: " + error.message);
+    return false;
+  }
+
+  closeModal();
+  await loadRealData();
+  alert("บันทึกข้อมูลลงฐานข้อมูลจริงเรียบร้อยแล้ว");
+  return false;
+}
+
+function closeModal(){
+  document.getElementById("modal").classList.remove("show");
+}
+
+document.getElementById("modal").addEventListener("click",e=>{
+  if(e.target.id==="modal") closeModal();
+});
+
+document.getElementById("menuBtn").addEventListener("click",()=>{
+  document.getElementById("sidebar").classList.toggle("open");
+});
+
+document.querySelectorAll(".nav a").forEach(a=>{
+  a.addEventListener("click",()=>document.getElementById("sidebar").classList.remove("open"));
+});
+
+function updateClock(){
+  document.getElementById("dateNow").textContent =
+    new Date().toLocaleDateString("th-TH",{
+      weekday:"long",year:"numeric",month:"long",day:"numeric"
+    });
+}
+updateClock();
+
+const status = document.createElement("div");
+status.id = "dbStatus";
+status.style.cssText =
+  "position:fixed;right:18px;bottom:18px;background:#fff;padding:9px 13px;border:1px solid #e2e8f0;border-radius:999px;font-size:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);z-index:120";
+status.textContent = "🟡 กำลังตรวจสอบฐานข้อมูล…";
+document.body.appendChild(status);
+
+loadRealData();
 </script>
 </body>
 </html>
