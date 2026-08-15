@@ -23,6 +23,8 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="supabase.js"></script>
 
 <style>
 
@@ -1609,19 +1611,16 @@ RONGKHEM e-VILLAGE
 SUPABASE
 ===================================================== */
 
-const SUPABASE_URL =
-"ใส่_URL_SUPABASE_ของคุณ";
+/*
+  ใช้ Supabase Client กลางของ RONGKHEM e-VILLAGE
+  หน้า Activity ไม่สร้าง Client ใหม่
+*/
+const supabaseClient = rongkhemSupabase;
 
-const SUPABASE_KEY =
-"ใส่_ANON_KEY_ของคุณ";
-
-
-const supabaseClient =
-supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-);
-
+/*
+  ตารางกิจกรรมใช้ contents เดิมของระบบกลาง
+  content_type = "activity"
+*/
 
 /* =====================================================
 STATE
@@ -1749,12 +1748,12 @@ async function loadActivities(){
         let query =
         supabaseClient
 
-        .from("activities")
+        .from("contents")
 
         .select("*")
 
         .order(
-            "activity_date",
+            "date_text",
             {
                 ascending:false,
                 nullsFirst:false
@@ -1762,13 +1761,19 @@ async function loadActivities(){
         );
 
 
+        query =
+            query.eq(
+                "content_type",
+                "activity"
+            );
+
         if(
             currentFilter !== "all"
         ){
 
             query =
             query.eq(
-                "type",
+                "value_text",
                 currentFilter
             );
 
@@ -1796,7 +1801,15 @@ async function loadActivities(){
 
 
         const activities =
-        data || [];
+        (data || []).map(item => ({
+            ...item,
+            type: item.value_text || "กิจกรรม",
+            description: item.detail || "",
+            activity_date: item.date_text || null,
+            organizer: item.time_text || "",
+            status: item.status_text || "กำหนดการ",
+            image_url: item.image_url || null
+        }));
 
 
         renderActivities(
@@ -2570,6 +2583,48 @@ document
 
 
 /* =====================================================
+DATABASE STATUS
+===================================================== */
+
+async function checkActivityDatabase(){
+
+    const status =
+        document.getElementById("dbStatus");
+
+    if(!status){
+        return;
+    }
+
+    try{
+
+        const { error } =
+            await supabaseClient
+            .from("contents")
+            .select("id")
+            .eq("content_type","activity")
+            .limit(1);
+
+        if(error){
+            status.innerHTML =
+                '<i class="fa-solid fa-triangle-exclamation"></i> ฐานข้อมูลยังไม่พร้อม';
+            console.error("Activity database:", error);
+            return;
+        }
+
+        status.innerHTML =
+            '<i class="fa-solid fa-circle-check"></i> เชื่อมต่อฐานข้อมูลแล้ว';
+
+    }catch(error){
+
+        status.innerHTML =
+            '<i class="fa-solid fa-triangle-exclamation"></i> เชื่อมต่อฐานข้อมูลไม่ได้';
+
+        console.error(error);
+    }
+}
+
+
+/* =====================================================
 INIT
 ===================================================== */
 
@@ -2577,6 +2632,7 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
+        checkActivityDatabase();
         loadActivities();
 
     }
