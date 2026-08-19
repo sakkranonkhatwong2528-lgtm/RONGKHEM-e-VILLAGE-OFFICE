@@ -1,2323 +1,346 @@
 <!DOCTYPE html>
-<html lang="th">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONGKHEM e-VILLAGE | รับเรื่องร้องเรียน</title>
-
-<style>
-:root{
-    --bg:#07111f;
-    --card:#101f33;
-    --card2:#13263d;
-    --primary:#08a8ff;
-    --primary2:#006eff;
-    --green:#00df8a;
-    --yellow:#ffc83d;
-    --red:#ff5261;
-    --text:#f4f8ff;
-    --muted:#8fa1b8;
-    --border:rgba(255,255,255,.08);
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-body{
-    font-family:"Noto Sans Thai","Segoe UI",Arial,sans-serif;
-    background:
-        radial-gradient(
-            circle at 20% 0%,
-            rgba(0,150,255,.14),
-            transparent 30%
-        ),
-        #07111f;
-    color:var(--text);
-    min-height:100vh;
-}
-
-button,
-input,
-select,
-textarea{
-    font-family:inherit;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-    position:fixed;
-    left:0;
-    top:0;
-    bottom:0;
-    width:250px;
-    background:
-        linear-gradient(
-            180deg,
-            #0b1b2f,
-            #071321
-        );
-    border-right:1px solid var(--border);
-    padding:20px 14px;
-    z-index:100;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:8px 10px 22px;
-    border-bottom:1px solid var(--border);
-    margin-bottom:20px;
-}
-
-.logo-icon{
-    width:48px;
-    height:48px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    border-radius:15px;
-    background:
-        linear-gradient(
-            135deg,
-            #007aff,
-            #00c8ff
-        );
-    font-size:25px;
-}
-
-.logo-title{
-    font-size:17px;
-    font-weight:800;
-}
-
-.logo-sub{
-    font-size:10px;
-    color:var(--muted);
-    margin-top:3px;
-}
-
-.menu-title{
-    color:#61748b;
-    font-size:10px;
-    font-weight:700;
-    padding:0 12px;
-    margin-bottom:8px;
-}
-
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:5px;
-}
-
-.menu button{
-    border:0;
-    background:transparent;
-    color:#aebdd0;
-    padding:12px;
-    border-radius:12px;
-    cursor:pointer;
-    text-align:left;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    transition:.2s;
-}
-
-.menu button:hover,
-.menu button.active{
-    color:#fff;
-    background:rgba(0,150,255,.12);
-}
-
-.menu-icon{
-    width:25px;
-    font-size:19px;
-}
-
-/* MAIN */
-
-.main{
-    margin-left:250px;
-    padding:22px;
-}
-
-.topbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.page-title{
-    font-size:25px;
-    font-weight:800;
-}
-
-.page-sub{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:4px;
-}
-
-.clock{
-    padding:10px 15px;
-    border-radius:12px;
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:#62d5ff;
-    font-family:monospace;
-}
-
-.breadcrumb{
-    color:var(--muted);
-    font-size:12px;
-    margin-bottom:18px;
-}
-
-.breadcrumb span{
-    color:#58caff;
-}
-
-/* SUMMARY */
-
-.summary{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
-    margin-bottom:20px;
-}
-
-.summary-card{
-    padding:18px;
-    border-radius:18px;
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.055),
-            rgba(255,255,255,.018)
-        );
-    border:1px solid var(--border);
-}
-
-.summary-icon{
-    font-size:24px;
-    margin-bottom:8px;
-}
-
-.summary-number{
-    font-size:27px;
-    font-weight:800;
-}
-
-.summary-label{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:4px;
-}
-
-/* CARD */
-
-.card{
-    background:
-        linear-gradient(
-            145deg,
-            rgba(18,36,58,.96),
-            rgba(8,20,34,.98)
-        );
-    border:1px solid var(--border);
-    border-radius:20px;
-    padding:20px;
-    margin-bottom:20px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.card-title{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.card-icon{
-    width:43px;
-    height:43px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    border-radius:13px;
-    background:rgba(0,160,255,.1);
-    font-size:21px;
-}
-
-.card-title h2{
-    font-size:18px;
-}
-
-.card-title p{
-    color:var(--muted);
-    font-size:11px;
-    margin-top:3px;
-}
-
-.add-btn{
-    border:0;
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
-    color:#fff;
-    border-radius:10px;
-    padding:10px 15px;
-    cursor:pointer;
-    font-weight:700;
-}
-
-/* TOOLBAR */
-
-.toolbar{
-    display:flex;
-    gap:10px;
-    margin-bottom:18px;
-}
-
-.search-box{
-    flex:1;
-    position:relative;
-}
-
-.search-box input{
-    width:100%;
-    padding:13px 15px 13px 42px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    outline:0;
-    background:rgba(0,0,0,.15);
-    color:#fff;
-}
-
-.search-icon{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
-}
-
-.filter{
-    min-width:180px;
-    padding:0 12px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:#0b1b2f;
-    color:#fff;
-    outline:0;
-}
-
-/* TABLE */
-
-.table-wrap{
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    min-width:1050px;
-}
-
-thead{
-    background:rgba(0,150,255,.06);
-}
-
-th{
-    color:#90a5bc;
-    font-size:11px;
-    font-weight:700;
-    padding:13px;
-    text-align:left;
-    border-bottom:1px solid var(--border);
-}
-
-td{
-    padding:13px;
-    font-size:12px;
-    border-bottom:1px solid rgba(255,255,255,.05);
-}
-
-tbody tr:hover{
-    background:rgba(255,255,255,.025);
-}
-
-.case-number{
-    color:#55cfff;
-    font-weight:800;
-}
-
-.case-title{
-    font-weight:700;
-}
-
-.case-date{
-    color:var(--muted);
-    font-size:10px;
-    margin-top:4px;
-}
-
-.badge{
-    display:inline-block;
-    padding:5px 9px;
-    border-radius:20px;
-    font-size:9px;
-    white-space:nowrap;
-}
-
-.badge.green{
-    color:var(--green);
-    background:rgba(0,220,140,.08);
-}
-
-.badge.yellow{
-    color:var(--yellow);
-    background:rgba(255,190,40,.08);
-}
-
-.badge.red{
-    color:var(--red);
-    background:rgba(255,60,70,.08);
-}
-
-.badge.blue{
-    color:#55cfff;
-    background:rgba(0,150,255,.08);
-}
-
-.actions{
-    display:flex;
-    gap:5px;
-}
-
-.action-btn{
-    border:1px solid var(--border);
-    background:rgba(255,255,255,.04);
-    color:#fff;
-    width:32px;
-    height:32px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.action-btn:hover{
-    background:rgba(0,150,255,.12);
-}
-
-.action-btn.delete:hover{
-    background:rgba(255,60,70,.12);
-}
-
-/* EMPTY */
-
-.empty{
-    text-align:center;
-    padding:50px 20px;
-    color:#74869b;
-}
-
-.empty-icon{
-    font-size:45px;
-    margin-bottom:12px;
-}
-
-/* MODAL */
-
-.modal{
-    position:fixed;
-    inset:0;
-    display:none;
-    justify-content:center;
-    align-items:center;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(8px);
-    z-index:500;
-    padding:20px;
-}
-
-.modal.show{
-    display:flex;
-}
-
-.modal-box{
-    width:100%;
-    max-width:760px;
-    max-height:90vh;
-    overflow-y:auto;
-    background:#102139;
-    border:1px solid var(--border);
-    border-radius:22px;
-    padding:23px;
-    box-shadow:0 25px 80px rgba(0,0,0,.5);
-}
-
-.modal-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.modal-head h2{
-    font-size:20px;
-}
-
-.close{
-    width:36px;
-    height:36px;
-    border:0;
-    border-radius:10px;
-    background:rgba(255,255,255,.06);
-    color:#fff;
-    cursor:pointer;
-}
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.form-group{
-    margin-bottom:13px;
-}
-
-.form-group.full{
-    grid-column:1/-1;
-}
-
-label{
-    display:block;
-    color:#aab9cb;
-    font-size:11px;
-    margin-bottom:6px;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    border:1px solid var(--border);
-    background:rgba(0,0,0,.18);
-    color:#fff;
-    padding:12px;
-    border-radius:10px;
-    outline:0;
-}
-
-select option{
-    background:#102139;
-}
-
-textarea{
-    min-height:90px;
-    resize:vertical;
-}
-
-.save-btn{
-    width:100%;
-    margin-top:5px;
-    border:0;
-    padding:13px;
-    border-radius:11px;
-    color:#fff;
-    background:
-        linear-gradient(
-            135deg,
-            #008cff,
-            #0069ee
-        );
-    cursor:pointer;
-    font-weight:700;
-}
-
-/* DETAIL */
-
-.detail-box{
-    display:none;
-    margin-top:15px;
-    padding:15px;
-    border:1px solid var(--border);
-    border-radius:14px;
-    background:rgba(255,255,255,.03);
-}
-
-.detail-box.show{
-    display:block;
-}
-
-.detail-row{
-    display:grid;
-    grid-template-columns:130px 1fr;
-    gap:10px;
-    padding:8px 0;
-    border-bottom:1px solid rgba(255,255,255,.05);
-    font-size:12px;
-}
-
-.detail-label{
-    color:var(--muted);
-}
-
-/* RESPONSIVE */
-
-@media(max-width:1100px){
-
-    .summary{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:900px){
-
-    .sidebar{
-        width:70px;
-        padding:15px 8px;
-    }
-
-    .logo-title,
-    .logo-sub,
-    .menu-title,
-    .menu-text{
-        display:none;
-    }
-
-    .logo{
-        justify-content:center;
-    }
-
-    .menu button{
-        justify-content:center;
-    }
-
-    .main{
-        margin-left:70px;
-    }
-}
-
-@media(max-width:600px){
-
-    .sidebar{
-        display:none;
-    }
-
-    .main{
-        margin-left:0;
-        padding:12px;
-    }
-
-    .page-title{
-        font-size:20px;
-    }
-
-    .clock{
-        font-size:11px;
-        padding:8px;
-    }
-
-    .summary{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .toolbar{
-        flex-direction:column;
-    }
-
-    .filter{
-        height:43px;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full{
-        grid-column:auto;
-    }
-
-    .detail-row{
-        grid-template-columns:1fr;
-        gap:3px;
-    }
-}
-</style>
-</head>
-
-<body>
-
-<!-- ==================================================
-     SIDEBAR
-================================================== -->
-
-<aside class="sidebar">
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            🏛️
-        </div>
-
-        <div>
-
-            <div class="logo-title">
-                RONGKHEM
-            </div>
-
-            <div class="logo-sub">
-                e-VILLAGE OFFICE
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="menu-title">
-        MAIN MENU
-    </div>
-
-    <nav class="menu">
-
-        <button onclick="location.href='index.html'">
-            <span class="menu-icon">📊</span>
-            <span class="menu-text">หน้าแรก</span>
-        </button>
-
-        <button onclick="location.href='household.html'">
-            <span class="menu-icon">🏠</span>
-            <span class="menu-text">ครัวเรือน</span>
-        </button>
-
-        <button onclick="location.href='citizen.html'">
-            <span class="menu-icon">👥</span>
-            <span class="menu-text">ประชาชน</span>
-        </button>
-
-        <button onclick="location.href='leader.html'">
-            <span class="menu-icon">👔</span>
-            <span class="menu-text">ทำเนียบผู้นำ</span>
-        </button>
-
-        <button class="active">
-            <span class="menu-icon">📝</span>
-            <span class="menu-text">รับเรื่องร้องเรียน</span>
-        </button>
-
-        <button onclick="showMessage('ระบบกิจกรรมกำลังพัฒนา')">
-            <span class="menu-icon">📸</span>
-            <span class="menu-text">กิจกรรม</span>
-        </button>
-
-    </nav>
-
-</aside>
-
-
-<!-- ==================================================
-     MAIN
-================================================== -->
-
-<main class="main">
-
-<header class="topbar">
-
-    <div>
-
-        <div class="page-title">
-            ระบบรับเรื่องร้องเรียน
-        </div>
-
-        <div class="page-sub">
-            RONGKHEM e-VILLAGE OFFICE |
-            ที่ทำการผู้ใหญ่บ้านออนไลน์
-        </div>
-
-    </div>
-
-    <div class="clock" id="clock">
-        08:05:56
-    </div>
-
-</header>
-
-
-<div class="breadcrumb">
-
-    หน้าแรก /
-    <span>รับเรื่องร้องเรียน</span>
-
-</div>
-
-
-<!-- ==================================================
-     SUMMARY
-================================================== -->
-
-<section class="summary">
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            📝
-        </div>
-
-        <div
-            class="summary-number"
-            id="totalCases"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            เรื่องทั้งหมด
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            🔴
-        </div>
-
-        <div
-            class="summary-number"
-            id="urgentCases"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            เร่งด่วน
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            🔄
-        </div>
-
-        <div
-            class="summary-number"
-            id="pendingCases"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            กำลังดำเนินการ
-        </div>
-
-    </div>
-
-
-    <div class="summary-card">
-
-        <div class="summary-icon">
-            🟢
-        </div>
-
-        <div
-            class="summary-number"
-            id="completedCases"
-        >
-            0
-        </div>
-
-        <div class="summary-label">
-            ดำเนินการแล้ว
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ==================================================
-     COMPLAINT TABLE
-================================================== -->
-
-<section class="card">
-
-<div class="card-header">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            📝
-        </div>
-
-        <div>
-
-            <h2>
-                ทะเบียนรับเรื่องร้องเรียน
-            </h2>
-
-            <p>
-                รับแจ้งปัญหาและติดตามการดำเนินงานของหมู่บ้าน
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <button
-        class="add-btn"
-        onclick="openComplaintModal()"
-    >
-
-        + รับเรื่องใหม่
-
-    </button>
-
-</div>
-
-
-<div class="toolbar">
-
-    <div class="search-box">
-
-        <span class="search-icon">
-            🔍
-        </span>
-
-        <input
-            id="searchInput"
-            type="text"
-            placeholder="ค้นหาเลขคำร้อง ผู้แจ้ง หรือหัวข้อ..."
-            oninput="renderComplaints()"
-        >
-
-    </div>
-
-
-    <select
-        class="filter"
-        id="statusFilter"
-        onchange="renderComplaints()"
-    >
-
-        <option value="all">
-            ทุกสถานะ
-        </option>
-
-        <option value="รับเรื่อง">
-            รับเรื่อง
-        </option>
-
-        <option value="กำลังดำเนินการ">
-            กำลังดำเนินการ
-        </option>
-
-        <option value="เสร็จสิ้น">
-            เสร็จสิ้น
-        </option>
-
-    </select>
-
-
-    <select
-        class="filter"
-        id="priorityFilter"
-        onchange="renderComplaints()"
-    >
-
-        <option value="all">
-            ทุกระดับ
-        </option>
-
-        <option value="เร่งด่วน">
-            เร่งด่วน
-        </option>
-
-        <option value="ปกติ">
-            ปกติ
-        </option>
-
-    </select>
-
-</div>
-
-
-<div class="table-wrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-    <th>
-        เลขคำร้อง
-    </th>
-
-    <th>
-        เรื่อง
-    </th>
-
-    <th>
-        ผู้แจ้ง
-    </th>
-
-    <th>
-        วันที่
-    </th>
-
-    <th>
-        ความเร่งด่วน
-    </th>
-
-    <th>
-        สถานะ
-    </th>
-
-    <th>
-        ผู้รับผิดชอบ
-    </th>
-
-    <th>
-        จัดการ
-    </th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="complaintTable">
-</tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- ==================================================
-     INFO
-================================================== -->
-
-<section class="card">
-
-    <div class="card-title">
-
-        <div class="card-icon">
-            💡
-        </div>
-
-        <div>
-
-            <h2>
-                ขั้นตอนการดำเนินงาน
-            </h2>
-
-            <p>
-
-                รับเรื่อง →
-                ตรวจสอบ →
-                มอบหมาย →
-                ดำเนินการ →
-                ปิดเรื่อง
-
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- ==================================================
-     MODAL
-================================================== -->
-
-<div
-    class="modal"
-    id="complaintModal"
->
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-    <h2 id="modalTitle">
-        📝 รับเรื่องร้องเรียนใหม่
-    </h2>
-
-    <button
-        class="close"
-        onclick="closeComplaintModal()"
-    >
-        ✕
-    </button>
-
-</div>
-
-
-<div class="form-grid">
-
-
-<div class="form-group">
-
-<label>
-    ชื่อผู้แจ้ง *
-</label>
-
-<input
-    id="reporter"
-    type="text"
-    placeholder="ชื่อ-นามสกุล"
-/>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    เบอร์โทรศัพท์
-</label>
-
-<input
-    id="reporterPhone"
-    type="tel"
-    placeholder="08xxxxxxxx"
-/>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    หัวข้อเรื่อง *
-</label>
-
-<input
-    id="complaintTitle"
-    type="text"
-    placeholder="เช่น น้ำประปา ไฟส่องสว่าง ถนน"
-/>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    ประเภท
-</label>
-
-<select id="complaintType">
-
-    <option value="สาธารณูปโภค">
-        สาธารณูปโภค
-    </option>
-
-    <option value="ถนน">
-        ถนน
-    </option>
-
-    <option value="ไฟส่องสว่าง">
-        ไฟส่องสว่าง
-    </option>
-
-    <option value="น้ำประปา">
-        น้ำประปา
-    </option>
-
-    <option value="สิ่งแวดล้อม">
-        สิ่งแวดล้อม
-    </option>
-
-    <option value="ความปลอดภัย">
-        ความปลอดภัย
-    </option>
-
-    <option value="อื่น ๆ">
-        อื่น ๆ
-    </option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    สถานที่เกิดเหตุ
-</label>
-
-<input
-    id="location"
-    type="text"
-    placeholder="เช่น ซอย 2 บ้านเลขที่..."
-/>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    ความเร่งด่วน
-</label>
-
-<select id="priority">
-
-    <option value="ปกติ">
-        ปกติ
-    </option>
-
-    <option value="เร่งด่วน">
-        เร่งด่วน
-    </option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    ผู้รับผิดชอบ
-</label>
-
-<input
-    id="responsible"
-    type="text"
-    placeholder="ชื่อผู้รับผิดชอบ"
-/>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-    สถานะ
-</label>
-
-<select id="status">
-
-    <option value="รับเรื่อง">
-        รับเรื่อง
-    </option>
-
-    <option value="กำลังดำเนินการ">
-        กำลังดำเนินการ
-    </option>
-
-    <option value="เสร็จสิ้น">
-        เสร็จสิ้น
-    </option>
-
-</select>
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-    รายละเอียด *
-</label>
-
-<textarea
-    id="description"
-    placeholder="กรอกรายละเอียดปัญหา..."
-></textarea>
-
-</div>
-
-
-<div class="form-group full">
-
-<label>
-    หมายเหตุการดำเนินงาน
-</label>
-
-<textarea
-    id="actionNote"
-    placeholder="ระบุการดำเนินการหรือผลการตรวจสอบ"
-></textarea>
-
-</div>
-
-
-</div>
-
-
-<button
-    class="save-btn"
-    onclick="saveComplaint()"
->
-
-    💾 บันทึกเรื่องร้องเรียน
-
-</button>
-
-</div>
-
-</div>
-
-
-<script>
-
-/* ==================================================
-   CLOCK
-================================================== */
-
-function updateClock(){
-
-    const now =
-        new Date();
-
-    document.getElementById(
-        "clock"
-    ).textContent =
-        now.toLocaleTimeString(
-            "th-TH",
-            {
-                hour:"2-digit",
-                minute:"2-digit",
-                second:"2-digit"
-            }
-        );
-
-}
-
-updateClock();
-
-setInterval(
-    updateClock,
-    1000
-);
-
-
-/* ==================================================
-   STORAGE
-================================================== */
-
-let complaints =
-    JSON.parse(
-        localStorage.getItem(
-            "rongkhem_complaints"
-        ) || "[]"
-    );
-
-
-let editIndex = -1;
-
-
-/* ==================================================
-   SAMPLE DATA
-================================================== */
-
-if(complaints.length === 0){
-
-    complaints = [
-
-        {
-            id:"RK-2026-0001",
-            reporter:"ชาวบ้านร่องเข็ม",
-            phone:"",
-            title:"แจ้งซ่อมท่อประปาแตก",
-            type:"น้ำประปา",
-            location:"ซอย 2",
-            priority:"เร่งด่วน",
-            responsible:"ผู้ใหญ่บ้าน",
-            status:"กำลังดำเนินการ",
-            description:"พบท่อประปาแตกบริเวณซอย 2",
-            actionNote:"",
-            date:"2026-08-14"
-        },
-
-        {
-            id:"RK-2026-0002",
-            reporter:"ชาวบ้านร่องเข็ม",
-            phone:"",
-            title:"หลอดไฟส่องสว่างเสีย",
-            type:"ไฟส่องสว่าง",
-            location:"ซอย 4",
-            priority:"ปกติ",
-            responsible:"ชรบ.",
-            status:"รับเรื่อง",
-            description:"ไฟส่องสว่างบริเวณซอย 4 ไม่ติด",
-            actionNote:"",
-            date:"2026-08-14"
-        },
-
-        {
-            id:"RK-2026-0003",
-            reporter:"ประชาชน",
-            phone:"",
-            title:"ขอแจ้งปัญหาขยะ",
-            type:"สิ่งแวดล้อม",
-            location:"บริเวณชุมชน",
-            priority:"ปกติ",
-            responsible:"คณะกรรมการหมู่บ้าน",
-            status:"เสร็จสิ้น",
-            description:"ขอให้ตรวจสอบจุดทิ้งขยะ",
-            actionNote:"ดำเนินการตรวจสอบแล้ว",
-            date:"2026-08-13"
-        }
-
-    ];
-
-    localStorage.setItem(
-        "rongkhem_complaints",
-        JSON.stringify(
-            complaints
-        )
-    );
-
-}
-
-
-/* ==================================================
-   GENERATE CASE NUMBER
-================================================== */
-
-function generateCaseNumber(){
-
-    const year =
-        new Date()
-        .getFullYear();
-
-
-    let max = 0;
-
-
-    complaints.forEach(
-        c => {
-
-            const match =
-                String(c.id)
-                .match(
-                    /-(\d+)$/
-                );
-
-
-            if(match){
-
-                max =
-                    Math.max(
-                        max,
-                        Number(
-                            match[1]
-                        )
-                    );
-
-            }
-
-        }
-    );
-
-
-    return (
-        "RK-" +
-        year +
-        "-" +
-        String(
-            max + 1
-        ).padStart(
-            4,
-            "0"
-        )
-    );
-
-}
-
-
-/* ==================================================
-   RENDER
-================================================== */
-
-function renderComplaints(){
-
-    const tbody =
-        document.getElementById(
-            "complaintTable"
-        );
-
-
-    const search =
-        document.getElementById(
-            "searchInput"
-        ).value
-        .toLowerCase()
-        .trim();
-
-
-    const status =
-        document.getElementById(
-            "statusFilter"
-        ).value;
-
-
-    const priority =
-        document.getElementById(
-            "priorityFilter"
-        ).value;
-
-
-    const filtered =
-        complaints.filter(
-            c => {
-
-                const matchSearch =
-
-                    c.id
-                    .toLowerCase()
-                    .includes(search)
-
-                    ||
-
-                    c.reporter
-                    .toLowerCase()
-                    .includes(search)
-
-                    ||
-
-                    c.title
-                    .toLowerCase()
-                    .includes(search);
-
-
-                const matchStatus =
-                    status === "all" ||
-                    c.status === status;
-
-
-                const matchPriority =
-                    priority === "all" ||
-                    c.priority === priority;
-
-
-                return (
-                    matchSearch &&
-                    matchStatus &&
-                    matchPriority
-                );
-
-            }
-        );
-
-
-    if(filtered.length === 0){
-
-        tbody.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="8"
-                    class="empty"
-                >
-
-                    <div class="empty-icon">
-                        📝
-                    </div>
-
-                    ไม่พบเรื่องร้องเรียน
-
-                </td>
-
-            </tr>
-
-        `;
-
-    }else{
-
-        tbody.innerHTML =
-            filtered.map(
-                c => {
-
-                    const index =
-                        complaints.indexOf(c);
-
-
-                    let priorityClass =
-                        c.priority ===
-                        "เร่งด่วน"
-                        ?
-                        "red"
-                        :
-                        "green";
-
-
-                    let statusClass =
-                        "blue";
-
-
-                    if(
-                        c.status ===
-                        "กำลังดำเนินการ"
-                    ){
-
-                        statusClass =
-                            "yellow";
-
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>แจ้งเหตุด่วนและร้องทุกข์ออนไลน์ - Rong Khem Village</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#adb1b4",
+                        "on-primary-container": "#96adff",
+                        "surface-container-low": "#eef5f7",
+                        "surface-tint": "#3056c4",
+                        "on-secondary-container": "#6e5c00",
+                        "surface-dim": "#d4dbdd",
+                        "on-surface": "#161d1f",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#404447",
+                        "surface-container-high": "#e2e9ec",
+                        "surface": "#f4fafd",
+                        "outline": "#747685",
+                        "background": "#f4fafd",
+                        "on-tertiary-fixed": "#181c1e",
+                        "inverse-on-surface": "#ebf2f4",
+                        "on-secondary-fixed": "#221b00",
+                        "primary": "#002576",
+                        "surface-bright": "#f4fafd",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#dde4e6",
+                        "on-primary-fixed": "#00164f",
+                        "on-primary-fixed-variant": "#093cab",
+                        "surface-container-highest": "#dde4e6",
+                        "primary-fixed-dim": "#b6c4ff",
+                        "tertiary-fixed": "#e0e3e6",
+                        "surface-container": "#e8eff1",
+                        "secondary-fixed-dim": "#e9c400",
+                        "outline-variant": "#c4c5d5",
+                        "tertiary": "#2a2e30",
+                        "tertiary-fixed-dim": "#c3c7ca",
+                        "on-background": "#161d1f",
+                        "secondary-container": "#fcd400",
+                        "on-surface-variant": "#444653",
+                        "primary-container": "#0038a8",
+                        "primary-fixed": "#dce1ff",
+                        "on-tertiary-fixed-variant": "#43474a",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#b6c4ff",
+                        "inverse-surface": "#2b3234",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed": "#ffe16d",
+                        "error": "#ba1a1a",
+                        "secondary": "#705d00"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1200px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "48px",
+                        "unit": "8px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"],
+                        "button-text": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["26px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "button-text": ["16px", { "lineHeight": "1.0", "fontWeight": "600" }]
                     }
-
-
-                    if(
-                        c.status ===
-                        "เสร็จสิ้น"
-                    ){
-
-                        statusClass =
-                            "green";
-
-                    }
-
-
-                    return `
-
-                    <tr>
-
-                        <td>
-
-                            <span
-                                class="case-number"
-                            >
-                                ${escapeHTML(
-                                    c.id
-                                )}
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <div
-                                class="case-title"
-                            >
-
-                                ${escapeHTML(
-                                    c.title
-                                )}
-
-                            </div>
-
-                            <div
-                                class="case-date"
-                            >
-
-                                ${escapeHTML(
-                                    c.type
-                                )}
-
-                            </div>
-
-                        </td>
-
-
-                        <td>
-
-                            ${escapeHTML(
-                                c.reporter
-                            )}
-
-                        </td>
-
-
-                        <td>
-
-                            ${escapeHTML(
-                                c.date
-                            )}
-
-                        </td>
-
-
-                        <td>
-
-                            <span
-                                class="
-                                    badge
-                                    ${priorityClass}
-                                "
-                            >
-
-                                ${
-                                    c.priority ===
-                                    "เร่งด่วน"
-                                    ?
-                                    "🔴 เร่งด่วน"
-                                    :
-                                    "🟢 ปกติ"
-                                }
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            <span
-                                class="
-                                    badge
-                                    ${statusClass}
-                                "
-                            >
-
-                                ${escapeHTML(
-                                    c.status
-                                )}
-
-                            </span>
-
-                        </td>
-
-
-                        <td>
-
-                            ${escapeHTML(
-                                c.responsible ||
-                                "-"
-                            )}
-
-                        </td>
-
-
-                        <td>
-
-                            <div class="actions">
-
-                                <button
-                                    class="action-btn"
-                                    title="แก้ไข"
-                                    onclick="
-                                        editComplaint(
-                                            ${index}
-                                        )
-                                    "
-                                >
-                                    ✏️
-                                </button>
-
-
-                                <button
-                                    class="action-btn"
-                                    title="ดูรายละเอียด"
-                                    onclick="
-                                        viewComplaint(
-                                            ${index}
-                                        )
-                                    "
-                                >
-                                    👁️
-                                </button>
-
-
-                                <button
-                                    class="
-                                        action-btn
-                                        delete
-                                    "
-                                    title="ลบ"
-                                    onclick="
-                                        deleteComplaint(
-                                            ${index}
-                                        )
-                                    "
-                                >
-                                    🗑️
-                                </button>
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                    `;
-
                 }
-            ).join("");
-
-    }
-
-
-    updateSummary();
-
-}
-
-
-/* ==================================================
-   SUMMARY
-================================================== */
-
-function updateSummary(){
-
-    const total =
-        complaints.length;
-
-
-    const urgent =
-        complaints.filter(
-            c =>
-                c.priority ===
-                "เร่งด่วน" &&
-                c.status !==
-                "เสร็จสิ้น"
-        ).length;
-
-
-    const pending =
-        complaints.filter(
-            c =>
-                c.status ===
-                "รับเรื่อง"
-                ||
-                c.status ===
-                "กำลังดำเนินการ"
-        ).length;
-
-
-    const completed =
-        complaints.filter(
-            c =>
-                c.status ===
-                "เสร็จสิ้น"
-        ).length;
-
-
-    document.getElementById(
-        "totalCases"
-    ).textContent =
-        total;
-
-
-    document.getElementById(
-        "urgentCases"
-    ).textContent =
-        urgent;
-
-
-    document.getElementById(
-        "pendingCases"
-    ).textContent =
-        pending;
-
-
-    document.getElementById(
-        "completedCases"
-    ).textContent =
-        completed;
-
-}
-
-
-/* ==================================================
-   MODAL
-================================================== */
-
-function openComplaintModal(){
-
-    editIndex = -1;
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "📝 รับเรื่องร้องเรียนใหม่";
-
-
-    clearForm();
-
-
-    document.getElementById(
-        "complaintModal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-function closeComplaintModal(){
-
-    document.getElementById(
-        "complaintModal"
-    ).classList.remove(
-        "show"
-    );
-
-}
-
-
-function clearForm(){
-
-    document.getElementById(
-        "reporter"
-    ).value = "";
-
-    document.getElementById(
-        "reporterPhone"
-    ).value = "";
-
-    document.getElementById(
-        "complaintTitle"
-    ).value = "";
-
-    document.getElementById(
-        "complaintType"
-    ).value =
-        "สาธารณูปโภค";
-
-    document.getElementById(
-        "location"
-    ).value = "";
-
-    document.getElementById(
-        "priority"
-    ).value =
-        "ปกติ";
-
-    document.getElementById(
-        "responsible"
-    ).value = "";
-
-    document.getElementById(
-        "status"
-    ).value =
-        "รับเรื่อง";
-
-    document.getElementById(
-        "description"
-    ).value = "";
-
-    document.getElementById(
-        "actionNote"
-    ).value = "";
-
-}
-
-
-/* ==================================================
-   SAVE
-================================================== */
-
-function saveComplaint(){
-
-    const data = {
-
-        id:
-            editIndex === -1
-            ?
-            generateCaseNumber()
-            :
-            complaints[
-                editIndex
-            ].id,
-
-        reporter:
-            document.getElementById(
-                "reporter"
-            ).value.trim(),
-
-        phone:
-            document.getElementById(
-                "reporterPhone"
-            ).value.trim(),
-
-        title:
-            document.getElementById(
-                "complaintTitle"
-            ).value.trim(),
-
-        type:
-            document.getElementById(
-                "complaintType"
-            ).value,
-
-        location:
-            document.getElementById(
-                "location"
-            ).value.trim(),
-
-        priority:
-            document.getElementById(
-                "priority"
-            ).value,
-
-        responsible:
-            document.getElementById(
-                "responsible"
-            ).value.trim(),
-
-        status:
-            document.getElementById(
-                "status"
-            ).value,
-
-        description:
-            document.getElementById(
-                "description"
-            ).value.trim(),
-
-        actionNote:
-            document.getElementById(
-                "actionNote"
-            ).value.trim(),
-
-        date:
-            editIndex === -1
-            ?
-            new Date()
-                .toISOString()
-                .slice(0,10)
-            :
-            complaints[
-                editIndex
-            ].date
-
-    };
-
-
-    if(
-        !data.reporter ||
-        !data.title ||
-        !data.description
-    ){
-
-        alert(
-            "กรุณากรอกผู้แจ้ง หัวข้อเรื่อง และรายละเอียด"
-        );
-
-        return;
-
-    }
-
-
-    if(
-        editIndex === -1
-    ){
-
-        complaints.push(
-            data
-        );
-
-        alert(
-            "รับเรื่องร้องเรียนเรียบร้อยแล้ว\nเลขคำร้อง: " +
-            data.id
-        );
-
-    }else{
-
-        complaints[
-            editIndex
-        ] = data;
-
-        alert(
-            "แก้ไขเรื่องร้องเรียนเรียบร้อยแล้ว"
-        );
-
-    }
-
-
-    localStorage.setItem(
-        "rongkhem_complaints",
-        JSON.stringify(
-            complaints
-        )
-    );
-
-
-    closeComplaintModal();
-
-    renderComplaints();
-
-}
-
-
-/* ==================================================
-   EDIT
-================================================== */
-
-function editComplaint(index){
-
-    const c =
-        complaints[index];
-
-
-    if(!c) return;
-
-
-    editIndex =
-        index;
-
-
-    document.getElementById(
-        "modalTitle"
-    ).textContent =
-        "✏️ แก้ไขเรื่องร้องเรียน";
-
-
-    document.getElementById(
-        "reporter"
-    ).value =
-        c.reporter;
-
-
-    document.getElementById(
-        "reporterPhone"
-    ).value =
-        c.phone || "";
-
-
-    document.getElementById(
-        "complaintTitle"
-    ).value =
-        c.title;
-
-
-    document.getElementById(
-        "complaintType"
-    ).value =
-        c.type;
-
-
-    document.getElementById(
-        "location"
-    ).value =
-        c.location || "";
-
-
-    document.getElementById(
-        "priority"
-    ).value =
-        c.priority;
-
-
-    document.getElementById(
-        "responsible"
-    ).value =
-        c.responsible || "";
-
-
-    document.getElementById(
-        "status"
-    ).value =
-        c.status;
-
-
-    document.getElementById(
-        "description"
-    ).value =
-        c.description;
-
-
-    document.getElementById(
-        "actionNote"
-    ).value =
-        c.actionNote || "";
-
-
-    document.getElementById(
-        "complaintModal"
-    ).classList.add(
-        "show"
-    );
-
-}
-
-
-/* ==================================================
-   VIEW
-================================================== */
-
-function viewComplaint(index){
-
-    const c =
-        complaints[index];
-
-
-    if(!c) return;
-
-
-    alert(
-        "📝 รายละเอียดเรื่องร้องเรียน\n\n" +
-
-        "เลขคำร้อง: " +
-        c.id +
-
-        "\nผู้แจ้ง: " +
-        c.reporter +
-
-        "\nเบอร์โทร: " +
-        (c.phone || "-") +
-
-        "\nเรื่อง: " +
-        c.title +
-
-        "\nประเภท: " +
-        c.type +
-
-        "\nสถานที่: " +
-        (c.location || "-") +
-
-        "\nความเร่งด่วน: " +
-        c.priority +
-
-        "\nสถานะ: " +
-        c.status +
-
-        "\nผู้รับผิดชอบ: " +
-        (c.responsible || "-") +
-
-        "\n\nรายละเอียด:\n" +
-        c.description +
-
-        "\n\nการดำเนินงาน:\n" +
-        (c.actionNote || "-")
-    );
-
-}
-
-
-/* ==================================================
-   DELETE
-================================================== */
-
-function deleteComplaint(index){
-
-    const c =
-        complaints[index];
-
-
-    if(!c) return;
-
-
-    if(
-        !confirm(
-            `ต้องการลบคำร้อง ${c.id} หรือไม่?`
-        )
-    ){
-
-        return;
-
-    }
-
-
-    complaints.splice(
-        index,
-        1
-    );
-
-
-    localStorage.setItem(
-        "rongkhem_complaints",
-        JSON.stringify(
-            complaints
-        )
-    );
-
-
-    renderComplaints();
-
-
-    alert(
-        "ลบเรื่องร้องเรียนเรียบร้อยแล้ว"
-    );
-
-}
-
-
-/* ==================================================
-   MESSAGE
-================================================== */
-
-function showMessage(text){
-
-    alert(
-        "🏛️ RONGKHEM e-VILLAGE\n\n" +
-        text
-    );
-
-}
-
-
-/* ==================================================
-   SECURITY
-================================================== */
-
-function escapeHTML(value){
-
-    return String(
-        value ?? ""
-    )
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
-
-}
-
-
-/* ==================================================
-   CLOSE MODAL
-================================================== */
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        if(
-            event.target.classList
-            .contains("modal")
-        ){
-
-            closeComplaintModal();
-
+            }
         }
-
-    }
-);
-
-
-/* ==================================================
-   INITIALIZE
-================================================== */
-
-renderComplaints();
-
-</script>
-
-</body>
-</html>
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background antialiased flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-inverse-surface text-primary dark:text-primary-fixed-dim font-headline-md text-headline-md font-body-lg text-body-lg docked full-width top-0 shadow-sm z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+                Rong Khem Village
+            </div>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">History</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Services</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">News</a>
+<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-error text-on-error px-4 py-2 rounded-full font-button-text hover:bg-error/90 transition-colors">Emergency</button>
+<button aria-label="Account" class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button aria-label="Notifications" class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 flex flex-col gap-12">
+<!-- Hero Section -->
+<header class="text-center space-y-4">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">แจ้งเหตุด่วนและร้องทุกข์ออนไลน์</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">ระบบรับแจ้งเหตุและเรื่องราวร้องทุกข์ตลอด 24 ชั่วโมง เพื่อความปลอดภัยและความเป็นระเบียบเรียบร้อยของหมู่บ้าน</p>
+</header>
+<!-- Emergency Categories -->
+<section>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">แจ้งเหตุด่วน (Emergency)</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
+<div class="w-16 h-16 bg-error-container text-on-error-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">อุบัติเหตุ/เจ็บป่วยฉุกเฉิน</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">ต้องการรถพยาบาลหรือความช่วยเหลือทางการแพทย์ด่วน</p>
+<button class="mt-auto w-full bg-error text-on-error font-button-text text-button-text py-3 rounded-full hover:bg-error/90 transition-colors">แจ้งเหตุ 1669</button>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
+<div class="w-16 h-16 bg-[#ffeedb] text-[#c94f00] rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">อัคคีภัย/ไฟไหม้</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">พบเหตุไฟไหม้หรือกลุ่มควันที่อาจก่อให้เกิดอันตราย</p>
+<button class="mt-auto w-full bg-[#c94f00] text-white font-button-text text-button-text py-3 rounded-full hover:bg-[#a84200] transition-colors">แจ้งเหตุ 199</button>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
+<div class="w-16 h-16 bg-surface-variant text-on-surface-variant rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">อาชญากรรม/บุคคลต้องสงสัย</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">พบเห็นการกระทำผิดกฎหมายหรือบุคคลแปลกหน้า</p>
+<button class="mt-auto w-full bg-on-surface-variant text-white font-button-text text-button-text py-3 rounded-full hover:bg-on-surface transition-colors">แจ้ง รปภ. / ตำรวจ</button>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
+<div class="w-16 h-16 bg-primary-fixed text-primary-container rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">flood</span>
+</div>
+<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">ภัยธรรมชาติ/น้ำท่วม</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">เหตุการณ์ทางธรรมชาติที่ส่งผลกระทบต่อส่วนรวม</p>
+<button class="mt-auto w-full bg-primary-container text-on-primary font-button-text text-button-text py-3 rounded-full hover:bg-primary transition-colors">แจ้งส่วนกลาง</button>
+</div>
+</div>
+</section>
+<!-- Main Content Area: Form & Tracking -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Detailed Report Form -->
+<section class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">edit_document</span>
+                    แจ้งเรื่องร้องทุกข์/ปัญหาทั่วไป
+                </h2>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="subject">หัวข้อการแจ้ง <span class="text-error">*</span></label>
+<input class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="subject" placeholder="เช่น ไฟถนนดับ, ขยะตกค้าง" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="category">หมวดหมู่ <span class="text-error">*</span></label>
+<select class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors bg-white" id="category">
+<option disabled="" selected="" value="">เลือกหมวดหมู่</option>
+<option value="garbage">ขยะ/ความสะอาด</option>
+<option value="light">แสงสว่าง/ไฟฟ้า</option>
+<option value="road">ถนนชำรุด</option>
+<option value="noise">เสียงรบกวน</option>
+<option value="other">อื่นๆ</option>
+</select>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="description">รายละเอียดเหตุการณ์ <span class="text-error">*</span></label>
+<textarea class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="description" placeholder="อธิบายรายละเอียดปัญหาที่พบ..." rows="4"></textarea>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface">แนบรูปภาพหลักฐาน</label>
+<div class="border-2 border-dashed border-outline-variant rounded-lg p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-4xl text-outline mb-2">cloud_upload</span>
+<span class="font-body-md text-body-md text-on-surface-variant">คลิกเพื่ออัปโหลด หรือลากไฟล์มาวางที่นี่</span>
+<span class="font-label-md text-label-md text-outline mt-1">รองรับ JPG, PNG สูงสุด 5MB</span>
+<input accept="image/*" class="hidden" multiple="" type="file"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="location">ระบุตำแหน่งที่เกิดเหตุ <span class="text-error">*</span></label>
+<div class="flex gap-2">
+<input class="flex-grow border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="location" placeholder="เช่น ซอย 3 หน้าบ้านเลขที่ 45/12" type="text"/>
+<button aria-label="Use current location" class="bg-surface-container-highest text-on-surface p-3 rounded-lg hover:bg-surface-variant transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="reporter-name">ชื่อผู้แจ้ง</label>
+<input class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="reporter-name" placeholder="ระบุชื่อ (เว้นว่างได้หากต้องการไม่เปิดเผย)" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="reporter-phone">เบอร์โทรศัพท์ติดต่อ <span class="text-error">*</span></label>
+<input class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="reporter-phone" placeholder="08X-XXX-XXXX" type="tel"/>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary font-button-text text-button-text py-4 rounded-full hover:bg-primary-container transition-colors shadow-md" type="submit">
+                        ส่งเรื่องร้องทุกข์
+                    </button>
+</form>
+</section>
+<!-- Sidebar: Tracking & Contacts -->
+<aside class="space-y-8">
+<!-- Status Tracking -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h2 class="font-headline-md text-[20px] text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">manage_search</span>
+                        ติดตามสถานะล่าสุด
+                    </h2>
+<div class="mb-6 relative">
+<input class="w-full border-2 border-outline-variant rounded-lg py-2 pl-10 pr-4 font-body-md text-body-md focus:border-primary focus:ring-0" placeholder="กรอกรหัสอ้างอิง (เช่น RK-1234)" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline">search</span>
+</div>
+<div class="space-y-4">
+<!-- Item 1 -->
+<div class="border-b border-outline-variant pb-4 last:border-0 last:pb-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">RK-8901</span>
+<span class="bg-secondary-fixed text-on-secondary-fixed text-[12px] px-2 py-1 rounded-full font-medium">รอตรวจสอบ</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">ไฟถนนดับ ซอย 5</p>
+<span class="font-label-md text-[12px] text-outline">แจ้งเมื่อ 2 ชั่วโมงที่แล้ว</span>
+</div>
+<!-- Item 2 -->
+<div class="border-b border-outline-variant pb-4 last:border-0 last:pb-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">RK-8895</span>
+<span class="bg-primary-fixed text-on-primary-fixed text-[12px] px-2 py-1 rounded-full font-medium">กำลังดำเนินการ</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">ท่อประปาแตก หน้าคลับเฮ้าส์</p>
+<span class="font-label-md text-[12px] text-outline">แจ้งเมื่อ 1 วันที่แล้ว</span>
+</div>
+<!-- Item 3 -->
+<div class="border-b border-outline-variant pb-4 last:border-0 last:pb-0">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-bold text-on-surface">RK-8850</span>
+<span class="bg-[#dcfce7] text-[#166534] text-[12px] px-2 py-1 rounded-full font-medium">แก้ไขแล้ว</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">ตัดแต่งกิ่งไม้ รั้วโครงการ</p>
+<span class="font-label-md text-[12px] text-outline">แจ้งเมื่อ 3 วันที่แล้ว</span>
+</div>
+</div>
+</div>
+<!-- Emergency Contacts -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
+<h2 class="font-headline-md text-[20px] text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">contact_phone</span>
+                        เบอร์โทรติดต่อสำคัญ
+                    </h2>
+<ul class="space-y-4">
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">local_hospital</span>
+<span class="font-body-md text-body-md text-on-surface">หน่วยแพทย์ฉุกเฉิน</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-error">1669</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#c94f00]">local_fire_department</span>
+<span class="font-body-md text-body-md text-on-surface">ดับเพลิง</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-[#c94f00]">199</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">local_police</span>
+<span class="font-body-md text-body-md text-on-surface">ตำรวจ (สถานีท้องที่)</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-primary">191</span>
+</li>
+<li class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">support_agent</span>
+<span class="font-body-md text-body-md text-on-surface">นิติบุคคลหมู่บ้าน</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">02-XXX-XXXX</span>
+</li>
+<li class="flex items-center justify-between border-t border-outline-variant pt-4 mt-2">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+<span class="font-body-md text-body-md text-on-surface">ผู้ใหญ่บ้าน</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-on-surface">080-120-2529</span>
+</li>
+</ul>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest dark:bg-surface-container-lowest text-on-surface dark:text-on-surface-variant font-body-md text-body-md font-label-md text-label-md full-width bottom-0 w-full py-12 px-margin-desktop mt-auto max-w-container-max mx-auto border-t border-outline-variant flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed-dim font-bold">
+                Rong Khem Village
+            </div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Ministry of Interior</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Provincial Administration</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">E-Government Services</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Terms of Service</a>
+</div>
+<div class="text-center md:text-right font-label-md text-label-md text-on-surface-variant">
+                © 2024 Rong Khem Village Management. All Rights Reserved. Government of Thailand Official Portal.
+            </div>
+</div>
+</footer>
+</body></html>
