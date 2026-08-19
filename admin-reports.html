@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>รายงานสรุปผล (Admin)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-container": "#e8eff1",
+                            "on-surface-variant": "#444653",
+                            "secondary-container": "#fcd400",
+                            "outline": "#747685",
+                            "on-secondary-container": "#6e5c00",
+                            "surface-container-lowest": "#ffffff",
+                            "primary": "#002576",
+                            "surface-container-highest": "#dde4e6",
+                            "inverse-primary": "#b6c4ff",
+                            "inverse-surface": "#2b3234",
+                            "surface-dim": "#d4dbdd",
+                            "background": "#f4fafd",
+                            "on-error-container": "#93000a",
+                            "on-secondary-fixed-variant": "#544600",
+                            "tertiary-container": "#404447",
+                            "surface-variant": "#dde4e6",
+                            "tertiary": "#2a2e30",
+                            "on-primary": "#ffffff",
+                            "on-background": "#161d1f",
+                            "on-primary-container": "#96adff",
+                            "surface-tint": "#3056c4",
+                            "on-tertiary-fixed-variant": "#43474a",
+                            "secondary-fixed": "#ffe16d",
+                            "on-tertiary-fixed": "#181c1e",
+                            "secondary": "#705d00",
+                            "on-primary-fixed": "#00164f",
+                            "tertiary-fixed": "#e0e3e6",
+                            "surface-container-low": "#eef5f7",
+                            "primary-container": "#0038a8",
+                            "primary-fixed-dim": "#b6c4ff",
+                            "surface-bright": "#f4fafd",
+                            "tertiary-fixed-dim": "#c3c7ca",
+                            "on-primary-fixed-variant": "#093cab",
+                            "primary-fixed": "#dce1ff",
+                            "error-container": "#ffdad6",
+                            "inverse-on-surface": "#ebf2f4",
+                            "outline-variant": "#c4c5d5",
+                            "on-error": "#ffffff",
+                            "on-secondary-fixed": "#221b00",
+                            "surface-container-high": "#e2e9ec",
+                            "error": "#ba1a1a",
+                            "surface": "#f4fafd",
+                            "secondary-fixed-dim": "#e9c400",
+                            "on-tertiary-container": "#adb1b4",
+                            "on-secondary": "#ffffff",
+                            "on-surface": "#161d1f",
+                            "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.25rem",
+                            "lg": "0.5rem",
+                            "xl": "0.75rem",
+                            "full": "9999px"
+                    },
+                    "spacing": {
+                            "margin-desktop": "48px",
+                            "gutter": "24px",
+                            "margin-mobile": "16px",
+                            "container-max": "1200px",
+                            "unit": "8px"
+                    },
+                    "fontFamily": {
+                            "button-text": ["Be Vietnam Pro"],
+                            "headline-lg": ["Be Vietnam Pro"],
+                            "headline-md": ["Be Vietnam Pro"],
+                            "body-md": ["Be Vietnam Pro"],
+                            "label-md": ["Be Vietnam Pro"],
+                            "headline-lg-mobile": ["Be Vietnam Pro"],
+                            "body-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                            "button-text": ["16px", {"lineHeight": "1.0", "fontWeight": "600"}],
+                            "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                            "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                            "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                            "headline-lg-mobile": ["26px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface dark:bg-inverse-surface shadow-sm text-primary dark:text-inverse-primary">
+<button class="w-12 h-12 flex items-center justify-center hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">Baan Phuyai Digital</h1>
+<button class="w-12 h-12 flex items-center justify-center hover:bg-surface-container-low rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="px-margin-mobile py-unit flex flex-col gap-unit">
+<div class="mb-unit mt-unit">
+<h2 class="text-headline-lg-mobile font-headline-lg-mobile text-primary">รายงานสรุปผล (Admin)</h2>
+<p class="text-body-md font-body-md text-on-surface-variant">หมู่บ้านรองเข็ม - ข้อมูลอัปเดตล่าสุดวันนี้</p>
+</div>
+<!-- Summary Cards Bento Grid -->
+<div class="grid grid-cols-2 gap-unit">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 flex flex-col items-center justify-center col-span-2">
+<span class="material-symbols-outlined text-primary-container text-4xl mb-2" data-icon="description">description</span>
+<span class="text-label-md font-label-md text-on-surface-variant">คำร้องทั้งหมด</span>
+<span class="text-headline-lg-mobile font-headline-lg-mobile text-primary font-bold">156</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-3xl mb-2" data-icon="pending_actions">pending_actions</span>
+<span class="text-label-md font-label-md text-on-surface-variant text-center">รอดำเนินการ</span>
+<span class="text-headline-md font-headline-md text-secondary font-bold">12</span>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-primary-container text-3xl mb-2" data-icon="check_circle">check_circle</span>
+<span class="text-label-md font-label-md text-on-surface-variant text-center">เสร็จสิ้น</span>
+<span class="text-headline-md font-headline-md text-primary-container font-bold">144</span>
+</div>
+</div>
+<!-- Chart Section Placeholder -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 mt-unit">
+<h3 class="text-headline-md font-headline-md mb-4 text-primary">สัดส่วนประเภทคำร้อง</h3>
+<div class="w-full h-48 bg-surface-container rounded-lg flex items-center justify-center relative overflow-hidden" data-alt="A stylized, modern circular pie chart showing data distribution in shades of primary blue and secondary yellow. Clean white background, corporate aesthetic, high legibility. The chart is dynamic and professional, fitting for an administrative dashboard." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt385cXwHBbEuaE6jBakupn9y6EL-rDxRFBq-BU-rBgUU6oq62TgWFeczj6bZ-QLKuUHTdhA7R8XuJcVGxXjBKFdbuSco2SePb0iTJgiArVYedI_sGXGdi3z4WSALLcjWO5I4eQgcZi-wsTHMt9vj8xi3HF6FWQlBnhMz0eV4CaqX4ANjJAM-Y5Q-aTahE9t9O0XcP-cE9HozPjqCZsAKPHfi16hJazsaJeVhq4P510-8x1EL5VwuO')">
+<div class="absolute inset-0 flex items-center justify-center bg-black/5">
+<span class="material-symbols-outlined text-primary opacity-50 text-6xl">pie_chart</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 mt-unit">
+<h3 class="text-headline-md font-headline-md mb-4 text-primary">สถิติรายเดือน</h3>
+<div class="w-full h-48 bg-surface-container rounded-lg flex items-center justify-center relative overflow-hidden" data-alt="A clean, minimalist bar chart visualizing monthly data trends. Bars are in varying heights, colored in professional royal blue against a crisp white background with subtle grid lines. Modern UI style, authoritative yet accessible." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCSh_Bf-wBq1Z2ZgmZQG5EbPrikLBZJbwpKt5aKeCWSoZ0g59g55Yh0cal9TbGEWEd_ldm8zvu0BfMujMgi4tGkT5a67OrFhPz1lmpGve4fl3v5mFgdHsTM-yOAp8LqAf8cGG7_q7UbMbedQ_n03OVCslKro5qs3loAPsVZgBKptE1FJwKc8yZnV0j1d4djb19bk8fGaz_m85X_3iJBiyU1C_r30_QjoaeL9u0hSbdFsaLDFnSzEL5N')">
+<div class="absolute inset-0 flex items-center justify-center bg-black/5">
+<span class="material-symbols-outlined text-primary opacity-50 text-6xl">bar_chart</span>
+</div>
+</div>
+</div>
+<!-- Recent Activity -->
+<div class="mt-unit mb-unit">
+<h3 class="text-headline-md font-headline-md mb-4 text-primary">กิจกรรมล่าสุด</h3>
+<div class="flex flex-col gap-unit">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 flex gap-4 items-center">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="done_all">done_all</span>
+</div>
+<div>
+<p class="text-body-md font-body-md font-semibold">อนุมัติคำร้องขอเอกสาร #1204</p>
+<p class="text-label-md font-label-md text-on-surface-variant">10 นาทีที่แล้ว - โดย แอดมินสมชาย</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 flex gap-4 items-center">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<div>
+<p class="text-body-md font-body-md font-semibold">ประกาศข่าวสารหมู่บ้านใหม่</p>
+<p class="text-label-md font-label-md text-on-surface-variant">2 ชั่วโมงที่แล้ว - โดย ผู้ใหญ่บ้าน</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant p-4 flex gap-4 items-center">
+<div class="w-10 h-10 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined" data-icon="update">update</span>
+</div>
+<div>
+<p class="text-body-md font-body-md font-semibold">อัปเดตสถานะซ่อมไฟถนน ซอย 4</p>
+<p class="text-label-md font-label-md text-on-surface-variant">เมื่อวานนี้ 16:30 - ระบบอัตโนมัติ</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 py-3 bg-surface-container-lowest dark:bg-inverse-surface shadow-lg rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-label-md font-label-md mt-1">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="apps">apps</span>
+<span class="text-label-md font-label-md mt-1">Services</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1 scale-90 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="analytics" data-weight="fill" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="text-label-md font-label-md mt-1 font-bold">Reports</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline-variant px-4 py-1 hover:bg-surface-container-high rounded-lg transition-colors">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-label-md font-label-md mt-1">Profile</span>
+</button>
+</nav>
+</body></html>
