@@ -1,310 +1,1131 @@
 <!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<html lang="th"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>คลังภาพกิจกรรมหมู่บ้านร่องเข็ม - Rong Khem Village</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-tertiary-fixed": "#181c1e",
-                        "surface-container-highest": "#dde4e6",
-                        "on-secondary": "#ffffff",
-                        "surface-container": "#e8eff1",
-                        "on-tertiary-fixed-variant": "#43474a",
-                        "on-surface-variant": "#444653",
-                        "tertiary-fixed-dim": "#c3c7ca",
-                        "on-secondary-fixed-variant": "#544600",
-                        "outline": "#747685",
-                        "primary-container": "#0038a8",
-                        "on-primary": "#ffffff",
-                        "primary-fixed-dim": "#b6c4ff",
-                        "on-primary-fixed": "#00164f",
-                        "secondary": "#705d00",
-                        "on-primary-container": "#96adff",
-                        "error": "#ba1a1a",
-                        "surface": "#f4fafd",
-                        "surface-container-low": "#eef5f7",
-                        "on-error": "#ffffff",
-                        "inverse-on-surface": "#ebf2f4",
-                        "outline-variant": "#c4c5d5",
-                        "background": "#f4fafd",
-                        "surface-bright": "#f4fafd",
-                        "on-secondary-container": "#6e5c00",
-                        "on-primary-fixed-variant": "#093cab",
-                        "secondary-fixed-dim": "#e9c400",
-                        "inverse-primary": "#b6c4ff",
-                        "on-error-container": "#93000a",
-                        "surface-tint": "#3056c4",
-                        "on-background": "#161d1f",
-                        "inverse-surface": "#2b3234",
-                        "secondary-container": "#fcd400",
-                        "tertiary": "#2a2e30",
-                        "surface-variant": "#dde4e6",
-                        "tertiary-fixed": "#e0e3e6",
-                        "primary-fixed": "#dce1ff",
-                        "surface-container-lowest": "#ffffff",
-                        "error-container": "#ffdad6",
-                        "secondary-fixed": "#ffe16d",
-                        "on-surface": "#161d1f",
-                        "surface-container-high": "#e2e9ec",
-                        "primary": "#002576",
-                        "on-tertiary-container": "#adb1b4",
-                        "on-secondary-fixed": "#221b00",
-                        "on-tertiary": "#ffffff",
-                        "tertiary-container": "#404447",
-                        "surface-dim": "#d4dbdd"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "container-max": "1200px",
-                        "margin-desktop": "48px",
-                        "unit": "8px",
-                        "margin-mobile": "16px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Be Vietnam Pro"],
-                        "headline-md": ["Be Vietnam Pro"],
-                        "button-text": ["Be Vietnam Pro"],
-                        "body-md": ["Be Vietnam Pro"],
-                        "label-md": ["Be Vietnam Pro"],
-                        "headline-lg-mobile": ["Be Vietnam Pro"],
-                        "body-lg": ["Be Vietnam Pro"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "button-text": ["16px", { "lineHeight": "1.0", "fontWeight": "600" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
-                        "headline-lg-mobile": ["26px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }]
-                    }
-                }
-            }
-        }
-    </script>
+<title>คลังรูปภาพ | RONGKHEM e-VILLAGE OFFICE</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,400..700,0..1,0..1&display=swap" rel="stylesheet">
+
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .icon-fill {
-            font-variation-settings: 'FILL' 1;
-        }
-        .album-card:hover .album-overlay {
-            opacity: 1;
-        }
-        .album-card:hover img {
-            transform: scale(1.05);
-        }
-    </style>
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    margin:0;
+    background:#f8f9fa;
+    color:#191c1d;
+    font-family:'Noto Sans Thai','Noto Sans',sans-serif;
+}
+
+.material-symbols-outlined{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    vertical-align:middle;
+}
+
+button,
+a{
+    -webkit-tap-highlight-color:transparent;
+}
+
+.glass-card{
+    background:rgba(255,255,255,.96);
+    border:1px solid #e1e3e4;
+    box-shadow:0 5px 18px rgba(0,71,94,.08);
+}
+
+.gallery-card{
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    transition:.3s ease;
+}
+
+.gallery-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(0,71,94,.14);
+}
+
+.gallery-card img{
+    transition:transform .6s ease;
+}
+
+.gallery-card:hover img{
+    transform:scale(1.06);
+}
+
+.tab-btn{
+    white-space:nowrap;
+    border:0;
+    background:none;
+    padding:10px 4px;
+    color:#70787d;
+    font-weight:600;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+}
+
+.tab-btn.active{
+    color:#00475e;
+    border-bottom-color:#00475e;
+}
+
+.mobile-menu{
+    display:none;
+}
+
+.mobile-menu.show{
+    display:block;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:1000;
+    background:rgba(0,0,0,.86);
+    padding:20px;
+    align-items:center;
+    justify-content:center;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-content{
+    max-width:1100px;
+    width:100%;
+    max-height:92vh;
+    position:relative;
+}
+
+.modal-content img{
+    width:100%;
+    max-height:78vh;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+.modal-close{
+    position:absolute;
+    right:0;
+    top:-48px;
+    width:42px;
+    height:42px;
+    border:0;
+    border-radius:50%;
+    background:#fff;
+    color:#00475e;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.empty{
+    display:none;
+    padding:60px 20px;
+    text-align:center;
+    color:#70787d;
+}
+
+@media(max-width:768px){
+
+    .desktop-nav{
+        display:none!important;
+    }
+
+    .mobile-menu{
+        display:none;
+    }
+
+    .mobile-menu.show{
+        display:block;
+    }
+
+    .modal{
+        padding:12px;
+    }
+
+    .modal-close{
+        top:-48px;
+    }
+
+}
+
+</style>
 </head>
-<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
-<!-- TopNavBar -->
-<nav class="bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md fixed top-0 w-full z-50 bg-surface-container/60 dark:bg-surface-container-high/60 backdrop-blur-xl shadow-sm">
-<div class="flex justify-between items-center px-margin-desktop h-16 w-full max-w-container-max mx-auto">
-<div class="flex items-center gap-4">
-<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">Rong Khem Village</span>
-</div>
-<div class="hidden md:flex gap-8">
-<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary font-body-md text-body-md hover:bg-primary/5 dark:hover:bg-primary-container/20 transition-all duration-300 rounded-md px-3 py-2" href="#">Home</a>
-<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-body-md text-body-md hover:bg-primary/5 dark:hover:bg-primary-container/20 transition-all duration-300 rounded-md px-3 py-2" href="#">Services</a>
-<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary font-body-md text-body-md hover:bg-primary/5 dark:hover:bg-primary-container/20 transition-all duration-300 rounded-md px-3 py-2" href="#">Report</a>
-<a class="text-on-surface-variant dark:text-on-tertiary-container hover:text-primary font-body-md text-body-md hover:bg-primary/5 dark:hover:bg-primary-container/20 transition-all duration-300 rounded-md px-3 py-2" href="#">Contact</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="scale-95 transition-transform duration-200 text-on-surface-variant hover:text-primary p-2 rounded-full hover:bg-surface-container-highest">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<button class="scale-95 transition-transform duration-200 text-on-surface-variant hover:text-primary p-2 rounded-full hover:bg-surface-container-highest">
-<span class="material-symbols-outlined">settings</span>
-</button>
-<img alt="Administrator profile photo" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a village administrator, well-lit, approachable expression, modern office setting, corporate aesthetic, highly detailed." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFxVdpCix7lL6DSMHGksXJ2-Yog-gI5V5S-TFUd20N7xji1LX76JErGGWzz8CwZneF0z8U7gMr_jw6-gMBQa56bQUyKFrAEFi4Xr_C6NZ4ZClKRW-pYe3yPwoqSIMMIaBNn_e1re4LHd1nCVWEE8yz5nxWI98pxjvkOxTD4BUCIrOAyzZYe-NwRjRh_N3rGO-hpXeXdYtfIL7QF1_Q6HPIfaebdOdaFcGEqC6-4weAZNzdD_nzaA7Z"/>
-</div>
-</div>
-</nav>
-<!-- Main Content -->
-<main class="flex-grow pt-24 pb-16 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto w-full">
-<!-- Hero Section -->
-<section class="mb-12 text-center md:text-left bg-surface-container-low rounded-xl p-8 md:p-12 shadow-sm border border-outline-variant/30 relative overflow-hidden">
-<div class="relative z-10 max-w-2xl">
-<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary mb-4">คลังภาพกิจกรรมหมู่บ้านร่องเข็ม</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant mb-6">รวบรวมภาพความประทับใจ กิจกรรม และการพัฒนาชุมชน เพื่อบันทึกความทรงจำและสะท้อนความร่วมมือร่วมใจของชาวบ้านร่องเข็ม</p>
-</div>
-<!-- Decorative element -->
-<div class="absolute -top-24 -right-24 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl"></div>
-</section>
-<!-- Filters -->
-<section class="mb-8 flex flex-col md:flex-row justify-between items-center gap-4 bg-surface rounded-lg p-4 shadow-sm border border-outline-variant/20">
-<div class="flex flex-wrap gap-2 w-full md:w-auto">
-<button class="bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-label-md shadow-sm hover:shadow-md transition-shadow">ทั้งหมด</button>
-<button class="bg-surface-container hover:bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md transition-colors">ประเพณี</button>
-<button class="bg-surface-container hover:bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md transition-colors">พัฒนาชุมชน</button>
-<button class="bg-surface-container hover:bg-surface-container-high text-on-surface-variant px-4 py-2 rounded-full font-label-md text-label-md transition-colors">การประชุม</button>
-</div>
-<div class="flex items-center gap-2 w-full md:w-auto">
-<span class="material-symbols-outlined text-outline">filter_list</span>
-<select class="bg-surface-container border-outline-variant/50 text-on-surface rounded-md font-label-md text-label-md py-2 px-4 focus:ring-primary focus:border-primary">
-<option value="2567">ปี 2567</option>
-<option value="2566">ปี 2566</option>
-<option value="2565">ปี 2565</option>
-</select>
-</div>
-</section>
-<!-- Gallery Grid -->
-<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- Album 1 -->
-<div class="album-card group relative bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 flex flex-col transition-all duration-300 hover:shadow-md cursor-pointer">
-<div class="relative h-56 overflow-hidden">
-<img alt="Village headman meeting" class="w-full h-full object-cover transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLvdStZC9Q02bjw6I4_nL3P04epHFEffBpXBJ2G1Ui26ivWi--blrIMkkIP_x5Ah_B8yLhbUJ-XLqPNY2eUtK7kN5TXdzE-7rRVKcc6h271qDjdTu7w86X6aS8AuU4z1HAT5Gy2kyUrjXpuVAkhzTLqR2XeFSInOr8YgiebO72ohT0n2w-oDKo8i2vBldibpCAosz869OkmG6Oir3ZV2_JIfLtMb9tbDxy6DSWnPgJfD7gg_eWiccyeDIHY"/>
-<div class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary">photo_library</span>
-<span class="font-label-md text-label-md text-on-surface font-bold text-xs">24 ภาพ</span>
-</div>
-<div class="album-overlay absolute inset-0 bg-primary/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-<button class="bg-surface text-primary font-button-text text-button-text px-6 py-2 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">visibility</span> ชมอัลบั้ม
-                        </button>
-</div>
-</div>
-<div class="p-5 flex-grow flex flex-col">
-<div class="flex items-center gap-2 mb-2">
-<span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-sm font-label-md">การประชุม</span>
-<span class="text-on-surface-variant text-xs font-label-md flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 15 มีนาคม 2567</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2 line-clamp-2">การประชุมประชาคมหมู่บ้าน ประจำเดือนมีนาคม</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2 mt-auto">ปรึกษาหารือแนวทางการพัฒนาแหล่งน้ำและปรับปรุงถนนภายในหมู่บ้าน</p>
-</div>
-</div>
-<!-- Album 2 -->
-<div class="album-card group relative bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 flex flex-col transition-all duration-300 hover:shadow-md cursor-pointer">
-<div class="relative h-56 overflow-hidden">
-<img alt="Thai village community meeting" class="w-full h-full object-cover transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLuua1GkqPP6gq74RLjI8N0jwK3JcGFCjujwszYbi7aGUQ41KP4zOXWA-RRcBeFzn9VumI0MvWMIjOcv-d8PtmykvGHZ4g-b87YbChhrIwW0Z1MpbYC97xlYDiaNgpk1jMxPcu6XgoH5Pz9UOIfvGyGIHo30Q6GSKsW0BD7rKsyxwGiqsv0wamb7pIVGLRReCfsyiTN5LCK3g4JOp9NAsx8a2mW-A2Cppzx69LXHECL8XraUagVDEG2hnw"/>
-<div class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary">photo_library</span>
-<span class="font-label-md text-label-md text-on-surface font-bold text-xs">45 ภาพ</span>
-</div>
-<div class="album-overlay absolute inset-0 bg-primary/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-<button class="bg-surface text-primary font-button-text text-button-text px-6 py-2 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">visibility</span> ชมอัลบั้ม
-                        </button>
-</div>
-</div>
-<div class="p-5 flex-grow flex flex-col">
-<div class="flex items-center gap-2 mb-2">
-<span class="bg-primary-container text-on-primary-container text-xs px-2 py-1 rounded-sm font-label-md">ประเพณี</span>
-<span class="text-on-surface-variant text-xs font-label-md flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 14 เมษายน 2567</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2 line-clamp-2">งานประเพณีสงกรานต์ รดน้ำดำหัวผู้สูงอายุ</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2 mt-auto">สืบสานประเพณีไทย รดน้ำขอพรผู้เริญเพื่อความเป็นสิริมงคล</p>
-</div>
-</div>
-<!-- Album 3 -->
-<div class="album-card group relative bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 flex flex-col transition-all duration-300 hover:shadow-md cursor-pointer">
-<div class="relative h-56 overflow-hidden">
-<img alt="Community development volunteer work" class="w-full h-full object-cover transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AP1WRLtg2pIhPre-lJgCzI8Y6vO90epDDR_Jejq6oGLpx2u6b6QclddyGqhhH9TBHh9Jv1pP5gkkT_xDuKH6uBYtIvOhWHoiX2gAkcxauwAs1J2uJ3jWuwx5-PlLyt4Dr-i3xyNl1JSpL0WvybbCNKg0vgG8I8tUnEdzCBypwUUdcUl_054r5nkV4fRmifd_XbKxG9TfS3mx1pVzu2a1er0oQEnXMUlYiOr6XwAJpJqtFL6dp9gPa6Au3WD8nL8"/>
-<div class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary">photo_library</span>
-<span class="font-label-md text-label-md text-on-surface font-bold text-xs">32 ภาพ</span>
-</div>
-<div class="album-overlay absolute inset-0 bg-primary/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-<button class="bg-surface text-primary font-button-text text-button-text px-6 py-2 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">visibility</span> ชมอัลบั้ม
-                        </button>
-</div>
-</div>
-<div class="p-5 flex-grow flex flex-col">
-<div class="flex items-center gap-2 mb-2">
-<span class="bg-tertiary-container text-on-tertiary-container text-xs px-2 py-1 rounded-sm font-label-md">พัฒนาชุมชน</span>
-<span class="text-on-surface-variant text-xs font-label-md flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 5 พฤษภาคม 2567</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2 line-clamp-2">กิจกรรมจิตอาสา ทำความสะอาดลานวัด</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2 mt-auto">ร่วมแรงร่วมใจทำความสะอาดพื้นที่สาธารณะเพื่อเตรียมงานบุญใหญ่</p>
-</div>
-</div>
-<!-- Placeholder Album 4 -->
-<div class="album-card group relative bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 flex flex-col transition-all duration-300 hover:shadow-md cursor-pointer">
-<div class="relative h-56 overflow-hidden">
-<img alt="Agricultural workshop" class="w-full h-full object-cover transition-transform duration-500" data-alt="A group of villagers engaged in an agricultural workshop, studying crop samples outdoors in a sunny field, modern farming techniques, rural setting, high-resolution photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGE8-t4YuWbODIW-ZyjAmezwt5u9-sc1gIzWogPo1-ujPwaj07ESj3TULQQuZqWZDH4eddQ3qfr-uHVSsVdCW7S0WpKfzJpCp2J0Y754cT3el98tQMnSL2CnuRZdJ8Eolw94I7jH5YYTuMppzmYBN8TsGWC3PzGXpKmVbyvAStEUltMNCF6uy4AWnzHrXlS1Vgs6FFqSzVOUjQVTF6vdz-CYRLvwWqZH0YhFmZUK_uwe2vKfr448qU"/>
-<div class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary">photo_library</span>
-<span class="font-label-md text-label-md text-on-surface font-bold text-xs">18 ภาพ</span>
-</div>
-<div class="album-overlay absolute inset-0 bg-primary/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-<button class="bg-surface text-primary font-button-text text-button-text px-6 py-2 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">visibility</span> ชมอัลบั้ม
-                        </button>
-</div>
-</div>
-<div class="p-5 flex-grow flex flex-col">
-<div class="flex items-center gap-2 mb-2">
-<span class="bg-surface-container-high text-on-surface text-xs px-2 py-1 rounded-sm font-label-md">อบรม/สัมมนา</span>
-<span class="text-on-surface-variant text-xs font-label-md flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 20 กุมภาพันธ์ 2567</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2 line-clamp-2">อบรมการเกษตรอินทรีย์วิถีใหม่</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2 mt-auto">เพิ่มพูนความรู้ด้านการเกษตรปลอดสารพิษเพื่อสุขภาพและรายได้ที่ยั่งยืน</p>
-</div>
-</div>
-<!-- Placeholder Album 5 -->
-<div class="album-card group relative bg-surface rounded-xl overflow-hidden shadow-sm border border-outline-variant/20 flex flex-col transition-all duration-300 hover:shadow-md cursor-pointer">
-<div class="relative h-56 overflow-hidden">
-<img alt="Local market event" class="w-full h-full object-cover transition-transform duration-500" data-alt="A vibrant local market scene in a Thai village, colorful stalls selling fresh produce and handicrafts, warm sunlight filtering through awnings, lively community atmosphere, highly detailed photo." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_KQYZ75gDKrWzNZHKrnIdbiOf24k_b-PethVRypP39hBc2s65SvWH-q2sw8s9f155lm0htHPh6zqIAy45sn0ugheLAZfwvZkddizSKb407MvP4E4otKSSUEmlJQWkfrqiRhEx8BnFrVyYmZoJ83Pi0JmG3Bf6da530dWc32CbQBg_x69nf84fvAlYjW84LbCVrINMxoo1zE6rmEr1cXX3-rutzmN59RQJ_nd744iOO1V-bozVt9bl"/>
-<div class="absolute top-3 right-3 bg-surface/90 backdrop-blur-sm px-2 py-1 rounded-md flex items-center gap-1 shadow-sm">
-<span class="material-symbols-outlined text-sm text-primary">photo_library</span>
-<span class="font-label-md text-label-md text-on-surface font-bold text-xs">56 ภาพ</span>
-</div>
-<div class="album-overlay absolute inset-0 bg-primary/40 opacity-0 transition-opacity duration-300 flex items-center justify-center">
-<button class="bg-surface text-primary font-button-text text-button-text px-6 py-2 rounded-full shadow-lg flex items-center gap-2 hover:scale-105 transition-transform">
-<span class="material-symbols-outlined">visibility</span> ชมอัลบั้ม
-                        </button>
-</div>
-</div>
-<div class="p-5 flex-grow flex flex-col">
-<div class="flex items-center gap-2 mb-2">
-<span class="bg-secondary-container text-on-secondary-container text-xs px-2 py-1 rounded-sm font-label-md">เศรษฐกิจ</span>
-<span class="text-on-surface-variant text-xs font-label-md flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">calendar_today</span> 10 มกราคม 2567</span>
-</div>
-<h3 class="font-headline-md text-headline-md text-on-surface text-lg mb-2 line-clamp-2">ตลาดนัดชุมชน กระตุ้นเศรษฐกิจฐานราก</h3>
-<p class="font-body-md text-body-md text-on-surface-variant text-sm line-clamp-2 mt-auto">เปิดพื้นที่จำหน่ายสินค้าเกษตรและผลิตภัณฑ์ชุมชน</p>
-</div>
-</div>
-</section>
-<!-- Pagination -->
-<div class="mt-12 flex justify-center items-center gap-2">
-<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary text-on-primary font-label-md text-label-md">1</button>
-<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-colors">2</button>
-<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-on-surface hover:bg-surface-container-high font-label-md text-label-md transition-colors">3</button>
-<button class="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+
+    <div class="max-w-[1440px] mx-auto px-4">
+
+        <div class="h-[70px] flex items-center justify-between gap-4">
+
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="flex items-center gap-3 min-w-0"
+            >
+
+                <div class="w-11 h-11 rounded-full overflow-hidden bg-[#00475e] flex items-center justify-center shrink-0">
+
+                    <img
+                        src="rongkhem-logo.png"
+                        alt="โลโก้บ้านร่องเข็ม"
+                        class="w-full h-full object-cover"
+                        onerror="this.style.display='none';this.nextElementSibling.style.display='block';"
+                    >
+
+                    <span
+                        class="material-symbols-outlined text-white"
+                        style="display:none;"
+                    >
+                        account_balance
+                    </span>
+
+                </div>
+
+
+                <div class="min-w-0">
+
+                    <div class="font-bold text-[#00475e] text-base md:text-lg truncate">
+                        RONGKHEM e-VILLAGE OFFICE
+                    </div>
+
+                    <div class="text-xs text-gray-500 truncate">
+                        ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- DESKTOP NAV -->
+
+            <nav class="desktop-nav hidden md:flex items-center gap-5 text-sm">
+
+                <a
+                    href="index.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    หน้าแรก
+                </a>
+
+                <a
+                    href="leader.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    ผู้นำชุมชน
+                </a>
+
+                <a
+                    href="news.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    ข่าวสาร
+                </a>
+
+                <a
+                    href="activity.html"
+                    class="text-[#00475e] font-bold border-b-2 border-[#00475e] pb-1"
+                >
+                    กิจกรรม
+                </a>
+
+                <a
+                    href="project.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    โครงการ
+                </a>
+
+                <a
+                    href="service.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    บริการประชาชน
+                </a>
+
+                <a
+                    href="statistics.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    สถิติ
+                </a>
+
+                <a
+                    href="contact.html"
+                    class="text-gray-600 hover:text-[#00475e]"
+                >
+                    ติดต่อสอบถาม
+                </a>
+
+            </nav>
+
+
+            <!-- RIGHT -->
+
+            <div class="flex items-center gap-2 shrink-0">
+
+                <a
+                    href="admin-login.html"
+                    class="hidden md:flex items-center gap-2 bg-[#00475e] text-white px-4 py-2.5 rounded-lg font-semibold hover:bg-[#1a5f7a]"
+                >
+
+                    <span class="material-symbols-outlined text-[20px]">
+                        lock
+                    </span>
+
+                    เข้าสู่ระบบแอดมิน
+
+                </a>
+
+
+                <button
+                    onclick="toggleMobileMenu()"
+                    class="md:hidden w-11 h-11 rounded-lg bg-gray-100 text-[#00475e]"
+                    aria-label="เมนู"
+                >
+
+                    <span
+                        id="menuIcon"
+                        class="material-symbols-outlined"
+                    >
+                        menu
+                    </span>
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE MENU -->
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu pb-4"
+        >
+
+            <div class="grid grid-cols-2 gap-2">
+
+                <a href="index.html" class="mobile-link">
+                    หน้าแรก
+                </a>
+
+                <a href="leader.html" class="mobile-link">
+                    ผู้นำชุมชน
+                </a>
+
+                <a href="news.html" class="mobile-link">
+                    ข่าวสาร
+                </a>
+
+                <a href="activity.html" class="mobile-link">
+                    กิจกรรม
+                </a>
+
+                <a href="project.html" class="mobile-link">
+                    โครงการ
+                </a>
+
+                <a href="service.html" class="mobile-link">
+                    บริการประชาชน
+                </a>
+
+                <a href="statistics.html" class="mobile-link">
+                    สถิติ
+                </a>
+
+                <a href="contact.html" class="mobile-link">
+                    ติดต่อสอบถาม
+                </a>
+
+                <a
+                    href="admin-login.html"
+                    class="col-span-2 mobile-link bg-[#00475e] !text-white"
+                >
+                    🔐 เข้าสู่ระบบแอดมิน
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     MAIN
+================================================== -->
+
+<main class="max-w-[1440px] mx-auto px-4 py-8 md:py-12">
+
+
+    <!-- HEADER -->
+
+    <section class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
+
+        <div>
+
+            <div class="text-sm text-[#00475e] font-bold mb-2">
+                RONGKHEM e-VILLAGE OFFICE
+            </div>
+
+            <h1 class="text-2xl md:text-4xl font-bold text-[#00475e] mb-3">
+                คลังรูปภาพและสื่อมัลติมีเดีย
+            </h1>
+
+            <p class="text-gray-600 max-w-3xl leading-7">
+                รวบรวมภาพกิจกรรม แหล่งท่องเที่ยว โครงการพัฒนา
+                และเรื่องราวสำคัญของชุมชนบ้านร่องเข็ม หมู่ที่ 6
+            </p>
+
+        </div>
+
+
+        <a
+            href="admin-login.html"
+            class="inline-flex items-center justify-center gap-2 bg-[#00475e] text-white px-5 py-3 rounded-xl font-bold hover:bg-[#1a5f7a]"
+        >
+
+            <span class="material-symbols-outlined">
+                cloud_upload
+            </span>
+
+            จัดการคลังรูปภาพ
+
+        </a>
+
+    </section>
+
+
+
+    <!-- FILTER -->
+
+    <div class="border-b border-gray-200 mb-8 overflow-x-auto">
+
+        <div class="flex gap-7 min-w-max">
+
+            <button
+                class="tab-btn active"
+                data-filter="all"
+                onclick="filterGallery('all',this)"
+            >
+                ทั้งหมด
+            </button>
+
+            <button
+                class="tab-btn"
+                data-filter="activity"
+                onclick="filterGallery('activity',this)"
+            >
+                กิจกรรมหมู่บ้าน
+            </button>
+
+            <button
+                class="tab-btn"
+                data-filter="tourism"
+                onclick="filterGallery('tourism',this)"
+            >
+                แหล่งท่องเที่ยว
+            </button>
+
+            <button
+                class="tab-btn"
+                data-filter="project"
+                onclick="filterGallery('project',this)"
+            >
+                โครงการพัฒนา
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         GALLERY
+    ================================================== -->
+
+    <section
+        id="galleryGrid"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+    >
+
+
+        <!-- FEATURE -->
+
+        <article
+            class="gallery-item gallery-card glass-card rounded-2xl md:col-span-2 md:row-span-2 min-h-[360px] md:min-h-[520px]"
+            data-category="tourism"
+            onclick="openImage(
+                'rongkhem-images/sub-nam-cham.jpg',
+                'แหล่งซับน้ำจำ บ้านร่องเข็ม'
+            )"
+        >
+
+            <img
+                src="rongkhem-images/sub-nam-cham.jpg"
+                alt="แหล่งซับน้ำจำ บ้านร่องเข็ม"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="imageFallback(this)"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+
+            <div class="absolute top-4 right-4 bg-[#00475e]/90 text-white px-3 py-1.5 rounded-full text-xs font-bold">
+                แหล่งท่องเที่ยว
+            </div>
+
+            <div class="absolute bottom-0 left-0 p-5 md:p-7 text-white">
+
+                <div class="text-xs opacity-80 mb-2">
+                    บ้านร่องเข็ม หมู่ที่ 6
+                </div>
+
+                <h2 class="text-xl md:text-2xl font-bold mb-2">
+                    แหล่งซับน้ำจำ
+                </h2>
+
+                <p class="text-sm text-white/80">
+                    แหล่งธรรมชาติสำคัญของชุมชน
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- ACTIVITY -->
+
+        <article
+            class="gallery-item gallery-card glass-card rounded-2xl h-[270px]"
+            data-category="activity"
+            onclick="openImage(
+                'rongkhem-images/activity.jpg',
+                'กิจกรรมชุมชนบ้านร่องเข็ม'
+            )"
+        >
+
+            <img
+                src="rongkhem-images/activity.jpg"
+                alt="กิจกรรมชุมชนบ้านร่องเข็ม"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="imageFallback(this)"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute bottom-0 p-4 text-white">
+
+                <h3 class="font-bold text-lg">
+                    กิจกรรมชุมชน
+                </h3>
+
+                <p class="text-xs text-white/80 mt-1">
+                    กิจกรรมและการมีส่วนร่วมของชาวบ้าน
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PROJECT -->
+
+        <article
+            class="gallery-item gallery-card glass-card rounded-2xl h-[270px]"
+            data-category="project"
+            onclick="openImage(
+                'rongkhem-images/project.jpg',
+                'โครงการพัฒนาหมู่บ้าน'
+            )"
+        >
+
+            <img
+                src="rongkhem-images/project.jpg"
+                alt="โครงการพัฒนาหมู่บ้าน"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="imageFallback(this)"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute bottom-0 p-4 text-white">
+
+                <h3 class="font-bold text-lg">
+                    โครงการพัฒนาหมู่บ้าน
+                </h3>
+
+                <p class="text-xs text-white/80 mt-1">
+                    การพัฒนาโครงสร้างพื้นฐานและชุมชน
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- HEALTH -->
+
+        <article
+            class="gallery-item gallery-card glass-card rounded-2xl h-[270px]"
+            data-category="activity"
+            onclick="openImage(
+                'rongkhem-images/health.jpg',
+                'กิจกรรมด้านสุขภาพ'
+            )"
+        >
+
+            <img
+                src="rongkhem-images/health.jpg"
+                alt="กิจกรรมด้านสุขภาพ"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="imageFallback(this)"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute bottom-0 p-4 text-white">
+
+                <h3 class="font-bold text-lg">
+                    กิจกรรมด้านสุขภาพ
+                </h3>
+
+                <p class="text-xs text-white/80 mt-1">
+                    สุขภาพและคุณภาพชีวิตของประชาชน
+                </p>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- NATURE -->
+
+        <article
+            class="gallery-item gallery-card glass-card rounded-2xl h-[270px]"
+            data-category="tourism"
+            onclick="openImage(
+                'rongkhem-images/nature.jpg',
+                'ธรรมชาติบ้านร่องเข็ม'
+            )"
+        >
+
+            <img
+                src="rongkhem-images/nature.jpg"
+                alt="ธรรมชาติบ้านร่องเข็ม"
+                class="absolute inset-0 w-full h-full object-cover"
+                onerror="imageFallback(this)"
+            >
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+
+            <div class="absolute bottom-0 p-4 text-white">
+
+                <h3 class="font-bold text-lg">
+                    ธรรมชาติบ้านร่องเข็ม
+                </h3>
+
+                <p class="text-xs text-white/80 mt-1">
+                    ทัศนียภาพและแหล่งธรรมชาติ
+                </p>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+
+
+    <!-- EMPTY -->
+
+    <div
+        id="emptyState"
+        class="empty"
+    >
+
+        <span
+            class="material-symbols-outlined"
+            style="font-size:55px;color:#00475e;"
+        >
+            photo_library
+        </span>
+
+        <h3 class="text-xl font-bold mt-4">
+            ไม่พบรูปภาพในหมวดนี้
+        </h3>
+
+        <p class="mt-2">
+            กรุณาเลือกหมวดอื่น
+        </p>
+
+    </div>
+
+
+
+    <!-- BACK -->
+
+    <div class="flex justify-center mt-10">
+
+        <button
+            onclick="loadMore()"
+            class="border border-[#00475e] text-[#00475e] px-6 py-3 rounded-xl font-bold hover:bg-[#00475e] hover:text-white"
+        >
+
+            <span class="material-symbols-outlined mr-1">
+                add
+            </span>
+
+            โหลดเพิ่มเติม
+
+        </button>
+
+    </div>
+
 </main>
-<!-- Footer -->
-<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant w-full py-unit flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter mt-auto">
-<div class="mb-4 md:mb-0">
-<span class="font-bold text-primary">Rong Khem</span>
-<p class="font-label-md text-label-md text-on-surface dark:text-inverse-on-surface mt-1">© 2024 Rong Khem Village Digital Authority</p>
+
+
+
+<!-- ==================================================
+     MOBILE BOTTOM NAV
+================================================== -->
+
+<nav class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#00475e] text-white shadow-[0_-5px_20px_rgba(0,0,0,.15)]">
+
+    <div class="grid grid-cols-4">
+
+        <a
+            href="index.html"
+            class="flex flex-col items-center justify-center py-2"
+        >
+
+            <span class="material-symbols-outlined">
+                home
+            </span>
+
+            <span class="text-[10px]">
+                หน้าแรก
+            </span>
+
+        </a>
+
+
+        <a
+            href="news.html"
+            class="flex flex-col items-center justify-center py-2"
+        >
+
+            <span class="material-symbols-outlined">
+                newspaper
+            </span>
+
+            <span class="text-[10px]">
+                ข่าวสาร
+            </span>
+
+        </a>
+
+
+        <a
+            href="activity.html"
+            class="flex flex-col items-center justify-center py-2 bg-[#1a5f7a]"
+        >
+
+            <span class="material-symbols-outlined">
+                event
+            </span>
+
+            <span class="text-[10px] font-bold">
+                กิจกรรม
+            </span>
+
+        </a>
+
+
+        <a
+            href="service.html"
+            class="flex flex-col items-center justify-center py-2"
+        >
+
+            <span class="material-symbols-outlined">
+                support_agent
+            </span>
+
+            <span class="text-[10px]">
+                บริการ
+            </span>
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ==================================================
+     IMAGE MODAL
+================================================== -->
+
+<div
+    id="imageModal"
+    class="modal"
+    onclick="closeImage(event)"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeImage()"
+            aria-label="ปิด"
+        >
+
+            <span class="material-symbols-outlined">
+                close
+            </span>
+
+        </button>
+
+
+        <img
+            id="modalImage"
+            src=""
+            alt=""
+        >
+
+
+        <div
+            id="modalTitle"
+            class="text-white text-center font-bold mt-3"
+        ></div>
+
+    </div>
+
 </div>
-<div class="flex gap-6">
-<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
-<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Terms of Service</a>
-<a class="font-label-md text-label-md text-on-surface-variant dark:text-on-tertiary-container hover:text-primary transition-colors opacity-80 hover:opacity-100" href="#">Accessibility</a>
-</div>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer class="bg-[#00475e] text-white mt-16 mb-[58px] md:mb-0">
+
+    <div class="max-w-[1440px] mx-auto px-4 py-8">
+
+        <div class="flex flex-col md:flex-row justify-between gap-5">
+
+            <div>
+
+                <div class="font-bold text-lg">
+                    RONGKHEM e-VILLAGE OFFICE
+                </div>
+
+                <div class="text-white/75 text-sm mt-2">
+                    ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6
+                </div>
+
+                <div class="text-white/75 text-sm mt-1">
+                    ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
+                </div>
+
+            </div>
+
+
+            <div class="flex flex-wrap gap-5 text-sm">
+
+                <a href="index.html" class="hover:underline">
+                    หน้าแรก
+                </a>
+
+                <a href="contact.html" class="hover:underline">
+                    ติดต่อเรา
+                </a>
+
+                <a href="admin-login.html" class="hover:underline">
+                    ผู้ดูแลระบบ
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="border-t border-white/20 mt-6 pt-5 text-xs text-white/60">
+
+            © 2569 RONGKHEM e-VILLAGE OFFICE
+
+        </div>
+
+    </div>
+
 </footer>
-</body></html>
+
+
+
+<script>
+
+/* ==================================================
+   MOBILE MENU
+================================================== */
+
+function toggleMobileMenu(){
+
+    const menu =
+        document.getElementById('mobileMenu');
+
+    const icon =
+        document.getElementById('menuIcon');
+
+    menu.classList.toggle('show');
+
+    icon.textContent =
+        menu.classList.contains('show')
+        ? 'close'
+        : 'menu';
+
+}
+
+
+
+/* ==================================================
+   FILTER
+================================================== */
+
+function filterGallery(category,button){
+
+    document
+        .querySelectorAll('.tab-btn')
+        .forEach(btn=>{
+            btn.classList.remove('active');
+        });
+
+    button.classList.add('active');
+
+
+    const items =
+        document.querySelectorAll(
+            '.gallery-item'
+        );
+
+    let visible=0;
+
+
+    items.forEach(item=>{
+
+        const itemCategory =
+            item.dataset.category;
+
+
+        if(
+            category === 'all' ||
+            itemCategory === category
+        ){
+
+            item.style.display='block';
+
+            visible++;
+
+        }else{
+
+            item.style.display='none';
+
+        }
+
+    });
+
+
+    document
+        .getElementById('emptyState')
+        .style.display =
+        visible === 0
+        ? 'block'
+        : 'none';
+
+}
+
+
+
+/* ==================================================
+   IMAGE MODAL
+================================================== */
+
+function openImage(src,title){
+
+    const modal =
+        document.getElementById(
+            'imageModal'
+        );
+
+    const image =
+        document.getElementById(
+            'modalImage'
+        );
+
+    const titleBox =
+        document.getElementById(
+            'modalTitle'
+        );
+
+
+    image.src=src;
+
+    image.alt=title;
+
+    titleBox.textContent=title;
+
+    modal.classList.add('show');
+
+    document.body.style.overflow='hidden';
+
+}
+
+
+
+function closeImage(event){
+
+    if(
+        event &&
+        event.target &&
+        event.target.id !== 'imageModal'
+    ){
+
+        return;
+
+    }
+
+
+    document
+        .getElementById(
+            'imageModal'
+        )
+        .classList.remove('show');
+
+    document.body.style.overflow='';
+
+}
+
+
+
+document.addEventListener(
+    'keydown',
+    function(event){
+
+        if(event.key === 'Escape'){
+
+            document
+                .getElementById(
+                    'imageModal'
+                )
+                .classList.remove('show');
+
+            document.body.style.overflow='';
+
+        }
+
+    }
+);
+
+
+
+/* ==================================================
+   IMAGE FALLBACK
+================================================== */
+
+function imageFallback(img){
+
+    img.onerror=null;
+
+    img.src =
+        'https://placehold.co/1200x800/e7e8e9/00475e?text=RONGKHEM+e-VILLAGE';
+
+}
+
+
+
+/* ==================================================
+   LOAD MORE
+================================================== */
+
+function loadMore(){
+
+    alert(
+        'คลังรูปภาพเพิ่มเติมจะเชื่อมต่อกับระบบจัดการรูปภาพในขั้นตอนถัดไป'
+    );
+
+}
+
+
+
+/* ==================================================
+   MOBILE LINKS STYLE
+================================================== */
+
+document
+    .querySelectorAll('.mobile-link')
+    .forEach(link=>{
+
+        link.style.cssText = `
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            padding:12px;
+            border-radius:10px;
+            background:#f3f4f5;
+            color:#00475e;
+            font-weight:600;
+            text-decoration:none;
+        `;
+
+    });
+
+</script>
+
+
+</body>
+</html>
