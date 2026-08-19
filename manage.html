@@ -1,291 +1,1896 @@
 <!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<html class="light" lang="th"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>คลังรูปภาพและสื่อมัลติมีเดีย - บ้านร่องเข็ม หมู่ที่ 6</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;family=Public+Sans:wght@500;600&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "background": "#f8f9fa",
-                        "secondary": "#6f5d00",
-                        "on-primary": "#ffffff",
-                        "secondary-fixed-dim": "#e4c536",
-                        "on-tertiary-container": "#b8d0ff",
-                        "surface-bright": "#f8f9fa",
-                        "surface-container": "#edeeef",
-                        "error": "#ba1a1a",
-                        "primary-container": "#1a5f7a",
-                        "surface-container-high": "#e7e8e9",
-                        "on-surface": "#191c1d",
-                        "outline": "#70787d",
-                        "inverse-primary": "#92cfee",
-                        "primary-fixed-dim": "#92cfee",
-                        "tertiary": "#204172",
-                        "surface-container-lowest": "#ffffff",
-                        "tertiary-container": "#3a598b",
-                        "on-tertiary-fixed": "#001b3d",
-                        "on-tertiary-fixed-variant": "#264778",
-                        "on-primary-container": "#9bd7f7",
-                        "secondary-container": "#ffde4e",
-                        "surface-container-highest": "#e1e3e4",
-                        "primary-fixed": "#c0e8ff",
-                        "secondary-fixed": "#ffe264",
-                        "on-primary-fixed-variant": "#004d66",
-                        "on-secondary": "#ffffff",
-                        "surface": "#f8f9fa",
-                        "primary": "#00475e",
-                        "tertiary-fixed": "#d6e3ff",
-                        "surface-variant": "#e1e3e4",
-                        "error-container": "#ffdad6",
-                        "on-error-container": "#93000a",
-                        "on-background": "#191c1d",
-                        "on-secondary-fixed": "#221b00",
-                        "on-error": "#ffffff",
-                        "inverse-surface": "#2e3132",
-                        "surface-container-low": "#f3f4f5",
-                        "tertiary-fixed-dim": "#a9c7ff",
-                        "inverse-on-surface": "#f0f1f2",
-                        "on-primary-fixed": "#001e2b",
-                        "on-secondary-container": "#746200",
-                        "on-secondary-fixed-variant": "#544600",
-                        "outline-variant": "#c0c8cd",
-                        "surface-tint": "#236580",
-                        "surface-dim": "#d9dadb",
-                        "on-tertiary": "#ffffff",
-                        "on-surface-variant": "#40484d"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "stack-lg": "1.5rem",
-                        "stack-md": "1rem",
-                        "gutter": "1rem",
-                        "stack-sm": "0.5rem",
-                        "section-gap": "2rem",
-                        "margin-page": "1rem"
-                    },
-                    "fontFamily": {
-                        "headline-lg": ["Be Vietnam Pro"],
-                        "label-md": ["Public Sans"],
-                        "body-lg": ["Noto Sans"],
-                        "headline-md": ["Be Vietnam Pro"],
-                        "headline-lg-mobile": ["Be Vietnam Pro"],
-                        "body-md": ["Noto Sans"],
-                        "label-lg": ["Public Sans"],
-                        "headline-sm": ["Be Vietnam Pro"]
-                    },
-                    "fontSize": {
-                        "headline-lg": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
-                        "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
-                        "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
-                        "headline-md": ["22px", { "lineHeight": "30px", "fontWeight": "600" }],
-                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
-                        "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
-                        "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.1px", "fontWeight": "600" }],
-                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }]
-                    }
-                }
-            }
-        }
-    </script>
+<title>จัดการข้อมูลระบบ - RONGKHEM e-VILLAGE OFFICE</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .material-symbols-outlined[data-weight="fill"] {
-            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-    </style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    background:#f8f9fa;
+    color:#191c1d;
+    font-family:'Noto Sans','Be Vietnam Pro',sans-serif;
+    padding-bottom:100px;
+}
+
+.material-symbols-outlined{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.icon-fill{
+    font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.ambient-shadow{
+    box-shadow:0 2px 8px rgba(26,95,122,.06);
+}
+
+input,
+textarea,
+button{
+    font-family:inherit;
+}
+
+input:focus,
+textarea:focus{
+    outline:none;
+    border-color:#00475e;
+    box-shadow:0 0 0 2px rgba(0,71,94,.12);
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e1e3e4;
+    border-radius:16px;
+    padding:24px;
+    box-shadow:0 2px 8px rgba(26,95,122,.05);
+}
+
+.section-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding-bottom:16px;
+    margin-bottom:24px;
+    border-bottom:1px solid #c0c8cd;
+}
+
+.section-title h2{
+    margin:0;
+    font-size:18px;
+    font-weight:700;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.field label{
+    font-size:14px;
+    font-weight:600;
+}
+
+.field input,
+.field textarea{
+    width:100%;
+    border:1px solid #70787d;
+    border-radius:8px;
+    background:#fff;
+    padding:12px 14px;
+    font-size:15px;
+}
+
+.field textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+.btn{
+    border:0;
+    border-radius:999px;
+    padding:11px 18px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.2s;
+}
+
+.btn:active{
+    transform:scale(.97);
+}
+
+.btn-primary{
+    background:#00475e;
+    color:#fff;
+}
+
+.btn-secondary{
+    background:#edeeef;
+    color:#191c1d;
+}
+
+.btn-danger{
+    background:#ba1a1a;
+    color:#fff;
+}
+
+.btn-outline{
+    background:#fff;
+    color:#00475e;
+    border:1px solid #00475e;
+}
+
+.header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:#fff;
+    border-bottom:1px solid #c0c8cd;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.header-inner{
+    max-width:1100px;
+    margin:auto;
+    min-height:68px;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.back-btn{
+    border:0;
+    background:transparent;
+    color:#00475e;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.header-title{
+    font-size:18px;
+    font-weight:700;
+}
+
+.main{
+    width:100%;
+    max-width:1100px;
+    margin:auto;
+    padding:25px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.profile-grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:30px;
+}
+
+.profile-photo{
+    width:160px;
+    height:160px;
+    margin:auto;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid #edeeef;
+    background:#e7e8e9;
+}
+
+.profile-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.photo-actions{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.preview-box{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:14px;
+}
+
+.preview-item{
+    position:relative;
+    width:96px;
+    height:96px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid #c0c8cd;
+}
+
+.preview-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.preview-remove{
+    position:absolute;
+    top:5px;
+    right:5px;
+    width:26px;
+    height:26px;
+    border:0;
+    border-radius:50%;
+    background:#ba1a1a;
+    color:#fff;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.upload-zone{
+    border:2px dashed #c0c8cd;
+    border-radius:12px;
+    padding:28px 15px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.upload-zone:hover{
+    border-color:#00475e;
+    background:#f3f7f8;
+}
+
+.upload-zone .material-symbols-outlined{
+    font-size:42px;
+    color:#00475e;
+}
+
+.tourist-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.tourist-image{
+    height:280px;
+    border-radius:14px;
+    overflow:hidden;
+    background:#e7e8e9;
+    position:relative;
+}
+
+.tourist-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.status{
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:200;
+    background:#fff;
+    border-top:1px solid #c0c8cd;
+    box-shadow:0 -4px 15px rgba(0,0,0,.07);
+}
+
+.status-inner{
+    max-width:1100px;
+    margin:auto;
+    padding:12px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.status-text{
+    margin-right:auto;
+    color:#70787d;
+    font-size:13px;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.toast{
+    position:fixed;
+    top:82px;
+    right:18px;
+    z-index:500;
+    background:#00475e;
+    color:#fff;
+    padding:13px 18px;
+    border-radius:12px;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    opacity:0;
+    pointer-events:none;
+    transform:translateY(-10px);
+    transition:.25s;
+    font-size:14px;
+}
+
+.toast.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:700px){
+
+    .header-title{
+        font-size:16px;
+    }
+
+    .profile-grid{
+        grid-template-columns:1fr;
+    }
+
+    .tourist-grid{
+        grid-template-columns:1fr;
+    }
+
+    .card{
+        padding:18px;
+    }
+
+    .status-inner{
+        flex-wrap:wrap;
+    }
+
+    .status-text{
+        display:none;
+    }
+
+    .status-inner .btn{
+        flex:1;
+    }
+
+}
+
+</style>
 </head>
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
-<!-- TopNavBar -->
-<nav class="flex flex-col w-full max-w-full mx-auto px-margin-page py-4 bg-surface dark:bg-on-background border-b border-outline-variant dark:border-outline shadow-sm sticky top-0 z-50">
-<div class="flex items-center justify-between w-full">
-<div class="flex items-center gap-4">
-<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
-<span class="material-symbols-outlined text-on-primary-container" data-weight="fill">account_balance</span>
-</div>
-<span class="text-headline-lg font-headline-lg font-bold text-primary dark:text-primary-fixed hidden md:block">RONGKHEM e-VILLAGE OFFICE</span>
-<span class="text-headline-lg-mobile font-headline-lg-mobile font-bold text-primary dark:text-primary-fixed md:hidden">RONGKHEM e-VILLAGE OFFICE</span>
-</div>
-<!-- Web Nav Links -->
-<div class="hidden md:flex items-center gap-6 font-label-lg text-label-lg">
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Home</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Leaders</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">News</a>
-<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1" href="#">Activities</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Portfolio</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Projects</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Services</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Stats</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Contact</a>
-</div>
-<div class="flex items-center gap-4">
-<div class="hidden md:flex items-center gap-2 text-on-surface-variant">
-<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">schedule</span>
-<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">partly_cloudy_day</span>
-<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">stream_apps</span>
-</div>
-<button class="bg-primary-container text-on-primary-container px-4 py-2 rounded-lg font-label-lg text-label-lg hover:bg-primary hover:text-on-primary transition-colors hidden md:block shadow-sm">Admin Login</button>
-<button class="md:hidden text-primary">
-<span class="material-symbols-outlined text-[32px]">menu</span>
-</button>
-</div>
-</div>
-</nav>
-<!-- Main Content Canvas -->
-<main class="flex-grow flex flex-col w-full px-margin-page py-section-gap max-w-[1440px] mx-auto gap-stack-lg">
-<!-- Header Section -->
-<header class="flex flex-col md:flex-row justify-between items-start md:items-end gap-stack-md w-full">
-<div class="flex flex-col gap-stack-sm max-w-2xl">
-<h1 class="text-headline-lg md:text-[36px] font-headline-lg text-primary">คลังรูปภาพและสื่อมัลติมีเดีย</h1>
-<p class="text-body-lg font-body-lg text-on-surface-variant">
-                    รวบรวมและบันทึกความทรงจำ กิจกรรม และความภาคภูมิใจของชุมชนบ้านร่องเข็ม หมู่ที่ 6 เพื่อสืบสานและถ่ายทอดเรื่องราวอันทรงคุณค่า
-                </p>
-</div>
-<button class="flex items-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl shadow-md hover:bg-tertiary transition-colors font-label-lg text-label-lg group whitespace-nowrap">
-<span class="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">cloud_upload</span>
-                จัดการคลังรูปภาพ
-            </button>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <button
+            class="back-btn"
+            onclick="goBack()"
+        >
+            <span class="material-symbols-outlined">
+                arrow_back
+            </span>
+
+            <span>
+                กลับสู่หน้าหลัก
+            </span>
+        </button>
+
+        <div style="height:25px;width:1px;background:#c0c8cd;"></div>
+
+        <div class="header-title">
+            จัดการและอัปเดตข้อมูลระบบ
+        </div>
+
+    </div>
+
 </header>
-<!-- Filter Tabs -->
-<div class="w-full border-b border-outline-variant overflow-x-auto hide-scrollbar">
-<div class="flex gap-6 font-label-lg text-label-lg min-w-max pb-px">
-<button class="text-primary border-b-2 border-primary pb-2 px-1 font-bold">ทั้งหมด</button>
-<button class="text-on-surface-variant hover:text-primary hover:border-outline pb-2 px-1 transition-colors">กิจกรรมหมู่บ้าน</button>
-<button class="text-on-surface-variant hover:text-primary hover:border-outline pb-2 px-1 transition-colors">แหล่งท่องเที่ยว</button>
-<button class="text-on-surface-variant hover:text-primary hover:border-outline pb-2 px-1 transition-colors">โครงการพัฒนา</button>
-</div>
-</div>
-<!-- Bento Grid Gallery -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter w-full">
-<!-- Card 1: Featured Attraction (Using provided image) -->
-<div class="col-span-1 md:col-span-2 lg:col-span-2 xl:col-span-2 row-span-2 rounded-xl overflow-hidden glass-card group cursor-pointer relative h-[400px] md:h-full min-h-[300px]">
-<img alt="Sub Nam Cham landscape" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLvzBFJ4ExJiZ6ZqBzLAcPTjSXkkxA2Rh_U49vyt08OHrMsLgpdIkoW7SLnoqVubF-h4DEReseEEcut9r3_r1EH6keDaDw_AxWqRQxXYprzQV-2KpR1Nk2wVIK4VbILucDOeiCnThiP6lc71W9ZXqCwr3IDWLjJA8elV-T6XTmjRzgr11dNlO0vwksUKtwmjVPSDKtC7U-X9zSvPpXsy827Yza2n3j1YObCe3SQc-ajlPucg_3WKCelq2Js"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-<div class="absolute top-4 right-4 bg-primary/90 text-on-primary px-3 py-1 rounded-full text-label-md font-label-md backdrop-blur-sm shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">photo_library</span> 42 รูป
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="main">
+
+
+    <!-- =========================
+         1. LEADER
+    ========================= -->
+
+    <section class="card">
+
+        <div class="section-title">
+
+            <span class="material-symbols-outlined icon-fill"
+                  style="color:#00475e;font-size:30px;">
+                manage_accounts
+            </span>
+
+            <h2>
+                1. แก้ไขข้อมูลผู้บริหาร
+            </h2>
+
+        </div>
+
+
+        <div class="profile-grid">
+
+
+            <!-- PHOTO -->
+
+            <div>
+
+                <div class="profile-photo">
+
+                    <img
+                        id="leaderPreview"
+                        src="village-head.jpg"
+                        alt="รูปผู้ใหญ่บ้าน"
+                    >
+
                 </div>
-<div class="absolute bottom-0 left-0 p-6 w-full flex flex-col gap-2">
-<span class="text-primary-fixed bg-black/50 px-2 py-1 rounded w-fit text-label-md font-label-md">แหล่งท่องเที่ยว</span>
-<h3 class="text-on-primary text-headline-md font-headline-md drop-shadow-md">สำรวจแหล่งซับน้ำจำ (Sub Nam Cham)</h3>
-<div class="flex items-center gap-2 text-surface-variant text-label-md font-label-md">
-<span class="material-symbols-outlined text-[16px]">calendar_today</span>
-<span>12 มีนาคม 2567</span>
-</div>
-</div>
-</div>
-<!-- Card 2: Community Activity -->
-<div class="col-span-1 rounded-xl overflow-hidden glass-card group cursor-pointer relative h-[250px]">
-<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="High quality photography of a vibrant local Thai community festival in a rural village. Villagers of all ages smiling, wearing colorful traditional northern Thai clothing. Warm, golden hour sunlight illuminates the scene. Banners and festive decorations in the background. Joyful, lively, and culturally rich atmosphere. Professional depth of field." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmB3Fdgs3H1qb7hIoQbnB_1m4w5dQ5Jgay6odHLITDIfiB4QpIqn9RCeskJGluDGNskOwd-uyoBiBLWNdkJZkqV61bdJetNjnw8wcDE0thtaNJKPcSh9rw5fz1BGkdkISdKJRihfhMhIIZB8mJGPugSlpPLbL_Q04txTeb6vl6zbIlblinhD5Mwq3Z92jcT_F2d27EZ8H1NpxSmC1vXeMXTvv1ut9ZTTYTLrVPhKlT6BNcSZlJFVpu"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-<div class="absolute top-3 right-3 bg-white/90 text-on-surface px-2 py-1 rounded-full text-label-md font-label-md shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">photo_library</span> 128
+
+
+                <div class="photo-actions">
+
+                    <label class="btn btn-outline">
+
+                        <span class="material-symbols-outlined">
+                            upload
+                        </span>
+
+                        อัปโหลดรูปภาพใหม่
+
+                        <input
+                            id="leaderPhoto"
+                            type="file"
+                            accept="image/png,image/jpeg"
+                            class="hidden"
+                        >
+
+                    </label>
+
+
+                    <div style="
+                        color:#70787d;
+                        font-size:12px;
+                        text-align:center;
+                    ">
+                        JPG หรือ PNG ไม่เกิน 2MB
+                    </div>
+
                 </div>
-<div class="absolute bottom-0 left-0 p-4 w-full flex flex-col gap-1">
-<h3 class="text-on-primary text-headline-sm font-headline-sm leading-tight drop-shadow-md">งานประเพณีปีใหม่ 2567</h3>
-<div class="flex items-center gap-2 text-surface-variant text-label-md font-label-md">
-<span>1 มกราคม 2567</span>
-</div>
-</div>
-</div>
-<!-- Card 3: Development Project -->
-<div class="col-span-1 rounded-xl overflow-hidden glass-card group cursor-pointer relative h-[250px]">
-<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A bright, clear photograph of an infrastructure development project in a Thai village. Workers in safety gear constructing a small community bridge or road. Modern construction equipment visible. Bright blue sky overhead, casting sharp shadows. The mood is industrious and progressive. Clean, architectural composition." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtCqPP4xAdcvP9bSgB19lJvAmTRS0NQIrvUb2oRCHWS0VMmwOHQBsvpF3g5jXkguOu1tqKfMEV6t3XuLPeeHdTZV9_8CDzom69ytT0uLXE0hxsHSxeGZ-RfqQnMpGVpKn71n23c3EASLD82uuVBeDHHhIB4APrFDNQ6vCbLl3VNb5VyvlMc3H9wxczcLAMquDtf6DJvNZ7WV5q-FWTRiwhM4hTT0D3HMROhv1EDdjpeMIuQsB36qQk"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-<div class="absolute top-3 right-3 bg-white/90 text-on-surface px-2 py-1 rounded-full text-label-md font-label-md shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">photo_library</span> 56
+
+            </div>
+
+
+
+            <!-- INFORMATION -->
+
+            <div style="
+                display:flex;
+                flex-direction:column;
+                gap:18px;
+            ">
+
+                <div class="field">
+
+                    <label>
+                        ชื่อ-นามสกุล
+                        <span style="color:#ba1a1a">*</span>
+                    </label>
+
+                    <input
+                        id="leaderName"
+                        type="text"
+                        value="นายศักรนนทน์ ขัติย์วงค์"
+                    >
+
                 </div>
-<div class="absolute bottom-0 left-0 p-4 w-full flex flex-col gap-1">
-<h3 class="text-on-primary text-headline-sm font-headline-sm leading-tight drop-shadow-md">โครงการซ่อมแซมถนนหมู่บ้าน</h3>
-<div class="flex items-center gap-2 text-surface-variant text-label-md font-label-md">
-<span>20 กุมภาพันธ์ 2567</span>
-</div>
-</div>
-</div>
-<!-- Card 4: Another Activity -->
-<div class="col-span-1 rounded-xl overflow-hidden glass-card group cursor-pointer relative h-[250px]">
-<img class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A serene photograph of elderly Thai villagers participating in a community health check-up event in a clean, brightly lit community hall. Healthcare workers in uniform assisting them with smiles. The atmosphere is caring, organized, and professional. Soft, diffuse lighting emphasizing the sense of community support." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWCBePyZ3J3z4gwmOYForyMmCtn-Pbg6B1cLvxw-P8UMMrfdz77V0fUBfcNP4C3GZNCRZrBlYnX0VYVoyf4H9ScolQsU8RA89HMoJsHDy_36fgjSOCxY0-j3hvlzXv6zDYfBZggEJKRbJn6UFAcq3uzQLSEMMBoq7Xtc0ryOWTDjf72GkSWzSkKFHRYdr6BXI5cohebsAa8e0Rw-5MfHLSJpQKDnOI3x7KoRnbwgWepyP_wq0xYRNi"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-<div class="absolute top-3 right-3 bg-white/90 text-on-surface px-2 py-1 rounded-full text-label-md font-label-md shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">photo_library</span> 84
+
+
+                <div class="field">
+
+                    <label>
+                        ตำแหน่ง
+                        <span style="color:#ba1a1a">*</span>
+                    </label>
+
+                    <input
+                        id="leaderPosition"
+                        type="text"
+                        value="ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6"
+                    >
+
                 </div>
-<div class="absolute bottom-0 left-0 p-4 w-full flex flex-col gap-1">
-<h3 class="text-on-primary text-headline-sm font-headline-sm leading-tight drop-shadow-md">หน่วยแพทย์เคลื่อนที่ดูแลผู้สูงอายุ</h3>
-<div class="flex items-center gap-2 text-surface-variant text-label-md font-label-md">
-<span>5 มีนาคม 2567</span>
-</div>
-</div>
-</div>
-<!-- Card 5: Nature Alternate -->
-<div class="col-span-1 rounded-xl overflow-hidden glass-card group cursor-pointer relative h-[250px]">
-<img alt="Sub Nam Cham natural landscape" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida/AP1WRLsh68mxUAcfRwoR83VeRWCr6Sjj96KLd1BQ6hPhXaZ2I9bW2chl7KpEErozKEdErRYN-3ml_u53pvsweBJ_kAG1oDSQHU1A297qQodlA2dAzQUKMIyHpRkcSNmYV3wYYDw244AzQCw5Tv5UWkGHwcqB4tO7lRZosnPrtfu9toKAbZYiRTOIRYZ7HyZYL7KRTjkvBi4L8N17VdTqovyt_kTnUUaFrfHvqXv8wEfk9C3itbWgXf1ARmNykn8"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-<div class="absolute top-3 right-3 bg-white/90 text-on-surface px-2 py-1 rounded-full text-label-md font-label-md shadow-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[12px]">photo_library</span> 30
+
+
+                <div class="field">
+
+                    <label>
+                        คำอธิบาย
+                    </label>
+
+                    <textarea
+                        id="leaderDescription"
+                    >ดูแลการบริหารงานทั่วไปและประสานงานพัฒนาหมู่บ้าน</textarea>
+
                 </div>
-<div class="absolute bottom-0 left-0 p-4 w-full flex flex-col gap-1">
-<h3 class="text-on-primary text-headline-sm font-headline-sm leading-tight drop-shadow-md">ทัศนียภาพรอบแหล่งซับน้ำจำ</h3>
-<div class="flex items-center gap-2 text-surface-variant text-label-md font-label-md">
-<span>15 มีนาคม 2567</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Load More Action -->
-<div class="flex justify-center mt-stack-md">
-<button class="bg-surface text-primary border border-outline px-6 py-2 rounded-lg font-label-lg text-label-lg hover:bg-surface-variant transition-colors shadow-sm">
-                โหลดเพิ่มเติม
-            </button>
-</div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         2. NEWS / ACTIVITY
+    ========================= -->
+
+    <section class="card">
+
+        <div class="section-title">
+
+            <span class="material-symbols-outlined icon-fill"
+                  style="color:#00475e;font-size:30px;">
+                campaign
+            </span>
+
+            <h2>
+                2. จัดการข่าวสารและกิจกรรม
+            </h2>
+
+        </div>
+
+
+        <div style="
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        ">
+
+
+            <div class="field">
+
+                <label>
+                    หัวข้อข่าว/กิจกรรม
+                </label>
+
+                <input
+                    id="newsTitle"
+                    type="text"
+                    placeholder="ตั้งชื่อหัวข้อ"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label>
+                    รายละเอียด
+                </label>
+
+                <textarea
+                    id="newsDetail"
+                    placeholder="พิมพ์รายละเอียดข่าวสารหรือกิจกรรม..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- IMAGE UPLOAD -->
+
+            <div>
+
+                <label style="
+                    display:block;
+                    font-size:14px;
+                    font-weight:600;
+                    margin-bottom:8px;
+                ">
+                    ภาพประกอบกิจกรรม
+                </label>
+
+
+                <label
+                    class="upload-zone"
+                    for="newsImages"
+                >
+
+                    <span class="material-symbols-outlined">
+                        add_photo_alternate
+                    </span>
+
+                    <div style="
+                        margin-top:8px;
+                        color:#00475e;
+                        font-weight:700;
+                    ">
+                        คลิกเพื่ออัปโหลดภาพ
+                    </div>
+
+                    <div style="
+                        margin-top:5px;
+                        color:#70787d;
+                        font-size:12px;
+                    ">
+                        JPG / PNG สูงสุด 5MB ต่อไฟล์
+                        และไม่เกิน 10 รูป
+                    </div>
+
+                </label>
+
+
+                <input
+                    id="newsImages"
+                    type="file"
+                    accept="image/jpeg,image/png"
+                    multiple
+                    class="hidden"
+                >
+
+
+                <div
+                    id="newsPreview"
+                    class="preview-box"
+                ></div>
+
+            </div>
+
+
+            <div style="
+                display:flex;
+                justify-content:flex-end;
+                gap:10px;
+                flex-wrap:wrap;
+            ">
+
+                <button
+                    class="btn btn-secondary"
+                    onclick="clearNewsForm()"
+                >
+                    ล้างแบบฟอร์ม
+                </button>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="addNews()"
+                >
+
+                    <span class="material-symbols-outlined">
+                        add
+                    </span>
+
+                    เพิ่มข่าว/กิจกรรม
+
+                </button>
+
+            </div>
+
+
+            <!-- LOCAL LIST -->
+
+            <div>
+
+                <h3 style="
+                    margin:0 0 12px;
+                    font-size:16px;
+                ">
+                    รายการที่เพิ่มในหน้านี้
+                </h3>
+
+
+                <div id="newsList"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         3. TOURIST
+    ========================= -->
+
+    <section class="card">
+
+        <div class="section-title">
+
+            <span class="material-symbols-outlined icon-fill"
+                  style="color:#00475e;font-size:30px;">
+                tour
+            </span>
+
+            <h2>
+                3. ระบบจัดการแหล่งท่องเที่ยว
+            </h2>
+
+        </div>
+
+
+        <div class="tourist-grid">
+
+
+            <!-- IMAGE -->
+
+            <div>
+
+                <label style="
+                    display:block;
+                    font-size:14px;
+                    font-weight:600;
+                    margin-bottom:8px;
+                ">
+                    ภาพไฮไลท์สถานที่
+                </label>
+
+
+                <label
+                    class="tourist-image"
+                    for="touristImage"
+                >
+
+                    <img
+                        id="touristPreview"
+                        src=""
+                        alt="ภาพแหล่งท่องเที่ยว"
+                    >
+
+
+                    <div
+                        id="touristEmpty"
+                        style="
+                            position:absolute;
+                            inset:0;
+                            display:flex;
+                            flex-direction:column;
+                            align-items:center;
+                            justify-content:center;
+                            color:#00475e;
+                        "
+                    >
+
+                        <span class="material-symbols-outlined"
+                              style="font-size:50px;">
+                            add_photo_alternate
+                        </span>
+
+                        <strong>
+                            คลิกเพื่อเลือกภาพ
+                        </strong>
+
+                    </div>
+
+                </label>
+
+
+                <input
+                    id="touristImage"
+                    type="file"
+                    accept="image/jpeg,image/png"
+                    class="hidden"
+                >
+
+
+                <p style="
+                    margin:8px 0 0;
+                    color:#70787d;
+                    font-size:12px;
+                ">
+                    แนะนำขนาด 1920 × 1080 px
+                </p>
+
+            </div>
+
+
+
+            <!-- DETAILS -->
+
+            <div style="
+                display:flex;
+                flex-direction:column;
+                gap:18px;
+            ">
+
+                <div class="field">
+
+                    <label>
+                        ชื่อสถานที่
+                    </label>
+
+                    <input
+                        id="touristName"
+                        type="text"
+                        placeholder="ระบุชื่อสถานที่"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        รายละเอียดและจุดเด่น
+                    </label>
+
+                    <textarea
+                        id="touristDescription"
+                        style="min-height:180px;"
+                        placeholder="บรรยายความน่าสนใจของสถานที่..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    class="btn btn-primary"
+                    onclick="saveTourist()"
+                >
+
+                    <span class="material-symbols-outlined">
+                        save
+                    </span>
+
+                    บันทึกข้อมูลสถานที่
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
 </main>
-<!-- SideNavBar (Mobile Bottom Shell Context) -->
-<nav class="md:hidden flex w-full justify-center items-center py-2 px-margin-page gap-4 bg-primary dark:bg-primary-container shadow-md sticky bottom-0 z-50">
-<a class="flex flex-col items-center justify-center flex-1 text-on-primary/80 dark:text-on-primary-container/80 hover:bg-white/10 p-2 rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined text-[24px]">home</span>
-<span class="text-[10px] mt-1 font-label-md">หน้าแรก</span>
-</a>
-<a class="flex flex-col items-center justify-center flex-1 text-on-primary/80 dark:text-on-primary-container/80 hover:bg-white/10 p-2 rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined text-[24px]">newspaper</span>
-<span class="text-[10px] mt-1 font-label-md">ข่าวสาร</span>
-</a>
-<a class="flex flex-col items-center justify-center flex-1 bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg p-2 scale-95 duration-150 shadow-inner" href="#">
-<span class="material-symbols-outlined text-[24px]" data-weight="fill">event</span>
-<span class="text-[10px] mt-1 font-label-md font-bold">กิจกรรม</span>
-</a>
-<a class="flex flex-col items-center justify-center flex-1 text-on-primary/80 dark:text-on-primary-container/80 hover:bg-white/10 p-2 rounded-lg transition-all" href="#">
-<span class="material-symbols-outlined text-[24px]">account_balance</span>
-<span class="text-[10px] mt-1 font-label-md">บริการ</span>
-</a>
-</nav>
-<!-- Footer -->
-<footer class="w-full py-8 px-margin-page flex flex-col md:flex-row justify-between items-center bg-primary dark:bg-on-primary-fixed border-t border-primary-container mt-auto">
-<div class="flex flex-col items-center md:items-start mb-6 md:mb-0">
-<span class="font-headline-sm font-bold text-on-primary mb-2 text-center md:text-left">RONGKHEM e-VILLAGE OFFICE</span>
-<p class="text-on-primary/70 text-body-md font-body-md text-center md:text-left">© 2024 RONGKHEM e-VILLAGE OFFICE All rights reserved.</p>
+
+
+
+<!-- =========================
+     SAVE BAR
+========================= -->
+
+<div class="status">
+
+    <div class="status-inner">
+
+        <span class="status-text">
+            มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก
+        </span>
+
+
+        <button
+            class="btn btn-secondary"
+            onclick="cancelChanges()"
+        >
+            ยกเลิก
+        </button>
+
+
+        <button
+            class="btn btn-primary"
+            onclick="saveAll()"
+        >
+
+            <span class="material-symbols-outlined">
+                save
+            </span>
+
+            บันทึกข้อมูล
+
+        </button>
+
+    </div>
+
 </div>
-<div class="flex gap-6 font-label-md text-label-md">
-<a class="text-on-primary/70 hover:text-white underline decoration-secondary transition-opacity duration-300" href="#">Contact Us</a>
-<a class="text-on-primary/70 hover:text-white underline decoration-secondary transition-opacity duration-300" href="#">Privacy Policy</a>
-<a class="text-on-primary/70 hover:text-white underline decoration-secondary transition-opacity duration-300" href="#">Terms of Service</a>
-</div>
-</footer>
-</body></html>
+
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+
+<script>
+
+/* =====================================
+   STORAGE KEY
+===================================== */
+
+const STORAGE_KEY =
+    'rongkhem_manage_data_v1';
+
+
+
+/* =====================================
+   DEFAULT DATA
+===================================== */
+
+const defaultData = {
+
+    leader: {
+
+        name:
+            'นายศักรนนทน์ ขัติย์วงค์',
+
+        position:
+            'ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6',
+
+        description:
+            'ดูแลการบริหารงานทั่วไปและประสานงานพัฒนาหมู่บ้าน',
+
+        photo:
+            'village-head.jpg'
+
+    },
+
+    news: [],
+
+    tourist: {
+
+        name:
+            '',
+
+        description:
+            '',
+
+        image:
+            ''
+
+    }
+
+};
+
+
+
+/* =====================================
+   LOAD DATA
+===================================== */
+
+function loadData(){
+
+    try{
+
+        const saved =
+            localStorage.getItem(STORAGE_KEY);
+
+        if(!saved){
+
+            return structuredClone(defaultData);
+
+        }
+
+        const data =
+            JSON.parse(saved);
+
+        return {
+
+            leader:
+                {...defaultData.leader,...data.leader},
+
+            news:
+                Array.isArray(data.news)
+                ? data.news
+                : [],
+
+            tourist:
+                {...defaultData.tourist,...data.tourist}
+
+        };
+
+    }catch(error){
+
+        console.error(error);
+
+        return structuredClone(defaultData);
+
+    }
+
+}
+
+
+
+let appData = loadData();
+
+
+
+/* =====================================
+   TOAST
+===================================== */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById('toast');
+
+    toast.textContent =
+        message;
+
+    toast.classList.add('show');
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+    window.toastTimer =
+        setTimeout(()=>{
+
+            toast.classList.remove('show');
+
+        },2500);
+
+}
+
+
+
+/* =====================================
+   BACK
+===================================== */
+
+function goBack(){
+
+    if(
+        document.referrer &&
+        document.referrer.includes(location.origin)
+    ){
+
+        history.back();
+
+    }else{
+
+        location.href =
+            'admin.html';
+
+    }
+
+}
+
+
+
+/* =====================================
+   LEADER IMAGE
+===================================== */
+
+document
+    .getElementById('leaderPhoto')
+    .addEventListener(
+        'change',
+        function(){
+
+            const file =
+                this.files[0];
+
+            if(!file) return;
+
+
+            if(file.size > 2 * 1024 * 1024){
+
+                alert(
+                    'รูปผู้บริหารต้องไม่เกิน 2MB'
+                );
+
+                this.value='';
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(e){
+
+                    document
+                        .getElementById(
+                            'leaderPreview'
+                        )
+                        .src =
+                        e.target.result;
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+
+/* =====================================
+   NEWS IMAGES
+===================================== */
+
+let newsImageFiles = [];
+
+
+
+document
+    .getElementById('newsImages')
+    .addEventListener(
+        'change',
+        function(){
+
+            const files =
+                Array.from(this.files);
+
+            if(
+                newsImageFiles.length +
+                files.length >
+                10
+            ){
+
+                alert(
+                    'สามารถเลือกภาพได้สูงสุด 10 รูป'
+                );
+
+                return;
+
+            }
+
+
+            for(const file of files){
+
+                if(
+                    file.size >
+                    5 * 1024 * 1024
+                ){
+
+                    alert(
+                        file.name +
+                        ' มีขนาดเกิน 5MB'
+                    );
+
+                    continue;
+
+                }
+
+                newsImageFiles.push(file);
+
+            }
+
+
+            renderNewsPreviews();
+
+            this.value='';
+
+        }
+    );
+
+
+
+function renderNewsPreviews(){
+
+    const box =
+        document.getElementById(
+            'newsPreview'
+        );
+
+    box.innerHTML='';
+
+
+    newsImageFiles.forEach(
+        (file,index)=>{
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(e){
+
+                    const item =
+                        document.createElement(
+                            'div'
+                        );
+
+                    item.className =
+                        'preview-item';
+
+                    item.innerHTML = `
+
+                        <img
+                            src="${e.target.result}"
+                            alt=""
+                        >
+
+                        <button
+                            class="preview-remove"
+                            onclick="removeNewsImage(${index})"
+                            type="button"
+                        >
+
+                            <span
+                                class="material-symbols-outlined"
+                                style="font-size:16px;"
+                            >
+                                close
+                            </span>
+
+                        </button>
+
+                    `;
+
+                    box.appendChild(item);
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+}
+
+
+
+function removeNewsImage(index){
+
+    newsImageFiles.splice(
+        index,
+        1
+    );
+
+    renderNewsPreviews();
+
+}
+
+
+
+/* =====================================
+   ADD NEWS
+===================================== */
+
+function addNews(){
+
+    const title =
+        document
+            .getElementById('newsTitle')
+            .value
+            .trim();
+
+    const detail =
+        document
+            .getElementById('newsDetail')
+            .value
+            .trim();
+
+
+    if(!title){
+
+        alert(
+            'กรุณากรอกหัวข้อข่าว/กิจกรรม'
+        );
+
+        return;
+
+    }
+
+
+    const item = {
+
+        id:
+            Date.now(),
+
+        title:
+            title,
+
+        detail:
+            detail,
+
+        date:
+            new Date()
+                .toLocaleDateString(
+                    'th-TH',
+                    {
+                        day:'numeric',
+                        month:'short',
+                        year:'numeric'
+                    }
+                ),
+
+        images:[]
+
+    };
+
+
+    /*
+       อ่านภาพที่เลือกเป็น Data URL
+       เพื่อให้ใช้งานได้ในเครื่องนี้
+    */
+
+    const readers =
+        newsImageFiles.map(
+            file =>
+                new Promise(
+                    resolve=>{
+
+                        const reader =
+                            new FileReader();
+
+                        reader.onload =
+                            e =>
+                                resolve(
+                                    e.target.result
+                                );
+
+                        reader.readAsDataURL(file);
+
+                    }
+                )
+        );
+
+
+    Promise.all(readers)
+        .then(images=>{
+
+            item.images =
+                images;
+
+            appData.news.unshift(
+                item
+            );
+
+            renderNewsList();
+
+            clearNewsForm();
+
+            showToast(
+                'เพิ่มข่าว/กิจกรรมแล้ว'
+            );
+
+        });
+
+}
+
+
+
+function clearNewsForm(){
+
+    document
+        .getElementById('newsTitle')
+        .value='';
+
+    document
+        .getElementById('newsDetail')
+        .value='';
+
+    newsImageFiles=[];
+
+    renderNewsPreviews();
+
+}
+
+
+
+/* =====================================
+   NEWS LIST
+===================================== */
+
+function renderNewsList(){
+
+    const list =
+        document.getElementById(
+            'newsList'
+        );
+
+    list.innerHTML='';
+
+
+    if(!appData.news.length){
+
+        list.innerHTML = `
+
+            <div style="
+                padding:20px;
+                background:#f3f4f5;
+                border-radius:10px;
+                color:#70787d;
+                text-align:center;
+            ">
+                ยังไม่มีข่าว/กิจกรรมที่เพิ่มในหน้านี้
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    appData.news.forEach(
+        item=>{
+
+            const row =
+                document.createElement(
+                    'div'
+                );
+
+            row.style.cssText = `
+                border:1px solid #e1e3e4;
+                border-radius:12px;
+                padding:14px;
+                margin-bottom:10px;
+                background:#fff;
+            `;
+
+
+            const image =
+                item.images &&
+                item.images.length
+                ? `
+                    <img
+                        src="${item.images[0]}"
+                        style="
+                            width:70px;
+                            height:70px;
+                            object-fit:cover;
+                            border-radius:8px;
+                        "
+                    >
+                  `
+                : '';
+
+
+            row.innerHTML = `
+
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    gap:12px;
+                ">
+
+                    ${image}
+
+                    <div style="
+                        flex:1;
+                        min-width:0;
+                    ">
+
+                        <strong>
+                            ${escapeHtml(item.title)}
+                        </strong>
+
+                        <div style="
+                            color:#70787d;
+                            font-size:12px;
+                            margin-top:4px;
+                        ">
+                            ${escapeHtml(item.date)}
+                        </div>
+
+                    </div>
+
+                    <button
+                        class="btn btn-danger"
+                        style="padding:8px 12px;"
+                        onclick="deleteNews(${item.id})"
+                    >
+                        ลบ
+                    </button>
+
+                </div>
+
+            `;
+
+            list.appendChild(row);
+
+        }
+    );
+
+}
+
+
+
+function deleteNews(id){
+
+    if(
+        !confirm(
+            'ต้องการลบรายการนี้หรือไม่?'
+        )
+    ){
+
+        return;
+
+    }
+
+
+    appData.news =
+        appData.news.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    renderNewsList();
+
+    showToast(
+        'ลบรายการแล้ว'
+    );
+
+}
+
+
+
+/* =====================================
+   TOURIST IMAGE
+===================================== */
+
+document
+    .getElementById('touristImage')
+    .addEventListener(
+        'change',
+        function(){
+
+            const file =
+                this.files[0];
+
+            if(!file) return;
+
+
+            if(
+                file.size >
+                5 * 1024 * 1024
+            ){
+
+                alert(
+                    'ภาพสถานที่ต้องไม่เกิน 5MB'
+                );
+
+                this.value='';
+
+                return;
+
+            }
+
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function(e){
+
+                    const preview =
+                        document
+                            .getElementById(
+                                'touristPreview'
+                            );
+
+                    preview.src =
+                        e.target.result;
+
+                    preview.style.display =
+                        'block';
+
+                    document
+                        .getElementById(
+                            'touristEmpty'
+                        )
+                        .style.display =
+                        'none';
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+
+/* =====================================
+   SAVE TOURIST
+===================================== */
+
+function saveTourist(){
+
+    appData.tourist.name =
+        document
+            .getElementById(
+                'touristName'
+            )
+            .value
+            .trim();
+
+    appData.tourist.description =
+        document
+            .getElementById(
+                'touristDescription'
+            )
+            .value
+            .trim();
+
+
+    const preview =
+        document
+            .getElementById(
+                'touristPreview'
+            );
+
+
+    if(
+        preview.src &&
+        preview.style.display !== 'none'
+    ){
+
+        appData.tourist.image =
+            preview.src;
+
+    }
+
+
+    showToast(
+        'ข้อมูลสถานที่พร้อมบันทึกแล้ว'
+    );
+
+}
+
+
+
+/* =====================================
+   SAVE ALL
+===================================== */
+
+function saveAll(){
+
+    appData.leader.name =
+        document
+            .getElementById(
+                'leaderName'
+            )
+            .value
+            .trim();
+
+    appData.leader.position =
+        document
+            .getElementById(
+                'leaderPosition'
+            )
+            .value
+            .trim();
+
+    appData.leader.description =
+        document
+            .getElementById(
+                'leaderDescription'
+            )
+            .value
+            .trim();
+
+
+    const leaderPreview =
+        document
+            .getElementById(
+                'leaderPreview'
+            );
+
+
+    if(
+        leaderPreview.src &&
+        leaderPreview.src.startsWith(
+            'data:image'
+        )
+    ){
+
+        appData.leader.photo =
+            leaderPreview.src;
+
+    }
+
+
+    saveTourist();
+
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(appData)
+    );
+
+
+    showToast(
+        'บันทึกข้อมูลเรียบร้อยแล้ว'
+    );
+
+}
+
+
+
+/* =====================================
+   CANCEL
+===================================== */
+
+function cancelChanges(){
+
+    if(
+        !confirm(
+            'ต้องการยกเลิกการเปลี่ยนแปลงหรือไม่?'
+        )
+    ){
+
+        return;
+
+    }
+
+
+    appData =
+        loadData();
+
+
+    loadToForm();
+
+    showToast(
+        'ยกเลิกการเปลี่ยนแปลงแล้ว'
+    );
+
+}
+
+
+
+/* =====================================
+   LOAD TO FORM
+===================================== */
+
+function loadToForm(){
+
+    document
+        .getElementById(
+            'leaderName'
+        )
+        .value =
+        appData.leader.name;
+
+    document
+        .getElementById(
+            'leaderPosition'
+        )
+        .value =
+        appData.leader.position;
+
+    document
+        .getElementById(
+            'leaderDescription'
+        )
+        .value =
+        appData.leader.description;
+
+
+    document
+        .getElementById(
+            'leaderPreview'
+        )
+        .src =
+        appData.leader.photo;
+
+
+    document
+        .getElementById(
+            'touristName'
+        )
+        .value =
+        appData.tourist.name;
+
+    document
+        .getElementById(
+            'touristDescription'
+        )
+        .value =
+        appData.tourist.description;
+
+
+    const touristPreview =
+        document
+            .getElementById(
+                'touristPreview'
+            );
+
+    const touristEmpty =
+        document
+            .getElementById(
+                'touristEmpty'
+            );
+
+
+    if(
+        appData.tourist.image
+    ){
+
+        touristPreview.src =
+            appData.tourist.image;
+
+        touristPreview.style.display =
+            'block';
+
+        touristEmpty.style.display =
+            'none';
+
+    }else{
+
+        touristPreview.style.display =
+            'none';
+
+        touristEmpty.style.display =
+            'flex';
+
+    }
+
+
+    renderNewsList();
+
+}
+
+
+
+/* =====================================
+   HTML ESCAPE
+===================================== */
+
+function escapeHtml(value){
+
+    return String(value)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'","&#039;");
+
+}
+
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+loadToForm();
+
+</script>
+
+
+</body>
+</html>
