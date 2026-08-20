@@ -1,169 +1,275 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>หน้าแรก - RONGKHEM e-VILLAGE บ้านร่องเข็ม</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>RONGKHEM e-VILLAGE OFFICE - ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-    <script id="tailwind-config">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
-                    "colors": {
-                        "surface-container-highest": "#e1e3e4",
-                        "surface-container-lowest": "#ffffff",
-                        "surface": "#f8f9fa",
-                        "outline": "#70787d",
-                        "primary-container": "#1a5f7a",
-                        "secondary": "#6f5d00",
-                        "on-surface": "#191c1d",
-                        "secondary-container": "#ffde4e",
-                        "on-surface-variant": "#40484d",
-                        "primary": "#00475e",
-                        "error": "#ba1a1a",
-                        "on-error": "#ffffff"
+                    colors: {
+                        brand: {
+                            blue: '#113a72', // Primary Navy Blue
+                            light: '#e8f0fe',
+                            accent: '#e63946'
+                        }
                     },
-                    "fontFamily": {
-                        "body-md": ["Noto Sans", "sans-serif"],
-                        "headline-md": ["Be Vietnam Pro", "sans-serif"],
-                        "headline-lg": ["Be Vietnam Pro", "sans-serif"]
+                    fontFamily: {
+                        sans: ['"Noto Sans Thai"', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Noto Sans', sans-serif; background-color: #f8f9fa; }
-        .shadow-layer-1 { box-shadow: 0 2px 8px 0 rgba(26, 95, 122, 0.06); }
+        body {
+            background-color: #f0f2f5;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
-<body class="bg-surface text-on-surface flex min-h-screen flex-col md:flex-row antialiased">
+<body class="text-gray-800 antialiased">
 
-<!-- Mobile Top Bar -->
-<header class="md:hidden bg-surface border-b border-outline-variant w-full sticky top-0 flex justify-between items-center px-4 h-16 z-50">
-    <div class="flex items-center gap-2">
-        <span class="font-bold text-primary text-lg">RONGKHEM e-VILLAGE</span>
+<header class="bg-white py-3 shadow-sm relative z-20">
+    <div class="max-w-[1400px] mx-auto px-4 flex flex-wrap justify-between items-center gap-4">
+        <div class="flex items-center gap-4">
+            <div class="w-16 h-16 rounded-full border border-gray-200 shadow-sm bg-brand-blue flex items-center justify-center text-white font-bold text-xl">
+                RK
+            </div>
+            <div>
+                <h1 class="text-brand-blue text-2xl font-bold leading-tight">RONGKHEM e-VILLAGE OFFICE</h1>
+                <p class="text-brand-blue text-sm font-semibold">ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
+                <p class="text-gray-500 text-xs">ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
+            </div>
+        </div>
+        <div class="flex flex-wrap items-stretch gap-3">
+            <div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-white shadow-sm">
+                <i class="fa-regular fa-clock text-gray-400 text-2xl"></i>
+                <div class="text-sm">
+                    <div class="font-bold text-gray-800">17:45 น.</div>
+                    <div class="text-gray-500 text-xs">15 พฤษภาคม 2569</div>
+                </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-white shadow-sm">
+                <i class="fa-solid fa-cloud-sun text-yellow-400 text-2xl"></i>
+                <div class="text-sm">
+                    <div class="font-bold text-gray-800">27°C</div>
+                    <div class="text-gray-500 text-xs">แจ่มใส</div>
+                </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-green-50 shadow-sm">
+                <div class="relative flex items-center justify-center w-9 h-9 rounded-full border-[3px] border-green-500 text-green-600 bg-white">
+                    <i class="fa-solid fa-leaf text-sm"></i>
+                </div>
+                <div class="text-sm">
+                    <div class="font-bold text-gray-800 flex items-baseline gap-1">
+                        PM2.5 <span class="text-lg leading-none">18</span> <span class="text-[10px] text-gray-500 font-normal">µg/m³</span>
+                    </div>
+                    <div class="text-green-600 text-xs font-medium">คุณภาพอากาศดี</div>
+                </div>
+            </div>
+            <button class="bg-brand-blue text-white rounded-lg px-6 py-2 flex flex-col items-center justify-center hover:bg-blue-800 transition shadow-sm h-full">
+                <div class="flex items-center gap-2 font-semibold text-sm">
+                    <i class="fa-solid fa-lock"></i> เข้าสู่ระบบ
+                </div>
+                <div class="text-[10px] opacity-80 mt-0.5">สำหรับผู้ใหญ่บ้าน</div>
+            </button>
+        </div>
     </div>
-    <a href="contact.html" class="text-primary p-2"><span class="material-symbols-outlined">account_circle</span></a>
 </header>
-
-<!-- Desktop Navigation -->
-<nav class="hidden md:flex flex-col bg-white shadow-sm h-screen w-64 fixed left-0 top-0 z-40 border-r border-outline-variant/30">
-    <div class="p-4 border-b border-outline-variant/20">
-        <h1 class="text-xl font-bold text-primary">บ้านร่องเข็ม</h1>
-        <p class="text-xs text-on-surface-variant">หมู่ที่ 6 ต.จำป่าหวาย อ.เมืองพะเยา</p>
-        <a href="complaint.html" class="w-full mt-4 bg-error text-on-error py-2 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:opacity-90">
-            <span class="material-symbols-outlined text-sm">emergency</span> แจ้งเรื่องร้องเรียน
-        </a>
-    </div>
-    <div class="flex flex-col py-4 gap-1 overflow-y-auto flex-1 px-2">
-        <a href="index.html" class="bg-primary/10 text-primary font-bold rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">home</span> หน้าแรก</a>
-        <a href="tourism.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">forest</span> ท่องเที่ยวเชิงนิเวศ</a>
-        <a href="news.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">campaign</span> ข่าวสาร</a>
-        <a href="activity.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">event_note</span> กิจกรรม</a>
-        <a href="wisdom.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">auto_awesome</span> ภูมิปัญญาท้องถิ่น</a>
-        <a href="leader.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">groups</span> ผู้นำชุมชน</a>
-        <a href="statistics.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">insights</span> สถิติ</a>
-        <a href="contact.html" class="text-on-surface-variant hover:bg-surface-container-high rounded-lg px-4 py-3 flex items-center gap-3"><span class="material-symbols-outlined">contact_support</span> ติดต่อเรา</a>
+<nav class="bg-brand-blue text-white shadow-md sticky top-0 z-10">
+    <div class="max-w-[1400px] mx-auto px-4 overflow-x-auto hide-scrollbar">
+        <ul class="flex items-center justify-between py-3.5 text-[15px] font-medium min-w-max gap-6">
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-house"></i> หน้าแรก</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-user-tie"></i> ผู้นำชุมชน</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-regular fa-newspaper"></i> ข่าวสาร</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-calendar-days"></i> กิจกรรม</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-medal"></i> ผลงาน</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-folder-open"></i> โครงการ</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-hand-holding-heart"></i> บริการประชาชน</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-circle-info"></i> ข้อมูลหมู่บ้าน</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-chart-column"></i> สถิติหมู่บ้าน</li>
+            <li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-envelope"></i> ติดต่อเรา</li>
+        </ul>
     </div>
 </nav>
-
-<!-- Main Canvas -->
-<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
-    <!-- Hero Banner -->
-    <section class="bg-primary-container text-white py-12 px-6 md:px-12 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto z-10 relative">
-            <span class="inline-block bg-secondary-container text-black text-xs font-bold px-3 py-1 rounded-full mb-3">🌿 ชุมชนยั่งยืน แหล่งซับน้ำจำ</span>
-            <h1 class="text-3xl md:text-4xl font-bold mb-2">บ้านร่องเข็ม หมู่ที่ 6</h1>
-            <p class="text-sm md:text-base text-gray-200 mb-6">ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา — ยินดีต้อนรับสู่ศูนย์กลางข้อมูลข่าวสาร บริการประชาชน และการท่องเที่ยวเชิงนิเวศ มุ่งสู่ชุมชนดิจิทัลที่ยั่งยืน</p>
-            <div class="flex flex-wrap gap-3">
-                <a href="tourism.html" class="bg-secondary-container text-black font-bold px-5 py-2.5 rounded-lg shadow hover:bg-yellow-400 transition-colors">เที่ยวชมแหล่งซับน้ำจำ</a>
-                <a href="complaint.html" class="bg-white/20 hover:bg-white/30 text-white font-bold px-5 py-2.5 rounded-lg transition-colors border border-white/30">ศูนย์รับเรื่องร้องเรียน</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Body -->
-    <div class="max-w-5xl mx-auto w-full p-4 md:p-8 flex-1 grid grid-cols-1 md:grid-cols-12 gap-6">
-        
-        <!-- Left Column: News (8 cols) -->
-        <div class="md:col-span-8 space-y-6">
-            <div class="flex justify-between items-center border-b pb-2 border-gray-200">
-                <h2 class="text-xl font-bold text-primary flex items-center gap-2"><span class="material-symbols-outlined">newspaper</span> ข่าวสารและประกาศล่าสุด</h2>
-                <a href="news.html" class="text-sm text-primary font-bold hover:underline">ดูทั้งหมด →</a>
-            </div>
-
-            <!-- News Item 1 -->
-            <div class="bg-white p-5 rounded-xl shadow-layer-1 border border-gray-100 flex flex-col gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="bg-red-100 text-red-700 text-xs px-2 py-0.5 rounded font-bold">ประกาศด่วน</span>
-                    <span class="text-xs text-gray-400">14 พ.ค. 2569</span>
-                </div>
-                <h3 class="font-bold text-lg text-gray-800">ประกาศการจัดเก็บภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569</h3>
-                <p class="text-sm text-gray-600">ขอแจ้งให้ประชาชนบ้านร่องเข็ม หมู่ที่ 6 ทุกท่านทราบ เรื่อง กำหนดเวลาการชำระภาษีที่ดิน...</p>
-                <a href="news.html" class="text-sm font-bold text-primary mt-2 flex items-center gap-1">อ่านต่อ <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-            </div>
-
-            <!-- News Item 2 -->
-            <div class="bg-white p-5 rounded-xl shadow-layer-1 border border-gray-100 flex flex-col gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="bg-blue-100 text-blue-700 text-xs px-2 py-0.5 rounded font-bold">ประชุมหมู่บ้าน</span>
-                    <span class="text-xs text-gray-400">10 พ.ค. 2569</span>
-                </div>
-                <h3 class="font-bold text-lg text-gray-800">ขอเชิญเข้าร่วมประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</h3>
-                <p class="text-sm text-gray-600">เพื่อร่วมหารือโครงการพัฒนาแหล่งน้ำและปรับปรุงภูมิทัศน์รอบซับน้ำจำ ณ ศาลาประชาคม...</p>
-                <a href="news.html" class="text-sm font-bold text-primary mt-2 flex items-center gap-1">อ่านต่อ <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
-            </div>
-        </div>
-
-        <!-- Right Column: Leader & Emergency (4 cols) -->
-        <div class="md:col-span-4 space-y-6">
-            <!-- Leader Card -->
-            <div class="bg-white p-5 rounded-xl shadow-layer-1 border border-gray-100 text-center">
-                <span class="text-xs font-bold text-secondary bg-yellow-100 px-3 py-1 rounded-full">ผู้ใหญ่บ้านคนปัจจุบัน</span>
-                <div class="w-24 h-24 bg-gray-200 rounded-full mx-auto my-3 overflow-hidden flex items-center justify-center">
-                    <span class="material-symbols-outlined text-5xl text-gray-400">person</span>
-                </div>
-                <h3 class="font-bold text-gray-800 text-lg">นายศักรนนท์ ขัติย์วงค์</h3>
-                <p class="text-xs text-gray-500 mb-3">ผู้ใหญ่บ้าน หมู่ที่ 6 บ้านร่องเข็ม</p>
-                <div class="text-left text-xs text-gray-600 space-y-1 bg-gray-50 p-3 rounded-lg border">
-                    <p>📞 <strong>โทร:</strong> 081-XXX-XXXX</p>
-                    <p>📍 <strong>ที่อยู่:</strong> ที่ทำการผู้ใหญ่บ้าน หมู่ 6</p>
+<main class="max-w-[1400px] mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-8 flex flex-col gap-6">
+            <div class="rounded-xl overflow-hidden relative shadow-md h-[340px] w-full bg-slate-800">
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-blue/90 to-emerald-800/80"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6 z-10">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-2 drop-shadow-md">ร่วมสร้าง ร่วมพัฒนา</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold drop-shadow-md text-yellow-300">บ้านร่องเข็มให้น่าอยู่ อย่างยั่งยืน</h2>
                 </div>
             </div>
 
-            <!-- Emergency Card -->
-            <div class="bg-red-50 p-5 rounded-xl border border-red-200 space-y-3">
-                <h3 class="font-bold text-red-800 text-base flex items-center gap-1"><span class="material-symbols-outlined">call</span> สายด่วนฉุกเฉินในชุมชน</h3>
-                <ul class="text-xs space-y-2">
-                    <li class="flex justify-between border-b pb-1 border-red-200"><span>เหตุด่วนเหตุร้าย (ตำรวจ)</span><strong class="text-red-700">191</strong></li>
-                    <li class="flex justify-between border-b pb-1 border-red-200"><span>เจ็บป่วยฉุกเฉิน (กู้ชีพ)</span><strong class="text-red-700">1669</strong></li>
-                    <li class="flex justify-between"><span>ดับเพลิง อบต.จำป่าหวาย</span><strong class="text-red-700">054-XXX-XXX</strong></li>
-                </ul>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-sm p-5 border border-gray-100 flex flex-col h-full">
+                    <div class="flex items-center gap-2 mb-5 border-b border-gray-100 pb-3">
+                        <i class="fa-solid fa-user-group text-brand-blue text-lg"></i>
+                        <h3 class="text-brand-blue font-bold text-lg">คณะผู้บริหารหมู่บ้าน</h3>
+                    </div>
+                    <div class="grid grid-cols-3 gap-3 flex-1">
+                        <div class="border border-gray-100 rounded-lg p-2 flex flex-col items-center relative text-center bg-gray-50/50">
+                            <div class="absolute top-0 left-0 bg-brand-blue text-white text-[10px] px-2 py-0.5 rounded-br-lg rounded-tl-lg z-10 w-full text-left truncate">ผู้ใหญ่บ้าน</div>
+                            <div class="w-full aspect-[3/4] bg-gray-200 rounded-md overflow-hidden mb-3 mt-4 flex items-center justify-center text-gray-400">
+                                <i class="fa-solid fa-user text-3xl"></i>
+                            </div>
+                            <h4 class="text-brand-blue font-bold text-[13px] leading-tight mb-1">นายศักรนนท์ ขัติย์วงค์</h4>
+                            <p class="text-[11px] text-gray-500 mb-3 leading-tight">ผู้ใหญ่บ้าน หมู่ที่ 6</p>
+                            <button class="mt-auto border border-brand-blue text-brand-blue text-xs py-1.5 px-2 rounded hover:bg-blue-50 w-full flex items-center justify-center gap-1 transition">
+                                <i class="fa-regular fa-address-card"></i> ดูประวัติ
+                            </button>
+                        </div>
+                        <div class="border border-gray-100 rounded-lg p-2 flex flex-col items-center relative text-center bg-gray-50/50">
+                            <div class="absolute top-0 left-0 bg-brand-blue text-white text-[10px] px-2 py-0.5 rounded-br-lg rounded-tl-lg z-10 w-full text-left truncate">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1</div>
+                            <div class="w-full aspect-[3/4] bg-gray-200 rounded-md overflow-hidden mb-3 mt-4 flex items-center justify-center text-gray-400">
+                                <i class="fa-solid fa-user text-3xl"></i>
+                            </div>
+                            <h4 class="text-brand-blue font-bold text-[13px] leading-tight mb-1">นายจักร์กวัส ประพลรัตนัง</h4>
+                            <p class="text-[11px] text-gray-500 mb-3 leading-tight">ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</p>
+                            <button class="mt-auto border border-brand-blue text-brand-blue text-xs py-1.5 px-2 rounded hover:bg-blue-50 w-full flex items-center justify-center gap-1 transition">
+                                <i class="fa-regular fa-address-card"></i> ดูประวัติ
+                            </button>
+                        </div>
+                        <div class="border border-gray-100 rounded-lg p-2 flex flex-col items-center relative text-center bg-gray-50/50">
+                            <div class="absolute top-0 left-0 bg-brand-blue text-white text-[10px] px-2 py-0.5 rounded-br-lg rounded-tl-lg z-10 w-full text-left truncate">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2</div>
+                            <div class="w-full aspect-[3/4] bg-gray-200 rounded-md overflow-hidden mb-3 mt-4 flex items-center justify-center text-gray-400">
+                                <i class="fa-solid fa-user text-3xl"></i>
+                            </div>
+                            <h4 class="text-brand-blue font-bold text-[13px] leading-tight mb-1">น.ส. สุภาพร วังมูล</h4>
+                            <p class="text-[11px] text-gray-500 mb-3 leading-tight">ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</p>
+                            <button class="mt-auto border border-brand-blue text-brand-blue text-xs py-1.5 px-2 rounded hover:bg-blue-50 w-full flex items-center justify-center gap-1 transition">
+                                <i class="fa-regular fa-address-card"></i> ดูประวัติ
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm p-5 border border-gray-100 flex flex-col h-full">
+                    <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-regular fa-calendar-check text-brand-blue text-lg"></i>
+                            <h3 class="text-brand-blue font-bold text-lg">กิจกรรมล่าสุด</h3>
+                        </div>
+                        <a class="text-brand-blue text-sm hover:underline font-medium" href="#">ดูทั้งหมด</a>
+                    </div>
+                    <div class="flex-1 flex flex-col gap-4">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-24 h-16 rounded bg-blue-100 text-brand-blue flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-handshake text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">โครงการชุมชนตำบลยั่งยืน</h4>
+                                <p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 15 พฤษภาคม 2569</p>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ ศาลาประชาคมหมู่บ้าน</p>
+                                    <p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 65 คน</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-24 h-16 rounded bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-users text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</h4>
+                                <p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 10 พฤษภาคม 2569</p>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ ศาลาประชาคมหมู่บ้าน</p>
+                                    <p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 78 คน</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-24 h-16 rounded bg-amber-100 text-amber-600 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-broom text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">Big Cleaning Day</h4>
+                                <p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 5 พฤษภาคม 2569</p>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ บริเวณหมู่บ้าน</p>
+                                    <p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 120 คน</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <div class="w-24 h-16 rounded bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-tree text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">โครงการปลูกต้นไม้เพิ่มพื้นที่สีเขียว</h4>
+                                <p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 1 พฤษภาคม 2569</p>
+                                <div class="flex items-center justify-between gap-2">
+                                    <p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ ป่าชุมชนบ้านร่องเข็ม</p>
+                                    <p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 45 คน</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 bg-brand-blue text-white text-sm font-medium py-2 rounded-md hover:bg-blue-800 transition">
+                        ดูทั้งหมด
+                    </button>
+                </div>
             </div>
-        </div>
 
-    </div>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-gray-300 p-6 text-center text-xs space-y-2 mt-auto">
-        <p class="font-bold text-white">สำนักงานหมู่บ้านอิเล็กทรอนิกส์ RONGKHEM e-VILLAGE OFFICE</p>
-        <p>บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา 56000</p>
-        <p>© 2026 บ้านร่องเข็ม หมู่ที่ 6 สงวนลิขสิทธิ์</p>
-    </footer>
-</main>
-
-<!-- Mobile Bottom Navigation -->
-<nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 flex justify-around items-center h-16 z-50">
-    <a href="index.html" class="flex flex-col items-center text-primary font-bold text-[10px]"><span class="material-symbols-outlined">home</span>หน้าแรก</a>
-    <a href="tourism.html" class="flex flex-col items-center text-gray-500 text-[10px]"><span class="material-symbols-outlined">forest</span>ท่องเที่ยว</a>
-    <a href="news.html" class="flex flex-col items-center text-gray-500 text-[10px]"><span class="material-symbols-outlined">campaign</span>ข่าวสาร</a>
-    <a href="contact.html" class="flex flex-col items-center text-gray-500 text-[10px]"><span class="material-symbols-outlined">call</span>ติดต่อ</a>
-</nav>
-
-</body>
-</html>
+            <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+                <div class="flex items-center gap-2 mb-6">
+                    <i class="fa-solid fa-hand-holding-heart text-brand-blue text-xl"></i>
+                    <h3 class="text-brand-blue font-bold text-xl">บริการประชาชน</h3>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
+                        <div class="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:text-white transition">
+                            <i class="fa-solid fa-bell text-xl"></i>
+                        </div>
+                        <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แจ้งเหตุ/<br>ร้องเรียน</span>
+                    </a>
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-file-lines text-xl"></i>
+                        </div>
+                        <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แบบฟอร์ม<br>ออนไลน์</span>
+                    </a>
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
+                        <div class="w-12 h-12 rounded-full bg-green-100 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition">
+                            <i class="fa-solid fa-comments text-xl"></i>
+                        </div>
+                        <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">ถาม-ตอบ<br>(Q&A)</span>
+                    </a>
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 group-hover:text-white transition">
+                            <i class="fa-solid fa-phone text-xl"></i>
+                        </div>
+                        <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">เบอร์โทรศัพท์<br>สำคัญ</span>
+                    </a>
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
+                        <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-
