@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รายละเอียดข้อมูล - สำนักงานหมู่บ้านร่องเขม</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; }
+        .detail-card { max-width: 800px; margin: 20px auto; background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .detail-cover { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
+        .detail-title { font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
+        .detail-date { font-size: 14px; color: #7f8c8d; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .detail-body { font-size: 16px; line-height: 1.8; color: #333; white-space: pre-line; }
+        .btn-back { display: inline-block; margin-top: 25px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .btn-back:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+
+    <div class="detail-card">
+        <img id="itemImage" class="detail-cover" src="" alt="รูปประกอบ" style="display: none;">
+        <h1 id="itemTitle" class="detail-title">กำลังโหลดข้อมูล...</h1>
+        <div id="itemDate" class="detail-date"></div>
+        <div id="itemDetail" class="detail-body"></div>
+        
+        <a href="javascript:history.back()" class="btn-back">⬅️ ย้อนกลับ</a>
+    </div>
+
+    <script type="module">
+        import { supabase } from './supabase.js';
+
+        async function loadDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const table = urlParams.get('type') || 'news';
+            const id = urlParams.get('id');
+
+            if (!id) {
+                document.getElementById('itemTitle').innerText = 'ไม่พบข้อมูลที่ต้องการ';
+                return;
+            }
+
+            const { data, error } = await supabase
+                .from(table)
+                .select('*')
+                .eq('id', id)
+                .single();
+
+            if (error || !data) {
+                document.getElementById('itemTitle').innerText = 'เกิดข้อผิดพลาดหรือไม่พบข้อมูลในระบบ';
+                return;
+            }
+
+            const title = data.title || data.name || data.subject || 'ไม่มีหัวข้อ';
+            const detail = data.detail || data.description || data.details || 'ไม่มีรายละเอียด';
+            const imageUrl = data.image_url || data.image || data.photo;
+            const dateStr = data.created_at || data.updated_at;
+
+            document.getElementById('itemTitle').innerText = title;
+            document.getElementById('itemDetail').innerText = detail;
+
+            if (dateStr) {
+                const formattedDate = new Date(dateStr).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
+                document.getElementById('itemDate').innerText = '📅 วันที่บันทึก: ' + formattedDate;
+            }
+
+            if (imageUrl) {
+                const imgElem = document.getElementById('itemImage');
+                imgElem.src = imageUrl;
+                imgElem.style.display = 'block';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadDetail);
+    </script>
+</body>
+</html>
