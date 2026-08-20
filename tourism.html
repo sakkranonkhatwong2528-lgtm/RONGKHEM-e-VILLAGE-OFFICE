@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ท่องเที่ยวเชิงนิเวศ ซับน้ำจำ - RONGKHEM e-VILLAGE</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Noto Sans Thai -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { blue: '#113a72', green: '#10b981', light: '#e8f0fe' }
+                    },
+                    fontFamily: { sans: ['"Noto Sans Thai"', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>body { background-color: #f8fafc; }</style>
+</head>
+<body class="text-gray-800 font-sans antialiased">
+
+    <!-- Header Navigation -->
+    <nav class="bg-brand-blue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-4 py-3.5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 font-bold text-lg hover:opacity-90 transition">
+                <i class="fa-solid fa-tree text-green-400"></i>
+                <span>ท่องเที่ยวเชิงนิเวศ บ้านร่องเข็ม</span>
+            </a>
+            <a href="index.html" class="text-xs bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-lg transition">
+                <i class="fa-solid fa-house"></i> หน้าแรก
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="relative bg-brand-blue text-white py-16 px-4">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="inline-block bg-green-500/20 text-green-300 text-xs px-3 py-1 rounded-full font-bold mb-3">
+                    🌱 Eco-Tourism Highlight
+                </span>
+                <h1 class="text-3xl md:text-4xl font-bold mb-3 leading-tight">แหล่งซับน้ำจำ มหัศจรรย์ตาน้ำผุดธรรมชาติ</h1>
+                <p class="text-sm text-gray-200 mb-6 leading-relaxed">
+                    สัมผัสความสมบูรณ์ของป่าชุมชนบ้านร่องเข็ม สายน้ำผุดบริสุทธิ์ที่หล่อเลี้ยงชุมชนมาอย่างยาวนาน เหมาะสำหรับพักผ่อน เดินป่าศึกษาธรรมชาติ และเรียนรู้วิถีชีวิตท้องถิ่น
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="#booking" class="bg-green-500 hover:bg-green-600 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check"></i> จองมัคคุเทศก์ชุมชน
+                    </a>
+                    <a href="#map" class="bg-white/10 hover:bg-white/20 text-white font-bold text-xs px-5 py-2.5 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot"></i> แผนที่การเดินทาง
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" alt="ป่าชุมชนบ้านร่องเข็ม" class="rounded-2xl shadow-2xl object-cover h-64 md:h-80 w-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Grid -->
+    <main class="max-w-[1200px] mx-auto px-4 py-12 space-y-12">
+
+        <!-- Section 1: กิจกรรมไฮไลต์ -->
+        <section>
+            <h2 class="text-xl font-bold text-brand-blue mb-6 border-b pb-2 flex items-center gap-2">
+                <i class="fa-solid fa-compass text-green-500"></i> กิจกรรมท่องเที่ยวที่ไม่ควรพลาด
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                    <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-person-hiking"></i>
+                    </div>
+                    <h3 class="font-bold text-base mb-1">เดินป่าศึกษาธรรมชาติ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-3">เส้นทางเดินสำรวจธรรมชาติระยะทาง 1.2 กม. ชมพรรณไม้ป่าหายาก และสมุนไพรพื้นบ้าน</p>
+                    <span class="text-[11px] text-brand-blue font-semibold bg-blue-50 px-2.5 py-1 rounded-md">ระยะเวลา ~ 45 นาที</span>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="font-bold text-base mb-1">ตาน้ำผุดซับน้ำจำ</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-3">จุดกำเนิดน้ำผุดธรรมชาติที่ใสจนมองเห็นทรายใต้ดิน จุดถ่ายภาพเชิงอนุรักษ์ยอดนิยม</p>
+                    <span class="text-[11px] text-green-600 font-semibold bg-green-50 px-2.5 py-1 rounded-md">ไฮไลต์หลักของชุมชน</span>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                    <div class="w-12 h-12 bg-orange-50 text-orange-500 rounded-xl flex items-center justify-center text-xl mb-4 font-bold">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="font-bold text-base mb-1">อุดหนุนสินค้า OTOP ชุมชน</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed mb-3">เลือกซื้อผลิตภัณฑ์แปรรูป ผักสวนครัวปลอดภัย และของฝากหัตถกรรมจากชาวบ้านร่องเข็ม</p>
+                    <span class="text-[11px] text-orange-500 font-semibold bg-orange-50 px-2.5 py-1 rounded-md">กระจายรายได้สู่ชุมชน</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 2: ฟอร์มจองมัคคุเทศก์ & ข้อปฏิบัติ -->
+        <section id="booking" class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Form จองมัคคุเทศก์ (Span 7) -->
+            <div class="lg:col-span-7 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+                <h2 class="text-lg font-bold text-brand-blue mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-user-guide text-green-500"></i> จองมัคคุเทศก์ท้องถิ่น
+                </h2>
+                <p class="text-xs text-gray-500 mb-6">นำทางโดยผู้นำชุมชน เพื่อความปลอดภัยและได้รับความรู้อย่างครบถ้วน</p>
+
+                <form id="tourBookingForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">ชื่อ-นามสกุล ผู้ติดต่อ</label>
+                            <input type="text" required placeholder="นายสมชาย ใจดี" class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">เบอร์โทรศัพท์</label>
+                            <input type="tel" required placeholder="081-XXX-XXXX" class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">วันที่ต้องการเยี่ยมชม</label>
+                            <input type="date" required class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-700 mb-1">จำนวนผู้เดินทาง</label>
+                            <select class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-blue focus:outline-none">
+                                <option>1 - 3 คน (กรุ๊ปเล็ก)</option>
+                                <option>4 - 8 คน (ครอบครัว/กลุ่มเพื่อน)</option>
+                                <option>9 คนขึ้นไป (คณะศึกษาดูงาน)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 rounded-xl text-xs space-y-1">
+                        <div class="flex justify-between font-bold text-gray-700">
+                            <span>ค่าสนับสนุนมัคคุเทศก์ชุมชน:</span>
+                            <span class="text-green-600">200 บาท / รอบ</span>
+                        </div>
+                        <p class="text-[11px] text-gray-400">* รายได้ทั้งหมดมอบให้กองทุนอนุรักษ์ป่าชุมชนบ้านร่องเข็ม</p>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold text-xs py-3 rounded-xl transition shadow-sm">
+                        ส่งคำขอจองคิว
+                    </button>
+                </form>
+            </div>
+
+            <!-- ข้อควรปฏิบัติ (Span 5) -->
+            <div class="lg:col-span-5 bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col justify-between">
+                <div>
+                    <h2 class="text-lg font-bold text-brand-blue mb-4 pb-2 border-b flex items-center gap-2">
+                        <i class="fa-solid fa-shield-halved text-orange-500"></i> กฎการท่องเที่ยวเชิงนิเวศ
+                    </h2>
+                    <ul class="space-y-3 text-xs text-gray-600">
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-green-500 mt-0.5"></i>
+                            <span>แต่งกายสวมรองเท้าผ้าใบหรือรองเท้าหุ้มส้น</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-check text-green-500 mt-0.5"></i>
+                            <span>นำขยะทุกชิ้นกลับออกมาทิ้งด้านนอก</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5"></i>
+                            <span>ห้ามเด็ด หัก หรือทำลายพรรณไม้ในพื้นที่</span>
+                        </li>
+                        <li class="flex items-start gap-2.5">
+                            <i class="fa-solid fa-circle-xmark text-red-500 mt-0.5"></i>
+                            <span>ห้ามลงเล่นน้ำบริเวณตาน้ำผุดเพื่อรักษาความสะอาด</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="mt-6 bg-blue-50 p-4 rounded-xl border border-blue-100 text-xs text-brand-blue">
+                    <p class="font-bold mb-1"><i class="fa-solid fa-circle-info"></i> ติดสอบถามเพิ่มเติม:</p>
+                    <p>ศูนย์บริการนักท่องเที่ยวบ้านร่องเข็ม หมู่ที่ 6</p>
+                    <p>โทร: 081-XXX-XXXX (ผู้ใหญ่บ้าน)</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Section 3: แผนที่ตำแหน่ง -->
+        <section id="map" class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+            <h2 class="text-lg font-bold text-brand-blue mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-map-location-dot text-red-500"></i> การเดินทางมายังบ้านร่องเข็ม
+            </h2>
+            <p class="text-xs text-gray-500 mb-4">ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
+            
+            <div class="rounded-xl overflow-hidden h-72 bg-gray-100 border border-gray-200">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30000!2d99.9!3d19.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTkuM'EwMC4w!5e0!3m2!1sth!2sth!4v1600000000000!5m2!1sth!2sth" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blue text-white py-6 text-center text-xs">
+        <p>© 2026 e-Village บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา</p>
+    </footer>
+
+    <script>
+        document.getElementById('tourBookingForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('ส่งข้อมูลการจองเรียบร้อยแล้ว! มัคคุเทศก์ชุมชนจะติดต่อกลับตามเบอร์โทรศัพท์ที่แจ้งไว้ครับ');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
