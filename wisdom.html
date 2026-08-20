@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html lang="th"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>คลังภูมิปัญญาท้องถิ่น - บ้านร่องเข็ม</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&family=Noto+Sans:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001b3d",
+                        "surface": "#f8f9fa",
+                        "outline": "#70787d",
+                        "surface-dim": "#d9dadb",
+                        "primary-container": "#1a5f7a",
+                        "surface-bright": "#f8f9fa",
+                        "on-tertiary-fixed-variant": "#264778",
+                        "secondary": "#6f5d00",
+                        "on-surface": "#191c1d",
+                        "on-secondary-container": "#746200",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-fixed": "#d6e3ff",
+                        "secondary-container": "#ffde4e",
+                        "on-secondary-fixed-variant": "#544600",
+                        "on-surface-variant": "#40484d",
+                        "on-primary-fixed": "#001e2b",
+                        "surface-tint": "#236580",
+                        "tertiary": "#204172",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#9bd7f7",
+                        "surface-variant": "#e1e3e4",
+                        "tertiary-container": "#3a598b",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#b8d0ff",
+                        "background": "#f8f9fa",
+                        "primary-fixed-dim": "#92cfee",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#c0e8ff",
+                        "surface-container": "#edeeef",
+                        "on-secondary": "#ffffff",
+                        "primary": "#00475e",
+                        "on-secondary-fixed": "#221b00",
+                        "on-primary-fixed-variant": "#004d66",
+                        "outline-variant": "#c0c8cd",
+                        "inverse-primary": "#92cfee",
+                        "tertiary-fixed-dim": "#a9c7ff",
+                        "on-background": "#191c1d",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed-dim": "#e4c536",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f3f4f5",
+                        "secondary-fixed": "#ffe264",
+                        "inverse-surface": "#2e3132"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-lg": "1.5rem",
+                        "stack-md": "1rem",
+                        "gutter": "1rem",
+                        "section-gap": "2rem",
+                        "margin-page": "1rem"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Noto Sans", "sans-serif"],
+                        "body-lg": ["Noto Sans", "sans-serif"],
+                        "headline-md": ["Be Vietnam Pro", "sans-serif"],
+                        "label-md": ["Public Sans", "sans-serif"],
+                        "headline-lg-mobile": ["Be Vietnam Pro", "sans-serif"],
+                        "label-lg": ["Public Sans", "sans-serif"],
+                        "headline-sm": ["Be Vietnam Pro", "sans-serif"],
+                        "headline-lg": ["Be Vietnam Pro", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Noto Sans', sans-serif; background-color: #f8f9fa; }
+        .font-headline-lg { font-family: 'Be Vietnam Pro', sans-serif; font-size: 28px; line-height: 36px; font-weight: 700; }
+        .text-headline-lg { font-size: 28px; line-height: 36px; font-weight: 700; }
+        .font-headline-md { font-family: 'Be Vietnam Pro', sans-serif; font-size: 22px; line-height: 30px; font-weight: 600; }
+        .text-headline-md { font-size: 22px; line-height: 30px; font-weight: 600; }
+        .font-headline-sm { font-family: 'Be Vietnam Pro', sans-serif; font-size: 18px; line-height: 24px; font-weight: 600; }
+        .text-headline-sm { font-size: 18px; line-height: 24px; font-weight: 600; }
+        .font-body-lg { font-family: 'Noto Sans', sans-serif; font-size: 16px; line-height: 26px; font-weight: 400; }
+        .text-body-lg { font-size: 16px; line-height: 26px; font-weight: 400; }
+        .font-body-md { font-family: 'Noto Sans', sans-serif; font-size: 14px; line-height: 22px; font-weight: 400; }
+        .text-body-md { font-size: 14px; line-height: 22px; font-weight: 400; }
+        .font-label-lg { font-family: 'Public Sans', sans-serif; font-size: 14px; line-height: 20px; font-weight: 600; letter-spacing: 0.1px; }
+        .text-label-lg { font-size: 14px; line-height: 20px; font-weight: 600; letter-spacing: 0.1px; }
+        .font-label-md { font-family: 'Public Sans', sans-serif; font-size: 12px; line-height: 16px; font-weight: 500; }
+        .text-label-md { font-size: 12px; line-height: 16px; font-weight: 500; }
+        
+        .shadow-layer-1 { box-shadow: 0 2px 8px 0 rgba(26, 95, 122, 0.04); }
+        .shadow-layer-2 { box-shadow: 0 4px 16px 0 rgba(26, 95, 122, 0.08); }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex min-h-screen flex-col md:flex-row antialiased">
+
+<header class="md:hidden bg-surface dark:bg-inverse-surface border-b border-outline-variant w-full top-0 sticky flex justify-between items-center px-gutter h-16 z-50">
+<div class="flex items-center gap-2">
+<a href="index.html" class="text-primary font-bold flex items-center gap-1 text-xs bg-primary/10 px-2.5 py-1.5 rounded-lg active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">arrow_back</span> หน้าแรก
+</a>
+<span class="font-headline-sm text-headline-sm font-bold text-primary ml-1">ภูมิปัญญาท้องถิ่น</span>
+</div>
+<div class="flex gap-2 items-center">
+<a href="contact.html" class="text-primary cursor-pointer hover:bg-surface-container-high transition-colors rounded-full p-2">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</a>
+</div>
+</header>
+
+<nav class="hidden md:flex flex-col bg-surface-container-low dark:bg-surface-dim shadow-sm h-screen w-64 fixed left-0 top-0 z-40">
+<div class="p-gutter pb-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container overflow-hidden">
+<img alt="Village Seal" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDILY0K2PnzqHU2GAP7hkU6EV43X0J0aJVNqQV8yQRX2nUmCL0x5oxF0cadXwcsGWyY2rWIB-oXjb9Iobo13K-VkGy4sFzgkfHNlviW4qD6USA_WboOORkaDfsZZfYejLEjzWGaocHFlyXE3RLpyNi5wZJU294y1NVOvtp5V6legowfyxH2_nnpEiFz0CqBn7Oa8TePvaloZfdDP2Y4NGnPeHhE8Wkuj-VjzBp_bK5QfVwJOeUxqnuN"/>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary">บ้านร่องเข็ม</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">หมู่ที่ 6</p>
+</div>
+</div>
+<a href="complaint.html" class="w-full mt-4 bg-error text-on-error py-2 rounded-lg font-label-lg text-label-lg shadow-layer-1 hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="emergency">emergency</span>
+                แจ้งเหตุฉุกเฉิน
+</a>
+</div>
+<div class="flex flex-col py-stack-lg gap-1 overflow-y-auto flex-1">
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span> หน้าแรก
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="leader.html">
+<span class="material-symbols-outlined" data-icon="groups">groups</span> ผู้นำชุมชน
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="news.html">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span> ข่าวสาร
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="activity.html">
+<span class="material-symbols-outlined" data-icon="event_note">event_note</span> กิจกรรม
+</a>
+<a class="bg-secondary-container text-on-secondary-container rounded-lg font-bold mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="wisdom.html">
+<span class="material-symbols-outlined" data-icon="auto_awesome" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span> ภูมิปัญญาท้องถิ่น
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="tourism.html">
+<span class="material-symbols-outlined">forest</span> ท่องเที่ยวชุมชน
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="statistics.html">
+<span class="material-symbols-outlined" data-icon="insights">insights</span> สถิติ
+</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high rounded-lg mx-2 px-4 py-3 flex items-center gap-3 transition-all font-label-lg text-label-lg" href="contact.html">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span> ติดต่อเรา
+</a>
+</div>
+</nav>
+
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<section class="relative w-full h-[380px] md:h-[409px] min-h-[300px] flex items-end pb-8 pt-24 px-4 md:px-8 bg-surface-container-highest overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfoRIgUzjfQwD-547fMCGkyZBsXi_w4NLRKA-hlURdoUt-ikS8c1JgCrkGKMLD-ewCQNzhJL7uDhQyDQ356NMljgKnA21TrJryz2XQ-xz2XyVV5YoIZzOFOGc6mKCyn6kYvxCEue-OwgT05-Q4d-DqiPsQPoBY1aVFS292tof0Cn7x9xNWilXpnP9eVzj3nQBjc5pnmIzFFQxC2q5pFTmr5O8OHkfcCtktSfgdknS7gOlFgGNliS6i"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/80 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-5xl mx-auto">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container/90 text-on-secondary-container rounded-full mb-4 shadow-sm">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-md text-label-md">มรดกทางวัฒนธรรม</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">คลังภูมิปัญญาท้องถิ่น</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    รวบรวมองค์ความรู้ งานฝีมือ และตำนานของบ้านร่องเข็ม สืบสานวิถีชีวิตดั้งเดิมสู่คนรุ่นใหม่
+                </p>
+</div>
+</section>
+
+<div class="w-full max-w-5xl mx-auto px-4 md:px-8 py-section-gap flex-1">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-section-gap">
+<button class="glass-card shadow-layer-1 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:bg-surface-container-low transition-colors group cursor-pointer border-t-4 border-t-primary border-x-transparent border-b-transparent">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</div>
+<span class="font-label-lg text-label-lg text-primary">งานจักสาน</span>
+</button>
+<button class="bg-surface-container-lowest shadow-layer-1 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:bg-surface-container-low transition-colors group cursor-pointer border border-outline-variant">
+<div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="spa">spa</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">สมุนไพรพื้นบ้าน</span>
+</button>
+<button class="bg-surface-container-lowest shadow-layer-1 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:bg-surface-container-low transition-colors group cursor-pointer border border-outline-variant">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">ประวัติศาสตร์</span>
+</button>
+<button class="bg-surface-container-lowest shadow-layer-1 p-4 rounded-xl flex flex-col items-center justify-center text-center gap-2 hover:bg-surface-container-low transition-colors group cursor-pointer border border-outline-variant">
+<div class="w-12 h-12 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" data-icon="video_library">video_library</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface">วิดีโอสาธิต</span>
+</button>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<div class="md:col-span-8 bg-surface-container-lowest rounded-2xl shadow-layer-1 overflow-hidden flex flex-col relative group cursor-pointer border border-outline-variant/30 hover:shadow-layer-2 transition-shadow">
+<div class="h-64 md:h-80 w-full relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz6j5lotRcg0ZtAGD3-wKuGNtm1W9a7J0JDcWGhkIgrPJzerk9dOFgnzh46ByYgixhEcRp5z5WsHdw3cib3L86YrYZtj36R7WZUzfOTELFe3birnj9iTyzV_hDvPNDlZmgQGS0IbhTNbdcgfY1IA2jOcNNUo7_AtPVAg5rI8_NZ-X4pOSvhGPsdyVMz0IZ-uUX2FDVgAeP8VHwk1Be3LZpXHIxFWsvQxyhgR-izabbqSrpHOLhSLqW"/>
+<div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+<div class="w-16 h-16 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors shadow-lg">
+<span class="material-symbols-outlined text-3xl ml-1" data-icon="play_arrow">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-3 mb-2">
+<span class="bg-primary-container text-on-primary-container px-2 py-1 rounded text-xs font-label-md">วิดีโอสาธิต</span>
+<span class="text-on-surface-variant font-label-md flex items-center gap-1"><span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span> 15 นาที</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">ศิลปะการสานตะกร้าไม้ไผ่ลายขัดโบราณ</h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">
+                            เรียนรู้ขั้นตอนการเตรียมไม้ไผ่และการสานลายขัดซึ่งเป็นลายพื้นฐานที่สืบทอดกันมาหลายชั่วอายุคนในบ้านร่องเข็ม โดยพ่ออุ้ยคำ ช่างสานผู้ชำนาญการ
+                        </p>
+</div>
+</div>
+
+<div class="md:col-span-4 bg-surface-container-lowest rounded-2xl shadow-layer-1 overflow-hidden flex flex-col group cursor-pointer border border-outline-variant/30 hover:shadow-layer-2 transition-shadow">
+<div class="h-48 w-full relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASXWXdAknNua0JxMI0pAvYmToJvZ_1ikTQkfHhylXDxaDnrG-NBHbQOCxTlMIVvmoGyVUgWLwzqmp_j_K9wTf2Y5Xi_jlwdoBKBDa0O6LvP7bOlwf8K9PEf8XXe4Gnp-ObjaTThvCHEA0MuKf1Zig9f8wiYfmyFwMFKbi26EdE-Yslm3ceWJZjWP_X-dnirOCiSiTdVNMWUcSwg2xI3ZgjvCk74fkQKlyTsnWH_nezjMUWEhmwuoCO"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="mb-2">
+<span class="bg-tertiary-container text-on-tertiary-container px-2 py-1 rounded text-xs font-label-md">สมุนไพรพื้นบ้าน</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">ตำรับยาหอมแก้ลมวิงเวียน</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3 mb-4">
+                            สูตรยาสมุนไพรประจำหมู่บ้านที่ใช้บรรเทาอาการหน้ามืดวิงเวียน ส่วนประกอบหลักหาได้ง่ายจากสวนครัว
+                        </p>
+<div class="mt-auto flex items-center text-primary font-label-lg text-label-lg">
+                            อ่านเพิ่มเติม <span class="material-symbols-outlined text-sm ml-1" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+
+<div class="md:col-span-6 bg-surface-container-lowest rounded-2xl shadow-layer-1 overflow-hidden flex flex-col group cursor-pointer border border-outline-variant/30 hover:shadow-layer-2 transition-shadow">
+<div class="p-6 flex-1 flex flex-col">
+<div class="mb-2">
+<span class="bg-secondary-container text-on-secondary-container px-2 py-1 rounded text-xs font-label-md">หัตถกรรมผ้าทอ</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">การทอผ้าผืนล้านนาและผ้าตีนจกบ้านร่องเข็ม</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                            สืบสานลวดลายเอกลักษณ์ดั้งเดิม ถ่ายทอดจากรุ่นแม่สู่รุ่นลูก ด้วยการย้อมสีธรรมชาติจากเปลือกไม้และพืชพรรณในท้องถิ่น
+                        </p>
+<div class="mt-auto flex items-center text-primary font-label-lg text-label-lg">
+                            เรียนรู้เพิ่มเติม <span class="material-symbols-outlined text-sm ml-1" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+
+<div class="md:col-span-6 bg-surface-container-lowest rounded-2xl shadow-layer-1 overflow-hidden flex flex-col group cursor-pointer border border-outline-variant/30 hover:shadow-layer-2 transition-shadow">
+<div class="p-6 flex-1 flex flex-col">
+<div class="mb-2">
+<span class="bg-primary-container text-on-primary-container px-2 py-1 rounded text-xs font-label-md">อาหารและโภชนาการ</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-2">สำรับอาหารเหนือและน้ำพริกประจำถิ่น</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                            การถนอมอาหารตามวิถีชาวบ้าน เช่น น้ำพริกอ่อง สูตรล้านนาโบราณ และแกงแคผักพื้นบ้านเพื่อสุขภาพ
+                        </p>
+<div class="mt-auto flex items-center text-primary font-label-lg text-label-lg">
+                            อ่านสูตรและวิธีทำ <span class="material-symbols-outlined text-sm ml-1" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+
+<div class="md:col-span-12 bg-surface-container-lowest rounded-2xl shadow-layer-1 p-6 flex flex-col md:flex-row gap-6 items-center border border-outline-variant/30">
+<div class="w-full md:w-1/3 aspect-square md:aspect-auto md:h-full min-h-[220px] rounded-xl overflow-hidden relative">
+<img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGjzk_5fYPqtzaEP6hi90LL0zNq-0TEap2f3qUx1Q3eZZvX4kei8SmF2o2VjXAeSULqidieWFK1UAGnCWaJy3ZkNwjyA2gZ09Gj2IxPgMScgxt7IrJEUCSEoGh6ykvgOJr4QUCk-OvcIcgeIP3RagVTFVS3IgPR5AltCJgiNIM7rgCvOQFtK2SBgLlPO4p4aReEZLDByhiqSTgIOc06LqpKebfa6DCQnckVp9jZxi0YoGhX6pluO-_"/>
+</div>
+<div class="w-full md:w-2/3">
+<div class="flex items-center gap-2 mb-3 text-secondary">
+<span class="material-symbols-outlined" data-icon="history_edu">history_edu</span>
+<span class="font-label-lg text-label-lg font-bold">บันทึกประวัติศาสตร์</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-3">ตำนานการตั้งรกรากบ้านร่องเข็ม</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                            จากคำบอกเล่าของผู้เฒ่าผู้แก่ หมู่บ้านแห่งนี้ก่อตั้งขึ้นเมื่อกว่าร้อยปีที่แล้ว โดยกลุ่มชนที่อพยพมาหาแหล่งน้ำอุดมสมบูรณ์ "ร่องเข็ม" หมายถึงลำห้วยเล็กๆ ที่ไหลผ่านหมู่บ้าน...
+                        </p>
+<ul class="flex flex-col gap-2 mb-4">
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md text-body-md bg-surface p-3 rounded-lg border border-outline-variant/30">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm" data-icon="map">map</span></span>
+                                แผนที่ชุมชนและสายน้ำดั้งเดิม
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-body-md text-body-md bg-surface p-3 rounded-lg border border-outline-variant/30">
+<span class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary"><span class="material-symbols-outlined text-sm" data-icon="family_history">family_history</span></span>
+                                ลำดับตระกูลผู้นำและบุคคลสำคัญในอดีต
+                            </li>
+</ul>
+<button class="bg-transparent border border-primary text-primary px-4 py-2 rounded-lg font-label-lg text-label-lg hover:bg-primary/5 transition-colors cursor-pointer">
+                            อ่านประวัติฉบับเต็ม
+                        </button>
+</div>
+</div>
+</div>
+</div>
+
+<footer class="bg-surface-container-highest dark:bg-inverse-surface border-t border-outline-variant w-full mt-auto flex flex-col md:flex-row justify-between items-center px-gutter py-stack-lg gap-stack-md z-10 relative">
+<div class="flex flex-col items-center md:items-start gap-1">
+<span class="font-label-lg text-label-lg font-bold text-primary">บ้านร่องเข็ม หมู่ที่ 6</span>
+<p class="font-body-md text-body-md text-on-surface-variant">© 2026 e-Village Office บ้านร่องเข็ม สงวนลิขสิทธิ์</p>
+</div>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="index.html">หน้าแรก</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="tourism.html">ท่องเที่ยวชุมชน</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" href="contact.html">ติดต่อเรา</a>
+</div>
+</footer>
+</main>
+
+<nav class="md:hidden fixed bottom-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 z-50 pb-safe">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="index.html">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-medium">หน้าแรก</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="tourism.html">
+<span class="material-symbols-outlined">forest</span>
+<span class="text-[10px] font-medium">ท่องเที่ยว</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary font-bold" href="wisdom.html">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-[10px]">ภูมิปัญญา</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="contact.html">
+<span class="material-symbols-outlined">call</span>
+<span class="text-[10px] font-medium">ติดต่อ</span>
+</a>
+</nav>
+
+</body></html>
