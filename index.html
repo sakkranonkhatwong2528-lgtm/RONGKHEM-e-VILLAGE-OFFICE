@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-    <!-- Custom Tailwind Configuration -->
     <script>
         tailwind.config = {
             theme: {
@@ -47,14 +46,14 @@
 <header class="bg-white py-3 shadow-sm relative z-20">
     <div class="max-w-[1400px] mx-auto px-4 flex flex-wrap justify-between items-center gap-4">
         <!-- Logo and Titles -->
-        <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-4 hover:opacity-90 transition cursor-pointer">
             <img alt="Village Logo" class="w-16 h-16 rounded-full border border-gray-200 shadow-sm object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqrlPYE49MX4zPdFaBV9bMoVC6GxNVfJqP0QURhNeka8cEWq_cvTlbfpluNGHZmfgZ4RrH8QdXEDLyKWYaDFFcO3eD2GzO-ds_kRRXCpIqJc-ycOGcOYbN4njyaiVaQsBWAVN2izFQhnzBg2sX2y7l_lMbZLICOlsbDZatIsrh2Q6h4EXInhx2Fy0N_-ntwf3Vl8KB4LyYUx9OPJOSmZQtwjeVLuo728T0pTOnEmHqOjGhgVGoURT7s9aEquEvinDDCnOSu-HEtSNN6g">
             <div>
                 <h1 class="text-brand-blue text-2xl font-bold leading-tight">RONGKHEM e-VILLAGE OFFICE</h1>
                 <p class="text-brand-blue text-sm font-semibold">ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
                 <p class="text-gray-500 text-xs">ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
             </div>
-        </div>
+        </a>
 
         <!-- Info Widgets and Login -->
         <div class="flex flex-wrap items-stretch gap-3">
@@ -62,8 +61,8 @@
             <div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-white shadow-sm">
                 <i class="fa-regular fa-clock text-gray-400 text-2xl"></i>
                 <div class="text-sm">
-                    <div id="currentTime" class="font-bold text-gray-800">17:45 น.</div>
-                    <div id="currentDate" class="text-gray-500 text-xs">20 สิงหาคม 2569</div>
+                    <div id="clockTime" class="font-bold text-gray-800">17:45 น.</div>
+                    <div id="clockDate" class="text-gray-500 text-xs">20 สิงหาคม 2569</div>
                 </div>
             </div>
 
@@ -89,7 +88,7 @@
                 </div>
             </div>
 
-            <!-- Admin Login Link Button -->
+            <!-- Admin Login Button -->
             <a href="admin-login.html" class="bg-brand-blue text-white rounded-lg px-6 py-2 flex flex-col items-center justify-center hover:bg-blue-800 transition shadow-sm h-full cursor-pointer">
                 <div class="flex items-center gap-2 font-semibold text-sm">
                     <i class="fa-solid fa-lock"></i> เข้าสู่ระบบ
@@ -105,14 +104,14 @@
 <nav class="bg-brand-blue text-white shadow-md sticky top-0 z-10">
     <div class="max-w-[1400px] mx-auto px-4 overflow-x-auto hide-scrollbar">
         <ul class="flex items-center justify-between py-3.5 text-[15px] font-medium min-w-max gap-6">
-            <li><a href="index.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-house"></i> หน้าแรก</a></li>
-            <li><a href="leader.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-user-tie"></i> ผู้นำชุมชน</a></li>
-            <li><a href="news.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-regular fa-newspaper"></i> ข่าวสาร</a></li>
-            <li><a href="activity.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-calendar-days"></i> กิจกรรม</a></li>
-            <li><a href="project.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-folder-open"></i> โครงการ</a></li>
-            <li><a href="service.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-hand-holding-heart"></i> บริการประชาชน</a></li>
-            <li><a href="statistics.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-chart-column"></i> สถิติหมู่บ้าน</a></li>
-            <li><a href="contact.html" class="flex items-center gap-2 hover:text-blue-200 transition"><i class="fa-solid fa-envelope"></i> ติดต่อเรา</a></li>
+            <li><a href="index.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-house"></i> หน้าแรก</a></li>
+            <li><a href="leader.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-user-tie"></i> ผู้นำชุมชน</a></li>
+            <li><a href="news.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-regular fa-newspaper"></i> ข่าวสาร</a></li>
+            <li><a href="activity.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-calendar-days"></i> กิจกรรม</a></li>
+            <li><a href="project.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-folder-open"></i> โครงการ</a></li>
+            <li><a href="service.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-hand-holding-heart"></i> บริการประชาชน</a></li>
+            <li><a href="statistics.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-chart-column"></i> สถิติหมู่บ้าน</a></li>
+            <li><a href="contact.html" class="flex items-center gap-2 hover:text-blue-200 transition cursor-pointer"><i class="fa-solid fa-envelope"></i> ติดต่อเรา</a></li>
         </ul>
     </div>
 </nav>
@@ -192,8 +191,7 @@
                         <a class="text-brand-blue text-sm hover:underline font-medium" href="activity.html">ดูทั้งหมด</a>
                     </div>
                     <div class="flex-1 flex flex-col gap-4">
-                        <!-- Activity 1 -->
-                        <a href="detail.html?type=activities&id=1" class="flex gap-4 items-start hover:bg-gray-50 p-1.5 rounded-lg transition">
+                        <a href="detail.html?type=activities&id=1" class="flex gap-4 items-start hover:bg-gray-50 p-1.5 rounded-lg transition cursor-pointer">
                             <img alt="Activity" class="w-24 h-16 rounded object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxP_y7wILdJIHaPic1ArBpU8zlJbum0lLXERHN5waOfpWmz1uuudAGmPk1OL9piHJ_88SZPwvR9LaqIan7_v2-MHb2qK8Bt7TO6FwKJtDgVLGSHk0NFAWHNxENTQ9nsq1n4qp4esTtHUuXerQh04fMrpiYVSgnimXtKcVbBXAOulNK2MRc9lIzPk-hDQg1ViqXizsMg1UhHFd_UB_atdxGOyumVz07g6pHOefb5oZXTsV966CTFdef">
                             <div>
                                 <h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">โครงการชุมชนตำบลยั่งยืน</h4>
@@ -204,8 +202,7 @@
                                 </div>
                             </div>
                         </a>
-                        <!-- Activity 2 -->
-                        <a href="detail.html?type=activities&id=2" class="flex gap-4 items-start hover:bg-gray-50 p-1.5 rounded-lg transition">
+                        <a href="detail.html?type=activities&id=2" class="flex gap-4 items-start hover:bg-gray-50 p-1.5 rounded-lg transition cursor-pointer">
                             <img alt="Activity" class="w-24 h-16 rounded object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjC_5GncvKieMEVumPpmpgaCy5VQts4bcq9DUumgwHQinmGeOR7IpqeqtuzBuCWPiAsBtfE8rkyAy8eSVuaYlg6rnFmF5DpyCbdjcitAlHPseykiALv8X4s7xVNKy4KX5XPOQI32Qnfz608OPjD30SDm8blTT_QG3BfSh1QNDtoYQ-Gvsm0d8sMCQXDGiiTUIpEV-IdNxLOLvEc062FSRPtXsvGX2HcTlZXtGSrWzV9xbYPG_Ct5zs">
                             <div>
                                 <h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</h4>
@@ -228,36 +225,31 @@
                     <h3 class="text-brand-blue font-bold text-xl">บริการประชาชน</h3>
                 </div>
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-                    <!-- Service 1 -->
-                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="complaint.html">
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group cursor-pointer" href="complaint.html">
                         <div class="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:text-white transition">
                             <i class="fa-solid fa-bell text-xl"></i>
                         </div>
                         <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แจ้งเหตุ/<br>ร้องเรียน</span>
                     </a>
-                    <!-- Service 2 -->
-                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="citizen.html">
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group cursor-pointer" href="citizen.html">
                         <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600 group-hover:text-white transition">
                             <i class="fa-solid fa-file-lines text-xl"></i>
                         </div>
                         <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แบบฟอร์ม<br>ออนไลน์</span>
                     </a>
-                    <!-- Service 3 -->
-                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="contact.html">
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group cursor-pointer" href="contact.html">
                         <div class="w-12 h-12 rounded-full bg-green-100 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition">
                             <i class="fa-solid fa-comments text-xl"></i>
                         </div>
                         <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">ถาม-ตอบ<br>(Q&amp;A)</span>
                     </a>
-                    <!-- Service 4 -->
-                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="contact.html">
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group cursor-pointer" href="contact.html">
                         <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 group-hover:text-white transition">
                             <i class="fa-solid fa-phone text-xl"></i>
                         </div>
                         <span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">เบอร์โทรศัพท์<br>สำคัญ</span>
                     </a>
-                    <!-- Service 5 -->
-                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="contact.html">
+                    <a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group cursor-pointer" href="contact.html">
                         <div class="w-12 h-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500 group-hover:text-white transition">
                             <i class="fa-solid fa-map-location-dot text-xl"></i>
                         </div>
@@ -281,14 +273,14 @@
                 <ul class="flex-1 overflow-y-auto pr-2 space-y-4">
                     <li class="flex items-start gap-3">
                         <span class="bg-brand-blue text-white text-[11px] py-1 px-2 rounded font-medium whitespace-nowrap min-w-[70px] text-center mt-0.5">14 พ.ค. 69</span>
-                        <a href="detail.html?type=news&id=1" class="text-[13px] text-gray-700 leading-tight hover:text-brand-blue">
+                        <a href="detail.html?type=news&id=1" class="text-[13px] text-gray-700 leading-tight hover:text-brand-blue transition cursor-pointer">
                             ประกาศการจัดเก็บภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569
                             <span class="inline-block bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 align-middle">ใหม่</span>
                         </a>
                     </li>
                     <li class="flex items-start gap-3">
                         <span class="bg-brand-blue text-white text-[11px] py-1 px-2 rounded font-medium whitespace-nowrap min-w-[70px] text-center mt-0.5">10 พ.ค. 69</span>
-                        <a href="detail.html?type=news&id=2" class="text-[13px] text-gray-700 leading-tight hover:text-brand-blue">
+                        <a href="detail.html?type=news&id=2" class="text-[13px] text-gray-700 leading-tight hover:text-brand-blue transition cursor-pointer">
                             ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569
                             <span class="inline-block bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 align-middle">ใหม่</span>
                         </a>
@@ -306,7 +298,7 @@
                     <a class="text-brand-blue text-sm hover:underline font-medium" href="statistics.html">ดูทั้งหมด</a>
                 </div>
                 <div class="grid grid-cols-2 gap-3 flex-1">
-                    <a href="statistics.html" class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50 hover:bg-blue-50 transition">
+                    <a href="statistics.html" class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50 hover:bg-blue-50 transition cursor-pointer">
                         <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center flex-shrink-0">
                             <i class="fa-solid fa-users text-lg"></i>
                         </div>
@@ -316,7 +308,7 @@
                             <p class="text-[10px] text-gray-400">คน</p>
                         </div>
                     </a>
-                    <a href="statistics.html" class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50 hover:bg-green-50 transition">
+                    <a href="statistics.html" class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50 hover:bg-green-50 transition cursor-pointer">
                         <div class="w-10 h-10 rounded-full bg-green-100 text-green-500 flex items-center justify-center flex-shrink-0">
                             <i class="fa-solid fa-house-chimney text-lg"></i>
                         </div>
@@ -347,7 +339,7 @@
                         <h4 class="text-brand-blue font-bold text-[15px] mb-0.5">ช่องทางติดต่อ</h4>
                         <p class="text-brand-blue font-bold text-xs">นายศักรนนท์ ขัติย์วงค์</p>
                         <p class="text-gray-600 text-[10px] mb-2">ผู้ใหญ่บ้าน หมู่ที่ 6</p>
-                        <a href="contact.html" class="bg-brand-blue text-white text-[11px] py-1.5 px-4 rounded hover:bg-blue-800 transition w-fit">ติดต่อผู้ใหญ่บ้าน</a>
+                        <a href="contact.html" class="bg-brand-blue text-white text-[11px] py-1.5 px-4 rounded hover:bg-blue-800 transition w-fit cursor-pointer">ติดต่อผู้ใหญ่บ้าน</a>
                     </div>
                 </div>
             </div>
@@ -355,9 +347,7 @@
 
     </div>
 </main>
-<!-- END: MainContentContainer -->
 
-<!-- BEGIN: Footer -->
 <footer class="bg-brand-blue text-white py-4 mt-8">
     <div class="max-w-[1400px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm">
         <div class="flex items-center gap-3">
@@ -372,7 +362,32 @@
         </div>
     </div>
 </footer>
-<!-- END: Footer -->
+
+<!-- JavaScript อัปเดตเวลาและเปิดใช้งานลิงก์คลิกได้แน่นอน -->
+<script>
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const timeStr = `${hours}:${minutes} น.`;
+        
+        const thaiMonths = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"];
+        const day = now.getDate();
+        const month = thaiMonths[now.getMonth()];
+        const year = now.getFullYear() + 543;
+        const dateStr = `${day} ${month} ${year}`;
+
+        const timeElem = document.getElementById('clockTime');
+        const dateElem = document.getElementById('clockDate');
+        if (timeElem) timeElem.innerText = timeStr;
+        if (dateElem) dateElem.innerText = dateStr;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateClock();
+        setInterval(updateClock, 1000);
+    });
+</script>
 
 </body>
 </html>
