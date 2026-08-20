@@ -1,169 +1,289 @@
-/* =====================================================
-   RONGKHEM e-VILLAGE OFFICE
-   ADMIN USER SETUP
-   =====================================================
-
-   บัญชีผู้ใหญ่บ้าน:
-
-   Username:
-   sakkranon
-
-   Role:
-   admin
-
-   ===================================================== */
-
-
-/* =====================================================
-   STEP 1
-   ตรวจสอบ User ใน Supabase Authentication
-   =====================================================
-
-   UUID ต้องมาจาก:
-   Supabase
-   → Authentication
-   → Users
-
-   เช่น:
-
-   xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-
-   ===================================================== */
-
-
-/* =====================================================
-   STEP 2
-   ใส่ UUID ตรงนี้
-   ===================================================== */
-
-do $$
-
-declare
-
-    admin_user_id uuid :=
-        'YOUR_AUTH_USER_UUID';
-
-begin
-
-
-    /* =================================================
-       ตรวจสอบ UUID
-    ================================================= */
-
-    if admin_user_id =
-       'YOUR_AUTH_USER_UUID'::uuid then
-
-        raise exception
-        'กรุณาใส่ UUID ของ User ก่อน';
-
-    end if;
-
-
-    /* =================================================
-       ตรวจสอบว่ามี User จริงหรือไม่
-    ================================================= */
-
-    if not exists (
-
-        select 1
-
-        from auth.users
-
-        where id = admin_user_id
-
-    ) then
-
-        raise exception
-        'ไม่พบ User UUID นี้ใน Authentication';
-
-    end if;
-
-
-    /* =================================================
-       สร้าง / อัปเดต PROFILE
-    ================================================= */
-
-    insert into public.profiles
-    (
-
-        id,
-
-        username,
-
-        display_name,
-
-        role,
-
-        active
-
-    )
-
-    values
-    (
-
-        admin_user_id,
-
-        'sakkranon',
-
-        'ผู้ใหญ่บ้าน',
-
-        'admin',
-
-        true
-
-    )
-
-    on conflict (id)
-
-    do update set
-
-        username =
-            'sakkranon',
-
-        display_name =
-            'ผู้ใหญ่บ้าน',
-
-        role =
-            'admin',
-
-        active =
-            true,
-
-        updated_at =
-            now();
-
-
-    /* =================================================
-       สำเร็จ
-    ================================================= */
-
-    raise notice
-    'สร้างสิทธิ์ผู้ใหญ่บ้านสำเร็จ';
-
-end $$;
-
-
-/* =====================================================
-   ตรวจสอบผลลัพธ์
-===================================================== */
-
-select
-
-    id,
-
-    username,
-
-    display_name,
-
-    role,
-
-    active,
-
-    created_at,
-
-    updated_at
-
-from public.profiles
-
-where username =
-    'sakkranon';
+-- =========================================
+-- RONGKHEM e-VILLAGE DATABASE SETUP
+-- =========================================
+
+-- ข่าวสาร
+create table if not exists news (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+-- เรื่องร้องเรียน
+create table if not exists complaint (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+-- ผู้สูงอายุ
+create table if not exists elderly (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+-- กลุ่มเปราะบาง
+create table if not exists vulnerable (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+-- โครงการ
+create table if not exists project (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+-- เหตุการณ์
+create table if not exists incident (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+-- กิจกรรม
+create table if not exists activity (
+    id bigint generated always as identity primary key,
+    title text not null,
+    detail text,
+    image_url text,
+    created_at timestamptz default now()
+);
+
+
+-- =========================================
+-- เปิด RLS
+-- =========================================
+
+alter table news enable row level security;
+alter table complaint enable row level security;
+alter table elderly enable row level security;
+alter table vulnerable enable row level security;
+alter table project enable row level security;
+alter table incident enable row level security;
+alter table activity enable row level security;
+
+
+-- =========================================
+-- อ่านข้อมูลได้
+-- =========================================
+
+create policy "news_public_read"
+on news for select
+using (true);
+
+create policy "complaint_public_read"
+on complaint for select
+using (true);
+
+create policy "elderly_public_read"
+on elderly for select
+using (true);
+
+create policy "vulnerable_public_read"
+on vulnerable for select
+using (true);
+
+create policy "project_public_read"
+on project for select
+using (true);
+
+create policy "incident_public_read"
+on incident for select
+using (true);
+
+create policy "activity_public_read"
+on activity for select
+using (true);
+
+
+-- =========================================
+-- ผู้ Login เพิ่มข้อมูล
+-- =========================================
+
+create policy "news_insert"
+on news for insert
+to authenticated
+with check (true);
+
+create policy "complaint_insert"
+on complaint for insert
+to authenticated
+with check (true);
+
+create policy "elderly_insert"
+on elderly for insert
+to authenticated
+with check (true);
+
+create policy "vulnerable_insert"
+on vulnerable for insert
+to authenticated
+with check (true);
+
+create policy "project_insert"
+on project for insert
+to authenticated
+with check (true);
+
+create policy "incident_insert"
+on incident for insert
+to authenticated
+with check (true);
+
+create policy "activity_insert"
+on activity for insert
+to authenticated
+with check (true);
+
+
+-- =========================================
+-- ผู้ Login แก้ไข
+-- =========================================
+
+create policy "news_update"
+on news for update
+to authenticated
+using (true)
+with check (true);
+
+create policy "complaint_update"
+on complaint for update
+to authenticated
+using (true)
+with check (true);
+
+create policy "elderly_update"
+on elderly for update
+to authenticated
+using (true)
+with check (true);
+
+create policy "vulnerable_update"
+on vulnerable for update
+to authenticated
+using (true)
+with check (true);
+
+create policy "project_update"
+on project for update
+to authenticated
+using (true)
+with check (true);
+
+create policy "incident_update"
+on incident for update
+to authenticated
+using (true)
+with check (true);
+
+create policy "activity_update"
+on activity for update
+to authenticated
+using (true)
+with check (true);
+
+
+-- =========================================
+-- ผู้ Login ลบ
+-- =========================================
+
+create policy "news_delete"
+on news for delete
+to authenticated
+using (true);
+
+create policy "complaint_delete"
+on complaint for delete
+to authenticated
+using (true);
+
+create policy "elderly_delete"
+on elderly for delete
+to authenticated
+using (true);
+
+create policy "vulnerable_delete"
+on vulnerable for delete
+to authenticated
+using (true);
+
+create policy "project_delete"
+on project for delete
+to authenticated
+using (true);
+
+create policy "incident_delete"
+on incident for delete
+to authenticated
+using (true);
+
+create policy "activity_delete"
+on activity for delete
+to authenticated
+using (true);
+
+
+-- =========================================
+-- STORAGE BUCKET
+-- =========================================
+
+insert into storage.buckets
+(id, name, public)
+
+values
+('village-images', 'village-images', true)
+
+on conflict (id) do nothing;
+
+
+-- อ่านรูปได้
+create policy "public_read_images"
+on storage.objects
+for select
+using (bucket_id = 'village-images');
+
+
+-- Login แล้วอัปโหลดรูปได้
+create policy "auth_upload_images"
+on storage.objects
+for insert
+to authenticated
+with check (
+    bucket_id = 'village-images'
+);
+
+
+-- Login แล้วแก้ไขรูปได้
+create policy "auth_update_images"
+on storage.objects
+for update
+to authenticated
+using (
+    bucket_id = 'village-images'
+);
+
+
+-- Login แล้วลบรูปได้
+create policy "auth_delete_images"
+on storage.objects
+for delete
+to authenticated
+using (
+    bucket_id = 'village-images'
+);
