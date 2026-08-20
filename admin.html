@@ -555,4 +555,204 @@
     </script>
 
 
+
+<script>
+/* =========================================================
+   RONGKHEM e-VILLAGE OFFICE - ADMIN WORKING LAYER
+   เก็บข้อมูลใน localStorage จนกว่าจะต่อ Supabase
+========================================================= */
+(function(){
+  'use strict';
+
+  const KEY='rongkhem_admin_data_v1';
+  const DRAFT_KEY='rongkhem_admin_draft_v1';
+  const ACTIVITY_KEY='rongkhem_admin_log_v1';
+
+  const defaultDB={
+    news:[
+      {id:'n1',title:'ประกาศประชุมหมู่บ้านประจำเดือนสิงหาคม',description:'ขอเชิญชวนลูกบ้านทุกท่านเข้าร่วมประชุมประจำเดือนสิงหาคม เพื่อหารือเกี่ยวกับการจัดการขยะในชุมชน และการเตรียมความพร้อมสำหรับงานประเพณีเดือนหน้า...',date:'12 ส.ค. 69',status:'เผยแพร่แล้ว',image:''},
+      {id:'n2',title:'แจ้งเตือนเฝ้าระวังน้ำท่วมขังช่วงฤดูฝน',description:'ประชาสัมพันธ์ให้ประชาชนเตรียมความพร้อมและแจ้งเหตุพื้นที่เสี่ยงน้ำท่วมขัง',date:'10 ส.ค. 69',status:'ฉบับร่าง',image:''},
+      {id:'n3',title:'รายงานผลการจัดเก็บขยะประจำเดือนกรกฎาคม',description:'รายงานผลการดำเนินงานด้านการจัดการขยะในชุมชน',date:'5 ส.ค. 69',status:'เผยแพร่แล้ว',image:''}
+    ],
+    activities:[],
+    projects:[],
+    leaders:[],
+    village:{title:'บ้านร่องเข็ม หมู่ที่ 6',address:'ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา'},
+    stats:{population:'1247',households:'352',male:'',female:'',children:'86',elderly:'210',disabled:'18',vulnerable:'23',bedridden:''}
+  };
+
+  function read(){
+    try{
+      return Object.assign({}, defaultDB, JSON.parse(localStorage.getItem(KEY)||'{}'));
+    }catch(e){ return JSON.parse(JSON.stringify(defaultDB)); }
+  }
+  let db=read();
+  const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
+  const log=(action,title)=>{
+    const items=JSON.parse(localStorage.getItem(ACTIVITY_KEY)||'[]');
+    items.unshift({action,title,time:new Date().toLocaleString('th-TH')});
+    localStorage.setItem(ACTIVITY_KEY,JSON.stringify(items.slice(0,30)));
+  };
+  const esc=(v)=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+
+  function ensureId(prefix){ return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7); }
+
+  function showNotice(msg){
+    const old=document.getElementById('rongkhem-toast');
+    if(old) old.remove();
+    const t=document.createElement('div');
+    t.id='rongkhem-toast';
+    t.textContent=msg;
+    t.style.cssText='position:fixed;right:20px;bottom:20px;z-index:99999;background:#00475e;color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.2);font-family:Noto Sans,sans-serif';
+    document.body.appendChild(t);
+    setTimeout(()=>t.remove(),2200);
+  }
+
+  function downloadJSON(){
+    const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='rongkhem-backup-'+new Date().toISOString().slice(0,10)+'.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function syncDraftToForm(){
+    const s=localStorage.getItem(DRAFT_KEY);
+    if(!s) return;
+    try{
+      const d=JSON.parse(s), inputs=[...document.querySelectorAll('input,textarea,select')];
+      inputs.forEach((el,i)=>{ if(d[i]!=null) el.value=d[i]; });
+      showNotice('โหลดฉบับร่างแล้ว');
+    }catch(e){}
+  }
+
+  function saveDraft(){
+    const inputs=[...document.querySelectorAll('input,textarea,select')];
+    localStorage.setItem(DRAFT_KEY,JSON.stringify(inputs.map(x=>x.value)));
+    showNotice('บันทึกร่างแล้ว');
+  }
+
+  function findButtons(text){
+    return [...document.querySelectorAll('button')].filter(b=>b.textContent.trim().includes(text));
+  }
+
+  function bindHeaderActions(){
+    findButtons('ดาวน์โหลดรายงาน').forEach(b=>b.onclick=downloadJSON);
+    findButtons('ซิงค์ข้อมูล').forEach(b=>b.onclick=()=>{ db=read(); renderLists(); renderStats(); showNotice('ซิงค์ข้อมูลเรียบร้อย'); });
+    findButtons('บันทึกร่าง').forEach(b=>b.onclick=saveDraft);
+    findButtons('บันทึกและเผยแพร่').forEach(b=>b.onclick=saveCurrentNews);
+  }
+
+  function getEditorFields(){
+    const inputs=[...document.querySelectorAll('main input[type="text"], main textarea')];
+    return {
+      title: inputs.find(x=>x.value && x.value.includes('ประกาศ')) || inputs[0] || null,
+      desc: document.querySelector('main textarea') || null
+    };
+  }
+
+  function saveCurrentNews(){
+    const f=getEditorFields();
+    const title=(f.title?.value||'').trim();
+    const description=(f.desc?.value||'').trim();
+    if(!title){ alert('กรุณากรอกหัวข้อ'); return; }
+    const item={id:ensureId('news'),title,description,date:new Date().toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'}),status:'เผยแพร่แล้ว',image:''};
+    db.news.unshift(item); save(); log('เพิ่มข่าว',title); renderLists(); showNotice('บันทึกและเผยแพร่แล้ว');
+  }
+
+  function addItem(type){
+    const names={news:'ข่าวสาร / ประกาศ',activities:'กิจกรรมหมู่บ้าน',projects:'โครงการพัฒนา',leaders:'ผู้นำชุมชน'};
+    const title=prompt('ชื่อ'+names[type]);
+    if(!title) return;
+    const description=prompt('รายละเอียด')||'';
+    const date=new Date().toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'});
+    const item={id:ensureId(type.slice(0,-1)),title,description,date,status:'เผยแพร่แล้ว',image:''};
+    if(type==='leaders') Object.assign(item,{position:prompt('ตำแหน่ง')||'',phone:prompt('เบอร์โทร')||''});
+    if(type==='activities') Object.assign(item,{location:prompt('สถานที่')||'',people:prompt('ผู้เข้าร่วม')||''});
+    if(type==='projects') Object.assign(item,{status:prompt('สถานะโครงการ')||'กำลังดำเนินการ'});
+    db[type].unshift(item); save(); log('เพิ่ม'+names[type],title); renderLists(); showNotice('เพิ่มข้อมูลแล้ว');
+  }
+
+  function editItem(type,id){
+    const item=db[type].find(x=>x.id===id); if(!item) return;
+    const title=prompt('แก้ไขชื่อ',item.title||''); if(title===null) return;
+    const desc=prompt('แก้ไขรายละเอียด',item.description||''); if(desc===null) return;
+    item.title=title; item.description=desc;
+    if(type==='leaders'){ item.position=prompt('ตำแหน่ง',item.position||'')||''; item.phone=prompt('เบอร์โทร',item.phone||'')||''; }
+    if(type==='activities'){ item.location=prompt('สถานที่',item.location||'')||''; item.people=prompt('จำนวนผู้เข้าร่วม',item.people||'')||''; }
+    if(type==='projects'){ item.status=prompt('สถานะ',item.status||'')||''; }
+    save(); log('แก้ไข',title); renderLists(); showNotice('แก้ไขข้อมูลแล้ว');
+  }
+
+  function deleteItem(type,id){
+    const item=db[type].find(x=>x.id===id); if(!item) return;
+    if(!confirm('ต้องการลบ “'+item.title+'” ใช่หรือไม่?')) return;
+    db[type]=db[type].filter(x=>x.id!==id); save(); log('ลบ',item.title); renderLists(); showNotice('ลบข้อมูลแล้ว');
+  }
+
+  function card(item,type){
+    const status=item.status||'เผยแพร่แล้ว';
+    return `<div class="p-3 rounded-lg bg-white border border-outline-variant/40 mb-2 flex items-start justify-between gap-3">
+      <div class="min-w-0"><div class="flex gap-2 items-center mb-1"><span class="font-label-md text-[10px] px-1.5 py-0.5 bg-green-100 text-green-700 rounded">${esc(status)}</span><span class="font-body-md text-[10px] text-outline">${esc(item.date||'')}</span></div><h4 class="font-label-lg text-[14px] font-semibold text-on-surface truncate">${esc(item.title||'ไม่มีชื่อ')}</h4><p class="font-body-md text-[11px] text-on-surface-variant mt-1 line-clamp-2">${esc(item.description||'')}</p></div>
+      <div class="flex gap-1 shrink-0"><button type="button" data-rk-edit="${type}" data-rk-id="${esc(item.id)}" class="px-2 py-1 rounded bg-primary/10 text-primary text-xs">แก้ไข</button><button type="button" data-rk-del="${type}" data-rk-id="${esc(item.id)}" class="px-2 py-1 rounded bg-red-50 text-red-600 text-xs">ลบ</button></div>
+    </div>`;
+  }
+
+  function renderLists(){
+    const list=document.querySelector('.overflow-y-auto.flex-1.no-scrollbar');
+    if(!list) return;
+    const activeNews=db.news;
+    list.innerHTML=activeNews.map(x=>card(x,'news')).join('');
+    list.querySelectorAll('[data-rk-edit]').forEach(b=>b.onclick=()=>editItem(b.dataset.rkEdit,b.dataset.rkId));
+    list.querySelectorAll('[data-rk-del]').forEach(b=>b.onclick=()=>deleteItem(b.dataset.rkDel,b.dataset.rkId));
+  }
+
+  function renderStats(){
+    const cards=[...document.querySelectorAll('h3')].filter(h=>['2,450','48','12'].includes(h.textContent.trim()));
+    const vals=[db.news.length,db.projects.length,db.activities.length];
+    if(cards[1]) cards[1].textContent=db.news.length;
+    if(cards[2]) cards[2].textContent=db.projects.length;
+  }
+
+  function bindAdd(){
+    findButtons('เพิ่มข้อมูลใหม่').forEach(b=>b.onclick=()=>addItem('news'));
+    // ปุ่มแท็บ: ทำงานโดยการสลับรายการที่แสดง
+    const tabMap={'ข่าวสาร':'news','กิจกรรม':'activities','โครงการ':'projects'};
+    [...document.querySelectorAll('button')].forEach(b=>{
+      const t=b.textContent.trim();
+      if(!tabMap[t]) return;
+      b.onclick=()=>{
+        const type=tabMap[t],list=document.querySelector('.overflow-y-auto.flex-1.no-scrollbar');
+        if(!list) return;
+        list.innerHTML=(db[type]||[]).map(x=>card(x,type)).join('')||'<div class="p-6 text-center text-outline text-sm">ยังไม่มีข้อมูล</div>';
+        list.querySelectorAll('[data-rk-edit]').forEach(x=>x.onclick=()=>editItem(x.dataset.rkEdit,x.dataset.rkId));
+        list.querySelectorAll('[data-rk-del]').forEach(x=>x.onclick=()=>deleteItem(x.dataset.rkDel,x.dataset.rkId));
+        [...b.parentElement.children].forEach(x=>x.classList.remove('text-primary','border-primary'));
+        b.classList.add('text-primary','border-primary');
+      };
+    });
+  }
+
+  function init(){
+    save();
+    bindHeaderActions();
+    bindAdd();
+    renderStats();
+    renderLists();
+    syncDraftToForm();
+
+    // คลิกเขตอัปโหลด: เปิด file picker และแสดง preview
+    const zone=document.querySelector('.upload-zone');
+    if(zone){
+      const input=document.createElement('input'); input.type='file'; input.accept='image/png,image/jpeg,image/webp'; input.multiple=true; input.style.display='none'; document.body.appendChild(input);
+      zone.addEventListener('click',()=>input.click());
+      input.addEventListener('change',()=>{ if(input.files.length) showNotice('เลือกไฟล์ '+input.files.length+' ไฟล์แล้ว'); });
+    }
+  }
+
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
+})();
+</script>
+
 </body></html>
