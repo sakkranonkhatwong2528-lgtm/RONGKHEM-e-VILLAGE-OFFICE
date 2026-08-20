@@ -1,346 +1,75 @@
 <!DOCTYPE html>
-
-<html lang="th"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>แจ้งเหตุด่วนและร้องทุกข์ออนไลน์ - Rong Khem Village</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-secondary": "#ffffff",
-                        "surface-container-lowest": "#ffffff",
-                        "on-primary": "#ffffff",
-                        "on-tertiary-container": "#adb1b4",
-                        "on-primary-container": "#96adff",
-                        "surface-container-low": "#eef5f7",
-                        "surface-tint": "#3056c4",
-                        "on-secondary-container": "#6e5c00",
-                        "surface-dim": "#d4dbdd",
-                        "on-surface": "#161d1f",
-                        "on-secondary-fixed-variant": "#544600",
-                        "on-error": "#ffffff",
-                        "tertiary-container": "#404447",
-                        "surface-container-high": "#e2e9ec",
-                        "surface": "#f4fafd",
-                        "outline": "#747685",
-                        "background": "#f4fafd",
-                        "on-tertiary-fixed": "#181c1e",
-                        "inverse-on-surface": "#ebf2f4",
-                        "on-secondary-fixed": "#221b00",
-                        "primary": "#002576",
-                        "surface-bright": "#f4fafd",
-                        "on-tertiary": "#ffffff",
-                        "surface-variant": "#dde4e6",
-                        "on-primary-fixed": "#00164f",
-                        "on-primary-fixed-variant": "#093cab",
-                        "surface-container-highest": "#dde4e6",
-                        "primary-fixed-dim": "#b6c4ff",
-                        "tertiary-fixed": "#e0e3e6",
-                        "surface-container": "#e8eff1",
-                        "secondary-fixed-dim": "#e9c400",
-                        "outline-variant": "#c4c5d5",
-                        "tertiary": "#2a2e30",
-                        "tertiary-fixed-dim": "#c3c7ca",
-                        "on-background": "#161d1f",
-                        "secondary-container": "#fcd400",
-                        "on-surface-variant": "#444653",
-                        "primary-container": "#0038a8",
-                        "primary-fixed": "#dce1ff",
-                        "on-tertiary-fixed-variant": "#43474a",
-                        "on-error-container": "#93000a",
-                        "inverse-primary": "#b6c4ff",
-                        "inverse-surface": "#2b3234",
-                        "error-container": "#ffdad6",
-                        "secondary-fixed": "#ffe16d",
-                        "error": "#ba1a1a",
-                        "secondary": "#705d00"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "container-max": "1200px",
-                        "margin-mobile": "16px",
-                        "margin-desktop": "48px",
-                        "unit": "8px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline-md": ["Be Vietnam Pro"],
-                        "headline-lg-mobile": ["Be Vietnam Pro"],
-                        "headline-lg": ["Be Vietnam Pro"],
-                        "label-md": ["Be Vietnam Pro"],
-                        "body-md": ["Be Vietnam Pro"],
-                        "body-lg": ["Be Vietnam Pro"],
-                        "button-text": ["Be Vietnam Pro"]
-                    },
-                    "fontSize": {
-                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
-                        "headline-lg-mobile": ["26px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
-                        "label-md": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }],
-                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
-                        "button-text": ["16px", { "lineHeight": "1.0", "fontWeight": "600" }]
-                    }
-                }
-            }
-        }
-    </script>
-<style>
-        body { font-family: 'Be Vietnam Pro', sans-serif; }
-    </style>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แจ้งเหตุ/ร้องเรียน - RONGKHEM e-VILLAGE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Noto Sans Thai', sans-serif; background-color: #f0f2f5; }</style>
 </head>
-<body class="bg-background text-on-background antialiased flex flex-col min-h-screen">
-<!-- TopNavBar -->
-<nav class="bg-surface dark:bg-inverse-surface text-primary dark:text-primary-fixed-dim font-headline-md text-headline-md font-body-lg text-body-lg docked full-width top-0 shadow-sm z-50">
-<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
-<div class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim">
-                Rong Khem Village
+<body class="text-gray-800">
+
+    <nav class="bg-[#113a72] text-white shadow-md">
+        <div class="max-w-[1400px] mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="font-bold text-lg flex items-center gap-2">
+                <i class="fa-solid fa-house"></i> RONGKHEM e-VILLAGE
+            </a>
+            <a href="index.html" class="text-sm bg-white/10 px-3 py-1.5 rounded hover:bg-white/20 transition">กลับหน้าหลัก</a>
+        </div>
+    </nav>
+
+    <main class="max-w-2xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
+                <div class="w-10 h-10 rounded-full bg-red-100 text-red-500 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-bell text-lg"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-[#113a72]">ศูนย์รับเรื่องร้องเรียน/แจ้งเหตุ</h2>
+                    <p class="text-xs text-gray-500">ส่งเรื่องตรงถึงผู้ใหญ่บ้านและคณะกรรมการหมู่บ้าน</p>
+                </div>
             </div>
-<div class="hidden md:flex gap-6">
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">History</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">Services</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200" href="#">News</a>
-<a class="text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold" href="#">Contact</a>
-</div>
-<div class="flex items-center gap-4">
-<button class="bg-error text-on-error px-4 py-2 rounded-full font-button-text hover:bg-error/90 transition-colors">Emergency</button>
-<button aria-label="Account" class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
-<span class="material-symbols-outlined">account_circle</span>
-</button>
-<button aria-label="Notifications" class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors duration-200">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-</div>
-</div>
-</nav>
-<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-8 md:py-12 flex flex-col gap-12">
-<!-- Hero Section -->
-<header class="text-center space-y-4">
-<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">แจ้งเหตุด่วนและร้องทุกข์ออนไลน์</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">ระบบรับแจ้งเหตุและเรื่องราวร้องทุกข์ตลอด 24 ชั่วโมง เพื่อความปลอดภัยและความเป็นระเบียบเรียบร้อยของหมู่บ้าน</p>
-</header>
-<!-- Emergency Categories -->
-<section>
-<h2 class="font-headline-md text-headline-md text-on-surface mb-6">แจ้งเหตุด่วน (Emergency)</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- Card 1 -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
-<div class="w-16 h-16 bg-error-container text-on-error-container rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">local_hospital</span>
-</div>
-<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">อุบัติเหตุ/เจ็บป่วยฉุกเฉิน</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4">ต้องการรถพยาบาลหรือความช่วยเหลือทางการแพทย์ด่วน</p>
-<button class="mt-auto w-full bg-error text-on-error font-button-text text-button-text py-3 rounded-full hover:bg-error/90 transition-colors">แจ้งเหตุ 1669</button>
-</div>
-<!-- Card 2 -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
-<div class="w-16 h-16 bg-[#ffeedb] text-[#c94f00] rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-</div>
-<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">อัคคีภัย/ไฟไหม้</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4">พบเหตุไฟไหม้หรือกลุ่มควันที่อาจก่อให้เกิดอันตราย</p>
-<button class="mt-auto w-full bg-[#c94f00] text-white font-button-text text-button-text py-3 rounded-full hover:bg-[#a84200] transition-colors">แจ้งเหตุ 199</button>
-</div>
-<!-- Card 3 -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
-<div class="w-16 h-16 bg-surface-variant text-on-surface-variant rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">warning</span>
-</div>
-<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">อาชญากรรม/บุคคลต้องสงสัย</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4">พบเห็นการกระทำผิดกฎหมายหรือบุคคลแปลกหน้า</p>
-<button class="mt-auto w-full bg-on-surface-variant text-white font-button-text text-button-text py-3 rounded-full hover:bg-on-surface transition-colors">แจ้ง รปภ. / ตำรวจ</button>
-</div>
-<!-- Card 4 -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center gap-4">
-<div class="w-16 h-16 bg-primary-fixed text-primary-container rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">flood</span>
-</div>
-<h3 class="font-headline-md text-[20px] font-semibold text-on-surface">ภัยธรรมชาติ/น้ำท่วม</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-4">เหตุการณ์ทางธรรมชาติที่ส่งผลกระทบต่อส่วนรวม</p>
-<button class="mt-auto w-full bg-primary-container text-on-primary font-button-text text-button-text py-3 rounded-full hover:bg-primary transition-colors">แจ้งส่วนกลาง</button>
-</div>
-</div>
-</section>
-<!-- Main Content Area: Form & Tracking -->
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-<!-- Detailed Report Form -->
-<section class="lg:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl p-6 md:p-8 shadow-sm">
-<h2 class="font-headline-md text-headline-md text-primary mb-6 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">edit_document</span>
-                    แจ้งเรื่องร้องทุกข์/ปัญหาทั่วไป
-                </h2>
-<form class="space-y-6">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface" for="subject">หัวข้อการแจ้ง <span class="text-error">*</span></label>
-<input class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="subject" placeholder="เช่น ไฟถนนดับ, ขยะตกค้าง" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface" for="category">หมวดหมู่ <span class="text-error">*</span></label>
-<select class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors bg-white" id="category">
-<option disabled="" selected="" value="">เลือกหมวดหมู่</option>
-<option value="garbage">ขยะ/ความสะอาด</option>
-<option value="light">แสงสว่าง/ไฟฟ้า</option>
-<option value="road">ถนนชำรุด</option>
-<option value="noise">เสียงรบกวน</option>
-<option value="other">อื่นๆ</option>
-</select>
-</div>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface" for="description">รายละเอียดเหตุการณ์ <span class="text-error">*</span></label>
-<textarea class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="description" placeholder="อธิบายรายละเอียดปัญหาที่พบ..." rows="4"></textarea>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface">แนบรูปภาพหลักฐาน</label>
-<div class="border-2 border-dashed border-outline-variant rounded-lg p-8 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors">
-<span class="material-symbols-outlined text-4xl text-outline mb-2">cloud_upload</span>
-<span class="font-body-md text-body-md text-on-surface-variant">คลิกเพื่ออัปโหลด หรือลากไฟล์มาวางที่นี่</span>
-<span class="font-label-md text-label-md text-outline mt-1">รองรับ JPG, PNG สูงสุด 5MB</span>
-<input accept="image/*" class="hidden" multiple="" type="file"/>
-</div>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface" for="location">ระบุตำแหน่งที่เกิดเหตุ <span class="text-error">*</span></label>
-<div class="flex gap-2">
-<input class="flex-grow border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="location" placeholder="เช่น ซอย 3 หน้าบ้านเลขที่ 45/12" type="text"/>
-<button aria-label="Use current location" class="bg-surface-container-highest text-on-surface p-3 rounded-lg hover:bg-surface-variant transition-colors flex items-center justify-center" type="button">
-<span class="material-symbols-outlined">my_location</span>
-</button>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface" for="reporter-name">ชื่อผู้แจ้ง</label>
-<input class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="reporter-name" placeholder="ระบุชื่อ (เว้นว่างได้หากต้องการไม่เปิดเผย)" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="font-label-md text-label-md text-on-surface" for="reporter-phone">เบอร์โทรศัพท์ติดต่อ <span class="text-error">*</span></label>
-<input class="w-full border-2 border-outline-variant rounded-lg p-3 font-body-md text-body-md focus:border-primary focus:ring-0 transition-colors" id="reporter-phone" placeholder="08X-XXX-XXXX" type="tel"/>
-</div>
-</div>
-<button class="w-full bg-primary text-on-primary font-button-text text-button-text py-4 rounded-full hover:bg-primary-container transition-colors shadow-md" type="submit">
-                        ส่งเรื่องร้องทุกข์
-                    </button>
-</form>
-</section>
-<!-- Sidebar: Tracking & Contacts -->
-<aside class="space-y-8">
-<!-- Status Tracking -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
-<h2 class="font-headline-md text-[20px] text-on-surface mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-secondary">manage_search</span>
-                        ติดตามสถานะล่าสุด
-                    </h2>
-<div class="mb-6 relative">
-<input class="w-full border-2 border-outline-variant rounded-lg py-2 pl-10 pr-4 font-body-md text-body-md focus:border-primary focus:ring-0" placeholder="กรอกรหัสอ้างอิง (เช่น RK-1234)" type="text"/>
-<span class="material-symbols-outlined absolute left-3 top-2.5 text-outline">search</span>
-</div>
-<div class="space-y-4">
-<!-- Item 1 -->
-<div class="border-b border-outline-variant pb-4 last:border-0 last:pb-0">
-<div class="flex justify-between items-start mb-1">
-<span class="font-label-md text-label-md font-bold text-on-surface">RK-8901</span>
-<span class="bg-secondary-fixed text-on-secondary-fixed text-[12px] px-2 py-1 rounded-full font-medium">รอตรวจสอบ</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant truncate">ไฟถนนดับ ซอย 5</p>
-<span class="font-label-md text-[12px] text-outline">แจ้งเมื่อ 2 ชั่วโมงที่แล้ว</span>
-</div>
-<!-- Item 2 -->
-<div class="border-b border-outline-variant pb-4 last:border-0 last:pb-0">
-<div class="flex justify-between items-start mb-1">
-<span class="font-label-md text-label-md font-bold text-on-surface">RK-8895</span>
-<span class="bg-primary-fixed text-on-primary-fixed text-[12px] px-2 py-1 rounded-full font-medium">กำลังดำเนินการ</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant truncate">ท่อประปาแตก หน้าคลับเฮ้าส์</p>
-<span class="font-label-md text-[12px] text-outline">แจ้งเมื่อ 1 วันที่แล้ว</span>
-</div>
-<!-- Item 3 -->
-<div class="border-b border-outline-variant pb-4 last:border-0 last:pb-0">
-<div class="flex justify-between items-start mb-1">
-<span class="font-label-md text-label-md font-bold text-on-surface">RK-8850</span>
-<span class="bg-[#dcfce7] text-[#166534] text-[12px] px-2 py-1 rounded-full font-medium">แก้ไขแล้ว</span>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant truncate">ตัดแต่งกิ่งไม้ รั้วโครงการ</p>
-<span class="font-label-md text-[12px] text-outline">แจ้งเมื่อ 3 วันที่แล้ว</span>
-</div>
-</div>
-</div>
-<!-- Emergency Contacts -->
-<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm">
-<h2 class="font-headline-md text-[20px] text-on-surface mb-4 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary">contact_phone</span>
-                        เบอร์โทรติดต่อสำคัญ
-                    </h2>
-<ul class="space-y-4">
-<li class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-error">local_hospital</span>
-<span class="font-body-md text-body-md text-on-surface">หน่วยแพทย์ฉุกเฉิน</span>
-</div>
-<span class="font-label-md text-label-md font-bold text-error">1669</span>
-</li>
-<li class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-[#c94f00]">local_fire_department</span>
-<span class="font-body-md text-body-md text-on-surface">ดับเพลิง</span>
-</div>
-<span class="font-label-md text-label-md font-bold text-[#c94f00]">199</span>
-</li>
-<li class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-primary">local_police</span>
-<span class="font-body-md text-body-md text-on-surface">ตำรวจ (สถานีท้องที่)</span>
-</div>
-<span class="font-label-md text-label-md font-bold text-primary">191</span>
-</li>
-<li class="flex items-center justify-between">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant">support_agent</span>
-<span class="font-body-md text-body-md text-on-surface">นิติบุคคลหมู่บ้าน</span>
-</div>
-<span class="font-label-md text-label-md font-bold text-on-surface">02-XXX-XXXX</span>
-</li>
-<li class="flex items-center justify-between border-t border-outline-variant pt-4 mt-2">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-on-surface-variant">person</span>
-<span class="font-body-md text-body-md text-on-surface">ผู้ใหญ่บ้าน</span>
-</div>
-<span class="font-label-md text-label-md font-bold text-on-surface">080-120-2529</span>
-</li>
-</ul>
-</div>
-</aside>
-</div>
-</main>
-<!-- Footer -->
-<footer class="bg-surface-container-highest dark:bg-surface-container-lowest text-on-surface dark:text-on-surface-variant font-body-md text-body-md font-label-md text-label-md full-width bottom-0 w-full py-12 px-margin-desktop mt-auto max-w-container-max mx-auto border-t border-outline-variant flat no shadows">
-<div class="flex flex-col md:flex-row justify-between items-center gap-6">
-<div class="text-headline-sm font-headline-sm text-primary dark:text-primary-fixed-dim font-bold">
-                Rong Khem Village
-            </div>
-<div class="flex flex-wrap justify-center gap-4">
-<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Ministry of Interior</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Provincial Administration</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">E-Government Services</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Privacy Policy</a>
-<a class="text-on-surface-variant dark:text-surface-variant hover:underline hover:text-primary dark:hover:text-primary-fixed-dim" href="#">Terms of Service</a>
-</div>
-<div class="text-center md:text-right font-label-md text-label-md text-on-surface-variant">
-                © 2024 Rong Khem Village Management. All Rights Reserved. Government of Thailand Official Portal.
-            </div>
-</div>
-</footer>
-</body></html>
+
+            <form id="complaintForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">ชื่อ-นามสกุล ผู้แจ้ง</label>
+                    <input type="text" required placeholder="กรอกชื่อ-นามสกุล" class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">เบอร์โทรศัพท์ติดต่อ</label>
+                    <input type="tel" required placeholder="กรอกเบอร์โทรศัพท์" class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">เรื่องที่ต้องการแจ้ง</label>
+                    <select class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900">
+                        <option>แจ้งเรื่องเดือดร้อน/ร้องเรียนทั่วไป</option>
+                        <option>แจ้งเหตุฉุกเฉิน/ความไม่ปลอดภัย</option>
+                        <option>เสนอแนะการพัฒนาหมู่บ้าน</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">รายละเอียดข้อความ</label>
+                    <textarea rows="4" required placeholder="กรอกรายละเอียดเรื่องร้องเรียนหรือจุดเกิดเหตุ" class="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-900"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-[#113a72] text-white py-2.5 rounded-lg font-semibold text-sm hover:bg-blue-900 transition shadow-sm mt-4">
+                    <i class="fa-solid fa-paper-plane mr-1"></i> ส่งข้อมูลร้องเรียน
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('complaintForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('ส่งข้อมูลเรื่องร้องเรียนเรียบร้อยแล้ว');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>
