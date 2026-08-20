@@ -1,544 +1,521 @@
-import { supabase }
-from './supabase-config.js';
+import { supabase } from './supabase-config.js';
 
+// ================================
+// DOM
+// ================================
 
-const adminEmail =
-document.getElementById('adminEmail');
+const adminEmail = document.getElementById('adminEmail');
+const logoutBtn = document.getElementById('logoutBtn');
 
-const logoutBtn =
-document.getElementById('logoutBtn');
+const menuSelect = document.getElementById('menuSelect');
+const crudForm = document.getElementById('crudForm');
 
-const menuSelect =
-document.getElementById('menuSelect');
+const recordId = document.getElementById('recordId');
+const currentImageUrl = document.getElementById('currentImageUrl');
 
-const crudForm =
-document.getElementById('crudForm');
+const titleInput = document.getElementById('titleInput');
+const detailInput = document.getElementById('detailInput');
+const imageInput = document.getElementById('imageInput');
 
-const recordId =
-document.getElementById('recordId');
-
-const titleInput =
-document.getElementById('titleInput');
-
-const detailInput =
-document.getElementById('detailInput');
-
-const imageInput =
-document.getElementById('imageInput');
-
-const currentImageUrl =
-document.getElementById('currentImageUrl');
-
-const imagePreview =
-document.getElementById('imagePreview');
-
+const imagePreview = document.getElementById('imagePreview');
 const imagePreviewContainer =
-document.getElementById(
-'imagePreviewContainer'
-);
+    document.getElementById('imagePreviewContainer');
 
-const tableBody =
-document.getElementById('tableBody');
-
-const resetBtn =
-document.getElementById('resetBtn');
+const tableBody = document.getElementById('tableBody');
+const formTitle = document.getElementById('formTitle');
+const resetBtn = document.getElementById('resetBtn');
+const saveBtn = document.getElementById('saveBtn');
 
 
-async function checkLogin(){
+// ================================
+// ตรวจสอบ Login
+// ================================
 
-const {
-data:{user}
-}
-=
-await supabase.auth.getUser();
+async function checkLogin() {
 
-if(!user){
+    const {
+        data: { user },
+        error
+    } = await supabase.auth.getUser();
 
-window.location.href =
-'login.html';
+    if (error || !user) {
+        window.location.href = 'login.html';
+        return false;
+    }
 
-return;
+    adminEmail.textContent = user.email;
 
-}
-
-adminEmail.textContent =
-user.email;
-
+    return true;
 }
 
 
-async function loadData(){
+// ================================
+// โหลดข้อมูล
+// ================================
 
-const table =
-menuSelect.value;
+async function loadData() {
 
+    const tableName = menuSelect.value;
 
-tableBody.innerHTML = `
+    tableBody.innerHTML = `
+        <tr>
+            <td colspan="5" style="text-align:center">
+                กำลังโหลดข้อมูล...
+            </td>
+        </tr>
+    `;
 
-<tr>
-<td colspan="5"
-style="text-align:center">
+    const { data, error } = await supabase
+        .from(tableName)
+        .select('*')
+        .order('id', {
+            ascending: false
+        });
 
-กำลังโหลดข้อมูล...
+    if (error) {
 
-</td>
-</tr>
+        console.error(error);
 
-`;
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5"
+                    style="text-align:center;color:red">
+                    โหลดข้อมูลไม่สำเร็จ:<br>
+                    ${escapeHtml(error.message)}
+                </td>
+            </tr>
+        `;
 
+        return;
+    }
 
-const {
-data,
-error
+    renderTable(data || []);
 }
-=
-await supabase
-.from(table)
-.select('*')
-.order('id',{
-ascending:false
+
+
+// ================================
+// แสดงตาราง
+// ================================
+
+function renderTable(data) {
+
+    if (!data.length) {
+
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="5" style="text-align:center">
+                    ยังไม่มีข้อมูล
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+    tableBody.innerHTML = '';
+
+    data.forEach(item => {
+
+        const imageHtml = item.image_url
+            ? `
+                <img
+                    src="${item.image_url}"
+                    class="img-preview"
+                    alt="รูปภาพ"
+                >
+            `
+            : 'ไม่มีรูป';
+
+        const row = document.createElement('tr');
+
+        row.innerHTML = `
+            <td>${item.id}</td>
+
+            <td>${imageHtml}</td>
+
+            <td>
+                ${escapeHtml(item.title || '')}
+            </td>
+
+            <td>
+                ${escapeHtml(item.detail || '')}
+            </td>
+
+            <td style="text-align:center">
+
+                <button
+                    type="button"
+                    class="btn-edit">
+                    ✏️ แก้ไข
+                </button>
+
+                <button
+                    type="button"
+                    class="btn-delete">
+                    🗑️ ลบ
+                </button>
+
+            </td>
+        `;
+
+        row.querySelector('.btn-edit')
+            .addEventListener('click', () => {
+                editData(item);
+            });
+
+        row.querySelector('.btn-delete')
+            .addEventListener('click', () => {
+                deleteData(item);
+            });
+
+        tableBody.appendChild(row);
+    });
+}
+
+
+// ================================
+// Preview รูป
+// ================================
+
+imageInput.addEventListener('change', () => {
+
+    const file = imageInput.files[0];
+
+    if (!file) return;
+
+    imagePreview.src = URL.createObjectURL(file);
+
+    imagePreviewContainer.style.display = 'block';
 });
 
 
-if(error){
+// ================================
+// Upload รูป
+// ================================
 
-tableBody.innerHTML = `
+async function uploadImage(file) {
 
-<tr>
+    if (!file) {
+        return currentImageUrl.value || null;
+    }
 
-<td colspan="5">
+    const extension =
+        file.name.split('.').pop();
 
-เกิดข้อผิดพลาด:
-${error.message}
+    const fileName =
+        `${Date.now()}-${crypto.randomUUID()}.${extension}`;
 
-</td>
+    const filePath =
+        `uploads/${fileName}`;
 
-</tr>
+    const { error } =
+        await supabase.storage
+            .from('village-images')
+            .upload(filePath, file, {
+                cacheControl: '3600',
+                upsert: false
+            });
 
-`;
+    if (error) {
+        throw new Error(
+            'อัปโหลดรูปไม่สำเร็จ: ' +
+            error.message
+        );
+    }
 
-return;
+    const { data } =
+        supabase.storage
+            .from('village-images')
+            .getPublicUrl(filePath);
 
+    return data.publicUrl;
 }
 
 
-renderTable(data);
-
-}
-
-
-function renderTable(data){
-
-tableBody.innerHTML = '';
-
-
-if(!data.length){
-
-tableBody.innerHTML = `
-
-<tr>
-
-<td
-colspan="5"
-style="text-align:center">
-
-ยังไม่มีข้อมูล
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
-
-data.forEach(item=>{
-
-const image =
-item.image_url
-?
-`<img
-src="${item.image_url}"
-class="img-preview">`
-:
-'-';
-
-
-const tr =
-document.createElement('tr');
-
-
-tr.innerHTML = `
-
-<td>
-${item.id}
-</td>
-
-<td>
-${image}
-</td>
-
-<td>
-${escapeHtml(item.title)}
-</td>
-
-<td>
-${escapeHtml(item.detail || '')}
-</td>
-
-<td>
-
-<button
-class="btn-edit">
-
-✏️
-
-</button>
-
-<button
-class="btn-delete">
-
-🗑️
-
-</button>
-
-</td>
-
-`;
-
-
-tr.querySelector('.btn-edit')
-.addEventListener(
-'click',
-()=>editData(item)
-);
-
-
-tr.querySelector('.btn-delete')
-.addEventListener(
-'click',
-()=>deleteData(item.id)
-);
-
-
-tableBody.appendChild(tr);
-
-});
-
-}
-
-
-imageInput.addEventListener(
-'change',
-()=>{
-
-const file =
-imageInput.files[0];
-
-if(!file)return;
-
-imagePreview.src =
-URL.createObjectURL(file);
-
-imagePreviewContainer.style.display =
-'block';
-
-}
-);
-
-
-async function uploadImage(file){
-
-if(!file){
-
-return currentImageUrl.value || null;
-
-}
-
-
-const extension =
-file.name.split('.').pop();
-
-
-const fileName =
-`${Date.now()}-${crypto.randomUUID()}.${extension}`;
-
-
-const path =
-`uploads/${fileName}`;
-
-
-const {
-error
-}
-=
-await supabase.storage
-.from('village-images')
-.upload(
-path,
-file
-);
-
-
-if(error){
-
-throw error;
-
-}
-
-
-const {
-data
-}
-=
-supabase.storage
-.from('village-images')
-.getPublicUrl(path);
-
-
-return data.publicUrl;
-
-}
-
+// ================================
+// บันทึก
+// เพิ่ม / แก้ไข
+// ================================
 
 crudForm.addEventListener(
-'submit',
-async(e)=>{
+    'submit',
+    async event => {
 
-e.preventDefault();
+        event.preventDefault();
 
+        const tableName = menuSelect.value;
+        const id = recordId.value;
 
-const table =
-menuSelect.value;
+        saveBtn.disabled = true;
+        saveBtn.textContent = 'กำลังบันทึก...';
 
+        try {
 
-try{
+            const imageUrl =
+                await uploadImage(
+                    imageInput.files[0]
+                );
 
-const imageUrl =
-await uploadImage(
-imageInput.files[0]
+            const payload = {
+                title: titleInput.value.trim(),
+                detail: detailInput.value.trim(),
+                image_url: imageUrl
+            };
+
+            let error;
+
+            // แก้ไข
+            if (id) {
+
+                const result = await supabase
+                    .from(tableName)
+                    .update(payload)
+                    .eq('id', id);
+
+                error = result.error;
+
+            }
+
+            // เพิ่ม
+            else {
+
+                const result = await supabase
+                    .from(tableName)
+                    .insert([payload]);
+
+                error = result.error;
+            }
+
+            if (error) {
+                throw error;
+            }
+
+            alert(
+                id
+                    ? 'แก้ไขข้อมูลเรียบร้อยแล้ว'
+                    : 'เพิ่มข้อมูลเรียบร้อยแล้ว'
+            );
+
+            resetForm();
+
+            await loadData();
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            alert(
+                'เกิดข้อผิดพลาด:\n' +
+                error.message
+            );
+
+        }
+
+        finally {
+
+            saveBtn.disabled = false;
+
+            saveBtn.textContent =
+                'บันทึกข้อมูล';
+        }
+
+    }
 );
 
 
-const payload = {
+// ================================
+// แก้ไขข้อมูล
+// ================================
 
-title:
-titleInput.value.trim(),
+function editData(item) {
 
-detail:
-detailInput.value.trim(),
+    recordId.value = item.id;
 
-image_url:
-imageUrl
+    titleInput.value =
+        item.title || '';
 
-};
+    detailInput.value =
+        item.detail || '';
 
+    currentImageUrl.value =
+        item.image_url || '';
 
-let result;
+    if (item.image_url) {
 
+        imagePreview.src =
+            item.image_url;
 
-if(recordId.value){
+        imagePreviewContainer.style.display =
+            'block';
 
-result =
-await supabase
-.from(table)
-.update(payload)
-.eq(
-'id',
-recordId.value
-);
+    } else {
 
-}else{
+        imagePreview.src = '';
 
-result =
-await supabase
-.from(table)
-.insert([payload]);
+        imagePreviewContainer.style.display =
+            'none';
+    }
 
+    formTitle.textContent =
+        '✏️ แก้ไขข้อมูล ID: ' + item.id;
+
+    document.querySelector('.form-section')
+        ?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
 }
 
 
-if(result.error){
+// ================================
+// ลบข้อมูล
+// ================================
 
-throw result.error;
+async function deleteData(item) {
 
+    const tableName =
+        menuSelect.value;
+
+    const confirmDelete = confirm(
+        `ต้องการลบ "${item.title}" ใช่หรือไม่?\nการลบไม่สามารถย้อนกลับได้`
+    );
+
+    if (!confirmDelete) return;
+
+    const { error } =
+        await supabase
+            .from(tableName)
+            .delete()
+            .eq('id', item.id);
+
+    if (error) {
+
+        console.error(error);
+
+        alert(
+            'ลบข้อมูลไม่สำเร็จ:\n' +
+            error.message
+        );
+
+        return;
+    }
+
+    alert('ลบข้อมูลเรียบร้อยแล้ว');
+
+    resetForm();
+
+    await loadData();
 }
 
 
-alert(
-recordId.value
-?
-'แก้ไขข้อมูลเรียบร้อย'
-:
-'เพิ่มข้อมูลเรียบร้อย'
-);
+// ================================
+// ล้างฟอร์ม
+// ================================
 
+function resetForm() {
 
-resetForm();
+    crudForm.reset();
 
-loadData();
+    recordId.value = '';
 
-}
-catch(error){
+    currentImageUrl.value = '';
 
-alert(
-'เกิดข้อผิดพลาด: '+
-error.message
-);
+    imagePreview.src = '';
 
-}
+    imagePreviewContainer.style.display =
+        'none';
 
-}
-);
-
-
-function editData(item){
-
-recordId.value =
-item.id;
-
-titleInput.value =
-item.title || '';
-
-detailInput.value =
-item.detail || '';
-
-currentImageUrl.value =
-item.image_url || '';
-
-
-if(item.image_url){
-
-imagePreview.src =
-item.image_url;
-
-imagePreviewContainer.style.display =
-'block';
-
+    formTitle.textContent =
+        '➕ เพิ่มข้อมูลใหม่';
 }
 
 
-document.getElementById(
-'formTitle'
-).textContent =
-'✏️ แก้ไขข้อมูล';
-
-window.scrollTo({
-
-top:0,
-
-behavior:'smooth'
-
-});
-
-}
-
-
-async function deleteData(id){
-
-if(!confirm(
-'ยืนยันการลบข้อมูล?'
-))return;
-
-
-const {
-error
-}
-=
-await supabase
-.from(
-menuSelect.value
-)
-.delete()
-.eq(
-'id',
-id
-);
-
-
-if(error){
-
-alert(
-'ลบไม่สำเร็จ: '+
-error.message
-);
-
-return;
-
-}
-
-
-alert(
-'ลบข้อมูลเรียบร้อย'
-);
-
-loadData();
-
-}
-
-
-function resetForm(){
-
-crudForm.reset();
-
-recordId.value = '';
-
-currentImageUrl.value = '';
-
-imagePreview.src = '';
-
-imagePreviewContainer.style.display =
-'none';
-
-document.getElementById(
-'formTitle'
-).textContent =
-'➕ เพิ่มข้อมูลใหม่';
-
-}
-
+// ================================
+// เปลี่ยนเมนู
+// ================================
 
 menuSelect.addEventListener(
-'change',
-()=>{
+    'change',
+    async () => {
 
-resetForm();
+        resetForm();
 
-loadData();
-
-}
+        await loadData();
+    }
 );
 
+
+// ================================
+// ปุ่มล้างฟอร์ม
+// ================================
 
 resetBtn.addEventListener(
-'click',
-resetForm
+    'click',
+    resetForm
 );
 
+
+// ================================
+// Logout
+// ================================
 
 logoutBtn.addEventListener(
-'click',
-async()=>{
+    'click',
+    async () => {
 
-await supabase.auth.signOut();
+        if (!confirm(
+            'ต้องการออกจากระบบใช่หรือไม่?'
+        )) {
+            return;
+        }
 
-window.location.href =
-'login.html';
+        const { error } =
+            await supabase.auth.signOut();
 
-}
+        if (error) {
+
+            alert(
+                'ออกจากระบบไม่สำเร็จ'
+            );
+
+            return;
+        }
+
+        window.location.href =
+            'login.html';
+    }
 );
 
 
-async function init(){
+// ================================
+// ป้องกัน HTML Injection
+// ================================
 
-await checkLogin();
+function escapeHtml(value) {
 
-await loadData();
-
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 }
 
+
+// ================================
+// เริ่มระบบ
+// ================================
+
+async function init() {
+
+    const loggedIn =
+        await checkLogin();
+
+    if (!loggedIn) return;
+
+    await loadData();
+}
 
 init();
