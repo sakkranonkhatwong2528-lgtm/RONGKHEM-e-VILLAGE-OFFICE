@@ -1,758 +1,225 @@
-<!DOCTYPE html><html lang="th"><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>ระบบหลังบ้าน - บ้านร่องเข็ม หมู่ที่ 6</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;family=Noto+Sans:wght@400;500;700&amp;family=Public+Sans:wght@500;600&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-error-container": "#93000a",
-                      "error": "#ba1a1a",
-                      "on-secondary-fixed-variant": "#544600",
-                      "primary-fixed-dim": "#92cfee",
-                      "on-primary-fixed-variant": "#004d66",
-                      "inverse-surface": "#2e3132",
-                      "secondary-fixed": "#ffe264",
-                      "on-primary-container": "#9bd7f7",
-                      "on-secondary-fixed": "#221b00",
-                      "on-secondary-container": "#746200",
-                      "outline": "#70787d",
-                      "background": "#f8f9fa",
-                      "on-surface": "#191c1d",
-                      "tertiary-container": "#3a598b",
-                      "surface": "#f8f9fa",
-                      "on-primary-fixed": "#001e2b",
-                      "on-tertiary": "#ffffff",
-                      "on-background": "#191c1d",
-                      "surface-container-lowest": "#ffffff",
-                      "surface-bright": "#f8f9fa",
-                      "on-primary": "#ffffff",
-                      "surface-container-high": "#e7e8e9",
-                      "surface-tint": "#236580",
-                      "error-container": "#ffdad6",
-                      "inverse-primary": "#92cfee",
-                      "surface-container-low": "#f3f4f5",
-                      "surface-variant": "#e1e3e4",
-                      "tertiary-fixed-dim": "#a9c7ff",
-                      "surface-container": "#edeeef",
-                      "outline-variant": "#c0c8cd",
-                      "on-tertiary-fixed-variant": "#264778",
-                      "tertiary-fixed": "#d6e3ff",
-                      "primary": "#00475e",
-                      "secondary-container": "#ffde4e",
-                      "on-surface-variant": "#40484d",
-                      "on-tertiary-fixed": "#001b3d",
-                      "surface-dim": "#d9dadb",
-                      "on-tertiary-container": "#b8d0ff",
-                      "primary-container": "#1a5f7a",
-                      "inverse-on-surface": "#f0f1f2",
-                      "on-error": "#ffffff",
-                      "surface-container-highest": "#e1e3e4",
-                      "primary-fixed": "#c0e8ff",
-                      "on-secondary": "#ffffff",
-                      "secondary": "#6f5d00",
-                      "tertiary": "#204172",
-                      "secondary-fixed-dim": "#e4c536"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "gutter": "1rem",
-                      "stack-md": "1rem",
-                      "section-gap": "2rem",
-                      "stack-sm": "0.5rem",
-                      "stack-lg": "1.5rem",
-                      "margin-page": "1rem"
-              },
-              "fontFamily": {
-                      "headline-md": [
-                              "Be Vietnam Pro"
-                      ],
-                      "headline-lg": [
-                              "Be Vietnam Pro"
-                      ],
-                      "label-lg": [
-                              "Public Sans"
-                      ],
-                      "headline-sm": [
-                              "Be Vietnam Pro"
-                      ],
-                      "body-md": [
-                              "Noto Sans"
-                      ],
-                      "body-lg": [
-                              "Noto Sans"
-                      ],
-                      "headline-lg-mobile": [
-                              "Be Vietnam Pro"
-                      ],
-                      "label-md": [
-                              "Public Sans"
-                      ]
-              },
-              "fontSize": {
-                      "headline-md": [
-                              "22px",
-                              {
-                                      "lineHeight": "30px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "headline-lg": [
-                              "28px",
-                              {
-                                      "lineHeight": "36px",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "label-lg": [
-                              "14px",
-                              {
-                                      "lineHeight": "20px",
-                                      "letterSpacing": "0.1px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "headline-sm": [
-                              "18px",
-                              {
-                                      "lineHeight": "24px",
-                                      "fontWeight": "600"
-                              }
-                      ],
-                      "body-md": [
-                              "14px",
-                              {
-                                      "lineHeight": "22px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "body-lg": [
-                              "16px",
-                              {
-                                      "lineHeight": "26px",
-                                      "fontWeight": "400"
-                              }
-                      ],
-                      "headline-lg-mobile": [
-                              "24px",
-                              {
-                                      "lineHeight": "32px",
-                                      "fontWeight": "700"
-                              }
-                      ],
-                      "label-md": [
-                              "12px",
-                              {
-                                      "lineHeight": "16px",
-                                      "fontWeight": "500"
-                              }
-                      ]
-              }
-      },
-          },
-        }
-    </script>
-<style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-        }
-        
-        .soft-shadow {
-            box-shadow: 0 8px 24px -8px rgba(26, 95, 122, 0.15);
-        }
-
-        .upload-zone {
-            background-image: dashed;
-            transition: all 0.3s ease;
-        }
-
-        .upload-zone.dragover {
-            background-color: rgba(26, 95, 122, 0.05);
-            border-color: #1a5f7a;
-        }
-        
-        /* Sidebar active state styling */
-        .sidebar-item {
-            transition: all 0.2s ease;
-        }
-        .sidebar-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .sidebar-item.active {
-            background-color: theme('colors.primary-container');
-            color: theme('colors.on-primary-container');
-            font-weight: 600;
-        }
-        
-        /* Hide scrollbar for clean UI */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบจัดการข้อมูลผู้ใหญ่บ้าน - RONGKHEM e-VILLAGE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>body { font-family: 'Noto Sans Thai', sans-serif; background-color: #f0f2f5; }</style>
 </head>
-<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col md:flex-row overflow-x-hidden">
-<!-- Mobile Top App Bar (Only visible on small screens) -->
-<header class="md:hidden flex items-center justify-between p-4 bg-primary text-on-primary shadow-sm z-20 sticky top-0">
-<div class="flex items-center gap-3">
-<button class="p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors" id="mobile-menu-btn">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
-</button>
-<div class="flex flex-col">
-<span class="font-headline-sm text-headline-sm font-bold">บ้านร่องเข็ม หมู่ที่ 6</span>
-<span class="font-label-md text-label-md text-on-primary/80">ระบบจัดการข้อมูล</span>
-</div>
-</div>
-<div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">admin_panel_settings</span>
-</div>
-</header>
-<!-- Side Navigation (Shared Component Integration) -->
-<aside class="fixed md:static inset-y-0 left-0 w-72 bg-primary text-on-primary flex flex-col shadow-md z-30 transition-transform transform -translate-x-full md:translate-x-0 h-screen overflow-y-auto no-scrollbar pb-8" id="sidebar">
-<!-- Header -->
-<div class="p-6 border-b border-white/10 flex flex-col items-center text-center gap-3">
-<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm overflow-hidden border-2 border-white">
-<!-- Using placeholder for Official Seal as per Brand Guidelines -->
-<img alt="Village Logo" class="w-full h-full object-cover" data-alt="A clean, minimalist circular emblem representing a Thai village administrative seal, designed with modern vector lines. The color palette features deep royal blue and gold accents against a pristine white background. The style is professional, official, and authoritative, suitable for a digital governance platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9oG8GEosDO-HglJUaJsgqq2xTHeQtghXv1vubBH99M_E9uIJ-eXI7zhUk4LfkVAag3G85QaLg1sbJOurnI49GBy-xuE7UUhDP1AcLSgCk927nNTIsoPpg9Krek_ai6fUBlLEAPHA-4xbDvTmS3J5Cqb_9Pq05G4lxsn6Qr0kVf-qPenhIfCDLXrMBv8XeqvqUd54JbE3MDrm_m6hbdNV5BElLhQJMQormn_UFL06wEyQZnUC1cNtw2nbpowWY0NNucJM02RGrJz3qQw">
-</div>
-<div>
-<h2 class="font-headline-sm text-headline-sm font-bold text-on-primary">บ้านร่องเข็ม หมู่ที่ 6</h2>
-<p class="font-label-md text-label-md text-on-primary/70 mt-1">ตำบลจำป่าหวาย อำเภอเมืองพะเยา</p>
-<div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/10 rounded-full">
-<div class="w-2 h-2 rounded-full bg-green-400"></div>
-<span class="font-label-md text-[10px] uppercase tracking-wider text-white">System Active</span>
-</div>
-</div>
-</div>
-<!-- Navigation Links -->
-<nav class="flex-1 px-3 py-6 flex flex-col gap-1">
-<p class="px-4 mb-2 font-label-md text-[11px] uppercase tracking-wider text-on-primary/50 font-semibold">เมนูหลัก (Main Menu)</p>
-<a class="sidebar-item active flex items-center gap-4 px-4 py-3 rounded-lg group" href="#">
-<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">dashboard</span>
-<span class="font-label-lg text-label-lg text-on-primary-container">ภาพรวมระบบ</span>
-</a>
-<div class="mt-6 mb-2 px-4 flex items-center justify-between">
-<p class="font-label-md text-[11px] uppercase tracking-wider text-on-primary/50 font-semibold">จัดการข้อมูล (Content)</p>
-</div>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">groups</span>
-<span class="font-label-lg text-label-lg">ข้อมูลผู้นำชุมชน</span>
-</a>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">newspaper</span>
-<span class="font-label-lg text-label-lg">ข่าวสาร / ประกาศ</span>
-<span class="ml-auto bg-error text-on-error text-[10px] font-bold px-2 py-0.5 rounded-full">2</span>
-</a>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">event</span>
-<span class="font-label-lg text-label-lg">กิจกรรมหมู่บ้าน</span>
-</a>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_tree</span>
-<span class="font-label-lg text-label-lg">โครงการพัฒนา</span>
-</a>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">info</span>
-<span class="font-label-lg text-label-lg">ข้อมูลพื้นฐานหมู่บ้าน</span>
-</a>
-<div class="mt-6 mb-2 px-4 flex items-center justify-between">
-<p class="font-label-md text-[11px] uppercase tracking-wider text-on-primary/50 font-semibold">สื่อและระบบ (Media &amp; System)</p>
-</div>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">perm_media</span>
-<span class="font-label-lg text-label-lg">คลังรูปภาพ</span>
-</a>
-<a class="sidebar-item flex items-center gap-4 px-4 py-3 rounded-lg text-on-primary/80" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
-<span class="font-label-lg text-label-lg">สถิติการเข้าชม</span>
-</a>
-</nav>
-<!-- Bottom Actions -->
-<div class="mt-auto p-4 border-t border-white/10">
-<button class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-on-primary/80 hover:bg-error/20 hover:text-error-container transition-colors">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
-<span class="font-label-lg text-label-lg">ออกจากระบบ</span>
-</button>
-</div>
-</aside>
-<!-- Overlay for mobile sidebar -->
-<div class="fixed inset-0 bg-black/50 z-20 hidden md:hidden backdrop-blur-sm transition-opacity" id="sidebar-overlay"></div>
-<!-- Main Content Canvas -->
-<main class="flex-1 flex flex-col min-h-screen bg-background relative overflow-y-auto">
-<!-- Subtle Background Pattern for professional feel -->
-<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#1a5f7a 1px, transparent 1px); background-size: 24px 24px;"></div>
-<div class="relative z-10 p-4 md:p-8 flex flex-col gap-6 max-w-7xl mx-auto w-full">
-<!-- Header Section -->
-<header class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
-<div>
-<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg font-bold text-primary mb-1">ภาพรวมระบบ (Dashboard)</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">ยินดีต้อนรับ ผู้ดูแลระบบ จัดการข้อมูลหมู่บ้านบ้านร่องเข็มได้ที่นี่</p>
-</div>
-<div class="flex items-center gap-3">
-<button class="flex items-center gap-2 px-4 py-2 bg-white text-primary border border-outline-variant rounded-lg font-label-lg text-label-lg shadow-sm hover:bg-surface-container transition-colors">
-<span class="material-symbols-outlined text-[20px]">sync</span>
-                        ซิงค์ข้อมูล
-                    </button>
-<button class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-label-lg text-label-lg shadow-md hover:bg-primary/90 transition-colors soft-shadow">
-<span class="material-symbols-outlined text-[20px]">add</span>
-                        เพิ่มข้อมูลใหม่
-                    </button>
-</div>
-</header>
-<!-- BENTO GRID: Dashboard Overview -->
-<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-<!-- Stat Card 1 -->
-<div class="glass-panel rounded-xl p-6 flex flex-col relative overflow-hidden soft-shadow">
-<div class="absolute -right-4 -top-4 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
-<div class="flex justify-between items-start mb-4">
-<div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">visibility</span>
-</div>
-<span class="inline-flex items-center gap-1 text-green-600 bg-green-50 px-2 py-1 rounded-md font-label-md text-[12px] font-semibold">
-<span class="material-symbols-outlined text-[14px]">trending_up</span> +12%
-                        </span>
-</div>
-<div>
-<p class="font-label-md text-label-md text-on-surface-variant font-medium mb-1">ผู้เข้าชมเดือนนี้</p>
-<h3 class="font-headline-lg text-[32px] font-bold text-on-surface leading-tight">2,450</h3>
-</div>
-</div>
-<!-- Stat Card 2 -->
-<div class="glass-panel rounded-xl p-6 flex flex-col relative overflow-hidden soft-shadow">
-<div class="absolute -right-4 -top-4 w-24 h-24 bg-tertiary/5 rounded-full blur-xl"></div>
-<div class="flex justify-between items-start mb-4">
-<div class="w-12 h-12 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
-<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">newspaper</span>
-</div>
-</div>
-<div>
-<p class="font-label-md text-label-md text-on-surface-variant font-medium mb-1">ข่าวสาร/ประกาศ ทั้งหมด</p>
-<div class="flex items-end gap-2">
-<h3 class="font-headline-lg text-[32px] font-bold text-on-surface leading-tight">48</h3>
-<span class="font-body-md text-[13px] text-on-surface-variant mb-1">รายการ</span>
-</div>
-</div>
-</div>
-<!-- Stat Card 3 -->
-<div class="glass-panel rounded-xl p-6 flex flex-col relative overflow-hidden soft-shadow">
-<div class="absolute -right-4 -top-4 w-24 h-24 bg-secondary/5 rounded-full blur-xl"></div>
-<div class="flex justify-between items-start mb-4">
-<div class="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
-<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">account_tree</span>
-</div>
-<span class="inline-flex items-center gap-1 text-amber-600 bg-amber-50 px-2 py-1 rounded-md font-label-md text-[12px] font-semibold">
-                            กำลังดำเนินการ 3
-                        </span>
-</div>
-<div>
-<p class="font-label-md text-label-md text-on-surface-variant font-medium mb-1">โครงการหมู่บ้าน</p>
-<div class="flex items-end gap-2">
-<h3 class="font-headline-lg text-[32px] font-bold text-on-surface leading-tight">12</h3>
-<span class="font-body-md text-[13px] text-on-surface-variant mb-1">โครงการ</span>
-</div>
-</div>
-</div>
-<!-- Recent Activity (Spans 2 columns on lg) -->
-<div class="glass-panel rounded-xl p-6 flex flex-col md:col-span-3 lg:col-span-1 soft-shadow">
-<div class="flex items-center justify-between mb-4 border-b border-outline-variant/30 pb-2">
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">การแก้ไขล่าสุด</h3>
-<button class="text-primary hover:underline font-label-md text-[12px]">ดูทั้งหมด</button>
-</div>
-<div class="flex flex-col gap-4">
-<div class="flex gap-3">
-<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary mt-0.5">
-<span class="material-symbols-outlined text-[16px]">edit_document</span>
-</div>
-<div>
-<p class="font-label-md text-[13px] font-semibold text-on-surface">อัปเดตข้อมูลผู้นำชุมชน</p>
-<p class="font-body-md text-[11px] text-on-surface-variant">โดย Admin • 2 ชั่วโมงที่แล้ว</p>
-</div>
-</div>
-<div class="flex gap-3">
-<div class="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center flex-shrink-0 text-green-600 mt-0.5">
-<span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>
-</div>
-<div>
-<p class="font-label-md text-[13px] font-semibold text-on-surface">เพิ่มรูปภาพกิจกรรมวันแม่</p>
-<p class="font-body-md text-[11px] text-on-surface-variant">โดย Admin • เมื่อวาน 14:30 น.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- EDIT INTERFACE: Content Management Section -->
-<section class="mt-4 bg-white rounded-xl shadow-sm border border-outline-variant/50 overflow-hidden flex flex-col lg:flex-row soft-shadow">
-<!-- Left Sidebar of Editor: Content List -->
-<div class="w-full lg:w-1/3 border-r border-outline-variant/50 bg-surface-container-lowest flex flex-col h-[600px]">
-<div class="p-4 border-b border-outline-variant/50 bg-surface-container-low flex items-center justify-between">
-<h3 class="font-label-lg font-bold text-on-surface">รายการเนื้อหา</h3>
-<div class="relative">
-<span class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
-<input class="w-32 pl-8 pr-2 py-1 text-[12px] bg-white border border-outline-variant rounded-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="ค้นหา..." type="text">
-</div>
-</div>
-<!-- Content Categories Tabs (Simplified) -->
-<div class="flex border-b border-outline-variant/50">
-<button class="flex-1 py-2 font-label-md text-[12px] font-semibold text-primary border-b-2 border-primary bg-white">ข่าวสาร</button>
-<button class="flex-1 py-2 font-label-md text-[12px] font-semibold text-on-surface-variant hover:bg-surface-container-low">กิจกรรม</button>
-<button class="flex-1 py-2 font-label-md text-[12px] font-semibold text-on-surface-variant hover:bg-surface-container-low">โครงการ</button>
-</div>
-<!-- List Items -->
-<div class="overflow-y-auto flex-1 no-scrollbar p-2 flex flex-col gap-1">
-<!-- Active Item -->
-<div class="p-3 rounded-lg bg-primary/5 border border-primary/20 cursor-pointer relative">
-<div class="absolute left-0 top-2 bottom-2 w-1 bg-primary rounded-r-full"></div>
-<div class="flex justify-between items-start mb-1 pl-2">
-<span class="font-label-md text-[10px] px-1.5 py-0.5 bg-green-100 text-green-700 rounded text-xs font-semibold">เผยแพร่แล้ว</span>
-<span class="font-body-md text-[10px] text-outline">12 ส.ค. 67</span>
-</div>
-<h4 class="font-label-lg text-[14px] font-semibold text-on-surface line-clamp-1 pl-2">ประกาศประชุมหมู่บ้านประจำเดือนสิงหาคม</h4>
-</div>
-<!-- Inactive Item 1 -->
-<div class="p-3 rounded-lg hover:bg-surface-container-low border border-transparent cursor-pointer transition-colors">
-<div class="flex justify-between items-start mb-1">
-<span class="font-label-md text-[10px] px-1.5 py-0.5 bg-amber-100 text-amber-700 rounded text-xs font-semibold">ฉบับร่าง</span>
-<span class="font-body-md text-[10px] text-outline">10 ส.ค. 67</span>
-</div>
-<h4 class="font-label-lg text-[14px] font-semibold text-on-surface line-clamp-1">แจ้งเตือนเฝ้าระวังน้ำท่วมขังช่วงฤดูฝน</h4>
-</div>
-<!-- Inactive Item 2 -->
-<div class="p-3 rounded-lg hover:bg-surface-container-low border border-transparent cursor-pointer transition-colors">
-<div class="flex justify-between items-start mb-1">
-<span class="font-label-md text-[10px] px-1.5 py-0.5 bg-green-100 text-green-700 rounded text-xs font-semibold">เผยแพร่แล้ว</span>
-<span class="font-body-md text-[10px] text-outline">5 ส.ค. 67</span>
-</div>
-<h4 class="font-label-lg text-[14px] font-semibold text-on-surface line-clamp-1">รายงานผลการจัดเก็บขยะประจำเดือนกรกฎาคม</h4>
-</div>
-</div>
-</div>
-<!-- Right Area of Editor: Edit Form & Media Upload -->
-<div class="w-full lg:w-2/3 flex flex-col h-[600px] bg-white">
-<div class="p-4 border-b border-outline-variant/50 flex justify-between items-center bg-surface-container-lowest sticky top-0 z-10">
-<h2 class="font-headline-sm text-[16px] font-bold text-on-surface flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[20px]">edit_square</span>
-                            แก้ไขข้อมูล: ประกาศประชุมหมู่บ้าน...
-                        </h2>
-<div class="flex gap-2">
-<button class="px-3 py-1.5 border border-outline text-on-surface-variant rounded font-label-md text-[12px] hover:bg-surface-container transition-colors">บันทึกร่าง</button>
-<button class="px-3 py-1.5 bg-primary text-white rounded font-label-md text-[12px] hover:bg-primary/90 transition-colors shadow-sm">บันทึกและเผยแพร่</button>
-</div>
-</div>
-<div class="flex-1 overflow-y-auto p-6 flex flex-col gap-6 no-scrollbar">
-<!-- Form Group: Title -->
-<div>
-<label class="block font-label-lg text-[13px] text-on-surface font-semibold mb-2">หัวข้อประกาศ <span class="text-error">*</span></label>
-<input class="w-full px-3 py-2 border border-outline-variant rounded-md focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-[14px]" type="text" value="ประกาศประชุมหมู่บ้านประจำเดือนสิงหาคม">
-</div>
-<!-- Form Group: Content (Rich Text Simulation) -->
-<div>
-<label class="block font-label-lg text-[13px] text-on-surface font-semibold mb-2">รายละเอียด <span class="text-error">*</span></label>
-<div class="border border-outline-variant rounded-md overflow-hidden flex flex-col">
-<!-- Toolbar -->
-<div class="bg-surface-container-low border-b border-outline-variant p-2 flex gap-1 flex-wrap">
-<button class="p-1 hover:bg-outline-variant/30 rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
-<button class="p-1 hover:bg-outline-variant/30 rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
-<button class="p-1 hover:bg-outline-variant/30 rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_underlined</span></button>
-<div class="w-px bg-outline-variant mx-1"></div>
-<button class="p-1 hover:bg-outline-variant/30 rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
-<button class="p-1 hover:bg-outline-variant/30 rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">format_list_numbered</span></button>
-<div class="w-px bg-outline-variant mx-1"></div>
-<button class="p-1 hover:bg-outline-variant/30 rounded text-on-surface-variant"><span class="material-symbols-outlined text-[18px]">link</span></button>
-</div>
-<textarea class="w-full p-3 h-32 border-none focus:ring-0 font-body-md text-[14px] resize-none" placeholder="พิมพ์รายละเอียดที่นี่...">ขอเชิญชวนลูกบ้านทุกท่านเข้าร่วมประชุมประจำเดือนสิงหาคม เพื่อหารือเกี่ยวกับการจัดการขยะในชุมชน และการเตรียมความพร้อมสำหรับงานประเพณีเดือนหน้า...</textarea>
-</div>
-</div>
-<!-- Form Group: Media Upload (Drag & Drop) -->
-<div>
-<label class="block font-label-lg text-[13px] text-on-surface font-semibold mb-2">รูปภาพประกอบ (Media Library)</label>
-<!-- Drag & Drop Zone -->
-<div class="upload-zone border-2 border-dashed border-outline-variant/70 rounded-lg p-8 flex flex-col items-center justify-center text-center bg-surface-container-lowest cursor-pointer hover:border-primary hover:bg-primary/5 transition-all">
-<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 text-primary">
-<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
-</div>
-<p class="font-label-lg text-[14px] font-semibold text-on-surface mb-1">ลากไฟล์มาวางที่นี่ หรือ <span class="text-primary underline">คลิกเพื่ออัปโหลด</span></p>
-<p class="font-body-md text-[12px] text-on-surface-variant">รองรับไฟล์ JPG, PNG, WEBP ขนาดไม่เกิน 5MB</p>
-</div>
-<!-- Attached Images Gallery (Media Library Preview) -->
-<div class="mt-4">
-<p class="font-label-md text-[12px] text-on-surface-variant mb-2">รูปภาพที่แนบแล้ว (2)</p>
-<div class="flex gap-3 overflow-x-auto pb-2 no-scrollbar">
-<!-- Image 1 -->
-<div class="relative w-24 h-24 rounded-lg overflow-hidden border border-outline-variant flex-shrink-0 group">
-<div class="w-full h-full bg-cover bg-center" data-alt="A bright, clear photograph of a Thai village meeting hall. Wooden architecture, rows of plastic chairs, and a small stage area. The lighting is natural and inviting, conveying a sense of community gathering space." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuADF1NOCaWXwUXFDSX4wVKlrCiXs8UW9299ovde55j6Ouh-3avDXvgwW7FnFOOta-jvA9KWdY7MdgEbi4FP6gM6JviSUOwDYU92FmsiZqHrYT9wfxYYWskQULRTDKFPVD89VKP7hgz1oo8rIPrcgRHwX86nKMYoHHxCkI-KfQofOkFUNNGesL8M-2zUTl1LMQ4S_QkgzxYtfL6ziWBt1RaEKtvQqvg8TecPXHX279Q-2Ui880b90Ca4')"></div>
-<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-<button class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-error hover:bg-error-container">
-<span class="material-symbols-outlined text-[14px]">delete</span>
-</button>
-</div>
-</div>
-<!-- Image 2 -->
-<div class="relative w-24 h-24 rounded-lg overflow-hidden border border-outline-variant flex-shrink-0 group">
-<div class="w-full h-full bg-cover bg-center" data-alt="A close-up shot of a document containing agenda items for a Thai village meeting, resting on a wooden table. The document has official seals and neat typography. Professional and administrative mood." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDm4ZQxFeF8WwJ44s1nHNkrZZiL6zP8jzeXOnj9j8zQe4M5Z5rTLqQTVAgkEJnH3EHuKY8BtQcZ5Bt9XTiJRn5TxjSliVJzKo87Z8sux3uaXUhex5_ltlmnNQOC3LCvcMX9wbKI9P1nW2K5vnhd9kzOjI5yhh4V6W9u5ioRoemDwSxDQ0G7zy1Kw-d2HeP3vjo2BDyEWG2lQ5bhM_T_URwSh_ixdmCSTG8nNg-jyZBClVzq1s21cgSN')"></div>
-<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-<button class="w-6 h-6 rounded-full bg-white flex items-center justify-center text-error hover:bg-error-container">
-<span class="material-symbols-outlined text-[14px]">delete</span>
-</button>
-</div>
-</div>
-<!-- Add from library button -->
-<button class="w-24 h-24 rounded-lg border border-dashed border-outline-variant flex flex-col items-center justify-center flex-shrink-0 text-on-surface-variant hover:bg-surface-container hover:text-primary transition-colors">
-<span class="material-symbols-outlined text-[20px] mb-1">perm_media</span>
-<span class="font-label-md text-[10px]">เลือกจากคลัง</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-</main>
-<script>
-        // Simple script for mobile sidebar toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
+<body class="text-gray-800">
 
-            function toggleMenu() {
-                const isClosed = sidebar.classList.contains('-translate-x-full');
-                if (isClosed) {
-                    sidebar.classList.remove('-translate-x-full');
-                    overlay.classList.remove('hidden');
-                    // Small delay to allow display:block to apply before changing opacity
-                    setTimeout(() => overlay.classList.add('opacity-100'), 10);
-                } else {
-                    sidebar.classList.add('-translate-x-full');
-                    overlay.classList.remove('opacity-100');
-                    setTimeout(() => overlay.classList.add('hidden'), 300);
-                }
+    <!-- Header Panel -->
+    <nav class="bg-[#113a72] text-white shadow-md">
+        <div class="max-w-[1200px] mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-user-shield text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-base leading-tight">ระบบจัดการข้อมูลสำหรับผู้ใหญ่บ้าน</h1>
+                    <p class="text-xs text-blue-200">บ้านร่องเข็ม หมู่ที่ 6</p>
+                </div>
+            </div>
+            <a href="index.html" class="text-xs bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                <i class="fa-solid fa-right-from-bracket"></i> ออกจากระบบ
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-[1200px] mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Form Add/Edit (Span 5) -->
+            <div class="lg:col-span-5 bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-fit">
+                <h2 id="formTitle" class="text-lg font-bold text-[#113a72] mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-plus-circle text-green-600"></i> เพิ่มข่าวสาร / กิจกรรมใหม่
+                </h2>
+
+                <form id="dataForm" class="space-y-4">
+                    <input type="hidden" id="editIndex" value="-1">
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">ประเภทข้อมูล</label>
+                        <select id="itemType" class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                            <option value="news">ข่าวสารและประกาศ</option>
+                            <option value="activity">กิจกรรมชุมชน</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">หัวข้อ / ชื่อกิจกรรม</label>
+                        <input type="text" id="itemTitle" required placeholder="กรอกหัวข้อข่าวหรือกิจกรรม" class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">วันที่ดำเนินการ</label>
+                        <input type="text" id="itemDate" required placeholder="เช่น 20 สิงหาคม 2569" class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">URL รูปภาพประกอบ (ถ้ามี)</label>
+                        <input type="url" id="itemImage" placeholder="https://example.com/image.jpg" class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">รายละเอียดเนื้อหา</label>
+                        <textarea id="itemDetail" rows="4" required placeholder="กรอกรายละเอียดข่าวสาร..." class="w-full px-3 py-2 text-xs border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-900 focus:outline-none"></textarea>
+                    </div>
+
+                    <div class="flex gap-2 pt-2">
+                        <button type="submit" class="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg font-bold text-xs transition shadow-sm">
+                            <i class="fa-solid fa-floppy-disk mr-1"></i> บันทึกข้อมูล
+                        </button>
+                        <button type="button" id="btnCancel" onclick="resetForm()" class="hidden bg-gray-400 hover:bg-gray-500 text-white px-4 py-2 rounded-lg font-bold text-xs transition">
+                            ยกเลิก
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- List Data Table (Span 7) -->
+            <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <h2 class="text-lg font-bold text-[#113a72] mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check"></i> รายการข้อมูลทั้งหมดในระบบ
+                </h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-gray-50 border-b border-gray-100 text-xs text-gray-500">
+                                <th class="p-3">ประเภท</th>
+                                <th class="p-3">หัวข้อ</th>
+                                <th class="p-3">วันที่</th>
+                                <th class="p-3 text-center">จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dataTableBody" class="text-xs divide-y divide-gray-100">
+                            <!-- Data Rendered Here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Default Mock Data
+        const defaultItems = [
+            { type: 'news', title: 'ประกาศการจัดเก็บภาษีที่ดิน ประจำปี 2569', date: '14 พ.ค. 2569', detail: 'ขอเชิญชวนประชาชนผู้มีหน้าที่เสียภาษี ชำระภาษีภายในกำหนด...', image: '' },
+            { type: 'activity', title: 'โครงการชุมชนตำบลยั่งยืน', date: '15 พ.ค. 2569', detail: 'กิจกรรมสร้างภูมิคุ้มกันและส่งเสริมอาชีพในหมู่บ้าน...', image: '' }
+        ];
+
+        // Load or Init Data
+        function getItems() {
+            const data = localStorage.getItem('villageData');
+            return data ? JSON.parse(data) : defaultItems;
+        }
+
+        function saveItems(data) {
+            localStorage.setItem('villageData', JSON.stringify(data));
+            renderTable();
+        }
+
+        // Render Table
+        function renderTable() {
+            const items = getItems();
+            const tbody = document.getElementById('dataTableBody');
+            tbody.innerHTML = '';
+
+            if (items.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center p-4 text-gray-400">ยังไม่มีข้อมูล</td></tr>`;
+                return;
             }
 
-            if(mobileMenuBtn && sidebar && overlay) {
-                mobileMenuBtn.addEventListener('click', toggleMenu);
-                overlay.addEventListener('click', toggleMenu);
+            items.forEach((item, index) => {
+                const badge = item.type === 'news' 
+                    ? `<span class="bg-red-100 text-red-600 px-2 py-0.5 rounded font-bold">ข่าว</span>`
+                    : `<span class="bg-green-100 text-green-600 px-2 py-0.5 rounded font-bold">กิจกรรม</span>`;
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="p-3">${badge}</td>
+                        <td class="p-3 font-semibold text-gray-800">${item.title}</td>
+                        <td class="p-3 text-gray-500 whitespace-nowrap">${item.date}</td>
+                        <td class="p-3 text-center whitespace-nowrap space-x-1">
+                            <button onclick="editItem(${index})" class="bg-blue-50 text-blue-600 hover:bg-blue-100 p-1.5 rounded transition" title="แก้ไข">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                            <button onclick="deleteItem(${index})" class="bg-red-50 text-red-600 hover:bg-red-100 p-1.5 rounded transition" title="ลบ">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Form Submit (Add or Save Edit)
+        document.getElementById('dataForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const items = getItems();
+            const editIndex = parseInt(document.getElementById('editIndex').value);
+
+            const newItem = {
+                type: document.getElementById('itemType').value,
+                title: document.getElementById('itemTitle').value,
+                date: document.getElementById('itemDate').value,
+                image: document.getElementById('itemImage').value,
+                detail: document.getElementById('itemDetail').value
+            };
+
+            if (editIndex === -1) {
+                // Add New
+                items.unshift(newItem);
+                alert('เพิ่มข้อมูลใหม่เรียบร้อยแล้ว');
+            } else {
+                // Save Edit
+                items[editIndex] = newItem;
+                alert('บันทึกการแก้ไขเรียบร้อยแล้ว');
             }
+
+            saveItems(items);
+            resetForm();
         });
+
+        // Edit Action
+        function editItem(index) {
+            const item = getItems()[index];
+            document.getElementById('editIndex').value = index;
+            document.getElementById('itemType').value = item.type;
+            document.getElementById('itemTitle').value = item.title;
+            document.getElementById('itemDate').value = item.date;
+            document.getElementById('itemImage').value = item.image || '';
+            document.getElementById('itemDetail').value = item.detail;
+
+            document.getElementById('formTitle').innerHTML = `<i class="fa-solid fa-pen-to-square text-blue-600"></i> แก้ไขข้อมูล`;
+            document.getElementById('btnCancel').classList.remove('hidden');
+        }
+
+        // Delete Action
+        function deleteItem(index) {
+            if (confirm('คุณต้องการลบรายการนี้ใช่หรือไม่?')) {
+                const items = getItems();
+                items.splice(index, 1);
+                saveItems(items);
+                alert('ลบข้อมูลเรียบร้อยแล้ว');
+            }
+        }
+
+        // Reset Form
+        function resetForm() {
+            document.getElementById('dataForm').reset();
+            document.getElementById('editIndex').value = -1;
+            document.getElementById('formTitle').innerHTML = `<i class="fa-solid fa-plus-circle text-green-600"></i> เพิ่มข่าวสาร / กิจกรรมใหม่`;
+            document.getElementById('btnCancel').classList.add('hidden');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderTable);
     </script>
-
-
-
-<script>
-/* =========================================================
-   RONGKHEM e-VILLAGE OFFICE - ADMIN WORKING LAYER
-   เก็บข้อมูลใน localStorage จนกว่าจะต่อ Supabase
-========================================================= */
-(function(){
-  'use strict';
-
-  const KEY='rongkhem_admin_data_v1';
-  const DRAFT_KEY='rongkhem_admin_draft_v1';
-  const ACTIVITY_KEY='rongkhem_admin_log_v1';
-
-  const defaultDB={
-    news:[
-      {id:'n1',title:'ประกาศประชุมหมู่บ้านประจำเดือนสิงหาคม',description:'ขอเชิญชวนลูกบ้านทุกท่านเข้าร่วมประชุมประจำเดือนสิงหาคม เพื่อหารือเกี่ยวกับการจัดการขยะในชุมชน และการเตรียมความพร้อมสำหรับงานประเพณีเดือนหน้า...',date:'12 ส.ค. 69',status:'เผยแพร่แล้ว',image:''},
-      {id:'n2',title:'แจ้งเตือนเฝ้าระวังน้ำท่วมขังช่วงฤดูฝน',description:'ประชาสัมพันธ์ให้ประชาชนเตรียมความพร้อมและแจ้งเหตุพื้นที่เสี่ยงน้ำท่วมขัง',date:'10 ส.ค. 69',status:'ฉบับร่าง',image:''},
-      {id:'n3',title:'รายงานผลการจัดเก็บขยะประจำเดือนกรกฎาคม',description:'รายงานผลการดำเนินงานด้านการจัดการขยะในชุมชน',date:'5 ส.ค. 69',status:'เผยแพร่แล้ว',image:''}
-    ],
-    activities:[],
-    projects:[],
-    leaders:[],
-    village:{title:'บ้านร่องเข็ม หมู่ที่ 6',address:'ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา'},
-    stats:{population:'1247',households:'352',male:'',female:'',children:'86',elderly:'210',disabled:'18',vulnerable:'23',bedridden:''}
-  };
-
-  function read(){
-    try{
-      return Object.assign({}, defaultDB, JSON.parse(localStorage.getItem(KEY)||'{}'));
-    }catch(e){ return JSON.parse(JSON.stringify(defaultDB)); }
-  }
-  let db=read();
-  const save=()=>localStorage.setItem(KEY,JSON.stringify(db));
-  const log=(action,title)=>{
-    const items=JSON.parse(localStorage.getItem(ACTIVITY_KEY)||'[]');
-    items.unshift({action,title,time:new Date().toLocaleString('th-TH')});
-    localStorage.setItem(ACTIVITY_KEY,JSON.stringify(items.slice(0,30)));
-  };
-  const esc=(v)=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-
-  function ensureId(prefix){ return prefix+'-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7); }
-
-  function showNotice(msg){
-    const old=document.getElementById('rongkhem-toast');
-    if(old) old.remove();
-    const t=document.createElement('div');
-    t.id='rongkhem-toast';
-    t.textContent=msg;
-    t.style.cssText='position:fixed;right:20px;bottom:20px;z-index:99999;background:#00475e;color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.2);font-family:Noto Sans,sans-serif';
-    document.body.appendChild(t);
-    setTimeout(()=>t.remove(),2200);
-  }
-
-  function downloadJSON(){
-    const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});
-    const a=document.createElement('a');
-    a.href=URL.createObjectURL(blob);
-    a.download='rongkhem-backup-'+new Date().toISOString().slice(0,10)+'.json';
-    a.click();
-    URL.revokeObjectURL(a.href);
-  }
-
-  function syncDraftToForm(){
-    const s=localStorage.getItem(DRAFT_KEY);
-    if(!s) return;
-    try{
-      const d=JSON.parse(s), inputs=[...document.querySelectorAll('input,textarea,select')];
-      inputs.forEach((el,i)=>{ if(d[i]!=null) el.value=d[i]; });
-      showNotice('โหลดฉบับร่างแล้ว');
-    }catch(e){}
-  }
-
-  function saveDraft(){
-    const inputs=[...document.querySelectorAll('input,textarea,select')];
-    localStorage.setItem(DRAFT_KEY,JSON.stringify(inputs.map(x=>x.value)));
-    showNotice('บันทึกร่างแล้ว');
-  }
-
-  function findButtons(text){
-    return [...document.querySelectorAll('button')].filter(b=>b.textContent.trim().includes(text));
-  }
-
-  function bindHeaderActions(){
-    findButtons('ดาวน์โหลดรายงาน').forEach(b=>b.onclick=downloadJSON);
-    findButtons('ซิงค์ข้อมูล').forEach(b=>b.onclick=()=>{ db=read(); renderLists(); renderStats(); showNotice('ซิงค์ข้อมูลเรียบร้อย'); });
-    findButtons('บันทึกร่าง').forEach(b=>b.onclick=saveDraft);
-    findButtons('บันทึกและเผยแพร่').forEach(b=>b.onclick=saveCurrentNews);
-  }
-
-  function getEditorFields(){
-    const inputs=[...document.querySelectorAll('main input[type="text"], main textarea')];
-    return {
-      title: inputs.find(x=>x.value && x.value.includes('ประกาศ')) || inputs[0] || null,
-      desc: document.querySelector('main textarea') || null
-    };
-  }
-
-  function saveCurrentNews(){
-    const f=getEditorFields();
-    const title=(f.title?.value||'').trim();
-    const description=(f.desc?.value||'').trim();
-    if(!title){ alert('กรุณากรอกหัวข้อ'); return; }
-    const item={id:ensureId('news'),title,description,date:new Date().toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'}),status:'เผยแพร่แล้ว',image:''};
-    db.news.unshift(item); save(); log('เพิ่มข่าว',title); renderLists(); showNotice('บันทึกและเผยแพร่แล้ว');
-  }
-
-  function addItem(type){
-    const names={news:'ข่าวสาร / ประกาศ',activities:'กิจกรรมหมู่บ้าน',projects:'โครงการพัฒนา',leaders:'ผู้นำชุมชน'};
-    const title=prompt('ชื่อ'+names[type]);
-    if(!title) return;
-    const description=prompt('รายละเอียด')||'';
-    const date=new Date().toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'});
-    const item={id:ensureId(type.slice(0,-1)),title,description,date,status:'เผยแพร่แล้ว',image:''};
-    if(type==='leaders') Object.assign(item,{position:prompt('ตำแหน่ง')||'',phone:prompt('เบอร์โทร')||''});
-    if(type==='activities') Object.assign(item,{location:prompt('สถานที่')||'',people:prompt('ผู้เข้าร่วม')||''});
-    if(type==='projects') Object.assign(item,{status:prompt('สถานะโครงการ')||'กำลังดำเนินการ'});
-    db[type].unshift(item); save(); log('เพิ่ม'+names[type],title); renderLists(); showNotice('เพิ่มข้อมูลแล้ว');
-  }
-
-  function editItem(type,id){
-    const item=db[type].find(x=>x.id===id); if(!item) return;
-    const title=prompt('แก้ไขชื่อ',item.title||''); if(title===null) return;
-    const desc=prompt('แก้ไขรายละเอียด',item.description||''); if(desc===null) return;
-    item.title=title; item.description=desc;
-    if(type==='leaders'){ item.position=prompt('ตำแหน่ง',item.position||'')||''; item.phone=prompt('เบอร์โทร',item.phone||'')||''; }
-    if(type==='activities'){ item.location=prompt('สถานที่',item.location||'')||''; item.people=prompt('จำนวนผู้เข้าร่วม',item.people||'')||''; }
-    if(type==='projects'){ item.status=prompt('สถานะ',item.status||'')||''; }
-    save(); log('แก้ไข',title); renderLists(); showNotice('แก้ไขข้อมูลแล้ว');
-  }
-
-  function deleteItem(type,id){
-    const item=db[type].find(x=>x.id===id); if(!item) return;
-    if(!confirm('ต้องการลบ “'+item.title+'” ใช่หรือไม่?')) return;
-    db[type]=db[type].filter(x=>x.id!==id); save(); log('ลบ',item.title); renderLists(); showNotice('ลบข้อมูลแล้ว');
-  }
-
-  function card(item,type){
-    const status=item.status||'เผยแพร่แล้ว';
-    return `<div class="p-3 rounded-lg bg-white border border-outline-variant/40 mb-2 flex items-start justify-between gap-3">
-      <div class="min-w-0"><div class="flex gap-2 items-center mb-1"><span class="font-label-md text-[10px] px-1.5 py-0.5 bg-green-100 text-green-700 rounded">${esc(status)}</span><span class="font-body-md text-[10px] text-outline">${esc(item.date||'')}</span></div><h4 class="font-label-lg text-[14px] font-semibold text-on-surface truncate">${esc(item.title||'ไม่มีชื่อ')}</h4><p class="font-body-md text-[11px] text-on-surface-variant mt-1 line-clamp-2">${esc(item.description||'')}</p></div>
-      <div class="flex gap-1 shrink-0"><button type="button" data-rk-edit="${type}" data-rk-id="${esc(item.id)}" class="px-2 py-1 rounded bg-primary/10 text-primary text-xs">แก้ไข</button><button type="button" data-rk-del="${type}" data-rk-id="${esc(item.id)}" class="px-2 py-1 rounded bg-red-50 text-red-600 text-xs">ลบ</button></div>
-    </div>`;
-  }
-
-  function renderLists(){
-    const list=document.querySelector('.overflow-y-auto.flex-1.no-scrollbar');
-    if(!list) return;
-    const activeNews=db.news;
-    list.innerHTML=activeNews.map(x=>card(x,'news')).join('');
-    list.querySelectorAll('[data-rk-edit]').forEach(b=>b.onclick=()=>editItem(b.dataset.rkEdit,b.dataset.rkId));
-    list.querySelectorAll('[data-rk-del]').forEach(b=>b.onclick=()=>deleteItem(b.dataset.rkDel,b.dataset.rkId));
-  }
-
-  function renderStats(){
-    const cards=[...document.querySelectorAll('h3')].filter(h=>['2,450','48','12'].includes(h.textContent.trim()));
-    const vals=[db.news.length,db.projects.length,db.activities.length];
-    if(cards[1]) cards[1].textContent=db.news.length;
-    if(cards[2]) cards[2].textContent=db.projects.length;
-  }
-
-  function bindAdd(){
-    findButtons('เพิ่มข้อมูลใหม่').forEach(b=>b.onclick=()=>addItem('news'));
-    // ปุ่มแท็บ: ทำงานโดยการสลับรายการที่แสดง
-    const tabMap={'ข่าวสาร':'news','กิจกรรม':'activities','โครงการ':'projects'};
-    [...document.querySelectorAll('button')].forEach(b=>{
-      const t=b.textContent.trim();
-      if(!tabMap[t]) return;
-      b.onclick=()=>{
-        const type=tabMap[t],list=document.querySelector('.overflow-y-auto.flex-1.no-scrollbar');
-        if(!list) return;
-        list.innerHTML=(db[type]||[]).map(x=>card(x,type)).join('')||'<div class="p-6 text-center text-outline text-sm">ยังไม่มีข้อมูล</div>';
-        list.querySelectorAll('[data-rk-edit]').forEach(x=>x.onclick=()=>editItem(x.dataset.rkEdit,x.dataset.rkId));
-        list.querySelectorAll('[data-rk-del]').forEach(x=>x.onclick=()=>deleteItem(x.dataset.rkDel,x.dataset.rkId));
-        [...b.parentElement.children].forEach(x=>x.classList.remove('text-primary','border-primary'));
-        b.classList.add('text-primary','border-primary');
-      };
-    });
-  }
-
-  function init(){
-    save();
-    bindHeaderActions();
-    bindAdd();
-    renderStats();
-    renderLists();
-    syncDraftToForm();
-
-    // คลิกเขตอัปโหลด: เปิด file picker และแสดง preview
-    const zone=document.querySelector('.upload-zone');
-    if(zone){
-      const input=document.createElement('input'); input.type='file'; input.accept='image/png,image/jpeg,image/webp'; input.multiple=true; input.style.display='none'; document.body.appendChild(input);
-      zone.addEventListener('click',()=>input.click());
-      input.addEventListener('change',()=>{ if(input.files.length) showNotice('เลือกไฟล์ '+input.files.length+' ไฟล์แล้ว'); });
-    }
-  }
-
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
-})();
-</script>
-
-</body></html>
+</body>
+</html>
