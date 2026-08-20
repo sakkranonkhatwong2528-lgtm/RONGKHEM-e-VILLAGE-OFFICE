@@ -39,7 +39,7 @@ async function checkLogin() {
     } = await supabase.auth.getUser();
 
     if (error || !user) {
-        window.location.href = 'login.html';
+        window.location.href = 'admin-login.html';
         return false;
     }
 
@@ -320,7 +320,6 @@ crudForm.addEventListener(
             saveBtn.textContent =
                 'บันทึกข้อมูล';
         }
-
     }
 );
 
@@ -484,7 +483,7 @@ logoutBtn.addEventListener(
         }
 
         window.location.href =
-            'login.html';
+            'admin-login.html';
     }
 );
 
