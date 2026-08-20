@@ -1,77 +1,302 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รายละเอียดข้อมูล - สำนักงานหมู่บ้านร่องเขม</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        body { font-family: 'Sarabun', sans-serif; background-color: #f8f9fa; margin: 0; padding: 20px; }
-        .detail-card { max-width: 800px; margin: 20px auto; background: #ffffff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-        .detail-cover { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
-        .detail-title { font-size: 24px; font-weight: bold; color: #2c3e50; margin-bottom: 10px; }
-        .detail-date { font-size: 14px; color: #7f8c8d; margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .detail-body { font-size: 16px; line-height: 1.8; color: #333; white-space: pre-line; }
-        .btn-back { display: inline-block; margin-top: 25px; padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-        .btn-back:hover { background-color: #0056b3; }
-    </style>
+    <title id="pageTitle">รายละเอียด - RONGKHEM e-VILLAGE OFFICE</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Noto Sans Thai -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#113a72',
+                            light: '#e8f0fe',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans Thai"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>body { background-color: #f0f2f5; }</style>
 </head>
-<body>
+<body class="text-gray-800 font-sans antialiased">
 
-    <div class="detail-card">
-        <img id="itemImage" class="detail-cover" src="" alt="รูปประกอบ" style="display: none;">
-        <h1 id="itemTitle" class="detail-title">กำลังโหลดข้อมูล...</h1>
-        <div id="itemDate" class="detail-date"></div>
-        <div id="itemDetail" class="detail-body"></div>
+    <!-- Header Navigation -->
+    <nav class="bg-brand-blue text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-[1200px] mx-auto px-4 py-3.5 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 font-bold text-lg hover:opacity-90 transition">
+                <img alt="Village Logo" class="w-9 h-9 rounded-full border border-white/20 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqrlPYE49MX4zPdFaBV9bMoVC6GxNVfJqP0QURhNeka8cEWq_cvTlbfpluNGHZmfgZ4RrH8QdXEDLyKWYaDFFcO3eD2GzO-ds_kRRXCpIqJc-ycOGcOYbN4njyaiVaQsBWAVN2izFQhnzBg2sX2y7l_lMbZLICOlsbDZatIsrh2Q6h4EXInhx2Fy0N_-ntwf3Vl8KB4LyYUx9OPJOSmZQtwjeVLuo728T0pTOnEmHqOjGhgVGoURT7s9aEquEvinDDCnOSu-HEtSNN6g">
+                <span class="hidden sm:inline">RONGKHEM e-VILLAGE OFFICE</span>
+            </a>
+            <div class="flex items-center gap-3 text-sm">
+                <a href="index.html" class="flex items-center gap-1.5 bg-white/10 hover:bg-white/20 text-white px-3 py-1.5 rounded-lg transition">
+                    <i class="fa-solid fa-house text-xs"></i> หน้าแรก
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="max-w-[1000px] mx-auto px-4 py-8">
         
-        <a href="javascript:history.back()" class="btn-back">⬅️ ย้อนกลับ</a>
-    </div>
+        <!-- Breadcrumb Nav -->
+        <nav class="flex items-center gap-2 text-xs text-gray-500 mb-6">
+            <a href="index.html" class="hover:text-brand-blue">หน้าแรก</a>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span id="breadcrumbCategory">ข่าวสารและประกาศ</span>
+            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            <span id="breadcrumbTitle" class="text-gray-800 font-medium truncate max-w-[200px] md:max-w-xs">รายละเอียด</span>
+        </nav>
 
-    <script type="module">
-        import { supabase } from './supabase.js';
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left Content Area (Col 8) -->
+            <article class="lg:col-span-8 bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8">
+                
+                <!-- Category Badge & Date -->
+                <div class="flex flex-wrap justify-between items-center gap-2 mb-4">
+                    <span id="detailBadge" class="bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full">
+                        ข่าวประกาศด่วน
+                    </span>
+                    <span id="detailDate" class="text-xs text-gray-400 flex items-center gap-1">
+                        <i class="fa-regular fa-calendar"></i> 14 พฤษภาคม 2569
+                    </span>
+                </div>
 
-        async function loadDetail() {
+                <!-- Detail Title -->
+                <h1 id="detailTitle" class="text-2xl md:text-3xl font-bold text-gray-900 leading-snug mb-6">
+                    กำลังโหลดข้อมูล...
+                </h1>
+
+                <!-- Featured Cover Image -->
+                <div class="rounded-xl overflow-hidden mb-6 bg-gray-100 border border-gray-100 shadow-sm max-h-[420px]">
+                    <img id="detailImage" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLmVd7ljjBr0z4XbfzHTwvsU9mt_Kv0DDesm4Bk39DJBSaWN74XD_USS5Sg7yunj_oI4F56Lt-4_DFedI0MCsJUEmOS6rD2I1MU7dlJc3TFONv5niuAkX1xHXJdZgcy7zCGlAjOGBe-plO5Uc2hG9hCXBLYfy6ScpgmRdAoZ6ZSTNhX3fK2xOJ92vyNoMLcF0Qk5IazTp8Y8dqgyVEa1mA6wafpSQUSzHhBILZLm-igfkCKLGwCiZK" alt="ภาพประกอบ">
+                </div>
+
+                <!-- Location & Info Bar (Visible if activity) -->
+                <div id="activityMetaInfo" class="hidden bg-blue-50/70 border border-blue-100 rounded-xl p-4 mb-6 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-gray-700">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-location-dot text-red-500 text-base"></i>
+                        <div>
+                            <span class="font-bold block text-brand-blue">สถานที่จัดกิจกรรม</span>
+                            <span id="metaLocation">ศาลาประชาคมหมู่บ้าน หมู่ที่ 6</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-users text-green-600 text-base"></i>
+                        <div>
+                            <span class="font-bold block text-brand-blue">จำนวนผู้เข้าร่วม</span>
+                            <span id="metaParticipants">ประมาณ 65 คน</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content Body -->
+                <div id="detailContent" class="text-gray-700 leading-relaxed text-sm md:text-base space-y-4 border-b border-gray-100 pb-8">
+                    <p>กรุณารอครู่หนึ่ง ระบบกำลังดึงข้อมูล...</p>
+                </div>
+
+                <!-- Share Buttons -->
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+                    <span class="text-xs font-semibold text-gray-500 flex items-center gap-1.5">
+                        <i class="fa-solid fa-share-nodes"></i> แชร์ข้อมูลนี้:
+                    </span>
+                    <div class="flex items-center gap-2">
+                        <button onclick="shareSocial('facebook')" class="w-8 h-8 rounded-full bg-[#1877f2] text-white flex items-center justify-center hover:opacity-90 text-xs">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </button>
+                        <button onclick="shareSocial('line')" class="w-8 h-8 rounded-full bg-[#00b900] text-white flex items-center justify-center hover:opacity-90 text-xs">
+                            <i class="fa-brands fa-line text-sm"></i>
+                        </button>
+                        <button onclick="copyLink()" class="w-8 h-8 rounded-full bg-gray-600 text-white flex items-center justify-center hover:opacity-90 text-xs" title="คัดลอกลิงก์">
+                            <i class="fa-solid fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </article>
+
+            <!-- Right Sidebar Area (Col 4) -->
+            <aside class="lg:col-span-4 space-y-6">
+                
+                <!-- Publisher Info Widget -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">ข้อมูลผู้ลงประกาศ</h3>
+                    <div class="flex items-center gap-3">
+                        <img class="w-12 h-12 rounded-full object-cover border border-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRrrT5yWWoaG0Qnprcf-CU9A0JDlUpATd7hDoBbE-2MbFwRj5QxaTXHtTZUnppoviRE9FniyZMh7t6F_zKWeqzmjESsirls_qsXy8Ci3lxottc512PUbMcgGpGlDeSqKghZauar8IihQ5eZ0iTpvzxFDkeywNz82mSi7-kLJ0XeUy-mqsfgxw_aE3ppPpGt6rQJrqWdhYYOIf6JWPVBPHxyMTHNsz7YIBFxlmSuIJJGcvnWOcDUa9vf_Znn5iyRW_5iHfhjrTqjhqSTw" alt="นายศักรนนท์ ขัติย์วงค์">
+                        <div>
+                            <h4 class="font-bold text-brand-blue text-sm">นายศักรนนท์ ขัติย์วงค์</h4>
+                            <p class="text-xs text-gray-500">ผู้ใหญ่บ้าน หมู่ที่ 6</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between text-xs text-gray-500">
+                        <span>หน่วยงาน:</span>
+                        <span class="font-medium text-gray-700">ที่ทำการผู้ใหญ่บ้านร่องเข็ม</span>
+                    </div>
+                </div>
+
+                <!-- Recent Sidebar Posts -->
+                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-5">
+                    <h3 class="text-sm font-bold text-brand-blue mb-4 pb-2 border-b border-gray-100 flex items-center justify-between">
+                        <span>รายการใกล้เคียง</span>
+                        <a href="news.html" class="text-xs text-brand-blue hover:underline font-normal">ทั้งหมด</a>
+                    </h3>
+                    <div class="space-y-4">
+                        <a href="detail.html?type=news&id=1" class="flex items-start gap-3 group">
+                            <div class="w-16 h-12 rounded bg-gray-100 flex-shrink-0 overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLmVd7ljjBr0z4XbfzHTwvsU9mt_Kv0DDesm4Bk39DJBSaWN74XD_USS5Sg7yunj_oI4F56Lt-4_DFedI0MCsJUEmOS6rD2I1MU7dlJc3TFONv5niuAkX1xHXJdZgcy7zCGlAjOGBe-plO5Uc2hG9hCXBLYfy6ScpgmRdAoZ6ZSTNhX3fK2xOJ92vyNoMLcF0Qk5IazTp8Y8dqgyVEa1mA6wafpSQUSzHhBILZLm-igfkCKLGwCiZK" alt="thumb">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue transition line-clamp-2">ภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569</h4>
+                                <span class="text-[10px] text-gray-400">14 พ.ค. 2569</span>
+                            </div>
+                        </a>
+                        <a href="detail.html?type=activities&id=1" class="flex items-start gap-3 group">
+                            <div class="w-16 h-12 rounded bg-gray-100 flex-shrink-0 overflow-hidden">
+                                <img class="w-full h-full object-cover group-hover:scale-105 transition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxP_y7wILdJIHaPic1ArBpU8zlJbum0lLXERHN5waOfpWmz1uuudAGmPk1OL9piHJ_88SZPwvR9LaqIan7_v2-MHb2qK8Bt7TO6FwKJtDgVLGSHk0NFAWHNxENTQ9nsq1n4qp4esTtHUuXerQh04fMrpiYVSgnimXtKcVbBXAOulNK2MRc9lIzPk-hDQg1ViqXizsMg1UhHFd_UB_atdxGOyumVz07g6pHOefb5oZXTsV966CTFdef" alt="thumb">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold text-gray-800 group-hover:text-brand-blue transition line-clamp-2">โครงการชุมชนตำบลยั่งยืน</h4>
+                                <span class="text-[10px] text-gray-400">15 พ.ค. 2569</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Back Action Link -->
+                <a href="index.html" class="block text-center w-full py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 text-xs font-bold rounded-xl transition">
+                    <i class="fa-solid fa-arrow-left mr-1"></i> ย้อนกลับไปหน้าหลัก
+                </a>
+
+            </aside>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-blue text-white py-6 mt-12 border-t border-white/10 text-xs text-center opacity-90">
+        © 2026 RONGKHEM e-VILLAGE OFFICE - บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา
+    </footer>
+
+    <!-- JavaScript For Dynamic Render -->
+    <script>
+        // Database Mock Data
+        const mockDatabase = {
+            news: {
+                "1": {
+                    title: "ประกาศการจัดเก็บภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569",
+                    badge: "ประกาศด่วน",
+                    badgeClass: "bg-red-100 text-red-600",
+                    date: "14 พฤษภาคม 2569",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCLmVd7ljjBr0z4XbfzHTwvsU9mt_Kv0DDesm4Bk39DJBSaWN74XD_USS5Sg7yunj_oI4F56Lt-4_DFedI0MCsJUEmOS6rD2I1MU7dlJc3TFONv5niuAkX1xHXJdZgcy7zCGlAjOGBe-plO5Uc2hG9hCXBLYfy6ScpgmRdAoZ6ZSTNhX3fK2xOJ92vyNoMLcF0Qk5IazTp8Y8dqgyVEa1mA6wafpSQUSzHhBILZLm-igfkCKLGwCiZK",
+                    content: `
+                        <p>ขอแจ้งให้ประชาชนบ้านร่องเข็ม หมู่ที่ 6 ทุกท่านทราบ เรื่อง กำหนดเวลาการชำระภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี พ.ศ. 2569 เพื่อให้การบริหารงานท้องถิ่นเป็นไปอย่างมีประสิทธิภาพ</p>
+                        <p><strong>เอกสารที่ต้องเตรียม:</strong></p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>บัตรประจำตัวประชาชนของเจ้าของที่ดิน</li>
+                            <li>สำเนาโฉนดที่ดิน หรือ เอกสารสิทธิ์ (น.ส.3ก)</li>
+                            <li>หนังสือมอบอำนาจ (กรณีให้ผู้อื่นดำเนินการแทน)</li>
+                        </ul>
+                        <p>สามารถติดต่อชำระภาษีได้ที่ที่ทำการผู้ใหญ่บ้าน หรือ องค์การบริหารส่วนตำบลจำป่าหวาย ในวันและเวลาราชการ จนถึงสิ้นเดือนนี้</p>
+                    `
+                },
+                "2": {
+                    title: "ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569",
+                    badge: "ประชุมหมู่บ้าน",
+                    badgeClass: "bg-blue-100 text-blue-800",
+                    date: "10 พฤษภาคม 2569",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDjC_5GncvKieMEVumPpmpgaCy5VQts4bcq9DUumgwHQinmGeOR7IpqeqtuzBuCWPiAsBtfE8rkyAy8eSVuaYlg6rnFmF5DpyCbdjcitAlHPseykiALv8X4s7xVNKy4KX5XPOQI32Qnfz608OPjD30SDm8blTT_QG3BfSh1QNDtoYQ-Gvsm0d8sMCQXDGiiTUIpEV-IdNxLOLvEc062FSRPtXsvGX2HcTlZXtGSrWzV9xbYPG_Ct5zs",
+                    content: `
+                        <p>ขอเชิญชวนตัวแทนครัวเรือน บ้านร่องเข็ม หมู่ที่ 6 ร่วมเข้าประชุมประชาคมหมู่บ้านเพื่อหารือเกี่ยวกับโครงการพัฒนาแหล่งน้ำและปรับปรุงภูมิทัศน์รอบซับน้ำจำ</p>
+                        <p>การประชุมดังกล่าวจะจัดขึ้น ณ ศาลาประชาคมหมู่บ้าน โดยขอความร่วมมือส่งตัวแทนอย่างน้อยครัวเรือนละ 1 ท่าน เพื่อลงมติและแสดงความคิดเห็นต่อการพัฒนาชุมชนของเรา</p>
+                    `
+                }
+            },
+            activities: {
+                "1": {
+                    title: "โครงการชุมชนตำบลยั่งยืน บ้านร่องเข็ม",
+                    badge: "กิจกรรมชุมชน",
+                    badgeClass: "bg-green-100 text-green-700",
+                    date: "15 พฤษภาคม 2569",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCxP_y7wILdJIHaPic1ArBpU8zlJbum0lLXERHN5waOfpWmz1uuudAGmPk1OL9piHJ_88SZPwvR9LaqIan7_v2-MHb2qK8Bt7TO6FwKJtDgVLGSHk0NFAWHNxENTQ9nsq1n4qp4esTtHUuXerQh04fMrpiYVSgnimXtKcVbBXAOulNK2MRc9lIzPk-hDQg1ViqXizsMg1UhHFd_UB_atdxGOyumVz07g6pHOefb5oZXTsV966CTFdef",
+                    location: "ศาลาประชาคมหมู่บ้าน หมู่ที่ 6",
+                    participants: "65 คน",
+                    content: `
+                        <p>คณะผู้ใหญ่บ้านและชาวบ้านร่องเข็ม ได้ร่วมกันดำเนินงานตาม **โครงการชุมชนตำบลยั่งยืน** เพื่อแก้ไขปัญหายาเสพติดแบบครบวงจร และส่งเสริมการสร้างอาชีพให้แก่คนในชุมชน</p>
+                        <p>บรรยากาศภายในงานเต็มไปด้วยความร่วมมือ มีการจัดอบรมให้ความรู้ สร้างกองกำลังจิตอาสาเพื่อดูแลความปลอดภัยรอบหมู่บ้านอย่างยั่งยืน</p>
+                    `
+                },
+                "2": {
+                    title: "กิจกรรมจิตอาสาทำความสะอาดแหล่งซับน้ำจำ",
+                    badge: "จิตอาสา",
+                    badgeClass: "bg-purple-100 text-purple-700",
+                    date: "10 พฤษภาคม 2569",
+                    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCLmVd7ljjBr0z4XbfzHTwvsU9mt_Kv0DDesm4Bk39DJBSaWN74XD_USS5Sg7yunj_oI4F56Lt-4_DFedI0MCsJUEmOS6rD2I1MU7dlJc3TFONv5niuAkX1xHXJdZgcy7zCGlAjOGBe-plO5Uc2hG9hCXBLYfy6ScpgmRdAoZ6ZSTNhX3fK2xOJ92vyNoMLcF0Qk5IazTp8Y8dqgyVEa1mA6wafpSQUSzHhBILZLm-igfkCKLGwCiZK",
+                    location: "แหล่งซับน้ำจำ หมู่ที่ 6",
+                    participants: "78 คน",
+                    content: `
+                        <p>ชาวบ้านร่องเข็มรวมพลังร่วมกิจกรรมพัฒนาและทำความสะอาดรอบพื้นที่แหล่งซับน้ำจำ เพื่อเตรียมพร้อมเป็นแหล่งท่องเที่ยวเชิงอนุรักษ์และรักษาแหล่งต้นน้ำสำคัญของหมู่บ้าน</p>
+                    `
+                }
+            }
+        };
+
+        // Render function
+        document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
-            const table = urlParams.get('type') || 'news';
-            const id = urlParams.get('id');
+            const type = urlParams.get('type') || 'news';
+            const id = urlParams.get('id') || '1';
 
-            if (!id) {
-                document.getElementById('itemTitle').innerText = 'ไม่พบข้อมูลที่ต้องการ';
-                return;
+            const data = mockDatabase[type]?.[id] || mockDatabase['news']['1'];
+
+            // Populate Text
+            document.getElementById('pageTitle').innerText = `${data.title} - RONGKHEM e-VILLAGE`;
+            document.getElementById('breadcrumbCategory').innerText = type === 'news' ? 'ข่าวสารและประกาศ' : 'กิจกรรมชุมชน';
+            document.getElementById('breadcrumbTitle').innerText = data.title;
+            document.getElementById('detailTitle').innerText = data.title;
+            document.getElementById('detailDate').innerHTML = `<i class="fa-regular fa-calendar"></i> ${data.date}`;
+            document.getElementById('detailContent').innerHTML = data.content;
+            document.getElementById('detailImage').src = data.image;
+
+            // Badge style
+            const badgeElem = document.getElementById('detailBadge');
+            badgeElem.innerText = data.badge;
+            badgeElem.className = `text-xs font-bold px-3 py-1 rounded-full ${data.badgeClass}`;
+
+            // Activity Specific Meta
+            if (type === 'activities' && data.location) {
+                document.getElementById('activityMetaInfo').classList.remove('hidden');
+                document.getElementById('metaLocation').innerText = data.location;
+                document.getElementById('metaParticipants').innerText = data.participants;
             }
+        });
 
-            const { data, error } = await supabase
-                .from(table)
-                .select('*')
-                .eq('id', id)
-                .single();
-
-            if (error || !data) {
-                document.getElementById('itemTitle').innerText = 'เกิดข้อผิดพลาดหรือไม่พบข้อมูลในระบบ';
-                return;
-            }
-
-            const title = data.title || data.name || data.subject || 'ไม่มีหัวข้อ';
-            const detail = data.detail || data.description || data.details || 'ไม่มีรายละเอียด';
-            const imageUrl = data.image_url || data.image || data.photo;
-            const dateStr = data.created_at || data.updated_at;
-
-            document.getElementById('itemTitle').innerText = title;
-            document.getElementById('itemDetail').innerText = detail;
-
-            if (dateStr) {
-                const formattedDate = new Date(dateStr).toLocaleDateString('th-TH', { year: 'numeric', month: 'long', day: 'numeric' });
-                document.getElementById('itemDate').innerText = '📅 วันที่บันทึก: ' + formattedDate;
-            }
-
-            if (imageUrl) {
-                const imgElem = document.getElementById('itemImage');
-                imgElem.src = imageUrl;
-                imgElem.style.display = 'block';
+        // Share Utilities
+        function shareSocial(platform) {
+            const url = encodeURIComponent(window.location.href);
+            if (platform === 'facebook') {
+                window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+            } else if (platform === 'line') {
+                window.open(`https://social-plugins.line.me/lineit/share?url=${url}`, '_blank');
             }
         }
 
-        document.addEventListener('DOMContentLoaded', loadDetail);
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href);
+            alert('คัดลอกลิงก์เรียบร้อยแล้ว');
+        }
     </script>
 </body>
 </html>
