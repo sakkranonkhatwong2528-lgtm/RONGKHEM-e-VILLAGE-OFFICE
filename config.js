@@ -6,292 +6,157 @@
 window.RONGKHEM_CONFIG = {
 
     /* =====================================================
-       ข้อมูลระบบ
+       การเชื่อมต่อ Supabase Database
        ===================================================== */
-
-    system: {
-        name: "RONGKHEM e-VILLAGE OFFICE",
-
-        title:
-            "ที่ทำการผู้ใหญ่บ้านออนไลน์",
-
-        version:
-            "1.0.0",
-
-        language:
-            "th",
-
-        timezone:
-            "Asia/Bangkok"
+    supabase: {
+        url: "วาง_PROJECT_URL_ตรงนี้",
+        anonKey: "วาง_ANON_PUBLIC_KEY_ตรงนี้"
     },
 
+    /* =====================================================
+       ข้อมูลระบบ
+       ===================================================== */
+    system: {
+        name: "RONGKHEM e-VILLAGE OFFICE",
+        title: "ที่ทำการผู้ใหญ่บ้านออนไลน์",
+        version: "1.0.0",
+        language: "th",
+        timezone: "Asia/Bangkok"
+    },
 
     /* =====================================================
        ข้อมูลสถานที่
        ===================================================== */
-
     location: {
-
-        latitude:
-            19.0446,
-
-        longitude:
-            99.9765,
-
-        province:
-            "พะเยา",
-
-        district:
-            "เมืองพะเยา",
-
-        subdistrict:
-            "จำป่าหวาย",
-
-        village:
-            "บ้านร่องเข็ม หมู่ที่ 6"
+        latitude: 19.0446,
+        longitude: 99.9765,
+        province: "พะเยา",
+        district: "เมืองพะเยา",
+        subdistrict: "จำป่าหวาย",
+        village: "บ้านร่องเข็ม หมู่ที่ 6"
     },
-
 
     /* =====================================================
-       สภาพอากาศ
-       ใช้ Open-Meteo ไม่ต้องใส่ API Key
+       สภาพอากาศ (Open-Meteo)
        ===================================================== */
-
     weather: {
-
-        enabled:
-            true,
-
-        provider:
-            "open-meteo",
-
-        latitude:
-            19.0446,
-
-        longitude:
-            99.9765,
-
-        timezone:
-            "Asia/Bangkok",
-
-        refreshMinutes:
-            5
+        enabled: true,
+        provider: "open-meteo",
+        latitude: 19.0446,
+        longitude: 99.9765,
+        timezone: "Asia/Bangkok",
+        refreshMinutes: 5
     },
-
 
     /* =====================================================
        PM2.5
        ===================================================== */
-
     pm25: {
-
-        enabled:
-            true,
-
-        provider:
-            "open-meteo",
-
-        latitude:
-            19.0446,
-
-        longitude:
-            99.9765,
-
-        timezone:
-            "Asia/Bangkok",
-
-        refreshMinutes:
-            5
+        enabled: true,
+        provider: "open-meteo",
+        latitude: 19.0446,
+        longitude: 99.9765,
+        timezone: "Asia/Bangkok",
+        refreshMinutes: 5
     },
-
 
     /* =====================================================
        ติดต่อที่ทำการผู้ใหญ่บ้าน
        ===================================================== */
-
     contact: {
-
-        phone:
-            "080-1202529",
-
-        line:
-            "rongkhem.village",
-
-        officeHours:
-            "จันทร์ - ศุกร์ 08.30 - 16.30 น."
+        phone: "080-1202529",
+        line: "rongkhem.village",
+        officeHours: "จันทร์ - ศุกร์ 08.30 - 16.30 น."
     },
-
 
     /* =====================================================
        ระบบข้อมูล
        ===================================================== */
-
     data: {
-
-        verified:
-            true,
-
-        source:
-            "VERIFIED DATA BUILD",
-
-        autoLoad:
-            true
+        verified: true,
+        source: "VERIFIED DATA BUILD",
+        autoLoad: true
     },
-
 
     /* =====================================================
-       ระบบประกาศ
+       ระบบประกาศ / ข่าวสาร
        ===================================================== */
-
     news: {
-
-        enabled:
-            true,
-
-        storage:
-            "localStorage",
-
-        storageKey:
-            "RONGKHEM_NEWS"
+        enabled: true,
+        storage: "supabase", // เปลี่ยนมาใช้ฐานข้อมูลแทน localStorage
+        storageKey: "RONGKHEM_NEWS"
     },
-
 
     /* =====================================================
        ระบบกิจกรรม / ปฏิทิน
        ===================================================== */
-
     activity: {
-
-        enabled:
-            true,
-
-        storage:
-            "localStorage",
-
-        storageKey:
-            "RONGKHEM_ACTIVITY"
+        enabled: true,
+        storage: "supabase",
+        storageKey: "RONGKHEM_ACTIVITY"
     },
-
 
     /* =====================================================
        ระบบแจ้งเหตุ / ร้องเรียน
        ===================================================== */
-
     complaint: {
-
-        enabled:
-            true,
-
-        storage:
-            "localStorage",
-
-        storageKey:
-            "RONGKHEM_COMPLAINT"
+        enabled: true,
+        storage: "supabase",
+        storageKey: "RONGKHEM_COMPLAINT"
     },
-
 
     /* =====================================================
        ระบบตั้งค่า
        ===================================================== */
-
     settings: {
-
-        enabled:
-            true,
-
-        storage:
-            "localStorage",
-
-        storageKey:
-            "RONGKHEM_SETTINGS"
+        enabled: true,
+        storage: "supabase",
+        storageKey: "RONGKHEM_SETTINGS"
     },
-
 
     /* =====================================================
        รูปผู้ใหญ่บ้าน
        ===================================================== */
-
     leaderPhoto: {
-
-        enabled:
-            true,
-
-        allowUpload:
-            true,
-
-        storage:
-            "localStorage",
-
-        storageKey:
-            "RONGKHEM_LEADER_PHOTO"
+        enabled: true,
+        allowUpload: true,
+        storage: "localStorage",
+        storageKey: "RONGKHEM_LEADER_PHOTO"
     },
-
 
     /* =====================================================
        AI ผู้ช่วยผู้ใหญ่บ้าน
        ===================================================== */
-
     ai: {
-
-        enabled:
-            true,
-
-        name:
-            "AI ผู้ช่วยผู้ใหญ่บ้าน",
-
-        mode:
-            "dashboard-data",
-
-        useVerifiedData:
-            true
+        enabled: true,
+        name: "AI ผู้ช่วยผู้ใหญ่บ้าน",
+        mode: "dashboard-data",
+        useVerifiedData: true
     },
-
 
     /* =====================================================
        ภาพหมู่บ้านกองทุนแม่ของแผ่นดิน
        ===================================================== */
-
     hero: {
-
-        enabled:
-            true,
-
-        image:
-            "assets/fund-mother-village.png",
-
-        title:
-            "หมู่บ้านกองทุนแม่ของแผ่นดิน",
-
-        subtitle:
-            "บ้านร่องเข็ม หมู่ที่ 6",
-
-        description:
-            "ชุมชนเข้มแข็ง ร่วมใจพัฒนา"
+        enabled: true,
+        image: "assets/fund-mother-village.png",
+        title: "หมู่บ้านกองทุนแม่ของแผ่นดิน",
+        subtitle: "บ้านร่องเข็ม หมู่ที่ 6",
+        description: "ชุมชนเข้มแข็ง ร่วมใจพัฒนา"
     },
-
 
     /* =====================================================
        การอัปเดตข้อมูลสด
        ===================================================== */
-
     refresh: {
-
-        weather:
-            5 * 60 * 1000,
-
-        pm25:
-            5 * 60 * 1000,
-
-        clock:
-            1000
+        weather: 5 * 60 * 1000,
+        pm25: 5 * 60 * 1000,
+        clock: 1000
     }
 
 };
 
-
 /* =========================================================
    GLOBAL SHORTCUT
    ========================================================= */
-
-const RONGKHEM_CONFIG =
-    window.RONGKHEM_CONFIG;
+const RONGKHEM_CONFIG = window.RONGKHEM_CONFIG;
