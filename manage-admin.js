@@ -1,71 +1,74 @@
 import supabaseClient from "./supabase-config.js";
+import {
+  loadRecords,
+  createRecord,
+  updateRecord,
+  deleteRecord,
+  uploadImage
+} from "./supabase-service.js";
+
 
 // ========================================
-// กำหนดตารางให้ตรงกับ value ใน manage.html
+// ตรวจสอบการเข้าสู่ระบบ
 // ========================================
 
-const MODULES = {
-  news: {
-    table: "news",
-    title: "ข่าวสารประชาสัมพันธ์",
-    detailField: "content",
-    imageField: "image_url"
-  },
+async function checkAuth() {
 
-  complaint: {
-    table: "complaints",
-    title: "เรื่องร้องเรียน",
-    detailField: "detail",
-    imageField: null
-  },
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
 
-  elderly: {
-    table: "elderly",
-    title: "ข้อมูลผู้สูงอายุ",
-    detailField: "description",
-    imageField: "image_url"
-  },
 
-  vulnerable: {
-    table: "vulnerable",
-    title: "กลุ่มเปราะบาง",
-    detailField: "description",
-    imageField: "image_url"
-  },
+  if (!session) {
 
-  project: {
-    table: "projects",
-    title: "โครงการหมู่บ้าน",
-    detailField: "description",
-    imageField: "image_url"
-  },
+    window.location.href = "login.html";
 
-  incident: {
-    table: "incidents",
-    title: "เหตุการณ์ / แจ้งเตือน",
-    detailField: "description",
-    imageField: null
-  },
+    return;
 
-  activity: {
-    table: "activities",
-    title: "กิจกรรม",
-    detailField: "description",
-    imageField: "image_url"
   }
+
+
+  document.getElementById("adminEmail").textContent =
+    session.user.email;
+
+}
+
+
+// ========================================
+// กำหนดชื่อโมดูลให้ตรงกับฐานข้อมูล
+// ========================================
+
+const MODULE_MAP = {
+
+  news: "news",
+
+  complaint: "complaints",
+
+  elderly: "elderly",
+
+  vulnerable: "vulnerable",
+
+  project: "projects",
+
+  incident: "incidents",
+
+  activity: "activities"
+
 };
 
 
 // ========================================
-// ELEMENTS
+// ตัวแปร DOM
 // ========================================
 
-const menuSelect = document.getElementById("menuSelect");
-const crudForm = document.getElementById("crudForm");
+const menuSelect =
+  document.getElementById("menuSelect");
 
-const recordId = document.getElementById("recordId");
-const currentImageUrl =
-  document.getElementById("currentImageUrl");
+const crudForm =
+  document.getElementById("crudForm");
+
+const recordId =
+  document.getElementById("recordId");
 
 const titleInput =
   document.getElementById("titleInput");
@@ -76,20 +79,8 @@ const detailInput =
 const imageInput =
   document.getElementById("imageInput");
 
-const tableBody =
-  document.getElementById("tableBody");
-
-const formTitle =
-  document.getElementById("formTitle");
-
-const resetBtn =
-  document.getElementById("resetBtn");
-
-const logoutBtn =
-  document.getElementById("logoutBtn");
-
-const adminEmail =
-  document.getElementById("adminEmail");
+const currentImageUrl =
+  document.getElementById("currentImageUrl");
 
 const imagePreview =
   document.getElementById("imagePreview");
@@ -99,46 +90,74 @@ const imagePreviewContainer =
     "imagePreviewContainer"
   );
 
+const tableBody =
+  document.getElementById("tableBody");
 
-// ========================================
-// ตรวจสอบ LOGIN
-// ========================================
+const resetBtn =
+  document.getElementById("resetBtn");
 
-async function checkAuth() {
+const logoutBtn =
+  document.getElementById("logoutBtn");
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient.auth.getUser();
-
-  if (error || !data.user) {
-
-    window.location.href =
-      "admin-login.html";
-
-    return;
-  }
-
-  adminEmail.textContent =
-    data.user.email;
-}
+const formTitle =
+  document.getElementById("formTitle");
 
 
 // ========================================
-// GET MODULE
+// โมดูลปัจจุบัน
 // ========================================
 
 function getCurrentModule() {
 
-  return MODULES[
-    menuSelect.value
-  ];
+  return menuSelect.value;
+
 }
 
 
 // ========================================
-// LOAD DATA
+// แสดงตัวอย่างรูป
+// ========================================
+
+imageInput.addEventListener(
+  "change",
+  function () {
+
+    const file =
+      imageInput.files[0];
+
+
+    if (!file) {
+
+      return;
+
+    }
+
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload =
+      function (event) {
+
+        imagePreview.src =
+          event.target.result;
+
+
+        imagePreviewContainer.style.display =
+          "block";
+
+      };
+
+
+    reader.readAsDataURL(file);
+
+  }
+);
+
+
+// ========================================
+// โหลดข้อมูล
 // ========================================
 
 async function loadData() {
@@ -146,403 +165,605 @@ async function loadData() {
   const module =
     getCurrentModule();
 
+
   tableBody.innerHTML = `
+
     <tr>
-      <td colspan="5"
-      style="text-align:center">
-      กำลังโหลดข้อมูล...
+
+      <td
+        colspan="5"
+        style="text-align:center">
+
+        กำลังโหลดข้อมูล...
+
       </td>
+
     </tr>
+
   `;
 
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from(module.table)
-      .select("*")
-      .order(
-        "created_at",
-        {
-          ascending: false
-        }
-      );
 
-  if (error) {
+  try {
 
-    console.error(error);
+    const records =
+      await loadRecords(module);
 
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="5">
-        ❌ ${error.message}
-        </td>
-      </tr>
-    `;
 
-    return;
-  }
+    if (!records.length) {
 
-  if (!data || data.length === 0) {
+      tableBody.innerHTML = `
 
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="5"
-        style="text-align:center">
-        ยังไม่มีข้อมูล
-        </td>
-      </tr>
-    `;
+        <tr>
 
-    return;
-  }
+          <td
+            colspan="5"
+            style="text-align:center">
 
-  tableBody.innerHTML =
-    data.map(record => {
+            ยังไม่มีข้อมูล
 
-      const detail =
-        record[module.detailField] || "";
+          </td>
 
-      const image =
-        module.imageField
-          ? record[module.imageField]
-          : null;
-
-      return `
-      <tr>
-
-        <td>
-          ${record.id}
-        </td>
-
-        <td>
-
-          ${
-            image
-              ? `
-                <img
-                src="${image}"
-                class="img-preview">
-              `
-              : "-"
-          }
-
-        </td>
-
-        <td>
-          ${escapeHtml(
-            record.title || ""
-          )}
-        </td>
-
-        <td>
-          ${escapeHtml(
-            detail
-          )}
-        </td>
-
-        <td>
-
-          <button
-          class="btn-edit"
-          onclick="editRecord(${record.id})">
-
-          ✏️ แก้ไข
-
-          </button>
-
-          <button
-          class="btn-delete"
-          onclick="deleteRecord(${record.id})">
-
-          🗑 ลบ
-
-          </button>
-
-        </td>
-
-      </tr>
+        </tr>
 
       `;
 
-    }).join("");
+      return;
 
-  window.currentRecords = data;
+    }
+
+
+    tableBody.innerHTML =
+      "";
+
+
+    records.forEach(
+      function (record) {
+
+        const imageUrl =
+          record.image_url || "";
+
+
+        const detail =
+          record.content ||
+          record.description ||
+          record.detail ||
+          "";
+
+
+        const row =
+          document.createElement("tr");
+
+
+        row.innerHTML = `
+
+          <td>
+
+            ${record.id}
+
+          </td>
+
+
+          <td>
+
+            ${
+              imageUrl
+                ? `
+                  <img
+                    src="${imageUrl}"
+                    class="img-preview"
+                  >
+                `
+                : "-"
+            }
+
+          </td>
+
+
+          <td>
+
+            ${escapeHtml(
+              record.title || ""
+            )}
+
+          </td>
+
+
+          <td>
+
+            ${escapeHtml(
+              detail
+            )}
+
+          </td>
+
+
+          <td>
+
+            <button
+              class="btn-edit"
+              data-id="${record.id}">
+
+              ✏️ แก้ไข
+
+            </button>
+
+
+            <button
+              class="btn-delete"
+              data-id="${record.id}">
+
+              🗑 ลบ
+
+            </button>
+
+          </td>
+
+        `;
+
+
+        const editButton =
+          row.querySelector(
+            ".btn-edit"
+          );
+
+
+        const deleteButton =
+          row.querySelector(
+            ".btn-delete"
+          );
+
+
+        editButton.addEventListener(
+          "click",
+          function () {
+
+            editRecord(
+              record
+            );
+
+          }
+        );
+
+
+        deleteButton.addEventListener(
+          "click",
+          async function () {
+
+            await removeRecord(
+              record.id
+            );
+
+          }
+        );
+
+
+        tableBody.appendChild(
+          row
+        );
+
+      }
+    );
+
+
+  } catch (error) {
+
+    console.error(error);
+
+
+    tableBody.innerHTML = `
+
+      <tr>
+
+        <td
+          colspan="5"
+          style="text-align:center;color:red">
+
+          โหลดข้อมูลไม่สำเร็จ
+
+        </td>
+
+      </tr>
+
+    `;
+
+  }
+
 }
 
 
 // ========================================
-// SAVE
+// เตรียมข้อมูลสำหรับบันทึก
+// ========================================
+
+function buildPayload(imageUrl) {
+
+  const module =
+    getCurrentModule();
+
+
+  const title =
+    titleInput.value.trim();
+
+
+  const detail =
+    detailInput.value.trim();
+
+
+  const payload = {
+
+    title: title
+
+  };
+
+
+  // ข่าวสาร
+  if (module === "news") {
+
+    payload.content =
+      detail;
+
+    payload.image_url =
+      imageUrl;
+
+    payload.published_at =
+      new Date()
+      .toISOString();
+
+  }
+
+
+  // กิจกรรม
+  if (module === "activity") {
+
+    payload.description =
+      detail;
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  // โครงการ
+  if (module === "project") {
+
+    payload.description =
+      detail;
+
+    payload.image_url =
+      imageUrl;
+
+    payload.status =
+      "active";
+
+  }
+
+
+  // เหตุการณ์
+  if (module === "incident") {
+
+    payload.description =
+      detail;
+
+    payload.status =
+      "active";
+
+    payload.incident_date =
+      new Date()
+      .toISOString();
+
+  }
+
+
+  // เรื่องร้องเรียน
+  if (module === "complaint") {
+
+    payload.detail =
+      detail;
+
+    payload.status =
+      "pending";
+
+  }
+
+
+  // ผู้สูงอายุ
+  if (module === "elderly") {
+
+    payload.description =
+      detail;
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  // กลุ่มเปราะบาง
+  if (module === "vulnerable") {
+
+    payload.description =
+      detail;
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  return payload;
+
+}
+
+
+// ========================================
+// บันทึกข้อมูล
 // ========================================
 
 crudForm.addEventListener(
   "submit",
-  async function(event) {
+  async function (event) {
 
     event.preventDefault();
+
 
     const module =
       getCurrentModule();
 
-    const payload = {
 
-      title:
-        titleInput.value.trim()
-
-    };
-
-    payload[
-      module.detailField
-    ] =
-      detailInput.value.trim();
+    const id =
+      recordId.value;
 
 
-    // ==========================
-    // UPLOAD IMAGE
-    // ==========================
+    let imageUrl =
+      currentImageUrl.value;
 
-    if (
-      module.imageField &&
-      imageInput.files.length > 0
-    ) {
 
-      const file =
-        imageInput.files[0];
+    const file =
+      imageInput.files[0];
 
-      const extension =
-        file.name.split(".").pop();
 
-      const fileName =
-        `${Date.now()}-${crypto.randomUUID()}.${extension}`;
+    try {
 
-      const {
-        error: uploadError
-      } =
-        await supabaseClient
-          .storage
-          .from("images")
-          .upload(
-            fileName,
-            file
-          );
-
-      if (uploadError) {
-
-        alert(
-          "อัปโหลดรูปไม่สำเร็จ: " +
-          uploadError.message
+      const saveBtn =
+        document.getElementById(
+          "saveBtn"
         );
 
-        return;
-      }
 
-      const {
-        data
-      } =
-        supabaseClient
-          .storage
-          .from("images")
-          .getPublicUrl(
-            fileName
+      saveBtn.disabled =
+        true;
+
+
+      saveBtn.textContent =
+        "กำลังบันทึก...";
+
+
+      // ถ้ามีรูปใหม่
+      if (file) {
+
+        imageUrl =
+          await uploadImage(
+            file,
+            "images"
           );
 
-      payload[
-        module.imageField
-      ] =
-        data.publicUrl;
-
-    } else if (
-      module.imageField &&
-      currentImageUrl.value
-    ) {
-
-      payload[
-        module.imageField
-      ] =
-        currentImageUrl.value;
-
-    }
+      }
 
 
-    // ==========================
-    // CREATE / UPDATE
-    // ==========================
-
-    let error;
-
-    if (recordId.value) {
-
-      ({
-        error
-      } =
-        await supabaseClient
-          .from(module.table)
-          .update(payload)
-          .eq(
-            "id",
-            recordId.value
-          ));
-
-    } else {
-
-      ({
-        error
-      } =
-        await supabaseClient
-          .from(module.table)
-          .insert(payload));
-
-    }
+      const payload =
+        buildPayload(
+          imageUrl
+        );
 
 
-    if (error) {
+      // แก้ไข
+      if (id) {
+
+        await updateRecord(
+          module,
+          id,
+          payload
+        );
+
+        alert(
+          "แก้ไขข้อมูลเรียบร้อยแล้ว"
+        );
+
+      }
+
+      // เพิ่มใหม่
+      else {
+
+        await createRecord(
+          module,
+          payload
+        );
+
+        alert(
+          "บันทึกข้อมูลเรียบร้อยแล้ว"
+        );
+
+      }
+
+
+      resetForm();
+
+
+      await loadData();
+
+
+    } catch (error) {
 
       console.error(error);
+
 
       alert(
         "เกิดข้อผิดพลาด: " +
         error.message
       );
 
-      return;
     }
 
 
-    alert(
-      "บันทึกข้อมูลเรียบร้อย"
-    );
+    const saveBtn =
+      document.getElementById(
+        "saveBtn"
+      );
 
-    resetForm();
 
-    loadData();
+    saveBtn.disabled =
+      false;
+
+
+    saveBtn.textContent =
+      "💾 บันทึกข้อมูล";
 
   }
 );
 
 
 // ========================================
-// EDIT
+// แก้ไขข้อมูล
 // ========================================
 
-window.editRecord =
-  function(id) {
+function editRecord(record) {
 
-    const module =
-      getCurrentModule();
-
-    const record =
-      window.currentRecords.find(
-        item =>
-          item.id === id
-      );
-
-    if (!record) return;
-
-    recordId.value =
-      record.id;
-
-    titleInput.value =
-      record.title || "";
-
-    detailInput.value =
-      record[
-        module.detailField
-      ] || "";
+  recordId.value =
+    record.id;
 
 
-    if (
-      module.imageField &&
-      record[
-        module.imageField
-      ]
-    ) {
+  titleInput.value =
+    record.title || "";
 
-      currentImageUrl.value =
-        record[
-          module.imageField
-        ];
 
-      imagePreview.src =
-        currentImageUrl.value;
+  detailInput.value =
+    record.content ||
+    record.description ||
+    record.detail ||
+    "";
 
-      imagePreviewContainer.style.display =
-        "block";
 
-    }
+  const imageUrl =
+    record.image_url || "";
 
-    formTitle.textContent =
-      "✏️ แก้ไขข้อมูล";
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
+  currentImageUrl.value =
+    imageUrl;
 
-  };
+
+  if (imageUrl) {
+
+    imagePreview.src =
+      imageUrl;
+
+
+    imagePreviewContainer.style.display =
+      "block";
+
+  }
+
+  else {
+
+    imagePreviewContainer.style.display =
+      "none";
+
+  }
+
+
+  formTitle.textContent =
+    "✏️ แก้ไขข้อมูล";
+
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior: "smooth"
+
+  });
+
+}
 
 
 // ========================================
-// DELETE
+// ลบข้อมูล
 // ========================================
 
-window.deleteRecord =
-  async function(id) {
+async function removeRecord(id) {
 
-    const confirmDelete =
-      confirm(
-        "ต้องการลบข้อมูลนี้หรือไม่?"
-      );
-
-    if (!confirmDelete) return;
-
-    const module =
-      getCurrentModule();
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .from(module.table)
-        .delete()
-        .eq(
-          "id",
-          id
-        );
-
-    if (error) {
-
-      alert(
-        "ลบไม่สำเร็จ: " +
-        error.message
-      );
-
-      return;
-    }
-
-    alert(
-      "ลบข้อมูลเรียบร้อย"
+  const confirmDelete =
+    confirm(
+      "ต้องการลบข้อมูลนี้ใช่หรือไม่?"
     );
 
-    loadData();
 
-  };
+  if (!confirmDelete) {
+
+    return;
+
+  }
+
+
+  try {
+
+    const module =
+      getCurrentModule();
+
+
+    await deleteRecord(
+      module,
+      id
+    );
+
+
+    alert(
+      "ลบข้อมูลเรียบร้อยแล้ว"
+    );
+
+
+    await loadData();
+
+
+  } catch (error) {
+
+    console.error(error);
+
+
+    alert(
+      "ลบข้อมูลไม่สำเร็จ: " +
+      error.message
+    );
+
+  }
+
+}
 
 
 // ========================================
-// RESET FORM
+// รีเซ็ตฟอร์ม
 // ========================================
 
 function resetForm() {
 
   crudForm.reset();
 
-  recordId.value = "";
 
-  currentImageUrl.value = "";
+  recordId.value =
+    "";
+
+
+  currentImageUrl.value =
+    "";
+
+
+  imagePreview.src =
+    "";
+
 
   imagePreviewContainer.style.display =
     "none";
+
 
   formTitle.textContent =
     "➕ เพิ่มข้อมูลใหม่";
@@ -551,85 +772,71 @@ function resetForm() {
 
 
 // ========================================
-// PREVIEW IMAGE
-// ========================================
-
-imageInput.addEventListener(
-  "change",
-  function() {
-
-    const file =
-      this.files[0];
-
-    if (!file) return;
-
-    imagePreview.src =
-      URL.createObjectURL(
-        file
-      );
-
-    imagePreviewContainer.style.display =
-      "block";
-
-  }
-);
-
-
-// ========================================
-// CHANGE MODULE
-// ========================================
-
-menuSelect.addEventListener(
-  "change",
-  function() {
-
-    resetForm();
-
-    loadData();
-
-  }
-);
-
-
-// ========================================
-// RESET BUTTON
+// ปุ่มยกเลิก
 // ========================================
 
 resetBtn.addEventListener(
   "click",
-  resetForm
+  function () {
+
+    resetForm();
+
+  }
 );
 
 
 // ========================================
-// LOGOUT
+// เปลี่ยนเมนู
+// ========================================
+
+menuSelect.addEventListener(
+  "change",
+  async function () {
+
+    resetForm();
+
+
+    await loadData();
+
+  }
+);
+
+
+// ========================================
+// ออกจากระบบ
 // ========================================
 
 logoutBtn.addEventListener(
   "click",
-  async function() {
+  async function () {
 
     await supabaseClient
       .auth
       .signOut();
 
+
     window.location.href =
-      "admin-login.html";
+      "login.html";
 
   }
 );
 
 
 // ========================================
-// ESCAPE HTML
+// ป้องกัน XSS
 // ========================================
 
 function escapeHtml(text) {
 
   const div =
-    document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  div.textContent = text;
+
+  div.textContent =
+    text;
+
 
   return div.innerHTML;
 
@@ -637,15 +844,29 @@ function escapeHtml(text) {
 
 
 // ========================================
-// START
+// เริ่มระบบ
 // ========================================
 
 async function init() {
 
-  await checkAuth();
+  try {
 
-  await loadData();
+    await checkAuth();
+
+
+    await loadData();
+
+
+  } catch (error) {
+
+    console.error(
+      "Init error:",
+      error
+    );
+
+  }
 
 }
+
 
 init();
