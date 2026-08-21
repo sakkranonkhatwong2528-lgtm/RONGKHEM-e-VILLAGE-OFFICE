@@ -1,20 +1,15 @@
 import { createClient } from
 "https://esm.sh/@supabase/supabase-js@2";
 
-
 // ========================================
 // SUPABASE CONFIG
 // ========================================
 
-// URL ของโปรเจกต์คุณ
 const supabaseUrl =
 "https://qtnjtsigdgiwdsdfocmq.supabase.co";
 
-
-// ใส่ ANON KEY ของ Supabase ตรงนี้
 const supabaseAnonKey =
-"ใส่_ANON_KEY_ของคุณ_ตรงนี้";
-
+"วาง_PUBLISHABLE_OR_ANON_KEY_ตรงนี้";
 
 // ========================================
 // CREATE CLIENT
@@ -25,7 +20,6 @@ createClient(
   supabaseUrl,
   supabaseAnonKey
 );
-
 
 // ========================================
 // EXPORT
