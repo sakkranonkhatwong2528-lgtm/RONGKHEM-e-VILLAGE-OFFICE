@@ -1,6 +1,6 @@
 /**
  * supabase-config.js
- * ไฟล์ตั้งค่าและเชื่อมต่อ Supabase Client สำหรับหมู่บ้านอัจฉริยะร่องเข็ม
+ * ไฟล์ตั้งค่าและเชื่อมต่อ Supabase Client สำหรับ e-Village Office
  */
 
 const SUPABASE_URL = 'https://qtnjtsigdgiwdsdfocmq.supabase.co';
@@ -11,7 +11,7 @@ let supabase = null;
 
 if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    console.log('✅ เชื่อมต่อ Supabase สำเร็จ');
+    console.log('✅ Supabase Connected Successfully');
 } else {
-    console.error('❌ ไม่พบ Supabase SDK โปรดแนบแท็กสคริปต์ใน HTML');
+    console.error('❌ ไม่พบ Supabase SDK โปรดแนบแท็กสคริปต์ Supabase ใน HTML');
 }
