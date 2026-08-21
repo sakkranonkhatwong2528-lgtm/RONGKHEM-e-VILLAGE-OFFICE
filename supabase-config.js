@@ -1,17 +1,24 @@
-/**
- * supabase-config.js
- * ไฟล์ตั้งค่าและเชื่อมต่อ Supabase Client สำหรับ e-Village Office
- */
+// ========================================
+// RONGKHEM e-VILLAGE OFFICE
+// Supabase Shared Client
+// ========================================
 
-const SUPABASE_URL = 'https://qtnjtsigdgiwdsdfocmq.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN';
+// ใช้ค่าเดิมจาก config.js ถ้ามี
+const SUPABASE_URL = window.SUPABASE_URL || "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY =
+  window.SUPABASE_ANON_KEY || "YOUR_SUPABASE_ANON_KEY";
 
-// สร้าง Supabase Client สำหรับใช้งานทั่วทั้งเว็บไซต์
-let supabase = null;
-
-if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    console.log('✅ Supabase Connected Successfully');
-} else {
-    console.error('❌ ไม่พบ Supabase SDK โปรดแนบแท็กสคริปต์ Supabase ใน HTML');
+// ตรวจสอบว่าโหลด Supabase CDN แล้วหรือยัง
+if (!window.supabase) {
+  console.error("Supabase CDN is not loaded.");
 }
+
+// สร้าง Supabase Client เพียงตัวเดียว
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+// Export เพื่อให้ไฟล์อื่น import ไปใช้ได้
+export { supabaseClient };
+export default supabaseClient;
