@@ -1,184 +1,221 @@
-// manage-admin.js
-
+// โหลดข้อมูลสถิติและกิจกรรมเมื่อเปิดหน้า
 document.addEventListener('DOMContentLoaded', () => {
-  loadVillageStats();
-  loadActivitiesList();
-
-  document.getElementById('stats-form').addEventListener('submit', handleUpdateStats);
-  document.getElementById('activity-form').addEventListener('submit', handleSaveActivity);
+    loadVillageStats();
+    loadActivities();
 });
 
-// --- 1. การจัดการสถิติหมู่บ้าน ---
+// ------------------------------------
+// 1. ส่วนจัดการสถิติหมู่บ้าน (Stats)
+// ------------------------------------
 async function loadVillageStats() {
-  const { data, error } = await supabaseClient
-    .from('village_stats')
-    .select('*')
-    .eq('id', 1)
-    .single();
+    try {
+        const { data, error } = await supabaseClient
+            .from('village_stats')
+            .select('*')
+            .single();
 
-  if (error && error.code !== 'PGRST116') {
-    console.error('Error fetching stats:', error);
-    return;
-  }
+        if (error && error.code !== 'PGRST116') {
+            console.error('Error fetching stats:', error);
+            return;
+        }
 
-  if (data) {
-    document.getElementById('stat-population').value = data.population || 0;
-    document.getElementById('stat-households').value = data.households || 0;
-    document.getElementById('stat-children').value = data.children || 0;
-    document.getElementById('stat-elderly').value = data.elderly || 0;
-    document.getElementById('stat-disabled').value = data.disabled || 0;
-    document.getElementById('stat-vulnerable').value = data.vulnerable || 0;
-  }
+        if (data) {
+            document.getElementById('stat-population').value = data.population || 0;
+            document.getElementById('stat-households').value = data.households || 0;
+            document.getElementById('stat-children').value = data.children || 0;
+            document.getElementById('stat-elderly').value = data.elderly || 0;
+            document.getElementById('stat-disabled').value = data.disabled || 0;
+            document.getElementById('stat-vulnerable').value = data.vulnerable || 0;
+        }
+    } catch (err) {
+        console.error('Unexpected error loading stats:', err);
+    }
 }
 
-async function handleUpdateStats(e) {
-  e.preventDefault();
-  const payload = {
-    id: 1,
-    population: parseInt(document.getElementById('stat-population').value),
-    households: parseInt(document.getElementById('stat-households').value),
-    children: parseInt(document.getElementById('stat-children').value),
-    elderly: parseInt(document.getElementById('stat-elderly').value),
-    disabled: parseInt(document.getElementById('stat-disabled').value),
-    vulnerable: parseInt(document.getElementById('stat-vulnerable').value),
-    updated_at: new Date().toISOString()
-  };
+document.getElementById('stats-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const statsData = {
+        id: 1, // กำหนด ID หลักสำหรับแถวสถิติประจำหมู่บ้าน
+        population: parseInt(document.getElementById('stat-population').value) || 0,
+        households: parseInt(document.getElementById('stat-households').value) || 0,
+        children: parseInt(document.getElementById('stat-children').value) || 0,
+        elderly: parseInt(document.getElementById('stat-elderly').value) || 0,
+        disabled: parseInt(document.getElementById('stat-disabled').value) || 0,
+        vulnerable: parseInt(document.getElementById('stat-vulnerable').value) || 0,
+        updated_at: new Date()
+    };
 
-  const { error } = await supabaseClient
-    .from('village_stats')
-    .upsert(payload);
-
-  if (error) alert('เกิดข้อผิดพลาดในการบันทึกสถิติ: ' + error.message);
-  else alert('อัปเดตข้อมูลสถิติเรียบร้อยแล้ว!');
-}
-
-// --- 2. อัปโหลดรูปภาพเข้า Supabase Storage ---
-async function uploadActivityImage(file) {
-  if (!file) return null;
-  const fileExt = file.name.split('.').pop();
-  const fileName = `act_${Date.now()}.${fileExt}`;
-  const filePath = `activities/${fileName}`;
-
-  const { error } = await supabaseClient.storage
-    .from('rongkhem-images')
-    .upload(filePath, file);
-
-  if (error) {
-    alert('อัปโหลดรูปไม่สำเร็จ: ' + error.message);
-    return null;
-  }
-
-  const { data } = supabaseClient.storage
-    .from('rongkhem-images')
-    .getPublicUrl(filePath);
-
-  return data.publicUrl;
-}
-
-// --- 3. เพิ่ม/แก้ไข กิจกรรม ---
-async function handleSaveActivity(e) {
-  e.preventDefault();
-  const id = document.getElementById('activity-id').value;
-  const fileInput = document.getElementById('act-image').files[0];
-  
-  let imageUrl = null;
-  if (fileInput) {
-    imageUrl = await uploadActivityImage(fileInput);
-  }
-
-  const activityData = {
-    title: document.getElementById('act-title').value,
-    event_date: document.getElementById('act-date').value,
-    location: document.getElementById('act-location').value,
-    participants_count: parseInt(document.getElementById('act-participants').value) || 0
-  };
-
-  if (imageUrl) activityData.image_url = imageUrl;
-
-  let resultError = null;
-
-  if (id) {
-    // กรณีแก้ไข (Update)
     const { error } = await supabaseClient
-      .from('activities')
-      .update(activityData)
-      .eq('id', id);
-    resultError = error;
-  } else {
-    // กรณีเพิ่มใหม่ (Create)
-    const { error } = await supabaseClient
-      .from('activities')
-      .insert([activityData]);
-    resultError = error;
-  }
+        .from('village_stats')
+        .upsert(statsData);
 
-  if (resultError) {
-    alert('เกิดข้อผิดพลาด: ' + resultError.message);
-  } else {
-    alert('บันทึกข้อมูลกิจกรรมเรียบร้อยแล้ว!');
-    resetActivityForm();
-    loadActivitiesList();
-  }
+    if (error) {
+        alert('เกิดข้อผิดพลาดในการบันทึกสถิติ: ' + error.message);
+    } else {
+        alert('บันทึกข้อมูลสถิติเรียบร้อยแล้ว!');
+    }
+});
+
+// ------------------------------------
+// 2. ส่วนจัดการกิจกรรม (Activities)
+// ------------------------------------
+async function loadActivities() {
+    const tableBody = document.getElementById('activity-table-body');
+    tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">กำลังโหลดข้อมูล...</td></tr>';
+
+    const { data: activities, error } = await supabaseClient
+        .from('activities')
+        .select('*')
+        .order('date', { ascending: false });
+
+    if (error) {
+        console.error('Error fetching activities:', error);
+        tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center; color:red;">ไม่สามารถโหลดข้อมูลกิจกรรมได้</td></tr>';
+        return;
+    }
+
+    if (!activities || activities.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">ยังไม่มีรายการกิจกรรม</td></tr>';
+        return;
+    }
+
+    tableBody.innerHTML = activities.map(act => `
+        <tr>
+            <td><strong>${escapeHtml(act.title)}</strong></td>
+            <td>${act.date || '-'}</td>
+            <td>${escapeHtml(act.location || '-')}</td>
+            <td>
+                <button class="btn btn-secondary" onclick="editActivity('${act.id}')">แก้ไข</button>
+                <button class="btn btn-danger" onclick="deleteActivity('${act.id}')">ลบ</button>
+            </td>
+        </tr>
+    `).join('');
 }
 
-// --- 4. ดึงรายการกิจกรรมทั้งหมดมาแสดงในตาราง ---
-async function loadActivitiesList() {
-  const { data: activities, error } = await supabaseClient
-    .from('activities')
-    .select('*')
-    .order('event_date', { ascending: false });
+// บันทึก / แก้ไขกิจกรรม
+document.getElementById('activity-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (error) return console.error(error);
+    const activityId = document.getElementById('activity-id').value;
+    const title = document.getElementById('act-title').value;
+    const date = document.getElementById('act-date').value;
+    const location = document.getElementById('act-location').value;
+    const participants = parseInt(document.getElementById('act-participants').value) || 0;
+    const imageFile = document.getElementById('act-image').files[0];
 
-  const tbody = document.getElementById('activity-table-body');
-  tbody.innerHTML = '';
+    let imageUrl = null;
 
-  activities.forEach(act => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><strong>${act.title}</strong></td>
-      <td>${act.event_date}</td>
-      <td>${act.location}</td>
-      <td>
-        <button class="btn btn-primary" style="padding:4px 8px;" onclick="editActivity(${JSON.stringify(act).replace(/"/g, '&quot;')})">แก้ไข</button>
-        <button class="btn btn-danger" style="padding:4px 8px;" onclick="deleteActivity(${act.id})">ลบ</button>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  });
+    // อัปโหลดรูปภาพเข้า Supabase Storage (ถ้ามีการเลือกรูป)
+    if (imageFile) {
+        const fileExt = imageFile.name.split('.').pop();
+        const fileName = `${Date.now()}.${fileExt}`;
+        const { data: uploadData, error: uploadError } = await supabaseClient
+            .storage
+            .from('activity-images')
+            .upload(fileName, imageFile);
+
+        if (uploadError) {
+            alert('อัปโหลดรูปภาพไม่สำเร็จ: ' + uploadError.message);
+            return;
+        }
+
+        const { data: publicUrlData } = supabaseClient
+            .storage
+            .from('activity-images')
+            .getPublicUrl(fileName);
+            
+        imageUrl = publicUrlData.publicUrl;
+    }
+
+    const payload = {
+        title,
+        date,
+        location,
+        participants,
+        updated_at: new Date()
+    };
+
+    if (imageUrl) {
+        payload.image_url = imageUrl;
+    }
+
+    let error;
+    if (activityId) {
+        // อัปเดตกิจกรรมเดิม
+        const res = await supabaseClient
+            .from('activities')
+            .update(payload)
+            .eq('id', activityId);
+        error = res.error;
+    } else {
+        // เพิ่มกิจกรรมใหม่
+        const res = await supabaseClient
+            .from('activities')
+            .insert([payload]);
+        error = res.error;
+    }
+
+    if (error) {
+        alert('เกิดข้อผิดพลาดในการบันทึกกิจกรรม: ' + error.message);
+    } else {
+        alert('บันทึกกิจกรรมเรียบร้อยแล้ว!');
+        resetActivityForm();
+        loadActivities();
+    }
+});
+
+// ดึงข้อมูลมาแก้ไข
+async function editActivity(id) {
+    const { data: act, error } = await supabaseClient
+        .from('activities')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    if (error || !act) {
+        alert('ไม่พบข้อมูลกิจกรรม');
+        return;
+    }
+
+    document.getElementById('activity-id').value = act.id;
+    document.getElementById('act-title').value = act.title;
+    document.getElementById('act-date').value = act.date;
+    document.getElementById('act-location').value = act.location;
+    document.getElementById('act-participants').value = act.participants || 0;
+
+    document.getElementById('btn-save-activity').textContent = 'อัปเดตกิจกรรม';
+    document.getElementById('btn-cancel-edit').style.display = 'inline-block';
 }
 
-// --- 5. ลบกิจกรรม ---
+// ลบกิจกรรม
 async function deleteActivity(id) {
-  if (!confirm('คุณแน่ใจหรือไม่ว่าต้องการลบกิจกรรมนี้?')) return;
+    if (!confirm('คุณต้องการลบกิจกรรมนี้ใช่หรือไม่?')) return;
 
-  const { error } = await supabaseClient
-    .from('activities')
-    .delete()
-    .eq('id', id);
+    const { error } = await supabaseClient
+        .from('activities')
+        .delete()
+        .eq('id', id);
 
-  if (error) alert('ลบข้อมูลไม่สำเร็จ: ' + error.message);
-  else {
-    alert('ลบข้อมูลเรียบร้อยแล้ว');
-    loadActivitiesList();
-  }
+    if (error) {
+        alert('เกิดข้อผิดพลาดในการลบ: ' + error.message);
+    } else {
+        alert('ลบกิจกรรมเรียบร้อยแล้ว');
+        loadActivities();
+    }
 }
 
-// --- 6. ดึงข้อมูลกิจกรรมลงฟอร์มเพื่อแก้ไข ---
-function editActivity(act) {
-  document.getElementById('activity-id').value = act.id;
-  document.getElementById('act-title').value = act.title;
-  document.getElementById('act-date').value = act.event_date;
-  document.getElementById('act-location').value = act.location;
-  document.getElementById('act-participants').value = act.participants_count;
-
-  document.getElementById('btn-save-activity').textContent = 'อัปเดตกิจกรรม';
-  document.getElementById('btn-cancel-edit').style.display = 'inline-block';
-}
-
+// รีเซ็ตฟอร์มกิจกรรม
 function resetActivityForm() {
-  document.getElementById('activity-form').reset();
-  document.getElementById('activity-id').value = '';
-  document.getElementById('btn-save-activity').textContent = 'บันทึกกิจกรรม';
-  document.getElementById('btn-cancel-edit').style.display = 'none';
+    document.getElementById('activity-id').value = '';
+    document.getElementById('activity-form').reset();
+    document.getElementById('btn-save-activity').textContent = 'บันทึกกิจกรรม';
+    document.getElementById('btn-cancel-edit').style.display = 'none';
+}
+
+function escapeHtml(text) {
+    if (!text) return '';
+    return text.replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+    });
 }
