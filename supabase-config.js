@@ -1,27 +1,17 @@
-import { createClient } from
-'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+/**
+ * supabase-config.js
+ * ไฟล์ตั้งค่าและเชื่อมต่อ Supabase Client สำหรับหมู่บ้านอัจฉริยะร่องเข็ม
+ */
 
-// ========================================
-// RONGKHEM e-VILLAGE OFFICE
-// Supabase Configuration
-// ========================================
+const SUPABASE_URL = 'https://qtnjtsigdgiwdsdfocmq.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN';
 
-// ใส่ Project URL จริงของคุณ
-const SUPABASE_URL = 'ใส่_PROJECT_URL_ตรงนี้';
+// สร้าง Supabase Client สำหรับใช้งานทั่วทั้งเว็บไซต์
+let supabase = null;
 
-// ใส่ Publishable Key หรือ anon public key จริงของคุณ
-const SUPABASE_ANON_KEY = 'ใส่_ANON_OR_PUBLISHABLE_KEY_ตรงนี้';
-
-
-// สร้างการเชื่อมต่อ Supabase
-export const supabase = createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY,
-    {
-        auth: {
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: true
-        }
-    }
-);
+if (typeof window.supabase !== 'undefined' && window.supabase.createClient) {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    console.log('✅ เชื่อมต่อ Supabase สำเร็จ');
+} else {
+    console.error('❌ ไม่พบ Supabase SDK โปรดแนบแท็กสคริปต์ใน HTML');
+}
