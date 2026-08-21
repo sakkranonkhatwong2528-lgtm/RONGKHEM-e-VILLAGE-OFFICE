@@ -1,531 +1,427 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
-
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
+<meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
 <title>ระบบหลังบ้าน - บ้านร่องเข็ม</title>
 
 <style>
 
-*{
-box-sizing:border-box;
-}
-
 body{
-font-family:Sarabun,Arial,sans-serif;
-background:#f4f6f9;
-margin:0;
-padding:20px;
-color:#333;
+  font-family:Sarabun,Arial,sans-serif;
+  background:#f4f6f9;
+  margin:0;
+  padding:20px;
 }
 
 .admin-wrapper{
-max-width:1100px;
-margin:auto;
-background:white;
-padding:25px;
-border-radius:12px;
-box-shadow:0 4px 15px rgba(0,0,0,.08);
+  max-width:1100px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .top-bar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-background:#113a72;
-color:white;
-padding:15px 20px;
-border-radius:8px;
-margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  background:#113a72;
+  color:white;
+  padding:15px 20px;
+  border-radius:8px;
+  margin-bottom:20px;
 }
 
 .form-group{
-margin-bottom:15px;
+  margin-bottom:15px;
 }
 
 label{
-display:block;
-margin-bottom:6px;
-font-weight:bold;
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
 }
 
 input,
 textarea,
 select{
-width:100%;
-box-sizing:border-box;
-padding:10px;
-border:1px solid #ccc;
-border-radius:6px;
-font-size:16px;
-}
-
-textarea{
-resize:vertical;
+  width:100%;
+  box-sizing:border-box;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:16px;
 }
 
 .btn-group{
-display:flex;
-gap:10px;
-margin-top:15px;
-flex-wrap:wrap;
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+  flex-wrap:wrap;
 }
 
 button{
-padding:10px 18px;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-weight:bold;
-font-size:15px;
+  padding:10px 18px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
 }
 
 .btn-save{
-background:#28a745;
-color:white;
+  background:#28a745;
+  color:white;
 }
 
 .btn-reset{
-background:#6c757d;
-color:white;
+  background:#6c757d;
+  color:white;
 }
 
 .btn-logout,
 .btn-delete{
-background:#dc3545;
-color:white;
+  background:#dc3545;
+  color:white;
 }
 
 .btn-edit{
-background:#ffc107;
-color:#222;
-margin-right:5px;
+  background:#ffc107;
+  color:#222;
 }
 
 table{
-width:100%;
-border-collapse:collapse;
-margin-top:15px;
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
 }
 
 th,
 td{
-border:1px solid #ddd;
-padding:10px;
-vertical-align:middle;
+  border:1px solid #ddd;
+  padding:10px;
+  vertical-align:middle;
 }
 
 th{
-background:#f1f3f5;
+  background:#f1f3f5;
 }
 
 .img-preview{
-width:70px;
-height:70px;
-object-fit:cover;
-border-radius:5px;
-border:1px solid #ddd;
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:5px;
 }
 
 .action-buttons{
-display:flex;
-gap:5px;
-flex-wrap:wrap;
-}
-
-.status-message{
-margin-top:15px;
-padding:10px;
-border-radius:6px;
-display:none;
-}
-
-.status-success{
-display:block;
-background:#d4edda;
-color:#155724;
-}
-
-.status-error{
-display:block;
-background:#f8d7da;
-color:#721c24;
-}
-
-.loading{
-opacity:.6;
-pointer-events:none;
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
 }
 
 @media(max-width:700px){
 
-body{
-padding:10px;
-}
+  body{
+    padding:10px;
+  }
 
-.admin-wrapper{
-padding:15px;
-}
+  .admin-wrapper{
+    padding:15px;
+  }
 
-.top-bar{
-flex-direction:column;
-align-items:flex-start;
-}
+  .top-bar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-table{
-font-size:13px;
-}
+  table{
+    font-size:13px;
+  }
 
-th,
-td{
-padding:7px;
-}
+  th,
+  td{
+    padding:6px;
+  }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="admin-wrapper">
 
-<div class="top-bar">
+  <div class="top-bar">
 
-<div>
+    <div>
+      👤 ผู้ดูแลระบบ:
+      <strong id="adminEmail">
+        กำลังตรวจสอบ...
+      </strong>
+    </div>
 
-👤 ผู้ดูแลระบบ:
-<strong id="adminEmail">
+    <button
+      id="logoutBtn"
+      class="btn-logout">
 
-กำลังตรวจสอบ...
+      🚪 ออกจากระบบ
 
-</strong>
+    </button>
 
-</div>
+  </div>
 
-<button
-id="logoutBtn"
-class="btn-logout"
-type="button">
 
-🚪 ออกจากระบบ
+  <h2>⚙️ ระบบจัดการข้อมูลหมู่บ้าน</h2>
 
-</button>
 
-</div>
+  <div class="form-group">
 
+    <label>เลือกเมนู</label>
 
-<h2>
-⚙️ ระบบจัดการข้อมูลหมู่บ้าน
-</h2>
+    <select id="menuSelect">
 
+      <option value="news">
+        📰 ข่าวสารประชาสัมพันธ์
+      </option>
 
-<div class="form-group">
+      <option value="activities">
+        🎉 กิจกรรม
+      </option>
 
-<label for="menuSelect">
+      <option value="projects">
+        📁 โครงการหมู่บ้าน
+      </option>
 
-เลือกเมนู
+      <option value="incidents">
+        ⚠️ เหตุการณ์ / แจ้งเตือน
+      </option>
 
-</label>
+      <option value="complaints">
+        📢 เรื่องร้องเรียน
+      </option>
 
-<select id="menuSelect">
+      <option value="elderly">
+        👴 ข้อมูลผู้สูงอายุ
+      </option>
 
-<option value="news">
+      <option value="vulnerable">
+        ❤️ กลุ่มเปราะบาง
+      </option>
 
-📰 ข่าวสารประชาสัมพันธ์
+    </select>
 
-</option>
+  </div>
 
-<option value="activities">
+  <hr>
 
-🎉 กิจกรรม
 
-</option>
+  <h3 id="formTitle">
+    ➕ เพิ่มข้อมูลใหม่
+  </h3>
 
-<option value="projects">
 
-📁 โครงการหมู่บ้าน
+  <form id="crudForm">
 
-</option>
+    <input
+      type="hidden"
+      id="recordId">
 
-<option value="incidents">
+    <input
+      type="hidden"
+      id="currentImageUrl">
 
-🚨 เหตุการณ์ / แจ้งเตือน
 
-</option>
+    <div class="form-group">
 
-<option value="complaints">
+      <label>หัวข้อ</label>
 
-📢 เรื่องร้องเรียน
+      <input
+        type="text"
+        id="titleInput"
+        required
+        placeholder="ระบุหัวข้อ">
 
-</option>
+    </div>
 
-</select>
 
-</div>
+    <div class="form-group">
 
+      <label>รายละเอียด</label>
 
-<hr>
+      <textarea
+        id="detailInput"
+        rows="5"
+        placeholder="รายละเอียดข้อมูล"></textarea>
 
+    </div>
 
-<h3 id="formTitle">
 
-➕ เพิ่มข้อมูลใหม่
+    <div
+      class="form-group"
+      id="statusGroup">
 
-</h3>
+      <label>สถานะ</label>
 
+      <select id="statusInput">
 
-<form id="crudForm">
+        <option value="">
+          -- ไม่ระบุ --
+        </option>
 
-<input
-type="hidden"
-id="recordId">
+        <option value="กำลังดำเนินการ">
+          กำลังดำเนินการ
+        </option>
 
+        <option value="เสร็จสิ้น">
+          เสร็จสิ้น
+        </option>
 
-<input
-type="hidden"
-id="currentImageUrl">
+        <option value="รอดำเนินการ">
+          รอดำเนินการ
+        </option>
 
+        <option value="แจ้งเตือน">
+          แจ้งเตือน
+        </option>
 
-<div class="form-group">
+        <option value="ปกติ">
+          ปกติ
+        </option>
 
-<label for="titleInput">
+      </select>
 
-หัวข้อ
+    </div>
 
-</label>
 
-<input
-type="text"
-id="titleInput"
-required
-placeholder="ระบุหัวข้อ">
+    <div
+      class="form-group"
+      id="dateGroup">
 
-</div>
+      <label>วันที่</label>
 
+      <input
+        type="date"
+        id="dateInput">
 
-<div class="form-group">
+    </div>
 
-<label id="detailLabel" for="detailInput">
 
-รายละเอียด
+    <div class="form-group">
 
-</label>
+      <label>รูปภาพ</label>
 
-<textarea
-id="detailInput"
-rows="5"
-placeholder="รายละเอียดข้อมูล"></textarea>
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*">
 
-</div>
+      <div
+        id="imagePreviewContainer"
+        style="display:none;margin-top:10px">
 
+        <img
+          id="imagePreview"
+          class="img-preview"
+          alt="ตัวอย่างรูป">
 
-<div
-class="form-group"
-id="statusGroup"
-style="display:none">
+      </div>
 
-<label for="statusInput">
+    </div>
 
-สถานะ
 
-</label>
+    <div class="btn-group">
 
-<select id="statusInput">
+      <button
+        type="submit"
+        id="saveBtn"
+        class="btn-save">
 
-<option value="">
+        💾 บันทึกข้อมูล
 
--- เลือกสถานะ --
+      </button>
 
-</option>
 
-<option value="pending">
+      <button
+        type="button"
+        id="resetBtn"
+        class="btn-reset">
 
-รอดำเนินการ
+        ↩ ยกเลิก
 
-</option>
+      </button>
 
-<option value="in_progress">
+    </div>
 
-กำลังดำเนินการ
+  </form>
 
-</option>
 
-<option value="completed">
+  <hr>
 
-ดำเนินการเสร็จสิ้น
 
-</option>
+  <h3 id="listTitle">
+    📋 รายการข้อมูล
+  </h3>
 
-<option value="active">
 
-กำลังดำเนินการ
+  <div style="overflow-x:auto">
 
-</option>
+    <table>
 
-<option value="inactive">
+      <thead>
 
-ยังไม่ดำเนินการ
+        <tr>
 
-</option>
+          <th>ID</th>
 
-</select>
+          <th>รูป</th>
 
-</div>
+          <th>หัวข้อ</th>
 
+          <th>รายละเอียด</th>
 
-<div
-class="form-group"
-id="dateGroup"
-style="display:none">
+          <th>สถานะ / วันที่</th>
 
-<label
-id="dateLabel"
-for="dateInput">
+          <th>จัดการ</th>
 
-วันที่
+        </tr>
 
-</label>
+      </thead>
 
-<input
-type="datetime-local"
-id="dateInput">
 
-</div>
+      <tbody id="tableBody">
 
+        <tr>
 
-<div class="form-group">
+          <td
+            colspan="6"
+            style="text-align:center">
 
-<label for="imageInput">
+            กำลังโหลด...
 
-รูปภาพ
+          </td>
 
-</label>
+        </tr>
 
-<input
-type="file"
-id="imageInput"
-accept="image/*">
+      </tbody>
 
+    </table>
 
-<div
-id="imagePreviewContainer"
-style="display:none;margin-top:10px">
-
-<img
-id="imagePreview"
-class="img-preview"
-alt="ตัวอย่างรูปภาพ">
-
-</div>
-
-</div>
-
-
-<div class="btn-group">
-
-<button
-type="submit"
-id="saveBtn"
-class="btn-save">
-
-💾 บันทึกข้อมูล
-
-</button>
-
-
-<button
-type="button"
-id="resetBtn"
-class="btn-reset">
-
-↩ ยกเลิก
-
-</button>
-
-</div>
-
-</form>
-
-
-<div
-id="statusMessage"
-class="status-message">
-
-</div>
-
-
-<hr>
-
-
-<h3>
-
-📋 รายการข้อมูล
-
-</h3>
-
-
-<div style="overflow-x:auto">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>ID</th>
-
-<th>รูป</th>
-
-<th>หัวข้อ</th>
-
-<th>รายละเอียด</th>
-
-<th>สถานะ / วันที่</th>
-
-<th>จัดการ</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="tableBody">
-
-<tr>
-
-<td
-colspan="6"
-style="text-align:center">
-
-กำลังโหลด...
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
+  </div>
 
 </div>
 
 
 <script
-type="module"
-src="manage-admin.js">
+  type="module"
+  src="manage-admin.js">
 </script>
 
 </body>
-
 </html>
