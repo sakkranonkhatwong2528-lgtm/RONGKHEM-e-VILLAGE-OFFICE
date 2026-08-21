@@ -1,95 +1,65 @@
-/**
- * auth.js
- * ระบบล็อกอิน/ออกจากระบบ สำหรับผู้ใหญ่บ้านและคณะทำงาน
- */
+import supabaseClient from "../../supabase-config.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. ปุ่ม "เข้าสู่ระบบ" บน Top Header หน้าหลัก (คลิกแล้วพาไปหน้า admin-login.html)
-    const headerLoginBtn = document.querySelector('header button');
-    if (headerLoginBtn && !window.location.pathname.includes('admin-login.html')) {
-        headerLoginBtn.style.cursor = 'pointer';
-        headerLoginBtn.addEventListener('click', () => {
-            window.location.href = 'admin-login.html';
-        });
-    }
+// ========================================
+// ตรวจสอบการเข้าสู่ระบบ
+// ========================================
+export async function requireAdmin() {
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
 
-    // 2. ตรวจสอบการส่งฟอร์มเข้าสู่ระบบในหน้า admin-login.html
-    const loginForm = document.getElementById('adminLoginForm') || document.querySelector('form');
-    const isLoginPage = window.location.pathname.includes('admin-login.html');
+  // ถ้ายังไม่ได้ Login
+  if (!session) {
+    window.location.href = "admin-login.html";
+    return null;
+  }
 
-    if (isLoginPage && loginForm) {
-        loginForm.addEventListener('submit', handleAdminLogin);
-    }
-
-    // 3. ป้องกันคนแอบเข้าหน้า Admin Dashboard หากยังไม่ได้ล็อกอิน
-    if (!isLoginPage && window.location.pathname.includes('admin-dashboard')) {
-        checkAdminSession();
-    }
-
-    // 4. ปุ่มออกจากระบบ (Logout)
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', handleAdminLogout);
-    }
-});
-
-async function handleAdminLogin(event) {
-    event.preventDefault();
-
-    const emailInput = document.getElementById('email') || document.querySelector('input[type="email"]');
-    const passwordInput = document.getElementById('password') || document.querySelector('input[type="password"]');
-    const submitBtn = document.querySelector('button[type="submit"]');
-
-    if (!emailInput || !passwordInput) return;
-
-    const email = emailInput.value.trim();
-    const password = passwordInput.value;
-
-    if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'กำลังตรวจสอบข้อมูล...';
-    }
-
-    try {
-        if (!supabase) throw new Error('ไม่สามารถเชื่อมต่อฐานข้อมูลได้');
-
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password,
-        });
-
-        if (error) throw error;
-
-        alert('เข้าสู่ระบบสำเร็จ');
-        window.location.href = 'admin-dashboard-v2.html';
-
-    } catch (err) {
-        console.error('Login Error:', err.message);
-        alert('เข้าสู่ระบบไม่สำเร็จ: อีเมลหรือรหัสผ่านไม่ถูกต้อง');
-    } finally {
-        if (submitBtn) {
-            submitBtn.disabled = false;
-            submitBtn.innerText = 'เข้าสู่ระบบ';
-        }
-    }
+  return session.user;
 }
 
-async function checkAdminSession() {
-    if (!supabase) return;
+// ========================================
+// Login
+// ========================================
+export async function login(email, password) {
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email,
+      password
+    });
 
-    const { data: { session }, error } = await supabase.auth.getSession();
+  if (error) {
+    console.error("Login error:", error);
+    throw error;
+  }
 
-    if (error || !session) {
-        console.warn('ยังไม่ได้เข้าสู่ระบบ นำทางกลับหน้า Login');
-        window.location.href = 'admin-login.html';
-    }
+  return data;
 }
 
-async function handleAdminLogout(event) {
-    if (event) event.preventDefault();
-    if (!supabase) return;
+// ========================================
+// Logout
+// ========================================
+export async function logout() {
+  const { error } =
+    await supabaseClient.auth.signOut();
 
-    await supabase.auth.signOut();
-    alert('ออกจากระบบเรียบร้อยแล้ว');
-    window.location.href = 'admin-login.html';
+  if (error) {
+    console.error("Logout error:", error);
+    throw error;
+  }
+
+  window.location.href = "admin-login.html";
+}
+
+// ========================================
+// ถ้า Login อยู่แล้ว
+// ไม่ต้องกลับไปหน้า Login
+// ========================================
+export async function redirectIfLoggedIn() {
+  const {
+    data: { session }
+  } = await supabaseClient.auth.getSession();
+
+  if (session) {
+    window.location.href = "admin.html";
+  }
 }
