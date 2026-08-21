@@ -1,87 +1,32 @@
 import supabaseClient from "./supabase-config.js";
 
-
-// ========================================
-// ตั้งค่าโมดูลทั้งหมด
-// ========================================
-
-const MODULES = {
-
-  news: {
-    table: "news",
-    title: "📰 ข่าวสารประชาสัมพันธ์",
-    detailField: "content",
-    image: true,
-    status: false,
-    dateField: "published_at"
-  },
-
-  activities: {
-    table: "activities",
-    title: "🎉 กิจกรรม",
-    detailField: "description",
-    image: true,
-    status: false,
-    dateField: "event_date"
-  },
-
-  projects: {
-    table: "projects",
-    title: "📁 โครงการหมู่บ้าน",
-    detailField: "description",
-    image: true,
-    status: true,
-    dateField: null
-  },
-
-  incidents: {
-    table: "incidents",
-    title: "⚠️ เหตุการณ์ / แจ้งเตือน",
-    detailField: "description",
-    image: false,
-    status: true,
-    dateField: "incident_date"
-  },
-
-  complaints: {
-    table: "complaints",
-    title: "📢 เรื่องร้องเรียน",
-    detailField: "detail",
-    image: false,
-    status: true,
-    dateField: null
-  },
-
-  elderly: {
-    table: "elderly",
-    title: "👴 ข้อมูลผู้สูงอายุ",
-    detailField: "description",
-    image: true,
-    status: false,
-    dateField: null
-  },
-
-  vulnerable: {
-    table: "vulnerable",
-    title: "❤️ กลุ่มเปราะบาง",
-    detailField: "description",
-    image: true,
-    status: false,
-    dateField: null
-  }
-
-};
+import {
+  loadRecords,
+  createRecord,
+  updateRecord,
+  deleteRecord,
+  uploadImage
+} from "./supabase-service.js";
 
 
 // ========================================
-// ตัวแปร DOM
+// DOM ELEMENTS
 // ========================================
 
-const menuSelect = document.getElementById("menuSelect");
+const adminEmail =
+  document.getElementById("adminEmail");
 
-const crudForm = document.getElementById("crudForm");
+const logoutBtn =
+  document.getElementById("logoutBtn");
 
-const recordId = document.getElementById("recordId");
+const menuSelect =
+  document.getElementById("menuSelect");
+
+const crudForm =
+  document.getElementById("crudForm");
+
+const recordId =
+  document.getElementById("recordId");
 
 const currentImageUrl =
   document.getElementById("currentImageUrl");
@@ -101,11 +46,18 @@ const dateInput =
 const imageInput =
   document.getElementById("imageInput");
 
-const imagePreview =
-  document.getElementById("imagePreview");
-
 const imagePreviewContainer =
-  document.getElementById("imagePreviewContainer");
+  document.getElementById(
+    "imagePreviewContainer"
+  );
+
+const imagePreview =
+  document.getElementById(
+    "imagePreview"
+  );
+
+const resetBtn =
+  document.getElementById("resetBtn");
 
 const tableBody =
   document.getElementById("tableBody");
@@ -122,29 +74,42 @@ const statusGroup =
 const dateGroup =
   document.getElementById("dateGroup");
 
-const resetBtn =
-  document.getElementById("resetBtn");
-
-const logoutBtn =
-  document.getElementById("logoutBtn");
-
-const adminEmail =
-  document.getElementById("adminEmail");
+const saveBtn =
+  document.getElementById("saveBtn");
 
 
 // ========================================
-// โมดูลปัจจุบัน
+// MODULE LABELS
 // ========================================
 
-function getCurrentModule() {
+const MODULE_LABELS = {
 
-  return MODULES[menuSelect.value];
+  news:
+    "ข่าวสารประชาสัมพันธ์",
 
-}
+  activity:
+    "กิจกรรม",
+
+  project:
+    "โครงการหมู่บ้าน",
+
+  incident:
+    "เหตุการณ์ / แจ้งเตือน",
+
+  complaint:
+    "เรื่องร้องเรียน",
+
+  elderly:
+    "ข้อมูลผู้สูงอายุ",
+
+  vulnerable:
+    "กลุ่มเปราะบาง"
+
+};
 
 
 // ========================================
-// ตรวจสอบ Login
+// CHECK LOGIN
 // ========================================
 
 async function checkLogin() {
@@ -152,258 +117,264 @@ async function checkLogin() {
   const {
     data,
     error
-  } = await supabaseClient.auth.getUser();
-
-  if (error || !data.user) {
-
-    window.location.href = "login.html";
-
-    return;
-
-  }
-
-  adminEmail.textContent =
-    data.user.email;
-
-}
-
-
-// ========================================
-// Logout
-// ========================================
-
-logoutBtn.addEventListener(
-  "click",
-  async () => {
-
-    await supabaseClient.auth.signOut();
-
-    window.location.href =
-      "login.html";
-
-  }
-);
-
-
-// ========================================
-// แสดง/ซ่อน Field
-// ========================================
-
-function updateFormFields() {
-
-  const module =
-    getCurrentModule();
-
-
-  formTitle.textContent =
-    "➕ เพิ่ม " + module.title;
-
-  listTitle.textContent =
-    "📋 รายการ " + module.title;
-
-
-  statusGroup.style.display =
-    module.status ? "block" : "none";
-
-
-  dateGroup.style.display =
-    module.dateField ? "block" : "none";
-
-
-  imageInput.parentElement.style.display =
-    module.image ? "block" : "none";
-
-
-  if (!module.image) {
-
-    imagePreviewContainer.style.display =
-      "none";
-
-  }
-
-}
-
-
-// ========================================
-// โหลดข้อมูล
-// ========================================
-
-async function loadRecords() {
-
-  const module =
-    getCurrentModule();
-
-
-  tableBody.innerHTML = `
-    <tr>
-      <td colspan="6"
-      style="text-align:center">
-        กำลังโหลด...
-      </td>
-    </tr>
-  `;
-
-
-  const {
-    data,
-    error
-  } = await supabaseClient
-    .from(module.table)
-    .select("*")
-    .order("created_at", {
-      ascending: false
-    });
+  } =
+    await supabaseClient
+      .auth
+      .getUser();
 
 
   if (error) {
 
     console.error(error);
 
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="6"
-        style="text-align:center;color:red">
-          โหลดข้อมูลไม่สำเร็จ
-        </td>
-      </tr>
-    `;
+  }
+
+
+  const user =
+    data?.user;
+
+
+  if (!user) {
+
+    window.location.href =
+      "./แอดมินล็อกอิน.html";
 
     return;
 
   }
 
 
-  if (!data || data.length === 0) {
-
-    tableBody.innerHTML = `
-      <tr>
-        <td colspan="6"
-        style="text-align:center">
-          ยังไม่มีข้อมูล
-        </td>
-      </tr>
-    `;
-
-    return;
-
-  }
-
-
-  tableBody.innerHTML = "";
-
-
-  data.forEach(record => {
-
-    const detail =
-      record[module.detailField] || "";
-
-
-    const statusOrDate =
-      module.status
-        ? (record.status || "-")
-        : (
-            module.dateField
-              ? formatDate(
-                  record[module.dateField]
-                )
-              : "-"
-          );
-
-
-    const image =
-      record.image_url
-        ? `
-          <img
-            src="${record.image_url}"
-            class="img-preview"
-            alt="รูปภาพ">
-        `
-        : "-";
-
-
-    const tr =
-      document.createElement("tr");
-
-
-    tr.innerHTML = `
-
-      <td>${record.id}</td>
-
-      <td>
-        ${image}
-      </td>
-
-      <td>
-        ${escapeHtml(record.title)}
-      </td>
-
-      <td>
-        ${escapeHtml(detail)}
-      </td>
-
-      <td>
-        ${escapeHtml(statusOrDate)}
-      </td>
-
-      <td>
-
-        <div class="action-buttons">
-
-          <button
-            class="btn-edit"
-            data-id="${record.id}">
-
-            ✏️ แก้ไข
-
-          </button>
-
-
-          <button
-            class="btn-delete"
-            data-id="${record.id}">
-
-            🗑 ลบ
-
-          </button>
-
-        </div>
-
-      </td>
-
-    `;
-
-
-    tr.querySelector(".btn-edit")
-      .addEventListener(
-        "click",
-        () => {
-
-          editRecord(record);
-
-        }
-      );
-
-
-    tr.querySelector(".btn-delete")
-      .addEventListener(
-        "click",
-        () => {
-
-          deleteRecord(record);
-
-        }
-      );
-
-
-    tableBody.appendChild(tr);
-
-  });
+  adminEmail.textContent =
+    user.email || "ผู้ดูแลระบบ";
 
 }
 
 
 // ========================================
-// แสดงรูป Preview
+// LOGOUT
+// ========================================
+
+logoutBtn.addEventListener(
+  "click",
+  async () => {
+
+    const confirmLogout =
+      confirm(
+        "ต้องการออกจากระบบหรือไม่?"
+      );
+
+
+    if (!confirmLogout) {
+
+      return;
+
+    }
+
+
+    const {
+      error
+    } =
+      await supabaseClient
+        .auth
+        .signOut();
+
+
+    if (error) {
+
+      console.error(error);
+
+      alert(
+        "เกิดข้อผิดพลาดในการออกจากระบบ"
+      );
+
+      return;
+
+    }
+
+
+    window.location.href =
+      "./แอดมินล็อกอิน.html";
+
+  }
+);
+
+
+// ========================================
+// GET CURRENT MODULE
+// ========================================
+
+function getCurrentModule() {
+
+  return menuSelect.value;
+
+}
+
+
+// ========================================
+// GET MODULE LABEL
+// ========================================
+
+function getModuleLabel() {
+
+  const module =
+    getCurrentModule();
+
+
+  return (
+    MODULE_LABELS[module]
+    ||
+    module
+  );
+
+}
+
+
+// ========================================
+// UPDATE FORM UI
+// ========================================
+
+function updateFormUI() {
+
+  const module =
+    getCurrentModule();
+
+
+  const label =
+    getModuleLabel();
+
+
+  formTitle.textContent =
+    `➕ เพิ่ม${label}`;
+
+
+  listTitle.textContent =
+    `📋 รายการ${label}`;
+
+
+  // ซ่อนทั้งหมดก่อน
+
+  statusGroup.style.display =
+    "none";
+
+  dateGroup.style.display =
+    "none";
+
+
+  // ============================
+  // NEWS
+  // ============================
+
+  if (
+    module === "news"
+  ) {
+
+    dateGroup.style.display =
+      "block";
+
+  }
+
+
+  // ============================
+  // PROJECT
+  // ============================
+
+  if (
+    module === "project"
+  ) {
+
+    statusGroup.style.display =
+      "block";
+
+  }
+
+
+  // ============================
+  // INCIDENT
+  // ============================
+
+  if (
+    module === "incident"
+  ) {
+
+    statusGroup.style.display =
+      "block";
+
+    dateGroup.style.display =
+      "block";
+
+  }
+
+
+  // ============================
+  // COMPLAINT
+  // ============================
+
+  if (
+    module === "complaint"
+  ) {
+
+    statusGroup.style.display =
+      "block";
+
+  }
+
+}
+
+
+// ========================================
+// RESET FORM
+// ========================================
+
+function resetForm() {
+
+  crudForm.reset();
+
+
+  recordId.value =
+    "";
+
+  currentImageUrl.value =
+    "";
+
+
+  imagePreview.src =
+    "";
+
+
+  imagePreviewContainer.style.display =
+    "none";
+
+
+  formTitle.textContent =
+    `➕ เพิ่ม${getModuleLabel()}`;
+
+
+  saveBtn.textContent =
+    "💾 บันทึกข้อมูล";
+
+}
+
+
+// ========================================
+// CHANGE MENU
+// ========================================
+
+menuSelect.addEventListener(
+  "change",
+  async () => {
+
+    resetForm();
+
+    updateFormUI();
+
+    await renderTable();
+
+  }
+);
+
+
+// ========================================
+// IMAGE PREVIEW
 // ========================================
 
 imageInput.addEventListener(
@@ -416,484 +387,30 @@ imageInput.addEventListener(
 
     if (!file) {
 
-      imagePreviewContainer.style.display =
-        "none";
-
       return;
 
     }
 
 
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-      function(event) {
-
-        imagePreview.src =
-          event.target.result;
-
-
-        imagePreviewContainer.style.display =
-          "block";
-
-      };
-
-
-    reader.readAsDataURL(file);
-
-  }
-);
-
-
-// ========================================
-// Upload รูป
-// ========================================
-
-async function uploadImage(file) {
-
-  if (!file) {
-    return null;
-  }
-
-
-  const extension =
-    file.name.split(".").pop();
-
-
-  const fileName =
-    `uploads/${Date.now()}-${crypto.randomUUID()}.${extension}`;
-
-
-  const {
-    error
-  } = await supabaseClient
-    .storage
-    .from("images")
-    .upload(
-      fileName,
-      file,
-      {
-        upsert: false
-      }
-    );
-
-
-  if (error) {
-
-    console.error(error);
-
-    throw error;
-
-  }
-
-
-  const {
-    data
-  } = supabaseClient
-    .storage
-    .from("images")
-    .getPublicUrl(fileName);
-
-
-  return data.publicUrl;
-
-}
-
-
-// ========================================
-// บันทึกข้อมูล
-// ========================================
-
-crudForm.addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-
-    const module =
-      getCurrentModule();
-
-
-    const saveBtn =
-      document.getElementById("saveBtn");
-
-
-    saveBtn.disabled = true;
-
-    saveBtn.textContent =
-      "กำลังบันทึก...";
-
-
-    try {
-
-      const payload = {
-
-        title:
-          titleInput.value.trim()
-
-      };
-
-
-      // รายละเอียด
-
-      payload[
-        module.detailField
-      ] =
-        detailInput.value.trim();
-
-
-      // สถานะ
-
-      if (module.status) {
-
-        payload.status =
-          statusInput.value;
-
-      }
-
-
-      // วันที่
-
-      if (module.dateField) {
-
-        if (dateInput.value) {
-
-          if (
-            module.dateField ===
-            "published_at"
-          ) {
-
-            payload.published_at =
-              new Date(
-                dateInput.value
-              ).toISOString();
-
-          }
-
-          else if (
-            module.dateField ===
-            "incident_date"
-          ) {
-
-            payload.incident_date =
-              new Date(
-                dateInput.value
-              ).toISOString();
-
-          }
-
-          else {
-
-            payload[
-              module.dateField
-            ] =
-              dateInput.value;
-
-          }
-
-        }
-
-      }
-
-
-      // รูปภาพ
-
-      if (module.image) {
-
-        const file =
-          imageInput.files[0];
-
-
-        let imageUrl =
-          currentImageUrl.value || null;
-
-
-        if (file) {
-
-          imageUrl =
-            await uploadImage(file);
-
-        }
-
-
-        payload.image_url =
-          imageUrl;
-
-      }
-
-
-      // เพิ่มข้อมูล
-
-      if (!recordId.value) {
-
-        const {
-          error
-        } = await supabaseClient
-          .from(module.table)
-          .insert([payload]);
-
-
-        if (error) {
-          throw error;
-        }
-
-
-        alert(
-          "บันทึกข้อมูลสำเร็จ"
-        );
-
-      }
-
-
-      // แก้ไขข้อมูล
-
-      else {
-
-        const {
-          error
-        } = await supabaseClient
-          .from(module.table)
-          .update(payload)
-          .eq(
-            "id",
-            recordId.value
-          );
-
-
-        if (error) {
-          throw error;
-        }
-
-
-        alert(
-          "แก้ไขข้อมูลสำเร็จ"
-        );
-
-      }
-
-
-      resetForm();
-
-      loadRecords();
-
-    }
-
-
-    catch(error) {
-
-      console.error(error);
-
-      alert(
-        "เกิดข้อผิดพลาด: " +
-        error.message
+    const imageUrl =
+      URL.createObjectURL(
+        file
       );
-
-    }
-
-
-    finally {
-
-      saveBtn.disabled = false;
-
-      saveBtn.textContent =
-        "💾 บันทึกข้อมูล";
-
-    }
-
-  }
-);
-
-
-// ========================================
-// แก้ไขข้อมูล
-// ========================================
-
-function editRecord(record) {
-
-  const module =
-    getCurrentModule();
-
-
-  recordId.value =
-    record.id;
-
-
-  titleInput.value =
-    record.title || "";
-
-
-  detailInput.value =
-    record[
-      module.detailField
-    ] || "";
-
-
-  if (module.status) {
-
-    statusInput.value =
-      record.status || "";
-
-  }
-
-
-  if (
-    module.dateField &&
-    record[module.dateField]
-  ) {
-
-    const date =
-      new Date(
-        record[module.dateField]
-      );
-
-
-    if (
-      module.dateField ===
-      "event_date"
-    ) {
-
-      dateInput.value =
-        record[module.dateField];
-
-    }
-
-    else {
-
-      dateInput.value =
-        date.toISOString()
-          .split("T")[0];
-
-    }
-
-  }
-
-
-  if (
-    module.image &&
-    record.image_url
-  ) {
-
-    currentImageUrl.value =
-      record.image_url;
 
 
     imagePreview.src =
-      record.image_url;
+      imageUrl;
 
 
     imagePreviewContainer.style.display =
       "block";
 
   }
-
-
-  formTitle.textContent =
-    "✏️ แก้ไขข้อมูล";
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
-}
+);
 
 
 // ========================================
-// ลบข้อมูล
-// ========================================
-
-async function deleteRecord(record) {
-
-  const module =
-    getCurrentModule();
-
-
-  const confirmDelete =
-    confirm(
-      `ต้องการลบ "${record.title}" ใช่หรือไม่?`
-    );
-
-
-  if (!confirmDelete) {
-    return;
-  }
-
-
-  try {
-
-    const {
-      error
-    } = await supabaseClient
-      .from(module.table)
-      .delete()
-      .eq(
-        "id",
-        record.id
-      );
-
-
-    if (error) {
-      throw error;
-    }
-
-
-    alert(
-      "ลบข้อมูลสำเร็จ"
-    );
-
-
-    loadRecords();
-
-  }
-
-
-  catch(error) {
-
-    console.error(error);
-
-    alert(
-      "ลบข้อมูลไม่สำเร็จ: " +
-      error.message
-    );
-
-  }
-
-}
-
-
-// ========================================
-// Reset Form
-// ========================================
-
-function resetForm() {
-
-  crudForm.reset();
-
-
-  recordId.value = "";
-
-
-  currentImageUrl.value = "";
-
-
-  imagePreview.src = "";
-
-
-  imagePreviewContainer.style.display =
-    "none";
-
-
-  updateFormFields();
-
-}
-
-
-// ========================================
-// ปุ่มยกเลิก
+// RESET BUTTON
 // ========================================
 
 resetBtn.addEventListener(
@@ -907,114 +424,801 @@ resetBtn.addEventListener(
 
 
 // ========================================
-// เปลี่ยนเมนู
+// BUILD PAYLOAD
 // ========================================
 
-menuSelect.addEventListener(
-  "change",
-  () => {
+function buildPayload(
+  imageUrl
+) {
 
-    resetForm();
+  const module =
+    getCurrentModule();
 
-    loadRecords();
+
+  const payload = {
+
+    title:
+      titleInput.value.trim()
+
+  };
+
+
+  // ============================
+  // NEWS
+  // ============================
+
+  if (
+    module === "news"
+  ) {
+
+    payload.content =
+      detailInput.value.trim();
+
+    payload.image_url =
+      imageUrl;
+
+    if (
+      dateInput.value
+    ) {
+
+      payload.published_at =
+        dateInput.value;
+
+    }
+
+  }
+
+
+  // ============================
+  // ACTIVITY
+  // ============================
+
+  if (
+    module === "activity"
+  ) {
+
+    payload.description =
+      detailInput.value.trim();
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  // ============================
+  // PROJECT
+  // ============================
+
+  if (
+    module === "project"
+  ) {
+
+    payload.description =
+      detailInput.value.trim();
+
+    payload.status =
+      statusInput.value;
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  // ============================
+  // INCIDENT
+  // ============================
+
+  if (
+    module === "incident"
+  ) {
+
+    payload.description =
+      detailInput.value.trim();
+
+    payload.status =
+      statusInput.value;
+
+    if (
+      dateInput.value
+    ) {
+
+      payload.incident_date =
+        dateInput.value;
+
+    }
+
+  }
+
+
+  // ============================
+  // COMPLAINT
+  // ============================
+
+  if (
+    module === "complaint"
+  ) {
+
+    payload.detail =
+      detailInput.value.trim();
+
+    payload.status =
+      statusInput.value;
+
+  }
+
+
+  // ============================
+  // ELDERLY
+  // ============================
+
+  if (
+    module === "elderly"
+  ) {
+
+    payload.description =
+      detailInput.value.trim();
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  // ============================
+  // VULNERABLE
+  // ============================
+
+  if (
+    module === "vulnerable"
+  ) {
+
+    payload.description =
+      detailInput.value.trim();
+
+    payload.image_url =
+      imageUrl;
+
+  }
+
+
+  return payload;
+
+}
+
+
+// ========================================
+// SAVE DATA
+// ========================================
+
+crudForm.addEventListener(
+  "submit",
+  async (event) => {
+
+    event.preventDefault();
+
+
+    const module =
+      getCurrentModule();
+
+
+    const id =
+      recordId.value;
+
+
+    try {
+
+      saveBtn.disabled =
+        true;
+
+
+      saveBtn.textContent =
+        "กำลังบันทึก...";
+
+
+      let imageUrl =
+        currentImageUrl.value
+        ||
+        null;
+
+
+      const file =
+        imageInput.files[0];
+
+
+      // ============================
+      // UPLOAD IMAGE
+      // ============================
+
+      if (
+        file
+      ) {
+
+        imageUrl =
+          await uploadImage(
+            file
+          );
+
+      }
+
+
+      const payload =
+        buildPayload(
+          imageUrl
+        );
+
+
+      // ============================
+      // CREATE
+      // ============================
+
+      if (
+        !id
+      ) {
+
+        await createRecord(
+          module,
+          payload
+        );
+
+
+        alert(
+          "บันทึกข้อมูลเรียบร้อยแล้ว"
+        );
+
+      }
+
+
+      // ============================
+      // UPDATE
+      // ============================
+
+      else {
+
+        await updateRecord(
+          module,
+          id,
+          payload
+        );
+
+
+        alert(
+          "แก้ไขข้อมูลเรียบร้อยแล้ว"
+        );
+
+      }
+
+
+      resetForm();
+
+
+      await renderTable();
+
+    }
+
+
+    catch (
+      error
+    ) {
+
+      console.error(error);
+
+
+      alert(
+        "เกิดข้อผิดพลาด: "
+        +
+        (
+          error.message
+          ||
+          "ไม่สามารถบันทึกข้อมูลได้"
+        )
+      );
+
+    }
+
+
+    finally {
+
+      saveBtn.disabled =
+        false;
+
+
+      saveBtn.textContent =
+        "💾 บันทึกข้อมูล";
+
+    }
 
   }
 );
 
 
 // ========================================
-// ป้องกัน XSS
+// RENDER TABLE
 // ========================================
 
-function escapeHtml(value) {
+async function renderTable() {
 
-  if (
-    value === null ||
-    value === undefined
-  ) {
-    return "";
-  }
+  const module =
+    getCurrentModule();
 
 
-  return String(value)
+  tableBody.innerHTML =
+    `
+      <tr>
+        <td
+          colspan="6"
+          style="text-align:center">
+          กำลังโหลดข้อมูล...
+        </td>
+      </tr>
+    `;
 
-    .replace(
-      /&/g,
-      "&amp;"
-    )
 
-    .replace(
-      /</g,
-      "&lt;"
-    )
+  try {
 
-    .replace(
-      />/g,
-      "&gt;"
-    )
+    const records =
+      await loadRecords(
+        module
+      );
 
-    .replace(
-      /"/g,
-      "&quot;"
-    )
 
-    .replace(
-      /'/g,
-      "&#039;"
+    if (
+      !records.length
+    ) {
+
+      tableBody.innerHTML =
+        `
+          <tr>
+            <td
+              colspan="6"
+              style="text-align:center">
+              ยังไม่มีข้อมูล
+            </td>
+          </tr>
+        `;
+
+
+      return;
+
+    }
+
+
+    tableBody.innerHTML =
+      "";
+
+
+    records.forEach(
+      (record) => {
+
+        const tr =
+          document.createElement(
+            "tr"
+          );
+
+
+        const imageUrl =
+          record.image_url
+          ||
+          "";
+
+
+        const imageHtml =
+          imageUrl
+            ?
+            `
+              <img
+                src="${escapeHtml(imageUrl)}"
+                class="img-preview"
+                alt="รูปภาพ">
+            `
+            :
+            "-";
+
+
+        const detail =
+          record.content
+          ||
+          record.description
+          ||
+          record.detail
+          ||
+          "-";
+
+
+        const statusOrDate =
+          record.status
+          ||
+          record.published_at
+          ||
+          record.incident_date
+          ||
+          "-";
+
+
+        tr.innerHTML =
+          `
+            <td>
+              ${escapeHtml(
+                String(
+                  record.id
+                )
+              )}
+            </td>
+
+            <td>
+              ${imageHtml}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                record.title
+                ||
+                "-"
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                detail
+              )}
+            </td>
+
+            <td>
+              ${escapeHtml(
+                String(
+                  statusOrDate
+                )
+              )}
+            </td>
+
+            <td>
+
+              <div
+                class="action-buttons">
+
+                <button
+                  type="button"
+                  class="btn-edit">
+
+                  ✏️ แก้ไข
+
+                </button>
+
+                <button
+                  type="button"
+                  class="btn-delete">
+
+                  🗑 ลบ
+
+                </button>
+
+              </div>
+
+            </td>
+          `;
+
+
+        // ============================
+        // EDIT
+        // ============================
+
+        const editButton =
+          tr.querySelector(
+            ".btn-edit"
+          );
+
+
+        editButton.addEventListener(
+          "click",
+          () => {
+
+            editRecord(
+              record
+            );
+
+          }
+        );
+
+
+        // ============================
+        // DELETE
+        // ============================
+
+        const deleteButton =
+          tr.querySelector(
+            ".btn-delete"
+          );
+
+
+        deleteButton.addEventListener(
+          "click",
+          async () => {
+
+            await removeRecord(
+              record.id
+            );
+
+          }
+        );
+
+
+        tableBody.appendChild(
+          tr
+        );
+
+      }
     );
 
+  }
+
+
+  catch (
+    error
+  ) {
+
+    console.error(error);
+
+
+    tableBody.innerHTML =
+      `
+        <tr>
+          <td
+            colspan="6"
+            style="text-align:center;color:red">
+
+            เกิดข้อผิดพลาด:
+            ${escapeHtml(
+              error.message
+              ||
+              "ไม่สามารถโหลดข้อมูลได้"
+            )}
+
+          </td>
+        </tr>
+      `;
+
+  }
+
 }
 
 
 // ========================================
-// แปลงวันที่
+// EDIT RECORD
 // ========================================
 
-function formatDate(value) {
+function editRecord(
+  record
+) {
 
-  if (!value) {
-    return "-";
-  }
+  recordId.value =
+    record.id
+    ||
+    "";
 
 
-  const date =
-    new Date(value);
+  titleInput.value =
+    record.title
+    ||
+    "";
+
+
+  detailInput.value =
+    record.content
+    ||
+    record.description
+    ||
+    record.detail
+    ||
+    "";
+
+
+  statusInput.value =
+    record.status
+    ||
+    "";
+
+
+  // ============================
+  // DATE
+  // ============================
+
+  let dateValue =
+    record.published_at
+    ||
+    record.incident_date
+    ||
+    "";
 
 
   if (
-    Number.isNaN(
-      date.getTime()
-    )
+    dateValue
   ) {
 
-    return value;
+    dateValue =
+      String(
+        dateValue
+      )
+      .slice(
+        0,
+        10
+      );
 
   }
 
 
-  return date.toLocaleDateString(
-    "th-TH",
-    {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    }
-  );
+  dateInput.value =
+    dateValue;
+
+
+  // ============================
+  // IMAGE
+  // ============================
+
+  const imageUrl =
+    record.image_url
+    ||
+    "";
+
+
+  currentImageUrl.value =
+    imageUrl;
+
+
+  if (
+    imageUrl
+  ) {
+
+    imagePreview.src =
+      imageUrl;
+
+
+    imagePreviewContainer.style.display =
+      "block";
+
+  }
+
+
+  else {
+
+    imagePreview.src =
+      "";
+
+
+    imagePreviewContainer.style.display =
+      "none";
+
+  }
+
+
+  formTitle.textContent =
+    `✏️ แก้ไข${getModuleLabel()}`;
+
+
+  saveBtn.textContent =
+    "💾 บันทึกการแก้ไข";
+
+
+  window.scrollTo({
+
+    top: 0,
+
+    behavior:
+      "smooth"
+
+  });
 
 }
 
 
 // ========================================
-// เริ่มระบบ
+// DELETE RECORD
+// ========================================
+
+async function removeRecord(
+  id
+) {
+
+  const confirmDelete =
+    confirm(
+      "คุณต้องการลบข้อมูลนี้ใช่หรือไม่?"
+    );
+
+
+  if (
+    !confirmDelete
+  ) {
+
+    return;
+
+  }
+
+
+  const module =
+    getCurrentModule();
+
+
+  try {
+
+    await deleteRecord(
+      module,
+      id
+    );
+
+
+    alert(
+      "ลบข้อมูลเรียบร้อยแล้ว"
+    );
+
+
+    resetForm();
+
+
+    await renderTable();
+
+  }
+
+
+  catch (
+    error
+  ) {
+
+    console.error(error);
+
+
+    alert(
+      "ไม่สามารถลบข้อมูลได้: "
+      +
+      (
+        error.message
+        ||
+        "เกิดข้อผิดพลาด"
+      )
+    );
+
+  }
+
+}
+
+
+// ========================================
+// ESCAPE HTML
+// ========================================
+
+function escapeHtml(
+  value
+) {
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+
+  div.textContent =
+    value
+    ??
+    "";
+
+
+  return div.innerHTML;
+
+}
+
+
+// ========================================
+// INITIALIZE
 // ========================================
 
 async function init() {
 
   await checkLogin();
 
-  updateFormFields();
 
-  await loadRecords();
+  updateFormUI();
+
+
+  await renderTable();
 
 }
 
