@@ -1,29 +1,12 @@
-import { createClient } from
-  "https://esm.sh/@supabase/supabase-js@2";
-
 // ========================================
-// SUPABASE CONFIG
+// SUPABASE CONFIG (Global Window Client)
 // ========================================
 
-// Project URL
-const supabaseUrl =
-  "https://qtnjtsigdgiwdsdfocmq.supabase.co";
+const SUPABASE_URL = "https://qtnjtsigdgiwdsdfocmq.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN";
 
-// Publishable API Key
-const supabaseAnonKey =
-  "sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN";
-
-// ========================================
-// CREATE SUPABASE CLIENT
-// ========================================
-
-const supabaseClient = createClient(
-  supabaseUrl,
-  supabaseAnonKey
+// สร้าง Supabase Client ให้เป็น Global Variable
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
 );
-
-// ========================================
-// EXPORT
-// ========================================
-
-export default supabaseClient;
