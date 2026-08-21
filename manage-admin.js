@@ -1,805 +1,184 @@
-import supabaseClient from "./supabase-config.js";
-import {
-  loadRecords,
-  createRecord,
-  updateRecord,
-  deleteRecord,
-  uploadImage
-} from "./supabase-service.js";
+// manage-admin.js
 
+document.addEventListener('DOMContentLoaded', () => {
+  loadVillageStats();
+  loadActivitiesList();
 
-// ========================================
-// ตั้งค่าเมนู
-// ========================================
+  document.getElementById('stats-form').addEventListener('submit', handleUpdateStats);
+  document.getElementById('activity-form').addEventListener('submit', handleSaveActivity);
+});
 
-const MODULE_MAP = {
-  news: "news",
-  activities: "activity",
-  projects: "project",
-  incidents: "incident",
-  complaints: "complaint",
-  elderly: "elderly",
-  vulnerable: "vulnerable"
-};
+// --- 1. การจัดการสถิติหมู่บ้าน ---
+async function loadVillageStats() {
+  const { data, error } = await supabaseClient
+    .from('village_stats')
+    .select('*')
+    .eq('id', 1)
+    .single();
 
-
-// ========================================
-// ELEMENTS
-// ========================================
-
-const adminEmail =
-  document.getElementById("adminEmail");
-
-const logoutBtn =
-  document.getElementById("logoutBtn");
-
-const menuSelect =
-  document.getElementById("menuSelect");
-
-const crudForm =
-  document.getElementById("crudForm");
-
-const recordId =
-  document.getElementById("recordId");
-
-const titleInput =
-  document.getElementById("titleInput");
-
-const detailInput =
-  document.getElementById("detailInput");
-
-const statusInput =
-  document.getElementById("statusInput");
-
-const dateInput =
-  document.getElementById("dateInput");
-
-const imageInput =
-  document.getElementById("imageInput");
-
-const currentImageUrl =
-  document.getElementById("currentImageUrl");
-
-const imagePreview =
-  document.getElementById("imagePreview");
-
-const imagePreviewContainer =
-  document.getElementById(
-    "imagePreviewContainer"
-  );
-
-const resetBtn =
-  document.getElementById("resetBtn");
-
-const tableBody =
-  document.getElementById("tableBody");
-
-const formTitle =
-  document.getElementById("formTitle");
-
-
-// ========================================
-// ตรวจสอบผู้ใช้
-// ========================================
-
-async function checkUser() {
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient.auth.getUser();
-
-
-  if (error || !data.user) {
-
-    window.location.href =
-      "แอดมินล็อกอิน.html";
-
+  if (error && error.code !== 'PGRST116') {
+    console.error('Error fetching stats:', error);
     return;
-
   }
 
-
-  adminEmail.textContent =
-    data.user.email;
-
-}
-
-
-// ========================================
-// ออกจากระบบ
-// ========================================
-
-logoutBtn.addEventListener(
-  "click",
-  async () => {
-
-    await supabaseClient
-      .auth
-      .signOut();
-
-
-    window.location.href =
-      "แอดมินล็อกอิน.html";
-
+  if (data) {
+    document.getElementById('stat-population').value = data.population || 0;
+    document.getElementById('stat-households').value = data.households || 0;
+    document.getElementById('stat-children').value = data.children || 0;
+    document.getElementById('stat-elderly').value = data.elderly || 0;
+    document.getElementById('stat-disabled').value = data.disabled || 0;
+    document.getElementById('stat-vulnerable').value = data.vulnerable || 0;
   }
-);
-
-
-// ========================================
-// รับชื่อโมดูลปัจจุบัน
-// ========================================
-
-function getCurrentModule() {
-
-  return MODULE_MAP[
-    menuSelect.value
-  ];
-
 }
 
+async function handleUpdateStats(e) {
+  e.preventDefault();
+  const payload = {
+    id: 1,
+    population: parseInt(document.getElementById('stat-population').value),
+    households: parseInt(document.getElementById('stat-households').value),
+    children: parseInt(document.getElementById('stat-children').value),
+    elderly: parseInt(document.getElementById('stat-elderly').value),
+    disabled: parseInt(document.getElementById('stat-disabled').value),
+    vulnerable: parseInt(document.getElementById('stat-vulnerable').value),
+    updated_at: new Date().toISOString()
+  };
 
-// ========================================
-// โหลดข้อมูล
-// ========================================
+  const { error } = await supabaseClient
+    .from('village_stats')
+    .upsert(payload);
 
-async function renderRecords() {
+  if (error) alert('เกิดข้อผิดพลาดในการบันทึกสถิติ: ' + error.message);
+  else alert('อัปเดตข้อมูลสถิติเรียบร้อยแล้ว!');
+}
 
-  tableBody.innerHTML = `
-    <tr>
-      <td
-        colspan="6"
-        style="text-align:center">
-        กำลังโหลด...
+// --- 2. อัปโหลดรูปภาพเข้า Supabase Storage ---
+async function uploadActivityImage(file) {
+  if (!file) return null;
+  const fileExt = file.name.split('.').pop();
+  const fileName = `act_${Date.now()}.${fileExt}`;
+  const filePath = `activities/${fileName}`;
+
+  const { error } = await supabaseClient.storage
+    .from('rongkhem-images')
+    .upload(filePath, file);
+
+  if (error) {
+    alert('อัปโหลดรูปไม่สำเร็จ: ' + error.message);
+    return null;
+  }
+
+  const { data } = supabaseClient.storage
+    .from('rongkhem-images')
+    .getPublicUrl(filePath);
+
+  return data.publicUrl;
+}
+
+// --- 3. เพิ่ม/แก้ไข กิจกรรม ---
+async function handleSaveActivity(e) {
+  e.preventDefault();
+  const id = document.getElementById('activity-id').value;
+  const fileInput = document.getElementById('act-image').files[0];
+  
+  let imageUrl = null;
+  if (fileInput) {
+    imageUrl = await uploadActivityImage(fileInput);
+  }
+
+  const activityData = {
+    title: document.getElementById('act-title').value,
+    event_date: document.getElementById('act-date').value,
+    location: document.getElementById('act-location').value,
+    participants_count: parseInt(document.getElementById('act-participants').value) || 0
+  };
+
+  if (imageUrl) activityData.image_url = imageUrl;
+
+  let resultError = null;
+
+  if (id) {
+    // กรณีแก้ไข (Update)
+    const { error } = await supabaseClient
+      .from('activities')
+      .update(activityData)
+      .eq('id', id);
+    resultError = error;
+  } else {
+    // กรณีเพิ่มใหม่ (Create)
+    const { error } = await supabaseClient
+      .from('activities')
+      .insert([activityData]);
+    resultError = error;
+  }
+
+  if (resultError) {
+    alert('เกิดข้อผิดพลาด: ' + resultError.message);
+  } else {
+    alert('บันทึกข้อมูลกิจกรรมเรียบร้อยแล้ว!');
+    resetActivityForm();
+    loadActivitiesList();
+  }
+}
+
+// --- 4. ดึงรายการกิจกรรมทั้งหมดมาแสดงในตาราง ---
+async function loadActivitiesList() {
+  const { data: activities, error } = await supabaseClient
+    .from('activities')
+    .select('*')
+    .order('event_date', { ascending: false });
+
+  if (error) return console.error(error);
+
+  const tbody = document.getElementById('activity-table-body');
+  tbody.innerHTML = '';
+
+  activities.forEach(act => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${act.title}</strong></td>
+      <td>${act.event_date}</td>
+      <td>${act.location}</td>
+      <td>
+        <button class="btn btn-primary" style="padding:4px 8px;" onclick="editActivity(${JSON.stringify(act).replace(/"/g, '&quot;')})">แก้ไข</button>
+        <button class="btn btn-danger" style="padding:4px 8px;" onclick="deleteActivity(${act.id})">ลบ</button>
       </td>
-    </tr>
-  `;
-
-
-  try {
-
-    const moduleName =
-      getCurrentModule();
-
-
-    const records =
-      await loadRecords(
-        moduleName
-      );
-
-
-    if (!records.length) {
-
-      tableBody.innerHTML = `
-        <tr>
-          <td
-            colspan="6"
-            style="text-align:center">
-            ยังไม่มีข้อมูล
-          </td>
-        </tr>
-      `;
-
-      return;
-
-    }
-
-
-    tableBody.innerHTML =
-      records
-        .map(
-          record => createRow(record)
-        )
-        .join("");
-
-
-  } catch (error) {
-
-    console.error(error);
-
-
-    tableBody.innerHTML = `
-      <tr>
-        <td
-          colspan="6"
-          style="text-align:center;color:red">
-          เกิดข้อผิดพลาด:
-          ${escapeHtml(error.message)}
-        </td>
-      </tr>
     `;
-
-  }
-
-}
-
-
-// ========================================
-// สร้างแถวตาราง
-// ========================================
-
-function createRow(record) {
-
-  const image =
-    record.image_url;
-
-
-  const detail =
-    record.content ||
-    record.description ||
-    record.detail ||
-    "-";
-
-
-  const statusDate =
-    record.status ||
-    record.published_at ||
-    record.incident_date ||
-    record.created_at ||
-    "-";
-
-
-  return `
-    <tr>
-
-      <td>
-        ${record.id}
-      </td>
-
-
-      <td>
-
-        ${
-          image
-            ? `
-              <img
-                src="${image}"
-                class="img-preview"
-                alt="รูปภาพ">
-            `
-            : "-"
-        }
-
-      </td>
-
-
-      <td>
-        ${escapeHtml(
-          record.title || "-"
-        )}
-      </td>
-
-
-      <td>
-        ${escapeHtml(detail)}
-      </td>
-
-
-      <td>
-        ${escapeHtml(
-          formatDate(statusDate)
-        )}
-      </td>
-
-
-      <td>
-
-        <div class="action-buttons">
-
-          <button
-            class="btn-edit"
-            data-action="edit"
-            data-id="${record.id}">
-
-            ✏️ แก้ไข
-
-          </button>
-
-
-          <button
-            class="btn-delete"
-            data-action="delete"
-            data-id="${record.id}">
-
-            🗑 ลบ
-
-          </button>
-
-        </div>
-
-      </td>
-
-    </tr>
-  `;
-
-}
-
-
-// ========================================
-// ป้องกัน HTML
-// ========================================
-
-function escapeHtml(value) {
-
-  return String(value)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-
-}
-
-
-// ========================================
-// แปลงวันที่
-// ========================================
-
-function formatDate(value) {
-
-  if (!value) {
-    return "-";
-  }
-
-
-  return String(value)
-    .replace("T", " ")
-    .substring(0, 19);
-
-}
-
-
-// ========================================
-// เปลี่ยนเมนู
-// ========================================
-
-menuSelect.addEventListener(
-  "change",
-  () => {
-
-    resetForm();
-
-    renderRecords();
-
-  }
-);
-
-
-// ========================================
-// Preview รูป
-// ========================================
-
-imageInput.addEventListener(
-  "change",
-  () => {
-
-    const file =
-      imageInput.files[0];
-
-
-    if (!file) {
-
-      return;
-
-    }
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-      event => {
-
-        imagePreview.src =
-          event.target.result;
-
-
-        imagePreviewContainer
-          .style
-          .display =
-            "block";
-
-      };
-
-
-    reader.readAsDataURL(file);
-
-  }
-);
-
-
-// ========================================
-// บันทึกข้อมูล
-// ========================================
-
-crudForm.addEventListener(
-  "submit",
-  async event => {
-
-    event.preventDefault();
-
-
-    const moduleName =
-      getCurrentModule();
-
-
-    const id =
-      recordId.value;
-
-
-    try {
-
-      let imageUrl =
-        currentImageUrl.value ||
-        null;
-
-
-      const file =
-        imageInput.files[0];
-
-
-      // อัปโหลดรูปใหม่
-
-      if (file) {
-
-        imageUrl =
-          await uploadImage(
-            file
-          );
-
-      }
-
-
-      const payload = {
-
-        title:
-          titleInput.value.trim(),
-
-        description:
-          detailInput.value.trim(),
-
-        content:
-          detailInput.value.trim(),
-
-        detail:
-          detailInput.value.trim(),
-
-        status:
-          statusInput.value ||
-
-          undefined,
-
-        incident_date:
-          dateInput.value ||
-
-          undefined,
-
-        published_at:
-          dateInput.value ||
-
-          undefined,
-
-        image_url:
-          imageUrl
-
-      };
-
-
-      // แก้ไข
-
-      if (id) {
-
-        await updateRecord(
-          moduleName,
-          id,
-          payload
-        );
-
-
-        alert(
-          "แก้ไขข้อมูลเรียบร้อยแล้ว"
-        );
-
-      }
-
-
-      // เพิ่มใหม่
-
-      else {
-
-        await createRecord(
-          moduleName,
-          payload
-        );
-
-
-        alert(
-          "บันทึกข้อมูลเรียบร้อยแล้ว"
-        );
-
-      }
-
-
-      resetForm();
-
-      await renderRecords();
-
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      alert(
-        "เกิดข้อผิดพลาด: " +
-        error.message
-      );
-
-    }
-
-  }
-);
-
-
-// ========================================
-// คลิกปุ่มในตาราง
-// ========================================
-
-tableBody.addEventListener(
-  "click",
-  async event => {
-
-    const button =
-      event.target.closest(
-        "button"
-      );
-
-
-    if (!button) {
-
-      return;
-
-    }
-
-
-    const action =
-      button.dataset.action;
-
-
-    const id =
-      button.dataset.id;
-
-
-    if (!action || !id) {
-
-      return;
-
-    }
-
-
-    const moduleName =
-      getCurrentModule();
-
-
-    try {
-
-      const records =
-        await loadRecords(
-          moduleName
-        );
-
-
-      const record =
-        records.find(
-          item =>
-            String(item.id) ===
-            String(id)
-        );
-
-
-      if (!record) {
-
-        alert(
-          "ไม่พบข้อมูล"
-        );
-
-        return;
-
-      }
-
-
-      // แก้ไขข้อมูล
-
-      if (
-        action === "edit"
-      ) {
-
-        editRecord(
-          record
-        );
-
-      }
-
-
-      // ลบข้อมูล
-
-      if (
-        action === "delete"
-      ) {
-
-        const confirmDelete =
-          confirm(
-            "คุณต้องการลบข้อมูลนี้หรือไม่?"
-          );
-
-
-        if (!confirmDelete) {
-
-          return;
-
-        }
-
-
-        await deleteRecord(
-          moduleName,
-          id
-        );
-
-
-        alert(
-          "ลบข้อมูลเรียบร้อยแล้ว"
-        );
-
-
-        await renderRecords();
-
-      }
-
-
-    } catch (error) {
-
-      console.error(error);
-
-
-      alert(
-        "เกิดข้อผิดพลาด: " +
-        error.message
-      );
-
-    }
-
-  }
-);
-
-
-// ========================================
-// นำข้อมูลเข้า Form
-// ========================================
-
-function editRecord(record) {
-
-  recordId.value =
-    record.id || "";
-
-
-  titleInput.value =
-    record.title || "";
-
-
-  detailInput.value =
-    record.content ||
-    record.description ||
-    record.detail ||
-    "";
-
-
-  statusInput.value =
-    record.status || "";
-
-
-  const dateValue =
-    record.incident_date ||
-    record.published_at ||
-    "";
-
-
-  dateInput.value =
-    dateValue
-      ? String(dateValue)
-          .substring(0, 10)
-      : "";
-
-
-  currentImageUrl.value =
-    record.image_url || "";
-
-
-  if (record.image_url) {
-
-    imagePreview.src =
-      record.image_url;
-
-
-    imagePreviewContainer
-      .style
-      .display =
-        "block";
-
-  }
-
-
-  formTitle.textContent =
-    "✏️ แก้ไขข้อมูล";
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+    tbody.appendChild(tr);
   });
-
 }
 
+// --- 5. ลบกิจกรรม ---
+async function deleteActivity(id) {
+  if (!confirm('คุณแน่ใจหรือไม่ว่าต้องการลบกิจกรรมนี้?')) return;
 
-// ========================================
-// รีเซ็ต Form
-// ========================================
+  const { error } = await supabaseClient
+    .from('activities')
+    .delete()
+    .eq('id', id);
 
-function resetForm() {
-
-  crudForm.reset();
-
-
-  recordId.value =
-    "";
-
-
-  currentImageUrl.value =
-    "";
-
-
-  imagePreview.src =
-    "";
-
-
-  imagePreviewContainer
-    .style
-    .display =
-      "none";
-
-
-  formTitle.textContent =
-    "➕ เพิ่มข้อมูลใหม่";
-
-}
-
-
-// ========================================
-// ปุ่มยกเลิก
-// ========================================
-
-resetBtn.addEventListener(
-  "click",
-  () => {
-
-    resetForm();
-
+  if (error) alert('ลบข้อมูลไม่สำเร็จ: ' + error.message);
+  else {
+    alert('ลบข้อมูลเรียบร้อยแล้ว');
+    loadActivitiesList();
   }
-);
-
-
-// ========================================
-// เริ่มระบบ
-// ========================================
-
-async function init() {
-
-  await checkUser();
-
-  await renderRecords();
-
 }
 
+// --- 6. ดึงข้อมูลกิจกรรมลงฟอร์มเพื่อแก้ไข ---
+function editActivity(act) {
+  document.getElementById('activity-id').value = act.id;
+  document.getElementById('act-title').value = act.title;
+  document.getElementById('act-date').value = act.event_date;
+  document.getElementById('act-location').value = act.location;
+  document.getElementById('act-participants').value = act.participants_count;
 
-init();
+  document.getElementById('btn-save-activity').textContent = 'อัปเดตกิจกรรม';
+  document.getElementById('btn-cancel-edit').style.display = 'inline-block';
+}
+
+function resetActivityForm() {
+  document.getElementById('activity-form').reset();
+  document.getElementById('activity-id').value = '';
+  document.getElementById('btn-save-activity').textContent = 'บันทึกกิจกรรม';
+  document.getElementById('btn-cancel-edit').style.display = 'none';
+}
