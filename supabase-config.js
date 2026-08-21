@@ -1,24 +1,34 @@
+import { createClient } from
+"https://esm.sh/@supabase/supabase-js@2";
+
+
 // ========================================
-// RONGKHEM e-VILLAGE OFFICE
-// Supabase Shared Client
+// SUPABASE CONFIG
 // ========================================
 
-// ใช้ค่าเดิมจาก config.js ถ้ามี
-const SUPABASE_URL = window.SUPABASE_URL || "YOUR_SUPABASE_URL";
-const SUPABASE_ANON_KEY =
-  window.SUPABASE_ANON_KEY || "YOUR_SUPABASE_ANON_KEY";
+// URL ของโปรเจกต์คุณ
+const supabaseUrl =
+"https://qtnjtsigdgiwdsdfocmq.supabase.co";
 
-// ตรวจสอบว่าโหลด Supabase CDN แล้วหรือยัง
-if (!window.supabase) {
-  console.error("Supabase CDN is not loaded.");
-}
 
-// สร้าง Supabase Client เพียงตัวเดียว
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_ANON_KEY
+// ใส่ ANON KEY ของ Supabase ตรงนี้
+const supabaseAnonKey =
+"ใส่_ANON_KEY_ของคุณ_ตรงนี้";
+
+
+// ========================================
+// CREATE CLIENT
+// ========================================
+
+const supabaseClient =
+createClient(
+  supabaseUrl,
+  supabaseAnonKey
 );
 
-// Export เพื่อให้ไฟล์อื่น import ไปใช้ได้
-export { supabaseClient };
+
+// ========================================
+// EXPORT
+// ========================================
+
 export default supabaseClient;
