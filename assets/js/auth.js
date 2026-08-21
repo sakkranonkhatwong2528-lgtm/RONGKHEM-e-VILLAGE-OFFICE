@@ -1,536 +1,95 @@
-/* =====================================================
-   RONGKHEM e-VILLAGE OFFICE
-   REAL AUTHENTICATION / ADMIN GUARD
-   ===================================================== */
+/**
+ * auth.js
+ * ระบบล็อกอิน/ออกจากระบบ สำหรับผู้ใหญ่บ้านและคณะทำงาน
+ */
 
-
-/* =====================================================
-   GET SESSION
-   ===================================================== */
-
-async function getAdminSession(){
-
-  try{
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .auth
-        .getSession();
-
-
-    if(error){
-
-      console.error(
-        "Session error:",
-        error
-      );
-
-      return null;
-
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. ปุ่ม "เข้าสู่ระบบ" บน Top Header หน้าหลัก (คลิกแล้วพาไปหน้า admin-login.html)
+    const headerLoginBtn = document.querySelector('header button');
+    if (headerLoginBtn && !window.location.pathname.includes('admin-login.html')) {
+        headerLoginBtn.style.cursor = 'pointer';
+        headerLoginBtn.addEventListener('click', () => {
+            window.location.href = 'admin-login.html';
+        });
     }
 
+    // 2. ตรวจสอบการส่งฟอร์มเข้าสู่ระบบในหน้า admin-login.html
+    const loginForm = document.getElementById('adminLoginForm') || document.querySelector('form');
+    const isLoginPage = window.location.pathname.includes('admin-login.html');
 
-    return data.session || null;
-
-
-  }catch(error){
-
-    console.error(
-      "Session exception:",
-      error
-    );
-
-    return null;
-
-  }
-
-}
-
-
-/* =====================================================
-   GET ADMIN PROFILE
-   ===================================================== */
-
-async function getAdminProfile(){
-
-  try{
-
-    const session =
-      await getAdminSession();
-
-
-    if(!session){
-
-      return null;
-
+    if (isLoginPage && loginForm) {
+        loginForm.addEventListener('submit', handleAdminLogin);
     }
 
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-
-        .from("profiles")
-
-        .select(
-          "id,username,display_name,role,active"
-        )
-
-        .eq(
-          "id",
-          session.user.id
-        )
-
-        .single();
-
-
-    if(error){
-
-      console.error(
-        "Profile error:",
-        error
-      );
-
-      return null;
-
+    // 3. ป้องกันคนแอบเข้าหน้า Admin Dashboard หากยังไม่ได้ล็อกอิน
+    if (!isLoginPage && window.location.pathname.includes('admin-dashboard')) {
+        checkAdminSession();
     }
 
+    // 4. ปุ่มออกจากระบบ (Logout)
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', handleAdminLogout);
+    }
+});
 
-    return data || null;
+async function handleAdminLogin(event) {
+    event.preventDefault();
 
+    const emailInput = document.getElementById('email') || document.querySelector('input[type="email"]');
+    const passwordInput = document.getElementById('password') || document.querySelector('input[type="password"]');
+    const submitBtn = document.querySelector('button[type="submit"]');
 
-  }catch(error){
+    if (!emailInput || !passwordInput) return;
 
-    console.error(
-      "Profile exception:",
-      error
-    );
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
-    return null;
-
-  }
-
-}
-
-
-/* =====================================================
-   REQUIRE ADMIN
-   ===================================================== */
-
-async function requireAdmin(){
-
-  try{
-
-    const session =
-      await getAdminSession();
-
-
-    /* ===============================
-       ไม่มี Session
-    =============================== */
-
-    if(!session){
-
-      window.location.replace(
-        "admin-login.html"
-      );
-
-      return null;
-
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'กำลังตรวจสอบข้อมูล...';
     }
 
-
-    /* ===============================
-       ดึง Profile
-    =============================== */
-
-    const profile =
-      await getAdminProfile();
-
-
-    /* ===============================
-       ไม่มี Profile
-    =============================== */
-
-    if(!profile){
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-
-      window.location.replace(
-        "admin-login.html"
-      );
-
-      return null;
-
-    }
-
-
-    /* ===============================
-       ตรวจ Active
-    =============================== */
-
-    if(
-      profile.active !== true
-    ){
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-
-      alert(
-        "บัญชีนี้ถูกระงับการใช้งาน"
-      );
-
-
-      window.location.replace(
-        "admin-login.html"
-      );
-
-
-      return null;
-
-    }
-
-
-    /* ===============================
-       ตรวจ Role
-    =============================== */
-
-    if(
-      profile.role !== "admin"
-    ){
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-
-      alert(
-        "บัญชีนี้ไม่มีสิทธิ์เข้าสู่ระบบผู้ใหญ่บ้าน"
-      );
-
-
-      window.location.replace(
-        "admin-login.html"
-      );
-
-
-      return null;
-
-    }
-
-
-    /* ===============================
-       ผ่านทุกเงื่อนไข
-    =============================== */
-
-    return {
-
-      session:
-        session,
-
-      user:
-        session.user,
-
-      profile:
-        profile
-
-    };
-
-
-  }catch(error){
-
-    console.error(
-      "Admin guard error:",
-      error
-    );
-
-
-    window.location.replace(
-      "admin-login.html"
-    );
-
-
-    return null;
-
-  }
-
-}
-
-
-/* =====================================================
-   AUDIT LOG
-   ===================================================== */
-
-async function writeAuditLog(
-  action,
-  target = null,
-  details = {}
-){
-
-  try{
-
-    const session =
-      await getAdminSession();
-
-
-    if(!session){
-
-      return false;
-
-    }
-
-
-    const profile =
-      await getAdminProfile();
-
-
-    await supabaseClient
-      .from("audit_logs")
-      .insert({
-
-        user_id:
-          session.user.id,
-
-        username:
-          profile
-            ? profile.username
-            : null,
-
-        action:
-          action,
-
-        target:
-          target,
-
-        details:
-          details
-
-      });
-
-
-    return true;
-
-
-  }catch(error){
-
-    console.error(
-      "Audit log error:",
-      error
-    );
-
-    return false;
-
-  }
-
-}
-
-
-/* =====================================================
-   LOGOUT ADMIN
-   ===================================================== */
-
-async function logoutAdmin(){
-
-  try{
-
-    await writeAuditLog(
-      "LOGOUT",
-      "ADMIN"
-    );
-
-  }catch(error){
-
-    console.warn(error);
-
-  }
-
-
-  try{
-
-    await supabaseClient
-      .auth
-      .signOut();
-
-  }catch(error){
-
-    console.error(
-      "Logout error:",
-      error
-    );
-
-  }
-
-
-  window.location.replace(
-    "admin-login.html"
-  );
-
-}
-
-
-/* =====================================================
-   AUTH STATE LISTENER
-   ===================================================== */
-
-supabaseClient
-  .auth
-  .onAuthStateChange(
-    async function(
-      event,
-      session
-    ){
-
-      console.log(
-        "Auth event:",
-        event
-      );
-
-
-      /*
-       * ถ้า Session ถูกลบ
-       * และอยู่หน้า Dashboard
-       * ให้กลับ Login
-       */
-
-      if(
-        event === "SIGNED_OUT"
-      ){
-
-        if(
-          !window.location.pathname
-            .endsWith(
-              "admin-login.html"
-            )
-        ){
-
-          window.location.replace(
-            "admin-login.html"
-          );
-
+    try {
+        if (!supabase) throw new Error('ไม่สามารถเชื่อมต่อฐานข้อมูลได้');
+
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password,
+        });
+
+        if (error) throw error;
+
+        alert('เข้าสู่ระบบสำเร็จ');
+        window.location.href = 'admin-dashboard-v2.html';
+
+    } catch (err) {
+        console.error('Login Error:', err.message);
+        alert('เข้าสู่ระบบไม่สำเร็จ: อีเมลหรือรหัสผ่านไม่ถูกต้อง');
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'เข้าสู่ระบบ';
         }
-
-      }
-
     }
-  );
-
-
-/* =====================================================
-   AUTO CHECK
-   ===================================================== */
-
-async function bootAdminSecurity(){
-
-  /*
-   * ทำงานเฉพาะหน้า Dashboard
-   */
-
-  const isLoginPage =
-    window.location.pathname
-      .endsWith(
-        "admin-login.html"
-      );
-
-
-  if(isLoginPage){
-
-    return;
-
-  }
-
-
-  /*
-   * ตรวจสิทธิ์ Admin
-   */
-
-  const admin =
-    await requireAdmin();
-
-
-  if(!admin){
-
-    return;
-
-  }
-
-
-  /*
-   * บันทึกการเปิด Dashboard
-   */
-
-  await writeAuditLog(
-    "VIEW",
-    "ADMIN_DASHBOARD"
-  );
-
-
-  /*
-   * แสดงชื่อผู้ใช้
-   */
-
-  const nameElement =
-    document.getElementById(
-      "adminDisplayName"
-    );
-
-
-  if(
-    nameElement &&
-    admin.profile
-  ){
-
-    nameElement.textContent =
-      admin.profile.display_name
-      ||
-      admin.profile.username
-      ||
-      "ผู้ใหญ่บ้าน";
-
-  }
-
-
-  /*
-   * แสดง Role
-   */
-
-  const roleElement =
-    document.getElementById(
-      "adminRole"
-    );
-
-
-  if(
-    roleElement &&
-    admin.profile
-  ){
-
-    roleElement.textContent =
-      admin.profile.role;
-
-  }
-
 }
 
+async function checkAdminSession() {
+    if (!supabase) return;
 
-/* =====================================================
-   START SECURITY
-   ===================================================== */
+    const { data: { session }, error } = await supabase.auth.getSession();
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function(){
+    if (error || !session) {
+        console.warn('ยังไม่ได้เข้าสู่ระบบ นำทางกลับหน้า Login');
+        window.location.href = 'admin-login.html';
+    }
+}
 
-    bootAdminSecurity();
+async function handleAdminLogout(event) {
+    if (event) event.preventDefault();
+    if (!supabase) return;
 
-  }
-);
+    await supabase.auth.signOut();
+    alert('ออกจากระบบเรียบร้อยแล้ว');
+    window.location.href = 'admin-login.html';
+}
