@@ -1,473 +1,343 @@
 <!DOCTYPE html><html lang="th" style=""><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>RONGKHEM e-VILLAGE OFFICE - ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</title>
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Font Awesome for Icons -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<!-- Google Fonts: Noto Sans Thai -->
+<title>ที่ทำการผู้ใหญ่บ้านออนไลน์ - หน้าหลัก</title>
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-<!-- Custom Tailwind Configuration & Styles -->
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            blue: '#113a72', // Primary Navy Blue
-                            light: '#e8f0fe',
-                            accent: '#e63946'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['"Noto Sans Thai"', 'sans-serif'],
-                    }
-                }
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e0e3e8",
+                    "error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffba3f",
+                    "on-tertiary-fixed": "#281800",
+                    "surface": "#f7f9ff",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#604100",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#00475e",
+                    "secondary-fixed-dim": "#99d856",
+                    "on-primary-fixed": "#001e2b",
+                    "surface-container": "#ebeef3",
+                    "inverse-on-surface": "#eef1f6",
+                    "surface-tint": "#236580",
+                    "tertiary-container": "#775100",
+                    "on-secondary-fixed": "#0f2000",
+                    "on-primary": "#ffffff",
+                    "secondary": "#3c6a00",
+                    "surface-container-high": "#e5e8ee",
+                    "primary-fixed": "#c0e8ff",
+                    "background": "#f7f9ff",
+                    "on-primary-container": "#9bd7f7",
+                    "on-background": "#181c20",
+                    "primary-fixed-dim": "#92cfee",
+                    "surface-container-highest": "#e0e3e8",
+                    "tertiary-fixed": "#ffdeae",
+                    "on-secondary-fixed-variant": "#2c5000",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#92cfee",
+                    "tertiary": "#593b00",
+                    "surface-bright": "#f7f9ff",
+                    "on-tertiary-container": "#ffc569",
+                    "on-primary-fixed-variant": "#004d66",
+                    "on-surface": "#181c20",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#d7dadf",
+                    "outline": "#70787d",
+                    "secondary-fixed": "#b4f56f",
+                    "surface-container-low": "#f1f4f9",
+                    "on-surface-variant": "#40484d",
+                    "inverse-surface": "#2d3135",
+                    "primary-container": "#1a5f7a",
+                    "outline-variant": "#c0c8cd",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#b1f26d",
+                    "on-secondary-container": "#3f6f00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-lg": "40px",
+                    "base": "8px",
+                    "container-margin": "20px",
+                    "stack-md": "24px",
+                    "stack-sm": "12px",
+                    "gutter": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg": [
+                            "IBM Plex Sans Thai"
+                    ],
+                    "body-md": [
+                            "IBM Plex Sans Thai"
+                    ],
+                    "headline-md": [
+                            "IBM Plex Sans Thai"
+                    ],
+                    "label-lg": [
+                            "IBM Plex Sans Thai"
+                    ],
+                    "headline-sm": [
+                            "IBM Plex Sans Thai"
+                    ],
+                    "body-lg": [
+                            "IBM Plex Sans Thai"
+                    ],
+                    "headline-lg-mobile": [
+                            "IBM Plex Sans Thai"
+                    ]
+            },
+            "fontSize": {
+                    "headline-lg": [
+                            "30px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-lg": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.5px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-sm": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "26px",
+                            {
+                                    "lineHeight": "34px",
+                                    "fontWeight": "700"
+                            }
+                    ]
             }
-        }
+        },
+        },
+      }
     </script>
-<style data-purpose="base-styles">
-        body {
-            background-color: #f0f2f5;
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        /* Custom scrollbar for webkit */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
+        
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #c1c1c1; 
-            border-radius: 4px;
+        
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #a8a8a8; 
+        
+        /* Hide scrollbar for horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
     </style>
 </head>
-<body class="text-gray-800 antialiased">
-<!-- BEGIN: TopHeader -->
-<header class="bg-white py-3 shadow-sm relative z-20">
-<div class="max-w-[1400px] mx-auto px-4 flex flex-wrap justify-between items-center gap-4">
-<!-- Logo and Titles -->
-<div class="flex items-center gap-4">
-<img alt="Village Logo" class="w-16 h-16 rounded-full border border-gray-200 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqrlPYE49MX4zPdFaBV9bMoVC6GxNVfJqP0QURhNeka8cEWq_cvTlbfpluNGHZmfgZ4RrH8QdXEDLyKWYaDFFcO3eD2GzO-ds_kRRXCpIqJc-ycOGcOYbN4njyaiVaQsBWAVN2izFQhnzBg2sX2y7l_lMbZLICOlsbDZatIsrh2Q6h4EXInhx2Fy0N_-ntwf3Vl8KB4LyYUx9OPJOSmZQtwjeVLuo728T0pTOnEmHqOjGhgVGoURT7s9aEquEvinDDCnOSu-HEtSNN6g">
+<body class="bg-background text-on-background font-body-md pb-24">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-surface dark:bg-background border-b border-outline-variant dark:border-on-surface-variant">
+<div class="flex justify-between items-center px-container-margin py-base w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container shrink-0 overflow-hidden">
+<img alt="Village Office Logo" class="w-full h-full object-cover" data-alt="A clean, modern logo for a Thai village office featuring a stylized community hall in navy blue and gold, set against a pristine white background. High-quality vector art style, official yet welcoming." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzO_ELHRJEJCisonqfRnPyocAK0sYuIfpb6xGXvxU49IMcSmrMa3ZDfjpx8BkTRXci3UFPxqVYduJ9mHbAZpZ3SSbcWNtvkfqvqPwSB8TmL2ztSX5tzvPY9DV64v_Fl1a7yMQDj6Z21XYFlguRGUxF-7MtU7uxBz5wWON3CBp4c4JgxAhs7nCHGkNCNFEWpA0pyweFcr6knloRIwtPAPs-2T-0NSj1iCTPT0NRuBq2YrCqFW-Y60sYIWazBGGS8WWCHgJyHBs_5yq2zQ">
+</div>
 <div>
-<h1 class="text-brand-blue text-2xl font-bold leading-tight">RONGKHEM e-VILLAGE OFFICE</h1>
-<p class="text-brand-blue text-sm font-semibold">ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
-<p class="text-gray-500 text-xs">ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim line-clamp-1">ที่ทำการผู้ใหญ่บ้าน ออนไลน์</h1>
+<p class="font-label-lg text-label-lg text-on-surface-variant">บ้านร่องเข็ม ม.6 ต.จำป่าหวาย อ.เมือง จ.พะเยา</p>
 </div>
 </div>
-<!-- Info Widgets and Login -->
-<div class="flex flex-wrap items-stretch gap-3">
-<!-- Date/Time -->
-<div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-white shadow-sm">
-<i class="fa-regular fa-clock text-gray-400 text-2xl"></i>
-<div class="text-sm">
-<div class="font-bold text-gray-800">17:45 น.</div>
-<div class="text-gray-500 text-xs">15 พฤษภาคม 2569</div>
+<button class="w-12 h-12 flex items-center justify-center text-on-surface-variant dark:text-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-highest rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-3 h-3 bg-error rounded-full border-2 border-surface"></span>
+</button>
 </div>
+</header>
+<!-- Marquee Announcement -->
+<div class="bg-error-container text-on-error-container py-2 px-container-margin marquee-container border-b border-error/20 flex items-center">
+<span class="material-symbols-outlined mr-2 shrink-0 text-error" data-icon="campaign">campaign</span>
+<div class="marquee-content font-label-lg text-label-lg font-bold">
+            ประกาศสำคัญ: ขอเชิญผู้สูงอายุที่มีอายุ 60 ปีขึ้นไป มารับบริการฉีดวัคซีนป้องกันไข้หวัดใหญ่ฟรี ณ ศาลาอเนกประสงค์หมู่บ้าน
+        </div>
 </div>
-<!-- Weather -->
-<div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-white shadow-sm">
-<i class="fa-solid fa-cloud-sun text-yellow-400 text-2xl"></i>
-<div class="text-sm">
-<div class="font-bold text-gray-800">27°C</div>
-<div class="text-gray-500 text-xs">แจ่มใส</div>
-</div>
-</div>
-<!-- Air Quality -->
-<div class="border border-gray-200 rounded-lg py-2 px-4 flex items-center gap-3 bg-green-50 shadow-sm">
-<div class="relative flex items-center justify-center w-9 h-9 rounded-full border-[3px] border-green-500 text-green-600 bg-white">
-<i class="fa-solid fa-leaf text-sm"></i>
-</div>
-<div class="text-sm">
-<div class="font-bold text-gray-800 flex items-baseline gap-1">
-                            PM2.5 <span class="text-lg leading-none">18</span> <span class="text-[10px] text-gray-500 font-normal">µg/m³</span>
-</div>
-<div class="text-green-600 text-xs font-medium">คุณภาพอากาศดี</div>
-</div>
-</div>
-<!-- Login Button -->
-<button class="bg-brand-blue text-white rounded-lg px-6 py-2 flex flex-col items-center justify-center hover:bg-blue-800 transition shadow-sm h-full">
-<div class="flex items-center gap-2 font-semibold text-sm">
-<i class="fa-solid fa-lock"></i> เข้าสู่ระบบ
-                    </div>
-<div class="text-[10px] opacity-80 mt-0.5">สำหรับผู้ใหญ่บ้าน</div>
+<main class="max-w-7xl mx-auto">
+<!-- Hero Section -->
+<section class="px-container-margin py-stack-md">
+<div class="relative w-full h-[240px] md:h-[320px] rounded-xl overflow-hidden shadow-sm">
+<img alt="Village Community" class="w-full h-full object-cover" data-alt="A high-quality, inspiring photograph of a lively outdoor community gathering in a lush Thai village. The scene is brightly lit by morning sunlight (light mode aesthetic), featuring modern rural architecture. Neighbors are interacting happily. The color palette emphasizes vibrant natural greens, warm earthy tones, and clear blue skies, conveying a sense of unity, progress, and trustworthy civic life." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm1zRQK1O8J1Dnzmsu8TMaV2drH3G63BKh-qYn9UThcn2HShIuXWimqwrQKOo8CRd9tjNUfFdQ8pxQllRGyjOLTyYJG3mNF1Nhxfea12z9sUtWM03N-1PR4Iweh63l32ZR_0M1Uxw4whxsnPGPyiz6M2vLqodebfI5iCUI8ebIDbVIgCI0tFTVREv0eWKJGUHAkb9a_giuoIrgEy_a_Hca2FGybuM0ZRwO8HJn3mTlttwZD5e9EM1mGjLG0wHP4s05zAe5-zgqFdArDg">
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent flex flex-col justify-end p-gutter">
+<h2 class="font-headline-md text-headline-md text-on-primary mb-2">พิธีมอบธงสัญลักษณ์ครัวเรือนปลอดภัยจากภัยยาเสพติด</h2>
+<p class="font-body-md text-body-md text-primary-fixed-dim mb-4 line-clamp-2">หมู่บ้านกองทุนแม่ของแผ่นดินตำบลจำป่าหวาย</p>
+<button class="self-start bg-tertiary-fixed text-on-tertiary-fixed px-6 py-3 rounded-lg font-label-lg text-label-lg flex items-center gap-2 hover:bg-tertiary-fixed-dim transition-colors min-h-[48px]">
+                        อ่านรายละเอียดเพิ่มเติม
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
 </div>
-</header>
-<!-- END: TopHeader -->
-<!-- BEGIN: MainNavigation -->
-<nav class="bg-brand-blue text-white shadow-md sticky top-0 z-10">
-<div class="max-w-[1400px] mx-auto px-4 overflow-x-auto hide-scrollbar">
-<ul class="flex items-center justify-between py-3.5 text-[15px] font-medium min-w-max gap-6">
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-house"></i> หน้าแรก</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-user-tie"></i> ผู้นำชุมชน</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-regular fa-newspaper"></i> ข่าวสาร</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-calendar-days"></i> กิจกรรม</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-medal"></i> ผลงาน</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-folder-open"></i> โครงการ</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-hand-holding-heart"></i> บริการประชาชน</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-circle-info"></i> ข้อมูลหมู่บ้าน</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-chart-column"></i> สถิติหมู่บ้าน</li>
-<li class="flex items-center gap-2 cursor-pointer hover:text-blue-200 transition"><i class="fa-solid fa-envelope"></i> ติดต่อเรา</li>
-</ul>
+</section>
+<!-- Quick Services Grid -->
+<section class="px-container-margin pb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-stack-sm font-bold">บริการประชาชน</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Service 1 -->
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all min-h-[100px] group">
+<div class="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="report_problem">report_problem</span>
 </div>
-</nav>
-<!-- END: MainNavigation -->
-<!-- BEGIN: MainContentContainer -->
-<main class="max-w-[1400px] mx-auto px-4 py-8">
-<!-- Main Grid Layout -->
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-<!-- ================= LEFT COLUMN SECTION (Span 8) ================= -->
-<div class="lg:col-span-8 flex flex-col gap-6">
-<!-- Hero Banner -->
-<div class="rounded-xl overflow-hidden relative shadow-md h-[340px] w-full">
-<img alt="แหล่งซับน้ำจำ (Sub Nam Cham)" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLmVd7ljjBr0z4XbfzHTwvsU9mt_Kv0DDesm4Bk39DJBSaWN74XD_USS5Sg7yunj_oI4F56Lt-4_DFedI0MCsJUEmOS6rD2I1MU7dlJc3TFONv5niuAkX1xHXJdZgcy7zCGlAjOGBe-plO5Uc2hG9hCXBLYfy6ScpgmRdAoZ6ZSTNhX3fK2xOJ92vyNoMLcF0Qk5IazTp8Y8dqgyVEa1mA6wafpSQUSzHhBILZLm-igfkCKLGwCiZK">
-<!-- Gradient overlay -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-<!-- Text overlay -->
-<div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center p-6">
-<h2 class="text-3xl md:text-4xl font-bold mb-2 drop-shadow-md">ร่วมสร้าง ร่วมพัฒนา</h2>
-<h2 class="text-4xl md:text-5xl font-bold drop-shadow-md">บ้านร่องเข็มให้น่าอยู่ อย่างยั่งยืน</h2>
+<span class="font-label-lg text-label-lg text-on-surface text-center">แจ้งเหตุร้องทุกข์</span>
+</button>
+<!-- Service 2 -->
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all min-h-[100px] group">
+<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="description">description</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface text-center">ขอเอกสารราชการ</span>
+</button>
+<!-- Service 3 -->
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-lowest border border-outline-variant/30 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all min-h-[100px] group">
+<div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="event">event</span>
+</div>
+<span class="font-label-lg text-label-lg text-on-surface text-center">ปฏิทินกิจกรรม</span>
+</button>
+<!-- Service 4 -->
+<button class="flex flex-col items-center justify-center p-4 bg-error text-on-error border border-error/50 rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all min-h-[100px] group">
+<div class="w-12 h-12 rounded-full bg-on-error text-error flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-3xl" data-icon="sos">sos</span>
+</div>
+<span class="font-label-lg text-label-lg font-bold text-center">เบอร์ฉุกเฉิน (SOS)</span>
+</button>
+</div>
+</section>
+<!-- Leadership Section -->
+<section class="px-container-margin pb-stack-lg bg-surface-container-low py-stack-md mx-container-margin rounded-xl mb-stack-lg border border-outline-variant/20">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-stack-md font-bold px-4">คณะกรรมการหมู่บ้าน</h3>
+<!-- Headman Card -->
+<div class="bg-surface-container-lowest p-gutter rounded-xl shadow-sm border border-outline-variant/30 mb-stack-sm mx-4 flex flex-col md:flex-row items-center gap-gutter relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-secondary text-on-secondary px-3 py-1 rounded-bl-lg font-label-lg text-label-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="verified">verified</span>
+                    Available 24h
+                </div>
+<div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-surface-container shrink-0 shadow-sm">
+<img alt="Headman Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZXuOse2qst7pF38HadqQcpyfo1xgdW29TrL4UcYaBrAHesX8_UWsXIveP6EgqEe5Z4a_eQEiok7ZhXuM9xEwPzrQWlInybfenl6bw2q0b67FYP1HlFzPHjvitABFhfxZ6D3ZJSvADSq-CbpKfYIFzo9EGpTMGWZ8G1QfFG0uKWZk0ff5wmToVfmGBzZWgkaOMIDVR1G06DM4CSnBeUJqFzNltgAd0pHzlaMjclvBzn8VBeaoSolOwXqEnI8R06pLsJw">
+</div>
+<div class="flex-1 text-center md:text-left flex flex-col items-center md:items-start w-full">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">นายศักรนนทน์ ขัติย์วงศ์</h4>
+<p class="font-label-lg text-label-lg text-primary mb-4 bg-primary/10 px-3 py-1 rounded-full inline-block">ผู้ใหญ่บ้าน</p>
+<a class="w-full md:w-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-lg font-label-lg text-label-lg hover:bg-primary/90 transition-colors shadow-sm min-h-[48px]" href="tel:0801202529">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+                        โทร. 080-120-2529
+                    </a>
 </div>
 </div>
-<!-- 2-Column Row within Left Section: Village Board & Recent Activities -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-<!-- Village Board -->
-<div class="bg-white rounded-xl shadow-sm p-5 border border-gray-100 flex flex-col h-full">
-<div class="flex items-center gap-2 mb-5 border-b border-gray-100 pb-3">
-<i class="fa-solid fa-user-group text-brand-blue text-lg"></i>
-<h3 class="text-brand-blue font-bold text-lg">คณะผู้บริหารหมู่บ้าน</h3>
-</div>
-<div class="grid grid-cols-3 gap-3 flex-1">
-<!-- Leader 1 -->
-<div class="border border-gray-100 rounded-lg p-2 flex flex-col items-center relative text-center bg-gray-50/50">
-<div class="absolute top-0 left-0 bg-brand-blue text-white text-[10px] px-2 py-0.5 rounded-br-lg rounded-tl-lg z-10 w-full text-left truncate">ผู้ใหญ่บ้าน</div>
-<div class="w-full aspect-[3/4] bg-gray-200 rounded-md overflow-hidden mb-3 mt-4">
-<img alt="Headman" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRrrT5yWWoaG0Qnprcf-CU9A0JDlUpATd7hDoBbE-2MbFwRj5QxaTXHtTZUnppoviRE9FniyZMh7t6F_zKWeqzmjESsirls_qsXy8Ci3lxottc512PUbMcgGpGlDeSqKghZauar8IihQ5eZ0iTpvzxFDkeywNz82mSi7-kLJ0XeUy-mqsfgxw_aE3ppPpGt6rQJrqWdhYYOIf6JWPVBPHxyMTHNsz7YIBFxlmSuIJJGcvnWOcDUa9vf_Znn5iyRW_5iHfhjrTqjhqSTw">
-</div>
-<h4 class="text-brand-blue font-bold text-[13px] leading-tight mb-1">นายศักรนนท์ ขัติย์วงค์</h4>
-<p class="text-[11px] text-gray-500 mb-3 leading-tight">ผู้ใหญ่บ้าน หมู่ที่ 6</p>
-<button class="mt-auto border border-brand-blue text-brand-blue text-xs py-1.5 px-2 rounded hover:bg-blue-50 w-full flex items-center justify-center gap-1 transition">
-<i class="fa-regular fa-address-card"></i> ดูประวัติ
-                                </button>
-</div>
+<!-- Assistants Grid -->
+<div class="px-4">
+<h4 class="font-label-lg text-label-lg text-on-surface-variant mb-3 flex items-center gap-2">
+<span class="w-6 h-px bg-outline-variant"></span>
+                    ทีมงานผู้ช่วยผู้ใหญ่บ้าน
+                    <span class="flex-1 h-px bg-outline-variant"></span>
+</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
 <!-- Assistant 1 -->
-<div class="border border-gray-100 rounded-lg p-2 flex flex-col items-center relative text-center bg-gray-50/50">
-<div class="absolute top-0 left-0 bg-brand-blue text-white text-[10px] px-2 py-0.5 rounded-br-lg rounded-tl-lg z-10 w-full text-left truncate">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1</div>
-<div class="w-full aspect-[3/4] bg-gray-200 rounded-md overflow-hidden mb-3 mt-4">
-<img alt="Assistant 1" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKb24U5PhLNgLK9I3GQSLTRf9pa_GQm0WsMwWdBc6axXWG5IHGHuNNYZQIsVmhy_DyKLJQzdr3yx6RrntV0TU3qmhn3yKyi4P0rLNwzJJdQMBTB6XrpngcNf85hhf1bPjMRkpJEOPW8DBobPj7h-HLUauPRpBR2B2AO_XyqSrzGVOuhZ5tP-1NbYz44QM1FMQYnmPgMqSqOr6clbI_4r4Zz-uk0iXrMYOlqMdBhbaFX81jEpquz13m0OscWCDKFD447g1U-goToyQzIA">
+<div class="bg-surface-container-lowest p-3 rounded-lg shadow-sm border border-outline-variant/20 flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-container shrink-0">
+<img alt="Assistant Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7l535NXdsE4dhjbzwyw66Io88Ax_T3B06np6FfaljBghSD6qGdnigDawUjBNxpqmKJNattPx1ST_yyG80a_skUqfyg-2HoAvYDrPH1VFPl7IuMOUnDq-rnr7_zo3jiyzbh1Dh3-FpVaFzD9ahlwSXJmTY340iiiR4pLc8GzsJ3_S6QSl5p_06yDhUSkaqYCIYSOgMboDOcYtaaB8jZgeFYqQsAhWM718RG7nNMFrk9Siu_u48d_9nHmx6saUGQVpFEg">
 </div>
-<h4 class="text-brand-blue font-bold text-[13px] leading-tight mb-1">นายจักร์กวัส&nbsp;<div class="">ประพลรัตนัง</div></h4>
-<p class="text-[11px] text-gray-500 mb-3 leading-tight">ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</p>
-<button class="mt-auto border border-brand-blue text-brand-blue text-xs py-1.5 px-2 rounded hover:bg-blue-50 w-full flex items-center justify-center gap-1 transition">
-<i class="fa-regular fa-address-card"></i> ดูประวัติ
-                                </button>
+<div class="flex-1">
+<h5 class="font-body-lg text-body-lg font-bold text-on-surface leading-tight">นายจักร์กวัส ประพลรัตนัง</h5>
+<a class="font-label-lg text-label-lg text-primary flex items-center gap-1 mt-1 hover:underline" href="tel:0851399849">
+<span class="material-symbols-outlined text-[16px]" data-icon="call">call</span>
+                                085-139-9849
+                            </a>
+</div>
 </div>
 <!-- Assistant 2 -->
-<div class="border border-gray-100 rounded-lg p-2 flex flex-col items-center relative text-center bg-gray-50/50">
-<div class="absolute top-0 left-0 bg-brand-blue text-white text-[10px] px-2 py-0.5 rounded-br-lg rounded-tl-lg z-10 w-full text-left truncate">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2</div>
-<div class="w-full aspect-[3/4] bg-gray-200 rounded-md overflow-hidden mb-3 mt-4">
-<img alt="Assistant 2" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeXcullg08r4-Wh_ob59hbrDZqq5U9jlhhsa1BTFc6oo9IfRNpS1tBgSNKZW4gCSZpI4zzrHxIwdVhKOXtS37giizoKW-5gN-5Gvl1RrMeOBDchIfM092dKdLvSGYkeXPlsaetEOXLFy6_BBt7Sgi2qmrGmopTD91AFsf1WxlvcD-65uWIi2vMFMvLqEmze-m_rZxhSK24NU_9_NOsQUeqDUUyeDa0msfsj0G0C79pRmzdlEx7k1QGvg6t-BxReZUtNG2onu3MTZAtXg">
+<div class="bg-surface-container-lowest p-3 rounded-lg shadow-sm border border-outline-variant/20 flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-surface-container shrink-0">
+<img alt="Assistant Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYOfBqY6sui5cmEBl-6u9Jo9neXGzb3B5EkUEyyaS_O3bltTl8tP25mYcrn_2ovf_lRnqQU4sz50ggRzzfN9uSKIaPbo-CrUzdy7anaTdrqxOyxF8JMjw327Kvy1nQuFfLyseUkLy_6wnkK_u2unoWCMyArvoh40vRccP_9C3uEBwXLHrW3TALtmmyrQ8kye1iVJ_6QAphQxe2Xl9vcgnCl60yGaYYyDNv5UB1QoLRlv4YtYAsdvl-yCZiH7OY_1U7GA">
 </div>
-<h4 class="text-brand-blue font-bold text-[13px] leading-tight mb-1">น.ส. สุภาพร&nbsp;<div class="">วังมูล</div></h4>
-<p class="text-[11px] text-gray-500 mb-3 leading-tight">ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</p>
-<button class="mt-auto border border-brand-blue text-brand-blue text-xs py-1.5 px-2 rounded hover:bg-blue-50 w-full flex items-center justify-center gap-1 transition">
-<i class="fa-regular fa-address-card"></i> ดูประวัติ
-                                </button>
+<div class="flex-1">
+<h5 class="font-body-lg text-body-lg font-bold text-on-surface leading-tight">น.ส.สุภาพร วังมูล</h5>
+<a class="font-label-lg text-label-lg text-primary flex items-center gap-1 mt-1 hover:underline" href="tel:0989800089">
+<span class="material-symbols-outlined text-[16px]" data-icon="call">call</span>
+                                098-980-0089
+                            </a>
 </div>
 </div>
 </div>
-<!-- Recent Activities -->
-<div class="bg-white rounded-xl shadow-sm p-5 border border-gray-100 flex flex-col h-full">
-<div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
-<div class="flex items-center gap-2">
-<i class="fa-regular fa-calendar-check text-brand-blue text-lg"></i>
-<h3 class="text-brand-blue font-bold text-lg">กิจกรรมล่าสุด</h3>
 </div>
-<a class="text-brand-blue text-sm hover:underline font-medium" href="#">ดูทั้งหมด</a>
-</div>
-<div class="flex-1 flex flex-col gap-4">
-<!-- Activity 1 -->
-<div class="flex gap-4 items-start">
-<img alt="Activity" class="w-24 h-16 rounded object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxP_y7wILdJIHaPic1ArBpU8zlJbum0lLXERHN5waOfpWmz1uuudAGmPk1OL9piHJ_88SZPwvR9LaqIan7_v2-MHb2qK8Bt7TO6FwKJtDgVLGSHk0NFAWHNxENTQ9nsq1n4qp4esTtHUuXerQh04fMrpiYVSgnimXtKcVbBXAOulNK2MRc9lIzPk-hDQg1ViqXizsMg1UhHFd_UB_atdxGOyumVz07g6pHOefb5oZXTsV966CTFdef">
-<div>
-<h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">โครงการชุมชนตำบลยั่งยืน</h4>
-<p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 15 พฤษภาคม 2569</p>
-<div class="flex items-center justify-between">
-<p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ ศาลาประชาคมหมู่บ้าน</p>
-<p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 65 คน</p>
-</div>
-</div>
-</div>
-<!-- Activity 2 -->
-<div class="flex gap-4 items-start">
-<img alt="Activity" class="w-24 h-16 rounded object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjC_5GncvKieMEVumPpmpgaCy5VQts4bcq9DUumgwHQinmGeOR7IpqeqtuzBuCWPiAsBtfE8rkyAy8eSVuaYlg6rnFmF5DpyCbdjcitAlHPseykiALv8X4s7xVNKy4KX5XPOQI32Qnfz608OPjD30SDm8blTT_QG3BfSh1QNDtoYQ-Gvsm0d8sMCQXDGiiTUIpEV-IdNxLOLvEc062FSRPtXsvGX2HcTlZXtGSrWzV9xbYPG_Ct5zs">
-<div>
-<h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</h4>
-<p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 10 พฤษภาคม 2569</p>
-<div class="flex items-center justify-between">
-<p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ ศาลาประชาคมหมู่บ้าน</p>
-<p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 78 คน</p>
-</div>
-</div>
-</div>
-<!-- Activity 3 -->
-<div class="flex gap-4 items-start">
-<img alt="Activity" class="w-24 h-16 rounded object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNoemd-JFUP2AHDa_VcthZY8KidhPTUK7BAU4TKPC7WJyiIz5uXHjaqSaeH8UTgwZljGKryPB8JCSmigUVjqw-osRfnm7ZWj81GU-ae-vkc4lTkrIkKQYX8P2slUnb27VcprrTOzGbewJJ92i9NNJkHC7y5JhUSWxrW68fx4AHOuNAR21vXF4DAJi9hwAV6DF9IIr6jvsYuwD1yp4o3QO9Vv78xh9DA4Id-aoSgRo_k1pVEhfc-Ct9">
-<div>
-<h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">Big Cleaning Day</h4>
-<p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 5 พฤษภาคม 2569</p>
-<div class="flex items-center justify-between">
-<p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ บริเวณหมู่บ้าน</p>
-<p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 120 คน</p>
-</div>
-</div>
-</div>
-<!-- Activity 4 -->
-<div class="flex gap-4 items-start">
-<img alt="Activity" class="w-24 h-16 rounded object-cover flex-shrink-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Afeb82G3XWcRCfjwjYapx7GHIHvzDOY0_S8vjclFVsnAgrUmB1WurATyVBp6Q3N8PBxYsi5pkrcsaGXs4GZebYDRxWHoMhKahJRm6PBm59msadddeCqixwkankTkbZIKnZZWBsrys_Y8KE9H6-puL8dqqwrwhXyxoAsDlrbRmZPBW7fnevA48K5KowLQE9WNUwggzkViT4F6HIeAKjkQjH3wKdew2wmsGI3JEz98UZaPCO6fXNOg">
-<div>
-<h4 class="font-bold text-sm text-gray-800 leading-tight mb-1 line-clamp-1">โครงการปลูกต้นไม้เพิ่มพื้นที่สีเขียว</h4>
-<p class="text-[11px] text-gray-500 flex items-center gap-1 mb-0.5"><i class="fa-regular fa-calendar"></i> 1 พฤษภาคม 2569</p>
-<div class="flex items-center justify-between">
-<p class="text-[11px] text-gray-500 flex items-center gap-1 truncate max-w-[150px]"><i class="fa-solid fa-location-dot text-green-600"></i> ณ ป่าชุมชนบ้านร่องเข็ม</p>
-<p class="text-[11px] text-green-600 font-medium flex items-center gap-1"><i class="fa-solid fa-users"></i> 45 คน</p>
-</div>
-</div>
-</div>
-</div>
-<button class="w-full mt-4 bg-brand-blue text-white text-sm font-medium py-2 rounded-md hover:bg-blue-800 transition">
-                            ดูทั้งหมด
-                        </button>
-</div>
-</div>
-<!-- Public Services Section (Bottom Left Span) -->
-<div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
-<div class="flex items-center gap-2 mb-6">
-<i class="fa-solid fa-hand-holding-heart text-brand-blue text-xl"></i>
-<h3 class="text-brand-blue font-bold text-xl">บริการประชาชน</h3>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-<!-- Service 1 -->
-<a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
-<div class="w-12 h-12 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:text-white transition">
-<i class="fa-solid fa-bell text-xl"></i>
-</div>
-<span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แจ้งเหตุ/<br>ร้องเรียน</span>
-</a>
-<!-- Service 2 -->
-<a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
-<div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 group-hover:bg-purple-600 group-hover:text-white transition">
-<i class="fa-solid fa-file-lines text-xl"></i>
-</div>
-<span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แบบฟอร์ม<br>ออนไลน์</span>
-</a>
-<!-- Service 3 -->
-<a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
-<div class="w-12 h-12 rounded-full bg-green-100 text-green-500 flex items-center justify-center flex-shrink-0 group-hover:bg-green-500 group-hover:text-white transition">
-<i class="fa-solid fa-comments text-xl"></i>
-</div>
-<span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">ถาม-ตอบ<br>(Q&amp;A)</span>
-</a>
-<!-- Service 4 -->
-<a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
-<div class="w-12 h-12 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-500 group-hover:text-white transition">
-<i class="fa-solid fa-phone text-xl"></i>
-</div>
-<span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">เบอร์โทรศัพท์<br>สำคัญ</span>
-</a>
-<!-- Service 5 -->
-<a class="border border-gray-100 rounded-xl p-3 flex flex-col sm:flex-row items-center gap-3 hover:shadow-md transition bg-gray-50/50 group" href="#">
-<div class="w-12 h-12 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0 group-hover:bg-orange-500 group-hover:text-white transition">
-<i class="fa-solid fa-map-location-dot text-xl"></i>
-</div>
-<span class="text-sm font-bold text-brand-blue text-center sm:text-left leading-tight">แผนที่หมู่บ้าน</span>
-</a>
-</div>
-</div>
-</div>
-<!-- ================= RIGHT COLUMN SECTION (Span 4) ================= -->
-<div class="lg:col-span-4 flex flex-col gap-6">
-<!-- Important Announcements -->
-<div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 h-[340px] flex flex-col">
-<div class="flex justify-between items-center mb-5 border-b border-gray-100 pb-3">
-<div class="flex items-center gap-2">
-<i class="fa-solid fa-bullhorn text-red-500 text-lg"></i>
-<h3 class="text-brand-blue font-bold text-lg">ประกาศสำคัญ</h3>
-</div>
-<a class="text-brand-blue text-sm hover:underline font-medium" href="#">ดูทั้งหมด</a>
-</div>
-<ul class="flex-1 overflow-y-auto pr-2 space-y-4">
-<li class="flex items-start gap-3">
-<span class="bg-brand-blue text-white text-[11px] py-1 px-2 rounded font-medium whitespace-nowrap min-w-[70px] text-center mt-0.5">14 พ.ค. 69</span>
-<div class="text-[13px] text-gray-700 leading-tight">
-                                ประกาศการจัดเก็บภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569
-                                <span class="inline-block bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 align-middle">ใหม่</span>
-</div>
-</li>
-<li class="flex items-start gap-3">
-<span class="bg-brand-blue text-white text-[11px] py-1 px-2 rounded font-medium whitespace-nowrap min-w-[70px] text-center mt-0.5">10 พ.ค. 69</span>
-<div class="text-[13px] text-gray-700 leading-tight">
-                                ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569
-                                <span class="inline-block bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 align-middle">ใหม่</span>
-</div>
-</li>
-<li class="flex items-start gap-3">
-<span class="bg-brand-blue text-white text-[11px] py-1 px-2 rounded font-medium whitespace-nowrap min-w-[70px] text-center mt-0.5">5 พ.ค. 69</span>
-<div class="text-[13px] text-gray-700 leading-tight">
-                                เชิญร่วมกิจกรรม Big Cleaning Day
-                                <span class="inline-block bg-red-600 text-white text-[9px] px-1.5 py-0.5 rounded-full ml-1 align-middle">ใหม่</span>
-</div>
-</li>
-<li class="flex items-start gap-3">
-<span class="bg-brand-blue text-white text-[11px] py-1 px-2 rounded font-medium whitespace-nowrap min-w-[70px] text-center mt-0.5">1 พ.ค. 69</span>
-<div class="text-[13px] text-gray-700 leading-tight">
-                                ประกาศรับสมัครอาสาสมัครสาธารณสุขประจำหมู่บ้าน
-                            </div>
-</li>
-</ul>
-</div>
-<!-- Village Statistics -->
-<div class="bg-white rounded-xl shadow-sm p-6 border border-gray-100 flex-1 flex flex-col">
-<div class="flex justify-between items-center mb-5 border-b border-gray-100 pb-3">
-<div class="flex items-center gap-2">
-<i class="fa-solid fa-chart-pie text-brand-blue text-lg"></i>
-<h3 class="text-brand-blue font-bold text-lg">สถิติข้อมูลหมู่บ้าน</h3>
-</div>
-<a class="text-brand-blue text-sm hover:underline font-medium" href="#">ดูทั้งหมด</a>
-</div>
-<div class="grid grid-cols-2 gap-3 flex-1">
-<!-- Stat 1: Population -->
-<div class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50">
-<div class="w-10 h-10 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center flex-shrink-0">
-<i class="fa-solid fa-users text-lg"></i>
-</div>
-<div>
-<p class="text-[11px] text-gray-500 font-medium">ประชากรรวม</p>
-<p class="text-brand-blue font-bold text-lg leading-none">1,247</p>
-<p class="text-[10px] text-gray-400">คน</p>
-</div>
-</div>
-<!-- Stat 2: Households -->
-<div class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50">
-<div class="w-10 h-10 rounded-full bg-green-100 text-green-500 flex items-center justify-center flex-shrink-0">
-<i class="fa-solid fa-house-chimney text-lg"></i>
-</div>
-<div>
-<p class="text-[11px] text-gray-500 font-medium">ครัวเรือนทั้งหมด</p>
-<p class="text-brand-blue font-bold text-lg leading-none">352</p>
-<p class="text-[10px] text-gray-400">ครัวเรือน</p>
-</div>
-</div>
-<!-- Stat 3: Children -->
-<div class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50">
-<div class="w-10 h-10 rounded-full bg-orange-100 text-orange-500 flex items-center justify-center flex-shrink-0">
-<i class="fa-solid fa-child text-lg"></i>
-</div>
-<div>
-<p class="text-[11px] text-gray-500 font-medium">เด็ก (0-5 ปี)</p>
-<p class="text-brand-blue font-bold text-lg leading-none">86</p>
-<p class="text-[10px] text-gray-400">คน</p>
-</div>
-</div>
-<!-- Stat 4: Elderly -->
-<div class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50">
-<div class="w-10 h-10 rounded-full bg-red-100 text-red-500 flex items-center justify-center flex-shrink-0">
-<i class="fa-solid fa-person-cane text-lg"></i>
-</div>
-<div>
-<p class="text-[11px] text-gray-500 font-medium">ผู้สูงอายุ (60 ปีขึ้นไป)</p>
-<p class="text-brand-blue font-bold text-lg leading-none">210</p>
-<p class="text-[10px] text-gray-400">คน</p>
-</div>
-</div>
-<!-- Stat 5: Disabled -->
-<div class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50">
-<div class="w-10 h-10 rounded-full bg-purple-100 text-purple-500 flex items-center justify-center flex-shrink-0">
-<i class="fa-solid fa-wheelchair text-lg"></i>
-</div>
-<div>
-<p class="text-[11px] text-gray-500 font-medium">ผู้พิการ</p>
-<p class="text-brand-blue font-bold text-lg leading-none">18</p>
-<p class="text-[10px] text-gray-400">คน</p>
-</div>
-</div>
-<!-- Stat 6: Vulnerable -->
-<div class="border border-gray-100 rounded-lg p-3 flex items-center gap-3 bg-gray-50/50">
-<div class="w-10 h-10 rounded-full bg-pink-100 text-pink-500 flex items-center justify-center flex-shrink-0">
-<i class="fa-solid fa-hand-holding-medical text-lg"></i>
-</div>
-<div>
-<p class="text-[11px] text-gray-500 font-medium">กลุ่มเปราะบาง</p>
-<p class="text-brand-blue font-bold text-lg leading-none">23</p>
-<p class="text-[10px] text-gray-400">ครัวเรือน</p>
-</div>
-</div>
-</div>
-<div class="text-right mt-3">
-<p class="text-[10px] text-gray-400">ข้อมูล ณ วันที่ 15 พฤษภาคม 2569</p>
-</div>
-</div>
-<!-- Contact Widgets -->
-<div class="flex gap-4 h-[120px]">
-<!-- Follow Us -->
-<div class="bg-brand-blue rounded-xl shadow-sm p-4 flex flex-col justify-center items-center w-1/3 text-white">
-<h4 class="font-bold text-sm mb-3">ติดตามเรา</h4>
-<div class="flex gap-2">
-<a class="w-8 h-8 rounded-full bg-[#1877f2] flex items-center justify-center hover:opacity-90" href="#"><i class="fa-brands fa-facebook-f text-sm"></i></a>
-<a class="w-8 h-8 rounded-full bg-[#ff0000] flex items-center justify-center hover:opacity-90" href="#"><i class="fa-brands fa-youtube text-sm"></i></a>
-<a class="w-8 h-8 rounded-full bg-[#00b900] flex items-center justify-center hover:opacity-90" href="#"><i class="fa-brands fa-line text-lg"></i></a>
-</div>
-</div>
-<!-- Contact Headman -->
-<div class="bg-[#e8f0fe] rounded-xl shadow-sm p-3 flex-1 flex items-center gap-4 relative overflow-hidden">
-<div class="w-20 h-24 flex-shrink-0 rounded-md overflow-hidden bg-gray-200 self-end -mb-3 z-10 border-2 border-white shadow-sm">
-<img alt="Contact Headman" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJV2wbMGQSwFxEEExOYFdqrERc2qwVRE6j2dnqt7Tg9BRX1D-v4uBFG3h8PGx_0ClcPgpHZGak4sosX9bEXXSYKlZzvpCl0gNjoVgbUk_v_LYKGlpySeCKc3Sa08g1D4BBUFDeqBcZrXPGdBiOteOTvvQZI9hjl7S-jd8cwnplX6uYIw2FbcNqM6sN5D890iyjf4iZW9jG0NMyeoZKuoAa_muvCybT6nj2JKxiRErRiNC9EfdbMRN_ON6ISjaw93FE_fwj_ry3OlLaEg">
-</div>
-<div class="flex flex-col justify-center z-10">
-<h4 class="text-brand-blue font-bold text-[15px] mb-0.5">ช่องทางติดต่อผู้ใหญ่บ้าน</h4>
-<p class="text-brand-blue font-bold text-xs">นายศักรนนท์ ขัติย์วงค์</p>
-<p class="text-gray-600 text-[10px] mb-2">ผู้ใหญ่บ้าน หมู่ที่ 6</p>
-<button class="bg-brand-blue text-white text-[11px] py-1.5 px-4 rounded hover:bg-blue-800 transition w-fit">
-                                ติดต่อผู้ใหญ่บ้าน
-                            </button>
-</div>
-<!-- Decorative background shapes -->
-<div class="absolute -right-6 -top-6 w-24 h-24 bg-white/40 rounded-full z-0"></div>
-<div class="absolute right-10 -bottom-8 w-16 h-16 bg-white/30 rounded-full z-0"></div>
-</div>
-</div>
-</div>
-</div>
+</section>
 </main>
-<!-- END: MainContentContainer -->
-<!-- BEGIN: Footer -->
-<footer class="bg-brand-blue text-white py-4 mt-8">
-<div class="max-w-[1400px] mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm">
-<div class="flex items-center gap-3">
-<img alt="Footer Logo" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1xO7VAGCuW_79-eZeUgZJ9nQI530YiGK7GjE4ML-FEaM1YqBrn81HCodfYVF_J5a_oA9xsVWqlqxZ_I8pJo3AC0UgX10jSL7itGXzO-59DfTKAlnYzvN8Qwd20NI-nh4bRy_tmA0CDp9I2AMfeVhk5NwginejNgmxPOihhv8sJ77Yr1S5I60glRBVZLuz_2kKRX4QkvIUjJ0AL-U0AxmY3oALgAldgRVDkCrGs9Kf7r6Bfpo9M7yJdjJfOOM1ezluq2euC2qD-BYMCg">
-<div>
-<p class="font-bold">RONGKHEM e-VILLAGE OFFICE <span class="font-normal opacity-80">ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</span></p>
-<p class="opacity-70 text-[10px] mt-0.5">ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
-</div>
-</div>
-<div class="opacity-80 text-[11px]">
-                © 2024 RONGKHEM e-VILLAGE OFFICE All rights reserved.
-            </div>
-</div>
-</footer>
-<!-- END: Footer -->
-
-
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-2 border-t border-outline-variant md:hidden bg-surface-container-lowest dark:bg-surface-container-lowest shadow-sm rounded-t-xl">
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary-container text-on-secondary-container dark:text-on-secondary-container rounded-full px-4 py-1 Active: scale-90 transition-all duration-200 min-w-[64px] min-h-[48px]">
+<span class="material-symbols-outlined" data-icon="home" data-weight="fill">home</span>
+<span class="font-label-lg text-label-lg text-[12px] mt-1">หน้าหลัก</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 rounded-xl min-w-[64px] min-h-[48px] transition-colors">
+<span class="material-symbols-outlined" data-icon="report_problem">report_problem</span>
+<span class="font-label-lg text-label-lg text-[12px] mt-1">แจ้งเรื่อง</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 rounded-xl min-w-[64px] min-h-[48px] transition-colors">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-label-lg text-label-lg text-[12px] mt-1">บริการ</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:bg-surface-variant dark:hover:bg-on-surface-variant/10 rounded-xl min-w-[64px] min-h-[48px] transition-colors">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-label-lg text-label-lg text-[12px] mt-1">ชุมชน</span>
+</button>
+</nav>
 
 
 </body></html>
