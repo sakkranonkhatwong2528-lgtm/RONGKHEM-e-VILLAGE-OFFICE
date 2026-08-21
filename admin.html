@@ -1,797 +1,571 @@
-import supabaseClient from "./supabase-config.js";
-import { requireAdmin, logout } from "./assets/js/auth.js";
+<!DOCTYPE html>
+<html lang="th">
 
-// ========================================
-// ตั้งค่าแต่ละเมนูให้ตรงกับตารางจริง
-// ========================================
+<head>
 
-const MODULES = {
-  news: {
-    table: "news",
-    title: "title",
-    detail: "content",
-    image: "image_url"
-  },
+<meta charset="UTF-8">
 
-  complaint: {
-    table: "complaints",
-    title: "title",
-    detail: "detail",
-    image: null
-  },
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0">
 
-  elderly: {
-    table: "elderly",
-    title: "name",
-    detail: "detail",
-    image: null
-  },
+<title>
+  ระบบหลังบ้าน - บ้านร่องเข็ม
+</title>
 
-  vulnerable: {
-    table: "vulnerable",
-    title: "name",
-    detail: "detail",
-    image: null
-  },
+<style>
 
-  project: {
-    table: "projects",
-    title: "title",
-    detail: "description",
-    image: "image_url"
-  },
+/* ========================================
+   GLOBAL
+======================================== */
 
-  incident: {
-    table: "incidents",
-    title: "title",
-    detail: "description",
-    image: null
-  },
+*{
+  box-sizing:border-box;
+}
 
-  activity: {
-    table: "activities",
-    title: "title",
-    detail: "description",
-    image: "image_url"
-  }
-};
-
-
-// ========================================
-// ELEMENTS
-// ========================================
-
-const menuSelect = document.querySelector("#menuSelect");
-const crudForm = document.querySelector("#crudForm");
-
-const recordId = document.querySelector("#recordId");
-
-const titleInput = document.querySelector("#titleInput");
-const detailInput = document.querySelector("#detailInput");
-
-const imageInput = document.querySelector("#imageInput");
-
-const currentImageUrl =
-  document.querySelector("#currentImageUrl");
-
-const imagePreview =
-  document.querySelector("#imagePreview");
-
-const imagePreviewContainer =
-  document.querySelector("#imagePreviewContainer");
-
-const tableBody =
-  document.querySelector("#tableBody");
-
-const resetBtn =
-  document.querySelector("#resetBtn");
-
-const logoutBtn =
-  document.querySelector("#logoutBtn");
-
-const adminEmail =
-  document.querySelector("#adminEmail");
-
-const formTitle =
-  document.querySelector("#formTitle");
-
-
-// ========================================
-// MODULE ปัจจุบัน
-// ========================================
-
-function getCurrentModule() {
-
-  const moduleName =
-    menuSelect.value;
-
-  return MODULES[moduleName];
-
+body{
+  font-family:Sarabun,Arial,sans-serif;
+  background:#f4f6f9;
+  margin:0;
+  padding:20px;
 }
 
 
-// ========================================
-// ตรวจสอบ LOGIN
-// ========================================
+/* ========================================
+   ADMIN WRAPPER
+======================================== */
 
-async function checkAdmin() {
-
-  const user =
-    await requireAdmin();
-
-  if (!user) return;
-
-  adminEmail.textContent =
-    user.email;
-
+.admin-wrapper{
+  max-width:1100px;
+  margin:auto;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 
-// ========================================
-// โหลดข้อมูล
-// ========================================
+/* ========================================
+   TOP BAR
+======================================== */
 
-async function loadData() {
-
-  const module =
-    getCurrentModule();
-
-  tableBody.innerHTML = `
-  <tr>
-  <td colspan="5"
-  style="text-align:center">
-  กำลังโหลดข้อมูล...
-  </td>
-  </tr>
-  `;
-
-  try {
-
-    const {
-      data,
-      error
-    } =
-    await supabaseClient
-    .from(module.table)
-    .select("*")
-    .order("id", {
-      ascending:false
-    });
+.top-bar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  background:#113a72;
+  color:white;
+  padding:15px 20px;
+  border-radius:8px;
+  margin-bottom:20px;
+}
 
 
-    if (error) throw error;
+/* ========================================
+   FORM
+======================================== */
+
+.form-group{
+  margin-bottom:15px;
+}
+
+label{
+  display:block;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  padding:10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:16px;
+}
+
+textarea{
+  resize:vertical;
+}
 
 
-    renderTable(
-      data || [],
-      module
-    );
+/* ========================================
+   BUTTONS
+======================================== */
 
+.btn-group{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+button{
+  padding:10px 18px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:bold;
+  font-size:15px;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.btn-save{
+  background:#28a745;
+  color:white;
+}
+
+.btn-reset{
+  background:#6c757d;
+  color:white;
+}
+
+.btn-logout,
+.btn-delete{
+  background:#dc3545;
+  color:white;
+}
+
+.btn-edit{
+  background:#ffc107;
+  color:#222;
+}
+
+
+/* ========================================
+   TABLE
+======================================== */
+
+.table-wrapper{
+  width:100%;
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:15px;
+  min-width:700px;
+}
+
+th,
+td{
+  border:1px solid #ddd;
+  padding:10px;
+  text-align:left;
+  vertical-align:top;
+}
+
+th{
+  background:#f1f3f5;
+}
+
+
+/* ========================================
+   IMAGE
+======================================== */
+
+.img-preview{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:5px;
+  border:1px solid #ddd;
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media(max-width:600px){
+
+  body{
+    padding:10px;
   }
 
-  catch(error) {
+  .admin-wrapper{
+    padding:15px;
+  }
 
-    console.error(error);
+  .top-bar{
+    flex-direction:column;
+    align-items:flex-start;
+  }
 
-    tableBody.innerHTML = `
-    <tr>
-    <td colspan="5"
-    style="text-align:center;color:red">
-    โหลดข้อมูลไม่สำเร็จ
-    </td>
-    </tr>
-    `;
+  .btn-group{
+    flex-direction:column;
+  }
 
+  .btn-group button{
+    width:100%;
   }
 
 }
 
+</style>
 
-// ========================================
-// แสดงตาราง
-// ========================================
-
-function renderTable(
-  data,
-  module
-) {
-
-  if (!data.length) {
-
-    tableBody.innerHTML = `
-    <tr>
-    <td colspan="5"
-    style="text-align:center">
-    ยังไม่มีข้อมูล
-    </td>
-    </tr>
-    `;
-
-    return;
-
-  }
+</head>
 
 
-  tableBody.innerHTML =
-  data.map(item => {
-
-    const title =
-      item[module.title] || "";
-
-    const detail =
-      item[module.detail] || "";
-
-    const image =
-      module.image
-      ? item[module.image]
-      : null;
+<body>
 
 
-    return `
-
-    <tr>
-
-    <td>
-    ${item.id}
-    </td>
+<div class="admin-wrapper">
 
 
-    <td>
+<!-- =====================================
+     TOP BAR
+===================================== -->
 
-    ${
-      image
-      ?
+<div class="top-bar">
 
-      `<img
-      src="${image}"
-      class="img-preview">`
+  <div>
 
-      :
+    👤 ผู้ดูแลระบบ:
 
-      "-"
-    }
+    <strong id="adminEmail">
 
-    </td>
+      กำลังตรวจสอบ...
 
+    </strong>
 
-    <td>
-    ${escapeHtml(title)}
-    </td>
+  </div>
 
 
-    <td>
-    ${escapeHtml(detail)}
-    </td>
+  <button
+    id="logoutBtn"
+    class="btn-logout"
+    type="button">
+
+    🚪 ออกจากระบบ
+
+  </button>
+
+</div>
 
 
-    <td>
+<!-- =====================================
+     TITLE
+===================================== -->
+
+<h2>
+
+  ⚙️ ระบบจัดการข้อมูลหมู่บ้าน
+
+</h2>
+
+
+<!-- =====================================
+     SELECT MENU
+===================================== -->
+
+<div class="form-group">
+
+  <label for="menuSelect">
+
+    เลือกเมนู
+
+  </label>
+
+
+  <select id="menuSelect">
+
+    <option value="news">
+
+      ข่าวสารประชาสัมพันธ์
+
+    </option>
+
+
+    <option value="complaints">
+
+      เรื่องร้องเรียน
+
+    </option>
+
+
+    <option value="elderly">
+
+      ข้อมูลผู้สูงอายุ
+
+    </option>
+
+
+    <option value="vulnerable">
+
+      กลุ่มเปราะบาง
+
+    </option>
+
+
+    <option value="projects">
+
+      โครงการหมู่บ้าน
+
+    </option>
+
+
+    <option value="incidents">
+
+      เหตุการณ์ / แจ้งเตือน
+
+    </option>
+
+
+    <option value="activities">
+
+      กิจกรรม
+
+    </option>
+
+  </select>
+
+</div>
+
+
+<hr>
+
+
+<!-- =====================================
+     FORM TITLE
+===================================== -->
+
+<h3 id="formTitle">
+
+  ➕ เพิ่มข้อมูลใหม่
+
+</h3>
+
+
+<!-- =====================================
+     CRUD FORM
+===================================== -->
+
+<form id="crudForm">
+
+
+  <!-- RECORD ID -->
+
+  <input
+    type="hidden"
+    id="recordId">
+
+
+  <!-- CURRENT IMAGE URL -->
+
+  <input
+    type="hidden"
+    id="currentImageUrl">
+
+
+  <!-- TITLE -->
+
+  <div class="form-group">
+
+    <label for="titleInput">
+
+      หัวข้อ
+
+    </label>
+
+
+    <input
+      type="text"
+      id="titleInput"
+      required
+      placeholder="ระบุหัวข้อ">
+
+  </div>
+
+
+  <!-- DETAIL -->
+
+  <div class="form-group">
+
+    <label for="detailInput">
+
+      รายละเอียด
+
+    </label>
+
+
+    <textarea
+      id="detailInput"
+      rows="5"
+      placeholder="รายละเอียดข้อมูล"></textarea>
+
+  </div>
+
+
+  <!-- IMAGE -->
+
+  <div class="form-group">
+
+    <label for="imageInput">
+
+      รูปภาพ
+
+    </label>
+
+
+    <input
+      type="file"
+      id="imageInput"
+      accept="image/*">
+
+
+    <!-- IMAGE PREVIEW -->
+
+    <div
+      id="imagePreviewContainer"
+      style="
+        display:none;
+        margin-top:10px;
+      ">
+
+      <img
+        id="imagePreview"
+        class="img-preview"
+        alt="ตัวอย่างรูปภาพ">
+
+    </div>
+
+  </div>
+
+
+  <!-- BUTTONS -->
+
+  <div class="btn-group">
+
 
     <button
-    class="btn-edit"
-    data-id="${item.id}">
+      type="submit"
+      id="saveBtn"
+      class="btn-save">
 
-    ✏️ แก้ไข
+      💾 บันทึกข้อมูล
 
     </button>
 
 
     <button
-    class="btn-delete"
-    data-id="${item.id}">
+      type="button"
+      id="resetBtn"
+      class="btn-reset">
 
-    🗑 ลบ
+      ↩ ยกเลิก
 
     </button>
 
-    </td>
 
-    </tr>
+  </div>
 
-    `;
 
-  }).join("");
+</form>
 
-}
 
+<hr>
 
-// ========================================
-// ป้องกัน HTML
-// ========================================
 
-function escapeHtml(text) {
+<!-- =====================================
+     DATA TABLE
+===================================== -->
 
-  return String(text)
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+<h3>
 
-}
+  📋 รายการข้อมูล
 
+</h3>
 
-// ========================================
-// เพิ่ม / แก้ไขข้อมูล
-// ========================================
 
-crudForm.addEventListener(
-  "submit",
-  async event => {
+<div class="table-wrapper">
 
-    event.preventDefault();
+  <table>
 
 
-    const module =
-      getCurrentModule();
+    <thead>
 
+      <tr>
 
-    const title =
-      titleInput.value.trim();
+        <th>
 
-    const detail =
-      detailInput.value.trim();
+          ID
 
+        </th>
 
-    const payload = {
 
-      [module.title]:
-      title,
+        <th>
 
-      [module.detail]:
-      detail
+          รูป
 
-    };
+        </th>
 
 
-    try {
+        <th>
 
+          หัวข้อ
 
-      // ===============================
-      // อัปโหลดรูป
-      // ===============================
+        </th>
 
-      if (
-        module.image &&
-        imageInput.files[0]
-      ) {
 
-        const file =
-          imageInput.files[0];
+        <th>
 
+          รายละเอียด
 
-        const fileName =
-          `${Date.now()}-${file.name}`;
+        </th>
 
 
-        const {
-          error: uploadError
-        } =
-        await supabaseClient
-        .storage
-        .from("images")
-        .upload(
-          fileName,
-          file
-        );
+        <th>
 
+          จัดการ
 
-        if (
-          uploadError
-        ) throw uploadError;
+        </th>
 
+      </tr>
 
-        const {
-          data: urlData
-        } =
-        supabaseClient
-        .storage
-        .from("images")
-        .getPublicUrl(
-          fileName
-        );
+    </thead>
 
 
-        payload[module.image] =
-          urlData.publicUrl;
+    <tbody id="tableBody">
 
-      }
+      <tr>
 
+        <td
+          colspan="5"
+          style="text-align:center">
 
-      // ===============================
-      // ใช้รูปเดิม
-      // ===============================
+          กำลังโหลด...
 
-      else if (
-        module.image &&
-        currentImageUrl.value
-      ) {
+        </td>
 
-        payload[module.image] =
-          currentImageUrl.value;
+      </tr>
 
-      }
+    </tbody>
 
 
-      // ===============================
-      // UPDATE
-      // ===============================
+  </table>
 
-      if (
-        recordId.value
-      ) {
+</div>
 
-        const {
-          error
-        } =
-        await supabaseClient
-        .from(module.table)
-        .update(payload)
-        .eq(
-          "id",
-          recordId.value
-        );
 
+</div>
 
-        if (
-          error
-        ) throw error;
 
+<!-- =====================================
+     JAVASCRIPT
+===================================== -->
 
-        alert(
-          "แก้ไขข้อมูลเรียบร้อย"
-        );
+<script
+  type="module"
+  src="manage-admin.js">
+</script>
 
-      }
 
+</body>
 
-      // ===============================
-      // INSERT
-      // ===============================
-
-      else {
-
-        const {
-          error
-        } =
-        await supabaseClient
-        .from(module.table)
-        .insert(
-          [payload]
-        );
-
-
-        if (
-          error
-        ) throw error;
-
-
-        alert(
-          "บันทึกข้อมูลเรียบร้อย"
-        );
-
-      }
-
-
-      resetForm();
-
-      loadData();
-
-
-    }
-
-    catch(error) {
-
-      console.error(error);
-
-      alert(
-        "เกิดข้อผิดพลาด: " +
-        error.message
-      );
-
-    }
-
-  }
-);
-
-
-// ========================================
-// CLICK EDIT / DELETE
-// ========================================
-
-tableBody.addEventListener(
-  "click",
-  async event => {
-
-
-    const editButton =
-      event.target.closest(
-        ".btn-edit"
-      );
-
-
-    const deleteButton =
-      event.target.closest(
-        ".btn-delete"
-      );
-
-
-    const module =
-      getCurrentModule();
-
-
-    // ===============================
-    // EDIT
-    // ===============================
-
-    if (
-      editButton
-    ) {
-
-      const id =
-        editButton.dataset.id;
-
-
-      const {
-        data,
-        error
-      } =
-      await supabaseClient
-      .from(module.table)
-      .select("*")
-      .eq(
-        "id",
-        id
-      )
-      .single();
-
-
-      if (
-        error
-      ) {
-
-        alert(
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      recordId.value =
-        data.id;
-
-
-      titleInput.value =
-        data[module.title]
-        || "";
-
-
-      detailInput.value =
-        data[module.detail]
-        || "";
-
-
-      if (
-        module.image &&
-        data[module.image]
-      ) {
-
-        currentImageUrl.value =
-          data[module.image];
-
-
-        imagePreview.src =
-          data[module.image];
-
-
-        imagePreviewContainer
-        .style
-        .display =
-        "block";
-
-      }
-
-
-      formTitle.textContent =
-        "✏️ แก้ไขข้อมูล";
-
-
-      window.scrollTo({
-
-        top:0,
-
-        behavior:"smooth"
-
-      });
-
-    }
-
-
-    // ===============================
-    // DELETE
-    // ===============================
-
-    if (
-      deleteButton
-    ) {
-
-      const id =
-        deleteButton.dataset.id;
-
-
-      const confirmDelete =
-        confirm(
-          "ต้องการลบข้อมูลนี้ใช่หรือไม่?"
-        );
-
-
-      if (
-        !confirmDelete
-      ) return;
-
-
-      const {
-        error
-      } =
-      await supabaseClient
-      .from(module.table)
-      .delete()
-      .eq(
-        "id",
-        id
-      );
-
-
-      if (
-        error
-      ) {
-
-        alert(
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      alert(
-        "ลบข้อมูลเรียบร้อย"
-      );
-
-
-      loadData();
-
-    }
-
-  }
-);
-
-
-// ========================================
-// PREVIEW รูป
-// ========================================
-
-imageInput.addEventListener(
-  "change",
-  event => {
-
-    const file =
-      event.target.files[0];
-
-
-    if (!file) return;
-
-
-    const reader =
-      new FileReader();
-
-
-    reader.onload =
-    e => {
-
-      imagePreview.src =
-        e.target.result;
-
-
-      imagePreviewContainer
-      .style
-      .display =
-      "block";
-
-    };
-
-
-    reader.readAsDataURL(
-      file
-    );
-
-  }
-);
-
-
-// ========================================
-// RESET FORM
-// ========================================
-
-function resetForm() {
-
-  crudForm.reset();
-
-
-  recordId.value =
-    "";
-
-
-  currentImageUrl.value =
-    "";
-
-
-  imagePreviewContainer
-  .style
-  .display =
-  "none";
-
-
-  formTitle.textContent =
-    "➕ เพิ่มข้อมูลใหม่";
-
-}
-
-
-// ========================================
-// RESET BUTTON
-// ========================================
-
-resetBtn.addEventListener(
-  "click",
-  resetForm
-);
-
-
-// ========================================
-// เปลี่ยนเมนู
-// ========================================
-
-menuSelect.addEventListener(
-  "change",
-  () => {
-
-    resetForm();
-
-    loadData();
-
-  }
-);
-
-
-// ========================================
-// LOGOUT
-// ========================================
-
-logoutBtn.addEventListener(
-  "click",
-  async () => {
-
-    if (
-      confirm(
-        "ต้องการออกจากระบบใช่หรือไม่?"
-      )
-    ) {
-
-      await logout();
-
-    }
-
-  }
-);
-
-
-// ========================================
-// START SYSTEM
-// ========================================
-
-await checkAdmin();
-
-await loadData();
+</html>
