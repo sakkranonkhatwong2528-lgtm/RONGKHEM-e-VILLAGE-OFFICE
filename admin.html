@@ -1,427 +1,94 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>ระบบหลังบ้าน - บ้านร่องเข็ม</title>
-
-<style>
-
-body{
-  font-family:Sarabun,Arial,sans-serif;
-  background:#f4f6f9;
-  margin:0;
-  padding:20px;
-}
-
-.admin-wrapper{
-  max-width:1100px;
-  margin:auto;
-  background:white;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
-}
-
-.top-bar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  background:#113a72;
-  color:white;
-  padding:15px 20px;
-  border-radius:8px;
-  margin-bottom:20px;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-label{
-  display:block;
-  margin-bottom:6px;
-  font-weight:bold;
-}
-
-input,
-textarea,
-select{
-  width:100%;
-  box-sizing:border-box;
-  padding:10px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:16px;
-}
-
-.btn-group{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-  flex-wrap:wrap;
-}
-
-button{
-  padding:10px 18px;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.btn-save{
-  background:#28a745;
-  color:white;
-}
-
-.btn-reset{
-  background:#6c757d;
-  color:white;
-}
-
-.btn-logout,
-.btn-delete{
-  background:#dc3545;
-  color:white;
-}
-
-.btn-edit{
-  background:#ffc107;
-  color:#222;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:15px;
-}
-
-th,
-td{
-  border:1px solid #ddd;
-  padding:10px;
-  vertical-align:middle;
-}
-
-th{
-  background:#f1f3f5;
-}
-
-.img-preview{
-  width:70px;
-  height:70px;
-  object-fit:cover;
-  border-radius:5px;
-}
-
-.action-buttons{
-  display:flex;
-  gap:6px;
-  flex-wrap:wrap;
-}
-
-@media(max-width:700px){
-
-  body{
-    padding:10px;
-  }
-
-  .admin-wrapper{
-    padding:15px;
-  }
-
-  .top-bar{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  table{
-    font-size:13px;
-  }
-
-  th,
-  td{
-    padding:6px;
-  }
-
-}
-
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบจัดการหลังบ้าน - RONGKHEM e-VILLAGE OFFICE</title>
+  
+  <!-- Supabase SDK & Config -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="assets/js/admin-guard.js"></script>
+  
+  <style>
+    body { font-family: 'Sarabun', sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+    .admin-container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    h2 { border-bottom: 2px solid #0056b3; padding-bottom: 8px; color: #0056b3; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: bold; margin-bottom: 5px; }
+    input[type="text"], input[type="number"], input[type="date"], input[type="file"] {
+      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
+    }
+    .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-primary { background: #0056b3; color: white; }
+    .btn-danger { background: #dc3545; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background-color: #f8f9fa; }
+    .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
+  </style>
 </head>
-
 <body>
 
-<div class="admin-wrapper">
-
-  <div class="top-bar">
-
-    <div>
-      👤 ผู้ดูแลระบบ:
-      <strong id="adminEmail">
-        กำลังตรวจสอบ...
-      </strong>
-    </div>
-
-    <button
-      id="logoutBtn"
-      class="btn-logout">
-
-      🚪 ออกจากระบบ
-
-    </button>
-
-  </div>
-
-
-  <h2>⚙️ ระบบจัดการข้อมูลหมู่บ้าน</h2>
-
-
-  <div class="form-group">
-
-    <label>เลือกเมนู</label>
-
-    <select id="menuSelect">
-
-      <option value="news">
-        📰 ข่าวสารประชาสัมพันธ์
-      </option>
-
-      <option value="activities">
-        🎉 กิจกรรม
-      </option>
-
-      <option value="projects">
-        📁 โครงการหมู่บ้าน
-      </option>
-
-      <option value="incidents">
-        ⚠️ เหตุการณ์ / แจ้งเตือน
-      </option>
-
-      <option value="complaints">
-        📢 เรื่องร้องเรียน
-      </option>
-
-      <option value="elderly">
-        👴 ข้อมูลผู้สูงอายุ
-      </option>
-
-      <option value="vulnerable">
-        ❤️ กลุ่มเปราะบาง
-      </option>
-
-    </select>
-
-  </div>
-
+<div class="admin-container">
+  <h1>⚙️ ระบบจัดการข้อมูลหมู่บ้านร่องเข็ม</h1>
   <hr>
 
-
-  <h3 id="formTitle">
-    ➕ เพิ่มข้อมูลใหม่
-  </h3>
-
-
-  <form id="crudForm">
-
-    <input
-      type="hidden"
-      id="recordId">
-
-    <input
-      type="hidden"
-      id="currentImageUrl">
-
-
-    <div class="form-group">
-
-      <label>หัวข้อ</label>
-
-      <input
-        type="text"
-        id="titleInput"
-        required
-        placeholder="ระบุหัวข้อ">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>รายละเอียด</label>
-
-      <textarea
-        id="detailInput"
-        rows="5"
-        placeholder="รายละเอียดข้อมูล"></textarea>
-
-    </div>
-
-
-    <div
-      class="form-group"
-      id="statusGroup">
-
-      <label>สถานะ</label>
-
-      <select id="statusInput">
-
-        <option value="">
-          -- ไม่ระบุ --
-        </option>
-
-        <option value="กำลังดำเนินการ">
-          กำลังดำเนินการ
-        </option>
-
-        <option value="เสร็จสิ้น">
-          เสร็จสิ้น
-        </option>
-
-        <option value="รอดำเนินการ">
-          รอดำเนินการ
-        </option>
-
-        <option value="แจ้งเตือน">
-          แจ้งเตือน
-        </option>
-
-        <option value="ปกติ">
-          ปกติ
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <div
-      class="form-group"
-      id="dateGroup">
-
-      <label>วันที่</label>
-
-      <input
-        type="date"
-        id="dateInput">
-
-    </div>
-
-
-    <div class="form-group">
-
-      <label>รูปภาพ</label>
-
-      <input
-        type="file"
-        id="imageInput"
-        accept="image/*">
-
-      <div
-        id="imagePreviewContainer"
-        style="display:none;margin-top:10px">
-
-        <img
-          id="imagePreview"
-          class="img-preview"
-          alt="ตัวอย่างรูป">
-
+  <!-- ส่วนที่ 1: อัปเดตสถิติหมู่บ้าน -->
+  <section>
+    <h2>📊 จัดการสถิติข้อมูลหมู่บ้าน</h2>
+    <form id="stats-form">
+      <div class="grid-2">
+        <div class="form-group"><label>ประชากรรวม (คน)</label><input type="number" id="stat-population" required></div>
+        <div class="form-group"><label>ครัวเรือนทั้งหมด (ครัวเรือน)</label><input type="number" id="stat-households" required></div>
+        <div class="form-group"><label>เด็ก 0-5 ปี (คน)</label><input type="number" id="stat-children" required></div>
+        <div class="form-group"><label>ผู้สูงอายุ 60 ปีขึ้นไป (คน)</label><input type="number" id="stat-elderly" required></div>
+        <div class="form-group"><label>ผู้พิการ (คน)</label><input type="number" id="stat-disabled" required></div>
+        <div class="form-group"><label>กลุ่มเปราะบาง (ครัวเรือน)</label><input type="number" id="stat-vulnerable" required></div>
       </div>
+      <button type="submit" class="btn btn-primary">บันทึกข้อมูลสถิติ</button>
+    </form>
+  </section>
 
-    </div>
+  <br><br>
 
+  <!-- ส่วนที่ 2: เพิ่ม/แก้ไข กิจกรรมล่าสุด -->
+  <section>
+    <h2>📅 จัดการกิจกรรมล่าสุด</h2>
+    <form id="activity-form">
+      <input type="hidden" id="activity-id"> <!-- เก็บ ID กรณีแก้ไข -->
+      <div class="form-group"><label>ชื่อโครงการ / กิจกรรม</label><input type="text" id="act-title" required></div>
+      <div class="grid-2">
+        <div class="form-group"><label>วันที่จัดกิจกรรม</label><input type="date" id="act-date" required></div>
+        <div class="form-group"><label>สถานที่จัด</label><input type="text" id="act-location" required></div>
+      </div>
+      <div class="grid-2">
+        <div class="form-group"><label>จำนวนผู้เข้าร่วม (คน)</label><input type="number" id="act-participants" value="0"></div>
+        <div class="form-group"><label>รูปภาพประกอบ</label><input type="file" id="act-image" accept="image/*"></div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="btn-save-activity">บันทึกกิจกรรม</button>
+      <button type="button" class="btn btn-secondary" id="btn-cancel-edit" style="display:none;" onclick="resetActivityForm()">ยกเลิกการแก้ไข</button>
+    </form>
 
-    <div class="btn-group">
-
-      <button
-        type="submit"
-        id="saveBtn"
-        class="btn-save">
-
-        💾 บันทึกข้อมูล
-
-      </button>
-
-
-      <button
-        type="button"
-        id="resetBtn"
-        class="btn-reset">
-
-        ↩ ยกเลิก
-
-      </button>
-
-    </div>
-
-  </form>
-
-
-  <hr>
-
-
-  <h3 id="listTitle">
-    📋 รายการข้อมูล
-  </h3>
-
-
-  <div style="overflow-x:auto">
-
+    <h3 style="margin-top: 30px;">รายการกิจกรรมทั้งหมด</h3>
     <table>
-
       <thead>
-
         <tr>
-
-          <th>ID</th>
-
-          <th>รูป</th>
-
-          <th>หัวข้อ</th>
-
-          <th>รายละเอียด</th>
-
-          <th>สถานะ / วันที่</th>
-
+          <th>กิจกรรม</th>
+          <th>วันที่</th>
+          <th>สถานที่</th>
           <th>จัดการ</th>
-
         </tr>
-
       </thead>
-
-
-      <tbody id="tableBody">
-
-        <tr>
-
-          <td
-            colspan="6"
-            style="text-align:center">
-
-            กำลังโหลด...
-
-          </td>
-
-        </tr>
-
+      <tbody id="activity-table-body">
+        <!-- รายการจะถูกโหลดมาแสดงที่นี่ -->
       </tbody>
-
     </table>
-
-  </div>
-
+  </section>
 </div>
 
-
-<script
-  type="module"
-  src="manage-admin.js">
-</script>
-
+<script src="manage-admin.js"></script>
 </body>
 </html>
