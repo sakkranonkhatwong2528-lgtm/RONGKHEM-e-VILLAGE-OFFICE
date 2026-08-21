@@ -12,162 +12,148 @@
   
   <style>
     body { font-family: 'Sarabun', sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-    .admin-container { max-width: 1000px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    h2 { border-bottom: 2px solid #0056b3; padding-bottom: 8px; color: #0056b3; }
+    .admin-container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    
+    .header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+    .header-bar h1 { margin: 0; color: #0056b3; font-size: 24px; }
+    
+    /* Navigation Tabs */
+    .admin-tabs { display: flex; gap: 10px; border-bottom: 1px solid #ddd; margin-bottom: 25px; }
+    .tab-btn { padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: bold; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
+    .tab-btn.active { color: #0056b3; border-bottom-color: #0056b3; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    h2 { color: #0056b3; padding-bottom: 8px; font-size: 20px; margin-top: 0; }
     .form-group { margin-bottom: 15px; }
     label { display: block; font-weight: bold; margin-bottom: 5px; }
-    input[type="text"], input[type="number"], input[type="date"], input[type="file"] {
+    input[type="text"], input[type="number"], input[type="date"], input[type="file"], select, textarea {
       width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
     }
+    
     .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
     .btn-primary { background: #0056b3; color: white; }
     .btn-danger { background: #dc3545; color: white; }
     .btn-secondary { background: #6c757d; color: white; }
+    
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
     table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
     th { background-color: #f8f9fa; }
-    .badge { padding: 4px 8px; border-radius: 4px; font-size: 12px; }
-  </style>
-</head>
-<body>
 
-<div class="admin-container">
-  <h1>⚙️ ระบบจัดการข้อมูลหมู่บ้านร่องเข็ม</h1>
-  <hr>
-
-  <!-- ส่วนที่ 1: อัปเดตสถิติหมู่บ้าน -->
-  <section>
-    <h2>📊 จัดการสถิติข้อมูลหมู่บ้าน</h2>
-    <form id="stats-form">
-      <div class="grid-2">
-        <div class="form-group"><label>ประชากรรวม (คน)</label><input type="number" id="stat-population" required></div>
-        <div class="form-group"><label>ครัวเรือนทั้งหมด (ครัวเรือน)</label><input type="number" id="stat-households" required></div>
-        <div class="form-group"><label>เด็ก 0-5 ปี (คน)</label><input type="number" id="stat-children" required></div>
-        <div class="form-group"><label>ผู้สูงอายุ 60 ปีขึ้นไป (คน)</label><input type="number" id="stat-elderly" required></div>
-        <div class="form-group"><label>ผู้พิการ (คน)</label><input type="number" id="stat-disabled" required></div>
-        <div class="form-group"><label>กลุ่มเปราะบาง (ครัวเรือน)</label><input type="number" id="stat-vulnerable" required></div>
-      </div>
-      <button type="submit" class="btn btn-primary">บันทึกข้อมูลสถิติ</button>
-    </form>
-  </section>
-
-  <br><br>
-
-  <!-- ส่วนที่ 2: เพิ่ม/แก้ไข กิจกรรมล่าสุด -->
-  <section>
-    <h2>📅 จัดการกิจกรรมล่าสุด</h2>
-    <form id="activity-form">
-      <input type="hidden" id="activity-id"> <!-- เก็บ ID กรณีแก้ไข -->
-      <div class="form-group"><label>ชื่อโครงการ / กิจกรรม</label><input type="text" id="act-title" required></div>
-      <div class="grid-2">
-        <div class="form-group"><label>วันที่จัดกิจกรรม</label><input type="date" id="act-date" required></div>
-        <div class="form-group"><label>สถานที่จัด</label><input type="text" id="act-location" required></div>
-      </div>
-      <div class="grid-2">
-        <div class="form-group"><label>จำนวนผู้เข้าร่วม (คน)</label><input type="number" id="act-participants" value="0"></div>
-        <div class="form-group"><label>รูปภาพประกอบ</label><input type="file" id="act-image" accept="image/*"></div>
-      </div>
-      <button type="submit" class="btn btn-primary" id="btn-save-activity">บันทึกกิจกรรม</button>
-      <button type="button" class="btn btn-secondary" id="btn-cancel-edit" style="display:none;" onclick="resetActivityForm()">ยกเลิกการแก้ไข</button>
-    </form>
-
-    <h3 style="margin-top: 30px;">รายการกิจกรรมทั้งหมด</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>กิจกรรม</th>
-          <th>วันที่</th>
-          <th>สถานที่</th>
-          <th>จัดการ</th>
-        </tr>
-      </thead>
-      <tbody id="activity-table-body">
-        <!-- รายการจะถูกโหลดมาแสดงที่นี่ -->
-      </tbody>
-    </table>
-  </section>
-</div>
-
-<script src="manage-admin.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>จัดการเรื่องร้องเรียน - RONGKHEM e-VILLAGE OFFICE</title>
-  
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
-  <script src="assets/js/admin-guard.js"></script>
-
-  <style>
-    body { font-family: 'Sarabun', sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-    .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    h2 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 8px; }
-    
+    /* Component เรื่องร้องเรียน */
     .filter-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
     .filter-btn { padding: 8px 16px; border: 1px solid #ccc; background: #fff; border-radius: 20px; cursor: pointer; font-weight: bold; }
     .filter-btn.active { background: #0056b3; color: white; border-color: #0056b3; }
-
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    th, td { border: 1px solid #e0e0e0; padding: 12px; text-align: left; vertical-align: top; }
-    th { background-color: #f8f9fa; }
-
     .status-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; }
     .status-pending { background: #fff3cd; color: #856404; }
     .status-in_progress { background: #cce5ff; color: #004085; }
     .status-completed { background: #d4edda; color: #155724; }
     .status-rejected { background: #f8d7da; color: #721c24; }
 
-    /* Modal ป๊อบอัพสำหรับอัปเดตสถานะ */
+    /* Modal Pop-up */
     .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
     .modal-content { background: #fff; max-width: 550px; margin: 80px auto; padding: 25px; border-radius: 10px; position: relative; }
     .close-btn { position: absolute; right: 15px; top: 15px; font-size: 20px; cursor: pointer; }
-    
-    .form-group { margin-bottom: 15px; }
-    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
-    .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
-    .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    .btn-primary { background: #0056b3; color: white; }
-    .btn-secondary { background: #6c757d; color: white; }
-    .img-preview { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 5px; }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>📥 ระบบจัดการเรื่องร้องเรียน / แจ้งเหตุ</h2>
-
-  <!-- ตัวกรองสถานะ -->
-  <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterStatus('all', this)">ทั้งหมด</button>
-    <button class="filter-btn" onclick="filterStatus('pending', this)">⏳ รอดำเนินการ</button>
-    <button class="filter-btn" onclick="filterStatus('in_progress', this)">🔄 กำลังดำเนินการ</button>
-    <button class="filter-btn" onclick="filterStatus('completed', this)">✅ ดำเนินการเสร็จสิ้น</button>
-    <button class="filter-btn" onclick="filterStatus('rejected', this)">❌ ปฏิเสธ/ยกเลิก</button>
+<div class="admin-container">
+  <div class="header-bar">
+    <h1>⚙️ ระบบจัดการข้อมูลหมู่บ้านร่องเข็ม</h1>
+    <button class="btn btn-danger" onclick="logoutAdmin()">ออกจากระบบ</button>
   </div>
 
-  <!-- ตารางแสดงรายการ -->
-  <table>
-    <thead>
-      <tr>
-        <th>รหัส / วันที่</th>
-        <th>ผู้แจ้ง / ติดต่อ</th>
-        <th>หัวข้อ / รายละเอียด</th>
-        <th>สถานะ</th>
-        <th>จัดการ</th>
-      </tr>
-    </thead>
-    <tbody id="complaint-list">
-      <!-- โหลดข้อมูลมาวางที่นี่ -->
-    </tbody>
-  </table>
+  <!-- แท็บเมนูสลับหน้า -->
+  <div class="admin-tabs">
+    <button class="tab-btn active" onclick="switchTab('tab-stats-activities', this)">📊 สถิติ & 📅 กิจกรรม</button>
+    <button class="tab-btn" onclick="switchTab('tab-complaints', this)">📥 เรื่องร้องเรียน / แจ้งเหตุ</button>
+  </div>
+
+  <!-- TAB 1: จัดการสถิติ & กิจกรรม -->
+  <div id="tab-stats-activities" class="tab-content active">
+    <section>
+      <h2>📊 จัดการสถิติข้อมูลหมู่บ้าน</h2>
+      <form id="stats-form">
+        <div class="grid-2">
+          <div class="form-group"><label>ประชากรรวม (คน)</label><input type="number" id="stat-population" required></div>
+          <div class="form-group"><label>ครัวเรือนทั้งหมด (ครัวเรือน)</label><input type="number" id="stat-households" required></div>
+          <div class="form-group"><label>เด็ก 0-5 ปี (คน)</label><input type="number" id="stat-children" required></div>
+          <div class="form-group"><label>ผู้สูงอายุ 60 ปีขึ้นไป (คน)</label><input type="number" id="stat-elderly" required></div>
+          <div class="form-group"><label>ผู้พิการ (คน)</label><input type="number" id="stat-disabled" required></div>
+          <div class="form-group"><label>กลุ่มเปราะบาง (ครัวเรือน)</label><input type="number" id="stat-vulnerable" required></div>
+        </div>
+        <button type="submit" class="btn btn-primary">บันทึกข้อมูลสถิติ</button>
+      </form>
+    </section>
+
+    <hr style="margin: 30px 0;">
+
+    <section>
+      <h2>📅 จัดการกิจกรรมล่าสุด</h2>
+      <form id="activity-form">
+        <input type="hidden" id="activity-id">
+        <div class="form-group"><label>ชื่อโครงการ / กิจกรรม</label><input type="text" id="act-title" required></div>
+        <div class="grid-2">
+          <div class="form-group"><label>วันที่จัดกิจกรรม</label><input type="date" id="act-date" required></div>
+          <div class="form-group"><label>สถานที่จัด</label><input type="text" id="act-location" required></div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group"><label>จำนวนผู้เข้าร่วม (คน)</label><input type="number" id="act-participants" value="0"></div>
+          <div class="form-group"><label>รูปภาพประกอบ</label><input type="file" id="act-image" accept="image/*"></div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="btn-save-activity">บันทึกกิจกรรม</button>
+        <button type="button" class="btn btn-secondary" id="btn-cancel-edit" style="display:none;" onclick="resetActivityForm()">ยกเลิกการแก้ไข</button>
+      </form>
+
+      <h3 style="margin-top: 30px;">รายการกิจกรรมทั้งหมด</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>กิจกรรม</th>
+            <th>วันที่</th>
+            <th>สถานที่</th>
+            <th>จัดการ</th>
+          </tr>
+        </thead>
+        <tbody id="activity-table-body">
+          <!-- โหลดข้อมูลมาจาก manage-admin.js -->
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- TAB 2: จัดการเรื่องร้องเรียน -->
+  <div id="tab-complaints" class="tab-content">
+    <h2>📥 ระบบจัดการเรื่องร้องเรียน / แจ้งเหตุ</h2>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterStatus('all', this)">ทั้งหมด</button>
+      <button class="filter-btn" onclick="filterStatus('pending', this)">⏳ รอดำเนินการ</button>
+      <button class="filter-btn" onclick="filterStatus('in_progress', this)">🔄 กำลังดำเนินการ</button>
+      <button class="filter-btn" onclick="filterStatus('completed', this)">✅ ดำเนินการเสร็จสิ้น</button>
+      <button class="filter-btn" onclick="filterStatus('rejected', this)">❌ ปฏิเสธ/ยกเลิก</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>รหัส / วันที่</th>
+          <th>ผู้แจ้ง / ติดต่อ</th>
+          <th>หัวข้อ / รายละเอียด</th>
+          <th>สถานะ</th>
+          <th>จัดการ</th>
+        </tr>
+      </thead>
+      <tbody id="complaint-list">
+        <!-- โหลดข้อมูลมาจาก admin-complaints.js -->
+      </tbody>
+    </table>
+  </div>
 </div>
 
-<!-- Modal หน้าต่างอัปเดตสถานะ -->
+<!-- Modal อัปเดตสถานะเรื่องร้องเรียน -->
 <div id="update-modal" class="modal">
   <div class="modal-content">
     <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -209,6 +195,25 @@
   </div>
 </div>
 
+<!-- Script ควบคุม Tab และ Logout -->
+<script>
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  async function logoutAdmin() {
+    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่?')) {
+      await supabaseClient.auth.signOut();
+      window.location.href = 'admin-login.html';
+    }
+  }
+</script>
+
+<script src="manage-admin.js"></script>
 <script src="assets/js/admin-complaints.js"></script>
 </body>
 </html>
