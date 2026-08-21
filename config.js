@@ -9,8 +9,8 @@ window.RONGKHEM_CONFIG = {
        การเชื่อมต่อ Supabase Database
        ===================================================== */
     supabase: {
-        url: "วาง_PROJECT_URL_ตรงนี้",
-        anonKey: "วาง_ANON_PUBLIC_KEY_ตรงนี้"
+        url: "https://qtnjtsigdgiwdsdfocmq.supabase.co",
+        anonKey: "วาง_ANON_PUBLIC_KEY_ยาวๆ_ตรงนี้"
     },
 
     /* =====================================================
@@ -83,7 +83,7 @@ window.RONGKHEM_CONFIG = {
        ===================================================== */
     news: {
         enabled: true,
-        storage: "supabase", // เปลี่ยนมาใช้ฐานข้อมูลแทน localStorage
+        storage: "supabase",
         storageKey: "RONGKHEM_NEWS"
     },
 
