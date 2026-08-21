@@ -9,12 +9,12 @@ import { createClient } from
 const supabaseUrl =
   "https://qtnjtsigdgiwdsdfocmq.supabase.co";
 
-// Publishable / anon key
+// Publishable API Key
 const supabaseAnonKey =
   "sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN";
 
 // ========================================
-// CREATE CLIENT
+// CREATE SUPABASE CLIENT
 // ========================================
 
 const supabaseClient = createClient(
