@@ -92,3 +92,123 @@
 <script src="manage-admin.js"></script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>จัดการเรื่องร้องเรียน - RONGKHEM e-VILLAGE OFFICE</title>
+  
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="assets/js/admin-guard.js"></script>
+
+  <style>
+    body { font-family: 'Sarabun', sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
+    .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    h2 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 8px; }
+    
+    .filter-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+    .filter-btn { padding: 8px 16px; border: 1px solid #ccc; background: #fff; border-radius: 20px; cursor: pointer; font-weight: bold; }
+    .filter-btn.active { background: #0056b3; color: white; border-color: #0056b3; }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid #e0e0e0; padding: 12px; text-align: left; vertical-align: top; }
+    th { background-color: #f8f9fa; }
+
+    .status-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; }
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-in_progress { background: #cce5ff; color: #004085; }
+    .status-completed { background: #d4edda; color: #155724; }
+    .status-rejected { background: #f8d7da; color: #721c24; }
+
+    /* Modal ป๊อบอัพสำหรับอัปเดตสถานะ */
+    .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+    .modal-content { background: #fff; max-width: 550px; margin: 80px auto; padding: 25px; border-radius: 10px; position: relative; }
+    .close-btn { position: absolute; right: 15px; top: 15px; font-size: 20px; cursor: pointer; }
+    
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; }
+    .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+    .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+    .btn-primary { background: #0056b3; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    .img-preview { max-width: 100%; max-height: 200px; border-radius: 6px; margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>📥 ระบบจัดการเรื่องร้องเรียน / แจ้งเหตุ</h2>
+
+  <!-- ตัวกรองสถานะ -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterStatus('all', this)">ทั้งหมด</button>
+    <button class="filter-btn" onclick="filterStatus('pending', this)">⏳ รอดำเนินการ</button>
+    <button class="filter-btn" onclick="filterStatus('in_progress', this)">🔄 กำลังดำเนินการ</button>
+    <button class="filter-btn" onclick="filterStatus('completed', this)">✅ ดำเนินการเสร็จสิ้น</button>
+    <button class="filter-btn" onclick="filterStatus('rejected', this)">❌ ปฏิเสธ/ยกเลิก</button>
+  </div>
+
+  <!-- ตารางแสดงรายการ -->
+  <table>
+    <thead>
+      <tr>
+        <th>รหัส / วันที่</th>
+        <th>ผู้แจ้ง / ติดต่อ</th>
+        <th>หัวข้อ / รายละเอียด</th>
+        <th>สถานะ</th>
+        <th>จัดการ</th>
+      </tr>
+    </thead>
+    <tbody id="complaint-list">
+      <!-- โหลดข้อมูลมาวางที่นี่ -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal หน้าต่างอัปเดตสถานะ -->
+<div id="update-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h3>📝 อัปเดตสถานะเรื่องร้องเรียน</h3>
+    <hr>
+    <form id="update-status-form">
+      <input type="hidden" id="modal-complaint-id">
+      
+      <div class="form-group">
+        <label>รหัสการแจ้ง:</label>
+        <span id="modal-tracking-code" style="font-weight: bold; color: #0056b3;"></span>
+      </div>
+
+      <div class="form-group">
+        <label>หัวข้อเรื่อง:</label>
+        <div id="modal-title" style="color: #555;"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="modal-status">เปลี่ยนสถานะ:</label>
+        <select id="modal-status" required>
+          <option value="pending">⏳ รอดำเนินการ</option>
+          <option value="in_progress">🔄 กำลังดำเนินการ</option>
+          <option value="completed">✅ ดำเนินการเสร็จสิ้น</option>
+          <option value="rejected">❌ ปฏิเสธ/ยกเลิก</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="modal-remark">การตอบกลับ / หมายเหตุจากผู้ดูแล:</label>
+        <textarea id="modal-remark" rows="3" placeholder="ระบุรายละเอียดการแก้ไขปัญหา หรือเหตุผล..."></textarea>
+      </div>
+
+      <div style="text-align: right; gap: 10px; display: flex; justify-content: flex-end;">
+        <button type="button" class="btn btn-secondary" onclick="closeModal()">ยกเลิก</button>
+        <button type="submit" class="btn btn-primary">บันทึกการอัปเดต</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="assets/js/admin-complaints.js"></script>
+</body>
+</html>
