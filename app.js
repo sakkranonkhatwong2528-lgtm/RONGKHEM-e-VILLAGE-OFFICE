@@ -1,365 +1,144 @@
-import { supabase } from './supabase-config.js';
+/**
+ * app.js
+ * จัดการการรับเรื่องร้องเรียนและการโหลดข้อมูลสถิติ
+ */
 
-
-// =====================================
-// ป้องกัน HTML
-// =====================================
-
-function escapeHtml(value) {
-
-    return String(value || '')
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#039;');
-
-}
-
-
-// =====================================
-// ดึงข้อมูลทั่วไป
-// =====================================
-
-async function getData(tableName, limit = 100) {
-
-    const { data, error } = await supabase
-        .from(tableName)
-        .select('*')
-        .order('id', {
-            ascending: false
-        })
-        .limit(limit);
-
-    if (error) {
-
-        console.error(
-            `โหลด ${tableName} ไม่สำเร็จ:`,
-            error.message
-        );
-
-        return [];
-
+document.addEventListener('DOMContentLoaded', () => {
+    // ระบบรับเรื่องร้องเรียน (หน้า complaint.html หรือฟอร์มร้องเรียน)
+    const complaintForm = document.getElementById('complaintForm') || document.querySelector('form');
+    if (complaintForm && window.location.pathname.includes('complaint')) {
+        complaintForm.addEventListener('submit', handleComplaintSubmit);
     }
 
-    return data || [];
+    // โหลดข้อมูลเรื่องร้องเรียนเข้าหน้า Admin Dashboard
+    if (window.location.pathname.includes('admin-dashboard') || window.location.pathname.includes('admin.html')) {
+        loadAdminComplaints();
+    }
+});
 
-}
+/**
+ * ฟังก์ชันส่งเรื่องร้องเรียนสำหรับชาวบ้าน
+ */
+async function handleComplaintSubmit(event) {
+    event.preventDefault();
 
+    const titleElem = document.getElementById('complaintTitle') || document.querySelector('input[name="title"]');
+    const descElem = document.getElementById('complaintDesc') || document.querySelector('textarea');
+    const nameElem = document.getElementById('reporterName') || document.querySelector('input[name="name"]');
+    const phoneElem = document.getElementById('reporterPhone') || document.querySelector('input[name="phone"]');
+    const submitBtn = document.querySelector('button[type="submit"]');
 
-// =====================================
-// ข่าวสาร
-// =====================================
-
-async function loadNews() {
-
-    const container =
-        document.getElementById('newsContainer');
-
-    if (!container) return;
-
-    container.innerHTML = `
-        <div class="loading">
-            กำลังโหลดข่าวสาร...
-        </div>
-    `;
-
-    const data =
-        await getData('news', 6);
-
-    if (!data.length) {
-
-        container.innerHTML = `
-            <div class="empty-data">
-                ยังไม่มีข่าวสาร
-            </div>
-        `;
-
+    if (!titleElem || !titleElem.value.trim()) {
+        alert('กรุณากรอกหัวข้อเรื่องร้องเรียน');
         return;
-
     }
 
-    container.innerHTML =
-        data.map(item => `
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'กำลังส่งข้อมูล...';
+    }
 
-            <article class="news-card">
+    try {
+        if (!supabase) throw new Error('ไม่สามารถเชื่อมต่อฐานข้อมูล Supabase ได้');
 
-                ${
-                    item.image_url
-                    ? `
-                        <img
-                            src="${item.image_url}"
-                            alt="${escapeHtml(item.title)}"
-                            loading="lazy"
-                        >
-                    `
-                    : ''
+        const { data, error } = await supabase
+            .from('complaints')
+            .insert([
+                {
+                    title: titleElem.value.trim(),
+                    description: descElem ? descElem.value.trim() : '',
+                    reporter_name: nameElem ? nameElem.value.trim() : 'ไม่ระบุชื่อ',
+                    phone: phoneElem ? phoneElem.value.trim() : '',
+                    status: 'pending'
                 }
+            ]);
 
-                <div class="news-content">
+        if (error) throw error;
 
-                    <h3>
-                        ${escapeHtml(item.title)}
-                    </h3>
+        alert('ส่งเรื่องร้องเรียน/แจ้งเหตุ เรียบร้อยแล้ว!');
+        if (complaintForm) complaintForm.reset();
 
-                    <p>
-                        ${escapeHtml(item.detail)}
-                    </p>
-
-                </div>
-
-            </article>
-
-        `).join('');
-
+    } catch (err) {
+        console.error('Complaint Submit Error:', err.message);
+        alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล: ' + err.message);
+    } finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerText = 'ส่งเรื่องร้องเรียน';
+        }
+    }
 }
 
+/**
+ * ฟังก์ชันดึงรายการเรื่องร้องเรียนมาแสดงบนหน้า Admin Dashboard
+ */
+async function loadAdminComplaints() {
+    const tableBody = document.getElementById('complaintsTableBody') || document.querySelector('table tbody');
+    if (!tableBody) return;
 
-// =====================================
-// กิจกรรม
-// =====================================
+    try {
+        if (!supabase) return;
 
-async function loadActivities() {
+        const { data: complaints, error } = await supabase
+            .from('complaints')
+            .select('*')
+            .order('created_at', { ascending: false });
 
-    const container =
-        document.getElementById(
-            'activityContainer'
-        );
+        if (error) throw error;
 
-    if (!container) return;
+        if (!complaints || complaints.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="6" style="text-align:center; padding:15px;">ไม่พบรายการเรื่องร้องเรียน</td></tr>';
+            return;
+        }
 
-    const data =
-        await getData('activity', 6);
+        tableBody.innerHTML = '';
 
-    if (!data.length) {
+        complaints.forEach((item, index) => {
+            const dateStr = new Date(item.created_at).toLocaleDateString('th-TH', {
+                year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
 
-        container.innerHTML = `
-            <div class="empty-data">
-                ยังไม่มีกิจกรรม
-            </div>
-        `;
+            const statusText = item.status === 'completed' ? 'เสร็จสิ้น' : (item.status === 'in_progress' ? 'กำลังดำเนินการ' : 'รอดำเนินการ');
+            const statusColor = item.status === 'completed' ? '#28a745' : (item.status === 'in_progress' ? '#ffc107' : '#dc3545');
 
-        return;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${index + 1}</td>
+                <td><strong>${escapeHtml(item.title)}</strong><br><small style="color:#666;">${escapeHtml(item.description || '-')}</small></td>
+                <td>${escapeHtml(item.reporter_name)}<br><small>${escapeHtml(item.phone || '-')}</small></td>
+                <td>${dateStr}</td>
+                <td><span style="background:${statusColor}; color:${item.status === 'in_progress' ? '#000' : '#fff'}; padding:3px 8px; border-radius:12px; font-size:12px;">${statusText}</span></td>
+                <td>
+                    <select onchange="updateStatus(${item.id}, this.value)" style="padding:4px; border-radius:4px;">
+                        <option value="pending" ${item.status === 'pending' ? 'selected' : ''}>รอดำเนินการ</option>
+                        <option value="in_progress" ${item.status === 'in_progress' ? 'selected' : ''}>กำลังดำเนินการ</option>
+                        <option value="completed" ${item.status === 'completed' ? 'selected' : ''}>เสร็จสิ้น</option>
+                    </select>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
 
+    } catch (err) {
+        console.error('Load Complaints Error:', err.message);
     }
-
-    container.innerHTML =
-        data.map(item => `
-
-            <article class="activity-card">
-
-                ${
-                    item.image_url
-                    ? `
-                        <img
-                            src="${item.image_url}"
-                            alt="${escapeHtml(item.title)}"
-                            loading="lazy"
-                        >
-                    `
-                    : ''
-                }
-
-                <div class="activity-content">
-
-                    <h3>
-                        ${escapeHtml(item.title)}
-                    </h3>
-
-                    <p>
-                        ${escapeHtml(item.detail)}
-                    </p>
-
-                </div>
-
-            </article>
-
-        `).join('');
-
 }
 
+async function updateStatus(id, newStatus) {
+    try {
+        const { error } = await supabase
+            .from('complaints')
+            .update({ status: newStatus })
+            .eq('id', id);
 
-// =====================================
-// โครงการหมู่บ้าน
-// =====================================
-
-async function loadProjects() {
-
-    const container =
-        document.getElementById(
-            'projectContainer'
-        );
-
-    if (!container) return;
-
-    const data =
-        await getData('project', 6);
-
-    if (!data.length) {
-
-        container.innerHTML = `
-            <div class="empty-data">
-                ยังไม่มีโครงการ
-            </div>
-        `;
-
-        return;
-
+        if (error) throw error;
+        alert('อัปเดตสถานะเรียบร้อยแล้ว');
+        loadAdminComplaints();
+    } catch (err) {
+        alert('อัปเดตสถานะไม่สำเร็จ: ' + err.message);
     }
-
-    container.innerHTML =
-        data.map(item => `
-
-            <article class="project-card">
-
-                ${
-                    item.image_url
-                    ? `
-                        <img
-                            src="${item.image_url}"
-                            alt="${escapeHtml(item.title)}"
-                            loading="lazy"
-                        >
-                    `
-                    : ''
-                }
-
-                <div class="project-content">
-
-                    <h3>
-                        ${escapeHtml(item.title)}
-                    </h3>
-
-                    <p>
-                        ${escapeHtml(item.detail)}
-                    </p>
-
-                </div>
-
-            </article>
-
-        `).join('');
-
 }
 
-
-// =====================================
-// เหตุการณ์ / แจ้งเตือน
-// =====================================
-
-async function loadIncidents() {
-
-    const container =
-        document.getElementById(
-            'incidentContainer'
-        );
-
-    if (!container) return;
-
-    const data =
-        await getData('incident', 5);
-
-    if (!data.length) {
-
-        container.innerHTML = `
-            <div class="empty-data">
-                ไม่มีการแจ้งเตือน
-            </div>
-        `;
-
-        return;
-
-    }
-
-    container.innerHTML =
-        data.map(item => `
-
-            <div class="incident-card">
-
-                <h4>
-                    ⚠️ ${escapeHtml(item.title)}
-                </h4>
-
-                <p>
-                    ${escapeHtml(item.detail)}
-                </p>
-
-            </div>
-
-        `).join('');
-
+function escapeHtml(str) {
+    return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 }
-
-
-// =====================================
-// เรื่องร้องเรียน
-// =====================================
-
-async function loadComplaints() {
-
-    const container =
-        document.getElementById(
-            'complaintContainer'
-        );
-
-    if (!container) return;
-
-    const data =
-        await getData('complaint', 10);
-
-    if (!data.length) {
-
-        container.innerHTML = `
-            <div class="empty-data">
-                ยังไม่มีข้อมูล
-            </div>
-        `;
-
-        return;
-
-    }
-
-    container.innerHTML =
-        data.map(item => `
-
-            <div class="complaint-card">
-
-                <h3>
-                    ${escapeHtml(item.title)}
-                </h3>
-
-                <p>
-                    ${escapeHtml(item.detail)}
-                </p>
-
-            </div>
-
-        `).join('');
-
-}
-
-
-// =====================================
-// เริ่มโหลดระบบ
-// =====================================
-
-document.addEventListener(
-    'DOMContentLoaded',
-    async () => {
-
-        await Promise.all([
-
-            loadNews(),
-
-            loadActivities(),
-
-            loadProjects(),
-
-            loadIncidents(),
-
-            loadComplaints()
-
-        ]);
-
-    }
-);
