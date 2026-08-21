@@ -10,7 +10,7 @@ window.RONGKHEM_CONFIG = {
        ===================================================== */
     supabase: {
         url: "https://qtnjtsigdgiwdsdfocmq.supabase.co",
-        anonKey: "ใส่_ANON_KEY_ยาวๆ_ที่ขึ้นต้นด้วย_eyJ_ตรงนี้"
+        anonKey: "sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN"
     },
 
     /* =====================================================
