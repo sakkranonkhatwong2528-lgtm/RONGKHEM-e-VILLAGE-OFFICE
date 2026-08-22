@@ -4,11 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONGKHEM e-VILLAGE ADMIN</title>
+<title>ระบบหลังบ้าน | RONGKHEM e-VILLAGE</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -20,119 +19,197 @@
 body{
     margin:0;
     font-family:"Noto Sans Thai",sans-serif;
-    background:#f1f5f9;
-    color:#1e293b;
+    background:#f4f7fb;
+    color:#1d2b38;
 }
 
-.topbar{
-    background:linear-gradient(135deg,#063970,#0a5aa5);
-    color:#fff;
+/* =====================
+   HEADER
+===================== */
+
+header{
+    background:linear-gradient(135deg,#021526,#063970,#0a5aa5);
+    color:white;
     padding:18px 30px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    position:sticky;
-    top:0;
-    z-index:100;
-    box-shadow:0 4px 15px rgba(0,0,0,.15);
+    box-shadow:0 3px 12px rgba(0,0,0,.15);
 }
 
-.topbar h1{
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-icon{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:white;
+    color:#075ca8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+}
+
+.brand h1{
     margin:0;
-    font-size:22px;
+    font-size:20px;
 }
 
-.topbar p{
-    margin:3px 0 0;
-    font-size:13px;
+.brand p{
+    margin:2px 0 0;
+    font-size:12px;
     opacity:.8;
 }
 
-.top-actions{
+.header-right{
     display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+    align-items:center;
+    gap:15px;
 }
 
-.btn{
-    border:0;
-    border-radius:9px;
-    padding:10px 15px;
+.admin-name{
+    font-size:14px;
+}
+
+.logout-btn{
+    border:1px solid rgba(255,255,255,.5);
+    background:transparent;
+    color:white;
+    padding:9px 16px;
+    border-radius:8px;
     cursor:pointer;
     font-family:inherit;
-    font-size:14px;
-    transition:.2s;
 }
 
-.btn:hover{
-    transform:translateY(-1px);
-}
-
-.btn-home{
-    background:#fff;
+.logout-btn:hover{
+    background:white;
     color:#075ca8;
 }
 
-.btn-save{
-    background:#16a34a;
-    color:#fff;
+/* =====================
+   LAYOUT
+===================== */
+
+.dashboard{
+    display:flex;
+    min-height:calc(100vh - 84px);
 }
 
-.btn-reset{
-    background:#dc2626;
-    color:#fff;
+/* SIDEBAR */
+
+.sidebar{
+    width:250px;
+    background:#ffffff;
+    border-right:1px solid #e2e8f0;
+    padding:20px 12px;
 }
 
-.btn-logout{
-    background:#334155;
-    color:#fff;
+.menu-title{
+    font-size:11px;
+    color:#94a3b8;
+    font-weight:700;
+    padding:8px 12px;
 }
 
-.admin-container{
-    max-width:1250px;
-    margin:auto;
-    padding:30px 20px 60px;
+.menu a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px;
+    text-decoration:none;
+    color:#405466;
+    border-radius:9px;
+    margin-bottom:5px;
+    font-size:14px;
 }
 
-.notice{
-    background:#e0f2fe;
-    border-left:5px solid #0284c7;
-    padding:16px 20px;
-    border-radius:10px;
-    margin-bottom:25px;
-    color:#075985;
+.menu a:hover,
+.menu a.active{
+    background:#eaf4ff;
+    color:#075ca8;
+    font-weight:600;
 }
+
+/* CONTENT */
+
+.main{
+    flex:1;
+    padding:30px;
+}
+
+.page-title h2{
+    margin:0;
+    color:#082b4d;
+}
+
+.page-title p{
+    margin-top:5px;
+    color:#718096;
+    font-size:14px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+    margin-top:25px;
+}
+
+.stat-card{
+    background:white;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 4px 18px rgba(0,0,0,.05);
+}
+
+.stat-icon{
+    font-size:28px;
+}
+
+.stat-card h3{
+    margin:10px 0 3px;
+    font-size:25px;
+    color:#075ca8;
+}
+
+.stat-card p{
+    margin:0;
+    font-size:13px;
+    color:#718096;
+}
+
+/* CARD */
 
 .card{
-    background:#fff;
-    border-radius:16px;
-    padding:25px;
-    margin-bottom:25px;
-    box-shadow:0 5px 20px rgba(15,23,42,.06);
+    background:white;
+    border-radius:14px;
+    padding:24px;
+    margin-top:25px;
+    box-shadow:0 4px 18px rgba(0,0,0,.05);
 }
 
-.card h2{
+.card h3{
     margin-top:0;
-    color:#075ca8;
-    font-size:21px;
-    border-bottom:1px solid #e2e8f0;
-    padding-bottom:12px;
+    color:#082b4d;
 }
 
-.grid{
+/* FORM */
+
+.form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
     gap:18px;
 }
 
-.grid-3{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
 .form-group{
-    margin-bottom:16px;
+    margin-bottom:15px;
 }
 
 .form-group.full{
@@ -141,21 +218,20 @@ body{
 
 label{
     display:block;
+    margin-bottom:7px;
     font-size:14px;
     font-weight:600;
-    margin-bottom:7px;
-    color:#334155;
 }
 
 input,
-textarea{
+textarea,
+select{
     width:100%;
-    border:1px solid #cbd5e1;
+    padding:12px;
+    border:1px solid #d7dee7;
     border-radius:9px;
-    padding:11px 13px;
     font-family:inherit;
     font-size:14px;
-    outline:none;
 }
 
 textarea{
@@ -163,135 +239,90 @@ textarea{
     resize:vertical;
 }
 
-input:focus,
-textarea:focus{
-    border-color:#0a5aa5;
-    box-shadow:0 0 0 3px rgba(10,90,165,.1);
-}
-
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:18px;
-}
-
-.section-header h2{
+.save-btn{
     border:0;
-    padding:0;
-    margin:0;
-}
-
-.add-btn{
     background:#075ca8;
-    color:#fff;
-}
-
-.item-box{
-    border:1px solid #dbe3ec;
-    border-radius:13px;
-    padding:18px;
-    margin-bottom:15px;
-    background:#f8fafc;
-}
-
-.item-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
-}
-
-.item-title strong{
-    color:#075ca8;
-}
-
-.delete-btn{
-    background:#fee2e2;
-    color:#dc2626;
-    border:0;
-    border-radius:8px;
-    padding:7px 11px;
+    color:white;
+    padding:12px 22px;
+    border-radius:9px;
     cursor:pointer;
     font-family:inherit;
+    font-size:15px;
+    font-weight:600;
 }
 
-.image-preview{
-    width:150px;
-    height:150px;
-    border-radius:14px;
-    border:2px dashed #94a3b8;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#f8fafc;
-    margin-top:10px;
+.save-btn:hover{
+    background:#03477f;
 }
 
-.image-preview img{
-    width:100%;
-    height:100%;
+.preview{
+    margin-top:15px;
+    width:180px;
+    height:180px;
+    border-radius:16px;
     object-fit:cover;
-}
-
-.image-preview span{
-    color:#64748b;
-    text-align:center;
-    font-size:13px;
-    padding:10px;
-}
-
-.image-row{
-    display:flex;
-    gap:25px;
-    align-items:flex-start;
-}
-
-.small-note{
-    color:#64748b;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.status{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    background:#16a34a;
-    color:#fff;
-    padding:14px 20px;
-    border-radius:10px;
-    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    border:3px solid #e2e8f0;
     display:none;
-    z-index:999;
 }
 
-@media(max-width:800px){
+.message{
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    background:#effaf2;
+    color:#198754;
+    border:1px solid #ccebd6;
+    border-radius:9px;
+}
 
-    .topbar{
-        padding:15px;
-        flex-direction:column;
-        align-items:flex-start;
-        gap:15px;
+/* =====================
+   RESPONSIVE
+===================== */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:70px;
     }
 
-    .grid,
-    .grid-3{
-        grid-template-columns:1fr;
+    .menu a span{
+        display:none;
     }
 
-    .admin-container{
-        padding:20px 12px 50px;
+    .menu-title{
+        display:none;
     }
 
-    .card{
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:600px){
+
+    header{
+        padding:14px;
+    }
+
+    .admin-name{
+        display:none;
+    }
+
+    .main{
         padding:18px;
     }
 
-    .image-row{
-        flex-direction:column;
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
     }
 
 }
@@ -301,34 +332,39 @@ textarea:focus{
 
 <body>
 
+<header>
 
-<header class="topbar">
+    <div class="brand">
 
-    <div>
-        <h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1>
-        <p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม</p>
+        <div class="brand-icon">
+            🏛️
+        </div>
+
+        <div>
+
+            <h1>
+                RONGKHEM e-VILLAGE ADMIN
+            </h1>
+
+            <p>
+                ระบบจัดการเว็บไซต์บ้านร่องเข็ม
+            </p>
+
+        </div>
+
     </div>
 
-    <div class="top-actions">
+    <div class="header-right">
 
-        <button class="btn btn-home"
-        onclick="window.open('index.html','_blank')">
-            🌐 ดูหน้าเว็บไซต์
-        </button>
+        <div class="admin-name">
+            👤 <span id="adminUsername"></span>
+        </div>
 
-        <button class="btn btn-save"
-        onclick="saveAllData()">
-            💾 บันทึกทั้งหมด
-        </button>
-
-        <button class="btn btn-reset"
-        onclick="resetSiteData()">
-            ♻ รีเซ็ตข้อมูล
-        </button>
-
-        <button class="btn btn-logout"
-        onclick="logout()">
-            🚪 ออกจากระบบ
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            ออกจากระบบ
         </button>
 
     </div>
@@ -336,418 +372,398 @@ textarea:focus{
 </header>
 
 
-<div class="admin-container">
+<div class="dashboard">
 
-<div class="notice">
-    <strong>ระบบจัดการเว็บไซต์</strong><br>
-    ข้อมูลที่บันทึกในหน้านี้จะเก็บไว้ใน
-    <strong>rongkhemSiteData</strong>
-    และหน้า index.html สามารถนำข้อมูลไปแสดงได้
-</div>
+    <aside class="sidebar">
 
-
-<!-- ================= HERO ================= -->
-
-<div class="card">
-
-    <h2>🖼️ หน้าปกเว็บไซต์</h2>
-
-    <div class="grid">
-
-        <div class="form-group">
-            <label>ข้อความต้อนรับ</label>
-            <input id="heroWelcome">
+        <div class="menu-title">
+            เมนูจัดการ
         </div>
 
-        <div class="form-group">
-            <label>ชื่อเว็บไซต์</label>
-            <input id="heroTitle">
+        <nav class="menu">
+
+            <a
+                href="#"
+                class="active"
+            >
+                📊
+                <span>แดชบอร์ด</span>
+            </a>
+
+            <a href="#village">
+                🏘️
+                <span>ข้อมูลหมู่บ้าน</span>
+            </a>
+
+            <a href="#leader">
+                👨‍💼
+                <span>ข้อมูลผู้ใหญ่บ้าน</span>
+            </a>
+
+            <a href="#news">
+                📢
+                <span>ข่าวประชาสัมพันธ์</span>
+            </a>
+
+            <a href="index.html">
+                🌐
+                <span>ดูหน้าเว็บไซต์</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div class="page-title">
+
+            <h2>
+                แดชบอร์ด
+            </h2>
+
+            <p>
+                จัดการข้อมูลเว็บไซต์ RONGKHEM e-VILLAGE
+            </p>
+
         </div>
 
-        <div class="form-group">
-            <label>คำอธิบาย</label>
-            <input id="heroSubtitle">
-        </div>
 
-        <div class="form-group">
-            <label>ข้อความเพิ่มเติม</label>
-            <input id="heroDescription">
-        </div>
+        <section class="stats">
 
-        <div class="form-group full">
+            <div class="stat-card">
 
-            <label>เปลี่ยนรูปหน้าปกเว็บไซต์</label>
+                <div class="stat-icon">
+                    🏠
+                </div>
 
-            <input
-            type="file"
-            accept="image/*"
-            onchange="uploadHeroImage(this)">
+                <h3 id="householdCount">
+                    350
+                </h3>
 
-            <div class="image-preview">
-                <img id="heroPreview">
+                <p>
+                    ครัวเรือน
+                </p>
+
             </div>
 
-        </div>
 
-    </div>
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <h3 id="populationCount">
+                    1,247
+                </h3>
+
+                <p>
+                    ประชากร
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📢
+                </div>
+
+                <h3>
+                    3
+                </h3>
+
+                <p>
+                    ข่าวประกาศ
+                </p>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    พร้อม
+                </h3>
+
+                <p>
+                    สถานะระบบ
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================
+             ข้อมูลผู้ใหญ่บ้าน
+        ====================== -->
+
+        <section
+            class="card"
+            id="leader"
+        >
+
+            <h3>
+                👨‍💼 แก้ไขข้อมูลผู้ใหญ่บ้านหน้าเว็บไซต์
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        ชื่อ - นามสกุล
+                    </label>
+
+                    <input
+                        type="text"
+                        id="leaderName"
+                        value="นายศักรนนท์ ขัติย์วงศ์"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        ตำแหน่ง
+                    </label>
+
+                    <input
+                        type="text"
+                        id="leaderPosition"
+                        value="ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6"
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        ที่อยู่
+                    </label>
+
+                    <input
+                        type="text"
+                        id="leaderAddress"
+                        value="ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา"
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        คำขวัญ
+                    </label>
+
+                    <textarea
+                        id="leaderQuote"
+                    >พร้อมดูแลชุมชน ด้วยระบบดิจิทัล</textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        เบอร์โทรศัพท์
+                    </label>
+
+                    <input
+                        type="text"
+                        id="leaderPhone"
+                        value="0801202529"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        รูปผู้ใหญ่บ้าน
+                    </label>
+
+                    <input
+                        type="file"
+                        id="leaderImage"
+                        accept="image/*"
+                    >
+
+                    <img
+                        id="imagePreview"
+                        class="preview"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="save-btn"
+                onclick="saveLeader()"
+            >
+                💾 บันทึกข้อมูล
+            </button>
+
+
+            <div
+                class="message"
+                id="saveMessage"
+            >
+                บันทึกข้อมูลเรียบร้อยแล้ว
+            </div>
+
+        </section>
+
+
+        <!-- =====================
+             ข้อมูลหมู่บ้าน
+        ====================== -->
+
+        <section
+            class="card"
+            id="village"
+        >
+
+            <h3>
+                🏘️ ข้อมูลหมู่บ้าน
+            </h3>
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>
+                        จำนวนครัวเรือน
+                    </label>
+
+                    <input
+                        type="number"
+                        id="householdInput"
+                        value="350"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        จำนวนประชากร
+                    </label>
+
+                    <input
+                        type="number"
+                        id="populationInput"
+                        value="1247"
+                    >
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        ชื่อหมู่บ้าน
+                    </label>
+
+                    <input
+                        type="text"
+                        id="villageName"
+                        value="บ้านร่องเข็ม หมู่ที่ 6"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="save-btn"
+                onclick="saveVillage()"
+            >
+                💾 บันทึกข้อมูลหมู่บ้าน
+            </button>
+
+        </section>
+
+
+        <!-- =====================
+             ข่าว
+        ====================== -->
+
+        <section
+            class="card"
+            id="news"
+        >
+
+            <h3>
+                📢 เพิ่มข่าวประชาสัมพันธ์
+            </h3>
+
+            <div class="form-group">
+
+                <label>
+                    หัวข้อข่าว
+                </label>
+
+                <input
+                    type="text"
+                    id="newsTitle"
+                    placeholder="เช่น ประชุมประจำเดือนหมู่บ้าน"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    รายละเอียด
+                </label>
+
+                <textarea
+                    id="newsDetail"
+                    placeholder="รายละเอียดข่าว"
+                ></textarea>
+
+            </div>
+
+
+            <button
+                class="save-btn"
+                onclick="addNews()"
+            >
+                ➕ เพิ่มข่าว
+            </button>
+
+        </section>
+
+
+    </main>
 
 </div>
-
-
-<!-- ================= VILLAGE CHIEF ================= -->
-
-<div class="card">
-
-<h2>👨‍💼 ข้อมูลผู้ใหญ่บ้าน</h2>
-
-<div class="image-row">
-
-<div>
-
-<label>รูปผู้ใหญ่บ้าน</label>
-
-<input
-type="file"
-accept="image/*"
-onchange="uploadChiefImage(this)">
-
-<div class="image-preview">
-<img id="chiefPreview">
-</div>
-
-<p class="small-note">
-สามารถอัปโหลด เปลี่ยน หรือลบรูปได้
-</p>
-
-<button class="delete-btn"
-onclick="deleteChiefImage()">
-🗑️ ลบรูป
-</button>
-
-</div>
-
-
-<div style="flex:1">
-
-<div class="grid">
-
-<div class="form-group">
-<label>ชื่อ</label>
-<input id="chiefName">
-</div>
-
-<div class="form-group">
-<label>ตำแหน่ง</label>
-<input id="chiefPosition">
-</div>
-
-<div class="form-group">
-<label>ที่อยู่</label>
-<input id="chiefAddress">
-</div>
-
-<div class="form-group">
-<label>โทรศัพท์</label>
-<input id="chiefPhone">
-</div>
-
-<div class="form-group full">
-<label>คำกล่าว</label>
-<textarea id="chiefQuote"></textarea>
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= ASSISTANTS ================= -->
-
-<div class="card">
-
-<div class="section-header">
-
-<h2>👥 ทีมผู้ช่วยผู้ใหญ่บ้าน</h2>
-
-<button
-class="btn add-btn"
-onclick="addAssistant()">
-+ เพิ่มผู้ช่วย
-</button>
-
-</div>
-
-<div id="assistantsContainer"></div>
-
-</div>
-
-
-<!-- ================= NEWS ================= -->
-
-<div class="card">
-
-<div class="section-header">
-
-<h2>📢 ข่าวประชาสัมพันธ์</h2>
-
-<button
-class="btn add-btn"
-onclick="addNews()">
-+ เพิ่มข่าว
-</button>
-
-</div>
-
-<div id="newsContainer"></div>
-
-</div>
-
-
-<!-- ================= ACTIVITIES ================= -->
-
-<div class="card">
-
-<div class="section-header">
-
-<h2>📅 กิจกรรมเด่น</h2>
-
-<button
-class="btn add-btn"
-onclick="addActivity()">
-+ เพิ่มกิจกรรม
-</button>
-
-</div>
-
-<div id="activitiesContainer"></div>
-
-</div>
-
-
-<!-- ================= ANNOUNCEMENTS ================= -->
-
-<div class="card">
-
-<div class="section-header">
-
-<h2>📣 ประกาศสำคัญ</h2>
-
-<button
-class="btn add-btn"
-onclick="addAnnouncement()">
-+ เพิ่มประกาศ
-</button>
-
-</div>
-
-<div id="announcementsContainer"></div>
-
-</div>
-
-
-<!-- ================= SUBNAMJAM ================= -->
-
-<div class="card">
-
-<h2>💧 แหล่งซับน้ำจำ</h2>
-
-<div class="grid">
-
-<div class="form-group">
-<label>ชื่อหัวข้อ</label>
-<input id="subnamjamTitle">
-</div>
-
-<div class="form-group full">
-<label>รายละเอียด</label>
-<textarea id="subnamjamDescription"></textarea>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= TEMPLE ================= -->
-
-<div class="card">
-
-<h2>🛕 วัดร่องเข็ม</h2>
-
-<div class="grid">
-
-<div class="form-group">
-<label>ชื่อวัด</label>
-<input id="templeTitle">
-</div>
-
-<div class="form-group full">
-<label>รายละเอียด</label>
-<textarea id="templeDescription"></textarea>
-</div>
-
-<div class="form-group">
-
-<label>รูปภาพวัด</label>
-
-<input
-type="file"
-accept="image/*"
-onchange="uploadTempleImage(this)">
-
-<div class="image-preview">
-<img id="templePreview">
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= SOROBOR ================= -->
-
-<div class="card">
-
-<h2>🏛️ สมาชิกสภาองค์การบริหารส่วนตำบล</h2>
-
-<div class="grid">
-
-<div class="form-group">
-<label>หัวข้อ</label>
-<input id="soroborTitle">
-</div>
-
-<div class="form-group full">
-<label>รายละเอียด</label>
-<textarea id="soroborDescription"></textarea>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= MAP ================= -->
-
-<div class="card">
-
-<h2>📍 แผนที่หมู่บ้าน</h2>
-
-<div class="form-group">
-
-<label>ลิงก์ Google Maps Embed</label>
-
-<input id="mapUrl">
-
-<p class="small-note">
-สามารถเปลี่ยนลิงก์แผนที่ได้จากหลังบ้าน
-</p>
-
-</div>
-
-</div>
-
-
-<!-- ================= STATISTICS ================= -->
-
-<div class="card">
-
-<h2>📊 สถิติหมู่บ้าน</h2>
-
-<div class="grid-3">
-
-<div class="form-group">
-
-<label>จำนวนครัวเรือน</label>
-
-<input id="statHouseholds">
-
-</div>
-
-<div class="form-group">
-
-<label>จำนวนประชากร</label>
-
-<input id="statPopulation">
-
-</div>
-
-<div class="form-group">
-
-<label>พื้นที่ ตร.กม.</label>
-
-<input id="statArea">
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= CONTACT ================= -->
-
-<div class="card">
-
-<h2>📞 ข้อมูลติดต่อ</h2>
-
-<div class="grid">
-
-<div class="form-group">
-
-<label>โทรศัพท์</label>
-
-<input id="contactPhone">
-
-</div>
-
-<div class="form-group">
-
-<label>ที่อยู่</label>
-
-<input id="contactAddress">
-
-</div>
-
-</div>
-
-</div>
-
-
-<div style="text-align:center;margin-top:30px">
-
-<button
-class="btn btn-save"
-style="font-size:18px;padding:15px 35px"
-onclick="saveAllData()">
-
-💾 บันทึกข้อมูลทั้งหมด
-
-</button>
-
-</div>
-
-
-</div>
-
-
-<div id="statusMessage" class="status">
-บันทึกข้อมูลเรียบร้อยแล้ว
-</div>
-
 
 
 <script>
 
-/* =========================================
-   ตรวจสอบ Login
-========================================= */
+/* ==========================================
+   ตรวจสอบการเข้าสู่ระบบ
+========================================== */
 
 if(
     localStorage.getItem(
@@ -761,1403 +777,397 @@ if(
 }
 
 
-
-/* =========================================
-   STORAGE KEY
-========================================= */
-
-const STORAGE_KEY =
-    "rongkhemSiteData";
-
-
-/* =========================================
-   DEFAULT DATA
-========================================= */
-
-const defaultSiteData = {
-
-hero:{
-
-welcome:"ยินดีต้อนรับสู่",
-
-title:"RONGKHEM e-VILLAGE",
-
-subtitle:"การเข้าถึงชุมชนรูปแบบใหม่ อัปเดตทันที!",
-
-description:"บริการครบ จบในที่เดียว",
-
-image:""
-
-},
-
-villageChief:{
-
-name:"นายศักรนนท์ ขัติย์วงศ์",
-
-position:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",
-
-address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",
-
-quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",
-
-phone:"0801202529",
-
-image:""
-
-},
-
-assistants:[
-
-{
-
-name:"น.ส.สุภาพร วังมูล",
-
-position:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง",
-
-description:"รับผิดชอบงานด้านทะเบียนและปกครองส่วนท้องถิ่น",
-
-phone:"0989800089",
-
-image:""
-
-},
-
-{
-
-name:"นายจักร์กวัส ประพลรัตนัง",
-
-position:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ",
-
-description:"ดูแลความเรียบร้อยและความปลอดภัยภายในหมู่บ้าน",
-
-phone:"0851399849",
-
-image:""
-
-}
-
-],
-
-news:[
-
-{
-
-title:"ประชุมประจำเดือนหมู่บ้าน",
-
-description:"วันอาทิตย์ เวลา 07.00 น.",
-
-image:""
-
-},
-
-{
-
-title:"โครงการรณรงค์งดการเผา",
-
-description:"งดเผาทุกชนิด",
-
-image:""
-
-}
-
-],
-
-activities:[
-
-{
-
-title:"จิตอาสาพัฒนาหมู่บ้าน",
-
-description:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",
-
-image:""
-
-}
-
-],
-
-announcements:[
-
-{
-
-title:"ประกาศห้ามเผาในที่โล่งทุกชนิด",
-
-description:"1 ก.พ. - 31 มี.ค."
-
-},
-
-{
-
-title:"ประชาสัมพันธ์การฉีดวัคซีน",
-
-description:"ป้องกันโรคพิษสุนัขบ้า"
-
-},
-
-{
-
-title:"การชำระภาษีที่ดิน",
-
-description:"กรุณาดำเนินการภายในกำหนด"
-
-}
-
-],
-
-subnamjam:{
-
-title:"แหล่งซับน้ำจำ",
-
-description:"แหล่งทรัพยากรธรรมชาติสำคัญของชุมชน ร่วมกันอนุรักษ์ ฟื้นฟู และพัฒนาให้เป็นแหล่งเรียนรู้ และแหล่งท่องเที่ยวของหมู่บ้าน"
-
-},
-
-temple:{
-
-title:"วัดร่องเข็ม",
-
-description:"วัดร่องเข็ม หรือวัดเวฬุวัน เป็นศาสนสถานสำคัญของชุมชนบ้านร่องเข็ม ใช้ประกอบกิจกรรมทางศาสนา ประเพณี และกิจกรรมของประชาชนในหมู่บ้าน",
-
-image:""
-
-},
-
-sorobor:{
-
-title:"สมาชิกสภาองค์การบริหารส่วนตำบล",
-
-description:"ข้อมูลสมาชิกสภาองค์การบริหารส่วนตำบลจำป่าหวาย"
-
-},
-
-map:{
-
-url:"https://www.google.com/maps?q=บ้านร่องเข็ม ตำบลจำป่าหวาย อำเภอเมืองพะเยา&output=embed"
-
-},
-
-statistics:{
-
-households:"350",
-
-population:"1,247",
-
-area:"2.15"
-
-},
-
-contact:{
-
-phone:"0801202529",
-
-address:"บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา"
-
-}
-
-};
-
-
-/* =========================================
-   LOAD DATA
-========================================= */
-
-function loadSiteData(){
-
-    const saved =
-        localStorage.getItem(
-            STORAGE_KEY
-        );
-
-
-    if(saved){
-
-        try{
-
-            const parsed =
-                JSON.parse(saved);
-
-
-            return {
-
-                ...structuredClone(
-                    defaultSiteData
-                ),
-
-                ...parsed
-
-            };
-
-
-        }catch(error){
-
-            console.error(error);
-
-        }
-
-    }
-
-
-    return structuredClone(
-        defaultSiteData
-    );
-
-}
-
+/* ==========================================
+   แสดงชื่อผู้ใช้
+========================================== */
+
+document.getElementById(
+    "adminUsername"
+).textContent =
+    localStorage.getItem(
+        "rongkhemAdminUsername"
+    ) || "Admin";
+
+
+/* ==========================================
+   โหลดข้อมูลเว็บไซต์
+========================================== */
 
 let siteData =
-    loadSiteData();
+    JSON.parse(
+        localStorage.getItem(
+            "rongkhemSiteData"
+        )
+    ) || {};
 
 
+/* ==========================================
+   โหลดข้อมูลผู้ใหญ่บ้าน
+========================================== */
 
-/* =========================================
-   SAFE VALUE
-========================================= */
+if(siteData.leader){
 
-function safeValue(value){
-
-    return value || "";
-
-}
-
-
-
-/* =========================================
-   IMAGE PREVIEW
-========================================= */
-
-function showPreview(
-    id,
-    image
-){
-
-    const preview =
-        document.getElementById(id);
+    document.getElementById(
+        "leaderName"
+    ).value =
+        siteData.leader.name || "";
 
 
-    if(!preview) return;
+    document.getElementById(
+        "leaderPosition"
+    ).value =
+        siteData.leader.position || "";
 
 
-    if(image){
+    document.getElementById(
+        "leaderAddress"
+    ).value =
+        siteData.leader.address || "";
+
+
+    document.getElementById(
+        "leaderQuote"
+    ).value =
+        siteData.leader.quote || "";
+
+
+    document.getElementById(
+        "leaderPhone"
+    ).value =
+        siteData.leader.phone || "";
+
+
+    if(siteData.leader.image){
+
+        const preview =
+            document.getElementById(
+                "imagePreview"
+            );
 
         preview.src =
-            image;
+            siteData.leader.image;
 
         preview.style.display =
             "block";
 
-    }else{
-
-        preview.removeAttribute(
-            "src"
-        );
-
     }
 
 }
 
 
+/* ==========================================
+   โหลดข้อมูลหมู่บ้าน
+========================================== */
 
-/* =========================================
-   IMAGE TO BASE64
-========================================= */
+if(siteData.village){
 
-function imageToBase64(file){
-
-    return new Promise(
-        function(resolve,reject){
-
-            const reader =
-                new FileReader();
+    document.getElementById(
+        "villageName"
+    ).value =
+        siteData.village.name || "";
 
 
-            reader.onload =
-                function(event){
-
-                    resolve(
-                        event.target.result
-                    );
-
-                };
+    document.getElementById(
+        "householdInput"
+    ).value =
+        siteData.village.households || 0;
 
 
-            reader.onerror =
-                reject;
+    document.getElementById(
+        "populationInput"
+    ).value =
+        siteData.village.population || 0;
 
 
-            reader.readAsDataURL(
-                file
-            );
+    document.getElementById(
+        "householdCount"
+    ).textContent =
+        siteData.village.households || 0;
 
+
+    document.getElementById(
+        "populationCount"
+    ).textContent =
+        Number(
+            siteData.village.population || 0
+        ).toLocaleString();
+
+}
+
+
+/* ==========================================
+   อัปโหลดรูปผู้ใหญ่บ้าน
+========================================== */
+
+document.getElementById(
+    "leaderImage"
+).addEventListener(
+    "change",
+    function(event){
+
+        const file =
+            event.target.files[0];
+
+        if(!file){
+            return;
         }
 
-    );
 
-}
-
-
-
-/* =========================================
-   HERO IMAGE
-========================================= */
-
-async function uploadHeroImage(input){
-
-    const file =
-        input.files[0];
+        const reader =
+            new FileReader();
 
 
-    if(!file) return;
+        reader.onload =
+            function(e){
+
+                const preview =
+                    document.getElementById(
+                        "imagePreview"
+                    );
+
+                preview.src =
+                    e.target.result;
+
+                preview.style.display =
+                    "block";
+
+            };
 
 
-    siteData.hero.image =
-        await imageToBase64(file);
-
-
-    showPreview(
-        "heroPreview",
-        siteData.hero.image
-    );
-
-}
-
-
-
-/* =========================================
-   CHIEF IMAGE
-========================================= */
-
-async function uploadChiefImage(input){
-
-    const file =
-        input.files[0];
-
-
-    if(!file) return;
-
-
-    siteData.villageChief.image =
-        await imageToBase64(file);
-
-
-    showPreview(
-        "chiefPreview",
-        siteData.villageChief.image
-    );
-
-}
-
-
-function deleteChiefImage(){
-
-    siteData.villageChief.image =
-        "";
-
-
-    showPreview(
-        "chiefPreview",
-        ""
-    );
-
-}
-
-
-
-/* =========================================
-   TEMPLE IMAGE
-========================================= */
-
-async function uploadTempleImage(input){
-
-    const file =
-        input.files[0];
-
-
-    if(!file) return;
-
-
-    siteData.temple.image =
-        await imageToBase64(file);
-
-
-    showPreview(
-        "templePreview",
-        siteData.temple.image
-    );
-
-}
-
-
-
-/* =========================================
-   LOAD FORM
-========================================= */
-
-function loadFormData(){
-
-    document.getElementById(
-        "heroWelcome"
-    ).value =
-        safeValue(
-            siteData.hero.welcome
+        reader.readAsDataURL(
+            file
         );
 
-
-    document.getElementById(
-        "heroTitle"
-    ).value =
-        safeValue(
-            siteData.hero.title
-        );
-
-
-    document.getElementById(
-        "heroSubtitle"
-    ).value =
-        safeValue(
-            siteData.hero.subtitle
-        );
-
-
-    document.getElementById(
-        "heroDescription"
-    ).value =
-        safeValue(
-            siteData.hero.description
-        );
-
-
-    showPreview(
-        "heroPreview",
-        siteData.hero.image
-    );
-
-
-
-    document.getElementById(
-        "chiefName"
-    ).value =
-        safeValue(
-            siteData.villageChief.name
-        );
-
-
-    document.getElementById(
-        "chiefPosition"
-    ).value =
-        safeValue(
-            siteData.villageChief.position
-        );
-
-
-    document.getElementById(
-        "chiefAddress"
-    ).value =
-        safeValue(
-            siteData.villageChief.address
-        );
-
-
-    document.getElementById(
-        "chiefPhone"
-    ).value =
-        safeValue(
-            siteData.villageChief.phone
-        );
-
-
-    document.getElementById(
-        "chiefQuote"
-    ).value =
-        safeValue(
-            siteData.villageChief.quote
-        );
-
-
-    showPreview(
-        "chiefPreview",
-        siteData.villageChief.image
-    );
-
-
-
-    document.getElementById(
-        "subnamjamTitle"
-    ).value =
-        safeValue(
-            siteData.subnamjam.title
-        );
-
-
-    document.getElementById(
-        "subnamjamDescription"
-    ).value =
-        safeValue(
-            siteData.subnamjam.description
-        );
-
-
-
-    document.getElementById(
-        "templeTitle"
-    ).value =
-        safeValue(
-            siteData.temple.title
-        );
-
-
-    document.getElementById(
-        "templeDescription"
-    ).value =
-        safeValue(
-            siteData.temple.description
-        );
-
-
-    showPreview(
-        "templePreview",
-        siteData.temple.image
-    );
-
-
-
-    document.getElementById(
-        "soroborTitle"
-    ).value =
-        safeValue(
-            siteData.sorobor.title
-        );
-
-
-    document.getElementById(
-        "soroborDescription"
-    ).value =
-        safeValue(
-            siteData.sorobor.description
-        );
-
-
-
-    document.getElementById(
-        "mapUrl"
-    ).value =
-        safeValue(
-            siteData.map.url
-        );
-
-
-
-    document.getElementById(
-        "statHouseholds"
-    ).value =
-        safeValue(
-            siteData.statistics.households
-        );
-
-
-    document.getElementById(
-        "statPopulation"
-    ).value =
-        safeValue(
-            siteData.statistics.population
-        );
-
-
-    document.getElementById(
-        "statArea"
-    ).value =
-        safeValue(
-            siteData.statistics.area
-        );
-
-
-
-    document.getElementById(
-        "contactPhone"
-    ).value =
-        safeValue(
-            siteData.contact.phone
-        );
-
-
-    document.getElementById(
-        "contactAddress"
-    ).value =
-        safeValue(
-            siteData.contact.address
-        );
-
-
-    renderAssistants();
-
-    renderNews();
-
-    renderActivities();
-
-    renderAnnouncements();
-
-}
-
-
-
-/* =========================================
-   ASSISTANTS
-========================================= */
-
-function renderAssistants(){
-
-const container =
-document.getElementById(
-"assistantsContainer"
+    }
 );
 
-container.innerHTML="";
+
+/* ==========================================
+   บันทึกข้อมูลผู้ใหญ่บ้าน
+========================================== */
+
+function saveLeader(){
+
+    const imagePreview =
+        document.getElementById(
+            "imagePreview"
+        );
 
 
-siteData.assistants.forEach(
-function(item,index){
+    siteData.leader = {
 
-container.innerHTML += `
+        name:
+            document.getElementById(
+                "leaderName"
+            ).value,
 
-<div class="item-box">
+        position:
+            document.getElementById(
+                "leaderPosition"
+            ).value,
 
-<div class="item-title">
+        address:
+            document.getElementById(
+                "leaderAddress"
+            ).value,
 
-<strong>
-ผู้ช่วยคนที่ ${index+1}
-</strong>
+        quote:
+            document.getElementById(
+                "leaderQuote"
+            ).value,
 
-<button
-class="delete-btn"
-onclick="deleteAssistant(${index})">
+        phone:
+            document.getElementById(
+                "leaderPhone"
+            ).value,
 
-🗑️ ลบ
+        image:
+            imagePreview.src || ""
 
-</button>
-
-</div>
-
-
-<div class="grid">
-
-<div class="form-group">
-
-<label>ชื่อ</label>
-
-<input
-value="${safeValue(item.name)}"
-oninput="siteData.assistants[${index}].name=this.value">
-
-</div>
+    };
 
 
-<div class="form-group">
-
-<label>ตำแหน่ง</label>
-
-<input
-value="${safeValue(item.position)}"
-oninput="siteData.assistants[${index}].position=this.value">
-
-</div>
+    localStorage.setItem(
+        "rongkhemSiteData",
+        JSON.stringify(siteData)
+    );
 
 
-<div class="form-group full">
-
-<label>รายละเอียด</label>
-
-<textarea
-oninput="siteData.assistants[${index}].description=this.value">${safeValue(item.description)}</textarea>
-
-</div>
+    const message =
+        document.getElementById(
+            "saveMessage"
+        );
 
 
-<div class="form-group">
-
-<label>โทรศัพท์</label>
-
-<input
-value="${safeValue(item.phone)}"
-oninput="siteData.assistants[${index}].phone=this.value">
-
-</div>
+    message.style.display =
+        "block";
 
 
-<div class="form-group">
+    setTimeout(
+        function(){
 
-<label>รูปภาพ</label>
+            message.style.display =
+                "none";
 
-<input
-type="file"
-accept="image/*"
-onchange="uploadAssistantImage(this,${index})">
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
+        },
+        2500
+    );
 
 }
 
 
-function addAssistant(){
+/* ==========================================
+   บันทึกข้อมูลหมู่บ้าน
+========================================== */
 
-siteData.assistants.push({
+function saveVillage(){
 
-name:"",
+    siteData.village = {
 
-position:"",
+        name:
+            document.getElementById(
+                "villageName"
+            ).value,
 
-description:"",
+        households:
+            document.getElementById(
+                "householdInput"
+            ).value,
 
-phone:"",
+        population:
+            document.getElementById(
+                "populationInput"
+            ).value
 
-image:""
-
-});
-
-renderAssistants();
-
-}
-
-
-function deleteAssistant(index){
-
-siteData.assistants.splice(
-index,
-1
-);
-
-renderAssistants();
-
-}
+    };
 
 
-async function uploadAssistantImage(
-input,
-index
-){
-
-const file =
-input.files[0];
-
-if(!file) return;
-
-siteData.assistants[index].image =
-await imageToBase64(file);
-
-}
+    localStorage.setItem(
+        "rongkhemSiteData",
+        JSON.stringify(siteData)
+    );
 
 
-
-/* =========================================
-   NEWS
-========================================= */
-
-function renderNews(){
-
-const container =
-document.getElementById(
-"newsContainer"
-);
-
-container.innerHTML="";
+    document.getElementById(
+        "householdCount"
+    ).textContent =
+        siteData.village.households;
 
 
-siteData.news.forEach(
-function(item,index){
-
-container.innerHTML += `
-
-<div class="item-box">
-
-<div class="item-title">
-
-<strong>
-ข่าวที่ ${index+1}
-</strong>
-
-<button
-class="delete-btn"
-onclick="deleteNews(${index})">
-
-🗑️ ลบ
-
-</button>
-
-</div>
+    document.getElementById(
+        "populationCount"
+    ).textContent =
+        Number(
+            siteData.village.population
+        ).toLocaleString();
 
 
-<div class="grid">
-
-<div class="form-group">
-
-<label>หัวข้อข่าว</label>
-
-<input
-value="${safeValue(item.title)}"
-oninput="siteData.news[${index}].title=this.value">
-
-</div>
-
-
-<div class="form-group">
-
-<label>รายละเอียด</label>
-
-<input
-value="${safeValue(item.description)}"
-oninput="siteData.news[${index}].description=this.value">
-
-</div>
-
-
-<div class="form-group full">
-
-<label>รูปภาพข่าว</label>
-
-<input
-type="file"
-accept="image/*"
-onchange="uploadNewsImage(this,${index})">
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
+    alert(
+        "บันทึกข้อมูลหมู่บ้านเรียบร้อย"
+    );
 
 }
 
+
+/* ==========================================
+   เพิ่มข่าว
+========================================== */
 
 function addNews(){
 
-siteData.news.push({
-
-title:"",
-
-description:"",
-
-image:""
-
-});
-
-renderNews();
-
-}
+    const title =
+        document.getElementById(
+            "newsTitle"
+        ).value.trim();
 
 
-function deleteNews(index){
-
-siteData.news.splice(
-index,
-1
-);
-
-renderNews();
-
-}
+    const detail =
+        document.getElementById(
+            "newsDetail"
+        ).value.trim();
 
 
-async function uploadNewsImage(
-input,
-index
-){
+    if(
+        !title ||
+        !detail
+    ){
 
-const file =
-input.files[0];
+        alert(
+            "กรุณากรอกข้อมูลข่าวให้ครบ"
+        );
 
-if(!file) return;
+        return;
 
-siteData.news[index].image =
-await imageToBase64(file);
-
-}
+    }
 
 
+    if(
+        !siteData.news
+    ){
 
-/* =========================================
-   ACTIVITIES
-========================================= */
+        siteData.news = [];
 
-function renderActivities(){
-
-const container =
-document.getElementById(
-"activitiesContainer"
-);
-
-container.innerHTML="";
+    }
 
 
-siteData.activities.forEach(
-function(item,index){
+    siteData.news.push({
 
-container.innerHTML += `
+        title:title,
 
-<div class="item-box">
+        detail:detail,
 
-<div class="item-title">
+        date:
+            new Date()
+            .toLocaleDateString(
+                "th-TH"
+            )
 
-<strong>
-กิจกรรมที่ ${index+1}
-</strong>
-
-<button
-class="delete-btn"
-onclick="deleteActivity(${index})">
-
-🗑️ ลบ
-
-</button>
-
-</div>
+    });
 
 
-<div class="grid">
-
-<div class="form-group">
-
-<label>ชื่อกิจกรรม</label>
-
-<input
-value="${safeValue(item.title)}"
-oninput="siteData.activities[${index}].title=this.value">
-
-</div>
+    localStorage.setItem(
+        "rongkhemSiteData",
+        JSON.stringify(siteData)
+    );
 
 
-<div class="form-group">
-
-<label>รายละเอียด</label>
-
-<input
-value="${safeValue(item.description)}"
-oninput="siteData.activities[${index}].description=this.value">
-
-</div>
+    document.getElementById(
+        "newsTitle"
+    ).value = "";
 
 
-<div class="form-group full">
+    document.getElementById(
+        "newsDetail"
+    ).value = "";
 
-<label>รูปภาพกิจกรรม</label>
 
-<input
-type="file"
-accept="image/*"
-onchange="uploadActivityImage(this,${index})">
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
+    alert(
+        "เพิ่มข่าวเรียบร้อย"
+    );
 
 }
 
 
-function addActivity(){
-
-siteData.activities.push({
-
-title:"",
-
-description:"",
-
-image:""
-
-});
-
-renderActivities();
-
-}
-
-
-function deleteActivity(index){
-
-siteData.activities.splice(
-index,
-1
-);
-
-renderActivities();
-
-}
-
-
-async function uploadActivityImage(
-input,
-index
-){
-
-const file =
-input.files[0];
-
-if(!file) return;
-
-siteData.activities[index].image =
-await imageToBase64(file);
-
-}
-
-
-
-/* =========================================
-   ANNOUNCEMENTS
-========================================= */
-
-function renderAnnouncements(){
-
-const container =
-document.getElementById(
-"announcementsContainer"
-);
-
-container.innerHTML="";
-
-
-siteData.announcements.forEach(
-function(item,index){
-
-container.innerHTML += `
-
-<div class="item-box">
-
-<div class="item-title">
-
-<strong>
-ประกาศที่ ${index+1}
-</strong>
-
-<button
-class="delete-btn"
-onclick="deleteAnnouncement(${index})">
-
-🗑️ ลบ
-
-</button>
-
-</div>
-
-
-<div class="grid">
-
-<div class="form-group">
-
-<label>หัวข้อประกาศ</label>
-
-<input
-value="${safeValue(item.title)}"
-oninput="siteData.announcements[${index}].title=this.value">
-
-</div>
-
-
-<div class="form-group">
-
-<label>รายละเอียด</label>
-
-<input
-value="${safeValue(item.description)}"
-oninput="siteData.announcements[${index}].description=this.value">
-
-</div>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-function addAnnouncement(){
-
-siteData.announcements.push({
-
-title:"",
-
-description:""
-
-});
-
-renderAnnouncements();
-
-}
-
-
-function deleteAnnouncement(index){
-
-siteData.announcements.splice(
-index,
-1
-);
-
-renderAnnouncements();
-
-}
-
-
-
-/* =========================================
-   SAVE ALL DATA
-========================================= */
-
-function saveAllData(){
-
-siteData.hero.welcome =
-document.getElementById(
-"heroWelcome"
-).value;
-
-
-siteData.hero.title =
-document.getElementById(
-"heroTitle"
-).value;
-
-
-siteData.hero.subtitle =
-document.getElementById(
-"heroSubtitle"
-).value;
-
-
-siteData.hero.description =
-document.getElementById(
-"heroDescription"
-).value;
-
-
-
-siteData.villageChief.name =
-document.getElementById(
-"chiefName"
-).value;
-
-
-siteData.villageChief.position =
-document.getElementById(
-"chiefPosition"
-).value;
-
-
-siteData.villageChief.address =
-document.getElementById(
-"chiefAddress"
-).value;
-
-
-siteData.villageChief.phone =
-document.getElementById(
-"chiefPhone"
-).value;
-
-
-siteData.villageChief.quote =
-document.getElementById(
-"chiefQuote"
-).value;
-
-
-
-siteData.subnamjam.title =
-document.getElementById(
-"subnamjamTitle"
-).value;
-
-
-siteData.subnamjam.description =
-document.getElementById(
-"subnamjamDescription"
-).value;
-
-
-
-siteData.temple.title =
-document.getElementById(
-"templeTitle"
-).value;
-
-
-siteData.temple.description =
-document.getElementById(
-"templeDescription"
-).value;
-
-
-
-siteData.sorobor.title =
-document.getElementById(
-"soroborTitle"
-).value;
-
-
-siteData.sorobor.description =
-document.getElementById(
-"soroborDescription"
-).value;
-
-
-
-siteData.map.url =
-document.getElementById(
-"mapUrl"
-).value;
-
-
-
-siteData.statistics.households =
-document.getElementById(
-"statHouseholds"
-).value;
-
-
-siteData.statistics.population =
-document.getElementById(
-"statPopulation"
-).value;
-
-
-siteData.statistics.area =
-document.getElementById(
-"statArea"
-).value;
-
-
-
-siteData.contact.phone =
-document.getElementById(
-"contactPhone"
-).value;
-
-
-siteData.contact.address =
-document.getElementById(
-"contactAddress"
-).value;
-
-
-
-localStorage.setItem(
-
-STORAGE_KEY,
-
-JSON.stringify(siteData)
-
-);
-
-
-showStatus();
-
-}
-
-
-
-/* =========================================
-   STATUS MESSAGE
-========================================= */
-
-function showStatus(){
-
-const status =
-document.getElementById(
-"statusMessage"
-);
-
-status.style.display =
-"block";
-
-
-setTimeout(
-function(){
-
-status.style.display =
-"none";
-
-},
-3000
-);
-
-}
-
-
-
-/* =========================================
-   RESET DATA
-========================================= */
-
-function resetSiteData(){
-
-const confirmReset =
-confirm(
-"ต้องการรีเซ็ตข้อมูลทั้งหมดกลับเป็นค่าเริ่มต้นหรือไม่?"
-);
-
-if(!confirmReset) return;
-
-
-localStorage.removeItem(
-STORAGE_KEY
-);
-
-
-siteData =
-structuredClone(
-defaultSiteData
-);
-
-
-loadFormData();
-
-
-showStatus();
-
-}
-
-
-
-/* =========================================
-   LOGOUT
-========================================= */
+/* ==========================================
+   ออกจากระบบ
+========================================== */
 
 function logout(){
 
-localStorage.removeItem(
-"rongkhemAdminLoggedIn"
-);
+    localStorage.removeItem(
+        "rongkhemAdminLoggedIn"
+    );
 
-localStorage.removeItem(
-"rongkhemAdminUsername"
-);
 
-window.location.href =
-"login.html";
+    localStorage.removeItem(
+        "rongkhemAdminUsername"
+    );
+
+
+    window.location.href =
+        "login.html";
 
 }
-
-
-
-/* =========================================
-   START
-========================================= */
-
-loadFormData();
 
 </script>
 
