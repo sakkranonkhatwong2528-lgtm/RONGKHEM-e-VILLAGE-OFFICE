@@ -1,325 +1,169 @@
 <!doctype html>
 <html lang="th">
-
 <head>
-
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1"
->
+<title>จัดการระบบ — RONGKHEM e-VILLAGE</title>
 
-<title>
-  RONGKHEM e-VILLAGE | ระบบหลังบ้าน
-</title>
-
-<link
-  href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Material+Symbols+Outlined"
-  rel="stylesheet"
->
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-  box-sizing:border-box;
+*{box-sizing:border-box}
+:root{
+  --bg:#04111b;
+  --panel:#071b29;
+  --panel2:#092131;
+  --line:#254656;
+  --line2:#315364;
+  --text:#edf7fb;
+  --muted:#9db1bd;
+  --blue:#0d6efd;
+  --green:#198b48;
+  --red:#803b42;
+  --yellow:#d79b16;
 }
-
 body{
-  margin:0;
-  font-family:'Noto Sans Thai',sans-serif;
-  background:#0d1724;
-  color:#eaf1fb;
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:Prompt,sans-serif;font-size:13px
 }
-
 .top{
-  height:70px;
-  background:#101e30;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 24px;
-  border-bottom:1px solid #24364b;
-  position:sticky;
-  top:0;
-  z-index:5;
+  min-height:72px;display:flex;align-items:center;
+  justify-content:space-between;gap:15px;padding:12px 20px;
+  background:#071c2b;border-bottom:1px solid #254556;
+  position:sticky;top:0;z-index:20
 }
-
-.brand{
-  font-weight:700;
-  font-size:20px;
+.top h1{font:500 21px Kanit;margin:0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{
+  border:1px solid #315567;background:#0a2637;color:#fff;
+  border-radius:8px;padding:9px 13px;cursor:pointer;
+  font-family:Prompt,sans-serif
 }
-
-.brand small{
-  display:block;
-  font-size:12px;
-  color:#9fb0c3;
-}
+.btn:hover{filter:brightness(1.15)}
+.btn.green{background:var(--green);border-color:var(--green)}
+.btn.danger{background:var(--red);border-color:var(--red)}
+.btn.warning{background:#8a6410;border-color:#8a6410}
+.btn.blue{background:#075fb7;border-color:#075fb7}
 
 .layout{
-  display:grid;
-  grid-template-columns:240px 1fr;
-  min-height:calc(100vh - 70px);
+  display:grid;grid-template-columns:240px 1fr;
+  min-height:calc(100vh - 72px)
 }
-
 aside{
-  background:#101e30;
-  border-right:1px solid #24364b;
-  padding:18px;
+  padding:12px;background:#03101a;
+  border-right:1px solid #24404f;
+  position:sticky;top:72px;height:calc(100vh - 72px);
+  overflow:auto
 }
-
-aside a{
-  display:block;
-  color:#c8d6e5;
-  text-decoration:none;
-  padding:12px;
-  border-radius:10px;
-  margin:5px 0;
+.nav{
+  width:100%;padding:11px;border:0;background:none;
+  color:#d9e7ed;text-align:left;border-radius:8px;
+  cursor:pointer;font:400 12px Kanit;margin-bottom:2px
 }
-
-aside a:hover,
-.active{
-  background:#1e5aa8!important;
-  color:white!important;
-}
-
-main{
-  padding:26px;
-  max-width:1500px;
-  width:100%;
-  margin:auto;
-}
-
+.nav.active,.nav:hover{background:#123348}
+.main{padding:20px;max-width:1500px;width:100%;overflow:hidden}
+.section{display:none}
+.section.active{display:block}
+.title{font:500 26px Kanit;margin:0 0 5px}
+.hint{font-size:11px;color:#9db0bc;margin-bottom:14px}
 .cards{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px
 }
-
-.card,
+.card{
+  padding:16px;border:1px solid var(--line);
+  border-radius:12px;background:var(--panel2)
+}
+.lab{font-size:11px;color:var(--muted)}
+.val{font:600 28px Kanit;margin-top:5px}
 .panel{
-  background:#162638;
-  border:1px solid #294057;
-  border-radius:16px;
-  padding:20px;
+  margin-top:15px;padding:16px;border:1px solid var(--line);
+  border-radius:12px;background:var(--panel)
 }
-
-.card b{
-  font-size:30px;
-  display:block;
-  margin-top:6px;
+.formgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px
 }
-
+label{font-size:11px;color:#b9cbd4}
+input,textarea,select{
+  width:100%;margin-top:5px;padding:10px;
+  border:1px solid var(--line2);border-radius:8px;
+  background:#04121c;color:white;font:400 12px Prompt
+}
+textarea{min-height:90px;resize:vertical}
+input[type="checkbox"]{
+  width:auto;margin:8px 0 0;padding:0;
+  transform:scale(1.2)
+}
+.wide{grid-column:1/-1}
+.tablewrap{overflow:auto;margin-top:14px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th,td{
+  border-bottom:1px solid #193847;
+  padding:10px;text-align:left;vertical-align:top
+}
+th{color:#9fd9e8;white-space:nowrap}
+.rowactions{display:flex;gap:5px;min-width:140px}
 .toolbar{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin:20px 0;
+  display:flex;gap:8px;flex-wrap:wrap;margin:10px 0
+}
+.search{max-width:320px}
+.file{font-size:12px}
+.preview{
+  max-width:180px;max-height:110px;border-radius:8px;margin-top:8px
+}
+.msg{font-size:11px;color:#65e88a;margin-top:9px}
+.error{color:#ff9e9e}
+.note{font-size:11px;color:#9fb2bd;line-height:1.7}
+.empty{
+  padding:30px;text-align:center;color:#8da4af
+}
+.status{
+  display:inline-block;padding:3px 8px;border-radius:20px;
+  background:#123348;font-size:10px
+}
+.section-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;flex-wrap:wrap;margin-bottom:10px
 }
 
-button,
-.btn{
-  border:0;
-  border-radius:9px;
-  padding:10px 14px;
-  color:#fff;
-  background:#2368bf;
-  cursor:pointer;
-  font:inherit;
-  text-decoration:none;
-}
-
-.danger{
-  background:#c83d3d;
-}
-
-.secondary{
-  background:#33485d;
-}
-
-.success{
-  background:#188653;
-}
-
-.panel{
-  overflow:auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:760px;
-}
-
-th,
-td{
-  text-align:left;
-  padding:12px;
-  border-bottom:1px solid #294057;
-}
-
-th{
-  color:#9fb0c3;
-  font-size:13px;
-}
-
-input,
-textarea,
-select{
-  width:100%;
-  background:#0e1b29;
-  border:1px solid #334b63;
-  color:#fff;
-  border-radius:8px;
-  padding:10px;
-  font:inherit;
-}
-
-textarea{
-  min-height:80px;
-}
-
-.modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0009;
-  z-index:20;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-
-.modal.show{
-  display:flex;
-}
-
-.modal-box{
-  width:min(760px,100%);
-  max-height:90vh;
-  overflow:auto;
-  background:#14263a;
-  border:1px solid #38536f;
-  border-radius:18px;
-  padding:22px;
-}
-
-.form-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.row{
-  display:flex;
-  gap:8px;
-  justify-content:flex-end;
-  margin-top:18px;
-}
-
-.section{
-  display:none;
-}
-
-.section.show{
-  display:block;
-}
-
-.muted{
-  color:#9fb0c3;
-}
-
-.mobile-menu{
-  display:none;
-}
-
-@media(max-width:850px){
-
-  .layout{
-    grid-template-columns:1fr;
-  }
-
+@media(max-width:1000px){
+  .layout{grid-template-columns:1fr}
   aside{
-    display:none;
+    display:flex;overflow:auto;gap:5px;
+    position:sticky;top:72px;height:auto;z-index:10;
+    white-space:nowrap;padding:8px
   }
-
-  .layout.menu aside{
-    display:block;
-    position:fixed;
-    top:70px;
-    bottom:0;
-    width:260px;
-    z-index:10;
-  }
-
-  .mobile-menu{
-    display:inline-block;
-  }
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  main{
-    padding:16px;
-  }
-
-  .form-grid{
-    grid-template-columns:1fr;
-  }
-
-  .full{
-    grid-column:auto;
-  }
-
+  .nav{min-width:max-content;width:auto;margin:0}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .formgrid{grid-template-columns:repeat(2,1fr)}
 }
-
+@media(max-width:600px){
+  .top{padding:10px}
+  .top h1{font-size:16px}
+  .main{padding:12px}
+  .cards,.formgrid{grid-template-columns:1fr}
+  .wide{grid-column:auto}
+}
 </style>
-
 </head>
 
 <body>
 
 <header class="top">
 
-  <div>
+  <h1>⚙️ RONGKHEM e-VILLAGE — ระบบผู้ดูแล</h1>
 
-    <button
-      class="mobile-menu secondary"
-      onclick="
-        document
-          .querySelector('.layout')
-          .classList.toggle('menu')
-      "
-    >
-      ☰
-    </button>
+  <div class="actions">
+    <a class="btn blue" href="index.html">🌐 ดูเว็บไซต์</a>
+    <button class="btn" onclick="exportAll()">💾 สำรองข้อมูล</button>
 
-    <span class="brand">
+    <label class="btn">
+      📥 นำเข้าข้อมูล
+      <input id="importFile" type="file" accept=".json" hidden>
+    </label>
 
-      RONGKHEM e-VILLAGE
-
-      <small>
-        ระบบหลังบ้าน (Admin)
-      </small>
-
-    </span>
-
-  </div>
-
-  <div>
-
-    <a
-      class="btn secondary"
-      href="index.html"
-    >
-      ดูหน้าเว็บ
-    </a>
-
+    <button class="btn danger" id="logout">ออกจากระบบ</button>
   </div>
 
 </header>
@@ -329,846 +173,1986 @@ textarea{
 
 <aside>
 
-<a
-  class="active"
-  href="#"
-  onclick="showSection('dashboard',this)"
->
-  ⌂ แดชบอร์ด
-</a>
-
-<a
-  href="#"
-  onclick="showSection('services',this)"
->
-  ▦ จัดการเมนู 16 บริการ
-</a>
-
-<a
-  href="#"
-  onclick="showSection('news',this)"
->
-  📢 ข่าวประชาสัมพันธ์
-</a>
-
-<a
-  href="#"
-  onclick="showSection('announcements',this)"
->
-  📣 ประกาศสำคัญ
-</a>
-
-<a
-  href="#"
-  onclick="showSection('featured',this)"
->
-  ★ กิจกรรมเด่น
-</a>
-
-<a
-  href="#"
-  onclick="showSection('stats',this)"
->
-  ▥ สถิติหมู่บ้าน
-</a>
-
-<hr style="border-color:#294057">
-
-<a
-  href="#"
-  onclick="backup()"
->
-  ⇩ สำรองข้อมูล
-</a>
-
-<a
-  href="#"
-  onclick="restore()"
->
-  ⇧ นำเข้าข้อมูล
-</a>
-
-<a
-  href="#"
-  onclick="resetData()"
->
-  ↻ คืนค่าเริ่มต้น
-</a>
+<button class="nav active" data-sec="overview">📊 ภาพรวม</button>
+<button class="nav" data-sec="settings">🏛️ ข้อมูลหมู่บ้าน</button>
+<button class="nav" data-sec="people">👥 ประชาชน</button>
+<button class="nav" data-sec="households">🏠 ครัวเรือน</button>
+<button class="nav" data-sec="leaders">👨‍👩‍👧 ผู้นำ</button>
+<button class="nav" data-sec="announcements">📢 ข่าว</button>
+<button class="nav" data-sec="activities">📅 กิจกรรม</button>
+<button class="nav" data-sec="projects">📁 โครงการ</button>
+<button class="nav" data-sec="complaints">🚨 ร้องเรียน</button>
+<button class="nav" data-sec="services">🤝 บริการ</button>
+<button class="nav" data-sec="environment">🌫️ PM2.5</button>
+<button class="nav" data-sec="water_source">💧 แหล่งซับน้ำจำ</button>
+<button class="nav" data-sec="rice_group">🍚 กลุ่มข้าวสาร</button>
+<button class="nav" data-sec="media">🖼️ รูป / ไฟล์</button>
 
 </aside>
 
 
-<main>
+<main class="main">
 
-<!-- DASHBOARD -->
+<!-- OVERVIEW -->
 
-<section
-  id="dashboard"
-  class="section show"
->
+<section id="overview" class="section active">
 
-<h1>
-  ภาพรวมระบบ
-</h1>
+<div class="section-head">
+  <div>
+    <h2 class="title">ศูนย์จัดการข้อมูล</h2>
+    <div class="hint">ระบบจัดการข้อมูล RONGKHEM e-VILLAGE OFFICE</div>
+  </div>
+
+  <button class="btn" onclick="refreshAll()">🔄 รีเฟรช</button>
+</div>
 
 <div class="cards">
 
-  <div class="card">
-    เมนูบริการ
-    <b id="cServices">0</b>
-  </div>
+<div class="card">
+<div class="lab">ประชากร</div>
+<div class="val" id="oPop">--</div>
+</div>
 
-  <div class="card">
-    ข่าว
-    <b id="cNews">0</b>
-  </div>
+<div class="card">
+<div class="lab">ครัวเรือน</div>
+<div class="val" id="oHouse">--</div>
+</div>
 
-  <div class="card">
-    ประกาศ
-    <b id="cAnn">0</b>
-  </div>
+<div class="card">
+<div class="lab">ผู้สูงอายุ 60+</div>
+<div class="val" id="oElder">--</div>
+</div>
 
-  <div class="card">
-    สถิติ
-    <b id="cStats">0</b>
-  </div>
+<div class="card">
+<div class="lab">กลุ่มเปราะบาง</div>
+<div class="val" id="oVuln">--</div>
+</div>
 
 </div>
 
-<div
-  class="panel"
-  style="margin-top:18px"
->
+<div class="panel">
 
-<h2>
-  จัดการหน้าเว็บไซต์
-</h2>
+<div class="hint">
+ข้อมูลสรุปหมู่บ้านและสถานะฐานข้อมูล
+</div>
 
-<p class="muted">
+<div id="overviewMsg" class="msg"></div>
 
-แก้ไข เพิ่ม ลบ รายการได้จากเมนูด้านซ้าย
+</div>
 
-ข้อมูลจะถูกบันทึกในเบราว์เซอร์เดียวกัน
+</section>
 
-หน้า index.html จะอ่านข้อมูลชุดเดียวกันทันที
 
+<!-- SETTINGS -->
+
+<section id="settings" class="section">
+
+<h2 class="title">🏛️ ข้อมูลหมู่บ้าน</h2>
+
+<div class="panel">
+
+<div class="formgrid">
+
+<label>ชื่อหมู่บ้าน
+<input id="sVillage">
+</label>
+
+<label>หมู่ที่
+<input id="sNo" type="number">
+</label>
+
+<label>ตำบล
+<input id="sSub">
+</label>
+
+<label>อำเภอ
+<input id="sDist">
+</label>
+
+<label>จังหวัด
+<input id="sProv">
+</label>
+
+<label>ชื่อผู้ใหญ่บ้าน
+<input id="sLeader">
+</label>
+
+<label>ตำแหน่ง
+<input id="sRole">
+</label>
+
+<label>โทรศัพท์
+<input id="sPhone">
+</label>
+
+<label>LINE ID
+<input id="sLine">
+</label>
+
+<label class="wide">เวลาทำการ
+<input id="sHours">
+</label>
+
+<label>ประชากรรวม
+<input id="sPop" type="number">
+</label>
+
+<label>ชาย
+<input id="sMale" type="number">
+</label>
+
+<label>หญิง
+<input id="sFemale" type="number">
+</label>
+
+<label>ครัวเรือน
+<input id="sHouse" type="number">
+</label>
+
+<label>ผู้ตอบแบบสำรวจ
+<input id="sSurvey" type="number">
+</label>
+
+<label>ผู้สูงอายุ 60+
+<input id="sElder" type="number">
+</label>
+
+<label>ผู้สูงอายุ %
+<input id="sPct" type="number" step="0.1">
+</label>
+
+<label>ผู้พิการ
+<input id="sDisabled" type="number">
+</label>
+
+<label>โรคเรื้อรัง
+<input id="sChronic" type="number">
+</label>
+
+<label>กลุ่มเปราะบาง
+<input id="sVuln" type="number">
+</label>
+
+</div>
+
+<div class="toolbar">
+<button class="btn green" id="saveSettings">
+💾 บันทึกข้อมูลหมู่บ้าน
+</button>
+
+<button class="btn" onclick="loadSettings()">
+↩️ โหลดข้อมูลใหม่
+</button>
+</div>
+
+<div id="settingsMsg" class="msg"></div>
+
+</div>
+
+</section>
+
+
+<!-- GENERIC SECTIONS -->
+
+<section id="people" class="section">
+<h2 class="title">👥 ประชาชน</h2>
+<div class="panel">
+<div class="toolbar">
+<input class="search" id="peopleSearch" placeholder="ค้นหาชื่อ / บ้านเลขที่">
+<button class="btn green" onclick="newRecord('people')">➕ เพิ่มประชาชน</button>
+<button class="btn" onclick="loadTable('people')">🔄 รีเฟรช</button>
+</div>
+<div id="peopleForm"></div>
+<div class="tablewrap"><table id="peopleTable"></table></div>
+</div>
+</section>
+
+
+<section id="households" class="section">
+<h2 class="title">🏠 ครัวเรือน</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('households')">➕ เพิ่มครัวเรือน</button>
+<button class="btn" onclick="loadTable('households')">🔄 รีเฟรช</button>
+</div>
+<div id="householdsForm"></div>
+<div class="tablewrap"><table id="householdsTable"></table></div>
+</div>
+</section>
+
+
+<section id="leaders" class="section">
+<h2 class="title">👨‍👩‍👧 ผู้นำชุมชน</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('leaders')">➕ เพิ่มผู้นำ</button>
+<button class="btn" onclick="loadTable('leaders')">🔄 รีเฟรช</button>
+</div>
+<div id="leadersForm"></div>
+<div class="tablewrap"><table id="leadersTable"></table></div>
+</div>
+</section>
+
+
+<section id="announcements" class="section">
+<h2 class="title">📢 ข่าวประชาสัมพันธ์</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('announcements')">➕ เพิ่มประกาศ</button>
+<button class="btn" onclick="loadTable('announcements')">🔄 รีเฟรช</button>
+</div>
+<div id="announcementsForm"></div>
+<div class="tablewrap"><table id="announcementsTable"></table></div>
+</div>
+</section>
+
+
+<section id="activities" class="section">
+<h2 class="title">📅 กิจกรรม</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('activities')">➕ เพิ่มกิจกรรม</button>
+<button class="btn" onclick="loadTable('activities')">🔄 รีเฟรช</button>
+</div>
+<div id="activitiesForm"></div>
+<div class="tablewrap"><table id="activitiesTable"></table></div>
+</div>
+</section>
+
+
+<section id="projects" class="section">
+<h2 class="title">📁 โครงการ</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('projects')">➕ เพิ่มโครงการ</button>
+<button class="btn" onclick="loadTable('projects')">🔄 รีเฟรช</button>
+</div>
+<div id="projectsForm"></div>
+<div class="tablewrap"><table id="projectsTable"></table></div>
+</div>
+</section>
+
+
+<section id="complaints" class="section">
+<h2 class="title">🚨 แจ้งเหตุ / ร้องเรียน</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn" onclick="loadTable('complaints')">🔄 รีเฟรช</button>
+</div>
+<div class="tablewrap"><table id="complaintsTable"></table></div>
+</div>
+</section>
+
+
+<section id="services" class="section">
+<h2 class="title">🤝 บริการประชาชน</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('services')">➕ เพิ่มบริการ</button>
+<button class="btn" onclick="loadTable('services')">🔄 รีเฟรช</button>
+</div>
+<div id="servicesForm"></div>
+<div class="tablewrap"><table id="servicesTable"></table></div>
+</div>
+</section>
+
+
+<section id="environment" class="section">
+<h2 class="title">🌫️ สิ่งแวดล้อม / PM2.5</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('environment')">➕ เพิ่มค่าตรวจวัด</button>
+<button class="btn" onclick="loadTable('environment')">🔄 รีเฟรช</button>
+</div>
+<div id="environmentForm"></div>
+<div class="tablewrap"><table id="environmentTable"></table></div>
+</div>
+</section>
+
+
+<section id="water_source" class="section">
+<h2 class="title">💧 แหล่งซับน้ำจำ</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('water_source')">➕ เพิ่มข้อมูล</button>
+<button class="btn" onclick="loadTable('water_source')">🔄 รีเฟรช</button>
+</div>
+<div id="water_sourceForm"></div>
+<div class="tablewrap"><table id="water_sourceTable"></table></div>
+</div>
+</section>
+
+
+<section id="rice_group" class="section">
+<h2 class="title">🍚 กลุ่มข้าวสาร</h2>
+<div class="panel">
+<div class="toolbar">
+<button class="btn green" onclick="newRecord('rice_group')">➕ เพิ่มสมาชิก</button>
+<button class="btn" onclick="loadTable('rice_group')">🔄 รีเฟรช</button>
+</div>
+<div id="rice_groupForm"></div>
+<div class="tablewrap"><table id="rice_groupTable"></table></div>
+</div>
+</section>
+
+
+<section id="media" class="section">
+
+<h2 class="title">🖼️ รูปภาพ / ไฟล์</h2>
+
+<div class="panel">
+
+<p class="note">
+อัปโหลดรูปภาพ เอกสาร และไฟล์ประชาสัมพันธ์
 </p>
 
-</div>
-
-</section>
-
-
-<!-- SERVICES -->
-
-<section
-  id="services"
-  class="section"
->
-
-<h1>
-  จัดการเมนูบริการ
-</h1>
-
 <div class="toolbar">
 
-<button onclick="openEditor('services')">
-  + เพิ่มเมนู
+<input id="mediaFile"
+class="file"
+type="file"
+accept="image/*,.pdf,.doc,.docx,.xlsx,.csv">
+
+<button class="btn green" id="uploadBtn">
+⬆️ อัปโหลด
+</button>
+
+<button class="btn" onclick="loadMedia()">
+🔄 รีเฟรช
 </button>
 
 </div>
 
-<div class="panel">
+<div id="uploadMsg" class="msg"></div>
 
-<table>
-
-<thead>
-
-<tr>
-  <th>#</th>
-  <th>ชื่อเมนู</th>
-  <th>ไอคอน</th>
-  <th>ลิงก์</th>
-  <th>จัดการ</th>
-</tr>
-
-</thead>
-
-<tbody id="servicesTable"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- NEWS -->
-
-<section
-  id="news"
-  class="section"
->
-
-<h1>
-  ข่าวประชาสัมพันธ์
-</h1>
-
-<div class="toolbar">
-
-<button onclick="openEditor('news')">
-  + เพิ่มข่าว
-</button>
-
-</div>
-
-<div class="panel">
-
-<table>
-
-<thead>
-
-<tr>
-  <th>#</th>
-  <th>หัวข้อ</th>
-  <th>รายละเอียด</th>
-  <th>จัดการ</th>
-</tr>
-
-</thead>
-
-<tbody id="newsTable"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- ANNOUNCEMENTS -->
-
-<section
-  id="announcements"
-  class="section"
->
-
-<h1>
-  ประกาศสำคัญ
-</h1>
-
-<div class="toolbar">
-
-<button onclick="openEditor('announcements')">
-  + เพิ่มประกาศ
-</button>
-
-</div>
-
-<div class="panel">
-
-<table>
-
-<thead>
-
-<tr>
-  <th>#</th>
-  <th>หัวข้อ</th>
-  <th>รายละเอียด</th>
-  <th>จัดการ</th>
-</tr>
-
-</thead>
-
-<tbody id="announcementsTable"></tbody>
-
-</table>
-
-</div>
-
-</section>
-
-
-<!-- FEATURED -->
-
-<section
-  id="featured"
-  class="section"
->
-
-<h1>
-  กิจกรรมเด่น
-</h1>
-
-<div
-  class="panel"
-  id="featuredForm"
-></div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section
-  id="stats"
-  class="section"
->
-
-<h1>
-  สถิติหมู่บ้าน
-</h1>
-
-<div class="toolbar">
-
-<button onclick="openEditor('stats')">
-  + เพิ่มสถิติ
-</button>
-
-</div>
-
-<div class="panel">
-
-<table>
-
-<thead>
-
-<tr>
-  <th>หัวข้อ</th>
-  <th>ตัวเลข</th>
-  <th>หน่วย</th>
-  <th>จัดการ</th>
-</tr>
-
-</thead>
-
-<tbody id="statsTable"></tbody>
-
-</table>
+<div id="mediaList"></div>
 
 </div>
 
 </section>
 
 </main>
-
 </div>
 
 
-<!-- MODAL -->
-
-<div
-  class="modal"
-  id="modal"
->
-
-<div class="modal-box">
-
-<h2 id="modalTitle">
-  แก้ไข
-</h2>
-
-<form id="editorForm">
-
-<div
-  class="form-grid"
-  id="formFields"
-></div>
-
-<div class="row">
-
-<button
-  type="button"
-  class="secondary"
-  onclick="closeModal()"
->
-  ยกเลิก
-</button>
-
-<button
-  type="submit"
-  class="success"
->
-  บันทึก
-</button>
-
-</div>
-
-</form>
-
-</div>
-
-</div>
-
-
-<script src="assets/cms.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
 
 <script>
 
-let currentType = null;
-let currentIndex = null;
-
-
-const fields = {
-
-  services: [
-    ['name', 'ชื่อเมนู', 'text'],
-    ['icon', 'ชื่อ Material Icon เช่น home', 'text'],
-    ['color', 'สี เช่น #195bb2', 'text'],
-    ['url', 'ลิงก์ / URL', 'text']
-  ],
-
-  news: [
-    ['title', 'หัวข้อข่าว', 'text'],
-    ['detail', 'รายละเอียด', 'textarea'],
-    ['image', 'URL รูปภาพ (ถ้ามี)', 'text'],
-    ['date', 'วันที่/ข้อความกำกับ', 'text']
-  ],
-
-  announcements: [
-    ['title', 'หัวข้อประกาศ', 'text'],
-    ['detail', 'รายละเอียด', 'textarea']
-  ],
-
-  stats: [
-    ['label', 'หัวข้อ', 'text'],
-    ['value', 'ตัวเลข', 'text'],
-    ['unit', 'หน่วย', 'text'],
-    ['icon', 'Material Icon', 'text'],
-    ['color', 'สี', 'text']
-  ]
-
-};
-
-
-function data() {
-  return rkLoad();
-}
-
-
-function save(data) {
-  rkSave(data);
-  renderAll();
-}
-
-
-function showSection(id, element) {
-
-  document
-    .querySelectorAll('.section')
-    .forEach(item => {
-      item.classList.remove('show');
-    });
-
-  document
-    .getElementById(id)
-    .classList.add('show');
-
-
-  document
-    .querySelectorAll('aside a')
-    .forEach(item => {
-      item.classList.remove('active');
-    });
-
-  if (element) {
-    element.classList.add('active');
-  }
-
-}
-
-
-function renderAll() {
-
-  const d = data();
-
-  cServices.textContent = d.services.length;
-  cNews.textContent = d.news.length;
-  cAnn.textContent = d.announcements.length;
-  cStats.textContent = d.stats.length;
-
-
-  [
-    'services',
-    'news',
-    'announcements',
-    'stats'
-  ].forEach(type => {
-
-    const table = document.getElementById(
-      type + 'Table'
-    );
-
-    if (!table) return;
-
-
-    table.innerHTML = d[type]
-      .map((item, index) => `
-
-      <tr>
-
-        <td>
-          ${index + 1}
-        </td>
-
-        <td>
-          ${rkEscape(
-            item.name ||
-            item.title ||
-            item.label ||
-            ''
-          )}
-        </td>
-
-        <td>
-          ${rkEscape(
-            item.icon ||
-            item.detail ||
-            item.value ||
-            ''
-          )}
-        </td>
-
-        <td>
-          ${rkEscape(
-            item.url ||
-            item.unit ||
-            ''
-          )}
-        </td>
-
-        <td>
-
-          <button
-            onclick="
-              openEditor(
-                '${type}',
-                ${index}
-              )
-            "
-          >
-            แก้ไข
-          </button>
-
-          <button
-            class="danger"
-            onclick="
-              removeItem(
-                '${type}',
-                ${index}
-              )
-            "
-          >
-            ลบ
-          </button>
-
-        </td>
-
-      </tr>
-
-    `)
-      .join('');
-
-  });
-
-
-  const featured = d.featured;
-
-  featuredForm.innerHTML = `
-
-    <div class="form-grid">
-
-      <label>
-
-        หัวข้อ
-
-        <input
-          id="ft"
-          value="${rkEscape(featured.title)}"
-        >
-
-      </label>
-
-
-      <label>
-
-        URL รูปภาพ
-
-        <input
-          id="fi"
-          value="${rkEscape(featured.image || '')}"
-        >
-
-      </label>
-
-
-      <label class="full">
-
-        รายละเอียด
-
-        <textarea id="fd">
-${rkEscape(featured.detail)}
-        </textarea>
-
-      </label>
-
-    </div>
-
-
-    <div class="row">
-
-      <button
-        class="success"
-        onclick="saveFeatured()"
-      >
-        บันทึกกิจกรรมเด่น
-      </button>
-
-    </div>
-
-  `;
-
-}
-
-
-function openEditor(type, index = null) {
-
-  currentType = type;
-  currentIndex = index;
-
-
-  const item =
-    index === null
-      ? {}
-      : data()[type][index];
-
-
-  modalTitle.textContent =
-    index === null
-      ? 'เพิ่มรายการ'
-      : 'แก้ไขรายการ';
-
-
-  formFields.innerHTML =
-    fields[type]
-      .map(([key, label, fieldType]) => `
-
-        <label
-          class="${
-            fieldType === 'textarea'
-              ? 'full'
-              : ''
-          }"
-        >
-
-          ${label}
-
-          ${
-            fieldType === 'textarea'
-
-              ? `
-                <textarea name="${key}">
-${rkEscape(item[key] || '')}
-                </textarea>
-              `
-
-              : `
-                <input
-                  name="${key}"
-                  type="${fieldType}"
-                  value="${rkEscape(item[key] || '')}"
-                >
-              `
-          }
-
-        </label>
-
-      `)
-      .join('');
-
-
-  modal.classList.add('show');
-
-}
-
-
-function closeModal() {
-  modal.classList.remove('show');
-}
-
-
-editorForm.onsubmit = event => {
-
-  event.preventDefault();
-
-  const d = data();
-  const object = {};
-
-
-  new FormData(editorForm)
-    .forEach((value, key) => {
-      object[key] = value;
-    });
-
-
-  if (
-    currentType === 'services' &&
-    currentIndex === null
-  ) {
-    object.id = 'm' + Date.now();
-  }
-
-
-  if (currentIndex === null) {
-    d[currentType].push(object);
-  } else {
-    d[currentType][currentIndex] = object;
-  }
-
-
-  save(d);
-
-  closeModal();
-
-};
-
-
-function removeItem(type, index) {
-
-  if (
-    !confirm(
-      'ยืนยันการลบรายการนี้?'
-    )
-  ) {
-    return;
-  }
-
-
-  const d = data();
-
-  d[type].splice(index, 1);
-
-  save(d);
-
-}
-
-
-function saveFeatured() {
-
-  const d = data();
-
-  d.featured = {
-    title: ft.value,
-    detail: fd.value,
-    image: fi.value
-  };
-
-  save(d);
-
-  alert('บันทึกแล้ว');
-
-}
-
-
-function backup() {
-
-  const blob = new Blob(
-    [
-      JSON.stringify(
-        data(),
-        null,
-        2
-      )
-    ],
-    {
-      type:'application/json'
-    }
+let sb=null;
+let settingsRow=null;
+
+const configReady=
+  window.supabase &&
+  window.SUPABASE_URL &&
+  window.SUPABASE_PUBLISHABLE_KEY;
+
+if(configReady){
+  sb=supabase.createClient(
+    window.SUPABASE_URL,
+    window.SUPABASE_PUBLISHABLE_KEY
   );
+}else{
+  console.error("ไม่พบค่า SUPABASE_URL หรือ SUPABASE_PUBLISHABLE_KEY ใน config.js");
+}
 
 
-  const link =
-    document.createElement('a');
+/* =========================================================
+   SCHEMA
+========================================================= */
+
+const schemas={
+
+people:{
+title:"ประชาชน",
+fields:[
+["house_no","บ้านเลขที่","text"],
+["first_name","ชื่อ","text"],
+["last_name","นามสกุล","text"],
+["gender","เพศ","text"],
+["birth_date","วันเกิด","date"],
+["age","อายุ","number"],
+["occupation","อาชีพ","text"],
+["phone","โทรศัพท์","text"],
+["status","สถานะ","text"],
+["notes","หมายเหตุ","textarea"]
+],
+cols:[
+"house_no","first_name","last_name",
+"gender","age","occupation","status"
+]
+},
+
+households:{
+title:"ครัวเรือน",
+fields:[
+["house_no","บ้านเลขที่","text"],
+["head_name","หัวหน้าครัวเรือน","text"],
+["members_count","จำนวนสมาชิก","number"],
+["address_detail","รายละเอียดที่อยู่","textarea"],
+["status","สถานะ","text"],
+["phone","โทรศัพท์","text"],
+["notes","หมายเหตุ","textarea"]
+],
+cols:[
+"house_no","head_name",
+"members_count","status"
+]
+},
+
+leaders:{
+title:"ผู้นำ",
+fields:[
+["name","ชื่อ","text"],
+["position","ตำแหน่ง","text"],
+["phone","โทรศัพท์","text"],
+["photo_url","URL รูปภาพ","text"],
+["sort_order","ลำดับ","number"],
+["active","แสดงผล","checkbox"]
+],
+cols:["name","position","phone","active"]
+},
+
+announcements:{
+title:"ประกาศ",
+fields:[
+["title","หัวข้อ","text"],
+["body","รายละเอียด","textarea"],
+["category","หมวดหมู่","text"],
+["image_url","URL รูปภาพ","text"],
+["published_at","วันที่เผยแพร่","datetime-local"],
+["published","เผยแพร่","checkbox"]
+],
+cols:[
+"title","category",
+"published","published_at"
+]
+},
+
+activities:{
+title:"กิจกรรม",
+fields:[
+["title","ชื่อกิจกรรม","text"],
+["description","รายละเอียด","textarea"],
+["activity_date","วันที่","date"],
+["start_time","เวลา","time"],
+["location","สถานที่","text"],
+["image_url","URL รูปภาพ","text"],
+["published","เผยแพร่","checkbox"]
+],
+cols:[
+"title","activity_date",
+"start_time","location","published"
+]
+},
+
+projects:{
+title:"โครงการ",
+fields:[
+["title","ชื่อโครงการ","text"],
+["description","รายละเอียด","textarea"],
+["budget","งบประมาณ","number"],
+["status","สถานะ","text"],
+["start_date","เริ่ม","date"],
+["end_date","สิ้นสุด","date"],
+["image_url","URL รูปภาพ","text"],
+["published","เผยแพร่","checkbox"]
+],
+cols:[
+"title","status","budget",
+"start_date","end_date","published"
+]
+},
+
+services:{
+title:"บริการ",
+fields:[
+["title","ชื่อบริการ","text"],
+["description","รายละเอียด","textarea"],
+["contact","ติดต่อ","text"],
+["link_url","ลิงก์","text"],
+["active","เปิดใช้งาน","checkbox"]
+],
+cols:["title","contact","active"]
+},
+
+environment:{
+title:"PM2.5",
+fields:[
+["measured_at","เวลาวัด","datetime-local"],
+["pm25","PM2.5","number"],
+["temperature","อุณหภูมิ","number"],
+["humidity","ความชื้น","number"],
+["rain_chance","โอกาสฝน","number"],
+["wind","ลม","text"],
+["source","แหล่งข้อมูล","text"]
+],
+cols:[
+"measured_at","pm25",
+"temperature","humidity","wind","source"
+]
+},
+
+water_source:{
+title:"แหล่งซับน้ำจำ",
+fields:[
+["name","ชื่อ","text"],
+["description","รายละเอียด","textarea"],
+["status","สถานะ","text"],
+["image_url","URL รูปภาพ","text"]
+],
+cols:["name","status","image_url"]
+},
+
+rice_group:{
+title:"กลุ่มข้าวสาร",
+fields:[
+["member_name","ชื่อสมาชิก","text"],
+["household_no","บ้านเลขที่","text"],
+["status","สถานะ","text"],
+["sent_count","ส่งแล้ว","number"],
+["pending_count","ค้างส่ง","number"],
+["notes","หมายเหตุ","textarea"]
+],
+cols:[
+"member_name","household_no",
+"status","sent_count","pending_count"
+]
+}
+
+};
 
 
-  link.href =
-    URL.createObjectURL(blob);
+/* =========================================================
+   HELPERS
+========================================================= */
 
+function escapeHtml(value){
 
-  link.download =
-    'rongkhem-backup.json';
+if(value===null || value===undefined) return "";
 
+return String(value).replace(/[&<>"']/g,function(m){
 
-  link.click();
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[m];
+
+});
 
 }
 
 
-function restore() {
+function formatValue(value){
 
-  const input =
-    document.createElement('input');
+if(value===true) return "✅";
+if(value===false) return "❌";
+if(value===null || value===undefined) return "";
 
-
-  input.type = 'file';
-
-  input.accept = '.json';
-
-
-  input.onchange = async () => {
-
-    try {
-
-      const fileText =
-        await input.files[0].text();
-
-
-      rkSave(
-        JSON.parse(fileText)
-      );
-
-
-      renderAll();
-
-      alert(
-        'นำเข้าข้อมูลสำเร็จ'
-      );
-
-    } catch (error) {
-
-      alert(
-        'ไฟล์ไม่ถูกต้อง'
-      );
-
-    }
-
-  };
-
-
-  input.click();
+return escapeHtml(value);
 
 }
 
 
-function resetData() {
+function tableNameLabel(table){
 
-  if (
-    confirm(
-      'คืนค่าเริ่มต้น? ข้อมูลที่แก้ไขจะหาย'
-    )
-  ) {
-
-    localStorage.removeItem(
-      RK_KEY
-    );
-
-    renderAll();
-
-  }
+return schemas[table]?.title || table;
 
 }
 
 
-renderAll();
+/* =========================================================
+   ADMIN CHECK
+========================================================= */
+
+async function requireAdmin(){
+
+if(!sb){
+  alert("ไม่พบการตั้งค่า Supabase ใน config.js");
+  return false;
+}
+
+const {
+data:{session}
+}=await sb.auth.getSession();
+
+if(!session){
+
+location.href="login.html";
+
+return false;
+
+}
+
+const {data,error}=await sb
+.from("admin_users")
+.select("user_id")
+.eq("user_id",session.user.id)
+.maybeSingle();
+
+if(error || !data){
+
+await sb.auth.signOut();
+
+location.href="login.html";
+
+return false;
+
+}
+
+return true;
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+document.querySelectorAll(".nav").forEach(function(nav){
+
+nav.addEventListener("click",function(){
+
+document.querySelectorAll(".nav")
+.forEach(function(x){
+x.classList.remove("active");
+});
+
+nav.classList.add("active");
+
+document.querySelectorAll(".section")
+.forEach(function(x){
+x.classList.remove("active");
+});
+
+const section=
+document.getElementById(nav.dataset.sec);
+
+if(section){
+section.classList.add("active");
+}
+
+const sec=nav.dataset.sec;
+
+if(sec==="overview"){
+loadOverview();
+}
+
+if(sec==="settings"){
+loadSettings();
+}
+
+if(schemas[sec]){
+loadTable(sec);
+}
+
+if(sec==="media"){
+loadMedia();
+}
+
+});
+
+});
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+document.getElementById("logout")
+.addEventListener("click",async function(){
+
+if(!confirm("ต้องการออกจากระบบหรือไม่?")) return;
+
+if(sb){
+await sb.auth.signOut();
+}
+
+location.href="login.html";
+
+});
+
+
+/* =========================================================
+   OVERVIEW
+========================================================= */
+
+async function loadOverview(){
+
+if(!sb) return;
+
+const {data,error}=await sb
+.from("village_settings")
+.select("*")
+.limit(1)
+.maybeSingle();
+
+if(error){
+
+document.getElementById("overviewMsg").textContent=
+"เกิดข้อผิดพลาด: "+error.message;
+
+return;
+
+}
+
+if(!data){
+
+document.getElementById("overviewMsg").textContent=
+"ยังไม่มีข้อมูลหมู่บ้าน";
+
+return;
+
+}
+
+document.getElementById("oPop").textContent=
+Number(data.population_total || 0)
+.toLocaleString("th-TH");
+
+document.getElementById("oHouse").textContent=
+Number(data.households_total || 0)
+.toLocaleString("th-TH");
+
+document.getElementById("oElder").textContent=
+Number(data.elderly_60plus || 0)
+.toLocaleString("th-TH");
+
+document.getElementById("oVuln").textContent=
+Number(data.vulnerable_selections || 0)
+.toLocaleString("th-TH");
+
+document.getElementById("overviewMsg").textContent=
+"✓ โหลดข้อมูลล่าสุดแล้ว";
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+async function loadSettings(){
+
+if(!sb) return;
+
+document.getElementById("settingsMsg").textContent=
+"กำลังโหลด...";
+
+const {data,error}=await sb
+.from("village_settings")
+.select("*")
+.limit(1)
+.maybeSingle();
+
+if(error || !data){
+
+document.getElementById("settingsMsg").textContent=
+error?.message || "ไม่พบข้อมูลหมู่บ้าน";
+
+return;
+
+}
+
+settingsRow=data;
+
+const map={
+
+sVillage:"village_name",
+sNo:"village_no",
+sSub:"subdistrict",
+sDist:"district",
+sProv:"province",
+
+sLeader:"leader_name",
+sRole:"leader_role",
+sPhone:"phone",
+sLine:"line_id",
+sHours:"office_hours",
+
+sPop:"population_total",
+sMale:"population_male",
+sFemale:"population_female",
+sHouse:"households_total",
+sSurvey:"survey_respondents",
+
+sElder:"elderly_60plus",
+sPct:"elderly_percent",
+sDisabled:"disabled_count",
+sChronic:"chronic_count",
+sVuln:"vulnerable_selections"
+
+};
+
+Object.entries(map).forEach(function(pair){
+
+const id=pair[0];
+const key=pair[1];
+
+const el=document.getElementById(id);
+
+if(el){
+el.value=data[key] ?? "";
+}
+
+});
+
+document.getElementById("settingsMsg").textContent=
+"✓ โหลดข้อมูลเรียบร้อย";
+
+}
+
+
+document.getElementById("saveSettings")
+.addEventListener("click",async function(){
+
+if(!sb) return;
+
+const msg=document.getElementById("settingsMsg");
+
+msg.textContent="กำลังบันทึก...";
+
+const values={
+
+village_name:sVillage.value,
+village_no:Number(sNo.value || 0),
+
+subdistrict:sSub.value,
+district:sDist.value,
+province:sProv.value,
+
+leader_name:sLeader.value,
+leader_role:sRole.value,
+phone:sPhone.value,
+line_id:sLine.value,
+office_hours:sHours.value,
+
+population_total:Number(sPop.value || 0),
+population_male:Number(sMale.value || 0),
+population_female:Number(sFemale.value || 0),
+
+households_total:Number(sHouse.value || 0),
+
+survey_respondents:Number(sSurvey.value || 0),
+survey_households:Number(sHouse.value || 0),
+
+elderly_60plus:Number(sElder.value || 0),
+elderly_percent:Number(sPct.value || 0),
+
+disabled_count:Number(sDisabled.value || 0),
+chronic_count:Number(sChronic.value || 0),
+
+vulnerable_selections:Number(sVuln.value || 0),
+
+updated_at:new Date().toISOString()
+
+};
+
+let result;
+
+if(settingsRow?.id){
+
+result=await sb
+.from("village_settings")
+.update(values)
+.eq("id",settingsRow.id);
+
+}else{
+
+result=await sb
+.from("village_settings")
+.insert(values);
+
+}
+
+if(result.error){
+
+msg.textContent="❌ "+result.error.message;
+
+}else{
+
+msg.textContent="✓ บันทึกข้อมูลเรียบร้อย";
+
+await loadSettings();
+await loadOverview();
+
+}
+
+});
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+async function loadTable(table){
+
+if(!sb) return;
+
+const cfg=schemas[table];
+
+if(!cfg) return;
+
+const el=document.getElementById(table+"Table");
+
+if(!el) return;
+
+el.innerHTML=
+"<tr><td>กำลังโหลด...</td></tr>";
+
+let query=sb
+.from(table)
+.select("*");
+
+if(table==="people"){
+
+const keyword=
+document.getElementById("peopleSearch")?.value?.trim();
+
+if(keyword){
+
+query=query.or(
+"first_name.ilike.%"+keyword+"%,"+
+"last_name.ilike.%"+keyword+"%,"+
+"house_no.ilike.%"+keyword+"%"
+);
+
+}
+
+}
+
+const {data,error}=await query
+.order("created_at",{ascending:false})
+.limit(500);
+
+if(error){
+
+el.innerHTML=
+"<tr><td class='error'>"+
+escapeHtml(error.message)+
+"</td></tr>";
+
+return;
+
+}
+
+const rows=data || [];
+
+if(!rows.length){
+
+el.innerHTML=
+"<tr><td class='empty' colspan='20'>ยังไม่มีข้อมูล</td></tr>";
+
+return;
+
+}
+
+el.innerHTML=
+
+"<thead><tr>"+
+
+cfg.cols.map(function(c){
+return "<th>"+escapeHtml(c)+"</th>";
+}).join("")
+
++
+
+"<th>จัดการ</th></tr></thead>"
+
++
+
+"<tbody>"
+
++
+
+rows.map(function(row){
+
+return "<tr>"
+
++
+
+cfg.cols.map(function(c){
+
+return "<td>"+formatValue(row[c])+"</td>";
+
+}).join("")
+
++
+
+"<td><div class='rowactions'>"
+
++
+
+"<button class='btn' onclick='editRecord("+
+JSON.stringify(table)+","+
+JSON.stringify(row.id)+
+")'>✏️ แก้ไข</button>"
+
++
+
+"<button class='btn danger' onclick='deleteRecord("+
+JSON.stringify(table)+","+
+JSON.stringify(row.id)+
+")'>🗑️ ลบ</button>"
+
++
+
+"</div></td>"
+
++
+
+"</tr>";
+
+}).join("")
+
++
+
+"</tbody>";
+
+}
+
+
+document.getElementById("peopleSearch")
+?.addEventListener("input",function(){
+
+clearTimeout(window.peopleSearchTimer);
+
+window.peopleSearchTimer=setTimeout(function(){
+
+loadTable("people");
+
+},400);
+
+});
+
+
+/* =========================================================
+   FORM BUILDER
+========================================================= */
+
+function fieldHtml(field,value){
+
+const key=field[0];
+const label=field[1];
+const type=field[2] || "text";
+
+const safeValue=value ?? "";
+
+if(type==="textarea"){
+
+return `
+<label class="wide">
+${label}
+<textarea data-field="${key}">${escapeHtml(safeValue)}</textarea>
+</label>
+`;
+
+}
+
+if(type==="checkbox"){
+
+return `
+<label>
+${label}<br>
+<input
+data-field="${key}"
+type="checkbox"
+${safeValue===true ? "checked" : ""}
+>
+</label>
+`;
+
+}
+
+return `
+<label>
+${label}
+<input
+data-field="${key}"
+type="${type}"
+value="${escapeHtml(safeValue)}"
+>
+</label>
+`;
+
+}
+
+
+function newRecord(table){
+
+const cfg=schemas[table];
+
+if(!cfg) return;
+
+const box=document.getElementById(table+"Form");
+
+box.innerHTML=
+
+"<div class='panel'>"
+
++
+
+"<h3>"+cfg.title+" — เพิ่มข้อมูล</h3>"
+
++
+
+"<div class='formgrid'>"
+
++
+
+cfg.fields.map(function(field){
+
+let defaultValue="";
+
+if(field[2]==="checkbox"){
+defaultValue=false;
+}
+
+return fieldHtml(field,defaultValue);
+
+}).join("")
+
++
+
+"</div>"
+
++
+
+"<div class='toolbar'>"
+
++
+
+"<button class='btn green' onclick='saveRecord("+
+JSON.stringify(table)+
+")'>💾 บันทึก</button>"
+
++
+
+"<button class='btn' onclick='cancelForm("+
+JSON.stringify(table)+
+")'>ยกเลิก</button>"
+
++
+
+"</div></div>";
+
+box.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+function cancelForm(table){
+
+const box=document.getElementById(table+"Form");
+
+if(box) box.innerHTML="";
+
+}
+
+
+/* =========================================================
+   EDIT
+========================================================= */
+
+async function editRecord(table,id){
+
+if(!sb) return;
+
+const cfg=schemas[table];
+
+if(!cfg) return;
+
+const {data,error}=await sb
+.from(table)
+.select("*")
+.eq("id",id)
+.single();
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+const box=document.getElementById(table+"Form");
+
+box.innerHTML=
+
+"<div class='panel'>"
+
++
+
+"<h3>"+cfg.title+" — แก้ไขข้อมูล</h3>"
+
++
+
+"<div class='formgrid'>"
+
++
+
+cfg.fields.map(function(field){
+
+return fieldHtml(
+field,
+data[field[0]]
+);
+
+}).join("")
+
++
+
+"</div>"
+
++
+
+"<div class='toolbar'>"
+
++
+
+"<button class='btn green' onclick='updateRecord("+
+JSON.stringify(table)+","+
+JSON.stringify(id)+
+")'>💾 บันทึกการแก้ไข</button>"
+
++
+
+"<button class='btn' onclick='cancelForm("+
+JSON.stringify(table)+
+")'>ยกเลิก</button>"
+
++
+
+"</div></div>";
+
+box.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+}
+
+
+/* =========================================================
+   COLLECT FORM
+========================================================= */
+
+function collectForm(table){
+
+const obj={};
+
+document
+.querySelectorAll("#"+table+"Form [data-field]")
+.forEach(function(el){
+
+if(el.type==="checkbox"){
+
+obj[el.dataset.field]=el.checked;
+
+}else if(el.type==="number"){
+
+obj[el.dataset.field]=
+el.value==="" ? null : Number(el.value);
+
+}else{
+
+obj[el.dataset.field]=
+el.value==="" ? null : el.value;
+
+}
+
+});
+
+return obj;
+
+}
+
+
+/* =========================================================
+   INSERT
+========================================================= */
+
+async function saveRecord(table){
+
+if(!sb) return;
+
+const obj=collectForm(table);
+
+const {error}=await sb
+.from(table)
+.insert(obj);
+
+if(error){
+
+alert("❌ "+error.message);
+
+return;
+
+}
+
+alert("✓ บันทึกข้อมูลสำเร็จ");
+
+cancelForm(table);
+
+loadTable(table);
+
+}
+
+
+/* =========================================================
+   UPDATE
+========================================================= */
+
+async function updateRecord(table,id){
+
+if(!sb) return;
+
+const obj=collectForm(table);
+
+const {error}=await sb
+.from(table)
+.update(obj)
+.eq("id",id);
+
+if(error){
+
+alert("❌ "+error.message);
+
+return;
+
+}
+
+alert("✓ แก้ไขข้อมูลสำเร็จ");
+
+cancelForm(table);
+
+loadTable(table);
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+async function deleteRecord(table,id){
+
+if(!confirm(
+"ยืนยันว่าต้องการลบข้อมูลรายการนี้?"
+)){
+return;
+}
+
+const {error}=await sb
+.from(table)
+.delete()
+.eq("id",id);
+
+if(error){
+
+alert("❌ "+error.message);
+
+return;
+
+}
+
+alert("✓ ลบข้อมูลเรียบร้อย");
+
+loadTable(table);
+
+}
+
+
+/* =========================================================
+   COMPLAINTS
+========================================================= */
+
+async function loadComplaints(){
+
+if(!sb) return;
+
+const el=document.getElementById("complaintsTable");
+
+const {data,error}=await sb
+.from("complaints")
+.select("*")
+.order("created_at",{ascending:false})
+.limit(500);
+
+if(error){
+
+el.innerHTML=
+"<tr><td class='error'>"+
+escapeHtml(error.message)+
+"</td></tr>";
+
+return;
+
+}
+
+const rows=data || [];
+
+if(!rows.length){
+
+el.innerHTML=
+"<tr><td class='empty'>ยังไม่มีเรื่องร้องเรียน</td></tr>";
+
+return;
+
+}
+
+const cols=[
+"tracking_no",
+"title",
+"status",
+"reporter_name",
+"created_at"
+];
+
+el.innerHTML=
+
+"<thead><tr>"
+
++
+
+cols.map(function(c){
+return "<th>"+c+"</th>";
+}).join("")
+
++
+
+"<th>จัดการ</th>"
+
++
+
+"</tr></thead><tbody>"
+
++
+
+rows.map(function(r){
+
+return "<tr>"
+
++
+
+cols.map(function(c){
+return "<td>"+formatValue(r[c])+"</td>";
+}).join("")
+
++
+
+"<td><div class='rowactions'>"
+
++
+
+"<button class='btn' onclick='editComplaint("+
+JSON.stringify(r.id)+
+")'>✏️</button>"
+
++
+
+"<button class='btn danger' onclick='deleteComplaint("+
+JSON.stringify(r.id)+
+")'>🗑️</button>"
+
++
+
+"</div></td>"
+
++
+
+"</tr>";
+
+}).join("")
+
++
+
+"</tbody>";
+
+}
+
+
+async function editComplaint(id){
+
+const {data,error}=await sb
+.from("complaints")
+.select("*")
+.eq("id",id)
+.single();
+
+if(error){
+alert(error.message);
+return;
+}
+
+const status=prompt(
+"แก้ไขสถานะ",
+data.status || ""
+);
+
+if(status===null) return;
+
+const {error:updateError}=await sb
+.from("complaints")
+.update({status})
+.eq("id",id);
+
+if(updateError){
+alert(updateError.message);
+return;
+}
+
+loadComplaints();
+
+}
+
+
+async function deleteComplaint(id){
+
+if(!confirm("ต้องการลบเรื่องร้องเรียนนี้หรือไม่?")) return;
+
+const {error}=await sb
+.from("complaints")
+.delete()
+.eq("id",id);
+
+if(error){
+alert(error.message);
+return;
+}
+
+loadComplaints();
+
+}
+
+
+/* =========================================================
+   OVERRIDE COMPLAINT NAV
+========================================================= */
+
+const originalLoadTable=loadTable;
+
+loadTable=async function(table){
+
+if(table==="complaints"){
+return loadComplaints();
+}
+
+return originalLoadTable(table);
+
+};
+
+
+/* =========================================================
+   MEDIA
+========================================================= */
+
+document.getElementById("uploadBtn")
+.addEventListener("click",async function(){
+
+if(!sb) return;
+
+const file=
+document.getElementById("mediaFile").files[0];
+
+const msg=
+document.getElementById("uploadMsg");
+
+if(!file){
+
+msg.textContent=
+"กรุณาเลือกไฟล์ก่อน";
+
+return;
+
+}
+
+msg.textContent=
+"กำลังอัปโหลด...";
+
+const safe=file.name
+.replace(/[^a-zA-Z0-9._-]/g,"-");
+
+const path=
+Date.now()+"-"+safe;
+
+const {error}=await sb.storage
+.from("village-media")
+.upload(
+path,
+file,
+{
+upsert:false,
+contentType:file.type
+}
+);
+
+if(error){
+
+msg.textContent=
+"❌ "+error.message;
+
+return;
+
+}
+
+const {data}=sb.storage
+.from("village-media")
+.getPublicUrl(path);
+
+msg.textContent=
+"✓ อัปโหลดสำเร็จ: "+data.publicUrl;
+
+document.getElementById("mediaFile").value="";
+
+loadMedia();
+
+});
+
+
+async function loadMedia(){
+
+if(!sb) return;
+
+const out=document.getElementById("mediaList");
+
+out.innerHTML=
+"<div class='hint'>กำลังโหลด...</div>";
+
+const {data,error}=await sb.storage
+.from("village-media")
+.list(
+"",
+{
+limit:200,
+sortBy:{
+column:"created_at",
+order:"desc"
+}
+}
+);
+
+if(error){
+
+out.innerHTML=
+"<div class='error'>"+
+escapeHtml(error.message)+
+"</div>";
+
+return;
+
+}
+
+const files=data || [];
+
+if(!files.length){
+
+out.innerHTML=
+"<div class='empty'>ยังไม่มีไฟล์</div>";
+
+return;
+
+}
+
+out.innerHTML=files.map(function(file){
+
+const url=sb.storage
+.from("village-media")
+.getPublicUrl(file.name)
+.data.publicUrl;
+
+const isImage=
+/\.(jpg|jpeg|png|gif|webp)$/i
+.test(file.name);
+
+return `
+
+<div class="panel">
+
+<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+
+<div>
+
+<div>${escapeHtml(file.name)}</div>
+
+<a
+href="${url}"
+target="_blank"
+style="color:#8fd8e8;font-size:11px"
+>
+เปิดไฟล์
+</a>
+
+</div>
+
+<div>
+
+<button
+class="btn danger"
+onclick='deleteMedia(${JSON.stringify(file.name)})'
+>
+🗑️ ลบ
+</button>
+
+</div>
+
+</div>
+
+${
+isImage
+?
+`<img class="preview" src="${url}" alt="">`
+:
+""
+}
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+async function deleteMedia(name){
+
+if(!confirm("ต้องการลบไฟล์นี้หรือไม่?")) return;
+
+const {error}=await sb.storage
+.from("village-media")
+.remove([name]);
+
+if(error){
+
+alert(error.message);
+
+return;
+
+}
+
+loadMedia();
+
+}
+
+
+/* =========================================================
+   EXPORT
+========================================================= */
+
+async function exportAll(){
+
+if(!sb){
+alert("ไม่พบการเชื่อมต่อ Supabase");
+return;
+}
+
+const tables=[
+"village_settings",
+"people",
+"households",
+"leaders",
+"announcements",
+"activities",
+"projects",
+"complaints",
+"services",
+"environment",
+"water_source",
+"rice_group"
+];
+
+const backup={
+exported_at:new Date().toISOString(),
+app:"RONGKHEM e-VILLAGE OFFICE",
+data:{}
+};
+
+for(const table of tables){
+
+const {data,error}=await sb
+.from(table)
+.select("*");
+
+if(!error){
+backup.data[table]=data || [];
+}else{
+backup.data[table]=[];
+}
+
+}
+
+const blob=new Blob(
+[
+JSON.stringify(backup,null,2)
+],
+{
+type:"application/json"
+}
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"rongkhem-backup-"+
+new Date().toISOString().slice(0,10)+
+".json";
+
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+
+/* =========================================================
+   IMPORT
+========================================================= */
+
+document.getElementById("importFile")
+.addEventListener("change",function(event){
+
+const file=event.target.files[0];
+
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=async function(e){
+
+try{
+
+const backup=
+JSON.parse(e.target.result);
+
+if(!backup.data){
+
+alert("ไฟล์สำรองข้อมูลไม่ถูกต้อง");
+
+return;
+
+}
+
+if(!confirm(
+"ต้องการนำเข้าข้อมูลหรือไม่?\nข้อมูลที่ ID ซ้ำอาจถูกแทนที่"
+)){
+return;
+}
+
+for(const table in backup.data){
+
+if(!Array.isArray(backup.data[table])){
+continue;
+}
+
+if(!backup.data[table].length){
+continue;
+}
+
+const {error}=await sb
+.from(table)
+.upsert(
+backup.data[table],
+{
+onConflict:"id"
+}
+);
+
+if(error){
+
+console.error(
+"Import error",
+table,
+error
+);
+
+}
+
+}
+
+alert("✓ นำเข้าข้อมูลเรียบร้อย");
+
+refreshAll();
+
+}catch(error){
+
+alert(
+"❌ ไม่สามารถอ่านไฟล์สำรองได้"
+);
+
+console.error(error);
+
+}
+
+};
+
+reader.readAsText(file);
+
+event.target.value="";
+
+});
+
+
+/* =========================================================
+   REFRESH ALL
+========================================================= */
+
+async function refreshAll(){
+
+await loadOverview();
+
+const active=
+document.querySelector(".section.active");
+
+if(!active) return;
+
+const id=active.id;
+
+if(id==="settings"){
+await loadSettings();
+}
+
+if(schemas[id]){
+await loadTable(id);
+}
+
+if(id==="complaints"){
+await loadComplaints();
+}
+
+if(id==="media"){
+await loadMedia();
+}
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+requireAdmin()
+.then(async function(ok){
+
+if(!ok) return;
+
+await loadOverview();
+await loadSettings();
+
+});
 
 </script>
 
