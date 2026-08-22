@@ -4,1861 +4,1647 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+<title>RONGKHEM e-VILLAGE - หน้าแรก</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        thai: ["Noto Sans Thai", "sans-serif"]
+      },
+      colors: {
+        navy: "#001b3d",
+        bluevillage: "#195bb2",
+        gold: "#fdbc13"
+      }
+    }
+  }
+}
+</script>
 
 <style>
-
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
 }
 
 html{
-    scroll-behavior:smooth;
+  scroll-behavior:smooth;
 }
 
 body{
-    font-family:"Noto Sans Thai",sans-serif;
-    background:#f4f7fb;
-    color:#183247;
-    line-height:1.6;
+  margin:0;
+  font-family:"Noto Sans Thai",sans-serif;
+  background:#f8f9fa;
+  color:#191c1d;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+/* HERO */
+
+.hero-overlay{
+  background:
+  linear-gradient(
+    90deg,
+    rgba(0,27,61,.95) 0%,
+    rgba(0,27,61,.72) 48%,
+    rgba(0,27,61,.30) 100%
+  );
 }
 
-img{
-    max-width:100%;
+.glass-panel{
+  background:rgba(0,27,61,.78);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.15);
 }
 
-/* =========================
-HEADER
-========================= */
-
-header{
-    background:#ffffff;
-    position:sticky;
-    top:0;
-    z-index:1000;
-    box-shadow:0 2px 15px rgba(0,0,0,.08);
-}
-
-.nav{
-    max-width:1200px;
-    margin:auto;
-    padding:12px 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.brand-logo{
-    width:52px;
-    height:52px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#075aa7,#0b8bd6);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:27px;
-    box-shadow:0 6px 15px rgba(0,90,170,.2);
-}
-
-.brand-text h1{
-    font-size:19px;
-    color:#063d6b;
-    line-height:1.2;
-}
-
-.brand-text p{
-    font-size:12px;
-    color:#607080;
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:22px;
-    font-size:14px;
-    font-weight:500;
-}
-
-.nav-links a:hover{
-    color:#0871c9;
-}
-
-.login-link{
-    background:#075ca8;
-    color:#fff !important;
-    padding:9px 17px;
-    border-radius:9px;
-}
-
-.mobile-menu{
-    display:none;
-    border:0;
-    background:none;
-    font-size:28px;
-}
-
-/* =========================
-HERO
-========================= */
-
-.hero{
-    background:
-    linear-gradient(135deg,rgba(3,46,83,.94),rgba(8,104,184,.86)),
-    url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=80");
-    background-size:cover;
-    background-position:center;
-    color:#fff;
-}
-
-.hero-inner{
-    max-width:1200px;
-    margin:auto;
-    min-height:560px;
-    padding:70px 20px;
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    align-items:center;
-    gap:40px;
-}
-
-.hero-text small{
-    display:inline-block;
-    background:rgba(255,255,255,.15);
-    border:1px solid rgba(255,255,255,.25);
-    padding:7px 15px;
-    border-radius:30px;
-    margin-bottom:15px;
-}
-
-.hero-text h2{
-    font-size:48px;
-    line-height:1.25;
-    margin-bottom:15px;
-}
-
-.hero-text h2 span{
-    color:#9ed8ff;
-}
-
-.hero-text p{
-    font-size:18px;
-    max-width:650px;
-    opacity:.94;
-}
-
-.hero-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:25px;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:12px 20px;
-    border-radius:10px;
-    font-weight:600;
-    border:none;
-    cursor:pointer;
-}
-
-.btn-primary{
-    background:#fff;
-    color:#075ca8;
-}
-
-.btn-outline{
-    border:1px solid rgba(255,255,255,.7);
-    color:#fff;
-    background:transparent;
-}
-
-/* =========================
-LIVE INFO
-========================= */
-
-.live-panel{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:28px;
-}
+/* TOP INFO */
 
 .live-card{
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(10px);
-    border:1px solid rgba(255,255,255,.18);
-    padding:15px;
-    border-radius:14px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(8px);
 }
 
-.live-card .material-icons-round{
-    font-size:25px;
-    color:#a9dcff;
-}
-
-.live-card small{
-    display:block;
-    margin:5px 0 0;
-    padding:0;
-    background:none;
-    border:0;
-    font-size:12px;
-}
-
-.live-card strong{
-    font-size:16px;
-}
-
-/* =========================
-VILLAGE HEAD CARD
-========================= */
-
-.village-head-card{
-    background:#fff;
-    color:#183247;
-    border-radius:24px;
-    padding:20px;
-    box-shadow:0 25px 60px rgba(0,0,0,.25);
-    text-align:center;
-}
-
-.village-head-photo{
-    width:210px;
-    height:250px;
-    object-fit:cover;
-    border-radius:18px;
-    margin:auto;
-    display:block;
-    background:#e7eef5;
-}
-
-.village-head-card h3{
-    margin-top:16px;
-    font-size:22px;
-    color:#073e6d;
-}
-
-.village-head-card .position{
-    color:#0871c9;
-    font-weight:600;
-}
-
-.village-head-card .address{
-    font-size:13px;
-    color:#617283;
-    margin-top:5px;
-}
-
-.quote{
-    margin:15px 0;
-    padding:12px;
-    background:#eef7ff;
-    border-radius:10px;
-    color:#075ca8;
-    font-size:14px;
-}
-
-.head-actions{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:8px;
-}
-
-.head-actions a{
-    background:#075ca8;
-    color:#fff;
-    padding:10px;
-    border-radius:9px;
-    font-size:13px;
-}
-
-.head-actions a:last-child{
-    background:#eff6fc;
-    color:#075ca8;
-}
-
-/* =========================
-WELCOME
-========================= */
-
-.welcome{
-    max-width:1200px;
-    margin:55px auto;
-    padding:0 20px;
-}
-
-.welcome-box{
-    background:linear-gradient(135deg,#ffffff,#edf7ff);
-    border-radius:24px;
-    padding:45px;
-    text-align:center;
-    box-shadow:0 10px 35px rgba(0,0,0,.05);
-}
-
-.welcome-box small{
-    color:#0871c9;
-    font-weight:700;
-}
-
-.welcome-box h2{
-    font-size:34px;
-    color:#073e6d;
-    margin:5px 0 8px;
-}
-
-.welcome-box > p{
-    color:#607080;
-}
-
-.welcome-features{
-    margin-top:30px;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.welcome-feature{
-    padding:22px;
-    background:#fff;
-    border-radius:16px;
-    box-shadow:0 5px 20px rgba(0,0,0,.05);
-}
-
-.welcome-feature .material-icons-round{
-    font-size:35px;
-    color:#0871c9;
-}
-
-.welcome-feature h4{
-    margin-top:7px;
-    color:#073e6d;
-}
-
-/* =========================
-SECTION
-========================= */
-
-.section{
-    max-width:1200px;
-    margin:65px auto;
-    padding:0 20px;
-}
-
-.section-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-    margin-bottom:25px;
-}
-
-.section-header h2{
-    font-size:27px;
-    color:#073e6d;
-}
-
-.section-header p{
-    color:#71808f;
-    font-size:14px;
-}
-
-.section-header a{
-    color:#0871c9;
-    font-weight:600;
-}
-
-/* =========================
-ASSISTANTS
-========================= */
-
-.assistant-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:25px;
-}
-
-.assistant-card{
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    display:flex;
-    min-height:250px;
-    box-shadow:0 8px 28px rgba(0,0,0,.07);
-}
-
-.assistant-card img{
-    width:42%;
-    object-fit:cover;
-    background:#e8eef4;
-}
-
-.assistant-info{
-    padding:25px;
-    flex:1;
-}
-
-.assistant-info h3{
-    color:#073e6d;
-    font-size:20px;
-}
-
-.assistant-info .role{
-    color:#0871c9;
-    font-weight:600;
-    font-size:14px;
-    margin:5px 0 10px;
-}
-
-.assistant-info p{
-    font-size:13px;
-    color:#657686;
-}
-
-.assistant-phone{
-    margin-top:17px;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
-    color:#075ca8;
-    font-weight:600;
-}
-
-/* =========================
-SERVICE MENU
-========================= */
-
-.service-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:18px;
-}
+/* SERVICE */
 
 .service-card{
-    background:#fff;
-    padding:25px 15px;
-    border-radius:18px;
-    text-align:center;
-    box-shadow:0 7px 25px rgba(0,0,0,.05);
-    transition:.25s;
-    min-height:150px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
+  transition:.25s;
 }
 
 .service-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 15px 30px rgba(0,70,130,.12);
+  transform:translateY(-5px);
+  box-shadow:0 15px 30px rgba(0,0,0,.12);
 }
 
-.service-card .material-icons-round{
-    width:55px;
-    height:55px;
-    border-radius:16px;
-    background:#eaf5ff;
-    color:#0871c9;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:29px;
-    margin-bottom:10px;
-}
-
-.service-card h4{
-    font-size:15px;
-    color:#183247;
-}
-
-/* =========================
-CONTENT GRID
-========================= */
-
-.content-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-}
-
-.news-card{
-    background:#fff;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 7px 25px rgba(0,0,0,.06);
-}
-
-.news-card img{
-    width:100%;
-    height:190px;
-    object-fit:cover;
-}
-
-.news-card-content{
-    padding:18px;
-}
-
-.news-card h3{
-    color:#073e6d;
-    font-size:17px;
-}
-
-.news-card p{
-    font-size:13px;
-    color:#71808f;
-    margin-top:6px;
-}
-
-/* =========================
-SUBNAMJAM
-========================= */
-
-.water-section{
-    background:#073e6d;
-    padding:70px 0;
-    color:#fff;
-}
-
-.water-inner{
-    max-width:1200px;
-    margin:auto;
-    padding:0 20px;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:45px;
-    align-items:center;
-}
-
-.water-images{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-}
-
-.water-images img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-radius:16px;
-}
-
-.water-images img:first-child{
-    grid-column:span 2;
-    height:280px;
-}
-
-.water-text h2{
-    font-size:32px;
-}
-
-.water-text p{
-    margin-top:15px;
-    opacity:.88;
-}
-
-/* =========================
-IMPORTANT
-========================= */
-
-.important-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.important-card{
-    background:#fff;
-    padding:25px;
-    border-radius:18px;
-    border-left:5px solid #0871c9;
-    box-shadow:0 6px 22px rgba(0,0,0,.05);
-}
-
-.important-card .material-icons-round{
-    color:#0871c9;
-    font-size:30px;
-}
-
-.important-card h3{
-    margin:10px 0 5px;
-    font-size:17px;
-    color:#073e6d;
-}
-
-.important-card p{
-    color:#71808f;
-    font-size:13px;
-}
-
-/* =========================
-STATS
-========================= */
-
-.stats{
-    background:#eaf5ff;
-    padding:60px 20px;
-}
-
-.stats-grid{
-    max-width:1000px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-}
-
-.stat-card{
-    background:#fff;
-    text-align:center;
-    padding:30px;
-    border-radius:18px;
-}
-
-.stat-card .material-icons-round{
-    font-size:36px;
-    color:#0871c9;
-}
-
-.stat-card strong{
-    display:block;
-    font-size:27px;
-    color:#073e6d;
-    margin:8px 0;
-}
-
-.stat-card span{
-    color:#71808f;
-    font-size:14px;
-}
-
-/* =========================
-AI
-========================= */
+/* AI */
 
 .ai-button{
-    position:fixed;
-    right:25px;
-    bottom:25px;
-    width:70px;
-    height:70px;
-    border-radius:50%;
-    border:4px solid #fff;
-    background:linear-gradient(135deg,#064c88,#0b9ceb);
-    box-shadow:0 10px 30px rgba(0,70,150,.4);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    cursor:pointer;
-    z-index:2000;
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  border:none;
+  cursor:pointer;
+  z-index:9999;
+  background:linear-gradient(135deg,#001b3d,#195bb2,#00a8ff);
+  color:white;
+  box-shadow:0 10px 30px rgba(0,27,61,.45);
+  animation:pulse 2s infinite;
 }
 
-.ai-button .material-icons-round{
-    font-size:38px;
+.ai-button:hover{
+  transform:scale(1.08);
 }
 
-.ai-chat{
-    position:fixed;
-    right:25px;
-    bottom:108px;
-    width:350px;
-    max-width:calc(100vw - 30px);
-    background:#fff;
-    border-radius:20px;
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
-    overflow:hidden;
-    display:none;
-    z-index:2000;
+@keyframes pulse{
+  0%{
+    box-shadow:0 0 0 0 rgba(25,91,178,.6);
+  }
+  70%{
+    box-shadow:0 0 0 18px rgba(25,91,178,0);
+  }
+  100%{
+    box-shadow:0 0 0 0 rgba(25,91,178,0);
+  }
 }
 
-.ai-chat.show{
-    display:block;
+.ai-box{
+  position:fixed;
+  right:25px;
+  bottom:110px;
+  width:360px;
+  max-width:calc(100vw - 30px);
+  background:white;
+  border-radius:22px;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
+  z-index:9998;
+  overflow:hidden;
+  display:none;
+}
+
+.ai-box.show{
+  display:block;
 }
 
 .ai-header{
-    background:linear-gradient(135deg,#064c88,#0b8bd6);
-    color:#fff;
-    padding:17px;
-    display:flex;
-    align-items:center;
-    gap:10px;
+  background:linear-gradient(135deg,#001b3d,#195bb2);
+  color:white;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
 }
 
-.ai-header .material-icons-round{
-    font-size:32px;
+.ai-robot{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:#fff;
+  color:#195bb2;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
 }
 
 .ai-body{
-    padding:15px;
-    height:300px;
-    overflow-y:auto;
-    background:#f6f9fc;
+  padding:18px;
 }
 
-.ai-message{
-    background:#e8f4ff;
-    padding:11px;
-    border-radius:12px;
-    margin-bottom:10px;
-    font-size:13px;
-}
-
-.user-message{
-    background:#075ca8;
-    color:#fff;
-    margin-left:30px;
+.ai-answer{
+  min-height:90px;
+  background:#f3f6fa;
+  padding:14px;
+  border-radius:14px;
+  font-size:14px;
+  line-height:1.7;
 }
 
 .ai-input{
-    display:flex;
-    gap:8px;
-    padding:10px;
-    border-top:1px solid #eee;
+  width:100%;
+  border:1px solid #d6dce5;
+  border-radius:12px;
+  padding:12px;
+  margin-top:12px;
+  outline:none;
 }
 
-.ai-input input{
-    flex:1;
-    border:1px solid #d7e0e8;
-    border-radius:9px;
-    padding:10px;
-    outline:none;
-    font-family:inherit;
+.ai-send{
+  width:100%;
+  border:none;
+  margin-top:10px;
+  background:#195bb2;
+  color:white;
+  padding:12px;
+  border-radius:12px;
+  cursor:pointer;
 }
 
-.ai-input button{
-    border:0;
-    background:#075ca8;
-    color:#fff;
-    width:45px;
-    border-radius:9px;
+.ai-speak{
+  width:100%;
+  border:none;
+  margin-top:8px;
+  background:#001b3d;
+  color:white;
+  padding:10px;
+  border-radius:12px;
+  cursor:pointer;
 }
 
-/* =========================
-FOOTER
-========================= */
+@media(max-width:768px){
 
-footer{
-    background:#042b4d;
-    color:#d9e7f3;
-    padding:40px 20px;
-    text-align:center;
-}
+  .ai-box{
+    right:15px;
+    bottom:95px;
+  }
 
-footer h3{
-    color:#fff;
-}
-
-footer p{
-    margin-top:8px;
-    font-size:13px;
-}
-
-.footer-contact{
-    margin-top:15px;
-}
-
-/* =========================
-RESPONSIVE
-========================= */
-
-@media(max-width:950px){
-
-    .hero-inner,
-    .water-inner{
-        grid-template-columns:1fr;
-    }
-
-    .hero-text{
-        text-align:center;
-    }
-
-    .live-panel{
-        max-width:650px;
-        margin:28px auto;
-    }
-
-    .village-head-card{
-        max-width:500px;
-        margin:auto;
-    }
-
-    .service-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
-
-    .content-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .assistant-grid{
-        grid-template-columns:1fr;
-    }
+  .ai-button{
+    right:15px;
+    bottom:15px;
+  }
 
 }
-
-@media(max-width:700px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .hero-text h2{
-        font-size:35px;
-    }
-
-    .welcome-features,
-    .important-grid,
-    .stats-grid{
-        grid-template-columns:1fr;
-    }
-
-    .service-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .content-grid{
-        grid-template-columns:1fr;
-    }
-
-    .live-panel{
-        grid-template-columns:1fr;
-    }
-
-    .assistant-card{
-        flex-direction:column;
-    }
-
-    .assistant-card img{
-        width:100%;
-        height:280px;
-    }
-
-    .section-header{
-        align-items:start;
-        flex-direction:column;
-        gap:8px;
-    }
-
-}
-
 </style>
 </head>
 
 <body>
 
-<header>
-    <div class="nav">
+<!-- ================= HEADER ================= -->
 
-        <a href="#" class="brand">
-            <div class="brand-logo">
-                <span class="material-icons-round">account_balance</span>
-            </div>
+<header class="bg-[#001b3d] shadow-md sticky top-0 z-50">
 
-            <div class="brand-text">
-                <h1>RONGKHEM e-VILLAGE</h1>
-                <p>ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
-            </div>
-        </a>
+<div class="max-w-[1280px] mx-auto px-6 py-4 flex justify-between items-center">
 
-        <nav class="nav-links">
-            <a href="#home">หน้าแรก</a>
-            <a href="#village">ข้อมูลหมู่บ้าน</a>
-            <a href="#services">บริการประชาชน</a>
-            <a href="#news">ข่าวสาร/ประกาศ</a>
-            <a href="#contact">ติดต่อผู้ใหญ่บ้าน</a>
-            <a href="login.html" class="login-link">
-                เข้าสู่ระบบ
-            </a>
-        </nav>
+<div class="flex items-center gap-3 text-white">
 
-        <button class="mobile-menu">
-            <span class="material-icons-round">menu</span>
-        </button>
+<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1">
 
-    </div>
+<img
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbo5mzs_uuXFtNu1b6BjqXBzUOnKmIKDqFf4EAQOe1h5LiQ6Ekzms9vMx4F8n55nl62yVL3XwNyN59F8M_he9HD-pmgEzU-azxwJox-h6LJp7kSPbCaG27Q9oWgzRX_zNDOc4nI_trfavRxOOYIOAhVplLph3MB3gWa1s4ZnaDlqpf6ZnBP0EvVwum1kBAKwjt29vYWAVqNaWeBYVLi6B0HkfhYMgEP5OTZdkcqS0saI2FgwRu8M6JxA"
+class="w-full h-full object-contain rounded-full"
+alt="Logo">
+
+</div>
+
+<div>
+
+<h1 class="font-bold text-xl">
+RONGKHEM e-VILLAGE
+</h1>
+
+<p class="text-xs opacity-80">
+ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6
+</p>
+
+</div>
+
+</div>
+
+<nav class="hidden lg:flex gap-6 text-white">
+
+<a href="#home">หน้าแรก</a>
+
+<a href="#village">ข้อมูลหมู่บ้าน</a>
+
+<a href="#services">บริการประชาชน</a>
+
+<a href="#news">ข่าวสาร/ประกาศ</a>
+
+<a href="#contact">ติดต่อผู้ใหญ่บ้าน</a>
+
+</nav>
+
+<a
+href="login.html"
+class="bg-[#b1c7f2] text-[#001b3d] px-4 py-2 rounded-full font-semibold">
+เข้าสู่ระบบ
+</a>
+
+</div>
+
 </header>
 
 
-<section class="hero" id="home">
+<main>
 
-    <div class="hero-inner">
+<!-- ================= HERO ================= -->
 
-        <div class="hero-text">
+<section id="home" class="relative min-h-[620px] flex items-center">
 
-            <small>
-                ที่ทำการผู้ใหญ่บ้านออนไลน์
-            </small>
+<div class="absolute inset-0">
 
-            <h2>
-                ยินดีต้อนรับสู่<br>
-                <span>RONGKHEM e-VILLAGE</span>
-            </h2>
+<div
+class="w-full h-full bg-cover bg-center"
+style="
+background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUjiVIXMYbiiWbJDMgny5ZhyeYiWfGgfprA3X2RiAxtTdXbKj048O2kYtv0cRgahlplL3y8titWch2fQhcj8hLr12wAbQ1y0QWRpD-iSuhQVYDDG9VQ7_XZ6yAG4c7w2zvIw85rif9JSSVjtCI-LxLZ6C9fuvZK0uAtovirmUQFbEwuvZuY96Abhpwud5nOdTV3T00jo3m60uNdp1a042Gu3Eem41h1yBUrIjSjmC2oq3BKLCx_EwmiDqqqyAFSD8tZ6Q');
+">
+</div>
 
-            <p>
-                การเข้าถึงชุมชนรูปแบบใหม่ อัปเดตข้อมูลข่าวสาร
-                และบริการประชาชนได้อย่างสะดวก รวดเร็ว
-            </p>
+<div class="absolute inset-0 hero-overlay"></div>
 
-            <div class="hero-buttons">
-
-                <a href="#services" class="btn btn-primary">
-                    <span class="material-icons-round">apps</span>
-                    บริการประชาชน
-                </a>
-
-                <a href="#contact" class="btn btn-outline">
-                    <span class="material-icons-round">call</span>
-                    ติดต่อผู้ใหญ่บ้าน
-                </a>
-
-            </div>
-
-            <div class="live-panel">
-
-                <div class="live-card">
-
-                    <span class="material-icons-round">
-                        schedule
-                    </span>
-
-                    <small>เวลาปัจจุบัน</small>
-
-                    <strong id="clock">
-                        --:--:--
-                    </strong>
-
-                </div>
-
-                <div class="live-card">
-
-                    <span class="material-icons-round">
-                        wb_sunny
-                    </span>
-
-                    <small>สภาพอากาศ</small>
-
-                    <strong id="weather">
-                        27°C
-                    </strong>
-
-                </div>
-
-                <div class="live-card">
-
-                    <span class="material-icons-round">
-                        air
-                    </span>
-
-                    <small>PM2.5</small>
-
-                    <strong id="pm25">
-                        กำลังตรวจสอบ
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <!-- รูปผู้ใหญ่บ้าน อยู่ตรงนี้ -->
+<div class="relative z-10 max-w-[1280px] mx-auto px-6 py-20 grid lg:grid-cols-12 gap-10 items-center w-full">
 
-        <div class="village-head-card">
 
-            <img
-                class="village-head-photo"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbo5mzs_uuXFtNu1b6BjqXBzUOnKmIKDqFf4EAQOe1h5LiQ6Ekzms9vMx4F8n55nl62yVL3XwNyN59F8M_he9HD-pmgEzU-azxwJox-h6LJp7kSPbCaG27Q9oWgzRX_zNDOc4nI_trfavRxOOYIOAhVplLph3MB3gWa1s4ZnaDlqpf6ZnBP0EvVwum1kBAKwjt29vYWAVqNaWeBYVLi6B0HkfhYMgEP5OTZdkcqS0saI2FgwRu8M6JxA"
-                alt="ผู้ใหญ่บ้าน">
+<!-- LEFT -->
 
-            <h3>
-                นายศักรนนทน์ ขัติย์วงศ์
-            </h3>
+<div class="lg:col-span-8 text-white">
 
-            <div class="position">
-                ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6
-            </div>
+<p class="text-xl mb-2">
+ยินดีต้อนรับสู่
+</p>
 
-            <div class="address">
-                ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
-            </div>
+<h2 class="text-5xl md:text-6xl font-bold mb-4">
 
-            <div class="quote">
-                “พร้อมดูแลชุมชน ด้วยระบบดิจิทัล”
-            </div>
+RONGKHEM
 
-            <div class="head-actions">
+<span class="text-[#ffdea3]">
+e-VILLAGE
+</span>
 
-                <a href="tel:0801202529">
-                    ติดต่อผู้ใหญ่บ้าน
-                </a>
+</h2>
 
-                <a href="#services">
-                    บริการประชาชน
-                </a>
+<p class="text-xl mb-6">
 
-            </div>
+การเข้าถึงชุมชนรูปแบบใหม่
 
-        </div>
+<strong class="text-[#ffdea3]">
+อัปเดตทันที!
+</strong>
 
-    </div>
+</p>
+
+
+<div class="bg-[#0f2c59] rounded-2xl p-6 max-w-md mb-8">
+
+<p class="text-xl font-bold text-center">
+
+บริการครบ จบในที่เดียว
+
+<br>
+
+ที่ทำการผู้ใหญ่บ้านออนไลน์
+
+</p>
+
+</div>
+
+
+<div class="flex flex-wrap gap-6 mb-8">
+
+<div class="live-card rounded-xl p-4 min-w-[170px]">
+
+<div class="flex items-center gap-2">
+
+<span class="material-symbols-outlined">
+schedule
+</span>
+
+<span>เวลาปัจจุบัน</span>
+
+</div>
+
+<div id="clock" class="text-xl font-bold mt-1">
+--:--:--
+</div>
+
+</div>
+
+
+<div class="live-card rounded-xl p-4 min-w-[170px]">
+
+<div class="flex items-center gap-2">
+
+<span class="material-symbols-outlined">
+wb_sunny
+</span>
+
+<span>สภาพอากาศ</span>
+
+</div>
+
+<div id="weather" class="text-xl font-bold mt-1">
+
+กำลังตรวจสอบ
+
+</div>
+
+</div>
+
+
+<div class="live-card rounded-xl p-4 min-w-[170px]">
+
+<div class="flex items-center gap-2">
+
+<span class="material-symbols-outlined">
+air
+</span>
+
+<span>PM2.5</span>
+
+</div>
+
+<div id="pm25" class="text-xl font-bold mt-1">
+
+กำลังตรวจสอบ
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="flex flex-wrap gap-8">
+
+<div class="flex items-center gap-3">
+
+<span class="material-symbols-outlined text-4xl">
+group
+</span>
+
+<div>
+
+<b>ข้อมูลถูกต้อง</b>
+
+<br>
+
+เชื่อถือได้
+
+</div>
+
+</div>
+
+
+<div class="flex items-center gap-3">
+
+<span class="material-symbols-outlined text-4xl">
+schedule
+</span>
+
+<div>
+
+<b>อัปเดตทันที</b>
+
+<br>
+
+รวดเร็ว
+
+</div>
+
+</div>
+
+
+<div class="flex items-center gap-3">
+
+<span class="material-symbols-outlined text-4xl">
+shield_locked
+</span>
+
+<div>
+
+<b>ปลอดภัย</b>
+
+<br>
+
+มั่นใจได้
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT LEADER -->
+
+<div class="lg:col-span-4">
+
+<div class="glass-panel rounded-2xl p-8 text-center text-white">
+
+<span class="material-symbols-outlined text-3xl mb-2">
+home
+</span>
+
+<h3 class="text-2xl font-bold text-[#ffdea3]">
+
+นายศักรนนทน์ ขัติย์วงศ์
+
+</h3>
+
+<p class="mt-2">
+ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6
+</p>
+
+<p class="opacity-80 mb-5">
+ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา
+</p>
+
+<p class="italic text-lg mb-6">
+
+"พร้อมดูแลชุมชน
+
+<br>
+
+ด้วยระบบดิจิทัล"
+
+</p>
+
+<a
+href="tel:0801202529"
+class="block bg-green-700 py-3 rounded-xl mb-3">
+
+📞 ติดต่อผู้ใหญ่บ้าน
+
+</a>
+
+<a
+href="#services"
+class="block bg-[#195bb2] py-3 rounded-xl mb-3">
+
+💬 แจ้งเรื่อง / ร้องเรียน
+
+</a>
+
+<a
+href="#services"
+class="block bg-orange-500 py-3 rounded-xl">
+
+📄 บริการประชาชน
+
+</a>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<section class="welcome">
+<!-- ================= TEAM ================= -->
 
-    <div class="welcome-box">
+<section class="py-12 bg-white">
 
-        <small>
-            ยินดีต้อนรับสู่
-        </small>
+<div class="max-w-[1280px] mx-auto px-6">
 
-        <h2>
-            RONGKHEM e-VILLAGE
-        </h2>
+<h2 class="text-2xl font-bold mb-2">
 
-        <p>
-            การเข้าถึงชุมชนรูปแบบใหม่ อัปเดตทันที!
-        </p>
+ทีมผู้ช่วยผู้ใหญ่บ้าน
 
-        <div class="welcome-features">
+</h2>
 
-            <div class="welcome-feature">
+<p class="text-gray-500 mb-8">
 
-                <span class="material-icons-round">
-                    group
-                </span>
+ร่วมดูแลและให้บริการประชาชนในชุมชน
 
-                <h4>ข้อมูลถูกต้อง</h4>
-
-                <p>
-                    เชื่อถือได้
-                </p>
-
-            </div>
-
-            <div class="welcome-feature">
-
-                <span class="material-icons-round">
-                    schedule
-                </span>
-
-                <h4>อัปเดตทันที</h4>
-
-                <p>
-                    รวดเร็ว
-                </p>
-
-            </div>
-
-            <div class="welcome-feature">
-
-                <span class="material-icons-round">
-                    shield
-                </span>
-
-                <h4>ปลอดภัย</h4>
-
-                <p>
-                    มั่นใจได้
-                </p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+</p>
 
 
-<section class="section">
-
-    <div class="section-header">
-
-        <div>
-
-            <h2>
-                ทีมผู้ช่วยผู้ใหญ่บ้าน
-            </h2>
-
-            <p>
-                ร่วมดูแลและให้บริการประชาชนในชุมชน
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="assistant-grid">
-
-        <div class="assistant-card">
-
-            <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9QviM__6NCuOfaFG12egI8gW1WpyAaiV1pd6C916krdXQ3IyHwLKIx-2He_JX5WUZUf9dOxN1sJp7hbB-ogfR5VEJvhRSjb68vOIdJ2NyOeWVZh-VJuv1ymHjtqyN9jlsAda_9iJKxHpBUqj5jnRMJ2IfIn7yOwKsuZgoJ7AOomHvfOF77kYKpAHlPI26s9vZdNPZDOaly49NT9TbY5LqF0YOndwKyHagEZTyDIY2p3D1HbeIg2oF74mf7bRhSBuAYpV2Cc__HhHW94">
-
-            <div class="assistant-info">
-
-                <h3>
-                    น.ส.สุภาพร วังมูล
-                </h3>
-
-                <div class="role">
-                    ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง
-                </div>
-
-                <p>
-                    รับผิดชอบงานด้านทะเบียน
-                    และปกครองส่วนท้องถิ่น
-                </p>
-
-                <a
-                class="assistant-phone"
-                href="tel:0989800089">
-
-                    <span class="material-icons-round">
-                        call
-                    </span>
-
-                    098-9800089
-
-                </a>
-
-            </div>
-
-        </div>
+<div class="grid md:grid-cols-2 gap-8">
 
 
-        <div class="assistant-card">
+<div class="bg-white rounded-2xl p-6 shadow border flex flex-col sm:flex-row gap-6 items-center">
 
-            <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV1kIKbs5Bzlv9zBhvZGaxvuSzlNU5ZyhSxSY1pCJJ39NKtWOCSbVzx9Dqdg2t4kY5ihhFdI4odiZW_MlfltXhSSrtjjCLifdcFfVLsUNzL5ERFVrS3o1XEJ78azROlBAXEMuQ4ed_OkfBDSgVIwDAYbFSQjmYxlsUWpVxNPVwDKosdvo9aC6sA5vEO3pMc9Twjf3sQ3g4bxGq_xnI1KvyukVN-fGUlAHIVvZKAW5aIckI63PIA9v_ZfnAyZK_DXOq2aKgtrKdsWymKJQ">
+<img
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9QviM__6NCuOfaFG12egI8gW1WpyAaiV1pd6C916krdXQ3IyHwLKIx-2He_JX5WUZUf9dOxN1sJp7hbB-ogfR5VEJvhRSjb68vOIdJ2NyOeWVZh-VJuv1ymHjtqyN9jlsAda_9iJKxHpBUqj5jnRMJ2IfIn7yOwKsuZgoJ7AOomHvfOF77kYKpAHlPI26s9vZdNPZDOaly49NT9TbY5LqF0YOndwKyHagEZTyDIY2p3D1HbeIg2oF74mf7bRhSBuAYpV2Cc__HhHW94"
+class="w-32 h-32 object-cover rounded-xl">
 
-            <div class="assistant-info">
+<div>
 
-                <h3>
-                    นายจักร์กวัส ประพลรัตนัง
-                </h3>
+<h3 class="text-xl font-bold">
+น.ส.สุภาพร วังมูล
+</h3>
 
-                <div class="role">
-                    ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ
-                </div>
+<p class="text-blue-700">
+ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง
+</p>
 
-                <p>
-                    ดูแลความเรียบร้อย
-                    และความปลอดภัยภายในหมู่บ้าน
-                </p>
+<p class="text-gray-500 mt-2">
+รับผิดชอบงานด้านทะเบียนและปกครองส่วนท้องถิ่น
+</p>
 
-                <a
-                class="assistant-phone"
-                href="tel:0851399849">
+<a
+href="tel:0989800089"
+class="inline-block mt-4 bg-blue-100 px-5 py-2 rounded-full">
 
-                    <span class="material-icons-round">
-                        call
-                    </span>
+📞 098-9800089
 
-                    085-1399849
+</a>
 
-                </a>
+</div>
 
-            </div>
+</div>
 
-        </div>
 
-    </div>
+<div class="bg-white rounded-2xl p-6 shadow border flex flex-col sm:flex-row gap-6 items-center">
+
+<img
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV1kIKbs5Bzlv9zBhvZGaxvuSzlNU5ZyhSxSY1pCJJ39NKtWOCSbVzx9Dqdg2t4kY5ihhFdI4odiZW_MlfltXhSSrtjjCLifdcFfVLsUNzL5ERFVrS3o1XEJ78azROlBAXEMuQ4ed_OkfBDSgVIwDAYbFSQjmYxlsUWpVxNPVwDKosdvo9aC6sA5vEO3pMc9Twjf3sQ3g4bxGq_xnI1KvyukVN-fGUlAHIVvZKAW5aIckI63PIA9v_ZfnAyZK_DXOq2aKgtrKdsWymKJQ"
+class="w-32 h-32 object-cover rounded-xl">
+
+<div>
+
+<h3 class="text-xl font-bold">
+นายจักร์กวัส ประพลรัตนัง
+</h3>
+
+<p class="text-blue-700">
+ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ
+</p>
+
+<p class="text-gray-500 mt-2">
+ดูแลความเรียบร้อยและความปลอดภัยภายในหมู่บ้าน
+</p>
+
+<a
+href="tel:0851399849"
+class="inline-block mt-4 bg-blue-100 px-5 py-2 rounded-full">
+
+📞 085-1399849
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<section class="section" id="services">
+<!-- ================= NEWS / ACTIVITY / ANNOUNCEMENT ================= -->
 
-    <div class="section-header">
+<section id="news" class="py-12">
 
-        <div>
+<div class="max-w-[1280px] mx-auto px-6">
 
-            <h2>
-                เมนูบริการประชาชน
-            </h2>
-
-            <p>
-                เลือกดูข้อมูลและบริการต่าง ๆ ของหมู่บ้าน
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="service-grid">
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">home</span>
-            <h4>ข้อมูลหมู่บ้าน</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">family_restroom</span>
-            <h4>ข้อมูลครัวเรือน</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">groups</span>
-            <h4>คณะกรรมการหมู่บ้าน</h4>
-        </a>
-
-        <a href="#news" class="service-card">
-            <span class="material-icons-round">campaign</span>
-            <h4>ข่าวสาร / ประกาศ</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">description</span>
-            <h4>ยื่นคำร้องออนไลน์</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">favorite</span>
-            <h4>อสม. / สุขภาพชุมชน</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">elderly</span>
-            <h4>ผู้สูงอายุ</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">diversity_3</span>
-            <h4>กลุ่มเปราะบาง</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">eco</span>
-            <h4>สิ่งแวดล้อม / PM2.5</h4>
-        </a>
-
-        <a href="#subnamjam" class="service-card">
-            <span class="material-icons-round">water_drop</span>
-            <h4>แหล่งซับน้ำจำ</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">agriculture</span>
-            <h4>การเกษตร</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">security</span>
-            <h4>ชรบ. / ความปลอดภัย</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">storefront</span>
-            <h4>ร้านค้าในชุมชน</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">location_on</span>
-            <h4>แผนที่หมู่บ้าน</h4>
-        </a>
-
-        <a href="#" class="service-card">
-            <span class="material-icons-round">temple_buddhist</span>
-            <h4>วัดร่องเข็ม</h4>
-        </a>
-
-        <a href="#contact" class="service-card">
-            <span class="material-icons-round">call</span>
-            <h4>ติดต่อผู้ใหญ่บ้าน</h4>
-        </a>
-
-        <a href="tel:191" class="service-card">
-            <span class="material-icons-round">emergency</span>
-            <h4>แจ้งเหตุฉุกเฉิน</h4>
-        </a>
-
-    </div>
-
-</section>
+<div class="grid lg:grid-cols-3 gap-6">
 
 
-<section class="section" id="news">
+<!-- NEWS -->
 
-    <div class="section-header">
+<div class="bg-white rounded-2xl p-6 shadow border">
 
-        <div>
+<h2 class="text-xl font-bold mb-5">
+📢 ข่าวประชาสัมพันธ์
+</h2>
 
-            <h2>
-                ข่าวประชาสัมพันธ์
-            </h2>
+<div class="space-y-5">
 
-            <p>
-                ข่าวสารล่าสุดจากหมู่บ้าน
-            </p>
+<div class="flex gap-4">
 
-        </div>
+<img
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3SeEVodudnVAht8OiHc7soo2_OR4OkzWOtW9-ThrED16PLqi1fd2OdsXqamIVx4dNE5X8fgWoQd1EUjqq5puM52meLMdhw9U5N4Yi361ERuSN7JeLXxLOBh3d8EP5ogCOnkY8WqacATZWwYSRBmAWjXW6_v37uRXqqljKOZ-tBlbfHwdaxWR1LJwBiMkogpU0ge6MECbmMiBpRkVi-yRabQ-bXu-LQ_xNWnwWUMOTbiX1lR2asNWMww"
+class="w-24 h-16 object-cover rounded-lg">
 
-    </div>
+<div>
 
-    <div class="content-grid">
+<b>ประชุมประจำเดือนหมู่บ้าน</b>
 
-        <div class="news-card">
+<p class="text-sm text-gray-500">
+วันอาทิตย์ เวลา 07.00 น.
+</p>
 
-            <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3SeEVodudnVAht8OiHc7soo2_OR4OkzWOtW9-ThrED16PLqi1fd2OdsXqamIVx4dNE5X8fgWoQd1EUjqq5puM52meLMdhw9U5N4Yi361ERuSN7JeLXxLOBh3d8EP5ogCOnkY8WqacATZWwYSRBmAWjXW6_v37uRXqqljKOZ-tBlbfHwdaxWR1LJwBiMkogpU0ge6MECbmMiBpRkVi-yRabQ-bXu-LQ_xNWnwWUMOTbiX1lR2asNWMww">
+</div>
 
-            <div class="news-card-content">
-
-                <h3>
-                    ประชุมประจำเดือนหมู่บ้าน
-                </h3>
-
-                <p>
-                    วันอาทิตย์ที่ 1 มิถุนายน 2567
-                    เวลา 07.00 น.
-                </p>
-
-            </div>
-
-        </div>
+</div>
 
 
-        <div class="news-card">
+<div class="flex gap-4">
 
-            <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB554f6Di5b5gJk4Mwlr4WISwt42dcBKB4ilKQDyn4wKSk-BL0JJG3Apfwx4voXbt6mME0_eXWQnXm3sPTlfXBkXo3BIzbD_QGaBI6qa4IZjnnavzW0WS8RmJtmoC7FHz6259-jQ2mRWM7KZNkQwqEEeIY0uM2ZPfAQwrkWHgqRf-2XDNXLfQdlovoc8GN-QYQOV2d-aJSSMxjTurp-Vp4zxpRyfN6GH8TnKGodkiHKg6Yu4PfcDbVTg">
+<img
+src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB554f6Di5b5gJk4Mwlr4WISwt42dcBKB4ilKQDyn4wKSk-BL0JJG3Apfwx4voXbt6mME0_eXWQnXm3sPTlfXBkXo3BIzbD_QGaBI6qa4IZjnnavzW0WS8RmJtmoC7FHz6259-jQ2mRWM7KZNkQwqEEeIY0uM2ZPfAQwrkWHgqRf-2XDNXLfQdlovoc8GN-QYQOV2d-aJSSMxjTurp-Vp4zxpRyfN6GH8TnKGodkiHKg6Yu4PfcDbVTg"
+class="w-24 h-16 object-cover rounded-lg">
 
-            <div class="news-card-content">
+<div>
 
-                <h3>
-                    โครงการรณรงค์งดการเผา
-                </h3>
+<b>โครงการรณรงค์งดการเผา</b>
 
-                <p>
-                    1 ก.พ. - 31 มี.ค.
-                    งดเผาทุกชนิด
-                </p>
+<p class="text-sm text-gray-500">
+งดเผาทุกชนิด
+</p>
 
-            </div>
+</div>
 
-        </div>
+</div>
+
+</div>
+
+</div>
 
 
-        <div class="news-card">
+<!-- ACTIVITY -->
 
-            <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuApmH9yG5gesZEItt8efy3wHyoc0H8d70ySdJwDBtw_1jNZ5-4myigMuS4bPt3vn_f4bDi6zk0u0wC6ux88jPiJtAWvOHYe7L9AWfcF1F6p4eVhiSs7dBScJXVkqjTp-giewbwPBPbkkdvz-pP-1X1xXTyfUmzHYiuI-nJ-CeAN5ybRmXJ784uq96zBncsmZ79Q2xkI_Bd81FhExD5kGZqsNBtP83zxEbopRIP5azb386BwB03v7earmg">
+<div class="bg-white rounded-2xl p-6 shadow border">
 
-            <div class="news-card-content">
+<h2 class="text-xl font-bold mb-5">
+📅 กิจกรรมเด่น
+</h2>
 
-                <h3>
-                    โครงการแหล่งซับน้ำจำ
-                </h3>
+<img
+src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1000&q=80"
+class="w-full h-56 object-cover rounded-xl">
 
-                <p>
-                    ร่วมอนุรักษ์ ฟื้นฟู
-                    แหล่งน้ำชุมชน
-                </p>
+<h3 class="text-xl font-bold mt-4">
 
-            </div>
+จิตอาสาพัฒนาหมู่บ้าน
 
-        </div>
+</h3>
 
-    </div>
+<p class="text-gray-500">
+
+ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน
+
+</p>
+
+</div>
+
+
+<!-- ANNOUNCEMENT -->
+
+<div class="bg-white rounded-2xl p-6 shadow border">
+
+<h2 class="text-xl font-bold mb-5">
+
+📣 ประกาศสำคัญ
+
+</h2>
+
+<div class="space-y-5">
+
+<div>
+
+<b>ประกาศห้ามเผาในที่โล่งทุกชนิด</b>
+
+<p class="text-gray-500 text-sm">
+
+1 ก.พ. - 31 มี.ค.
+
+</p>
+
+</div>
+
+<div>
+
+<b>ประชาสัมพันธ์การฉีดวัคซีน</b>
+
+<p class="text-gray-500 text-sm">
+
+ป้องกันโรคพิษสุนัขบ้า
+
+</p>
+
+</div>
+
+<div>
+
+<b>การชำระภาษีที่ดิน</b>
+
+<p class="text-gray-500 text-sm">
+
+กรุณาดำเนินการภายในกำหนด
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </section>
 
 
-<section class="water-section" id="subnamjam">
+<!-- ================= SERVICES ================= -->
 
-    <div class="water-inner">
+<section id="services" class="py-12">
 
-        <div class="water-images">
+<div class="max-w-[1280px] mx-auto px-6">
 
-            <img
-            src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1000&q=80">
+<h2 class="text-2xl font-bold mb-2">
 
-            <img
-            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=80">
+เมนูบริการประชาชน
 
-            <img
-            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80">
+</h2>
 
-        </div>
+<p class="text-gray-500 mb-8">
 
-        <div class="water-text">
+เลือกดูข้อมูลและบริการต่าง ๆ ของหมู่บ้าน
 
-            <span class="material-icons-round">
-                water_drop
-            </span>
+</p>
 
-            <h2>
-                แหล่งซับน้ำจำ
-            </h2>
 
-            <p>
-                แหล่งทรัพยากรธรรมชาติสำคัญของชุมชน
-                ร่วมกันอนุรักษ์ ฟื้นฟู และพัฒนาให้เป็น
-                แหล่งเรียนรู้ของหมู่บ้าน
-            </p>
+<div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-5">
 
-            <p>
-                พื้นที่แห่งนี้เป็นส่วนหนึ่งของการดูแล
-                ทรัพยากรน้ำและสิ่งแวดล้อมของชุมชน
-            </p>
 
-        </div>
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
 
-    </div>
+<span class="material-symbols-outlined text-5xl text-blue-700">
+home
+</span>
+
+<p class="mt-3 font-semibold">
+ข้อมูลหมู่บ้าน
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-orange-500">
+family_home
+</span>
+
+<p class="mt-3 font-semibold">
+ข้อมูลครัวเรือน
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-purple-600">
+groups
+</span>
+
+<p class="mt-3 font-semibold">
+คณะกรรมการหมู่บ้าน
+</p>
+
+</a>
+
+
+<a href="#news" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-red-500">
+campaign
+</span>
+
+<p class="mt-3 font-semibold">
+ข่าวสาร / ประกาศ
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-green-600">
+description
+</span>
+
+<p class="mt-3 font-semibold">
+ยื่นคำร้องออนไลน์
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-pink-600">
+favorite
+</span>
+
+<p class="mt-3 font-semibold">
+อสม. / สุขภาพชุมชน
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-purple-600">
+elderly
+</span>
+
+<p class="mt-3 font-semibold">
+ผู้สูงอายุ
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-pink-500">
+diversity_3
+</span>
+
+<p class="mt-3 font-semibold">
+กลุ่มเปราะบาง
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-green-600">
+eco
+</span>
+
+<p class="mt-3 font-semibold">
+สิ่งแวดล้อม / PM2.5
+</p>
+
+</a>
+
+
+<a href="#subnamjam" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-blue-500">
+water_drop
+</span>
+
+<p class="mt-3 font-semibold">
+แหล่งซับน้ำจำ
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-yellow-600">
+agriculture
+</span>
+
+<p class="mt-3 font-semibold">
+การเกษตร
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-blue-700">
+security
+</span>
+
+<p class="mt-3 font-semibold">
+ชรบ. / ความปลอดภัย
+</p>
+
+</a>
+
+
+<a href="#" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-green-700">
+storefront
+</span>
+
+<p class="mt-3 font-semibold">
+ร้านค้าในชุมชน
+</p>
+
+</a>
+
+
+<a href="#map" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-blue-500">
+location_on
+</span>
+
+<p class="mt-3 font-semibold">
+แผนที่หมู่บ้าน
+</p>
+
+</a>
+
+
+<a href="#temple" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-orange-600">
+temple_buddhist
+</span>
+
+<p class="mt-3 font-semibold">
+วัดร่องเข็ม
+</p>
+
+</a>
+
+
+<a href="#sorobor" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-indigo-600">
+account_balance
+</span>
+
+<p class="mt-3 font-semibold">
+ส.อบต.
+</p>
+
+</a>
+
+
+<a href="#contact" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-green-700">
+call
+</span>
+
+<p class="mt-3 font-semibold">
+ติดต่อผู้ใหญ่บ้าน
+</p>
+
+</a>
+
+
+<a href="tel:191" class="service-card bg-white p-6 rounded-2xl shadow border text-center">
+
+<span class="material-symbols-outlined text-5xl text-red-600">
+emergency
+</span>
+
+<p class="mt-3 font-semibold">
+แจ้งเหตุฉุกเฉิน
+</p>
+
+</a>
+
+</div>
+
+</div>
 
 </section>
 
 
-<section class="section">
+<!-- ================= SUBNAMJAM ================= -->
 
-    <div class="section-header">
+<section id="subnamjam" class="py-16 bg-white">
 
-        <div>
+<div class="max-w-[1280px] mx-auto px-6">
 
-            <h2>
-                ประกาศสำคัญ
-            </h2>
+<div class="grid md:grid-cols-2 gap-10 items-center">
 
-        </div>
+<div class="grid grid-cols-2 gap-4">
 
-    </div>
+<img
+src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1000&q=80"
+class="w-full h-64 object-cover rounded-2xl">
 
-    <div class="important-grid">
+<img
+src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=80"
+class="w-full h-64 object-cover rounded-2xl">
 
-        <div class="important-card">
+</div>
 
-            <span class="material-icons-round">
-                campaign
-            </span>
+<div>
 
-            <h3>
-                ประกาศห้ามเผาในที่โล่งทุกชนิด
-            </h3>
+<span class="text-blue-600 font-bold">
 
-            <p>
-                1 ก.พ. - 31 มี.ค.
-            </p>
+💧 แหล่งทรัพยากรธรรมชาติ
 
-        </div>
+</span>
 
-        <div class="important-card">
+<h2 class="text-3xl font-bold mt-3 mb-4">
 
-            <span class="material-icons-round">
-                pets
-            </span>
+แหล่งซับน้ำจำ
 
-            <h3>
-                ประชาสัมพันธ์การฉีดวัคซีน
-            </h3>
+</h2>
 
-            <p>
-                ป้องกันโรคพิษสุนัขบ้า
-            </p>
+<p class="text-gray-600 leading-8">
 
-        </div>
+แหล่งทรัพยากรธรรมชาติสำคัญของชุมชน
+ร่วมกันอนุรักษ์ ฟื้นฟู และพัฒนาให้เป็นแหล่งเรียนรู้
+และแหล่งท่องเที่ยวของหมู่บ้าน
 
-        <div class="important-card">
+</p>
 
-            <span class="material-icons-round">
-                account_balance
-            </span>
+</div>
 
-            <h3>
-                การชำระภาษีที่ดิน
-            </h3>
+</div>
 
-            <p>
-                กรุณาดำเนินการภายในกำหนด
-            </p>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<section class="stats" id="village">
+<!-- ================= TEMPLE ================= -->
 
-    <div class="section-header"
-    style="max-width:1000px;margin:0 auto 25px;">
+<section id="temple" class="py-16">
 
-        <div>
+<div class="max-w-[1280px] mx-auto px-6">
 
-            <h2>
-                สถิติหมู่บ้าน
-            </h2>
+<div class="bg-white rounded-2xl shadow border p-8">
 
-        </div>
+<div class="flex gap-5 items-start">
 
-    </div>
+<span class="material-symbols-outlined text-6xl text-orange-600">
 
-    <div class="stats-grid">
+temple_buddhist
 
-        <div class="stat-card">
+</span>
 
-            <span class="material-icons-round">
-                home
-            </span>
+<div>
 
-            <strong>
-                350
-            </strong>
+<h2 class="text-3xl font-bold">
 
-            <span>
-                ครัวเรือนทั้งหมด
-            </span>
+วัดร่องเข็ม
 
-        </div>
+</h2>
 
-        <div class="stat-card">
+<p class="text-gray-600 mt-3 leading-8">
 
-            <span class="material-icons-round">
-                groups
-            </span>
+วัดร่องเข็ม หรือวัดเวฬุวัน
+เป็นศาสนสถานสำคัญของชุมชนบ้านร่องเข็ม
+ใช้ประกอบกิจกรรมทางศาสนา ประเพณี และกิจกรรมของประชาชนในหมู่บ้าน
 
-            <strong>
-                1,247
-            </strong>
+</p>
 
-            <span>
-                ประชากรทั้งหมด
-            </span>
+</div>
 
-        </div>
+</div>
 
-        <div class="stat-card">
+</div>
 
-            <span class="material-icons-round">
-                map
-            </span>
-
-            <strong>
-                2.15
-            </strong>
-
-            <span>
-                ตารางกิโลเมตร
-            </span>
-
-        </div>
-
-    </div>
+</div>
 
 </section>
 
 
-<footer id="contact">
+<!-- ================= SOR.OBT ================= -->
 
-    <h3>
-        RONGKHEM e-VILLAGE
-    </h3>
+<section id="sorobor" class="py-16 bg-white">
 
-    <p>
-        ที่ทำการผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6<br>
-        ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
-    </p>
+<div class="max-w-[1280px] mx-auto px-6">
 
-    <div class="footer-contact">
+<div class="bg-[#001b3d] text-white rounded-2xl p-8">
 
-        โทร.
-        <a href="tel:0801202529">
-            080-1202529
-        </a>
+<div class="flex items-center gap-5">
 
-    </div>
+<span class="material-symbols-outlined text-6xl text-[#ffdea3]">
 
-    <p style="margin-top:20px;opacity:.6;">
-        © RONGKHEM e-VILLAGE
-    </p>
+account_balance
+
+</span>
+
+<div>
+
+<h2 class="text-3xl font-bold">
+
+สมาชิกสภาองค์การบริหารส่วนตำบล
+
+</h2>
+
+<p class="mt-2 opacity-80">
+
+ข้อมูลสมาชิกสภาองค์การบริหารส่วนตำบลจำป่าหวาย
+สามารถเพิ่มรายละเอียดและข้อมูลติดต่อผ่านระบบหลังบ้าน
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= MAP ================= -->
+
+<section id="map" class="py-16">
+
+<div class="max-w-[1280px] mx-auto px-6">
+
+<h2 class="text-3xl font-bold mb-6">
+
+📍 แผนที่หมู่บ้าน
+
+</h2>
+
+<div class="rounded-2xl overflow-hidden shadow border bg-white">
+
+<iframe
+src="https://www.google.com/maps?q=บ้านร่องเข็ม+ตำบลจำป่าหวาย+อำเภอเมืองพะเยา&output=embed"
+width="100%"
+height="450"
+style="border:0;"
+allowfullscreen=""
+loading="lazy">
+
+</iframe>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= VILLAGE ================= -->
+
+<section id="village" class="py-12 bg-white">
+
+<div class="max-w-[1280px] mx-auto px-6">
+
+<h2 class="text-2xl font-bold mb-8">
+
+สถิติหมู่บ้าน
+
+</h2>
+
+<div class="grid md:grid-cols-3 gap-6">
+
+<div class="bg-gray-50 p-6 rounded-2xl border">
+
+<div class="flex justify-between">
+
+<div>
+
+<p>ครัวเรือนทั้งหมด</p>
+
+<h3 class="text-3xl font-bold">
+350
+</h3>
+
+</div>
+
+<span class="material-symbols-outlined text-5xl text-blue-600">
+home
+</span>
+
+</div>
+
+</div>
+
+
+<div class="bg-gray-50 p-6 rounded-2xl border">
+
+<div class="flex justify-between">
+
+<div>
+
+<p>ประชากรทั้งหมด</p>
+
+<h3 class="text-3xl font-bold">
+1,247
+</h3>
+
+</div>
+
+<span class="material-symbols-outlined text-5xl text-orange-500">
+groups
+</span>
+
+</div>
+
+</div>
+
+
+<div class="bg-gray-50 p-6 rounded-2xl border">
+
+<div class="flex justify-between">
+
+<div>
+
+<p>พื้นที่หมู่บ้าน</p>
+
+<h3 class="text-3xl font-bold">
+
+2.15
+
+<span class="text-base font-normal">
+
+ตร.กม.
+
+</span>
+
+</h3>
+
+</div>
+
+<span class="material-symbols-outlined text-5xl text-green-600">
+map
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- ================= CONTACT ================= -->
+
+<footer id="contact" class="bg-[#001b3d] text-white py-10">
+
+<div class="max-w-[1280px] mx-auto px-6 text-center">
+
+<h3 class="text-2xl font-bold">
+
+RONGKHEM e-VILLAGE
+
+</h3>
+
+<p class="mt-3 opacity-80">
+
+ที่ทำการผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6
+
+<br>
+
+ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
+
+</p>
+
+<p class="mt-4">
+
+📞
+
+<a href="tel:0801202529">
+
+080-1202529
+
+</a>
+
+</p>
+
+<p class="mt-6 text-sm opacity-60">
+
+© RONGKHEM e-VILLAGE
+
+</p>
+
+</div>
 
 </footer>
 
 
-<!-- AI ROBOT -->
+<!-- ================= AI ================= -->
 
 <button
 class="ai-button"
 onclick="toggleAI()"
 title="ผู้ช่วย AI">
 
-    <span class="material-icons-round">
-        smart_toy
-    </span>
+<span class="material-symbols-outlined text-4xl">
+
+smart_toy
+
+</span>
 
 </button>
 
 
-<div class="ai-chat" id="aiChat">
+<div id="aiBox" class="ai-box">
 
-    <div class="ai-header">
+<div class="ai-header">
 
-        <span class="material-icons-round">
-            smart_toy
-        </span>
+<div class="ai-robot">
 
-        <div>
+🤖
 
-            <strong>
-                ผู้ช่วย AI หมู่บ้าน
-            </strong>
+</div>
 
-            <div style="font-size:11px;opacity:.8;">
-                พร้อมช่วยตอบคำถาม
-            </div>
+<div>
 
-        </div>
+<b>AI ผู้ช่วยผู้ใหญ่บ้าน</b>
 
-    </div>
+<br>
 
-    <div class="ai-body" id="aiBody">
+<span class="text-sm opacity-80">
 
-        <div class="ai-message">
+ถามข้อมูลเกี่ยวกับหมู่บ้านได้เลย
 
-            🤖 สวัสดีครับ ผมคือผู้ช่วย AI
-            ของ RONGKHEM e-VILLAGE
+</span>
 
-            <br><br>
+</div>
 
-            สามารถถามข้อมูลเกี่ยวกับ
-            ข่าวสาร บริการประชาชน
-            การติดต่อผู้ใหญ่บ้าน และข้อมูลหมู่บ้านได้ครับ
+</div>
 
-        </div>
 
-    </div>
+<div class="ai-body">
 
-    <div class="ai-input">
+<div id="aiAnswer" class="ai-answer">
 
-        <input
-        id="aiInput"
-        placeholder="พิมพ์ข้อความ..."
-        onkeypress="if(event.key==='Enter')sendAI()">
+สวัสดีครับ 👋
+ผมคือ AI ผู้ช่วย RONGKHEM e-VILLAGE
 
-        <button onclick="sendAI()">
+คุณสามารถถามเกี่ยวกับข้อมูลหมู่บ้าน
+ผู้ใหญ่บ้าน ข่าวสาร แหล่งซับน้ำจำ
+หรือข้อมูลบริการประชาชนได้ครับ
 
-            <span class="material-icons-round">
-                send
-            </span>
+</div>
 
-        </button>
 
-    </div>
+<input
+id="aiQuestion"
+class="ai-input"
+placeholder="พิมพ์คำถาม เช่น ผู้ใหญ่บ้านชื่ออะไร">
+
+
+<button
+class="ai-send"
+onclick="askAI()">
+
+ถาม AI
+
+</button>
+
+
+<button
+class="ai-speak"
+onclick="speakAI()">
+
+🔊 อ่านคำตอบ
+
+</button>
+
+</div>
 
 </div>
 
 
 <script>
 
-/* =========================
-CLOCK
-========================= */
+/* CLOCK */
 
 function updateClock(){
 
-    const now = new Date();
+  const now = new Date();
 
-    const time =
+  document.getElementById("clock").textContent =
     now.toLocaleTimeString(
-        "th-TH",
-        {
-            hour:"2-digit",
-            minute:"2-digit",
-            second:"2-digit"
-        }
-    );
-
-    document.getElementById("clock").textContent =
-    time + " น.";
+      "th-TH",
+      {
+        hour:"2-digit",
+        minute:"2-digit",
+        second:"2-digit"
+      }
+    ) + " น.";
 
 }
 
 updateClock();
 
-setInterval(
-    updateClock,
-    1000
-);
+setInterval(updateClock,1000);
 
 
-/* =========================
-WEATHER DEMO
-เปลี่ยนเป็น API จริงภายหลังได้
-========================= */
+/* WEATHER */
 
-document.getElementById("weather").textContent =
-"27°C";
+async function loadWeather(){
+
+  try{
+
+    const url =
+      "https://api.open-meteo.com/v1/forecast?latitude=19.17&longitude=99.90&current=temperature_2m";
+
+    const response =
+      await fetch(url);
+
+    const data =
+      await response.json();
+
+    document.getElementById("weather").textContent =
+      data.current.temperature_2m + "°C";
+
+  }
+  catch(error){
+
+    document.getElementById("weather").textContent =
+      "ไม่สามารถโหลดได้";
+
+  }
+
+}
+
+loadWeather();
+
+
+/* PM2.5 */
 
 document.getElementById("pm25").textContent =
 "ตรวจสอบข้อมูล";
 
 
-/* =========================
-AI WINDOW
-========================= */
+/* AI */
 
 function toggleAI(){
 
+  document
+  .getElementById("aiBox")
+  .classList
+  .toggle("show");
+
+}
+
+
+function askAI(){
+
+  const input =
+    document.getElementById("aiQuestion");
+
+  const question =
+    input.value.trim().toLowerCase();
+
+  const answerBox =
+    document.getElementById("aiAnswer");
+
+  let answer =
+    "ขออภัยครับ ขณะนี้ผมยังไม่พบข้อมูลที่ตรงกับคำถาม กรุณาลองถามเกี่ยวกับข้อมูลหมู่บ้าน ผู้ใหญ่บ้าน ข่าวสาร แหล่งซับน้ำจำ หรือบริการประชาชนครับ";
+
+
+  if(
+    question.includes("ผู้ใหญ่บ้าน")
+    ||
+    question.includes("ผู้นำ")
+  ){
+
+    answer =
+    "ผู้ใหญ่บ้านบ้านร่องเข็ม หมู่ที่ 6 คือ นายศักรนนท์ ขัติย์วงศ์ สามารถติดต่อได้ที่หมายเลข 080-1202529";
+
+  }
+
+  else if(
+    question.includes("ซับน้ำ")
+  ){
+
+    answer =
+    "แหล่งซับน้ำจำ เป็นแหล่งทรัพยากรธรรมชาติสำคัญของชุมชน ใช้เป็นพื้นที่อนุรักษ์ ฟื้นฟู และพัฒนาเป็นแหล่งเรียนรู้ของหมู่บ้าน";
+
+  }
+
+  else if(
+    question.includes("วัด")
+    ||
+    question.includes("วัดร่องเข็ม")
+  ){
+
+    answer =
+    "วัดร่องเข็ม หรือวัดเวฬุวัน เป็นศาสนสถานสำคัญของชุมชนบ้านร่องเข็ม ใช้ประกอบกิจกรรมทางศาสนาและประเพณีของหมู่บ้าน";
+
+  }
+
+  else if(
+    question.includes("ประชากร")
+    ||
+    question.includes("คน")
+  ){
+
+    answer =
+    "ข้อมูลหน้าเว็บไซต์ปัจจุบันแสดงจำนวนประชากรทั้งหมด 1,247 คน";
+
+  }
+
+  else if(
+    question.includes("ครัวเรือน")
+  ){
+
+    answer =
+    "ข้อมูลหน้าเว็บไซต์ปัจจุบันแสดงจำนวนครัวเรือนทั้งหมด 350 ครัวเรือน";
+
+  }
+
+  else if(
+    question.includes("pm")
+    ||
+    question.includes("ฝุ่น")
+  ){
+
+    answer =
+    "ขณะนี้ระบบแสดงข้อมูล PM2.5 ในส่วนข้อมูลด้านบนของเว็บไซต์ สามารถตรวจสอบสถานะล่าสุดได้จากหน้าแรก";
+
+  }
+
+  else if(
+    question.includes("ข่าว")
+    ||
+    question.includes("ประกาศ")
+  ){
+
+    answer =
+    "สามารถดูข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศสำคัญได้จากหน้าเว็บไซต์ด้านบนใต้ส่วนทีมผู้ช่วยผู้ใหญ่บ้าน";
+
+  }
+
+  answerBox.textContent =
+    answer;
+
+  input.value = "";
+
+}
+
+
+function speakAI(){
+
+  const text =
     document
-    .getElementById("aiChat")
-    .classList
-    .toggle("show");
+    .getElementById("aiAnswer")
+    .textContent;
+
+  speechSynthesis.cancel();
+
+  const speech =
+    new SpeechSynthesisUtterance(text);
+
+  speech.lang =
+    "th-TH";
+
+  speech.rate =
+    1;
+
+  speech.pitch =
+    1;
+
+  speechSynthesis.speak(speech);
 
 }
 
 
-/* =========================
-AI CHAT
-========================= */
+document
+.getElementById("aiQuestion")
+.addEventListener(
+  "keydown",
+  function(event){
 
-function sendAI(){
+    if(event.key === "Enter"){
 
-    const input =
-    document.getElementById("aiInput");
-
-    const message =
-    input.value.trim();
-
-    if(!message){
-        return;
-    }
-
-    const body =
-    document.getElementById("aiBody");
-
-    body.innerHTML +=
-    `<div class="ai-message user-message">
-        ${message}
-    </div>`;
-
-    input.value = "";
-
-    let answer =
-    "ขออภัยครับ ขณะนี้ผู้ช่วย AI ยังไม่มีข้อมูลสำหรับคำถามนี้";
-
-    const text =
-    message.toLowerCase();
-
-    if(
-        text.includes("ผู้ใหญ่บ้าน") ||
-        text.includes("ติดต่อ")
-    ){
-
-        answer =
-        "สามารถติดต่อผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6 ได้ที่หมายเลข 080-1202529 ครับ";
+      askAI();
 
     }
 
-    else if(
-        text.includes("แหล่งซับน้ำ")
-    ){
-
-        answer =
-        "แหล่งซับน้ำจำเป็นแหล่งทรัพยากรธรรมชาติสำคัญของชุมชน ซึ่งมีการร่วมกันอนุรักษ์และฟื้นฟูครับ";
-
-    }
-
-    else if(
-        text.includes("บริการ")
-    ){
-
-        answer =
-        "เว็บไซต์มีบริการข้อมูลหมู่บ้าน ข้อมูลครัวเรือน ข่าวสาร ประกาศ สุขภาพ ผู้สูงอายุ กลุ่มเปราะบาง การเกษตร ร้านค้าชุมชน วัดร่องเข็ม และบริการอื่น ๆ ครับ";
-
-    }
-
-    else if(
-        text.includes("วัด")
-    ){
-
-        answer =
-        "สามารถเลือกเมนู วัดร่องเข็ม จากบริการประชาชนเพื่อดูข้อมูลเพิ่มเติมได้ครับ";
-
-    }
-
-    setTimeout(function(){
-
-        body.innerHTML +=
-        `<div class="ai-message">
-            🤖 ${answer}
-        </div>`;
-
-        body.scrollTop =
-        body.scrollHeight;
-
-        speakText(answer);
-
-    },500);
-
-    body.scrollTop =
-    body.scrollHeight;
-
-}
-
-
-/* =========================
-AI VOICE
-========================= */
-
-function speakText(text){
-
-    if(
-        "speechSynthesis"
-        in window
-    ){
-
-        window
-        .speechSynthesis
-        .cancel();
-
-        const speech =
-        new SpeechSynthesisUtterance(
-            text
-        );
-
-        speech.lang =
-        "th-TH";
-
-        speech.rate =
-        1;
-
-        window
-        .speechSynthesis
-        .speak(speech);
-
-    }
-
-}
+  }
+);
 
 </script>
 
