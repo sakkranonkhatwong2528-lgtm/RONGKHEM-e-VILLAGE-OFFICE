@@ -102,6 +102,61 @@
         .hero-overlay { background: linear-gradient(90deg, rgba(0,27,61,0.95) 0%, rgba(0,27,61,0.6) 50%, rgba(0,27,61,0.2) 100%); }
         .glass-panel { background: rgba(0, 27, 61, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
     </style>
+
+<style id="public-view-only">
+/* หน้าเว็บประชาชน: ซ่อนเครื่องมือจัดการทั้งหมด */
+[data-admin-control="true"], .admin-only{display:none!important}
+</style>
+<script>
+(function(){
+const KEY='rongkhemVillageDB';
+function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+function phoneHref(v){return 'tel:'+String(v||'').replace(/[^0-9+]/g,'');}
+function findSection(title){const h=[...document.querySelectorAll('h2,h3')].find(x=>x.textContent.trim()===title);return h?h.closest('section,div'):null;}
+function removeAdminUI(){
+  document.querySelectorAll('button[title],div[title]').forEach(el=>{
+    const t=(el.getAttribute('title')||'').toLowerCase();
+    if(/edit|add|delete|remove|manage|change image/.test(t)) el.remove();
+  });
+  document.querySelectorAll('.group\/item button,.group\/tile button').forEach(b=>b.remove());
+}
+function render(){
+ let db;try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){} if(!db)return;
+ // ทีมผู้ช่วย
+ const ah=[...document.querySelectorAll('h2')].find(x=>x.textContent.includes('ทีมผู้ช่วยผู้ใหญ่บ้าน'));
+ if(ah&&Array.isArray(db.assistants)){
+   const grid=ah.parentElement.nextElementSibling; if(grid){
+    grid.innerHTML=db.assistants.map(a=>`<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant flex flex-col sm:flex-row gap-6 items-center sm:items-start hover:shadow-md transition-shadow"><div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0 border-2 border-outline-variant">${a.image?`<img alt="${esc(a.name)}" class="w-full h-full object-cover" src="${esc(a.image)}">`:'<div class="w-full h-full flex items-center justify-center text-5xl bg-surface-variant">👤</div>'}</div><div class="flex-grow text-center sm:text-left"><h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">${esc(a.name)}</h3><p class="font-body-md text-body-md text-primary font-medium mb-2">${esc(a.position)}</p><p class="font-body-sm text-body-sm text-on-surface-variant mb-4">${esc(a.detail)}</p>${a.phone?`<a href="${phoneHref(a.phone)}" class="inline-flex bg-primary-fixed-dim text-on-primary-fixed px-6 py-2 rounded-full font-label-md text-label-md hover:bg-primary-fixed transition-colors items-center gap-2"><span class="material-symbols-outlined text-sm">call</span>${esc(a.phone)}</a>`:''}</div></div>`).join('');
+   }
+ }
+ // เมนูบริการ: ใช้กริดที่มี service tiles ตัวแรก
+ const first=document.querySelector('a.group\\/tile'); if(first&&Array.isArray(db.services)){
+   const grid=first.parentElement; grid.innerHTML=db.services.map(x=>`<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim" href="${esc(x.link||'#')}"><span class="material-symbols-outlined text-5xl text-[#195bb2] mb-4">${esc(x.icon||'apps')}</span><span class="font-body-md text-body-md text-center text-on-surface font-medium">${esc(x.name)}</span></a>`).join('');
+ }
+ // ข่าว
+ const nh=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='ข่าวประชาสัมพันธ์');
+ if(nh&&Array.isArray(db.news)){
+   const box=nh.closest('.bg-surface-container-lowest'); const list=box&&[...box.querySelectorAll('div')].find(d=>d.children.length>=3&&d.querySelector('img')); if(list){list.innerHTML=db.news.map(n=>`<div class="flex gap-4 items-start"><div class="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">${n.image?`<img class="w-full h-full object-cover" src="${esc(n.image)}" alt="${esc(n.title)}">`:''}</div><div><h4 class="font-body-md text-body-md text-on-surface line-clamp-2 font-medium">${esc(n.title)}</h4><p class="font-caption text-caption text-on-surface-variant mt-1">${esc(n.date||n.detail||'')}</p></div></div>`).join('');}
+ }
+ // ประกาศ
+ const ph=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='ประกาศสำคัญ');
+ if(ph&&Array.isArray(db.announcements)){
+   const box=ph.closest('.bg-surface-container-lowest'); const list=box&&[...box.querySelectorAll('div')].find(d=>d.classList.contains('flex')&&d.classList.contains('flex-col')&&d.classList.contains('gap-6')); if(list){list.innerHTML=db.announcements.map(n=>`<div class="flex gap-4 items-start"><span class="material-symbols-outlined text-[#dc3545] flex-shrink-0 mt-1 text-2xl">campaign</span><div><h4 class="font-body-md text-body-md text-on-surface font-medium">${esc(n.title)}</h4><p class="font-caption text-caption text-on-surface-variant mt-1">${esc(n.date||n.detail||'')}</p></div></div>`).join('');}
+ }
+ // กิจกรรมเด่น: อัปเดตตัวแรกโดยไม่เปลี่ยนดีไซน์
+ const kh=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='กิจกรรมเด่น'); const a=db.activities&&db.activities[0];
+ if(kh&&a){const box=kh.closest('.bg-surface-container-lowest'); const card=box&&box.querySelector('[style*="background-image"]'); if(card&&a.image)card.style.backgroundImage=`url('${a.image.replace(/'/g,"\\'")}')`; const h4=box&&box.querySelector('h4'); const pp=box&&box.querySelector('h4 + p'); if(h4)h4.textContent=a.title||'';if(pp)pp.textContent=a.detail||a.date||'';}
+ // สถิติ
+ const sh=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='สถิติหมู่บ้าน'); if(sh&&Array.isArray(db.statistics)){
+   const box=sh.closest('.bg-surface-container-lowest'); const list=box&&[...box.querySelectorAll('div')].find(d=>d.classList.contains('flex')&&d.classList.contains('flex-col')&&d.classList.contains('gap-4')); if(list)list.innerHTML=db.statistics.map((x,i)=>`<div class="flex justify-between items-center bg-surface-bright p-3 rounded-xl border border-surface-variant"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#339af0] bg-opacity-20 text-[#195bb2] flex items-center justify-center"><span class="material-symbols-outlined">${['home','groups','map'][i]||'analytics'}</span></div><span class="font-body-md text-body-md text-on-surface font-medium">${esc(x.name)}</span></div><span class="font-headline-sm text-headline-sm font-bold text-primary">${esc(x.value)}</span></div>`).join('');
+ }
+ removeAdminUI();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
+window.addEventListener('storage',e=>{if(e.key===KEY)render()});
+})();
+</script>
+
 </head>
 <body class="text-on-surface antialiased bg-surface-bright min-h-screen flex flex-col">
 <!-- TopAppBar -->
@@ -518,29 +573,5 @@
 </div>
 </footer>
 
-
-
-<!-- RONGKHEM ADMIN DATA CONNECTION -->
-<script>
-(function(){
-const KEY="rongkhemSiteData";
-let d={}; try{d=JSON.parse(localStorage.getItem(KEY)||"{}")}catch(e){}
-if(!d||!Object.keys(d).length)return;
-const replace=(a,b)=>{if(b===undefined||b===null)return;const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while(n=w.nextNode()){if(n.nodeValue.includes(a)){n.nodeValue=n.nodeValue.replace(a,b);break}}};
-if(d.cover){
- const hero=document.querySelector('main section');
- if(hero&&d.cover.image){const b=hero.querySelector('[style*="background-image"]');if(b)b.style.backgroundImage='url("'+d.cover.image+'")'}
- if(hero){const p=hero.querySelectorAll('p');if(p[0]&&d.cover.welcome)p[0].textContent=d.cover.welcome;const h=hero.querySelector('h2');if(h&&d.cover.title)h.textContent=d.cover.title;if(p[1]&&d.cover.description)p[1].textContent=d.cover.description+(d.cover.highlight?' '+d.cover.highlight:'');if(p[2]&&d.cover.extra)p[2].innerHTML=String(d.cover.extra).replace(/\n/g,'<br>')}
-}
-if(d.site){const h=document.querySelector('header h1');if(h&&d.site.name)h.textContent=d.site.name;const p=document.querySelector('header h1 + p');if(p&&d.site.subtitle)p.textContent=d.site.subtitle}
-if(d.leader){replace('นายศักรนนทน์ ขัติย์วงศ์',d.leader.name);replace('ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6',d.leader.position);replace('ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา',d.leader.address);replace('080-1202529',d.leader.phone)}
-if(d.stats){replace('350',d.stats.households);replace('1,247',d.stats.population);replace('2.15',d.stats.area)}
-if(d.contact){replace('080-1202529',d.contact.phone)}
-if(d.subnamjam)replace('แหล่งซับน้ำจำ',d.subnamjam.title);
-if(d.temple)replace('วัดร่องเข็ม',d.temple.title);
-if(d.map&&d.map.embed)document.querySelectorAll('iframe').forEach(f=>{if(/maps|google/i.test(f.src))f.src=d.map.embed});
-window.addEventListener('storage',()=>location.reload());
-})();
-</script>
 
 </body></html>
