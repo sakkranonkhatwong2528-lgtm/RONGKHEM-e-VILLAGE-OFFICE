@@ -17,14 +17,13 @@
 
 :root{
     --primary:#001b3d;
-    --primary2:#075ca8;
-    --bg:#f1f5f9;
-    --white:#ffffff;
-    --text:#172033;
-    --muted:#64748b;
-    --border:#e2e8f0;
-    --danger:#b91c1c;
-    --success:#15803d;
+    --blue:#075ca8;
+    --bg:#f3f6fa;
+    --border:#dbe2ea;
+    --text:#1d2939;
+    --muted:#667085;
+    --danger:#c62828;
+    --success:#198754;
 }
 
 body{
@@ -34,21 +33,10 @@ body{
     color:var(--text);
 }
 
-button,
-input,
-textarea,
-select{
-    font-family:inherit;
-}
-
-button{
-    cursor:pointer;
-}
-
-.topbar{
+header{
     background:linear-gradient(135deg,#001b3d,#063970);
     color:#fff;
-    padding:18px 24px;
+    padding:18px 25px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -58,40 +46,41 @@ button{
     z-index:100;
 }
 
-.brand h1{
-    margin:0;
-    font-size:22px;
+.logo-title{
+    font-size:20px;
+    font-weight:700;
 }
 
-.brand p{
-    margin:3px 0 0;
+.logo-subtitle{
     font-size:13px;
     opacity:.75;
+    margin-top:2px;
 }
 
-.top-actions{
+.header-actions{
     display:flex;
     gap:10px;
-    align-items:center;
     flex-wrap:wrap;
 }
 
-.top-btn{
-    border:0;
-    border-radius:9px;
+.header-actions a,
+.header-actions button{
+    border:none;
     padding:10px 15px;
-    font-size:14px;
+    border-radius:9px;
+    cursor:pointer;
+    font-family:inherit;
     font-weight:600;
     text-decoration:none;
 }
 
-.view-btn{
+.view-site{
     background:#fff;
-    color:#001b3d;
+    color:var(--primary);
 }
 
-.logout-btn{
-    background:#c62828;
+.logout{
+    background:#b91c1c;
     color:#fff;
 }
 
@@ -104,113 +93,88 @@ button{
     gap:20px;
 }
 
-.sidebar{
+.sidebar,
+.card{
     background:#fff;
-    border-radius:18px;
-    padding:15px;
+    border-radius:16px;
+    box-shadow:0 4px 20px rgba(0,0,0,.06);
+    border:1px solid var(--border);
+}
+
+.sidebar{
     height:fit-content;
-    position:sticky;
-    top:95px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    overflow:hidden;
 }
 
 .sidebar-title{
-    padding:8px 10px 14px;
-    font-size:18px;
+    padding:18px;
     font-weight:700;
     border-bottom:1px solid var(--border);
-    margin-bottom:8px;
+    color:var(--primary);
 }
 
-.menu-btn{
+.menu{
+    padding:10px;
+}
+
+.menu button{
     width:100%;
-    border:0;
+    text-align:left;
+    border:none;
     background:transparent;
     padding:11px 12px;
-    text-align:left;
     border-radius:9px;
-    color:#334155;
+    font-family:inherit;
+    cursor:pointer;
+    color:#344054;
     font-size:14px;
-    margin:2px 0;
+    margin-bottom:2px;
 }
 
-.menu-btn:hover,
-.menu-btn.active{
-    background:#e8f1fb;
+.menu button:hover,
+.menu button.active{
+    background:#eaf2ff;
     color:#075ca8;
-    font-weight:700;
-}
-
-.content{
-    min-width:0;
+    font-weight:600;
 }
 
 .card{
-    background:#fff;
-    border-radius:18px;
-    padding:24px;
-    box-shadow:0 4px 18px rgba(0,0,0,.06);
+    padding:25px;
 }
 
 .page-title{
-    margin:0;
-    font-size:26px;
-    color:#082b4d;
+    margin:0 0 5px;
+    color:var(--primary);
+    font-size:25px;
 }
 
-.page-desc{
+.page-description{
     color:var(--muted);
-    margin:6px 0 22px;
-}
-
-.dashboard-grid{
-    display:grid;
-    grid-template-columns:repeat(4,minmax(0,1fr));
-    gap:15px;
-}
-
-.stat-card{
-    background:#fff;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 4px 15px rgba(0,0,0,.06);
-}
-
-.stat-card span{
-    color:#64748b;
-    font-size:13px;
-}
-
-.stat-card strong{
-    display:block;
-    margin-top:8px;
-    font-size:28px;
-    color:#082b4d;
+    margin:0 0 20px;
 }
 
 label{
     display:block;
-    margin-top:15px;
-    margin-bottom:6px;
+    margin-top:14px;
+    font-weight:600;
     font-size:14px;
-    font-weight:700;
-    color:#334155;
 }
 
 input,
 textarea,
 select{
     width:100%;
-    border:1px solid #cbd5e1;
-    border-radius:10px;
+    margin-top:6px;
+    border:1px solid #d0d5dd;
+    border-radius:9px;
     padding:12px 13px;
-    background:#fff;
-    color:#172033;
+    font-family:inherit;
     font-size:14px;
+    background:#fff;
 }
 
 textarea{
-    min-height:150px;
+    min-height:130px;
     resize:vertical;
 }
 
@@ -218,127 +182,141 @@ input:focus,
 textarea:focus{
     outline:none;
     border-color:#075ca8;
-    box-shadow:0 0 0 3px rgba(7,92,168,.1);
+    box-shadow:0 0 0 3px rgba(7,92,168,.12);
+}
+
+.btn{
+    border:none;
+    border-radius:9px;
+    padding:11px 16px;
+    font-family:inherit;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:18px;
+}
+
+.btn-primary{
+    background:#075ca8;
+    color:#fff;
+}
+
+.btn-danger{
+    background:#c62828;
+    color:#fff;
+}
+
+.btn-secondary{
+    background:#e7edf5;
+    color:#344054;
+}
+
+.btn-success{
+    background:#198754;
+    color:#fff;
 }
 
 .actions{
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    margin-top:20px;
-}
-
-.btn{
-    border:0;
-    border-radius:9px;
-    padding:11px 16px;
-    font-size:14px;
-    font-weight:700;
-}
-
-.primary{
-    background:#075ca8;
-    color:#fff;
-}
-
-.primary:hover{
-    background:#03477f;
-}
-
-.danger{
-    background:#b91c1c;
-    color:#fff;
-}
-
-.muted{
-    background:#e2e8f0;
-    color:#334155;
+    margin-top:15px;
 }
 
 .item{
-    border:1px solid #e2e8f0;
-    border-radius:15px;
+    border:1px solid var(--border);
+    border-radius:14px;
     padding:18px;
-    margin-top:18px;
-    background:#fff;
+    margin-top:15px;
+    background:#fafcff;
 }
 
-.item-header{
+.item-head{
     display:flex;
     justify-content:space-between;
     gap:10px;
     align-items:center;
 }
 
+.item h3{
+    margin:0;
+    color:var(--primary);
+}
+
 .preview{
-    margin-top:12px;
-    max-width:240px;
+    margin-top:10px;
+    max-width:220px;
     max-height:180px;
     border-radius:10px;
-    border:1px solid #e2e8f0;
+    border:1px solid var(--border);
     display:block;
 }
 
+.dashboard-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.stat-box{
+    padding:20px;
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:15px;
+}
+
+.stat-number{
+    font-size:28px;
+    font-weight:700;
+    color:#075ca8;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:14px;
+}
+
 .notice{
-    background:#eff6ff;
-    border:1px solid #bfdbfe;
-    color:#1e40af;
-    padding:13px;
-    border-radius:10px;
-    margin-bottom:18px;
-}
-
-.success-box{
     display:none;
-    background:#f0fdf4;
-    border:1px solid #bbf7d0;
-    color:#166534;
-    padding:12px;
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#198754;
+    color:#fff;
+    padding:14px 20px;
     border-radius:10px;
-    margin-bottom:15px;
+    z-index:9999;
+    box-shadow:0 5px 25px rgba(0,0,0,.2);
 }
 
-@media(max-width:1000px){
-
-    .layout{
-        grid-template-columns:1fr;
-    }
-
-    .sidebar{
-        position:relative;
-        top:auto;
-    }
-
-    .dashboard-grid{
-        grid-template-columns:repeat(2,1fr);
-    }
-
+.empty{
+    padding:25px;
+    text-align:center;
+    color:var(--muted);
+    border:1px dashed #cbd5e1;
+    border-radius:12px;
+    margin-top:15px;
 }
 
-@media(max-width:600px){
+@media(max-width:900px){
 
-    .topbar{
-        padding:15px;
+    header{
         align-items:flex-start;
         flex-direction:column;
     }
 
     .layout{
+        grid-template-columns:1fr;
         padding:12px;
+    }
+
+    .sidebar{
+        max-height:300px;
+        overflow:auto;
     }
 
     .card{
         padding:18px;
     }
-
-    .dashboard-grid{
-        grid-template-columns:1fr;
-    }
-
-    .page-title{
-        font-size:22px;
-    }
-
 }
 </style>
 </head>
@@ -346,35 +324,42 @@ textarea:focus{
 <body>
 
 <script>
-/* =========================================
+/* =====================================================
    ตรวจสอบการเข้าสู่ระบบ
-========================================= */
+===================================================== */
 
 if(localStorage.getItem("rongkhemAdminLoggedIn") !== "true"){
     window.location.replace("login.html");
 }
 </script>
 
-<header class="topbar">
 
-    <div class="brand">
-        <h1>RONGKHEM e-VILLAGE ADMIN</h1>
-        <p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p>
+<header>
+
+    <div>
+        <div class="logo-title">
+            RONGKHEM e-VILLAGE ADMIN
+        </div>
+
+        <div class="logo-subtitle">
+            ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6
+        </div>
     </div>
 
-    <div class="top-actions">
+    <div class="header-actions">
 
-        <a href="index.html" class="top-btn view-btn">
+        <a href="index.html" class="view-site">
             ดูหน้าเว็บไซต์
         </a>
 
-        <button class="top-btn logout-btn" onclick="logout()">
+        <button class="logout" onclick="logout()">
             ออกจากระบบ
         </button>
 
     </div>
 
 </header>
+
 
 <div class="layout">
 
@@ -384,27 +369,38 @@ if(localStorage.getItem("rongkhemAdminLoggedIn") !== "true"){
             เมนูจัดการ
         </div>
 
-        <div id="menu"></div>
+        <div class="menu" id="menu"></div>
 
     </aside>
 
-    <main class="content">
 
-        <div id="app"></div>
-
-    </main>
+    <main id="app"></main>
 
 </div>
 
+
+<div class="notice" id="notice">
+    บันทึกข้อมูลเรียบร้อย
+</div>
+
+
 <script>
 
-/* =========================================
-   ระบบข้อมูล
-========================================= */
+/* =====================================================
+   DATABASE LOCAL STORAGE
+===================================================== */
 
 const STORAGE_KEY = "RONGKHEM_SITE_DATA";
 
+
 const DEFAULT_DATA = {
+
+    hero:{
+        welcome:"ยินดีต้อนรับสู่",
+        title:"RONGKHEM e-VILLAGE",
+        subtitle:"การเข้าถึงชุมชนรูปแบบใหม่ อัปเดตทันที!",
+        description:"บริการครบ จบในที่เดียว ที่ทำการผู้ใหญ่บ้านออนไลน์"
+    },
 
     leader:{
         name:"นายศักรนนทน์ ขัติย์วงค์",
@@ -432,185 +428,346 @@ const DEFAULT_DATA = {
         }
     ],
 
-    news:[
-        {
-            title:"ประชุมประจำเดือนหมู่บ้าน",
-            detail:"วันอาทิตย์ เวลา 07.00 น.",
-            image:""
-        }
-    ],
-
-    activity:{
-        title:"จิตอาสาพัฒนาหมู่บ้าน",
-        detail:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",
-        image:""
-    },
-
-    announcements:[
-        {
-            title:"ประกาศสำคัญ",
-            detail:"ประชาสัมพันธ์ข้อมูลข่าวสารของหมู่บ้าน",
-            image:""
-        }
-    ],
-
     stats:{
         households:"350",
         population:"1,247",
         area:"2.15"
     },
 
-    sections:{}
+    news:[
+        {
+            title:"ประชุมประจำเดือนหมู่บ้าน",
+            detail:"วันอาทิตย์ที่ 1 มิถุนายน 2567 เวลา 07.00 น.",
+            image:""
+        },
+        {
+            title:"โครงการรณรงค์งดการเผา",
+            detail:"1 ก.พ. - 31 มี.ค. 2567 งดเผาทุกชนิด",
+            image:""
+        },
+        {
+            title:"โครงการแหล่งซับน้ำจำ",
+            detail:"ร่วมอนุรักษ์ ฟื้นฟู แหล่งน้ำชุมชน",
+            image:""
+        }
+    ],
+
+    activity:[
+        {
+            title:"จิตอาสาพัฒนาหมู่บ้าน",
+            detail:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",
+            image:""
+        }
+    ],
+
+    announcements:[
+        {
+            title:"ประกาศห้ามเผาในที่โล่งทุกชนิด",
+            detail:"1 ก.พ. - 31 มี.ค. 2567"
+        },
+        {
+            title:"ประชาสัมพันธ์การฉีดวัคซีนป้องกันโรคพิษสุนัขบ้า",
+            detail:"วันที่ 15 มิถุนายน 2567 ณ อาคารเอนกประสงค์"
+        },
+        {
+            title:"การชำระภาษีที่ดินและสิ่งปลูกสร้าง",
+            detail:"ภายในวันที่ 30 มิถุนายน 2567"
+        }
+    ],
+
+    sections:{
+
+        "ข้อมูลหมู่บ้าน":{
+            title:"ข้อมูลหมู่บ้าน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ข้อมูลครัวเรือน":{
+            title:"ข้อมูลครัวเรือน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "คณะกรรมการหมู่บ้าน":{
+            title:"คณะกรรมการหมู่บ้าน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ข่าวสาร/ประกาศ":{
+            title:"ข่าวสาร/ประกาศ",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ยื่นคำร้องออนไลน์":{
+            title:"ยื่นคำร้องออนไลน์",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "อสม.":{
+            title:"อสม.",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "สุขภาพชุมชน":{
+            title:"สุขภาพชุมชน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ผู้สูงอายุ":{
+            title:"ผู้สูงอายุ",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "กลุ่มเปราะบาง":{
+            title:"กลุ่มเปราะบาง",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "สิ่งแวดล้อม / PM2.5":{
+            title:"สิ่งแวดล้อม / PM2.5",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "แหล่งซับน้ำจำ":{
+            title:"แหล่งซับน้ำจำ",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "การเกษตร":{
+            title:"การเกษตร",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ชรบ. / ความปลอดภัย":{
+            title:"ชรบ. / ความปลอดภัย",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ร้านค้าในชุมชน":{
+            title:"ร้านค้าในชุมชน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "แผนที่หมู่บ้าน":{
+            title:"แผนที่หมู่บ้าน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "ติดต่อผู้ใหญ่บ้าน":{
+            title:"ติดต่อผู้ใหญ่บ้าน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "แจ้งเหตุฉุกเฉิน":{
+            title:"แจ้งเหตุฉุกเฉิน",
+            intro:"",
+            content:"",
+            image:""
+        },
+
+        "สถานที่ท่องเที่ยว":{
+            title:"สถานที่ท่องเที่ยว",
+            intro:"",
+            content:"",
+            image:""
+        }
+
+    }
 
 };
 
 
-/* =========================================
-   โหลดข้อมูล
-========================================= */
+/* =====================================================
+   LOAD DATA
+===================================================== */
 
-let DATA;
+let siteData;
 
 try{
 
-    DATA = JSON.parse(
+    siteData = JSON.parse(
         localStorage.getItem(STORAGE_KEY)
-    ) || structuredClone(DEFAULT_DATA);
+    );
 
 }catch(error){
 
-    DATA = structuredClone(DEFAULT_DATA);
+    siteData = null;
 
 }
 
-if(!DATA.sections){
-    DATA.sections = {};
+if(!siteData){
+
+    siteData = structuredClone(DEFAULT_DATA);
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(siteData)
+    );
+
 }
 
 
-/* =========================================
-   เมนูทั้งหมด
-========================================= */
+/* =====================================================
+   MENU
+===================================================== */
 
-const SERVICES = [
-
-    "ข้อมูลหมู่บ้าน",
-    "ข้อมูลครัวเรือน",
-    "คณะกรรมการหมู่บ้าน",
-    "ข่าวสาร/ประกาศ",
-    "ยื่นคำร้องออนไลน์",
-    "อสม.",
-    "สุขภาพชุมชน",
-    "ผู้สูงอายุ",
-    "กลุ่มเปราะบาง",
-    "สิ่งแวดล้อม / PM2.5",
-    "แหล่งซับน้ำจำ",
-    "การเกษตร",
-    "ชรบ. / ความปลอดภัย",
-    "ร้านค้าในชุมชน",
-    "แผนที่หมู่บ้าน",
-    "ติดต่อผู้ใหญ่บ้าน",
-    "แจ้งเหตุฉุกเฉิน",
-    "สถานที่ท่องเที่ยว"
-
-];
-
-const MENUS = [
+const menus = [
 
     "ภาพรวมระบบ",
+
     "ข้อมูลผู้ใหญ่บ้าน",
+
     "ทีมผู้ช่วยผู้ใหญ่บ้าน",
+
     "ข่าวประชาสัมพันธ์",
+
     "กิจกรรมเด่น",
+
     "ประกาศสำคัญ",
+
     "สถิติหมู่บ้าน",
 
-    ...SERVICES,
+    "ข้อมูลหมู่บ้าน",
+
+    "ข้อมูลครัวเรือน",
+
+    "คณะกรรมการหมู่บ้าน",
+
+    "ข่าวสาร/ประกาศ",
+
+    "ยื่นคำร้องออนไลน์",
+
+    "อสม.",
+
+    "สุขภาพชุมชน",
+
+    "ผู้สูงอายุ",
+
+    "กลุ่มเปราะบาง",
+
+    "สิ่งแวดล้อม / PM2.5",
+
+    "แหล่งซับน้ำจำ",
+
+    "การเกษตร",
+
+    "ชรบ. / ความปลอดภัย",
+
+    "ร้านค้าในชุมชน",
+
+    "แผนที่หมู่บ้าน",
+
+    "ติดต่อผู้ใหญ่บ้าน",
+
+    "แจ้งเหตุฉุกเฉิน",
+
+    "สถานที่ท่องเที่ยว",
 
     "สำรอง / กู้คืนข้อมูล"
 
 ];
 
 
-/* =========================================
-   สร้างเมนู
-========================================= */
+const menuElement =
+document.getElementById("menu");
 
-const menu = document.getElementById("menu");
 
-menu.innerHTML = MENUS.map(function(name){
+function renderMenu(){
 
-    return `
+    menuElement.innerHTML =
+    menus.map(function(item){
+
+        return `
         <button
-            class="menu-btn"
-            onclick="openPage(${JSON.stringify(name)})"
+            onclick='openPage(${JSON.stringify(item)})'
+            id="menu-${item}"
         >
-            ${name}
+            ${item}
         </button>
-    `;
+        `;
 
-}).join("");
+    }).join("");
+
+}
 
 
-/* =========================================
-   บันทึกข้อมูล
-========================================= */
+renderMenu();
 
-function saveData(message = "บันทึกข้อมูลเรียบร้อย"){
+
+/* =====================================================
+   UTILITY
+===================================================== */
+
+function saveData(){
 
     localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(DATA)
+        JSON.stringify(siteData)
     );
 
-    alert(message);
+    showNotice();
 
 }
 
 
-/* =========================================
-   ออกจากระบบ
-========================================= */
+function showNotice(){
 
-function logout(){
+    const notice =
+    document.getElementById("notice");
 
-    if(confirm("ต้องการออกจากระบบหรือไม่?")){
+    notice.style.display = "block";
 
-        localStorage.removeItem(
-            "rongkhemAdminLoggedIn"
-        );
+    setTimeout(function(){
 
-        localStorage.removeItem(
-            "rongkhemAdminUsername"
-        );
+        notice.style.display = "none";
 
-        window.location.href = "login.html";
-
-    }
+    },2500);
 
 }
 
 
-/* =========================================
-   อ่านไฟล์รูปภาพ
-========================================= */
-
-function readImage(input, callback){
+function readImage(input,callback){
 
     const file = input.files[0];
 
-    if(!file){
-        return;
-    }
+    if(!file) return;
 
-    if(!file.type.startsWith("image/")){
-        alert("กรุณาเลือกไฟล์รูปภาพ");
-        return;
-    }
+    const reader =
+    new FileReader();
 
-    const reader = new FileReader();
-
-    reader.onload = function(event){
+    reader.onload =
+    function(event){
 
         callback(event.target.result);
 
@@ -621,20 +778,43 @@ function readImage(input, callback){
 }
 
 
-/* =========================================
-   เปิดหน้า
-========================================= */
+function escapeHtml(text){
+
+    if(text === null ||
+       text === undefined){
+        return "";
+    }
+
+    return String(text)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+function setActiveMenu(name){
+
+    document
+    .querySelectorAll(".menu button")
+    .forEach(function(button){
+
+        button.classList.remove("active");
+
+    });
+
+}
+
+
+/* =====================================================
+   OPEN PAGE
+===================================================== */
 
 function openPage(name){
 
-    document.querySelectorAll(".menu-btn").forEach(function(button){
-
-        button.classList.toggle(
-            "active",
-            button.textContent.trim() === name
-        );
-
-    });
+    setActiveMenu(name);
 
     if(name === "ภาพรวมระบบ"){
         dashboard();
@@ -654,20 +834,26 @@ function openPage(name){
     if(name === "ข่าวประชาสัมพันธ์"){
         listPage(
             "ข่าวประชาสัมพันธ์",
-            "news"
+            "news",
+            true
         );
         return;
     }
 
     if(name === "กิจกรรมเด่น"){
-        activityPage();
+        listPage(
+            "กิจกรรมเด่น",
+            "activity",
+            true
+        );
         return;
     }
 
     if(name === "ประกาศสำคัญ"){
         listPage(
             "ประกาศสำคัญ",
-            "announcements"
+            "announcements",
+            false
         );
         return;
     }
@@ -687,134 +873,185 @@ function openPage(name){
 }
 
 
-/* =========================================
-   ภาพรวม
-========================================= */
+/* =====================================================
+   DASHBOARD
+===================================================== */
 
 function dashboard(){
 
     document.getElementById("app").innerHTML = `
 
-        <div class="card">
+    <div class="card">
 
-            <h2 class="page-title">
-                ภาพรวมระบบ
-            </h2>
+        <h1 class="page-title">
+            ภาพรวมระบบ
+        </h1>
 
-            <p class="page-desc">
-                ระบบจัดการข้อมูลเว็บไซต์ RONGKHEM e-VILLAGE
-            </p>
+        <p class="page-description">
+            ระบบจัดการข้อมูลเว็บไซต์ RONGKHEM e-VILLAGE
+        </p>
 
-            <div class="dashboard-grid">
+        <div class="dashboard-grid">
 
-                <div class="stat-card">
-                    <span>ครัวเรือน</span>
-                    <strong>${DATA.stats.households}</strong>
+            <div class="stat-box">
+
+                <div class="stat-number">
+                    ${escapeHtml(siteData.stats.households)}
                 </div>
 
-                <div class="stat-card">
-                    <span>ประชากร</span>
-                    <strong>${DATA.stats.population}</strong>
+                <div class="stat-label">
+                    ครัวเรือนทั้งหมด
                 </div>
 
-                <div class="stat-card">
-                    <span>ข่าวประชาสัมพันธ์</span>
-                    <strong>${DATA.news.length}</strong>
+            </div>
+
+            <div class="stat-box">
+
+                <div class="stat-number">
+                    ${escapeHtml(siteData.stats.population)}
                 </div>
 
-                <div class="stat-card">
-                    <span>ประกาศสำคัญ</span>
-                    <strong>${DATA.announcements.length}</strong>
+                <div class="stat-label">
+                    ประชากรทั้งหมด
+                </div>
+
+            </div>
+
+            <div class="stat-box">
+
+                <div class="stat-number">
+                    ${escapeHtml(siteData.stats.area)}
+                </div>
+
+                <div class="stat-label">
+                    ตารางกิโลเมตร
+                </div>
+
+            </div>
+
+            <div class="stat-box">
+
+                <div class="stat-number">
+                    ${siteData.news.length}
+                </div>
+
+                <div class="stat-label">
+                    ข่าวประชาสัมพันธ์
                 </div>
 
             </div>
 
         </div>
+
+    </div>
 
     `;
 
 }
 
 
-/* =========================================
-   ข้อมูลผู้ใหญ่บ้าน
-========================================= */
+/* =====================================================
+   LEADER
+===================================================== */
 
 function leaderPage(){
 
-    const x = DATA.leader;
+    const data =
+    siteData.leader;
 
     document.getElementById("app").innerHTML = `
 
-        <div class="card">
+    <div class="card">
 
-            <h2 class="page-title">
-                ข้อมูลผู้ใหญ่บ้าน
-            </h2>
+        <h1 class="page-title">
+            ข้อมูลผู้ใหญ่บ้าน
+        </h1>
 
-            <p class="page-desc">
-                แก้ไขข้อมูลที่แสดงหน้าเว็บไซต์
-            </p>
+        <p class="page-description">
+            แก้ไขข้อมูล รูปภาพ และข้อมูลติดต่อ
+        </p>
 
-            <label>ชื่อ</label>
+        <label>
+            ชื่อ
+        </label>
 
-            <input
-                id="leaderName"
-                value="${escapeHTML(x.name)}"
+        <input
+            id="leaderName"
+            value="${escapeHtml(data.name)}"
+        >
+
+        <label>
+            ตำแหน่ง
+        </label>
+
+        <input
+            id="leaderRole"
+            value="${escapeHtml(data.role)}"
+        >
+
+        <label>
+            ที่อยู่
+        </label>
+
+        <input
+            id="leaderAddress"
+            value="${escapeHtml(data.address)}"
+        >
+
+        <label>
+            คำพูด
+        </label>
+
+        <textarea
+            id="leaderQuote"
+        >${escapeHtml(data.quote)}</textarea>
+
+        <label>
+            โทรศัพท์
+        </label>
+
+        <input
+            id="leaderPhone"
+            value="${escapeHtml(data.phone)}"
+        >
+
+        <label>
+            อัปโหลดรูปภาพ
+        </label>
+
+        <input
+            type="file"
+            accept="image/*"
+            onchange="uploadLeaderImage(this)"
+        >
+
+        ${
+            data.image
+            ?
+            `<img class="preview" src="${data.image}">`
+            :
+            ""
+        }
+
+        <div class="actions">
+
+            <button
+                class="btn btn-primary"
+                onclick="saveLeader()"
             >
+                บันทึกข้อมูล
+            </button>
 
-            <label>ตำแหน่ง</label>
-
-            <input
-                id="leaderRole"
-                value="${escapeHTML(x.role)}"
+            <button
+                class="btn btn-danger"
+                onclick="deleteLeaderImage()"
             >
-
-            <label>ที่อยู่</label>
-
-            <input
-                id="leaderAddress"
-                value="${escapeHTML(x.address)}"
-            >
-
-            <label>ข้อความ</label>
-
-            <textarea id="leaderQuote">${escapeHTML(x.quote)}</textarea>
-
-            <label>โทรศัพท์</label>
-
-            <input
-                id="leaderPhone"
-                value="${escapeHTML(x.phone)}"
-            >
-
-            <label>อัปโหลดรูปภาพ</label>
-
-            <input
-                type="file"
-                accept="image/*"
-                onchange="uploadLeaderImage(this)"
-            >
-
-            ${x.image ? `
-                <img
-                    src="${x.image}"
-                    class="preview"
-                >
-            ` : ""}
-
-            <div class="actions">
-
-                <button
-                    class="btn primary"
-                    onclick="saveLeader()"
-                >
-                    บันทึกข้อมูล
-                </button>
-
-            </div>
+                ลบรูปภาพ
+            </button>
 
         </div>
+
+    </div>
 
     `;
 
@@ -823,162 +1060,209 @@ function leaderPage(){
 
 function uploadLeaderImage(input){
 
-    readImage(input,function(image){
+    readImage(
+        input,
+        function(image){
 
-        DATA.leader.image = image;
+            siteData.leader.image =
+            image;
 
-        saveData("อัปโหลดรูปภาพเรียบร้อย");
+            saveData();
 
-        leaderPage();
+            leaderPage();
 
-    });
+        }
+    );
+
+}
+
+
+function deleteLeaderImage(){
+
+    siteData.leader.image = "";
+
+    saveData();
+
+    leaderPage();
 
 }
 
 
 function saveLeader(){
 
-    DATA.leader.name =
-        document.getElementById("leaderName").value;
+    siteData.leader.name =
+    document.getElementById(
+        "leaderName"
+    ).value;
 
-    DATA.leader.role =
-        document.getElementById("leaderRole").value;
+    siteData.leader.role =
+    document.getElementById(
+        "leaderRole"
+    ).value;
 
-    DATA.leader.address =
-        document.getElementById("leaderAddress").value;
+    siteData.leader.address =
+    document.getElementById(
+        "leaderAddress"
+    ).value;
 
-    DATA.leader.quote =
-        document.getElementById("leaderQuote").value;
+    siteData.leader.quote =
+    document.getElementById(
+        "leaderQuote"
+    ).value;
 
-    DATA.leader.phone =
-        document.getElementById("leaderPhone").value;
+    siteData.leader.phone =
+    document.getElementById(
+        "leaderPhone"
+    ).value;
 
     saveData();
 
 }
 
 
-/* =========================================
-   ทีมผู้ช่วยผู้ใหญ่บ้าน
-========================================= */
+/* =====================================================
+   ASSISTANTS
+===================================================== */
 
 function assistantsPage(){
 
-    document.getElementById("app").innerHTML = `
+    let html = `
 
-        <div class="card">
+    <div class="card">
 
-            <div class="item-header">
+        <h1 class="page-title">
+            ทีมผู้ช่วยผู้ใหญ่บ้าน
+        </h1>
 
-                <div>
+        <p class="page-description">
+            เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพได้
+        </p>
 
-                    <h2 class="page-title">
-                        ทีมผู้ช่วยผู้ใหญ่บ้าน
-                    </h2>
-
-                    <p class="page-desc">
-                        เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพ
-                    </p>
-
-                </div>
-
-                <button
-                    class="btn primary"
-                    onclick="addAssistant()"
-                >
-                    + เพิ่มผู้ช่วย
-                </button>
-
-            </div>
-
-            <div id="assistantList"></div>
-
-        </div>
+        <button
+            class="btn btn-primary"
+            onclick="addAssistant()"
+        >
+            + เพิ่มผู้ช่วย
+        </button>
 
     `;
 
-    const container =
-        document.getElementById("assistantList");
 
-    container.innerHTML =
-        DATA.assistants.map(function(item,index){
+    siteData.assistants.forEach(
+        function(item,index){
 
-            return `
+            html += `
 
-                <div class="item">
+            <div class="item">
 
-                    <label>ชื่อ</label>
+                <div class="item-head">
 
-                    <input
-                        id="assistantName${index}"
-                        value="${escapeHTML(item.name)}"
+                    <h3>
+                        ผู้ช่วยคนที่ ${index + 1}
+                    </h3>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="deleteAssistant(${index})"
                     >
-
-                    <label>ตำแหน่ง</label>
-
-                    <input
-                        id="assistantRole${index}"
-                        value="${escapeHTML(item.role)}"
-                    >
-
-                    <label>รายละเอียด</label>
-
-                    <textarea
-                        id="assistantDetail${index}"
-                    >${escapeHTML(item.detail)}</textarea>
-
-                    <label>โทรศัพท์</label>
-
-                    <input
-                        id="assistantPhone${index}"
-                        value="${escapeHTML(item.phone)}"
-                    >
-
-                    <label>อัปโหลดรูปภาพ</label>
-
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onchange="uploadAssistantImage(this,${index})"
-                    >
-
-                    ${item.image ? `
-                        <img
-                            src="${item.image}"
-                            class="preview"
-                        >
-                    ` : ""}
-
-                    <div class="actions">
-
-                        <button
-                            class="btn primary"
-                            onclick="saveAssistant(${index})"
-                        >
-                            บันทึก
-                        </button>
-
-                        <button
-                            class="btn danger"
-                            onclick="deleteAssistant(${index})"
-                        >
-                            ลบ
-                        </button>
-
-                    </div>
+                        ลบ
+                    </button>
 
                 </div>
 
+                <label>
+                    ชื่อ
+                </label>
+
+                <input
+                    id="assistantName${index}"
+                    value="${escapeHtml(item.name)}"
+                >
+
+                <label>
+                    ตำแหน่ง
+                </label>
+
+                <input
+                    id="assistantRole${index}"
+                    value="${escapeHtml(item.role)}"
+                >
+
+                <label>
+                    รายละเอียด
+                </label>
+
+                <textarea
+                    id="assistantDetail${index}"
+                >${escapeHtml(item.detail)}</textarea>
+
+                <label>
+                    โทรศัพท์
+                </label>
+
+                <input
+                    id="assistantPhone${index}"
+                    value="${escapeHtml(item.phone)}"
+                >
+
+                <label>
+                    อัปโหลดรูปภาพ
+                </label>
+
+                <input
+                    type="file"
+                    accept="image/*"
+                    onchange="uploadAssistantImage(this,${index})"
+                >
+
+                ${
+                    item.image
+                    ?
+                    `<img
+                        class="preview"
+                        src="${item.image}"
+                    >`
+                    :
+                    ""
+                }
+
+                <div class="actions">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="saveAssistant(${index})"
+                    >
+                        บันทึก
+                    </button>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick="removeAssistantImage(${index})"
+                    >
+                        ลบรูปภาพ
+                    </button>
+
+                </div>
+
+            </div>
+
             `;
 
-        }).join("");
+        }
+    );
+
+
+    html += `</div>`;
+
+    document.getElementById("app").innerHTML =
+    html;
 
 }
 
 
 function addAssistant(){
 
-    DATA.assistants.push({
+    siteData.assistants.push({
 
         name:"",
         role:"",
@@ -988,47 +1272,34 @@ function addAssistant(){
 
     });
 
+    saveData();
+
     assistantsPage();
-
-}
-
-
-function uploadAssistantImage(input,index){
-
-    readImage(input,function(image){
-
-        DATA.assistants[index].image = image;
-
-        saveData("อัปโหลดรูปภาพเรียบร้อย");
-
-        assistantsPage();
-
-    });
 
 }
 
 
 function saveAssistant(index){
 
-    DATA.assistants[index].name =
-        document.getElementById(
-            "assistantName" + index
-        ).value;
+    siteData.assistants[index].name =
+    document.getElementById(
+        "assistantName" + index
+    ).value;
 
-    DATA.assistants[index].role =
-        document.getElementById(
-            "assistantRole" + index
-        ).value;
+    siteData.assistants[index].role =
+    document.getElementById(
+        "assistantRole" + index
+    ).value;
 
-    DATA.assistants[index].detail =
-        document.getElementById(
-            "assistantDetail" + index
-        ).value;
+    siteData.assistants[index].detail =
+    document.getElementById(
+        "assistantDetail" + index
+    ).value;
 
-    DATA.assistants[index].phone =
-        document.getElementById(
-            "assistantPhone" + index
-        ).value;
+    siteData.assistants[index].phone =
+    document.getElementById(
+        "assistantPhone" + index
+    ).value;
 
     saveData();
 
@@ -1037,336 +1308,414 @@ function saveAssistant(index){
 
 function deleteAssistant(index){
 
-    if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){
-
-        DATA.assistants.splice(index,1);
-
-        saveData("ลบข้อมูลเรียบร้อย");
-
-        assistantsPage();
-
+    if(!confirm("ต้องการลบข้อมูลนี้หรือไม่?")){
+        return;
     }
+
+    siteData.assistants.splice(
+        index,
+        1
+    );
+
+    saveData();
+
+    assistantsPage();
 
 }
 
 
-/* =========================================
-   ข่าว / ประกาศ
-========================================= */
+function uploadAssistantImage(
+    input,
+    index
+){
 
-function listPage(title,key){
+    readImage(
+        input,
+        function(image){
 
-    document.getElementById("app").innerHTML = `
+            siteData
+            .assistants[index]
+            .image = image;
 
-        <div class="card">
+            saveData();
 
-            <div class="item-header">
+            assistantsPage();
 
-                <div>
+        }
+    );
 
-                    <h2 class="page-title">
-                        ${title}
-                    </h2>
+}
 
-                    <p class="page-desc">
-                        เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพ
-                    </p>
 
-                </div>
+function removeAssistantImage(index){
 
-                <button
-                    class="btn primary"
-                    onclick="addListItem('${key}','${title}')"
-                >
-                    + เพิ่มรายการ
-                </button>
+    siteData
+    .assistants[index]
+    .image = "";
 
-            </div>
+    saveData();
 
-            <div id="listContainer"></div>
+    assistantsPage();
 
-        </div>
+}
+
+
+/* =====================================================
+   NEWS / ACTIVITY / ANNOUNCEMENT
+===================================================== */
+
+function listPage(
+    title,
+    key,
+    hasImage
+){
+
+    let html = `
+
+    <div class="card">
+
+        <h1 class="page-title">
+            ${title}
+        </h1>
+
+        <p class="page-description">
+            เพิ่ม แก้ไข ลบ และบันทึกข้อมูลได้ทั้งหมด
+        </p>
+
+        <button
+            class="btn btn-primary"
+            onclick='addListItem(${JSON.stringify(key)},${hasImage})'
+        >
+            + เพิ่มรายการ
+        </button>
 
     `;
 
-    const container =
-        document.getElementById("listContainer");
 
-    container.innerHTML =
-        DATA[key].map(function(item,index){
+    if(
+        !siteData[key] ||
+        siteData[key].length === 0
+    ){
 
-            return `
+        html += `
+        <div class="empty">
+            ยังไม่มีข้อมูล
+        </div>
+        `;
 
-                <div class="item">
+    }
 
-                    <label>หัวข้อ</label>
 
-                    <input
-                        id="${key}Title${index}"
-                        value="${escapeHTML(item.title || "")}"
+    siteData[key].forEach(
+        function(item,index){
+
+            html += `
+
+            <div class="item">
+
+                <div class="item-head">
+
+                    <h3>
+                        รายการที่ ${index + 1}
+                    </h3>
+
+                    <button
+                        class="btn btn-danger"
+                        onclick='deleteListItem(${JSON.stringify(key)},${index},${hasImage})'
                     >
+                        ลบ
+                    </button>
 
-                    <label>รายละเอียด</label>
+                </div>
 
-                    <textarea
-                        id="${key}Detail${index}"
-                    >${escapeHTML(item.detail || "")}</textarea>
+                <label>
+                    หัวข้อ
+                </label>
 
-                    <label>อัปโหลดรูปภาพ</label>
+                <input
+                    id="${key}Title${index}"
+                    value="${escapeHtml(item.title)}"
+                >
+
+                <label>
+                    รายละเอียด
+                </label>
+
+                <textarea
+                    id="${key}Detail${index}"
+                >${escapeHtml(item.detail)}</textarea>
+
+                ${
+                    hasImage
+                    ?
+                    `
+                    <label>
+                        อัปโหลดรูปภาพ
+                    </label>
 
                     <input
                         type="file"
                         accept="image/*"
-                        onchange="uploadListImage(this,'${key}',${index},'${title}')"
+                        onchange='uploadListImage(this,${JSON.stringify(key)},${index})'
                     >
 
-                    ${item.image ? `
+                    ${
+                        item.image
+                        ?
+                        `
                         <img
-                            src="${item.image}"
                             class="preview"
+                            src="${item.image}"
                         >
-                    ` : ""}
+                        `
+                        :
+                        ""
+                    }
+                    `
+                    :
+                    ""
+                }
 
-                    <div class="actions">
+                <div class="actions">
 
+                    <button
+                        class="btn btn-primary"
+                        onclick='saveListItem(${JSON.stringify(key)},${index})'
+                    >
+                        บันทึก
+                    </button>
+
+                    ${
+                        hasImage
+                        ?
+                        `
                         <button
-                            class="btn primary"
-                            onclick="saveListItem('${key}',${index})"
+                            class="btn btn-danger"
+                            onclick='deleteListImage(${JSON.stringify(key)},${index})'
                         >
-                            บันทึก
+                            ลบรูปภาพ
                         </button>
-
-                        <button
-                            class="btn danger"
-                            onclick="deleteListItem('${key}',${index},'${title}')"
-                        >
-                            ลบ
-                        </button>
-
-                    </div>
+                        `
+                        :
+                        ""
+                    }
 
                 </div>
 
+            </div>
+
             `;
 
-        }).join("");
+        }
+    );
+
+
+    html += `</div>`;
+
+    document.getElementById("app").innerHTML =
+    html;
 
 }
 
 
-function addListItem(key,title){
+function addListItem(
+    key,
+    hasImage
+){
 
-    DATA[key].push({
+    const item = {
 
         title:"",
-        detail:"",
-        image:""
+        detail:""
 
-    });
-
-    listPage(title,key);
-
-}
+    };
 
 
-function uploadListImage(input,key,index,title){
+    if(hasImage){
 
-    readImage(input,function(image){
-
-        DATA[key][index].image = image;
-
-        saveData("อัปโหลดรูปภาพเรียบร้อย");
-
-        listPage(title,key);
-
-    });
-
-}
-
-
-function saveListItem(key,index){
-
-    DATA[key][index].title =
-        document.getElementById(
-            key + "Title" + index
-        ).value;
-
-    DATA[key][index].detail =
-        document.getElementById(
-            key + "Detail" + index
-        ).value;
-
-    saveData();
-
-}
-
-
-function deleteListItem(key,index,title){
-
-    if(confirm("ต้องการลบข้อมูลนี้หรือไม่?")){
-
-        DATA[key].splice(index,1);
-
-        saveData("ลบข้อมูลเรียบร้อย");
-
-        listPage(title,key);
+        item.image = "";
 
     }
 
-}
 
+    siteData[key].push(item);
 
-/* =========================================
-   กิจกรรมเด่น
-========================================= */
+    saveData();
 
-function activityPage(){
-
-    const x = DATA.activity;
-
-    document.getElementById("app").innerHTML = `
-
-        <div class="card">
-
-            <h2 class="page-title">
-                กิจกรรมเด่น
-            </h2>
-
-            <p class="page-desc">
-                แก้ไขกิจกรรมที่แสดงหน้าเว็บไซต์
-            </p>
-
-            <label>หัวข้อ</label>
-
-            <input
-                id="activityTitle"
-                value="${escapeHTML(x.title)}"
-            >
-
-            <label>รายละเอียด</label>
-
-            <textarea
-                id="activityDetail"
-            >${escapeHTML(x.detail)}</textarea>
-
-            <label>อัปโหลดรูปภาพ</label>
-
-            <input
-                type="file"
-                accept="image/*"
-                onchange="uploadActivityImage(this)"
-            >
-
-            ${x.image ? `
-                <img
-                    src="${x.image}"
-                    class="preview"
-                >
-            ` : ""}
-
-            <div class="actions">
-
-                <button
-                    class="btn primary"
-                    onclick="saveActivity()"
-                >
-                    บันทึกข้อมูล
-                </button>
-
-            </div>
-
-        </div>
-
-    `;
+    listPage(
+        getListTitle(key),
+        key,
+        hasImage
+    );
 
 }
 
 
-function uploadActivityImage(input){
+function saveListItem(
+    key,
+    index
+){
 
-    readImage(input,function(image){
+    siteData[key][index].title =
+    document.getElementById(
+        key + "Title" + index
+    ).value;
 
-        DATA.activity.image = image;
-
-        saveData("อัปโหลดรูปภาพเรียบร้อย");
-
-        activityPage();
-
-    });
-
-}
-
-
-function saveActivity(){
-
-    DATA.activity.title =
-        document.getElementById(
-            "activityTitle"
-        ).value;
-
-    DATA.activity.detail =
-        document.getElementById(
-            "activityDetail"
-        ).value;
+    siteData[key][index].detail =
+    document.getElementById(
+        key + "Detail" + index
+    ).value;
 
     saveData();
 
 }
 
 
-/* =========================================
-   สถิติหมู่บ้าน
-========================================= */
+function deleteListItem(
+    key,
+    index,
+    hasImage
+){
+
+    if(!confirm("ต้องการลบรายการนี้หรือไม่?")){
+        return;
+    }
+
+    siteData[key].splice(
+        index,
+        1
+    );
+
+    saveData();
+
+    listPage(
+        getListTitle(key),
+        key,
+        hasImage
+    );
+
+}
+
+
+function uploadListImage(
+    input,
+    key,
+    index
+){
+
+    readImage(
+        input,
+        function(image){
+
+            siteData[key][index].image =
+            image;
+
+            saveData();
+
+            listPage(
+                getListTitle(key),
+                key,
+                true
+            );
+
+        }
+    );
+
+}
+
+
+function deleteListImage(
+    key,
+    index
+){
+
+    siteData[key][index].image =
+    "";
+
+    saveData();
+
+    listPage(
+        getListTitle(key),
+        key,
+        true
+    );
+
+}
+
+
+function getListTitle(key){
+
+    const titles = {
+
+        news:"ข่าวประชาสัมพันธ์",
+
+        activity:"กิจกรรมเด่น",
+
+        announcements:"ประกาศสำคัญ"
+
+    };
+
+    return titles[key];
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
 
 function statsPage(){
 
-    const x = DATA.stats;
+    const data =
+    siteData.stats;
 
     document.getElementById("app").innerHTML = `
 
-        <div class="card">
+    <div class="card">
 
-            <h2 class="page-title">
-                สถิติหมู่บ้าน
-            </h2>
+        <h1 class="page-title">
+            สถิติหมู่บ้าน
+        </h1>
 
-            <p class="page-desc">
-                แก้ไขข้อมูลสถิติหน้าเว็บไซต์
-            </p>
+        <p class="page-description">
+            แก้ไขข้อมูลสถิติหน้าเว็บไซต์
+        </p>
 
-            <label>ครัวเรือนทั้งหมด</label>
+        <label>
+            ครัวเรือนทั้งหมด
+        </label>
 
-            <input
-                id="households"
-                value="${escapeHTML(x.households)}"
-            >
+        <input
+            id="statHouseholds"
+            value="${escapeHtml(data.households)}"
+        >
 
-            <label>ประชากรทั้งหมด</label>
+        <label>
+            ประชากรทั้งหมด
+        </label>
 
-            <input
-                id="population"
-                value="${escapeHTML(x.population)}"
-            >
+        <input
+            id="statPopulation"
+            value="${escapeHtml(data.population)}"
+        >
 
-            <label>พื้นที่หมู่บ้าน</label>
+        <label>
+            พื้นที่หมู่บ้าน
+        </label>
 
-            <input
-                id="area"
-                value="${escapeHTML(x.area)}"
-            >
+        <input
+            id="statArea"
+            value="${escapeHtml(data.area)}"
+        >
 
-            <div class="actions">
+        <button
+            class="btn btn-primary"
+            onclick="saveStats()"
+        >
+            บันทึกข้อมูล
+        </button>
 
-                <button
-                    class="btn primary"
-                    onclick="saveStats()"
-                >
-                    บันทึกข้อมูล
-                </button>
-
-            </div>
-
-        </div>
+    </div>
 
     `;
 
@@ -1375,461 +1724,308 @@ function statsPage(){
 
 function saveStats(){
 
-    DATA.stats.households =
-        document.getElementById("households").value;
+    siteData.stats.households =
+    document.getElementById(
+        "statHouseholds"
+    ).value;
 
-    DATA.stats.population =
-        document.getElementById("population").value;
+    siteData.stats.population =
+    document.getElementById(
+        "statPopulation"
+    ).value;
 
-    DATA.stats.area =
-        document.getElementById("area").value;
+    siteData.stats.area =
+    document.getElementById(
+        "statArea"
+    ).value;
 
     saveData();
 
 }
 
 
-/* =========================================
-   ทุกเมนูข้อมูล
-========================================= */
+/* =====================================================
+   SECTION PAGE
+===================================================== */
 
 function sectionPage(name){
 
-    if(!DATA.sections[name]){
+    if(!siteData.sections){
 
-        DATA.sections[name] = {
+        siteData.sections = {};
+
+    }
+
+
+    if(!siteData.sections[name]){
+
+        siteData.sections[name] = {
 
             title:name,
             intro:"",
             content:"",
-            image:"",
-            items:[]
+            image:""
 
         };
 
     }
 
-    const section = DATA.sections[name];
+
+    const data =
+    siteData.sections[name];
+
 
     document.getElementById("app").innerHTML = `
 
-        <div class="card">
+    <div class="card">
 
-            <div class="item-header">
+        <h1 class="page-title">
+            ${escapeHtml(name)}
+        </h1>
 
-                <div>
+        <p class="page-description">
+            จัดการข้อมูลของเมนูนี้ได้ทั้งหมด
+        </p>
 
-                    <h2 class="page-title">
-                        ${name}
-                    </h2>
+        <label>
+            ชื่อหน้า
+        </label>
 
-                    <p class="page-desc">
-                        จัดการข้อมูลของเมนูนี้ได้ทั้งหมด
-                    </p>
+        <input
+            id="sectionTitle"
+            value="${escapeHtml(data.title)}"
+        >
 
-                </div>
+        <label>
+            คำเกริ่นนำ
+        </label>
 
-                <button
-                    class="btn primary"
-                    onclick="addSectionItem('${name}')"
-                >
-                    + เพิ่มรายการ
-                </button>
+        <textarea
+            id="sectionIntro"
+        >${escapeHtml(data.intro)}</textarea>
 
-            </div>
+        <label>
+            รายละเอียดหลัก
+        </label>
 
-            <div class="success-box" id="sectionSuccess">
-                บันทึกข้อมูลเรียบร้อย
-            </div>
+        <textarea
+            id="sectionContent"
+            style="min-height:280px"
+        >${escapeHtml(data.content)}</textarea>
 
-            <label>ชื่อหน้า</label>
+        <label>
+            รูปภาพหน้าหลัก
+        </label>
 
-            <input
-                id="sectionTitle"
-                value="${escapeHTML(section.title || name)}"
+        <input
+            type="file"
+            accept="image/*"
+            onchange='uploadSectionImage(this,${JSON.stringify(name)})'
+        >
+
+        ${
+            data.image
+            ?
+            `
+            <img
+                class="preview"
+                src="${data.image}"
             >
+            `
+            :
+            ""
+        }
 
-            <label>คำเกริ่นนำ</label>
+        <div class="actions">
 
-            <textarea
-                id="sectionIntro"
-            >${escapeHTML(section.intro || "")}</textarea>
-
-            <label>รายละเอียดหลัก</label>
-
-            <textarea
-                id="sectionContent"
-            >${escapeHTML(section.content || "")}</textarea>
-
-            <label>รูปภาพหน้าหลัก</label>
-
-            <input
-                type="file"
-                accept="image/*"
-                onchange="uploadSectionMainImage(this,'${name}')"
+            <button
+                class="btn btn-primary"
+                onclick='saveSection(${JSON.stringify(name)})'
             >
+                บันทึกข้อมูลหลัก
+            </button>
 
-            ${section.image ? `
-                <img
-                    src="${section.image}"
-                    class="preview"
-                >
-            ` : ""}
+            <button
+                class="btn btn-danger"
+                onclick='deleteSectionImage(${JSON.stringify(name)})'
+            >
+                ลบรูปภาพ
+            </button>
 
-            <div class="actions">
-
-                <button
-                    class="btn primary"
-                    onclick="saveSection('${name}')"
-                >
-                    บันทึกข้อมูลหลัก
-                </button>
-
-                <button
-                    class="btn danger"
-                    onclick="deleteSection('${name}')"
-                >
-                    ลบข้อมูลเมนูนี้
-                </button>
-
-            </div>
-
-            <div id="sectionItems"></div>
+            <button
+                class="btn btn-danger"
+                onclick='clearSection(${JSON.stringify(name)})'
+            >
+                ล้างข้อมูลหน้านี้
+            </button>
 
         </div>
 
-    `;
+    </div>
 
-    renderSectionItems(name);
+    `;
 
 }
 
 
 function saveSection(name){
 
-    if(!DATA.sections[name]){
+    if(!siteData.sections[name]){
 
-        DATA.sections[name] = {
-            title:name,
-            intro:"",
-            content:"",
-            image:"",
-            items:[]
-        };
+        siteData.sections[name] = {};
 
     }
 
-    DATA.sections[name].title =
-        document.getElementById("sectionTitle").value;
 
-    DATA.sections[name].intro =
-        document.getElementById("sectionIntro").value;
+    siteData.sections[name].title =
+    document.getElementById(
+        "sectionTitle"
+    ).value;
 
-    DATA.sections[name].content =
-        document.getElementById("sectionContent").value;
 
-    localStorage.setItem(
-        STORAGE_KEY,
-        JSON.stringify(DATA)
-    );
+    siteData.sections[name].intro =
+    document.getElementById(
+        "sectionIntro"
+    ).value;
 
-    const success =
-        document.getElementById("sectionSuccess");
 
-    if(success){
+    siteData.sections[name].content =
+    document.getElementById(
+        "sectionContent"
+    ).value;
 
-        success.style.display = "block";
-
-        setTimeout(function(){
-
-            success.style.display = "none";
-
-        },2500);
-
-    }
-
-}
-
-
-function uploadSectionMainImage(input,name){
-
-    readImage(input,function(image){
-
-        if(!DATA.sections[name]){
-
-            DATA.sections[name] = {
-                title:name,
-                intro:"",
-                content:"",
-                image:"",
-                items:[]
-            };
-
-        }
-
-        DATA.sections[name].image = image;
-
-        saveData("อัปโหลดรูปภาพเรียบร้อย");
-
-        sectionPage(name);
-
-    });
-
-}
-
-
-function deleteSection(name){
-
-    if(confirm("ต้องการลบข้อมูลของเมนูนี้หรือไม่?")){
-
-        delete DATA.sections[name];
-
-        saveData("ลบข้อมูลเรียบร้อย");
-
-        sectionPage(name);
-
-    }
-
-}
-
-
-/* =========================================
-   รายการย่อยในเมนู
-========================================= */
-
-function addSectionItem(name){
-
-    if(!DATA.sections[name]){
-
-        DATA.sections[name] = {
-
-            title:name,
-            intro:"",
-            content:"",
-            image:"",
-            items:[]
-
-        };
-
-    }
-
-    if(!Array.isArray(DATA.sections[name].items)){
-
-        DATA.sections[name].items = [];
-
-    }
-
-    DATA.sections[name].items.push({
-
-        title:"",
-        detail:"",
-        image:""
-
-    });
-
-    sectionPage(name);
-
-}
-
-
-function renderSectionItems(name){
-
-    const container =
-        document.getElementById("sectionItems");
-
-    if(!container){
-        return;
-    }
-
-    const items =
-        DATA.sections[name].items || [];
-
-    if(items.length === 0){
-
-        container.innerHTML = "";
-
-        return;
-
-    }
-
-    container.innerHTML = `
-
-        <hr style="border:none;border-top:1px solid #e2e8f0;margin:30px 0">
-
-        <h3 style="margin-bottom:10px">
-            รายการเพิ่มเติม
-        </h3>
-
-    ` + items.map(function(item,index){
-
-        return `
-
-            <div class="item">
-
-                <h3>
-                    รายการที่ ${index + 1}
-                </h3>
-
-                <label>หัวข้อ</label>
-
-                <input
-                    id="sectionItemTitle${index}"
-                    value="${escapeHTML(item.title || "")}"
-                >
-
-                <label>รายละเอียด</label>
-
-                <textarea
-                    id="sectionItemDetail${index}"
-                >${escapeHTML(item.detail || "")}</textarea>
-
-                <label>รูปภาพ</label>
-
-                <input
-                    type="file"
-                    accept="image/*"
-                    onchange="uploadSectionItemImage(this,'${name}',${index})"
-                >
-
-                ${item.image ? `
-                    <img
-                        src="${item.image}"
-                        class="preview"
-                    >
-                ` : ""}
-
-                <div class="actions">
-
-                    <button
-                        class="btn primary"
-                        onclick="saveSectionItem('${name}',${index})"
-                    >
-                        บันทึก
-                    </button>
-
-                    <button
-                        class="btn danger"
-                        onclick="deleteSectionItem('${name}',${index})"
-                    >
-                        ลบ
-                    </button>
-
-                </div>
-
-            </div>
-
-        `;
-
-    }).join("");
-
-}
-
-
-function saveSectionItem(name,index){
-
-    DATA.sections[name].items[index].title =
-        document.getElementById(
-            "sectionItemTitle" + index
-        ).value;
-
-    DATA.sections[name].items[index].detail =
-        document.getElementById(
-            "sectionItemDetail" + index
-        ).value;
 
     saveData();
 
 }
 
 
-function uploadSectionItemImage(input,name,index){
+function uploadSectionImage(
+    input,
+    name
+){
 
-    readImage(input,function(image){
+    readImage(
+        input,
+        function(image){
 
-        DATA.sections[name].items[index].image =
+            if(!siteData.sections[name]){
+
+                siteData.sections[name] = {
+                    title:name,
+                    intro:"",
+                    content:"",
+                    image:""
+                };
+
+            }
+
+            siteData.sections[name].image =
             image;
 
-        saveData("อัปโหลดรูปภาพเรียบร้อย");
+            saveData();
 
-        sectionPage(name);
+            sectionPage(name);
 
-    });
+        }
+    );
 
 }
 
 
-function deleteSectionItem(name,index){
+function deleteSectionImage(name){
 
-    if(confirm("ต้องการลบรายการนี้หรือไม่?")){
+    if(
+        siteData.sections[name]
+    ){
 
-        DATA.sections[name].items.splice(index,1);
-
-        saveData("ลบรายการเรียบร้อย");
-
-        sectionPage(name);
+        siteData.sections[name].image =
+        "";
 
     }
 
+    saveData();
+
+    sectionPage(name);
+
 }
 
 
-/* =========================================
-   สำรองข้อมูล
-========================================= */
+function clearSection(name){
+
+    if(
+        !confirm(
+            "ต้องการล้างข้อมูลหน้านี้หรือไม่?"
+        )
+    ){
+        return;
+    }
+
+
+    siteData.sections[name] = {
+
+        title:name,
+        intro:"",
+        content:"",
+        image:""
+
+    };
+
+
+    saveData();
+
+    sectionPage(name);
+
+}
+
+
+/* =====================================================
+   BACKUP
+===================================================== */
 
 function backupPage(){
 
     document.getElementById("app").innerHTML = `
 
-        <div class="card">
+    <div class="card">
 
-            <h2 class="page-title">
-                สำรอง / กู้คืนข้อมูล
-            </h2>
+        <h1 class="page-title">
+            สำรอง / กู้คืนข้อมูล
+        </h1>
 
-            <p class="page-desc">
-                สำรองข้อมูลเว็บไซต์ทั้งหมด และกู้คืนภายหลังได้
-            </p>
+        <p class="page-description">
+            ดาวน์โหลดข้อมูลทั้งหมดเก็บไว้ หรือกู้คืนข้อมูลจากไฟล์ JSON
+        </p>
 
-            <div class="notice">
+        <div class="actions">
 
-                ข้อมูลถูกเก็บไว้ในเบราว์เซอร์เครื่องที่ใช้งานอยู่
-                ควรสำรองข้อมูลเป็นประจำ
-            </div>
-
-            <div class="actions">
-
-                <button
-                    class="btn primary"
-                    onclick="downloadBackup()"
-                >
-                    ดาวน์โหลดข้อมูลสำรอง
-                </button>
-
-            </div>
-
-            <label>
-                กู้คืนไฟล์ข้อมูล JSON
-            </label>
-
-            <input
-                type="file"
-                accept=".json,application/json"
-                onchange="restoreBackup(this)"
+            <button
+                class="btn btn-success"
+                onclick="downloadBackup()"
             >
-
-            <div class="actions">
-
-                <button
-                    class="btn danger"
-                    onclick="resetData()"
-                >
-                    รีเซ็ตข้อมูลทั้งหมด
-                </button>
-
-            </div>
+                ดาวน์โหลดสำรองข้อมูล
+            </button>
 
         </div>
+
+        <label>
+            กู้คืนไฟล์ JSON
+        </label>
+
+        <input
+            type="file"
+            accept=".json,application/json"
+            onchange="restoreBackup(this)"
+        >
+
+        <button
+            class="btn btn-danger"
+            onclick="resetAllData()"
+        >
+            รีเซ็ตข้อมูลเว็บไซต์ทั้งหมด
+        </button>
+
+    </div>
 
     `;
 
@@ -1841,7 +2037,11 @@ function downloadBackup(){
     const blob = new Blob(
 
         [
-            JSON.stringify(DATA,null,2)
+            JSON.stringify(
+                siteData,
+                null,
+                2
+            )
         ],
 
         {
@@ -1850,22 +2050,24 @@ function downloadBackup(){
 
     );
 
+
     const url =
-        URL.createObjectURL(blob);
+    URL.createObjectURL(blob);
+
 
     const link =
-        document.createElement("a");
+    document.createElement("a");
+
 
     link.href = url;
 
-    link.download =
-        "rongkhem-e-village-backup.json";
 
-    document.body.appendChild(link);
+    link.download =
+    "rongkhem-e-village-backup.json";
+
 
     link.click();
 
-    document.body.removeChild(link);
 
     URL.revokeObjectURL(url);
 
@@ -1874,31 +2076,42 @@ function downloadBackup(){
 
 function restoreBackup(input){
 
-    const file = input.files[0];
+    const file =
+    input.files[0];
 
-    if(!file){
-        return;
-    }
 
-    const reader = new FileReader();
+    if(!file) return;
 
-    reader.onload = function(event){
+
+    const reader =
+    new FileReader();
+
+
+    reader.onload =
+    function(event){
 
         try{
 
-            DATA =
-                JSON.parse(event.target.result);
-
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(DATA)
+            const data =
+            JSON.parse(
+                event.target.result
             );
+
+
+            siteData = data;
+
+
+            saveData();
+
 
             alert(
                 "กู้คืนข้อมูลเรียบร้อย"
             );
 
-            location.reload();
+
+            openPage(
+                "ภาพรวมระบบ"
+            );
 
         }catch(error){
 
@@ -1910,61 +2123,78 @@ function restoreBackup(input){
 
     };
 
+
     reader.readAsText(file);
 
 }
 
 
-function resetData(){
+function resetAllData(){
 
-    if(confirm(
-        "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่? ข้อมูลจะถูกลบ"
-    )){
-
-        localStorage.removeItem(
-            STORAGE_KEY
-        );
-
-        DATA =
-            structuredClone(DEFAULT_DATA);
-
-        saveData(
-            "รีเซ็ตข้อมูลเรียบร้อย"
-        );
-
-        location.reload();
-
+    if(
+        !confirm(
+            "ต้องการรีเซ็ตข้อมูลเว็บไซต์ทั้งหมดหรือไม่?"
+        )
+    ){
+        return;
     }
+
+
+    siteData =
+    structuredClone(
+        DEFAULT_DATA
+    );
+
+
+    saveData();
+
+
+    openPage(
+        "ภาพรวมระบบ"
+    );
 
 }
 
 
-/* =========================================
-   ป้องกัน HTML พัง
-========================================= */
+/* =====================================================
+   LOGOUT
+===================================================== */
 
-function escapeHTML(value){
+function logout(){
 
-    if(value === undefined || value === null){
-        return "";
+    if(
+        !confirm(
+            "ต้องการออกจากระบบหรือไม่?"
+        )
+    ){
+        return;
     }
 
-    return String(value)
 
-        .replace(/&/g,"&amp;")
-        .replace(/</g,"&lt;")
-        .replace(/>/g,"&gt;")
-        .replace(/"/g,"&quot;")
-        .replace(/'/g,"&#039;");
+    localStorage.removeItem(
+        "rongkhemAdminLoggedIn"
+    );
+
+
+    localStorage.removeItem(
+        "rongkhemAdminUsername"
+    );
+
+
+    window.location.replace(
+        "login.html"
+    );
 
 }
 
 
-/* =========================================
-   เปิดหน้าแรก
-========================================= */
+/* =====================================================
+   START
+===================================================== */
 
-dashboard();
+openPage(
+    "ภาพรวมระบบ"
+);
 
 </script>
 
