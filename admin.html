@@ -1,219 +1,1176 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ระบบจัดการหลังบ้าน - RONGKHEM e-VILLAGE OFFICE</title>
-  
-  <!-- Supabase SDK & Config -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="supabase-config.js"></script>
-  <script src="assets/js/admin-guard.js"></script>
-  
-  <style>
-    body { font-family: 'Sarabun', sans-serif; background-color: #f4f6f9; margin: 0; padding: 20px; color: #333; }
-    .admin-container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    
-    .header-bar { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
-    .header-bar h1 { margin: 0; color: #0056b3; font-size: 24px; }
-    
-    /* Navigation Tabs */
-    .admin-tabs { display: flex; gap: 10px; border-bottom: 1px solid #ddd; margin-bottom: 25px; }
-    .tab-btn { padding: 10px 20px; border: none; background: none; font-size: 16px; font-weight: bold; color: #666; cursor: pointer; border-bottom: 3px solid transparent; }
-    .tab-btn.active { color: #0056b3; border-bottom-color: #0056b3; }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
 
-    h2 { color: #0056b3; padding-bottom: 8px; font-size: 20px; margin-top: 0; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; font-weight: bold; margin-bottom: 5px; }
-    input[type="text"], input[type="number"], input[type="date"], input[type="file"], select, textarea {
-      width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
-    }
-    
-    .btn { padding: 10px 18px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    .btn-primary { background: #0056b3; color: white; }
-    .btn-danger { background: #dc3545; color: white; }
-    .btn-secondary { background: #6c757d; color: white; }
-    
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
-    th { background-color: #f8f9fa; }
+<meta charset="utf-8">
 
-    /* Component เรื่องร้องเรียน */
-    .filter-bar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
-    .filter-btn { padding: 8px 16px; border: 1px solid #ccc; background: #fff; border-radius: 20px; cursor: pointer; font-weight: bold; }
-    .filter-btn.active { background: #0056b3; color: white; border-color: #0056b3; }
-    .status-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; }
-    .status-pending { background: #fff3cd; color: #856404; }
-    .status-in_progress { background: #cce5ff; color: #004085; }
-    .status-completed { background: #d4edda; color: #155724; }
-    .status-rejected { background: #f8d7da; color: #721c24; }
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1"
+>
 
-    /* Modal Pop-up */
-    .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-    .modal-content { background: #fff; max-width: 550px; margin: 80px auto; padding: 25px; border-radius: 10px; position: relative; }
-    .close-btn { position: absolute; right: 15px; top: 15px; font-size: 20px; cursor: pointer; }
-  </style>
+<title>
+  RONGKHEM e-VILLAGE | ระบบหลังบ้าน
+</title>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Material+Symbols+Outlined"
+  rel="stylesheet"
+>
+
+<style>
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:'Noto Sans Thai',sans-serif;
+  background:#0d1724;
+  color:#eaf1fb;
+}
+
+.top{
+  height:70px;
+  background:#101e30;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 24px;
+  border-bottom:1px solid #24364b;
+  position:sticky;
+  top:0;
+  z-index:5;
+}
+
+.brand{
+  font-weight:700;
+  font-size:20px;
+}
+
+.brand small{
+  display:block;
+  font-size:12px;
+  color:#9fb0c3;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:240px 1fr;
+  min-height:calc(100vh - 70px);
+}
+
+aside{
+  background:#101e30;
+  border-right:1px solid #24364b;
+  padding:18px;
+}
+
+aside a{
+  display:block;
+  color:#c8d6e5;
+  text-decoration:none;
+  padding:12px;
+  border-radius:10px;
+  margin:5px 0;
+}
+
+aside a:hover,
+.active{
+  background:#1e5aa8!important;
+  color:white!important;
+}
+
+main{
+  padding:26px;
+  max-width:1500px;
+  width:100%;
+  margin:auto;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.card,
+.panel{
+  background:#162638;
+  border:1px solid #294057;
+  border-radius:16px;
+  padding:20px;
+}
+
+.card b{
+  font-size:30px;
+  display:block;
+  margin-top:6px;
+}
+
+.toolbar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+button,
+.btn{
+  border:0;
+  border-radius:9px;
+  padding:10px 14px;
+  color:#fff;
+  background:#2368bf;
+  cursor:pointer;
+  font:inherit;
+  text-decoration:none;
+}
+
+.danger{
+  background:#c83d3d;
+}
+
+.secondary{
+  background:#33485d;
+}
+
+.success{
+  background:#188653;
+}
+
+.panel{
+  overflow:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px;
+}
+
+th,
+td{
+  text-align:left;
+  padding:12px;
+  border-bottom:1px solid #294057;
+}
+
+th{
+  color:#9fb0c3;
+  font-size:13px;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  background:#0e1b29;
+  border:1px solid #334b63;
+  color:#fff;
+  border-radius:8px;
+  padding:10px;
+  font:inherit;
+}
+
+textarea{
+  min-height:80px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:20;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(760px,100%);
+  max-height:90vh;
+  overflow:auto;
+  background:#14263a;
+  border:1px solid #38536f;
+  border-radius:18px;
+  padding:22px;
+}
+
+.form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.full{
+  grid-column:1/-1;
+}
+
+.row{
+  display:flex;
+  gap:8px;
+  justify-content:flex-end;
+  margin-top:18px;
+}
+
+.section{
+  display:none;
+}
+
+.section.show{
+  display:block;
+}
+
+.muted{
+  color:#9fb0c3;
+}
+
+.mobile-menu{
+  display:none;
+}
+
+@media(max-width:850px){
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  aside{
+    display:none;
+  }
+
+  .layout.menu aside{
+    display:block;
+    position:fixed;
+    top:70px;
+    bottom:0;
+    width:260px;
+    z-index:10;
+  }
+
+  .mobile-menu{
+    display:inline-block;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  main{
+    padding:16px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .full{
+    grid-column:auto;
+  }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-<div class="admin-container">
-  <div class="header-bar">
-    <h1>⚙️ ระบบจัดการข้อมูลหมู่บ้านร่องเข็ม</h1>
-    <button class="btn btn-danger" onclick="logoutAdmin()">ออกจากระบบ</button>
+<header class="top">
+
+  <div>
+
+    <button
+      class="mobile-menu secondary"
+      onclick="
+        document
+          .querySelector('.layout')
+          .classList.toggle('menu')
+      "
+    >
+      ☰
+    </button>
+
+    <span class="brand">
+
+      RONGKHEM e-VILLAGE
+
+      <small>
+        ระบบหลังบ้าน (Admin)
+      </small>
+
+    </span>
+
   </div>
 
-  <!-- แท็บเมนูสลับหน้า -->
-  <div class="admin-tabs">
-    <button class="tab-btn active" onclick="switchTab('tab-stats-activities', this)">📊 สถิติ & 📅 กิจกรรม</button>
-    <button class="tab-btn" onclick="switchTab('tab-complaints', this)">📥 เรื่องร้องเรียน / แจ้งเหตุ</button>
+  <div>
+
+    <a
+      class="btn secondary"
+      href="index.html"
+    >
+      ดูหน้าเว็บ
+    </a>
+
   </div>
 
-  <!-- TAB 1: จัดการสถิติ & กิจกรรม -->
-  <div id="tab-stats-activities" class="tab-content active">
-    <section>
-      <h2>📊 จัดการสถิติข้อมูลหมู่บ้าน</h2>
-      <form id="stats-form">
-        <div class="grid-2">
-          <div class="form-group"><label>ประชากรรวม (คน)</label><input type="number" id="stat-population" required></div>
-          <div class="form-group"><label>ครัวเรือนทั้งหมด (ครัวเรือน)</label><input type="number" id="stat-households" required></div>
-          <div class="form-group"><label>เด็ก 0-5 ปี (คน)</label><input type="number" id="stat-children" required></div>
-          <div class="form-group"><label>ผู้สูงอายุ 60 ปีขึ้นไป (คน)</label><input type="number" id="stat-elderly" required></div>
-          <div class="form-group"><label>ผู้พิการ (คน)</label><input type="number" id="stat-disabled" required></div>
-          <div class="form-group"><label>กลุ่มเปราะบาง (ครัวเรือน)</label><input type="number" id="stat-vulnerable" required></div>
-        </div>
-        <button type="submit" class="btn btn-primary">บันทึกข้อมูลสถิติ</button>
-      </form>
-    </section>
+</header>
 
-    <hr style="margin: 30px 0;">
 
-    <section>
-      <h2>📅 จัดการกิจกรรมล่าสุด</h2>
-      <form id="activity-form">
-        <input type="hidden" id="activity-id">
-        <div class="form-group"><label>ชื่อโครงการ / กิจกรรม</label><input type="text" id="act-title" required></div>
-        <div class="grid-2">
-          <div class="form-group"><label>วันที่จัดกิจกรรม</label><input type="date" id="act-date" required></div>
-          <div class="form-group"><label>สถานที่จัด</label><input type="text" id="act-location" required></div>
-        </div>
-        <div class="grid-2">
-          <div class="form-group"><label>จำนวนผู้เข้าร่วม (คน)</label><input type="number" id="act-participants" value="0"></div>
-          <div class="form-group"><label>รูปภาพประกอบ</label><input type="file" id="act-image" accept="image/*"></div>
-        </div>
-        <button type="submit" class="btn btn-primary" id="btn-save-activity">บันทึกกิจกรรม</button>
-        <button type="button" class="btn btn-secondary" id="btn-cancel-edit" style="display:none;" onclick="resetActivityForm()">ยกเลิกการแก้ไข</button>
-      </form>
+<div class="layout">
 
-      <h3 style="margin-top: 30px;">รายการกิจกรรมทั้งหมด</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>กิจกรรม</th>
-            <th>วันที่</th>
-            <th>สถานที่</th>
-            <th>จัดการ</th>
-          </tr>
-        </thead>
-        <tbody id="activity-table-body">
-          <!-- โหลดข้อมูลมาจาก manage-admin.js -->
-        </tbody>
-      </table>
-    </section>
+<aside>
+
+<a
+  class="active"
+  href="#"
+  onclick="showSection('dashboard',this)"
+>
+  ⌂ แดชบอร์ด
+</a>
+
+<a
+  href="#"
+  onclick="showSection('services',this)"
+>
+  ▦ จัดการเมนู 16 บริการ
+</a>
+
+<a
+  href="#"
+  onclick="showSection('news',this)"
+>
+  📢 ข่าวประชาสัมพันธ์
+</a>
+
+<a
+  href="#"
+  onclick="showSection('announcements',this)"
+>
+  📣 ประกาศสำคัญ
+</a>
+
+<a
+  href="#"
+  onclick="showSection('featured',this)"
+>
+  ★ กิจกรรมเด่น
+</a>
+
+<a
+  href="#"
+  onclick="showSection('stats',this)"
+>
+  ▥ สถิติหมู่บ้าน
+</a>
+
+<hr style="border-color:#294057">
+
+<a
+  href="#"
+  onclick="backup()"
+>
+  ⇩ สำรองข้อมูล
+</a>
+
+<a
+  href="#"
+  onclick="restore()"
+>
+  ⇧ นำเข้าข้อมูล
+</a>
+
+<a
+  href="#"
+  onclick="resetData()"
+>
+  ↻ คืนค่าเริ่มต้น
+</a>
+
+</aside>
+
+
+<main>
+
+<!-- DASHBOARD -->
+
+<section
+  id="dashboard"
+  class="section show"
+>
+
+<h1>
+  ภาพรวมระบบ
+</h1>
+
+<div class="cards">
+
+  <div class="card">
+    เมนูบริการ
+    <b id="cServices">0</b>
   </div>
 
-  <!-- TAB 2: จัดการเรื่องร้องเรียน -->
-  <div id="tab-complaints" class="tab-content">
-    <h2>📥 ระบบจัดการเรื่องร้องเรียน / แจ้งเหตุ</h2>
+  <div class="card">
+    ข่าว
+    <b id="cNews">0</b>
+  </div>
 
-    <div class="filter-bar">
-      <button class="filter-btn active" onclick="filterStatus('all', this)">ทั้งหมด</button>
-      <button class="filter-btn" onclick="filterStatus('pending', this)">⏳ รอดำเนินการ</button>
-      <button class="filter-btn" onclick="filterStatus('in_progress', this)">🔄 กำลังดำเนินการ</button>
-      <button class="filter-btn" onclick="filterStatus('completed', this)">✅ ดำเนินการเสร็จสิ้น</button>
-      <button class="filter-btn" onclick="filterStatus('rejected', this)">❌ ปฏิเสธ/ยกเลิก</button>
+  <div class="card">
+    ประกาศ
+    <b id="cAnn">0</b>
+  </div>
+
+  <div class="card">
+    สถิติ
+    <b id="cStats">0</b>
+  </div>
+
+</div>
+
+<div
+  class="panel"
+  style="margin-top:18px"
+>
+
+<h2>
+  จัดการหน้าเว็บไซต์
+</h2>
+
+<p class="muted">
+
+แก้ไข เพิ่ม ลบ รายการได้จากเมนูด้านซ้าย
+
+ข้อมูลจะถูกบันทึกในเบราว์เซอร์เดียวกัน
+
+หน้า index.html จะอ่านข้อมูลชุดเดียวกันทันที
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- SERVICES -->
+
+<section
+  id="services"
+  class="section"
+>
+
+<h1>
+  จัดการเมนูบริการ
+</h1>
+
+<div class="toolbar">
+
+<button onclick="openEditor('services')">
+  + เพิ่มเมนู
+</button>
+
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+  <th>#</th>
+  <th>ชื่อเมนู</th>
+  <th>ไอคอน</th>
+  <th>ลิงก์</th>
+  <th>จัดการ</th>
+</tr>
+
+</thead>
+
+<tbody id="servicesTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- NEWS -->
+
+<section
+  id="news"
+  class="section"
+>
+
+<h1>
+  ข่าวประชาสัมพันธ์
+</h1>
+
+<div class="toolbar">
+
+<button onclick="openEditor('news')">
+  + เพิ่มข่าว
+</button>
+
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+  <th>#</th>
+  <th>หัวข้อ</th>
+  <th>รายละเอียด</th>
+  <th>จัดการ</th>
+</tr>
+
+</thead>
+
+<tbody id="newsTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- ANNOUNCEMENTS -->
+
+<section
+  id="announcements"
+  class="section"
+>
+
+<h1>
+  ประกาศสำคัญ
+</h1>
+
+<div class="toolbar">
+
+<button onclick="openEditor('announcements')">
+  + เพิ่มประกาศ
+</button>
+
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+  <th>#</th>
+  <th>หัวข้อ</th>
+  <th>รายละเอียด</th>
+  <th>จัดการ</th>
+</tr>
+
+</thead>
+
+<tbody id="announcementsTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- FEATURED -->
+
+<section
+  id="featured"
+  class="section"
+>
+
+<h1>
+  กิจกรรมเด่น
+</h1>
+
+<div
+  class="panel"
+  id="featuredForm"
+></div>
+
+</section>
+
+
+<!-- STATS -->
+
+<section
+  id="stats"
+  class="section"
+>
+
+<h1>
+  สถิติหมู่บ้าน
+</h1>
+
+<div class="toolbar">
+
+<button onclick="openEditor('stats')">
+  + เพิ่มสถิติ
+</button>
+
+</div>
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+  <th>หัวข้อ</th>
+  <th>ตัวเลข</th>
+  <th>หน่วย</th>
+  <th>จัดการ</th>
+</tr>
+
+</thead>
+
+<tbody id="statsTable"></tbody>
+
+</table>
+
+</div>
+
+</section>
+
+</main>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal"
+  id="modal"
+>
+
+<div class="modal-box">
+
+<h2 id="modalTitle">
+  แก้ไข
+</h2>
+
+<form id="editorForm">
+
+<div
+  class="form-grid"
+  id="formFields"
+></div>
+
+<div class="row">
+
+<button
+  type="button"
+  class="secondary"
+  onclick="closeModal()"
+>
+  ยกเลิก
+</button>
+
+<button
+  type="submit"
+  class="success"
+>
+  บันทึก
+</button>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+
+<script src="assets/cms.js"></script>
+
+<script>
+
+let currentType = null;
+let currentIndex = null;
+
+
+const fields = {
+
+  services: [
+    ['name', 'ชื่อเมนู', 'text'],
+    ['icon', 'ชื่อ Material Icon เช่น home', 'text'],
+    ['color', 'สี เช่น #195bb2', 'text'],
+    ['url', 'ลิงก์ / URL', 'text']
+  ],
+
+  news: [
+    ['title', 'หัวข้อข่าว', 'text'],
+    ['detail', 'รายละเอียด', 'textarea'],
+    ['image', 'URL รูปภาพ (ถ้ามี)', 'text'],
+    ['date', 'วันที่/ข้อความกำกับ', 'text']
+  ],
+
+  announcements: [
+    ['title', 'หัวข้อประกาศ', 'text'],
+    ['detail', 'รายละเอียด', 'textarea']
+  ],
+
+  stats: [
+    ['label', 'หัวข้อ', 'text'],
+    ['value', 'ตัวเลข', 'text'],
+    ['unit', 'หน่วย', 'text'],
+    ['icon', 'Material Icon', 'text'],
+    ['color', 'สี', 'text']
+  ]
+
+};
+
+
+function data() {
+  return rkLoad();
+}
+
+
+function save(data) {
+  rkSave(data);
+  renderAll();
+}
+
+
+function showSection(id, element) {
+
+  document
+    .querySelectorAll('.section')
+    .forEach(item => {
+      item.classList.remove('show');
+    });
+
+  document
+    .getElementById(id)
+    .classList.add('show');
+
+
+  document
+    .querySelectorAll('aside a')
+    .forEach(item => {
+      item.classList.remove('active');
+    });
+
+  if (element) {
+    element.classList.add('active');
+  }
+
+}
+
+
+function renderAll() {
+
+  const d = data();
+
+  cServices.textContent = d.services.length;
+  cNews.textContent = d.news.length;
+  cAnn.textContent = d.announcements.length;
+  cStats.textContent = d.stats.length;
+
+
+  [
+    'services',
+    'news',
+    'announcements',
+    'stats'
+  ].forEach(type => {
+
+    const table = document.getElementById(
+      type + 'Table'
+    );
+
+    if (!table) return;
+
+
+    table.innerHTML = d[type]
+      .map((item, index) => `
+
+      <tr>
+
+        <td>
+          ${index + 1}
+        </td>
+
+        <td>
+          ${rkEscape(
+            item.name ||
+            item.title ||
+            item.label ||
+            ''
+          )}
+        </td>
+
+        <td>
+          ${rkEscape(
+            item.icon ||
+            item.detail ||
+            item.value ||
+            ''
+          )}
+        </td>
+
+        <td>
+          ${rkEscape(
+            item.url ||
+            item.unit ||
+            ''
+          )}
+        </td>
+
+        <td>
+
+          <button
+            onclick="
+              openEditor(
+                '${type}',
+                ${index}
+              )
+            "
+          >
+            แก้ไข
+          </button>
+
+          <button
+            class="danger"
+            onclick="
+              removeItem(
+                '${type}',
+                ${index}
+              )
+            "
+          >
+            ลบ
+          </button>
+
+        </td>
+
+      </tr>
+
+    `)
+      .join('');
+
+  });
+
+
+  const featured = d.featured;
+
+  featuredForm.innerHTML = `
+
+    <div class="form-grid">
+
+      <label>
+
+        หัวข้อ
+
+        <input
+          id="ft"
+          value="${rkEscape(featured.title)}"
+        >
+
+      </label>
+
+
+      <label>
+
+        URL รูปภาพ
+
+        <input
+          id="fi"
+          value="${rkEscape(featured.image || '')}"
+        >
+
+      </label>
+
+
+      <label class="full">
+
+        รายละเอียด
+
+        <textarea id="fd">
+${rkEscape(featured.detail)}
+        </textarea>
+
+      </label>
+
     </div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>รหัส / วันที่</th>
-          <th>ผู้แจ้ง / ติดต่อ</th>
-          <th>หัวข้อ / รายละเอียด</th>
-          <th>สถานะ</th>
-          <th>จัดการ</th>
-        </tr>
-      </thead>
-      <tbody id="complaint-list">
-        <!-- โหลดข้อมูลมาจาก admin-complaints.js -->
-      </tbody>
-    </table>
-  </div>
-</div>
 
-<!-- Modal อัปเดตสถานะเรื่องร้องเรียน -->
-<div id="update-modal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" onclick="closeModal()">&times;</span>
-    <h3>📝 อัปเดตสถานะเรื่องร้องเรียน</h3>
-    <hr>
-    <form id="update-status-form">
-      <input type="hidden" id="modal-complaint-id">
-      
-      <div class="form-group">
-        <label>รหัสการแจ้ง:</label>
-        <span id="modal-tracking-code" style="font-weight: bold; color: #0056b3;"></span>
-      </div>
+    <div class="row">
 
-      <div class="form-group">
-        <label>หัวข้อเรื่อง:</label>
-        <div id="modal-title" style="color: #555;"></div>
-      </div>
+      <button
+        class="success"
+        onclick="saveFeatured()"
+      >
+        บันทึกกิจกรรมเด่น
+      </button>
 
-      <div class="form-group">
-        <label for="modal-status">เปลี่ยนสถานะ:</label>
-        <select id="modal-status" required>
-          <option value="pending">⏳ รอดำเนินการ</option>
-          <option value="in_progress">🔄 กำลังดำเนินการ</option>
-          <option value="completed">✅ ดำเนินการเสร็จสิ้น</option>
-          <option value="rejected">❌ ปฏิเสธ/ยกเลิก</option>
-        </select>
-      </div>
+    </div>
 
-      <div class="form-group">
-        <label for="modal-remark">การตอบกลับ / หมายเหตุจากผู้ดูแล:</label>
-        <textarea id="modal-remark" rows="3" placeholder="ระบุรายละเอียดการแก้ไขปัญหา หรือเหตุผล..."></textarea>
-      </div>
+  `;
 
-      <div style="text-align: right; gap: 10px; display: flex; justify-content: flex-end;">
-        <button type="button" class="btn btn-secondary" onclick="closeModal()">ยกเลิก</button>
-        <button type="submit" class="btn btn-primary">บันทึกการอัปเดต</button>
-      </div>
-    </form>
-  </div>
-</div>
+}
 
-<!-- Script ควบคุม Tab และ Logout -->
-<script>
-  function switchTab(tabId, btn) {
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    
-    document.getElementById(tabId).classList.add('active');
-    btn.classList.add('active');
+
+function openEditor(type, index = null) {
+
+  currentType = type;
+  currentIndex = index;
+
+
+  const item =
+    index === null
+      ? {}
+      : data()[type][index];
+
+
+  modalTitle.textContent =
+    index === null
+      ? 'เพิ่มรายการ'
+      : 'แก้ไขรายการ';
+
+
+  formFields.innerHTML =
+    fields[type]
+      .map(([key, label, fieldType]) => `
+
+        <label
+          class="${
+            fieldType === 'textarea'
+              ? 'full'
+              : ''
+          }"
+        >
+
+          ${label}
+
+          ${
+            fieldType === 'textarea'
+
+              ? `
+                <textarea name="${key}">
+${rkEscape(item[key] || '')}
+                </textarea>
+              `
+
+              : `
+                <input
+                  name="${key}"
+                  type="${fieldType}"
+                  value="${rkEscape(item[key] || '')}"
+                >
+              `
+          }
+
+        </label>
+
+      `)
+      .join('');
+
+
+  modal.classList.add('show');
+
+}
+
+
+function closeModal() {
+  modal.classList.remove('show');
+}
+
+
+editorForm.onsubmit = event => {
+
+  event.preventDefault();
+
+  const d = data();
+  const object = {};
+
+
+  new FormData(editorForm)
+    .forEach((value, key) => {
+      object[key] = value;
+    });
+
+
+  if (
+    currentType === 'services' &&
+    currentIndex === null
+  ) {
+    object.id = 'm' + Date.now();
   }
 
-  async function logoutAdmin() {
-    if (confirm('คุณต้องการออกจากระบบใช่หรือไม่?')) {
-      await supabaseClient.auth.signOut();
-      window.location.href = 'admin-login.html';
+
+  if (currentIndex === null) {
+    d[currentType].push(object);
+  } else {
+    d[currentType][currentIndex] = object;
+  }
+
+
+  save(d);
+
+  closeModal();
+
+};
+
+
+function removeItem(type, index) {
+
+  if (
+    !confirm(
+      'ยืนยันการลบรายการนี้?'
+    )
+  ) {
+    return;
+  }
+
+
+  const d = data();
+
+  d[type].splice(index, 1);
+
+  save(d);
+
+}
+
+
+function saveFeatured() {
+
+  const d = data();
+
+  d.featured = {
+    title: ft.value,
+    detail: fd.value,
+    image: fi.value
+  };
+
+  save(d);
+
+  alert('บันทึกแล้ว');
+
+}
+
+
+function backup() {
+
+  const blob = new Blob(
+    [
+      JSON.stringify(
+        data(),
+        null,
+        2
+      )
+    ],
+    {
+      type:'application/json'
     }
+  );
+
+
+  const link =
+    document.createElement('a');
+
+
+  link.href =
+    URL.createObjectURL(blob);
+
+
+  link.download =
+    'rongkhem-backup.json';
+
+
+  link.click();
+
+}
+
+
+function restore() {
+
+  const input =
+    document.createElement('input');
+
+
+  input.type = 'file';
+
+  input.accept = '.json';
+
+
+  input.onchange = async () => {
+
+    try {
+
+      const fileText =
+        await input.files[0].text();
+
+
+      rkSave(
+        JSON.parse(fileText)
+      );
+
+
+      renderAll();
+
+      alert(
+        'นำเข้าข้อมูลสำเร็จ'
+      );
+
+    } catch (error) {
+
+      alert(
+        'ไฟล์ไม่ถูกต้อง'
+      );
+
+    }
+
+  };
+
+
+  input.click();
+
+}
+
+
+function resetData() {
+
+  if (
+    confirm(
+      'คืนค่าเริ่มต้น? ข้อมูลที่แก้ไขจะหาย'
+    )
+  ) {
+
+    localStorage.removeItem(
+      RK_KEY
+    );
+
+    renderAll();
+
   }
+
+}
+
+
+renderAll();
+
 </script>
 
-<script src="manage-admin.js"></script>
-<script src="assets/js/admin-complaints.js"></script>
 </body>
 </html>
