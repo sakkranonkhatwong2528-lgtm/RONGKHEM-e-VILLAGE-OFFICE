@@ -8,9 +8,21 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+    --primary:#075ca8;
+    --dark:#082b4d;
+    --light:#f4f7fb;
+    --border:#dce4ed;
+    --danger:#dc3545;
+    --success:#198754;
+    --warning:#f59e0b;
+}
+
 *{
     box-sizing:border-box;
 }
@@ -18,29 +30,38 @@
 body{
     margin:0;
     font-family:"Noto Sans Thai",sans-serif;
-    background:#f3f6f9;
-    color:#1e293b;
+    background:#f3f6fa;
+    color:#1f2937;
 }
 
 a{
     text-decoration:none;
-    color:inherit;
 }
 
-/* ===== TOP ===== */
+button,
+input,
+textarea,
+select{
+    font-family:"Noto Sans Thai",sans-serif;
+}
+
+/* =========================
+   HEADER
+========================= */
 
 .topbar{
-    position:sticky;
+    position:fixed;
     top:0;
-    z-index:100;
+    left:0;
+    right:0;
     height:70px;
-    background:linear-gradient(135deg,#062b52,#075ca8);
+    background:#fff;
+    border-bottom:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 24px;
-    color:#fff;
-    box-shadow:0 2px 12px rgba(0,0,0,.18);
+    padding:0 25px;
+    z-index:1000;
 }
 
 .brand{
@@ -52,108 +73,67 @@ a{
 .brand-icon{
     width:42px;
     height:42px;
-    background:rgba(255,255,255,.15);
     border-radius:12px;
+    background:linear-gradient(135deg,#075ca8,#0a8ddd);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:23px;
+    color:#fff;
+    font-size:22px;
 }
 
 .brand-title{
     font-size:18px;
     font-weight:700;
+    color:var(--dark);
 }
 
 .brand-subtitle{
     font-size:11px;
-    opacity:.75;
+    color:#64748b;
 }
 
 .top-actions{
     display:flex;
+    align-items:center;
     gap:10px;
 }
 
-.btn{
+.user-info{
+    font-size:13px;
+    color:#475569;
+}
+
+.logout-btn{
     border:0;
-    border-radius:9px;
-    padding:10px 15px;
-    font-family:inherit;
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:9px 15px;
+    border-radius:8px;
     cursor:pointer;
-    font-size:14px;
-    transition:.2s;
+    font-weight:600;
 }
 
-.btn:hover{
-    transform:translateY(-1px);
-}
-
-.btn-light{
-    background:#fff;
-    color:#075ca8;
-}
-
-.btn-danger{
-    background:#dc2626;
-    color:#fff;
-}
-
-.btn-primary{
-    background:#075ca8;
-    color:#fff;
-}
-
-.btn-success{
-    background:#16a34a;
-    color:#fff;
-}
-
-.btn-warning{
-    background:#f59e0b;
-    color:#fff;
-}
-
-.btn-edit{
-    background:#eff6ff;
-    color:#075ca8;
-}
-
-.btn-delete{
-    background:#fff1f2;
-    color:#dc2626;
-}
-
-.btn-small{
-    padding:7px 10px;
-    font-size:12px;
-}
-
-/* ===== LAYOUT ===== */
-
-.layout{
-    display:flex;
-    min-height:calc(100vh - 70px);
-}
-
-/* ===== SIDEBAR ===== */
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar{
-    width:270px;
-    background:#fff;
-    border-right:1px solid #e5e7eb;
-    padding:18px 12px;
-    position:sticky;
+    position:fixed;
     top:70px;
-    height:calc(100vh - 70px);
+    left:0;
+    bottom:0;
+    width:270px;
+    background:#082b4d;
     overflow-y:auto;
+    padding:18px 12px 30px;
 }
 
 .sidebar-title{
+    color:#8fb6dc;
     font-size:11px;
-    color:#94a3b8;
-    font-weight:700;
-    padding:12px;
+    font-weight:600;
+    margin:15px 12px 7px;
     text-transform:uppercase;
 }
 
@@ -161,27 +141,22 @@ a{
     width:100%;
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:12px 14px;
-    border-radius:10px;
-    margin-bottom:4px;
+    gap:10px;
     border:0;
     background:transparent;
+    color:#d7e7f7;
+    padding:11px 12px;
+    border-radius:9px;
     cursor:pointer;
-    font-family:inherit;
-    color:#475569;
     text-align:left;
     font-size:14px;
+    margin-bottom:3px;
 }
 
-.menu-item:hover{
-    background:#f1f5f9;
-}
-
+.menu-item:hover,
 .menu-item.active{
-    background:#e8f2fc;
-    color:#075ca8;
-    font-weight:700;
+    background:#0b4c82;
+    color:#fff;
 }
 
 .menu-icon{
@@ -189,20 +164,13 @@ a{
     text-align:center;
 }
 
-/* ===== CONTENT ===== */
+/* =========================
+   MAIN
+========================= */
 
 .main{
-    flex:1;
-    padding:28px;
-    max-width:1600px;
-}
-
-.page{
-    display:none;
-}
-
-.page.active{
-    display:block;
+    margin-left:270px;
+    padding:95px 28px 40px;
 }
 
 .page-header{
@@ -214,55 +182,125 @@ a{
 
 .page-title{
     margin:0;
-    font-size:25px;
-    color:#0f2f4b;
+    color:var(--dark);
+    font-size:26px;
 }
 
-.page-description{
-    margin-top:4px;
+.page-desc{
+    margin:4px 0 0;
     color:#64748b;
     font-size:14px;
 }
 
-.card{
-    background:#fff;
-    border-radius:16px;
-    padding:22px;
-    box-shadow:0 3px 12px rgba(15,23,42,.05);
-    margin-bottom:20px;
+.primary-btn{
+    border:0;
+    background:var(--primary);
+    color:#fff;
+    padding:11px 18px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
 }
 
-.dashboard-grid{
+.primary-btn:hover{
+    background:#03477f;
+}
+
+.secondary-btn{
+    border:1px solid var(--border);
+    background:#fff;
+    color:#334155;
+    padding:10px 16px;
+    border-radius:9px;
+    cursor:pointer;
+}
+
+.danger-btn{
+    border:0;
+    background:#fee2e2;
+    color:#b91c1c;
+    padding:8px 12px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.edit-btn{
+    border:0;
+    background:#dbeafe;
+    color:#075ca8;
+    padding:8px 12px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.save-btn{
+    border:0;
+    background:#198754;
+    color:#fff;
+    padding:11px 18px;
+    border-radius:9px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.stats-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    grid-template-columns:repeat(4,1fr);
     gap:18px;
+    margin-bottom:25px;
 }
 
 .stat-card{
     background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
     padding:20px;
-    border-radius:16px;
-    box-shadow:0 3px 12px rgba(15,23,42,.06);
-    border-left:4px solid #075ca8;
-}
-
-.stat-icon{
-    font-size:28px;
 }
 
 .stat-number{
     font-size:28px;
     font-weight:700;
-    margin:8px 0;
-    color:#075ca8;
+    color:var(--primary);
 }
 
 .stat-label{
+    margin-top:5px;
     color:#64748b;
     font-size:13px;
 }
 
-/* ===== TABLE ===== */
+/* =========================
+   CONTENT
+========================= */
+
+.content-card{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px;
+    margin-bottom:22px;
+}
+
+.section-title{
+    font-size:19px;
+    color:var(--dark);
+    margin:0 0 5px;
+}
+
+.section-desc{
+    color:#64748b;
+    font-size:13px;
+    margin:0 0 20px;
+}
+
+/* =========================
+   TABLE
+========================= */
 
 .table-wrap{
     overflow-x:auto;
@@ -274,42 +312,46 @@ table{
 }
 
 th{
-    text-align:left;
     background:#f8fafc;
-    color:#64748b;
-    padding:13px;
+    color:#475569;
     font-size:13px;
+    text-align:left;
+    padding:12px;
+    border-bottom:1px solid var(--border);
 }
 
 td{
-    padding:13px;
-    border-top:1px solid #eef2f7;
-    font-size:14px;
+    padding:12px;
+    border-bottom:1px solid #edf1f5;
+    font-size:13px;
+    vertical-align:middle;
 }
 
-.thumbnail{
-    width:58px;
-    height:58px;
+.actions{
+    display:flex;
+    gap:7px;
+}
+
+.thumb{
+    width:52px;
+    height:52px;
     object-fit:cover;
-    border-radius:10px;
+    border-radius:8px;
     background:#e2e8f0;
 }
 
-.action-buttons{
-    display:flex;
-    gap:6px;
-}
-
-/* ===== FORM ===== */
+/* =========================
+   FORM
+========================= */
 
 .form-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
+    gap:18px;
 }
 
 .form-group{
-    margin-bottom:15px;
+    margin-bottom:17px;
 }
 
 .form-group.full{
@@ -321,19 +363,19 @@ label{
     margin-bottom:6px;
     font-size:13px;
     font-weight:600;
-    color:#475569;
+    color:#334155;
 }
 
 input,
 textarea,
 select{
     width:100%;
+    border:1px solid #d8e0e8;
+    border-radius:8px;
     padding:11px 12px;
-    border:1px solid #dbe2ea;
-    border-radius:9px;
-    font-family:inherit;
-    font-size:14px;
     outline:none;
+    background:#fff;
+    font-size:14px;
 }
 
 textarea{
@@ -348,23 +390,28 @@ select:focus{
     box-shadow:0 0 0 3px rgba(7,92,168,.1);
 }
 
-.form-actions{
-    display:flex;
-    justify-content:flex-end;
-    gap:10px;
-    margin-top:15px;
+.image-preview{
+    width:150px;
+    height:110px;
+    object-fit:cover;
+    border-radius:10px;
+    border:1px solid var(--border);
+    display:none;
+    margin-top:10px;
 }
 
-/* ===== MODAL ===== */
+/* =========================
+   MODAL
+========================= */
 
 .modal{
-    display:none;
     position:fixed;
-    z-index:1000;
     inset:0;
-    background:rgba(15,23,42,.55);
+    background:rgba(0,0,0,.55);
+    display:none;
     align-items:center;
     justify-content:center;
+    z-index:5000;
     padding:20px;
 }
 
@@ -374,76 +421,105 @@ select:focus{
 
 .modal-box{
     width:100%;
-    max-width:750px;
+    max-width:720px;
     max-height:90vh;
     overflow-y:auto;
     background:#fff;
-    border-radius:18px;
+    border-radius:16px;
     padding:25px;
 }
 
+.modal-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
 .modal-title{
-    margin:0 0 20px;
-    color:#0f2f4b;
+    margin:0;
+    font-size:21px;
+    color:var(--dark);
 }
 
-.image-preview{
-    width:120px;
-    height:120px;
-    border-radius:14px;
-    object-fit:cover;
-    background:#e2e8f0;
+.close-btn{
+    border:0;
+    background:#f1f5f9;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.modal-footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:20px;
+}
+
+/* =========================
+   PAGES
+========================= */
+
+.page{
     display:none;
-    margin-top:10px;
 }
 
-.image-preview.show{
+.page.active{
     display:block;
 }
 
-/* ===== EMPTY ===== */
+/* =========================
+   ALERT
+========================= */
 
-.empty{
-    text-align:center;
-    color:#94a3b8;
-    padding:45px 20px;
+.toast{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    background:#198754;
+    color:#fff;
+    padding:14px 20px;
+    border-radius:10px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+    display:none;
+    z-index:9999;
 }
 
-/* ===== MOBILE ===== */
+.toast.show{
+    display:block;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:900px){
 
     .sidebar{
-        width:72px;
-    }
-
-    .menu-text,
-    .sidebar-title{
-        display:none;
-    }
-
-    .menu-item{
-        justify-content:center;
-        padding:13px;
+        width:220px;
     }
 
     .main{
-        padding:18px;
+        margin-left:220px;
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
 
     .topbar{
         padding:0 12px;
     }
 
-    .brand-subtitle{
-        display:none;
-    }
-
-    .top-actions .btn:first-child{
+    .brand-subtitle,
+    .user-info{
         display:none;
     }
 
@@ -452,32 +528,41 @@ select:focus{
     }
 
     .main{
-        padding:15px;
+        margin-left:0;
+        padding:90px 15px 30px;
+    }
+
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .form-grid{
         grid-template-columns:1fr;
     }
 
-    .page-header{
-        align-items:flex-start;
-        gap:12px;
-        flex-direction:column;
-    }
-
 }
+
 </style>
+
 </head>
 
 <body>
+
+
+<!-- =========================
+TOPBAR
+========================= -->
 
 <header class="topbar">
 
     <div class="brand">
 
-        <div class="brand-icon">⚙️</div>
+        <div class="brand-icon">
+            ⚙️
+        </div>
 
         <div>
+
             <div class="brand-title">
                 RONGKHEM e-VILLAGE
             </div>
@@ -485,17 +570,28 @@ select:focus{
             <div class="brand-subtitle">
                 ระบบจัดการข้อมูลหลังบ้าน
             </div>
+
         </div>
 
     </div>
 
     <div class="top-actions">
 
-        <a href="index.html" class="btn btn-light">
+        <div class="user-info">
+            ผู้ดูแลระบบ: <b id="adminName">sakkranon</b>
+        </div>
+
+        <a
+            href="index.html"
+            class="secondary-btn"
+        >
             🌐 ดูหน้าเว็บไซต์
         </a>
 
-        <button class="btn btn-danger" onclick="logout()">
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
             ออกจากระบบ
         </button>
 
@@ -504,296 +600,388 @@ select:focus{
 </header>
 
 
-<div class="layout">
+<!-- =========================
+SIDEBAR
+========================= -->
 
 <aside class="sidebar">
 
-<div class="sidebar-title">ภาพรวม</div>
+    <div class="sidebar-title">
+        ภาพรวม
+    </div>
 
-<button class="menu-item active" onclick="openPage('dashboard',this)">
-    <span class="menu-icon">📊</span>
-    <span class="menu-text">Dashboard</span>
-</button>
+    <button
+        class="menu-item active"
+        onclick="showPage('dashboard',this)"
+    >
+        <span class="menu-icon">📊</span>
+        Dashboard
+    </button>
 
-<div class="sidebar-title">หน้าเว็บไซต์</div>
 
-<button class="menu-item" onclick="openPage('assistants',this)">
-    <span class="menu-icon">👥</span>
-    <span class="menu-text">ทีมผู้ช่วยผู้ใหญ่บ้าน</span>
-</button>
+    <div class="sidebar-title">
+        หน้าเว็บไซต์
+    </div>
 
-<button class="menu-item" onclick="openPage('services',this)">
-    <span class="menu-icon">🏠</span>
-    <span class="menu-text">เมนูบริการทั้งหมด</span>
-</button>
+    <button
+        class="menu-item"
+        onclick="showPage('assistants',this)"
+    >
+        <span class="menu-icon">👥</span>
+        ทีมผู้ช่วยผู้ใหญ่บ้าน
+    </button>
 
-<div class="sidebar-title">เนื้อหา</div>
+    <button
+        class="menu-item"
+        onclick="showPage('services',this)"
+    >
+        <span class="menu-icon">🏠</span>
+        เมนูบริการประชาชน
+    </button>
 
-<button class="menu-item" onclick="openPage('news',this)">
-    <span class="menu-icon">📢</span>
-    <span class="menu-text">ข่าวประชาสัมพันธ์</span>
-</button>
 
-<button class="menu-item" onclick="openPage('activities',this)">
-    <span class="menu-icon">📅</span>
-    <span class="menu-text">กิจกรรมเด่น</span>
-</button>
+    <div class="sidebar-title">
+        ข่าวสารและเนื้อหา
+    </div>
 
-<button class="menu-item" onclick="openPage('announcements',this)">
-    <span class="menu-icon">📣</span>
-    <span class="menu-text">ประกาศสำคัญ</span>
-</button>
+    <button
+        class="menu-item"
+        onclick="showPage('news',this)"
+    >
+        <span class="menu-icon">📢</span>
+        ข่าวประชาสัมพันธ์
+    </button>
 
-<button class="menu-item" onclick="openPage('stats',this)">
-    <span class="menu-icon">📊</span>
-    <span class="menu-text">สถิติหมู่บ้าน</span>
-</button>
+    <button
+        class="menu-item"
+        onclick="showPage('activities',this)"
+    >
+        <span class="menu-icon">📅</span>
+        กิจกรรมเด่น
+    </button>
 
-<div class="sidebar-title">ข้อมูลหมู่บ้าน</div>
+    <button
+        class="menu-item"
+        onclick="showPage('announcements',this)"
+    >
+        <span class="menu-icon">📣</span>
+        ประกาศสำคัญ
+    </button>
 
-<button class="menu-item" onclick="openPage('village',this)">
-    <span class="menu-icon">🏘️</span>
-    <span class="menu-text">ข้อมูลหมู่บ้าน</span>
-</button>
 
-<button class="menu-item" onclick="openPage('households',this)">
-    <span class="menu-icon">🏠</span>
-    <span class="menu-text">ข้อมูลครัวเรือน</span>
-</button>
+    <div class="sidebar-title">
+        ข้อมูลหมู่บ้าน
+    </div>
 
-<button class="menu-item" onclick="openPage('committee',this)">
-    <span class="menu-icon">👔</span>
-    <span class="menu-text">คณะกรรมการหมู่บ้าน</span>
-</button>
+    <button class="menu-item" onclick="showPage('village',this)">
+        🏘️ ข้อมูลหมู่บ้าน
+    </button>
 
-<div class="sidebar-title">บริการและกลุ่มประชาชน</div>
+    <button class="menu-item" onclick="showPage('households',this)">
+        🏠 ข้อมูลครัวเรือน
+    </button>
 
-<button class="menu-item" onclick="openPage('health',this)">
-    <span class="menu-icon">❤️</span>
-    <span class="menu-text">อสม. / สุขภาพชุมชน</span>
-</button>
+    <button class="menu-item" onclick="showPage('committee',this)">
+        👨‍👩‍👧‍👦 คณะกรรมการหมู่บ้าน
+    </button>
 
-<button class="menu-item" onclick="openPage('elderly',this)">
-    <span class="menu-icon">👴</span>
-    <span class="menu-text">ผู้สูงอายุ</span>
-</button>
+    <button class="menu-item" onclick="showPage('health',this)">
+        ❤️ อสม. / สุขภาพชุมชน
+    </button>
 
-<button class="menu-item" onclick="openPage('vulnerable',this)">
-    <span class="menu-icon">🤝</span>
-    <span class="menu-text">กลุ่มเปราะบาง</span>
-</button>
+    <button class="menu-item" onclick="showPage('elderly',this)">
+        👴 ผู้สูงอายุ
+    </button>
 
-<div class="sidebar-title">ทรัพยากรและชุมชน</div>
+    <button class="menu-item" onclick="showPage('vulnerable',this)">
+        🤝 กลุ่มเปราะบาง
+    </button>
 
-<button class="menu-item" onclick="openPage('environment',this)">
-    <span class="menu-icon">🌿</span>
-    <span class="menu-text">สิ่งแวดล้อม / PM2.5</span>
-</button>
 
-<button class="menu-item" onclick="openPage('water',this)">
-    <span class="menu-icon">💧</span>
-    <span class="menu-text">แหล่งซับน้ำจำ</span>
-</button>
+    <div class="sidebar-title">
+        สถานที่และชุมชน
+    </div>
 
-<button class="menu-item" onclick="openPage('temple',this)">
-    <span class="menu-icon">🛕</span>
-    <span class="menu-text">วัดร่องเข็ม</span>
-</button>
+    <button class="menu-item" onclick="showPage('environment',this)">
+        🌿 สิ่งแวดล้อม / PM2.5
+    </button>
 
-<button class="menu-item" onclick="openPage('agriculture',this)">
-    <span class="menu-icon">🌾</span>
-    <span class="menu-text">การเกษตร</span>
-</button>
+    <button class="menu-item" onclick="showPage('subnamjam',this)">
+        💧 แหล่งซับน้ำจำ
+    </button>
 
-<button class="menu-item" onclick="openPage('security',this)">
-    <span class="menu-icon">🛡️</span>
-    <span class="menu-text">ชรบ. / ความปลอดภัย</span>
-</button>
+    <button class="menu-item" onclick="showPage('agriculture',this)">
+        🌾 การเกษตร
+    </button>
 
-<button class="menu-item" onclick="openPage('shops',this)">
-    <span class="menu-icon">🏪</span>
-    <span class="menu-text">ร้านค้าในชุมชน</span>
-</button>
+    <button class="menu-item" onclick="showPage('security',this)">
+        🛡️ ชรบ. / ความปลอดภัย
+    </button>
 
-<button class="menu-item" onclick="openPage('map',this)">
-    <span class="menu-icon">📍</span>
-    <span class="menu-text">แผนที่หมู่บ้าน</span>
-</button>
+    <button class="menu-item" onclick="showPage('shops',this)">
+        🏪 ร้านค้าในชุมชน
+    </button>
 
-<button class="menu-item" onclick="openPage('contact',this)">
-    <span class="menu-icon">☎️</span>
-    <span class="menu-text">ติดต่อ / ฉุกเฉิน</span>
-</button>
+    <button class="menu-item" onclick="showPage('map',this)">
+        📍 แผนที่หมู่บ้าน
+    </button>
+
+    <button class="menu-item" onclick="showPage('temple',this)">
+        🛕 วัดร่องเข็ม
+    </button>
+
+    <button class="menu-item" onclick="showPage('localrep',this)">
+        🏛️ ข้อมูล ส.อบต.
+    </button>
+
+    <button class="menu-item" onclick="showPage('contact',this)">
+        📞 ติดต่อผู้ใหญ่บ้าน
+    </button>
+
+    <button class="menu-item" onclick="showPage('statistics',this)">
+        📊 สถิติหมู่บ้าน
+    </button>
 
 </aside>
 
 
+<!-- =========================
+MAIN
+========================= -->
+
 <main class="main">
+
 
 <!-- DASHBOARD -->
 
-<section id="dashboard" class="page active">
+<section
+    id="dashboard"
+    class="page active"
+>
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
-<h1 class="page-title">📊 Dashboard</h1>
+        <div>
 
-<div class="page-description">
-ภาพรวมระบบ RONGKHEM e-VILLAGE
-</div>
-</div>
+            <h1 class="page-title">
+                📊 Dashboard
+            </h1>
 
-</div>
+            <p class="page-desc">
+                ภาพรวมระบบ RONGKHEM e-VILLAGE
+            </p>
 
-<div class="dashboard-grid">
+        </div>
 
-<div class="stat-card">
-<div class="stat-icon">👥</div>
-<div class="stat-number" id="dashAssistants">0</div>
-<div class="stat-label">ทีมผู้ช่วยผู้ใหญ่บ้าน</div>
-</div>
+    </div>
 
-<div class="stat-card">
-<div class="stat-icon">📢</div>
-<div class="stat-number" id="dashNews">0</div>
-<div class="stat-label">ข่าวประชาสัมพันธ์</div>
-</div>
 
-<div class="stat-card">
-<div class="stat-icon">📅</div>
-<div class="stat-number" id="dashActivities">0</div>
-<div class="stat-label">กิจกรรมเด่น</div>
-</div>
+    <div class="stats-grid">
 
-<div class="stat-card">
-<div class="stat-icon">📣</div>
-<div class="stat-number" id="dashAnnouncements">0</div>
-<div class="stat-label">ประกาศสำคัญ</div>
-</div>
+        <div class="stat-card">
 
-<div class="stat-card">
-<div class="stat-icon">🏠</div>
-<div class="stat-number" id="dashServices">0</div>
-<div class="stat-label">เมนูบริการ</div>
-</div>
+            <div
+                class="stat-number"
+                id="newsCount"
+            >
+                0
+            </div>
 
-</div>
+            <div class="stat-label">
+                ข่าวประชาสัมพันธ์
+            </div>
 
-<div class="card">
+        </div>
 
-<h3>การใช้งานระบบ</h3>
 
-<p>
-ระบบหลังบ้านนี้ใช้สำหรับเพิ่ม แก้ไข และลบข้อมูลเว็บไซต์
-RONGKHEM e-VILLAGE
-</p>
+        <div class="stat-card">
 
-<p>
-ข้อมูลที่บันทึกจะถูกเก็บไว้ในเบราว์เซอร์ผ่าน Local Storage
-</p>
+            <div
+                class="stat-number"
+                id="activityCount"
+            >
+                0
+            </div>
 
-</div>
+            <div class="stat-label">
+                กิจกรรมเด่น
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="stat-number"
+                id="announcementCount"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                ประกาศสำคัญ
+            </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div
+                class="stat-number"
+                id="assistantCount"
+            >
+                0
+            </div>
+
+            <div class="stat-label">
+                ทีมผู้ช่วยผู้ใหญ่บ้าน
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="content-card">
+
+        <h2 class="section-title">
+            ระบบหลังบ้านพร้อมใช้งาน
+        </h2>
+
+        <p class="section-desc">
+
+            สามารถจัดการข้อมูลต่าง ๆ
+            ที่ใช้แสดงผลบนหน้าเว็บไซต์ได้จากเมนูด้านซ้าย
+
+        </p>
+
+        <button
+            class="primary-btn"
+            onclick="window.open('index.html','_blank')"
+        >
+            🌐 เปิดหน้าเว็บไซต์
+        </button>
+
+    </div>
 
 </section>
 
 
-<!-- ASSISTANTS -->
+<!-- TEAM -->
 
-<section id="assistants" class="page">
+<section
+    id="assistants"
+    class="page"
+>
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
-<h1 class="page-title">👥 ทีมผู้ช่วยผู้ใหญ่บ้าน</h1>
-<div class="page-description">
-เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพ
-</div>
-</div>
+        <div>
 
-<button class="btn btn-primary"
-onclick="openItemModal('assistants')">
-➕ เพิ่มผู้ช่วย
-</button>
+            <h1 class="page-title">
+                👥 ทีมผู้ช่วยผู้ใหญ่บ้าน
+            </h1>
 
-</div>
+            <p class="page-desc">
+                เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพ
+            </p>
 
-<div class="card">
+        </div>
 
-<div class="table-wrap">
+        <button
+            class="primary-btn"
+            onclick="openItemModal('assistants')"
+        >
+            ➕ เพิ่มข้อมูล
+        </button>
 
-<table>
+    </div>
 
-<thead>
+    <div class="content-card">
 
-<tr>
-<th>รูปภาพ</th>
-<th>ชื่อ</th>
-<th>ตำแหน่ง</th>
-<th>โทรศัพท์</th>
-<th>จัดการ</th>
-</tr>
+        <div class="table-wrap">
 
-</thead>
+            <table>
 
-<tbody id="assistantsTable"></tbody>
+                <thead>
 
-</table>
+                    <tr>
+                        <th>รูป</th>
+                        <th>ชื่อ</th>
+                        <th>ตำแหน่ง</th>
+                        <th>โทรศัพท์</th>
+                        <th>จัดการ</th>
+                    </tr>
 
-</div>
+                </thead>
 
-</div>
+                <tbody id="assistantsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </section>
 
 
 <!-- SERVICES -->
 
-<section id="services" class="page">
+<section
+    id="services"
+    class="page"
+>
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
+        <div>
 
-<h1 class="page-title">🏠 เมนูบริการประชาชน</h1>
+            <h1 class="page-title">
+                🏠 เมนูบริการประชาชน
+            </h1>
 
-<div class="page-description">
-จัดการเมนูที่แสดงบนหน้าเว็บไซต์
-</div>
+            <p class="page-desc">
+                จัดการรายการเมนูที่แสดงหน้าเว็บไซต์
+            </p>
 
-</div>
+        </div>
 
-<button class="btn btn-primary"
-onclick="openItemModal('services')">
-➕ เพิ่มเมนู
-</button>
+        <button
+            class="primary-btn"
+            onclick="openItemModal('services')"
+        >
+            ➕ เพิ่มเมนู
+        </button>
 
-</div>
+    </div>
 
-<div class="card">
+    <div class="content-card">
 
-<div class="table-wrap">
+        <div class="table-wrap">
 
-<table>
+            <table>
 
-<thead>
+                <thead>
 
-<tr>
-<th>ไอคอน</th>
-<th>ชื่อเมนู</th>
-<th>รายละเอียด</th>
-<th>จัดการ</th>
-</tr>
+                    <tr>
+                        <th>ไอคอน</th>
+                        <th>ชื่อเมนู</th>
+                        <th>รายละเอียด</th>
+                        <th>จัดการ</th>
+                    </tr>
 
-</thead>
+                </thead>
 
-<tbody id="servicesTable"></tbody>
+                <tbody id="servicesTable"></tbody>
 
-</table>
+            </table>
 
-</div>
+        </div>
 
-</div>
+    </div>
 
 </section>
 
@@ -802,46 +990,53 @@ onclick="openItemModal('services')">
 
 <section id="news" class="page">
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
-<h1 class="page-title">📢 ข่าวประชาสัมพันธ์</h1>
-<div class="page-description">
-เพิ่มข่าว พร้อมรูปภาพ
-</div>
-</div>
+        <div>
 
-<button class="btn btn-primary"
-onclick="openItemModal('news')">
-➕ เพิ่มข่าว
-</button>
+            <h1 class="page-title">
+                📢 ข่าวประชาสัมพันธ์
+            </h1>
 
-</div>
+            <p class="page-desc">
+                เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพข่าว
+            </p>
 
-<div class="card">
+        </div>
 
-<div class="table-wrap">
+        <button
+            class="primary-btn"
+            onclick="openItemModal('news')"
+        >
+            ➕ เพิ่มข่าว
+        </button>
 
-<table>
+    </div>
 
-<thead>
+    <div class="content-card">
 
-<tr>
-<th>รูป</th>
-<th>หัวข้อ</th>
-<th>รายละเอียด</th>
-<th>จัดการ</th>
-</tr>
+        <div class="table-wrap">
 
-</thead>
+            <table>
 
-<tbody id="newsTable"></tbody>
+                <thead>
 
-</table>
+                    <tr>
+                        <th>รูป</th>
+                        <th>หัวข้อ</th>
+                        <th>รายละเอียด</th>
+                        <th>จัดการ</th>
+                    </tr>
 
-</div>
+                </thead>
 
-</div>
+                <tbody id="newsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -850,46 +1045,53 @@ onclick="openItemModal('news')">
 
 <section id="activities" class="page">
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
-<h1 class="page-title">📅 กิจกรรมเด่น</h1>
-<div class="page-description">
-เพิ่ม แก้ไข ลบ และอัปโหลดรูปกิจกรรม
-</div>
-</div>
+        <div>
 
-<button class="btn btn-primary"
-onclick="openItemModal('activities')">
-➕ เพิ่มกิจกรรม
-</button>
+            <h1 class="page-title">
+                📅 กิจกรรมเด่น
+            </h1>
 
-</div>
+            <p class="page-desc">
+                เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพกิจกรรม
+            </p>
 
-<div class="card">
+        </div>
 
-<div class="table-wrap">
+        <button
+            class="primary-btn"
+            onclick="openItemModal('activities')"
+        >
+            ➕ เพิ่มกิจกรรม
+        </button>
 
-<table>
+    </div>
 
-<thead>
+    <div class="content-card">
 
-<tr>
-<th>รูปภาพ</th>
-<th>ชื่อกิจกรรม</th>
-<th>รายละเอียด</th>
-<th>จัดการ</th>
-</tr>
+        <div class="table-wrap">
 
-</thead>
+            <table>
 
-<tbody id="activitiesTable"></tbody>
+                <thead>
 
-</table>
+                    <tr>
+                        <th>รูป</th>
+                        <th>ชื่อกิจกรรม</th>
+                        <th>รายละเอียด</th>
+                        <th>จัดการ</th>
+                    </tr>
 
-</div>
+                </thead>
 
-</div>
+                <tbody id="activitiesTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </section>
 
@@ -898,603 +1100,884 @@ onclick="openItemModal('activities')">
 
 <section id="announcements" class="page">
 
-<div class="page-header">
+    <div class="page-header">
 
-<div>
-<h1 class="page-title">📣 ประกาศสำคัญ</h1>
-<div class="page-description">
-จัดการประกาศของหมู่บ้าน
-</div>
-</div>
+        <div>
 
-<button class="btn btn-primary"
-onclick="openItemModal('announcements')">
-➕ เพิ่มประกาศ
-</button>
+            <h1 class="page-title">
+                📣 ประกาศสำคัญ
+            </h1>
 
-</div>
+            <p class="page-desc">
+                จัดการประกาศต่าง ๆ ของหมู่บ้าน
+            </p>
 
-<div class="card">
+        </div>
 
-<div class="table-wrap">
+        <button
+            class="primary-btn"
+            onclick="openItemModal('announcements')"
+        >
+            ➕ เพิ่มประกาศ
+        </button>
 
-<table>
+    </div>
 
-<thead>
+    <div class="content-card">
 
-<tr>
-<th>หัวข้อ</th>
-<th>รายละเอียด</th>
-<th>จัดการ</th>
-</tr>
+        <div class="table-wrap">
 
-</thead>
+            <table>
 
-<tbody id="announcementsTable"></tbody>
+                <thead>
 
-</table>
+                    <tr>
+                        <th>หัวข้อ</th>
+                        <th>รายละเอียด</th>
+                        <th>จัดการ</th>
+                    </tr>
 
-</div>
+                </thead>
 
-</div>
+                <tbody id="announcementsTable"></tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- GENERIC PAGES -->
+<!-- GENERIC INFORMATION PAGES -->
 
-<section id="village" class="page">
-<div class="page-header">
-<div>
-<h1 class="page-title">🏘️ ข้อมูลหมู่บ้าน</h1>
-<div class="page-description">ข้อมูลพื้นฐานของบ้านร่องเข็ม หมู่ที่ 6</div>
-</div>
-<button class="btn btn-primary" onclick="openItemModal('village')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="villageList"></div></div>
+<section id="village" class="page generic-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">🏘️ ข้อมูลหมู่บ้าน</h1>
+            <p class="page-desc">แก้ไขข้อมูลที่แสดงบนหน้าเว็บไซต์</p>
+        </div>
+    </div>
+    <div class="content-card">
+        <div class="form-group">
+            <label>เนื้อหา</label>
+            <textarea id="villageContent"></textarea>
+        </div>
+        <button class="save-btn" onclick="saveContent('village')">
+            💾 บันทึกข้อมูล
+        </button>
+    </div>
 </section>
 
-<section id="households" class="page">
-<div class="page-header">
-<div>
-<h1 class="page-title">🏠 ข้อมูลครัวเรือน</h1>
-<div class="page-description">จัดการข้อมูลครัวเรือน</div>
-</div>
-<button class="btn btn-primary" onclick="openItemModal('households')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="householdsList"></div></div>
+
+<section id="households" class="page generic-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">🏠 ข้อมูลครัวเรือน</h1>
+            <p class="page-desc">จัดการข้อมูลครัวเรือน</p>
+        </div>
+    </div>
+    <div class="content-card">
+        <div class="form-group">
+            <label>เนื้อหา</label>
+            <textarea id="householdsContent"></textarea>
+        </div>
+        <button class="save-btn" onclick="saveContent('households')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
 
-<section id="committee" class="page">
-<div class="page-header">
-<div>
-<h1 class="page-title">👔 คณะกรรมการหมู่บ้าน</h1>
-</div>
-<button class="btn btn-primary" onclick="openItemModal('committee')">➕ เพิ่มกรรมการ</button>
-</div>
-<div class="card"><div id="committeeList"></div></div>
+
+<section id="committee" class="page generic-page">
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">👨‍👩‍👧‍👦 คณะกรรมการหมู่บ้าน</h1>
+        </div>
+    </div>
+    <div class="content-card">
+        <div class="form-group">
+            <label>ข้อมูลคณะกรรมการ</label>
+            <textarea id="committeeContent"></textarea>
+        </div>
+        <button class="save-btn" onclick="saveContent('committee')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="health" class="page">
-<div class="page-header">
-<div>
-<h1 class="page-title">❤️ อสม. / สุขภาพชุมชน</h1>
-</div>
-<button class="btn btn-primary" onclick="openItemModal('health')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="healthList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">❤️ อสม. / สุขภาพชุมชน</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="healthContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('health')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="elderly" class="page">
-<div class="page-header">
-<div><h1 class="page-title">👴 ผู้สูงอายุ</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('elderly')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="elderlyList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">👴 ผู้สูงอายุ</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="elderlyContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('elderly')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="vulnerable" class="page">
-<div class="page-header">
-<div><h1 class="page-title">🤝 กลุ่มเปราะบาง</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('vulnerable')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="vulnerableList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">🤝 กลุ่มเปราะบาง</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="vulnerableContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('vulnerable')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="environment" class="page">
-<div class="page-header">
-<div><h1 class="page-title">🌿 สิ่งแวดล้อม / PM2.5</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('environment')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="environmentList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">🌿 สิ่งแวดล้อม / PM2.5</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="environmentContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('environment')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
 
-<section id="water" class="page">
-<div class="page-header">
-<div>
-<h1 class="page-title">💧 แหล่งซับน้ำจำ</h1>
-<div class="page-description">เพิ่มข้อมูล รายละเอียด และรูปภาพ</div>
-</div>
-<button class="btn btn-primary" onclick="openItemModal('water')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="waterList"></div></div>
+
+<section id="subnamjam" class="page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">💧 แหล่งซับน้ำจำ</h1>
+            <p class="page-desc">แก้ไขข้อมูลและรูปภาพแหล่งซับน้ำจำ</p>
+        </div>
+    </div>
+
+    <div class="content-card">
+
+        <div class="form-group">
+
+            <label>รายละเอียด</label>
+
+            <textarea id="subnamjamContent"></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>อัปโหลดรูปภาพ</label>
+
+            <input
+                type="file"
+                accept="image/*"
+                onchange="saveSingleImage('subnamjam',this)"
+            >
+
+            <img
+                id="subnamjamPreview"
+                class="image-preview"
+            >
+
+        </div>
+
+        <button
+            class="save-btn"
+            onclick="saveContent('subnamjam')"
+        >
+            💾 บันทึกข้อมูล
+        </button>
+
+    </div>
+
 </section>
 
-<section id="temple" class="page">
-<div class="page-header">
-<div>
-<h1 class="page-title">🛕 วัดร่องเข็ม</h1>
-<div class="page-description">เพิ่มรายละเอียดและรูปภาพ</div>
-</div>
-<button class="btn btn-primary" onclick="openItemModal('temple')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="templeList"></div></div>
-</section>
 
 <section id="agriculture" class="page">
-<div class="page-header">
-<div><h1 class="page-title">🌾 การเกษตร</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('agriculture')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="agricultureList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">🌾 การเกษตร</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="agricultureContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('agriculture')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="security" class="page">
-<div class="page-header">
-<div><h1 class="page-title">🛡️ ชรบ. / ความปลอดภัย</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('security')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="securityList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">🛡️ ชรบ. / ความปลอดภัย</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="securityContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('security')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="shops" class="page">
-<div class="page-header">
-<div><h1 class="page-title">🏪 ร้านค้าในชุมชน</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('shops')">➕ เพิ่มร้านค้า</button>
-</div>
-<div class="card"><div id="shopsList"></div></div>
+    <div class="page-header">
+        <div><h1 class="page-title">🏪 ร้านค้าในชุมชน</h1></div>
+    </div>
+    <div class="content-card">
+        <textarea id="shopsContent"></textarea>
+        <br><br>
+        <button class="save-btn" onclick="saveContent('shops')">💾 บันทึกข้อมูล</button>
+    </div>
 </section>
+
 
 <section id="map" class="page">
-<div class="page-header">
-<div><h1 class="page-title">📍 แผนที่หมู่บ้าน</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('map')">➕ เพิ่มสถานที่</button>
-</div>
-<div class="card"><div id="mapList"></div></div>
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">📍 แผนที่หมู่บ้าน</h1>
+            <p class="page-desc">ใส่ลิงก์ Google Maps หรือ Embed URL</p>
+        </div>
+    </div>
+
+    <div class="content-card">
+
+        <div class="form-group">
+
+            <label>ลิงก์แผนที่</label>
+
+            <input
+                id="mapContent"
+                placeholder="https://www.google.com/maps/..."
+            >
+
+        </div>
+
+        <button
+            class="save-btn"
+            onclick="saveContent('map')"
+        >
+            💾 บันทึกแผนที่
+        </button>
+
+    </div>
+
 </section>
+
+
+<section id="temple" class="page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">🛕 วัดร่องเข็ม</h1>
+        </div>
+    </div>
+
+    <div class="content-card">
+
+        <div class="form-group">
+
+            <label>ข้อมูลวัดร่องเข็ม</label>
+
+            <textarea id="templeContent"></textarea>
+
+        </div>
+
+        <div class="form-group">
+
+            <label>รูปภาพวัด</label>
+
+            <input
+                type="file"
+                accept="image/*"
+                onchange="saveSingleImage('temple',this)"
+            >
+
+            <img
+                id="templePreview"
+                class="image-preview"
+            >
+
+        </div>
+
+        <button
+            class="save-btn"
+            onclick="saveContent('temple')"
+        >
+            💾 บันทึกข้อมูล
+        </button>
+
+    </div>
+
+</section>
+
+
+<section id="localrep" class="page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">🏛️ ข้อมูล ส.อบต.</h1>
+        </div>
+    </div>
+
+    <div class="content-card">
+
+        <div class="form-group">
+
+            <label>ข้อมูล ส.อบต.</label>
+
+            <textarea id="localrepContent"></textarea>
+
+        </div>
+
+        <button
+            class="save-btn"
+            onclick="saveContent('localrep')"
+        >
+            💾 บันทึกข้อมูล
+        </button>
+
+    </div>
+
+</section>
+
 
 <section id="contact" class="page">
-<div class="page-header">
-<div><h1 class="page-title">☎️ ติดต่อ / แจ้งเหตุฉุกเฉิน</h1></div>
-<button class="btn btn-primary" onclick="openItemModal('contact')">➕ เพิ่มข้อมูล</button>
-</div>
-<div class="card"><div id="contactList"></div></div>
-</section>
 
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">📞 ติดต่อผู้ใหญ่บ้าน</h1>
+        </div>
+    </div>
 
-<!-- STATS -->
+    <div class="content-card">
 
-<section id="stats" class="page">
+        <div class="form-grid">
 
-<div class="page-header">
+            <div class="form-group">
 
-<div>
-<h1 class="page-title">📊 สถิติหมู่บ้าน</h1>
-<div class="page-description">แก้ไขตัวเลขที่แสดงหน้าเว็บไซต์</div>
-</div>
+                <label>ชื่อ</label>
 
-</div>
+                <input
+                    id="contactName"
+                    value="นายศักรนนทน์ ขัติย์วงศ์"
+                >
 
-<div class="card">
+            </div>
 
-<form id="statsForm">
+            <div class="form-group">
 
-<div class="form-grid">
+                <label>โทรศัพท์</label>
 
-<div class="form-group">
-<label>จำนวนครัวเรือน</label>
-<input type="number" id="statHouseholds">
-</div>
+                <input
+                    id="contactPhone"
+                    value="0801202529"
+                >
 
-<div class="form-group">
-<label>จำนวนประชากร</label>
-<input type="number" id="statPopulation">
-</div>
+            </div>
 
-<div class="form-group">
-<label>พื้นที่หมู่บ้าน (ตร.กม.)</label>
-<input type="text" id="statArea">
-</div>
+            <div class="form-group full">
 
-</div>
+                <label>รายละเอียด</label>
 
-<div class="form-actions">
-<button type="submit" class="btn btn-success">
-💾 บันทึกสถิติ
-</button>
-</div>
+                <textarea id="contactContent"></textarea>
 
-</form>
+            </div>
 
-</div>
+        </div>
+
+        <button
+            class="save-btn"
+            onclick="saveContact()"
+        >
+            💾 บันทึกข้อมูล
+        </button>
+
+    </div>
 
 </section>
+
+
+<section id="statistics" class="page">
+
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">📊 สถิติหมู่บ้าน</h1>
+        </div>
+    </div>
+
+    <div class="content-card">
+
+        <div class="form-grid">
+
+            <div class="form-group">
+
+                <label>จำนวนครัวเรือน</label>
+
+                <input
+                    type="number"
+                    id="statHouseholds"
+                    value="350"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>จำนวนประชากร</label>
+
+                <input
+                    type="number"
+                    id="statPopulation"
+                    value="1247"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>พื้นที่ (ตารางกิโลเมตร)</label>
+
+                <input
+                    id="statArea"
+                    value="2.15"
+                >
+
+            </div>
+
+        </div>
+
+        <button
+            class="save-btn"
+            onclick="saveStatistics()"
+        >
+            💾 บันทึกสถิติ
+        </button>
+
+    </div>
+
+</section>
+
 
 </main>
 
-</div>
 
+<!-- =========================
+MODAL
+========================= -->
 
-<!-- MODAL -->
-
-<div id="itemModal" class="modal">
-
-<div class="modal-box">
-
-<h2 id="modalTitle" class="modal-title">
-เพิ่มข้อมูล
-</h2>
-
-<form id="itemForm">
-
-<input type="hidden" id="itemType">
-
-<input type="hidden" id="editIndex" value="-1">
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>หัวข้อ / ชื่อ</label>
-
-<input
-type="text"
-id="itemTitle"
-required
+<div
+    class="modal"
+    id="itemModal"
 >
 
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2
+                class="modal-title"
+                id="modalTitle"
+            >
+                เพิ่มข้อมูล
+            </h2>
+
+            <button
+                class="close-btn"
+                onclick="closeModal()"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <form
+            id="itemForm"
+        >
+
+            <input
+                type="hidden"
+                id="editIndex"
+            >
+
+            <input
+                type="hidden"
+                id="editType"
+            >
+
+
+            <div class="form-group" id="fieldName">
+
+                <label>ชื่อ / หัวข้อ</label>
+
+                <input
+                    id="itemName"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group" id="fieldPosition">
+
+                <label>ตำแหน่ง</label>
+
+                <input
+                    id="itemPosition"
+                >
+
+            </div>
+
+
+            <div class="form-group" id="fieldPhone">
+
+                <label>โทรศัพท์</label>
+
+                <input
+                    id="itemPhone"
+                >
+
+            </div>
+
+
+            <div class="form-group" id="fieldIcon">
+
+                <label>ไอคอน Emoji</label>
+
+                <input
+                    id="itemIcon"
+                    placeholder="🏠"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>รายละเอียด</label>
+
+                <textarea
+                    id="itemDescription"
+                ></textarea>
+
+            </div>
+
+
+            <div
+                class="form-group"
+                id="fieldImage"
+            >
+
+                <label>รูปภาพ</label>
+
+                <input
+                    type="file"
+                    id="itemImage"
+                    accept="image/*"
+                >
+
+                <img
+                    id="itemPreview"
+                    class="image-preview"
+                >
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    onclick="closeModal()"
+                >
+                    ยกเลิก
+                </button>
+
+                <button
+                    type="submit"
+                    class="save-btn"
+                >
+                    💾 บันทึก
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
 </div>
 
-<div class="form-group">
 
-<label>ตำแหน่ง / ประเภท / โทรศัพท์</label>
-
-<input
-type="text"
-id="itemMeta"
+<div
+    class="toast"
+    id="toast"
 >
-
-</div>
-
-<div class="form-group full">
-
-<label>รายละเอียด</label>
-
-<textarea id="itemDescription"></textarea>
-
-</div>
-
-<div class="form-group full">
-
-<label>รูปภาพ</label>
-
-<input
-type="file"
-id="itemImage"
-accept="image/*"
->
-
-<img
-id="imagePreview"
-class="image-preview"
-alt="ตัวอย่างรูปภาพ"
->
-
-</div>
-
-</div>
-
-<div class="form-actions">
-
-<button
-type="button"
-class="btn"
-onclick="closeModal()">
-ยกเลิก
-</button>
-
-<button
-type="submit"
-class="btn btn-success">
-💾 บันทึกข้อมูล
-</button>
-
-</div>
-
-</form>
-
-</div>
-
+    บันทึกข้อมูลเรียบร้อยแล้ว
 </div>
 
 
 <script>
 
-/* =========================================
-   ตรวจสอบการเข้าสู่ระบบ
-========================================= */
+
+/* =========================
+   LOGIN CHECK
+========================= */
 
 if(
-    localStorage.getItem("rongkhemAdminLoggedIn")
-    !== "true"
+    localStorage.getItem(
+        "rongkhemAdminLoggedIn"
+    ) !== "true"
 ){
     window.location.href = "login.html";
 }
 
 
-/* =========================================
-   ฐานข้อมูล Local Storage
-========================================= */
+/* =========================
+   USER
+========================= */
 
-const DB_PREFIX = "rongkhem_";
+const loggedUser =
+    localStorage.getItem(
+        "rongkhemAdminUsername"
+    ) || "sakkranon";
 
+document.getElementById(
+    "adminName"
+).textContent = loggedUser;
+
+
+/* =========================
+   DEFAULT DATA
+========================= */
+
+const defaultData = {
+
+    assistants:[
+        {
+            name:"น.ส.สุภาพร วังมูล",
+            position:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง",
+            phone:"0989800089",
+            description:"รับผิดชอบงานด้านทะเบียน และปกครองส่วนท้องถิ่น",
+            image:""
+        },
+        {
+            name:"นายจักร์กวัส ประพลรัตนัง",
+            position:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ",
+            phone:"0851399849",
+            description:"ดูแลความเรียบร้อย และความปลอดภัยภายในหมู่บ้าน",
+            image:""
+        }
+    ],
+
+    services:[
+        {
+            name:"ข้อมูลหมู่บ้าน",
+            icon:"🏘️",
+            description:"ข้อมูลทั่วไปของบ้านร่องเข็ม"
+        },
+        {
+            name:"ข้อมูลครัวเรือน",
+            icon:"🏠",
+            description:"ข้อมูลครัวเรือนในหมู่บ้าน"
+        },
+        {
+            name:"คณะกรรมการหมู่บ้าน",
+            icon:"👥",
+            description:"รายชื่อคณะกรรมการหมู่บ้าน"
+        },
+        {
+            name:"ข่าวสาร / ประกาศ",
+            icon:"📢",
+            description:"ข่าวสารและประกาศล่าสุด"
+        },
+        {
+            name:"อสม. / สุขภาพชุมชน",
+            icon:"❤️",
+            description:"ข้อมูลสุขภาพชุมชน"
+        },
+        {
+            name:"ผู้สูงอายุ",
+            icon:"👴",
+            description:"ข้อมูลผู้สูงอายุ"
+        },
+        {
+            name:"กลุ่มเปราะบาง",
+            icon:"🤝",
+            description:"ข้อมูลกลุ่มเปราะบาง"
+        },
+        {
+            name:"สิ่งแวดล้อม / PM2.5",
+            icon:"🌿",
+            description:"ข้อมูลสิ่งแวดล้อม"
+        },
+        {
+            name:"แหล่งซับน้ำจำ",
+            icon:"💧",
+            description:"แหล่งทรัพยากรธรรมชาติของชุมชน"
+        },
+        {
+            name:"การเกษตร",
+            icon:"🌾",
+            description:"ข้อมูลด้านการเกษตร"
+        },
+        {
+            name:"ชรบ. / ความปลอดภัย",
+            icon:"🛡️",
+            description:"ความปลอดภัยในหมู่บ้าน"
+        },
+        {
+            name:"ร้านค้าในชุมชน",
+            icon:"🏪",
+            description:"ร้านค้าและบริการ"
+        },
+        {
+            name:"แผนที่หมู่บ้าน",
+            icon:"📍",
+            description:"แผนที่และสถานที่สำคัญ"
+        },
+        {
+            name:"วัดร่องเข็ม",
+            icon:"🛕",
+            description:"ข้อมูลวัดร่องเข็ม"
+        },
+        {
+            name:"ข้อมูล ส.อบต.",
+            icon:"🏛️",
+            description:"ข้อมูลสมาชิกสภาองค์การบริหารส่วนตำบล"
+        }
+    ],
+
+    news:[
+        {
+            name:"ประชุมประจำเดือนหมู่บ้าน",
+            description:"วันอาทิตย์ที่ 1 มิถุนายน 2567 เวลา 07.00 น.",
+            image:""
+        },
+        {
+            name:"โครงการรณรงค์งดการเผา",
+            description:"1 ก.พ. - 31 มี.ค. งดเผาทุกชนิด",
+            image:""
+        },
+        {
+            name:"โครงการแหล่งซับน้ำจำ",
+            description:"ร่วมอนุรักษ์ ฟื้นฟู แหล่งน้ำชุมชน",
+            image:""
+        }
+    ],
+
+    activities:[
+        {
+            name:"จิตอาสาพัฒนาหมู่บ้าน",
+            description:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",
+            image:""
+        }
+    ],
+
+    announcements:[
+        {
+            name:"ประกาศห้ามเผาในที่โล่งทุกชนิด",
+            description:"1 ก.พ. - 31 มี.ค."
+        },
+        {
+            name:"ประชาสัมพันธ์การฉีดวัคซีน",
+            description:"ป้องกันโรคพิษสุนัขบ้า"
+        },
+        {
+            name:"การชำระภาษีที่ดิน",
+            description:"กรุณาดำเนินการภายในกำหนด"
+        }
+    ]
+
+};
+
+
+/* =========================
+   GET DATA
+========================= */
 
 function getData(type){
 
-    try{
+    const saved =
+        localStorage.getItem(
+            "rongkhem_" + type
+        );
 
-        return JSON.parse(
-            localStorage.getItem(
-                DB_PREFIX + type
-            )
-        ) || [];
+    if(saved){
 
-    }catch(error){
-
-        return [];
+        try{
+            return JSON.parse(saved);
+        }catch(e){
+            return defaultData[type] || [];
+        }
 
     }
+
+    return defaultData[type] || [];
 
 }
 
 
-function saveData(type,data){
+/* =========================
+   SAVE DATA
+========================= */
+
+function saveData(
+    type,
+    data
+){
 
     localStorage.setItem(
-        DB_PREFIX + type,
+        "rongkhem_" + type,
         JSON.stringify(data)
     );
 
 }
 
 
-const defaultData = {
+/* =========================
+   PAGE
+========================= */
 
-assistants:[
-{
-title:"น.ส.สุภาพร วังมูล",
-meta:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง | 098-9800089",
-description:"รับผิดชอบงานด้านทะเบียนและปกครองส่วนท้องถิ่น",
-image:""
-},
-{
-title:"นายจักร์กวัส ประพลรัตนัง",
-meta:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ | 085-1399849",
-description:"ดูแลความเรียบร้อยและความปลอดภัยภายในหมู่บ้าน",
-image:""
-}
-],
+function showPage(
+    page,
+    button
+){
 
-services:[
-{
-title:"ข้อมูลหมู่บ้าน",
-meta:"🏠",
-description:"ข้อมูลพื้นฐานของหมู่บ้าน",
-image:""
-},
-{
-title:"ข้อมูลครัวเรือน",
-meta:"👨‍👩‍👧‍👦",
-description:"ข้อมูลครัวเรือนในหมู่บ้าน",
-image:""
-},
-{
-title:"คณะกรรมการหมู่บ้าน",
-meta:"👥",
-description:"รายชื่อคณะกรรมการ",
-image:""
-},
-{
-title:"ข่าวสาร / ประกาศ",
-meta:"📢",
-description:"ข่าวประชาสัมพันธ์",
-image:""
-},
-{
-title:"ยื่นคำร้องออนไลน์",
-meta:"📝",
-description:"บริการประชาชน",
-image:""
-},
-{
-title:"อสม.",
-meta:"❤️",
-description:"อาสาสมัครสาธารณสุข",
-image:""
-},
-{
-title:"สุขภาพชุมชน",
-meta:"🏥",
-description:"ข้อมูลสุขภาพชุมชน",
-image:""
-},
-{
-title:"ผู้สูงอายุ",
-meta:"👴",
-description:"ข้อมูลผู้สูงอายุ",
-image:""
-},
-{
-title:"กลุ่มเปราะบาง",
-meta:"🤝",
-description:"ข้อมูลกลุ่มเปราะบาง",
-image:""
-},
-{
-title:"สิ่งแวดล้อม / PM2.5",
-meta:"🌿",
-description:"ข้อมูลสิ่งแวดล้อม",
-image:""
-},
-{
-title:"แหล่งซับน้ำจำ",
-meta:"💧",
-description:"แหล่งน้ำสำคัญของชุมชน",
-image:""
-},
-{
-title:"วัดร่องเข็ม",
-meta:"🛕",
-description:"ศาสนสถานของชุมชน",
-image:""
-},
-{
-title:"การเกษตร",
-meta:"🌾",
-description:"ข้อมูลการเกษตร",
-image:""
-},
-{
-title:"ชรบ. / ความปลอดภัย",
-meta:"🛡️",
-description:"ความปลอดภัยในชุมชน",
-image:""
-},
-{
-title:"ร้านค้าในชุมชน",
-meta:"🏪",
-description:"ข้อมูลร้านค้า",
-image:""
-},
-{
-title:"แผนที่หมู่บ้าน",
-meta:"📍",
-description:"สถานที่สำคัญ",
-image:""
-},
-{
-title:"ติดต่อผู้ใหญ่บ้าน",
-meta:"☎️",
-description:"ช่องทางติดต่อ",
-image:""
-},
-{
-title:"แจ้งเหตุฉุกเฉิน",
-meta:"🚨",
-description:"แจ้งเหตุเร่งด่วน",
-image:""
-}
-],
+    document
+        .querySelectorAll(".page")
+        .forEach(function(el){
 
-news:[
-{
-title:"ประชุมประจำเดือนหมู่บ้าน",
-meta:"",
-description:"วันอาทิตย์ที่ 1 มิถุนายน 2567 เวลา 07.00 น.",
-image:""
-},
-{
-title:"โครงการรณรงค์งดการเผา",
-meta:"",
-description:"1 ก.พ. - 31 มี.ค. งดเผาทุกชนิด",
-image:""
-},
-{
-title:"โครงการแหล่งซับน้ำจำ",
-meta:"",
-description:"ร่วมอนุรักษ์ ฟื้นฟู แหล่งน้ำชุมชน",
-image:""
-}
-],
+            el.classList.remove("active");
 
-activities:[
-{
-title:"จิตอาสาพัฒนาหมู่บ้าน",
-meta:"",
-description:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",
-image:""
-}
-],
-
-announcements:[
-{
-title:"ประกาศห้ามเผาในที่โล่งทุกชนิด",
-meta:"",
-description:"1 ก.พ. - 31 มี.ค.",
-image:""
-},
-{
-title:"ประชาสัมพันธ์การฉีดวัคซีนป้องกันโรคพิษสุนัขบ้า",
-meta:"",
-description:"วันที่ 15 มิถุนายน ณ อาคารเอนกประสงค์",
-image:""
-},
-{
-title:"การชำระภาษีที่ดินและสิ่งปลูกสร้าง",
-meta:"",
-description:"ภายในวันที่ 30 มิถุนายน",
-image:""
-}
-]
-
-};
+        });
 
 
-/* =========================================
-   โหลดข้อมูลเริ่มต้น
-========================================= */
+    const target =
+        document.getElementById(page);
 
-Object.keys(defaultData).forEach(function(type){
+    if(target){
 
-    if(
-        localStorage.getItem(
-            DB_PREFIX + type
-        ) === null
-    ){
-
-        saveData(
-            type,
-            defaultData[type]
-        );
+        target.classList.add("active");
 
     }
 
-});
-
-
-/* =========================================
-   เปลี่ยนหน้า
-========================================= */
-
-function openPage(page,button){
-
-    document.querySelectorAll(".page")
-    .forEach(function(el){
-
-        el.classList.remove("active");
-
-    });
-
-    document.querySelectorAll(".menu-item")
-    .forEach(function(el){
-
-        el.classList.remove("active");
-
-    });
 
     document
-    .getElementById(page)
-    .classList.add("active");
+        .querySelectorAll(".menu-item")
+        .forEach(function(el){
+
+            el.classList.remove("active");
+
+        });
+
 
     if(button){
 
@@ -1502,304 +1985,718 @@ function openPage(page,button){
 
     }
 
-    renderAll();
+
+    loadContentPage(page);
 
 }
 
 
-/* =========================================
-   Modal
-========================================= */
+/* =========================
+   RENDER
+========================= */
 
-function openItemModal(type,index=-1){
+function renderAll(){
 
-    document
-    .getElementById("itemModal")
-    .classList.add("show");
+    renderAssistants();
+    renderServices();
+    renderNews();
+    renderActivities();
+    renderAnnouncements();
+    updateDashboard();
 
-
-    document
-    .getElementById("itemType")
-    .value = type;
-
-
-    document
-    .getElementById("editIndex")
-    .value = index;
+}
 
 
-    document
-    .getElementById("itemForm")
-    .reset();
+function imageHTML(image){
+
+    if(image){
+
+        return `
+            <img
+                class="thumb"
+                src="${image}"
+            >
+        `;
+
+    }
+
+    return `
+        <div
+            class="thumb"
+            style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            "
+        >
+            🖼️
+        </div>
+    `;
+
+}
 
 
-    const preview =
-    document.getElementById("imagePreview");
+function renderAssistants(){
+
+    const data =
+        getData("assistants");
+
+    const table =
+        document.getElementById(
+            "assistantsTable"
+        );
+
+    table.innerHTML = "";
+
+    data.forEach(function(item,index){
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>
+                ${imageHTML(item.image)}
+            </td>
+
+            <td>
+                <b>${item.name}</b>
+            </td>
+
+            <td>
+                ${item.position || ""}
+            </td>
+
+            <td>
+                ${item.phone || ""}
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editItem('assistants',${index})"
+                    >
+                        ✏️ แก้ไข
+                    </button>
+
+                    <button
+                        class="danger-btn"
+                        onclick="deleteItem('assistants',${index})"
+                    >
+                        🗑️ ลบ
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
 
 
-    preview.src = "";
+function renderServices(){
 
-    preview.classList.remove("show");
+    const data =
+        getData("services");
+
+    const table =
+        document.getElementById(
+            "servicesTable"
+        );
+
+    table.innerHTML = "";
+
+    data.forEach(function(item,index){
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td style="font-size:24px">
+                ${item.icon || "🏠"}
+            </td>
+
+            <td>
+                <b>${item.name}</b>
+            </td>
+
+            <td>
+                ${item.description || ""}
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editItem('services',${index})"
+                    >
+                        ✏️
+                    </button>
+
+                    <button
+                        class="danger-btn"
+                        onclick="deleteItem('services',${index})"
+                    >
+                        🗑️
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
 
 
-    if(index >= 0){
+function renderNews(){
 
-        const item =
-        getData(type)[index];
+    renderImageTable(
+        "news",
+        "newsTable"
+    );
+
+}
 
 
-        document
-        .getElementById("modalTitle")
-        .textContent =
+function renderActivities(){
+
+    renderImageTable(
+        "activities",
+        "activitiesTable"
+    );
+
+}
+
+
+function renderImageTable(
+    type,
+    tableID
+){
+
+    const data =
+        getData(type);
+
+    const table =
+        document.getElementById(tableID);
+
+    table.innerHTML = "";
+
+    data.forEach(function(item,index){
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>
+                ${imageHTML(item.image)}
+            </td>
+
+            <td>
+                <b>${item.name}</b>
+            </td>
+
+            <td>
+                ${item.description || ""}
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editItem('${type}',${index})"
+                    >
+                        ✏️ แก้ไข
+                    </button>
+
+                    <button
+                        class="danger-btn"
+                        onclick="deleteItem('${type}',${index})"
+                    >
+                        🗑️ ลบ
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+function renderAnnouncements(){
+
+    const data =
+        getData("announcements");
+
+    const table =
+        document.getElementById(
+            "announcementsTable"
+        );
+
+    table.innerHTML = "";
+
+    data.forEach(function(item,index){
+
+        table.innerHTML += `
+
+        <tr>
+
+            <td>
+                <b>${item.name}</b>
+            </td>
+
+            <td>
+                ${item.description || ""}
+            </td>
+
+            <td>
+
+                <div class="actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="editItem('announcements',${index})"
+                    >
+                        ✏️ แก้ไข
+                    </button>
+
+                    <button
+                        class="danger-btn"
+                        onclick="deleteItem('announcements',${index})"
+                    >
+                        🗑️ ลบ
+                    </button>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+    document.getElementById(
+        "newsCount"
+    ).textContent =
+        getData("news").length;
+
+
+    document.getElementById(
+        "activityCount"
+    ).textContent =
+        getData("activities").length;
+
+
+    document.getElementById(
+        "announcementCount"
+    ).textContent =
+        getData("announcements").length;
+
+
+    document.getElementById(
+        "assistantCount"
+    ).textContent =
+        getData("assistants").length;
+
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openItemModal(type){
+
+    document.getElementById(
+        "itemForm"
+    ).reset();
+
+
+    document.getElementById(
+        "editType"
+    ).value = type;
+
+
+    document.getElementById(
+        "editIndex"
+    ).value = "";
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
+        "➕ เพิ่มข้อมูล";
+
+
+    document.getElementById(
+        "itemPreview"
+    ).style.display =
+        "none";
+
+
+    updateModalFields(type);
+
+
+    document.getElementById(
+        "itemModal"
+    ).classList.add("show");
+
+}
+
+
+function editItem(
+    type,
+    index
+){
+
+    const data =
+        getData(type);
+
+    const item =
+        data[index];
+
+
+    document.getElementById(
+        "editType"
+    ).value = type;
+
+
+    document.getElementById(
+        "editIndex"
+    ).value = index;
+
+
+    document.getElementById(
+        "modalTitle"
+    ).textContent =
         "✏️ แก้ไขข้อมูล";
 
 
-        document
-        .getElementById("itemTitle")
-        .value = item.title || "";
+    document.getElementById(
+        "itemName"
+    ).value =
+        item.name || "";
 
 
-        document
-        .getElementById("itemMeta")
-        .value = item.meta || "";
+    document.getElementById(
+        "itemPosition"
+    ).value =
+        item.position || "";
 
 
-        document
-        .getElementById("itemDescription")
-        .value = item.description || "";
+    document.getElementById(
+        "itemPhone"
+    ).value =
+        item.phone || "";
 
 
-        if(item.image){
+    document.getElementById(
+        "itemIcon"
+    ).value =
+        item.icon || "";
 
-            preview.src = item.image;
 
-            preview.classList.add("show");
+    document.getElementById(
+        "itemDescription"
+    ).value =
+        item.description || "";
 
-        }
+
+    updateModalFields(type);
+
+
+    const preview =
+        document.getElementById(
+            "itemPreview"
+        );
+
+
+    if(item.image){
+
+        preview.src =
+            item.image;
+
+        preview.style.display =
+            "block";
 
     }else{
 
-        document
-        .getElementById("modalTitle")
-        .textContent =
-        "➕ เพิ่มข้อมูล";
+        preview.style.display =
+            "none";
 
     }
+
+
+    document.getElementById(
+        "itemModal"
+    ).classList.add("show");
+
+}
+
+
+function updateModalFields(type){
+
+    document.getElementById(
+        "fieldPosition"
+    ).style.display =
+        type === "assistants"
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "fieldPhone"
+    ).style.display =
+        type === "assistants"
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "fieldIcon"
+    ).style.display =
+        type === "services"
+        ? "block"
+        : "none";
+
+
+    document.getElementById(
+        "fieldImage"
+    ).style.display =
+        (
+            type === "assistants" ||
+            type === "news" ||
+            type === "activities"
+        )
+        ? "block"
+        : "none";
 
 }
 
 
 function closeModal(){
 
-    document
-    .getElementById("itemModal")
-    .classList.remove("show");
+    document.getElementById(
+        "itemModal"
+    ).classList.remove("show");
 
 }
 
 
-/* =========================================
-   อัปโหลดรูป
-========================================= */
-
-document
-.getElementById("itemImage")
-.addEventListener(
-"change",
-function(event){
-
-    const file =
-    event.target.files[0];
-
-
-    if(!file){
-
-        return;
-
-    }
-
-
-    const reader =
-    new FileReader();
-
-
-    reader.onload =
-    function(e){
-
-        const preview =
-        document
-        .getElementById(
-            "imagePreview"
-        );
-
-
-        preview.src =
-        e.target.result;
-
-
-        preview.classList.add(
-            "show"
-        );
-
-    };
-
-
-    reader.readAsDataURL(file);
-
-}
-);
-
-
-/* =========================================
-   บันทึกข้อมูล
-========================================= */
+/* =========================
+   SAVE ITEM
+========================= */
 
 document
 .getElementById("itemForm")
 .addEventListener(
-"submit",
-function(event){
+    "submit",
+    function(event){
 
-    event.preventDefault();
-
-
-    const type =
-    document
-    .getElementById("itemType")
-    .value;
+        event.preventDefault();
 
 
-    const index =
-    Number(
-        document
-        .getElementById("editIndex")
-        .value
-    );
+        const type =
+            document.getElementById(
+                "editType"
+            ).value;
 
 
-    const data =
-    getData(type);
+        const editIndex =
+            document.getElementById(
+                "editIndex"
+            ).value;
 
 
-    const item = {
-
-        title:
-        document
-        .getElementById("itemTitle")
-        .value
-        .trim(),
-
-        meta:
-        document
-        .getElementById("itemMeta")
-        .value
-        .trim(),
-
-        description:
-        document
-        .getElementById("itemDescription")
-        .value
-        .trim(),
-
-        image:""
-
-    };
+        const name =
+            document.getElementById(
+                "itemName"
+            ).value;
 
 
-    if(
-        index >= 0 &&
-        data[index]
-    ){
-
-        item.image =
-        data[index].image || "";
-
-    }
+        const position =
+            document.getElementById(
+                "itemPosition"
+            ).value;
 
 
-    const file =
-    document
-    .getElementById("itemImage")
-    .files[0];
+        const phone =
+            document.getElementById(
+                "itemPhone"
+            ).value;
 
 
-    function finishSave(){
-
-        if(index >= 0){
-
-            data[index] = item;
-
-        }else{
-
-            data.push(item);
-
-        }
+        const icon =
+            document.getElementById(
+                "itemIcon"
+            ).value;
 
 
-        saveData(type,data);
+        const description =
+            document.getElementById(
+                "itemDescription"
+            ).value;
 
 
-        closeModal();
+        const imageInput =
+            document.getElementById(
+                "itemImage"
+            );
 
 
-        renderAll();
+        const data =
+            getData(type);
 
 
-        alert(
-            "บันทึกข้อมูลเรียบร้อยแล้ว"
-        );
+        const saveFinal =
+        function(image){
 
-    }
+            const item = {
+
+                name:name,
+
+                position:position,
+
+                phone:phone,
+
+                icon:icon,
+
+                description:description,
+
+                image:image
+
+            };
 
 
-    if(file){
+            if(editIndex !== ""){
 
-        const reader =
-        new FileReader();
+                data[editIndex] =
+                    item;
+
+            }else{
+
+                data.push(item);
+
+            }
 
 
-        reader.onload =
-        function(e){
+            saveData(
+                type,
+                data
+            );
 
-            item.image =
-            e.target.result;
 
-            finishSave();
+            closeModal();
+
+            renderAll();
+
+            showToast();
 
         };
 
 
-        reader.readAsDataURL(file);
+        if(
+            imageInput.files &&
+            imageInput.files[0]
+        ){
 
-    }else{
+            const reader =
+                new FileReader();
 
-        finishSave();
+
+            reader.onload =
+            function(e){
+
+                saveFinal(
+                    e.target.result
+                );
+
+            };
+
+
+            reader.readAsDataURL(
+                imageInput.files[0]
+            );
+
+        }else{
+
+            let oldImage = "";
+
+
+            if(
+                editIndex !== "" &&
+                data[editIndex]
+            ){
+
+                oldImage =
+                    data[editIndex].image ||
+                    "";
+
+            }
+
+
+            saveFinal(
+                oldImage
+            );
+
+        }
 
     }
-
-}
 );
 
 
-/* =========================================
-   ลบข้อมูล
-========================================= */
+/* =========================
+   DELETE
+========================= */
 
-function deleteItem(type,index){
+function deleteItem(
+    type,
+    index
+){
 
     if(
         !confirm(
             "ยืนยันการลบข้อมูลนี้?"
         )
     ){
-
         return;
-
     }
 
 
     const data =
-    getData(type);
+        getData(type);
 
 
     data.splice(
@@ -1808,563 +2705,341 @@ function deleteItem(type,index){
     );
 
 
-    saveData(type,data);
+    saveData(
+        type,
+        data
+    );
 
 
     renderAll();
 
-}
-
-
-/* =========================================
-   แสดงตาราง
-========================================= */
-
-function renderTable(type){
-
-    const tbody =
-    document.getElementById(
-        type + "Table"
-    );
-
-
-    if(!tbody){
-
-        return;
-
-    }
-
-
-    const data =
-    getData(type);
-
-
-    if(!data.length){
-
-        tbody.innerHTML = `
-        <tr>
-        <td colspan="5" class="empty">
-        ยังไม่มีข้อมูล
-        </td>
-        </tr>
-        `;
-
-        return;
-
-    }
-
-
-    tbody.innerHTML =
-    data.map(
-    function(item,index){
-
-        const image =
-        item.image
-        ?
-        `<img src="${item.image}" class="thumbnail">`
-        :
-        `<div class="thumbnail"></div>`;
-
-
-        if(type === "assistants"){
-
-            return `
-            <tr>
-
-            <td>
-            ${image}
-            </td>
-
-            <td>
-            ${escapeHtml(item.title)}
-            </td>
-
-            <td>
-            ${escapeHtml(item.meta)}
-            </td>
-
-            <td>
-            ${escapeHtml(
-                item.meta
-                .split("|")[1] || ""
-            )}
-            </td>
-
-            <td>
-
-            <div class="action-buttons">
-
-            <button
-            class="btn btn-edit btn-small"
-            onclick="openItemModal('${type}',${index})">
-            ✏️ แก้ไข
-            </button>
-
-            <button
-            class="btn btn-delete btn-small"
-            onclick="deleteItem('${type}',${index})">
-            🗑️ ลบ
-            </button>
-
-            </div>
-
-            </td>
-
-            </tr>
-            `;
-
-        }
-
-
-        if(type === "services"){
-
-            return `
-            <tr>
-
-            <td>
-            ${escapeHtml(item.meta)}
-            </td>
-
-            <td>
-            ${escapeHtml(item.title)}
-            </td>
-
-            <td>
-            ${escapeHtml(item.description)}
-            </td>
-
-            <td>
-
-            <div class="action-buttons">
-
-            <button
-            class="btn btn-edit btn-small"
-            onclick="openItemModal('${type}',${index})">
-            ✏️
-            </button>
-
-            <button
-            class="btn btn-delete btn-small"
-            onclick="deleteItem('${type}',${index})">
-            🗑️
-            </button>
-
-            </div>
-
-            </td>
-
-            </tr>
-            `;
-
-        }
-
-
-        if(
-            type === "news" ||
-            type === "activities"
-        ){
-
-            return `
-            <tr>
-
-            <td>
-            ${image}
-            </td>
-
-            <td>
-            ${escapeHtml(item.title)}
-            </td>
-
-            <td>
-            ${escapeHtml(item.description)}
-            </td>
-
-            <td>
-
-            <div class="action-buttons">
-
-            <button
-            class="btn btn-edit btn-small"
-            onclick="openItemModal('${type}',${index})">
-            ✏️
-            </button>
-
-            <button
-            class="btn btn-delete btn-small"
-            onclick="deleteItem('${type}',${index})">
-            🗑️
-            </button>
-
-            </div>
-
-            </td>
-
-            </tr>
-            `;
-
-        }
-
-
-        return `
-        <tr>
-
-        <td>
-        ${escapeHtml(item.title)}
-        </td>
-
-        <td>
-        ${escapeHtml(item.description)}
-        </td>
-
-        <td>
-
-        <div class="action-buttons">
-
-        <button
-        class="btn btn-edit btn-small"
-        onclick="openItemModal('${type}',${index})">
-        ✏️ แก้ไข
-        </button>
-
-        <button
-        class="btn btn-delete btn-small"
-        onclick="deleteItem('${type}',${index})">
-        🗑️ ลบ
-        </button>
-
-        </div>
-
-        </td>
-
-        </tr>
-        `;
-
-    }
-    ).join("");
+    showToast();
 
 }
 
 
-/* =========================================
-   Generic List
-========================================= */
+/* =========================
+   CONTENT PAGES
+========================= */
 
-const genericTypes = [
-"village",
-"households",
-"committee",
-"health",
-"elderly",
-"vulnerable",
-"environment",
-"water",
-"temple",
-"agriculture",
-"security",
-"shops",
-"map",
-"contact"
+const contentPages = [
+
+    "village",
+    "households",
+    "committee",
+    "health",
+    "elderly",
+    "vulnerable",
+    "environment",
+    "subnamjam",
+    "agriculture",
+    "security",
+    "shops",
+    "map",
+    "temple",
+    "localrep"
+
 ];
 
 
-function renderGeneric(type){
+function loadContentPage(page){
 
-    const container =
-    document.getElementById(
-        type + "List"
+    if(
+        contentPages.includes(page)
+    ){
+
+        const element =
+            document.getElementById(
+                page + "Content"
+            );
+
+
+        if(element){
+
+            element.value =
+                localStorage.getItem(
+                    "rongkhem_content_" +
+                    page
+                ) || "";
+
+        }
+
+    }
+
+
+    if(page === "contact"){
+
+        loadContact();
+
+    }
+
+
+    if(page === "statistics"){
+
+        loadStatistics();
+
+    }
+
+}
+
+
+function saveContent(page){
+
+    const element =
+        document.getElementById(
+            page + "Content"
+        );
+
+
+    if(!element){
+        return;
+    }
+
+
+    localStorage.setItem(
+        "rongkhem_content_" + page,
+        element.value
     );
 
 
-    if(!container){
-
-        return;
-
-    }
-
-
-    const data =
-    getData(type);
-
-
-    if(!data.length){
-
-        container.innerHTML = `
-        <div class="empty">
-        ยังไม่มีข้อมูล
-        </div>
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-    data.map(
-    function(item,index){
-
-        const image =
-        item.image
-        ?
-        `<img
-        src="${item.image}"
-        class="thumbnail"
-        style="float:left;margin-right:15px">`
-        :
-        "";
-
-
-        return `
-
-        <div
-        style="
-        padding:16px;
-        border-bottom:1px solid #eef2f7;
-        overflow:auto
-        ">
-
-        ${image}
-
-        <strong>
-        ${escapeHtml(item.title)}
-        </strong>
-
-        <div
-        style="
-        color:#64748b;
-        font-size:13px;
-        margin-top:5px
-        ">
-
-        ${escapeHtml(item.meta || "")}
-
-        </div>
-
-        <div
-        style="
-        margin-top:7px
-        ">
-
-        ${escapeHtml(
-            item.description || ""
-        )}
-
-        </div>
-
-        <div
-        class="action-buttons"
-        style="
-        margin-top:12px
-        ">
-
-        <button
-        class="btn btn-edit btn-small"
-        onclick="openItemModal('${type}',${index})">
-        ✏️ แก้ไข
-        </button>
-
-        <button
-        class="btn btn-delete btn-small"
-        onclick="deleteItem('${type}',${index})">
-        🗑️ ลบ
-        </button>
-
-        </div>
-
-        </div>
-
-        `;
-
-    }
-    ).join("");
+    showToast();
 
 }
 
 
-/* =========================================
-   Escape HTML
-========================================= */
+/* =========================
+   SINGLE IMAGE
+========================= */
 
-function escapeHtml(text){
+function saveSingleImage(
+    page,
+    input
+){
 
-    if(text === undefined || text === null){
-
-        return "";
-
+    if(
+        !input.files ||
+        !input.files[0]
+    ){
+        return;
     }
 
 
-    return String(text)
-
-    .replace(/&/g,"&amp;")
-
-    .replace(/</g,"&lt;")
-
-    .replace(/>/g,"&gt;")
-
-    .replace(/"/g,"&quot;")
-
-    .replace(/'/g,"&#039;");
-
-}
+    const reader =
+        new FileReader();
 
 
-/* =========================================
-   สถิติหมู่บ้าน
-========================================= */
+    reader.onload =
+    function(e){
 
-function loadStats(){
+        localStorage.setItem(
+            "rongkhem_image_" + page,
+            e.target.result
+        );
 
-    const stats =
-    JSON.parse(
-        localStorage.getItem(
-            DB_PREFIX + "stats"
-        )
-    )
-    ||
-    {
-        households:350,
-        population:1247,
-        area:"2.15"
+
+        const preview =
+            document.getElementById(
+                page + "Preview"
+            );
+
+
+        if(preview){
+
+            preview.src =
+                e.target.result;
+
+            preview.style.display =
+                "block";
+
+        }
+
+
+        showToast();
+
     };
 
 
-    document
-    .getElementById("statHouseholds")
-    .value =
-    stats.households;
-
-
-    document
-    .getElementById("statPopulation")
-    .value =
-    stats.population;
-
-
-    document
-    .getElementById("statArea")
-    .value =
-    stats.area;
+    reader.readAsDataURL(
+        input.files[0]
+    );
 
 }
 
 
-document
-.getElementById("statsForm")
-.addEventListener(
-"submit",
-function(event){
+/* =========================
+   CONTACT
+========================= */
 
-    event.preventDefault();
+function loadContact(){
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "rongkhem_contact"
+            ) || "{}"
+        );
 
 
-    const stats = {
+    document.getElementById(
+        "contactName"
+    ).value =
+        saved.name ||
+        "นายศักรนนทน์ ขัติย์วงศ์";
 
-        households:
-        document
-        .getElementById("statHouseholds")
-        .value,
 
-        population:
-        document
-        .getElementById("statPopulation")
-        .value,
+    document.getElementById(
+        "contactPhone"
+    ).value =
+        saved.phone ||
+        "0801202529";
 
-        area:
-        document
-        .getElementById("statArea")
-        .value
+
+    document.getElementById(
+        "contactContent"
+    ).value =
+        saved.description ||
+        "";
+
+}
+
+
+function saveContact(){
+
+    const data = {
+
+        name:
+            document.getElementById(
+                "contactName"
+            ).value,
+
+        phone:
+            document.getElementById(
+                "contactPhone"
+            ).value,
+
+        description:
+            document.getElementById(
+                "contactContent"
+            ).value
 
     };
 
 
     localStorage.setItem(
-        DB_PREFIX + "stats",
-        JSON.stringify(stats)
+        "rongkhem_contact",
+        JSON.stringify(data)
     );
 
 
-    alert(
-        "บันทึกสถิติเรียบร้อยแล้ว"
+    showToast();
+
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+function loadStatistics(){
+
+    const saved =
+        JSON.parse(
+            localStorage.getItem(
+                "rongkhem_statistics"
+            ) || "{}"
+        );
+
+
+    document.getElementById(
+        "statHouseholds"
+    ).value =
+        saved.households ||
+        350;
+
+
+    document.getElementById(
+        "statPopulation"
+    ).value =
+        saved.population ||
+        1247;
+
+
+    document.getElementById(
+        "statArea"
+    ).value =
+        saved.area ||
+        2.15;
+
+}
+
+
+function saveStatistics(){
+
+    const data = {
+
+        households:
+            document.getElementById(
+                "statHouseholds"
+            ).value,
+
+        population:
+            document.getElementById(
+                "statPopulation"
+            ).value,
+
+        area:
+            document.getElementById(
+                "statArea"
+            ).value
+
+    };
+
+
+    localStorage.setItem(
+        "rongkhem_statistics",
+        JSON.stringify(data)
+    );
+
+
+    showToast();
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    setTimeout(
+        function(){
+
+            toast.classList.remove(
+                "show"
+            );
+
+        },
+        2500
     );
 
 }
-);
 
 
-/* =========================================
-   Dashboard
-========================================= */
-
-function updateDashboard(){
-
-    document
-    .getElementById("dashAssistants")
-    .textContent =
-    getData("assistants").length;
-
-
-    document
-    .getElementById("dashNews")
-    .textContent =
-    getData("news").length;
-
-
-    document
-    .getElementById("dashActivities")
-    .textContent =
-    getData("activities").length;
-
-
-    document
-    .getElementById("dashAnnouncements")
-    .textContent =
-    getData("announcements").length;
-
-
-    document
-    .getElementById("dashServices")
-    .textContent =
-    getData("services").length;
-
-}
-
-
-/* =========================================
-   Render ทั้งหมด
-========================================= */
-
-function renderAll(){
-
-    renderTable("assistants");
-
-    renderTable("services");
-
-    renderTable("news");
-
-    renderTable("activities");
-
-    renderTable("announcements");
-
-
-    genericTypes.forEach(
-    function(type){
-
-        renderGeneric(type);
-
-    });
-
-
-    updateDashboard();
-
-    loadStats();
-
-}
-
-
-/* =========================================
-   Logout
-========================================= */
+/* =========================
+   LOGOUT
+========================= */
 
 function logout(){
 
@@ -2373,9 +3048,7 @@ function logout(){
             "ต้องการออกจากระบบหรือไม่?"
         )
     ){
-
         return;
-
     }
 
 
@@ -2390,16 +3063,70 @@ function logout(){
 
 
     window.location.href =
-    "login.html";
+        "login.html";
 
 }
 
 
-/* =========================================
-   เริ่มต้นระบบ
-========================================= */
+/* =========================
+   INIT
+========================= */
 
 renderAll();
+
+loadContact();
+
+loadStatistics();
+
+
+/* =========================
+   PREVIEW IMAGE
+========================= */
+
+document
+.getElementById("itemImage")
+.addEventListener(
+    "change",
+    function(){
+
+        if(
+            !this.files ||
+            !this.files[0]
+        ){
+            return;
+        }
+
+
+        const reader =
+            new FileReader();
+
+
+        reader.onload =
+        function(e){
+
+            const preview =
+                document.getElementById(
+                    "itemPreview"
+                );
+
+
+            preview.src =
+                e.target.result;
+
+
+            preview.style.display =
+                "block";
+
+        };
+
+
+        reader.readAsDataURL(
+            this.files[0]
+        );
+
+    }
+);
+
 
 </script>
 
