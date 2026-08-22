@@ -1,522 +1,1866 @@
-<!DOCTYPE html><html lang="th" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>RONGKHEM e-VILLAGE - หน้าแรก</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
-<script id="tailwind-config">
-        tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "surface-bright": "#f8f9fa",
-                      "secondary-fixed": "#ffdea3",
-                      "outline-variant": "#c4c6cf",
-                      "on-tertiary-container": "#fb3232",
-                      "tertiary-fixed": "#ffdad6",
-                      "tertiary": "#000000",
-                      "primary-fixed": "#d6e3ff",
-                      "surface-tint": "#495f84",
-                      "inverse-surface": "#2e3132",
-                      "on-background": "#191c1d",
-                      "on-primary-fixed-variant": "#31476b",
-                      "background": "#f8f9fa",
-                      "on-tertiary-fixed-variant": "#93000d",
-                      "surface-container": "#edeeef",
-                      "error": "#ba1a1a",
-                      "surface-container-highest": "#e1e3e4",
-                      "on-primary-container": "#6f84ac",
-                      "error-container": "#ffdad6",
-                      "on-primary-fixed": "#001b3d",
-                      "surface-container-lowest": "#ffffff",
-                      "inverse-on-surface": "#f0f1f2",
-                      "surface-container-low": "#f3f4f5",
-                      "surface-dim": "#d9dadb",
-                      "on-secondary-container": "#6b4d00",
-                      "surface": "#f8f9fa",
-                      "on-primary": "#ffffff",
-                      "surface-variant": "#e1e3e4",
-                      "secondary-fixed-dim": "#fdbc13",
-                      "on-secondary": "#ffffff",
-                      "secondary-container": "#fdbc13",
-                      "on-secondary-fixed-variant": "#5d4200",
-                      "on-surface": "#191c1d",
-                      "primary-fixed-dim": "#b1c7f2",
-                      "on-error": "#ffffff",
-                      "on-surface-variant": "#44474e",
-                      "tertiary-container": "#410002",
-                      "surface-container-high": "#e7e8e9",
-                      "on-error-container": "#93000a",
-                      "on-tertiary": "#ffffff",
-                      "outline": "#74777f",
-                      "inverse-primary": "#b1c7f2",
-                      "tertiary-fixed-dim": "#ffb4ab",
-                      "primary-container": "#001b3d",
-                      "secondary": "#7a5900",
-                      "primary": "#000000",
-                      "on-secondary-fixed": "#261900",
-                      "on-tertiary-fixed": "#410002"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "container-max": "1280px",
-                      "gutter": "1.5rem",
-                      "section-padding": "4rem",
-                      "stack-md": "1rem",
-                      "stack-lg": "2rem",
-                      "stack-sm": "0.5rem"
-              },
-              "fontFamily": {
-                      "headline-sm": ["Noto Sans Thai", "sans-serif"],
-                      "headline-md": ["Noto Sans Thai", "sans-serif"],
-                      "body-lg": ["Noto Sans Thai", "sans-serif"],
-                      "display-lg": ["Noto Sans Thai", "sans-serif"],
-                      "display-lg-mobile": ["Noto Sans Thai", "sans-serif"],
-                      "body-md": ["Noto Sans Thai", "sans-serif"],
-                      "caption": ["Noto Sans Thai", "sans-serif"],
-                      "label-md": ["Noto Sans Thai", "sans-serif"]
-              },
-              "fontSize": {
-                      "headline-sm": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
-                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
-                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                      "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
-                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "caption": ["12px", {"lineHeight": "1.2", "fontWeight": "400"}],
-                      "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "500"}]
-              }
-            },
-          },
-        }
-    </script>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RONGKHEM e-VILLAGE | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
 <style>
-        body { font-family: 'Noto Sans Thai', sans-serif; background-color: #f8f9fa; }
-        .hero-overlay { background: linear-gradient(90deg, rgba(0,27,61,0.95) 0%, rgba(0,27,61,0.6) 50%, rgba(0,27,61,0.2) 100%); }
-        .glass-panel { background: rgba(0, 27, 61, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-    </style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Noto Sans Thai",sans-serif;
+    background:#f4f7fb;
+    color:#183247;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    max-width:100%;
+}
+
+/* =========================
+HEADER
+========================= */
+
+header{
+    background:#ffffff;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.brand-logo{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#075aa7,#0b8bd6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:27px;
+    box-shadow:0 6px 15px rgba(0,90,170,.2);
+}
+
+.brand-text h1{
+    font-size:19px;
+    color:#063d6b;
+    line-height:1.2;
+}
+
+.brand-text p{
+    font-size:12px;
+    color:#607080;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+    font-size:14px;
+    font-weight:500;
+}
+
+.nav-links a:hover{
+    color:#0871c9;
+}
+
+.login-link{
+    background:#075ca8;
+    color:#fff !important;
+    padding:9px 17px;
+    border-radius:9px;
+}
+
+.mobile-menu{
+    display:none;
+    border:0;
+    background:none;
+    font-size:28px;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+    background:
+    linear-gradient(135deg,rgba(3,46,83,.94),rgba(8,104,184,.86)),
+    url("https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=80");
+    background-size:cover;
+    background-position:center;
+    color:#fff;
+}
+
+.hero-inner{
+    max-width:1200px;
+    margin:auto;
+    min-height:560px;
+    padding:70px 20px;
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    align-items:center;
+    gap:40px;
+}
+
+.hero-text small{
+    display:inline-block;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.25);
+    padding:7px 15px;
+    border-radius:30px;
+    margin-bottom:15px;
+}
+
+.hero-text h2{
+    font-size:48px;
+    line-height:1.25;
+    margin-bottom:15px;
+}
+
+.hero-text h2 span{
+    color:#9ed8ff;
+}
+
+.hero-text p{
+    font-size:18px;
+    max-width:650px;
+    opacity:.94;
+}
+
+.hero-buttons{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:25px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+}
+
+.btn-primary{
+    background:#fff;
+    color:#075ca8;
+}
+
+.btn-outline{
+    border:1px solid rgba(255,255,255,.7);
+    color:#fff;
+    background:transparent;
+}
+
+/* =========================
+LIVE INFO
+========================= */
+
+.live-panel{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-top:28px;
+}
+
+.live-card{
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.18);
+    padding:15px;
+    border-radius:14px;
+}
+
+.live-card .material-icons-round{
+    font-size:25px;
+    color:#a9dcff;
+}
+
+.live-card small{
+    display:block;
+    margin:5px 0 0;
+    padding:0;
+    background:none;
+    border:0;
+    font-size:12px;
+}
+
+.live-card strong{
+    font-size:16px;
+}
+
+/* =========================
+VILLAGE HEAD CARD
+========================= */
+
+.village-head-card{
+    background:#fff;
+    color:#183247;
+    border-radius:24px;
+    padding:20px;
+    box-shadow:0 25px 60px rgba(0,0,0,.25);
+    text-align:center;
+}
+
+.village-head-photo{
+    width:210px;
+    height:250px;
+    object-fit:cover;
+    border-radius:18px;
+    margin:auto;
+    display:block;
+    background:#e7eef5;
+}
+
+.village-head-card h3{
+    margin-top:16px;
+    font-size:22px;
+    color:#073e6d;
+}
+
+.village-head-card .position{
+    color:#0871c9;
+    font-weight:600;
+}
+
+.village-head-card .address{
+    font-size:13px;
+    color:#617283;
+    margin-top:5px;
+}
+
+.quote{
+    margin:15px 0;
+    padding:12px;
+    background:#eef7ff;
+    border-radius:10px;
+    color:#075ca8;
+    font-size:14px;
+}
+
+.head-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+}
+
+.head-actions a{
+    background:#075ca8;
+    color:#fff;
+    padding:10px;
+    border-radius:9px;
+    font-size:13px;
+}
+
+.head-actions a:last-child{
+    background:#eff6fc;
+    color:#075ca8;
+}
+
+/* =========================
+WELCOME
+========================= */
+
+.welcome{
+    max-width:1200px;
+    margin:55px auto;
+    padding:0 20px;
+}
+
+.welcome-box{
+    background:linear-gradient(135deg,#ffffff,#edf7ff);
+    border-radius:24px;
+    padding:45px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,.05);
+}
+
+.welcome-box small{
+    color:#0871c9;
+    font-weight:700;
+}
+
+.welcome-box h2{
+    font-size:34px;
+    color:#073e6d;
+    margin:5px 0 8px;
+}
+
+.welcome-box > p{
+    color:#607080;
+}
+
+.welcome-features{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.welcome-feature{
+    padding:22px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 5px 20px rgba(0,0,0,.05);
+}
+
+.welcome-feature .material-icons-round{
+    font-size:35px;
+    color:#0871c9;
+}
+
+.welcome-feature h4{
+    margin-top:7px;
+    color:#073e6d;
+}
+
+/* =========================
+SECTION
+========================= */
+
+.section{
+    max-width:1200px;
+    margin:65px auto;
+    padding:0 20px;
+}
+
+.section-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    margin-bottom:25px;
+}
+
+.section-header h2{
+    font-size:27px;
+    color:#073e6d;
+}
+
+.section-header p{
+    color:#71808f;
+    font-size:14px;
+}
+
+.section-header a{
+    color:#0871c9;
+    font-weight:600;
+}
+
+/* =========================
+ASSISTANTS
+========================= */
+
+.assistant-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:25px;
+}
+
+.assistant-card{
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    min-height:250px;
+    box-shadow:0 8px 28px rgba(0,0,0,.07);
+}
+
+.assistant-card img{
+    width:42%;
+    object-fit:cover;
+    background:#e8eef4;
+}
+
+.assistant-info{
+    padding:25px;
+    flex:1;
+}
+
+.assistant-info h3{
+    color:#073e6d;
+    font-size:20px;
+}
+
+.assistant-info .role{
+    color:#0871c9;
+    font-weight:600;
+    font-size:14px;
+    margin:5px 0 10px;
+}
+
+.assistant-info p{
+    font-size:13px;
+    color:#657686;
+}
+
+.assistant-phone{
+    margin-top:17px;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    color:#075ca8;
+    font-weight:600;
+}
+
+/* =========================
+SERVICE MENU
+========================= */
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.service-card{
+    background:#fff;
+    padding:25px 15px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 7px 25px rgba(0,0,0,.05);
+    transition:.25s;
+    min-height:150px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.service-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,70,130,.12);
+}
+
+.service-card .material-icons-round{
+    width:55px;
+    height:55px;
+    border-radius:16px;
+    background:#eaf5ff;
+    color:#0871c9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:29px;
+    margin-bottom:10px;
+}
+
+.service-card h4{
+    font-size:15px;
+    color:#183247;
+}
+
+/* =========================
+CONTENT GRID
+========================= */
+
+.content-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.news-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 7px 25px rgba(0,0,0,.06);
+}
+
+.news-card img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+}
+
+.news-card-content{
+    padding:18px;
+}
+
+.news-card h3{
+    color:#073e6d;
+    font-size:17px;
+}
+
+.news-card p{
+    font-size:13px;
+    color:#71808f;
+    margin-top:6px;
+}
+
+/* =========================
+SUBNAMJAM
+========================= */
+
+.water-section{
+    background:#073e6d;
+    padding:70px 0;
+    color:#fff;
+}
+
+.water-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:0 20px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:45px;
+    align-items:center;
+}
+
+.water-images{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.water-images img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:16px;
+}
+
+.water-images img:first-child{
+    grid-column:span 2;
+    height:280px;
+}
+
+.water-text h2{
+    font-size:32px;
+}
+
+.water-text p{
+    margin-top:15px;
+    opacity:.88;
+}
+
+/* =========================
+IMPORTANT
+========================= */
+
+.important-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.important-card{
+    background:#fff;
+    padding:25px;
+    border-radius:18px;
+    border-left:5px solid #0871c9;
+    box-shadow:0 6px 22px rgba(0,0,0,.05);
+}
+
+.important-card .material-icons-round{
+    color:#0871c9;
+    font-size:30px;
+}
+
+.important-card h3{
+    margin:10px 0 5px;
+    font-size:17px;
+    color:#073e6d;
+}
+
+.important-card p{
+    color:#71808f;
+    font-size:13px;
+}
+
+/* =========================
+STATS
+========================= */
+
+.stats{
+    background:#eaf5ff;
+    padding:60px 20px;
+}
+
+.stats-grid{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.stat-card{
+    background:#fff;
+    text-align:center;
+    padding:30px;
+    border-radius:18px;
+}
+
+.stat-card .material-icons-round{
+    font-size:36px;
+    color:#0871c9;
+}
+
+.stat-card strong{
+    display:block;
+    font-size:27px;
+    color:#073e6d;
+    margin:8px 0;
+}
+
+.stat-card span{
+    color:#71808f;
+    font-size:14px;
+}
+
+/* =========================
+AI
+========================= */
+
+.ai-button{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    border:4px solid #fff;
+    background:linear-gradient(135deg,#064c88,#0b9ceb);
+    box-shadow:0 10px 30px rgba(0,70,150,.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    cursor:pointer;
+    z-index:2000;
+}
+
+.ai-button .material-icons-round{
+    font-size:38px;
+}
+
+.ai-chat{
+    position:fixed;
+    right:25px;
+    bottom:108px;
+    width:350px;
+    max-width:calc(100vw - 30px);
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
+    overflow:hidden;
+    display:none;
+    z-index:2000;
+}
+
+.ai-chat.show{
+    display:block;
+}
+
+.ai-header{
+    background:linear-gradient(135deg,#064c88,#0b8bd6);
+    color:#fff;
+    padding:17px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.ai-header .material-icons-round{
+    font-size:32px;
+}
+
+.ai-body{
+    padding:15px;
+    height:300px;
+    overflow-y:auto;
+    background:#f6f9fc;
+}
+
+.ai-message{
+    background:#e8f4ff;
+    padding:11px;
+    border-radius:12px;
+    margin-bottom:10px;
+    font-size:13px;
+}
+
+.user-message{
+    background:#075ca8;
+    color:#fff;
+    margin-left:30px;
+}
+
+.ai-input{
+    display:flex;
+    gap:8px;
+    padding:10px;
+    border-top:1px solid #eee;
+}
+
+.ai-input input{
+    flex:1;
+    border:1px solid #d7e0e8;
+    border-radius:9px;
+    padding:10px;
+    outline:none;
+    font-family:inherit;
+}
+
+.ai-input button{
+    border:0;
+    background:#075ca8;
+    color:#fff;
+    width:45px;
+    border-radius:9px;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+    background:#042b4d;
+    color:#d9e7f3;
+    padding:40px 20px;
+    text-align:center;
+}
+
+footer h3{
+    color:#fff;
+}
+
+footer p{
+    margin-top:8px;
+    font-size:13px;
+}
+
+.footer-contact{
+    margin-top:15px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:950px){
+
+    .hero-inner,
+    .water-inner{
+        grid-template-columns:1fr;
+    }
+
+    .hero-text{
+        text-align:center;
+    }
+
+    .live-panel{
+        max-width:650px;
+        margin:28px auto;
+    }
+
+    .village-head-card{
+        max-width:500px;
+        margin:auto;
+    }
+
+    .service-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .content-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .assistant-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .hero-text h2{
+        font-size:35px;
+    }
+
+    .welcome-features,
+    .important-grid,
+    .stats-grid{
+        grid-template-columns:1fr;
+    }
+
+    .service-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .content-grid{
+        grid-template-columns:1fr;
+    }
+
+    .live-panel{
+        grid-template-columns:1fr;
+    }
+
+    .assistant-card{
+        flex-direction:column;
+    }
+
+    .assistant-card img{
+        width:100%;
+        height:280px;
+    }
+
+    .section-header{
+        align-items:start;
+        flex-direction:column;
+        gap:8px;
+    }
+
+}
+
+</style>
 </head>
-<body class="text-on-surface antialiased bg-surface-bright min-h-screen flex flex-col">
-<!-- TopAppBar -->
-<header class="bg-primary dark:bg-primary-container shadow-md docked full-width top-0 z-50">
-<div class="flex justify-between items-center w-full px-gutter py-4 max-w-container-max mx-auto">
-<div class="flex items-center gap-4 text-on-primary">
-<!-- Logo Placeholder / Text -->
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 bg-white rounded-full flex items-center justify-center p-1">
-<img alt="Logo" class="w-full h-full object-contain rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbo5mzs_uuXFtNu1b6BjqXBzUOnKmIKDqFf4EAQOe1h5LiQ6Ekzms9vMx4F8n55nl62yVL3XwNyN59F8M_he9HD-pmgEzU-azxwJox-h6LJp7kSPbCaG27Q9oWgzRX_zNDOc4nI_trfavRxOOYIOAhVplLph3MB3gWa1s4ZnaDlqpf6ZnBP0EvVwum1kBAKwjt29vYWAVqNaWeBYVLi6B0HkfhYMgEP5OTZdkcqS0saI2FgwRu8M6JxA">
-</div>
-<div>
-<h1 class="font-headline-md text-headline-md font-bold text-on-primary leading-tight">RONGKHEM e-VILLAGE</h1>
-<p class="font-caption text-caption text-on-primary opacity-80">ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
-</div>
-</div>
-</div>
-<nav class="hidden md:flex items-center gap-6">
-<a class="bg-secondary-fixed text-on-secondary-fixed px-4 py-2 rounded-full font-label-md text-label-md font-bold transition-colors duration-200" href="#">หน้าแรก</a>
-<a class="text-on-primary dark:text-on-primary-container opacity-90 hover:opacity-100 hover:text-secondary-fixed transition-colors duration-200 font-label-md text-label-md" href="#">ข้อมูลหมู่บ้าน</a>
-<a class="text-on-primary dark:text-on-primary-container opacity-90 hover:opacity-100 hover:text-secondary-fixed transition-colors duration-200 font-label-md text-label-md" href="#">บริการประชาชน</a>
-<a class="text-on-primary dark:text-on-primary-container opacity-90 hover:opacity-100 hover:text-secondary-fixed transition-colors duration-200 font-label-md text-label-md" href="#">ข่าวสาร/ประกาศ</a>
-<a class="text-on-primary dark:text-on-primary-container opacity-90 hover:opacity-100 hover:text-secondary-fixed transition-colors duration-200 font-label-md text-label-md" href="#">ติดต่อผู้ใหญ่บ้าน</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="text-on-primary hover:text-secondary-fixed transition-colors duration-200">
-<span class="material-symbols-outlined" data-icon="search">search</span>
-</button>
-<a class="bg-primary-fixed-dim text-on-primary-fixed font-label-md text-label-md px-4 py-2 rounded-full hover:bg-primary-fixed transition-colors flex items-center gap-2" href="#">
-<span class="border-l border-on-primary-fixed h-4 mr-2"></span>
-                    เข้าสู่ระบบ
-                </a>
-</div>
-</div>
+
+<body>
+
+<header>
+    <div class="nav">
+
+        <a href="#" class="brand">
+            <div class="brand-logo">
+                <span class="material-icons-round">account_balance</span>
+            </div>
+
+            <div class="brand-text">
+                <h1>RONGKHEM e-VILLAGE</h1>
+                <p>ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
+            </div>
+        </a>
+
+        <nav class="nav-links">
+            <a href="#home">หน้าแรก</a>
+            <a href="#village">ข้อมูลหมู่บ้าน</a>
+            <a href="#services">บริการประชาชน</a>
+            <a href="#news">ข่าวสาร/ประกาศ</a>
+            <a href="#contact">ติดต่อผู้ใหญ่บ้าน</a>
+            <a href="login.html" class="login-link">
+                เข้าสู่ระบบ
+            </a>
+        </nav>
+
+        <button class="mobile-menu">
+            <span class="material-icons-round">menu</span>
+        </button>
+
+    </div>
 </header>
-<main class="flex-grow">
-<!-- Hero Section -->
-<section class="relative w-full min-h-[600px] flex items-center pt-24 pb-16">
-<!-- Background Image -->
-<div class="absolute inset-0 z-0">
-<div class="w-full h-full bg-cover bg-center bg-no-repeat" data-alt="A dignified medium shot of a Thai village headman in a crisp khaki official uniform, speaking into a microphone during a community meeting." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUjiVIXMYbiiWbJDMgny5ZhyeYiWfGgfprA3X2RiAxtTdXbKj048O2kYtv0cRgahlplL3y8titWch2fQhcj8hLr12wAbQ1y0QWRpD-iSuhQVYDDG9VQ7_XZ6yAG4c7w2zvIw85rif9JSSVjtCI-LxLZ6C9fuvZK0uAtovirmUQFbEwuvZuY96Abhpwud5nOdTV3T00jo3m60uNdp1a042Gu3Eem41h1yBUrIjSjmC2oq3BKLCx_EwmiDqqqyAFSD8tZ6Q'); background-size: cover; background-position: center top; background-repeat: no-repeat;"></div>
-<div class="absolute inset-0 hero-overlay"></div>
-</div>
-<div class="relative z-10 max-w-container-max mx-auto px-gutter w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-<!-- Left Content -->
-<div class="col-span-1 md:col-span-7 lg:col-span-8 flex flex-col justify-center text-on-primary h-full">
-<p class="font-headline-md text-headline-md mb-2 opacity-100 font-medium">ยินดีต้อนรับสู่</p>
-<h2 class="text-5xl md:text-6xl font-bold mb-4 leading-tight tracking-tight">
-                        RONGKHEM <br> <span class="text-secondary-fixed">e-VILLAGE</span>
-</h2>
-<p class="font-headline-sm text-headline-sm mb-6 max-w-xl opacity-90 font-medium">
-                        การเข้าถึงชุมชนรูปแบบใหม่ <strong class="text-secondary-fixed">อัปเดตทันที!</strong>
-</p>
-<div class="bg-[#0f2c59] bg-opacity-90 rounded-2xl p-6 inline-block max-w-md mb-8 shadow-lg">
-<p class="font-headline-md text-headline-md font-bold text-center text-white">บริการครบ จบในที่เดียว<br>ที่ทำการผู้ใหญ่บ้านออนไลน์</p>
-</div>
-<div class="flex flex-wrap gap-8 items-center">
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full border-2 border-outline-variant flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="group" data-weight="fill" style="font-variation-settings: 'FILL' 1;">group</span>
-</div>
-<span class="font-body-md text-body-md opacity-90 font-medium">ข้อมูลถูกต้อง<br>เชื่อถือได้</span>
-</div>
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full border-2 border-outline-variant flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="schedule" data-weight="fill" style="font-variation-settings: 'FILL' 1;">schedule</span>
-</div>
-<span class="font-body-md text-body-md opacity-90 font-medium">อัปเดตทันที<br>รวดเร็ว</span>
-</div>
-<div class="flex items-center gap-3">
-<div class="w-12 h-12 rounded-full border-2 border-outline-variant flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="shield_locked" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shield_locked</span>
-</div>
-<span class="font-body-md text-body-md opacity-90 font-medium">ปลอดภัย<br>มั่นใจได้</span>
-</div>
-</div>
-</div>
-<!-- Right Content (Leader Card) -->
-<div class="col-span-1 md:col-span-5 lg:col-span-4">
-<div class="glass-panel rounded-2xl p-8 shadow-2xl flex flex-col items-center text-center bg-[#0a192f] bg-opacity-80">
-<span class="material-symbols-outlined text-white text-2xl mb-2" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
-<h3 class="text-2xl font-bold text-secondary-fixed mb-2 tracking-wide">นายศักรนนทน์ ขัติย์วงค์</h3>
-<p class="font-body-lg text-body-lg text-on-primary opacity-100 mb-1 font-medium">ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6</p>
-<p class="font-body-sm text-body-sm text-on-primary opacity-80 mb-6">ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา</p>
-<p class="text-xl italic font-semibold text-on-primary mb-8 leading-snug">"พร้อมดูแลชุมชน<br>ด้วยระบบดิจิทัล"</p>
-<div class="w-full flex flex-col gap-4">
-<button class="w-full bg-[#1e7b41] hover:bg-green-700 text-white font-headline-sm text-headline-sm py-4 px-4 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-md font-medium">
-<span class="material-symbols-outlined" data-icon="call" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
-                                ติดต่อผู้ใหญ่บ้าน
-                            </button>
-<button class="w-full bg-[#195bb2] hover:bg-blue-700 text-white font-headline-sm text-headline-sm py-4 px-4 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-md font-medium">
-<span class="material-symbols-outlined" data-icon="chat" data-weight="fill" style="font-variation-settings: 'FILL' 1;">chat</span>
-                                แจ้งเรื่อง / ร้องเรียน
-                            </button>
-<button class="w-full bg-[#e87722] hover:bg-orange-600 text-white font-headline-sm text-headline-sm py-4 px-4 rounded-xl flex items-center justify-center gap-3 transition-colors shadow-md font-medium">
-<span class="material-symbols-outlined" data-icon="description" data-weight="fill" style="font-variation-settings: 'FILL' 1;">description</span>
-                                บริการประชาชน
-                            </button>
-</div>
-</div>
-</div>
-</div>
-</section><section class="bg-surface-container-low py-12 relative z-10">
-<div class="max-w-container-max mx-auto px-gutter">
-<div class="flex items-center gap-3 mb-8">
-<div class="w-1 h-8 bg-primary rounded-full"></div>
-<h2 class="font-headline-md text-headline-md text-on-surface font-bold">ทีมผู้ช่วยผู้ใหญ่บ้าน</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Assistant 1 -->
-<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant flex flex-col sm:flex-row gap-6 items-center sm:items-start hover:shadow-md transition-shadow">
-<div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0 border-2 border-outline-variant">
-<img alt="นายสมชาย รักดี" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9QviM__6NCuOfaFG12egI8gW1WpyAaiV1pd6C916krdXQ3IyHwLKIx-2He_JX5WUZUf9dOxN1sJp7hbB-ogfR5VEJvhRSjb68vOIdJ2NyOeWVZh-VJuv1ymHjtqyN9jlsAda_9iJKxHpBUqj5jnRMJ2IfIn7yOwKsuZgoJ7AOomHvfOF77kYKpAHlPI26s9vZdNPZDOaly49NT9TbY5LqF0YOndwKyHagEZTyDIY2p3D1HbeIg2oF74mf7bRhSBuAYpV2Cc__HhHW94">
-</div>
-<div class="flex-grow text-center sm:text-left">
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">น.ส.สุภาพร วังมูล</h3>
-<p class="font-body-md text-body-md text-primary font-medium mb-2">ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">รับผิดชอบงานด้านทะเบียนและปกครองส่วนท้องถิ่น</p>
-<button class="bg-primary-fixed-dim text-on-primary-fixed px-6 py-2 rounded-full font-label-md text-label-md hover:bg-primary-fixed transition-colors flex items-center gap-2 mx-auto sm:mx-0">
-<span class="material-symbols-outlined text-sm">call</span>
-                        ติดต่อ&nbsp; 098-9800089</button>
-</div>
-</div>
-<!-- Assistant 2 -->
-<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant flex flex-col sm:flex-row gap-6 items-center sm:items-start hover:shadow-md transition-shadow">
-<div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0 border-2 border-outline-variant">
-<img alt="นางสาวสมศรี มีสุข" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV1kIKbs5Bzlv9zBhvZGaxvuSzlNU5ZyhSxSY1pCJJ39NKtWOCSbVzx9Dqdg2t4kY5ihhFdI4odiZW_MlfltXhSSrtjjCLifdcFfVLsUNzL5ERFVrS3o1XEJ78azROlBAXEMuQ4ed_OkfBDSgVIwDAYbFSQjmYxlsUWpVxNPVwDKosdvo9aC6sA5vEO3pMc9Twjf3sQ3g4bxGq_xnI1KvyukVN-fGUlAHIVvZKAW5aIckI63PIA9v_ZfnAyZK_DXOq2aKgtrKdsWymKJQ">
-</div>
-<div class="flex-grow text-center sm:text-left">
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">นายจักร์กวัส ประพลรัตนัง</h3>
-<p class="font-body-md text-body-md text-primary font-medium mb-2">ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ</p>
-<p class="font-body-sm text-body-sm text-on-surface-variant mb-4">ดูแลความเรียบร้อยและความปลอดภัยภายในหมู่บ้าน</p>
-<button class="bg-primary-fixed-dim text-on-primary-fixed px-6 py-2 rounded-full font-label-md text-label-md hover:bg-primary-fixed transition-colors flex items-center gap-2 mx-auto sm:mx-0">
-<span class="material-symbols-outlined text-sm">call</span>
-                        ติดต่อ 085-1399849</button>
-</div>
-</div>
-</div>
-</div>
+
+
+<section class="hero" id="home">
+
+    <div class="hero-inner">
+
+        <div class="hero-text">
+
+            <small>
+                ที่ทำการผู้ใหญ่บ้านออนไลน์
+            </small>
+
+            <h2>
+                ยินดีต้อนรับสู่<br>
+                <span>RONGKHEM e-VILLAGE</span>
+            </h2>
+
+            <p>
+                การเข้าถึงชุมชนรูปแบบใหม่ อัปเดตข้อมูลข่าวสาร
+                และบริการประชาชนได้อย่างสะดวก รวดเร็ว
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#services" class="btn btn-primary">
+                    <span class="material-icons-round">apps</span>
+                    บริการประชาชน
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
+                    <span class="material-icons-round">call</span>
+                    ติดต่อผู้ใหญ่บ้าน
+                </a>
+
+            </div>
+
+            <div class="live-panel">
+
+                <div class="live-card">
+
+                    <span class="material-icons-round">
+                        schedule
+                    </span>
+
+                    <small>เวลาปัจจุบัน</small>
+
+                    <strong id="clock">
+                        --:--:--
+                    </strong>
+
+                </div>
+
+                <div class="live-card">
+
+                    <span class="material-icons-round">
+                        wb_sunny
+                    </span>
+
+                    <small>สภาพอากาศ</small>
+
+                    <strong id="weather">
+                        27°C
+                    </strong>
+
+                </div>
+
+                <div class="live-card">
+
+                    <span class="material-icons-round">
+                        air
+                    </span>
+
+                    <small>PM2.5</small>
+
+                    <strong id="pm25">
+                        กำลังตรวจสอบ
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- รูปผู้ใหญ่บ้าน อยู่ตรงนี้ -->
+
+        <div class="village-head-card">
+
+            <img
+                class="village-head-photo"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbo5mzs_uuXFtNu1b6BjqXBzUOnKmIKDqFf4EAQOe1h5LiQ6Ekzms9vMx4F8n55nl62yVL3XwNyN59F8M_he9HD-pmgEzU-azxwJox-h6LJp7kSPbCaG27Q9oWgzRX_zNDOc4nI_trfavRxOOYIOAhVplLph3MB3gWa1s4ZnaDlqpf6ZnBP0EvVwum1kBAKwjt29vYWAVqNaWeBYVLi6B0HkfhYMgEP5OTZdkcqS0saI2FgwRu8M6JxA"
+                alt="ผู้ใหญ่บ้าน">
+
+            <h3>
+                นายศักรนนทน์ ขัติย์วงศ์
+            </h3>
+
+            <div class="position">
+                ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6
+            </div>
+
+            <div class="address">
+                ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
+            </div>
+
+            <div class="quote">
+                “พร้อมดูแลชุมชน ด้วยระบบดิจิทัล”
+            </div>
+
+            <div class="head-actions">
+
+                <a href="tel:0801202529">
+                    ติดต่อผู้ใหญ่บ้าน
+                </a>
+
+                <a href="#services">
+                    บริการประชาชน
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </section>
-<!-- Service Grid Section -->
-<section class="max-w-container-max mx-auto px-gutter py-section-padding -mt-10 relative z-20">
-<div class="bg-surface-container-lowest rounded-2xl p-8 shadow-lg border border-surface-variant relative group">
-<!-- Admin Edit Icon -->
-<div class="absolute -top-3 -right-3 bg-white border border-outline-variant rounded-full p-2 text-on-surface-variant hover:text-primary hover:border-primary opacity-0 group-hover:opacity-100 transition-opacity shadow-sm z-30 flex gap-1" title="Edit Grid">
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">edit</span></button>
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">add</span></button>
-</div>
-<div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-6 relative">
-<!-- Iterating Service Tiles for 16 items -->
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#195bb2] mb-4" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ข้อมูลหมู่บ้าน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#e87722] mb-4" data-icon="family_home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">family_home</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ข้อมูลครัวเรือน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#6f42c1] mb-4" data-icon="groups" data-weight="fill" style="font-variation-settings: 'FILL' 1;">groups</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">คณะกรรมการหมู่บ้าน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#dc3545] mb-4" data-icon="campaign" data-weight="fill" style="font-variation-settings: 'FILL' 1;">campaign</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ข่าวสาร/ประกาศ</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#198754] mb-4" data-icon="description" data-weight="fill" style="font-variation-settings: 'FILL' 1;">description</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ยื่นคำร้องออนไลน์</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#dc3545] mb-4" data-icon="favorite" data-weight="fill" style="font-variation-settings: 'FILL' 1;">favorite</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">อสม.<br>สุขภาพชุมชน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#6f42c1] mb-4" data-icon="elderly" data-weight="fill" style="font-variation-settings: 'FILL' 1;">elderly</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ผู้สูงอายุ</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#d63384] mb-4" data-icon="diversity_3" data-weight="fill" style="font-variation-settings: 'FILL' 1;">diversity_3</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">กลุ่มเปราะบาง</span>
-</a>
-<!-- Row 2 -->
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#82c91e] mb-4" data-icon="eco" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">สิ่งแวดล้อม / PM2.5</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#228be6] mb-4" data-icon="water_drop" data-weight="fill" style="font-variation-settings: 'FILL' 1;">water_drop</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">แหล่งซับน้ำจำนำ</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#fab005] mb-4" data-icon="agriculture" data-weight="fill" style="font-variation-settings: 'FILL' 1;">agriculture</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">การเกษตร</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#195bb2] mb-4" data-icon="security" data-weight="fill" style="font-variation-settings: 'FILL' 1;">security</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ชรบ. / ความปลอดภัย</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#2b8a3e] mb-4" data-icon="storefront" data-weight="fill" style="font-variation-settings: 'FILL' 1;">storefront</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ร้านค้าในชุมชน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#339af0] mb-4" data-icon="location_on" data-weight="fill" style="font-variation-settings: 'FILL' 1;">location_on</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">แผนที่หมู่บ้าน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#087f5b] mb-4" data-icon="call" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">ติดต่อผู้ใหญ่บ้าน</span>
-</a>
-<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#">
-<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
-<span class="material-symbols-outlined text-5xl text-[#e03131] mb-4" data-icon="emergency" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emergency</span>
-<span class="font-body-md text-body-md text-center text-on-surface font-medium">แจ้งเหตุฉุกเฉิน</span>
-</a>
-</div>
-<!-- Right Arrow Indicator -->
-<div class="absolute -right-4 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 flex items-center justify-center text-outline-variant">
-<span class="material-symbols-outlined">chevron_right</span>
-</div>
-</div>
-</section>
-<!-- Bottom Content Grid (Bento Style) -->
-<section class="max-w-container-max mx-auto px-gutter pb-section-padding grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- News (ข่าวประชาสัมพันธ์) -->
-<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-md border border-surface-variant flex flex-col relative group">
-<div class="absolute top-4 right-20 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity z-10 flex gap-1" title="Manage Section">
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">edit</span></button>
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">add</span></button>
-</div>
-<div class="flex justify-between items-center mb-6">
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">ข่าวประชาสัมพันธ์</h3>
-<a class="font-label-md text-label-md text-[#195bb2] hover:underline" href="#">ดูทั้งหมด</a>
-</div>
-<div class="flex flex-col gap-5 flex-grow">
-<!-- Item 1 -->
-<div class="flex gap-4 items-start relative group/item">
-<button class="absolute -top-1 -right-1 text-on-surface-variant hover:text-error opacity-0 group-hover/item:opacity-100 transition-opacity" title="Delete"><span class="material-symbols-outlined text-xs">delete</span></button>
-<div class="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="Meeting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3SeEVodudnVAht8OiHc7soo2_OR4OkzWOtW9-ThrED16PLqi1fd2OdsXqamIVx4dNE5X8fgWoQd1EUjqq5puM52meLMdhw9U5N4Yi361ERuSN7JeLXxLOBh3d8EP5ogCOnkY8WqacATZWwYSRBmAWjXW6_v37uRXqqljKOZ-tBlbfHwdaxWR1LJwBiMkogpU0ge6MECbmMiBpRkVi-yRabQ-bXu-LQ_xNWnwWUMOTbiX1lR2asNWMww">
-</div>
-<div>
-<h4 class="font-body-md text-body-md text-on-surface line-clamp-2 font-medium">ประชุมประจำเดือนหมู่บ้าน</h4>
-<p class="font-caption text-caption text-on-surface-variant mt-1">วันอาทิตย์ที่ 1 มิถุนายน 2567 เวลา 07.00 น.</p>
-</div>
-</div>
-<!-- Item 2 -->
-<div class="flex gap-4 items-start relative group/item">
-<button class="absolute -top-1 -right-1 text-on-surface-variant hover:text-error opacity-0 group-hover/item:opacity-100 transition-opacity" title="Delete"><span class="material-symbols-outlined text-xs">delete</span></button>
-<div class="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="Anti-burning" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB554f6Di5b5gJk4Mwlr4WISwt42dcBKB4ilKQDyn4wKSk-BL0JJG3Apfwx4voXbt6mME0_eXWQnXm3sPTlfXBkXo3BIzbD_QGaBI6qa4IZjnnavzW0WS8RmJtmoC7FHz6259-jQ2mRWM7KZNkQwqEEeIY0uM2ZPfAQwrkWHgqRf-2XDNXLfQdlovoc8GN-QYQOV2d-aJSSMxjTurp-Vp4zxpRyfN6GH8TnKGodkiHKg6Yu4PfcDbVTg">
-</div>
-<div>
-<h4 class="font-body-md text-body-md text-on-surface line-clamp-2 font-medium">โครงการรณรงค์งดการเผา</h4>
-<p class="font-caption text-caption text-on-surface-variant mt-1">1 ก.พ. - 31 มี.ค. 2567 งดเผาทุกชนิด</p>
-</div>
-</div>
-<!-- Item 3 -->
-<div class="flex gap-4 items-start relative group/item">
-<button class="absolute -top-1 -right-1 text-on-surface-variant hover:text-error opacity-0 group-hover/item:opacity-100 transition-opacity" title="Delete"><span class="material-symbols-outlined text-xs">delete</span></button>
-<div class="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">
-<img class="w-full h-full object-cover" data-alt="Water source" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApmH9yG5gesZEItt8efy3wHyoc0H8d70ySdJwDBtw_1jNZ5-4myigMuS4bPt3vn_f4bDi6zk0u0wC6ux88jPiJtAWvOHYe7L9AWfcF1F6p4eVhiSs7dBScJXVkqjTp-giewbwPBPbkkdvz-pP-1X1xXTyfUmzHYiuI-nJ-CeAN5ybRmXJ784uq96zBncsmZ79Q2xkI_Bd81FhExD5kGZqsNBtP83zxEbopRIP5azb386BwB03v7earmg">
-</div>
-<div>
-<h4 class="font-body-md text-body-md text-on-surface line-clamp-2 font-medium">โครงการแหล่งซับน้ำจำนำ</h4>
-<p class="font-caption text-caption text-on-surface-variant mt-1">ร่วมอนุรักษ์ ฟื้นฟู แหล่งน้ำชุมชน</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Featured Activity (กิจกรรมเด่น) -->
-<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-md border border-surface-variant flex flex-col relative group">
-<div class="absolute top-4 right-20 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity z-10 flex gap-1" title="Manage Section">
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">edit</span></button>
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">add</span></button>
-</div>
-<div class="flex justify-between items-center mb-6">
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">กิจกรรมเด่น</h3>
-<a class="font-label-md text-label-md text-[#195bb2] hover:underline" href="#">ดูทั้งหมด</a>
-</div>
-<div class="relative w-full aspect-[4/3] rounded-xl overflow-hidden flex-grow group/card shadow-sm">
-<button class="absolute top-2 right-2 bg-white/90 p-2 rounded-full text-on-surface-variant hover:text-primary opacity-0 group-hover/card:opacity-100 transition-opacity z-10" title="Change Image"><span class="material-symbols-outlined text-sm">image</span></button>
-<div class="absolute inset-0 bg-cover bg-center" data-alt="Volunteers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAAwVAmAcPWLbzNxueqUt4UP-QnoT0XA87S5aL6hb-dV86k1Qi2TnX0N5L5JBc60pF-yok-oOUUCkE8Y2cbNgmHdnz1gRG9pXEiOU0RJQk0d3mpWc5dyQSFOeCwCa8W2SVeLzmiDFffVsr86wzup50kfkoAvm-yKUWVDZGMO3GfT2dl_JFc0MpUvRBgzcsH8efRMXdi2ZzWZbsbUYJ5__PmsN1gOWOWA-7RIaHRcdyA3oDcsNnTgcFdIw')"></div>
-<div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-4 pt-12 text-center">
-<h4 class="font-body-lg text-body-lg text-white font-bold">จิตอาสาพัฒนาหมู่บ้าน</h4>
-<p class="font-body-sm text-body-sm text-white/90 mt-1">ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน</p>
-</div>
-</div>
-<div class="flex justify-center gap-2 mt-4">
-<div class="w-2 h-2 rounded-full bg-[#195bb2]"></div>
-<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
-<div class="w-2 h-2 rounded-full bg-surface-variant"></div>
-</div>
-</div>
-<!-- Announcements (ประกาศสำคัญ) -->
-<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-md border border-surface-variant flex flex-col relative group">
-<div class="absolute top-4 right-20 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity z-10 flex gap-1" title="Manage Section">
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">edit</span></button>
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">add</span></button>
-</div>
-<div class="flex justify-between items-center mb-6">
-<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">ประกาศสำคัญ</h3>
-<a class="font-label-md text-label-md text-[#195bb2] hover:underline" href="#">ดูทั้งหมด</a>
-</div>
-<div class="flex flex-col gap-6 flex-grow">
-<!-- Announce 1 -->
-<div class="flex gap-4 items-start relative group/item">
-<button class="absolute -top-1 -right-1 text-on-surface-variant hover:text-error opacity-0 group-hover/item:opacity-100 transition-opacity" title="Delete"><span class="material-symbols-outlined text-xs">delete</span></button>
-<span class="material-symbols-outlined text-[#dc3545] flex-shrink-0 mt-1 text-2xl" data-icon="campaign" data-weight="fill" style="font-variation-settings: 'FILL' 1;">campaign</span>
-<div>
-<h4 class="font-body-md text-body-md text-on-surface font-medium">ประกาศห้ามเผาในที่โล่งทุกชนิด</h4>
-<p class="font-caption text-caption text-on-surface-variant mt-1">1 ก.พ. - 31 มี.ค. 2567</p>
-</div>
-</div>
-<!-- Announce 2 -->
-<div class="flex gap-4 items-start relative group/item">
-<button class="absolute -top-1 -right-1 text-on-surface-variant hover:text-error opacity-0 group-hover/item:opacity-100 transition-opacity" title="Delete"><span class="material-symbols-outlined text-xs">delete</span></button>
-<span class="material-symbols-outlined text-[#dc3545] flex-shrink-0 mt-1 text-2xl" data-icon="campaign" data-weight="fill" style="font-variation-settings: 'FILL' 1;">campaign</span>
-<div>
-<h4 class="font-body-md text-body-md text-on-surface font-medium">ประชาสัมพันธ์การฉีดวัคซีนป้องกันโรคพิษสุนัขบ้า</h4>
-<p class="font-caption text-caption text-on-surface-variant mt-1">วันที่ 15 มิถุนายน 2567 ณ อาคารเอนกประสงค์</p>
-</div>
-</div>
-<!-- Announce 3 -->
-<div class="flex gap-4 items-start relative group/item">
-<button class="absolute -top-1 -right-1 text-on-surface-variant hover:text-error opacity-0 group-hover/item:opacity-100 transition-opacity" title="Delete"><span class="material-symbols-outlined text-xs">delete</span></button>
-<span class="material-symbols-outlined text-[#dc3545] flex-shrink-0 mt-1 text-2xl" data-icon="campaign" data-weight="fill" style="font-variation-settings: 'FILL' 1;">campaign</span>
-<div>
-<h4 class="font-body-md text-body-md text-on-surface font-medium">การชำระภาษีที่ดินและสิ่งปลูกสร้าง</h4>
-<p class="font-caption text-caption text-on-surface-variant mt-1">ภายในวันที่ 30 มิถุนายน 2567</p>
-</div>
-</div>
-</div>
-</div>
-<!-- Statistics (สถิติหมู่บ้าน) -->
-<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-md border border-surface-variant flex flex-col relative group">
-<div class="absolute top-4 right-4 text-on-surface-variant hover:text-primary opacity-0 group-hover:opacity-100 transition-opacity z-10 flex gap-1" title="Edit Stats">
-<button class="p-1 hover:bg-surface-variant rounded"><span class="material-symbols-outlined text-sm">edit</span></button>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-on-surface mb-6 font-bold">สถิติหมู่บ้าน</h3>
-<div class="flex flex-col gap-4 flex-grow">
-<div class="flex justify-between items-center bg-surface-bright p-3 rounded-xl border border-surface-variant">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-[#339af0] bg-opacity-20 text-[#195bb2] flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="home" data-weight="fill" style="font-variation-settings: 'FILL' 1;">home</span>
-</div>
-<span class="font-body-md text-body-md text-on-surface font-medium">ครัวเรือนทั้งหมด</span>
-</div>
-<span class="font-headline-sm text-headline-sm font-bold text-primary">350 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">ครัวเรือน</span></span>
-</div>
-<div class="flex justify-between items-center bg-surface-bright p-3 rounded-xl border border-surface-variant">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-[#fab005] bg-opacity-20 text-[#e87722] flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="groups" data-weight="fill" style="font-variation-settings: 'FILL' 1;">groups</span>
-</div>
-<span class="font-body-md text-body-md text-on-surface font-medium">ประชากรทั้งหมด</span>
-</div>
-<span class="font-headline-sm text-headline-sm font-bold text-primary">1,247 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">คน</span></span>
-</div>
-<div class="flex justify-between items-center bg-surface-bright p-3 rounded-xl border border-surface-variant">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-lg bg-[#82c91e] bg-opacity-20 text-[#198754] flex items-center justify-center">
-<span class="material-symbols-outlined" data-icon="map" data-weight="fill" style="font-variation-settings: 'FILL' 1;">map</span>
-</div>
-<span class="font-body-md text-body-md text-on-surface font-medium">พื้นที่หมู่บ้าน</span>
-</div>
-<span class="font-headline-sm text-headline-sm font-bold text-primary">2.15 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">ตร.กม.</span></span>
-</div>
-<div class="mt-auto pt-4 border-t border-surface-variant flex items-center gap-2 text-on-surface-variant">
-<span class="material-symbols-outlined text-sm" data-icon="update">update</span>
-<span class="font-caption text-caption">อัปเดตล่าสุด 20 พ.ค. 2567 10:30 น.</span>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-[#001b3d] full-width bottom-0 border-t border-outline-variant/20 mt-8">
-<div class="flex flex-col md:flex-row justify-between items-center w-full px-gutter py-6 max-w-container-max mx-auto text-white">
-<div class="mb-4 md:mb-0 text-center md:text-left">
-<p class="font-body-md text-body-md opacity-90">
-                    © RONGKHEM e-VILLAGE - ที่ทำการผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6 ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา
+
+
+<section class="welcome">
+
+    <div class="welcome-box">
+
+        <small>
+            ยินดีต้อนรับสู่
+        </small>
+
+        <h2>
+            RONGKHEM e-VILLAGE
+        </h2>
+
+        <p>
+            การเข้าถึงชุมชนรูปแบบใหม่ อัปเดตทันที!
+        </p>
+
+        <div class="welcome-features">
+
+            <div class="welcome-feature">
+
+                <span class="material-icons-round">
+                    group
+                </span>
+
+                <h4>ข้อมูลถูกต้อง</h4>
+
+                <p>
+                    เชื่อถือได้
                 </p>
-</div>
-<div class="flex items-center gap-6">
-<a class="flex items-center gap-2 font-body-md text-body-md text-white opacity-90 hover:opacity-100 transition-opacity" href="#">
-<span class="material-symbols-outlined text-lg" data-icon="call">call</span>
-                    โทร. 080-1202529</a>
-<a class="font-body-md text-body-md text-white opacity-90 hover:opacity-100 transition-opacity flex items-center gap-2" href="#">
-<div class="w-6 h-6 bg-[#1877F2] rounded-full flex items-center justify-center text-white text-sm font-bold">f</div>
-                    Facebook
+
+            </div>
+
+            <div class="welcome-feature">
+
+                <span class="material-icons-round">
+                    schedule
+                </span>
+
+                <h4>อัปเดตทันที</h4>
+
+                <p>
+                    รวดเร็ว
+                </p>
+
+            </div>
+
+            <div class="welcome-feature">
+
+                <span class="material-icons-round">
+                    shield
+                </span>
+
+                <h4>ปลอดภัย</h4>
+
+                <p>
+                    มั่นใจได้
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                ทีมผู้ช่วยผู้ใหญ่บ้าน
+            </h2>
+
+            <p>
+                ร่วมดูแลและให้บริการประชาชนในชุมชน
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="assistant-grid">
+
+        <div class="assistant-card">
+
+            <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9QviM__6NCuOfaFG12egI8gW1WpyAaiV1pd6C916krdXQ3IyHwLKIx-2He_JX5WUZUf9dOxN1sJp7hbB-ogfR5VEJvhRSjb68vOIdJ2NyOeWVZh-VJuv1ymHjtqyN9jlsAda_9iJKxHpBUqj5jnRMJ2IfIn7yOwKsuZgoJ7AOomHvfOF77kYKpAHlPI26s9vZdNPZDOaly49NT9TbY5LqF0YOndwKyHagEZTyDIY2p3D1HbeIg2oF74mf7bRhSBuAYpV2Cc__HhHW94">
+
+            <div class="assistant-info">
+
+                <h3>
+                    น.ส.สุภาพร วังมูล
+                </h3>
+
+                <div class="role">
+                    ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง
+                </div>
+
+                <p>
+                    รับผิดชอบงานด้านทะเบียน
+                    และปกครองส่วนท้องถิ่น
+                </p>
+
+                <a
+                class="assistant-phone"
+                href="tel:0989800089">
+
+                    <span class="material-icons-round">
+                        call
+                    </span>
+
+                    098-9800089
+
                 </a>
-<a class="font-body-md text-body-md text-white opacity-90 hover:opacity-100 transition-opacity flex items-center gap-2" href="#">
-<div class="w-6 h-6 bg-[#00B900] rounded-full flex items-center justify-center text-white text-xs font-bold">L</div>
-                    Line
+
+            </div>
+
+        </div>
+
+
+        <div class="assistant-card">
+
+            <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV1kIKbs5Bzlv9zBhvZGaxvuSzlNU5ZyhSxSY1pCJJ39NKtWOCSbVzx9Dqdg2t4kY5ihhFdI4odiZW_MlfltXhSSrtjjCLifdcFfVLsUNzL5ERFVrS3o1XEJ78azROlBAXEMuQ4ed_OkfBDSgVIwDAYbFSQjmYxlsUWpVxNPVwDKosdvo9aC6sA5vEO3pMc9Twjf3sQ3g4bxGq_xnI1KvyukVN-fGUlAHIVvZKAW5aIckI63PIA9v_ZfnAyZK_DXOq2aKgtrKdsWymKJQ">
+
+            <div class="assistant-info">
+
+                <h3>
+                    นายจักร์กวัส ประพลรัตนัง
+                </h3>
+
+                <div class="role">
+                    ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ
+                </div>
+
+                <p>
+                    ดูแลความเรียบร้อย
+                    และความปลอดภัยภายในหมู่บ้าน
+                </p>
+
+                <a
+                class="assistant-phone"
+                href="tel:0851399849">
+
+                    <span class="material-icons-round">
+                        call
+                    </span>
+
+                    085-1399849
+
                 </a>
-</div>
-</div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="services">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                เมนูบริการประชาชน
+            </h2>
+
+            <p>
+                เลือกดูข้อมูลและบริการต่าง ๆ ของหมู่บ้าน
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="service-grid">
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">home</span>
+            <h4>ข้อมูลหมู่บ้าน</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">family_restroom</span>
+            <h4>ข้อมูลครัวเรือน</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">groups</span>
+            <h4>คณะกรรมการหมู่บ้าน</h4>
+        </a>
+
+        <a href="#news" class="service-card">
+            <span class="material-icons-round">campaign</span>
+            <h4>ข่าวสาร / ประกาศ</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">description</span>
+            <h4>ยื่นคำร้องออนไลน์</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">favorite</span>
+            <h4>อสม. / สุขภาพชุมชน</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">elderly</span>
+            <h4>ผู้สูงอายุ</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">diversity_3</span>
+            <h4>กลุ่มเปราะบาง</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">eco</span>
+            <h4>สิ่งแวดล้อม / PM2.5</h4>
+        </a>
+
+        <a href="#subnamjam" class="service-card">
+            <span class="material-icons-round">water_drop</span>
+            <h4>แหล่งซับน้ำจำ</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">agriculture</span>
+            <h4>การเกษตร</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">security</span>
+            <h4>ชรบ. / ความปลอดภัย</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">storefront</span>
+            <h4>ร้านค้าในชุมชน</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">location_on</span>
+            <h4>แผนที่หมู่บ้าน</h4>
+        </a>
+
+        <a href="#" class="service-card">
+            <span class="material-icons-round">temple_buddhist</span>
+            <h4>วัดร่องเข็ม</h4>
+        </a>
+
+        <a href="#contact" class="service-card">
+            <span class="material-icons-round">call</span>
+            <h4>ติดต่อผู้ใหญ่บ้าน</h4>
+        </a>
+
+        <a href="tel:191" class="service-card">
+            <span class="material-icons-round">emergency</span>
+            <h4>แจ้งเหตุฉุกเฉิน</h4>
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="news">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                ข่าวประชาสัมพันธ์
+            </h2>
+
+            <p>
+                ข่าวสารล่าสุดจากหมู่บ้าน
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="content-grid">
+
+        <div class="news-card">
+
+            <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3SeEVodudnVAht8OiHc7soo2_OR4OkzWOtW9-ThrED16PLqi1fd2OdsXqamIVx4dNE5X8fgWoQd1EUjqq5puM52meLMdhw9U5N4Yi361ERuSN7JeLXxLOBh3d8EP5ogCOnkY8WqacATZWwYSRBmAWjXW6_v37uRXqqljKOZ-tBlbfHwdaxWR1LJwBiMkogpU0ge6MECbmMiBpRkVi-yRabQ-bXu-LQ_xNWnwWUMOTbiX1lR2asNWMww">
+
+            <div class="news-card-content">
+
+                <h3>
+                    ประชุมประจำเดือนหมู่บ้าน
+                </h3>
+
+                <p>
+                    วันอาทิตย์ที่ 1 มิถุนายน 2567
+                    เวลา 07.00 น.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="news-card">
+
+            <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB554f6Di5b5gJk4Mwlr4WISwt42dcBKB4ilKQDyn4wKSk-BL0JJG3Apfwx4voXbt6mME0_eXWQnXm3sPTlfXBkXo3BIzbD_QGaBI6qa4IZjnnavzW0WS8RmJtmoC7FHz6259-jQ2mRWM7KZNkQwqEEeIY0uM2ZPfAQwrkWHgqRf-2XDNXLfQdlovoc8GN-QYQOV2d-aJSSMxjTurp-Vp4zxpRyfN6GH8TnKGodkiHKg6Yu4PfcDbVTg">
+
+            <div class="news-card-content">
+
+                <h3>
+                    โครงการรณรงค์งดการเผา
+                </h3>
+
+                <p>
+                    1 ก.พ. - 31 มี.ค.
+                    งดเผาทุกชนิด
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="news-card">
+
+            <img
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuApmH9yG5gesZEItt8efy3wHyoc0H8d70ySdJwDBtw_1jNZ5-4myigMuS4bPt3vn_f4bDi6zk0u0wC6ux88jPiJtAWvOHYe7L9AWfcF1F6p4eVhiSs7dBScJXVkqjTp-giewbwPBPbkkdvz-pP-1X1xXTyfUmzHYiuI-nJ-CeAN5ybRmXJ784uq96zBncsmZ79Q2xkI_Bd81FhExD5kGZqsNBtP83zxEbopRIP5azb386BwB03v7earmg">
+
+            <div class="news-card-content">
+
+                <h3>
+                    โครงการแหล่งซับน้ำจำ
+                </h3>
+
+                <p>
+                    ร่วมอนุรักษ์ ฟื้นฟู
+                    แหล่งน้ำชุมชน
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="water-section" id="subnamjam">
+
+    <div class="water-inner">
+
+        <div class="water-images">
+
+            <img
+            src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1000&q=80">
+
+            <img
+            src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=80">
+
+            <img
+            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=700&q=80">
+
+        </div>
+
+        <div class="water-text">
+
+            <span class="material-icons-round">
+                water_drop
+            </span>
+
+            <h2>
+                แหล่งซับน้ำจำ
+            </h2>
+
+            <p>
+                แหล่งทรัพยากรธรรมชาติสำคัญของชุมชน
+                ร่วมกันอนุรักษ์ ฟื้นฟู และพัฒนาให้เป็น
+                แหล่งเรียนรู้ของหมู่บ้าน
+            </p>
+
+            <p>
+                พื้นที่แห่งนี้เป็นส่วนหนึ่งของการดูแล
+                ทรัพยากรน้ำและสิ่งแวดล้อมของชุมชน
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                ประกาศสำคัญ
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div class="important-grid">
+
+        <div class="important-card">
+
+            <span class="material-icons-round">
+                campaign
+            </span>
+
+            <h3>
+                ประกาศห้ามเผาในที่โล่งทุกชนิด
+            </h3>
+
+            <p>
+                1 ก.พ. - 31 มี.ค.
+            </p>
+
+        </div>
+
+        <div class="important-card">
+
+            <span class="material-icons-round">
+                pets
+            </span>
+
+            <h3>
+                ประชาสัมพันธ์การฉีดวัคซีน
+            </h3>
+
+            <p>
+                ป้องกันโรคพิษสุนัขบ้า
+            </p>
+
+        </div>
+
+        <div class="important-card">
+
+            <span class="material-icons-round">
+                account_balance
+            </span>
+
+            <h3>
+                การชำระภาษีที่ดิน
+            </h3>
+
+            <p>
+                กรุณาดำเนินการภายในกำหนด
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="stats" id="village">
+
+    <div class="section-header"
+    style="max-width:1000px;margin:0 auto 25px;">
+
+        <div>
+
+            <h2>
+                สถิติหมู่บ้าน
+            </h2>
+
+        </div>
+
+    </div>
+
+    <div class="stats-grid">
+
+        <div class="stat-card">
+
+            <span class="material-icons-round">
+                home
+            </span>
+
+            <strong>
+                350
+            </strong>
+
+            <span>
+                ครัวเรือนทั้งหมด
+            </span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span class="material-icons-round">
+                groups
+            </span>
+
+            <strong>
+                1,247
+            </strong>
+
+            <span>
+                ประชากรทั้งหมด
+            </span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <span class="material-icons-round">
+                map
+            </span>
+
+            <strong>
+                2.15
+            </strong>
+
+            <span>
+                ตารางกิโลเมตร
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<footer id="contact">
+
+    <h3>
+        RONGKHEM e-VILLAGE
+    </h3>
+
+    <p>
+        ที่ทำการผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6<br>
+        ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา
+    </p>
+
+    <div class="footer-contact">
+
+        โทร.
+        <a href="tel:0801202529">
+            080-1202529
+        </a>
+
+    </div>
+
+    <p style="margin-top:20px;opacity:.6;">
+        © RONGKHEM e-VILLAGE
+    </p>
+
 </footer>
 
 
-</body></html>
+<!-- AI ROBOT -->
+
+<button
+class="ai-button"
+onclick="toggleAI()"
+title="ผู้ช่วย AI">
+
+    <span class="material-icons-round">
+        smart_toy
+    </span>
+
+</button>
+
+
+<div class="ai-chat" id="aiChat">
+
+    <div class="ai-header">
+
+        <span class="material-icons-round">
+            smart_toy
+        </span>
+
+        <div>
+
+            <strong>
+                ผู้ช่วย AI หมู่บ้าน
+            </strong>
+
+            <div style="font-size:11px;opacity:.8;">
+                พร้อมช่วยตอบคำถาม
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="ai-body" id="aiBody">
+
+        <div class="ai-message">
+
+            🤖 สวัสดีครับ ผมคือผู้ช่วย AI
+            ของ RONGKHEM e-VILLAGE
+
+            <br><br>
+
+            สามารถถามข้อมูลเกี่ยวกับ
+            ข่าวสาร บริการประชาชน
+            การติดต่อผู้ใหญ่บ้าน และข้อมูลหมู่บ้านได้ครับ
+
+        </div>
+
+    </div>
+
+    <div class="ai-input">
+
+        <input
+        id="aiInput"
+        placeholder="พิมพ์ข้อความ..."
+        onkeypress="if(event.key==='Enter')sendAI()">
+
+        <button onclick="sendAI()">
+
+            <span class="material-icons-round">
+                send
+            </span>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+CLOCK
+========================= */
+
+function updateClock(){
+
+    const now = new Date();
+
+    const time =
+    now.toLocaleTimeString(
+        "th-TH",
+        {
+            hour:"2-digit",
+            minute:"2-digit",
+            second:"2-digit"
+        }
+    );
+
+    document.getElementById("clock").textContent =
+    time + " น.";
+
+}
+
+updateClock();
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =========================
+WEATHER DEMO
+เปลี่ยนเป็น API จริงภายหลังได้
+========================= */
+
+document.getElementById("weather").textContent =
+"27°C";
+
+document.getElementById("pm25").textContent =
+"ตรวจสอบข้อมูล";
+
+
+/* =========================
+AI WINDOW
+========================= */
+
+function toggleAI(){
+
+    document
+    .getElementById("aiChat")
+    .classList
+    .toggle("show");
+
+}
+
+
+/* =========================
+AI CHAT
+========================= */
+
+function sendAI(){
+
+    const input =
+    document.getElementById("aiInput");
+
+    const message =
+    input.value.trim();
+
+    if(!message){
+        return;
+    }
+
+    const body =
+    document.getElementById("aiBody");
+
+    body.innerHTML +=
+    `<div class="ai-message user-message">
+        ${message}
+    </div>`;
+
+    input.value = "";
+
+    let answer =
+    "ขออภัยครับ ขณะนี้ผู้ช่วย AI ยังไม่มีข้อมูลสำหรับคำถามนี้";
+
+    const text =
+    message.toLowerCase();
+
+    if(
+        text.includes("ผู้ใหญ่บ้าน") ||
+        text.includes("ติดต่อ")
+    ){
+
+        answer =
+        "สามารถติดต่อผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6 ได้ที่หมายเลข 080-1202529 ครับ";
+
+    }
+
+    else if(
+        text.includes("แหล่งซับน้ำ")
+    ){
+
+        answer =
+        "แหล่งซับน้ำจำเป็นแหล่งทรัพยากรธรรมชาติสำคัญของชุมชน ซึ่งมีการร่วมกันอนุรักษ์และฟื้นฟูครับ";
+
+    }
+
+    else if(
+        text.includes("บริการ")
+    ){
+
+        answer =
+        "เว็บไซต์มีบริการข้อมูลหมู่บ้าน ข้อมูลครัวเรือน ข่าวสาร ประกาศ สุขภาพ ผู้สูงอายุ กลุ่มเปราะบาง การเกษตร ร้านค้าชุมชน วัดร่องเข็ม และบริการอื่น ๆ ครับ";
+
+    }
+
+    else if(
+        text.includes("วัด")
+    ){
+
+        answer =
+        "สามารถเลือกเมนู วัดร่องเข็ม จากบริการประชาชนเพื่อดูข้อมูลเพิ่มเติมได้ครับ";
+
+    }
+
+    setTimeout(function(){
+
+        body.innerHTML +=
+        `<div class="ai-message">
+            🤖 ${answer}
+        </div>`;
+
+        body.scrollTop =
+        body.scrollHeight;
+
+        speakText(answer);
+
+    },500);
+
+    body.scrollTop =
+    body.scrollHeight;
+
+}
+
+
+/* =========================
+AI VOICE
+========================= */
+
+function speakText(text){
+
+    if(
+        "speechSynthesis"
+        in window
+    ){
+
+        window
+        .speechSynthesis
+        .cancel();
+
+        const speech =
+        new SpeechSynthesisUtterance(
+            text
+        );
+
+        speech.lang =
+        "th-TH";
+
+        speech.rate =
+        1;
+
+        window
+        .speechSynthesis
+        .speak(speech);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
