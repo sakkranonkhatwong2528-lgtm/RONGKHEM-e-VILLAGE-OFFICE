@@ -103,59 +103,27 @@
         .glass-panel { background: rgba(0, 27, 61, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
     </style>
 
-<style id="public-view-only">
-/* หน้าเว็บประชาชน: ซ่อนเครื่องมือจัดการทั้งหมด */
-[data-admin-control="true"], .admin-only{display:none!important}
+<style id="rongkhem-ai-assistant-style">
+#rongkhem-ai-launcher{position:fixed;right:22px;bottom:22px;z-index:99999;width:92px;height:92px;border:0;background:transparent;cursor:pointer;padding:0;filter:drop-shadow(0 10px 18px rgba(0,0,0,.22));transition:.2s}
+#rongkhem-ai-launcher:hover{transform:translateY(-4px) scale(1.04)}
+#rongkhem-ai-launcher img{width:100%;height:100%;object-fit:contain}
+#rongkhem-ai-panel{position:fixed;right:22px;bottom:122px;z-index:99998;width:min(380px,calc(100vw - 32px));height:540px;max-height:calc(100vh - 150px);display:none;flex-direction:column;background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 18px 55px rgba(0,0,0,.24);border:1px solid rgba(0,0,0,.08);font-family:inherit}
+#rongkhem-ai-panel.open{display:flex}
+.rongkhem-ai-head{padding:13px 15px;display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0b6aa8,#17a3c7);color:#fff}
+.rongkhem-ai-head img{width:48px;height:48px;object-fit:contain}
+.rongkhem-ai-title{font-weight:800;font-size:16px}.rongkhem-ai-sub{font-size:12px;opacity:.9;margin-top:2px}
+#rongkhem-ai-close{margin-left:auto;border:0;background:rgba(255,255,255,.18);color:#fff;width:34px;height:34px;border-radius:50%;font-size:22px;cursor:pointer}
+#rongkhem-ai-messages{flex:1;overflow:auto;padding:14px;background:#f5f8fb;display:flex;flex-direction:column;gap:9px}
+.rongkhem-msg{max-width:84%;padding:10px 12px;border-radius:16px;line-height:1.45;font-size:14px;white-space:pre-line}
+.rongkhem-bot{align-self:flex-start;background:#fff;color:#233;border:1px solid #e5ebf0;border-bottom-left-radius:5px}
+.rongkhem-user{align-self:flex-end;background:#0b78b6;color:#fff;border-bottom-right-radius:5px}
+.rongkhem-ai-suggest{display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;background:#fff;border-top:1px solid #eef2f5}
+.rongkhem-ai-suggest button{border:1px solid #cde3ef;background:#f6fbfe;color:#17618d;border-radius:999px;padding:6px 9px;font-size:12px;cursor:pointer}
+.rongkhem-ai-form{display:flex;gap:8px;padding:11px 12px;background:#fff;border-top:1px solid #eef2f5}
+#rongkhem-ai-input{flex:1;border:1px solid #d8e2e8;border-radius:999px;padding:10px 13px;outline:none;font-family:inherit}
+#rongkhem-ai-send{border:0;border-radius:999px;padding:0 16px;background:#0877b5;color:#fff;font-weight:700;cursor:pointer}
+@media(max-width:600px){#rongkhem-ai-launcher{width:78px;height:78px;right:14px;bottom:14px}#rongkhem-ai-panel{right:10px;bottom:102px;height:510px;width:calc(100vw - 20px)}}
 </style>
-<script>
-(function(){
-const KEY='rongkhemVillageDB';
-function esc(v){return String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-function phoneHref(v){return 'tel:'+String(v||'').replace(/[^0-9+]/g,'');}
-function findSection(title){const h=[...document.querySelectorAll('h2,h3')].find(x=>x.textContent.trim()===title);return h?h.closest('section,div'):null;}
-function removeAdminUI(){
-  document.querySelectorAll('button[title],div[title]').forEach(el=>{
-    const t=(el.getAttribute('title')||'').toLowerCase();
-    if(/edit|add|delete|remove|manage|change image/.test(t)) el.remove();
-  });
-  document.querySelectorAll('.group\/item button,.group\/tile button').forEach(b=>b.remove());
-}
-function render(){
- let db;try{db=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){} if(!db)return;
- // ทีมผู้ช่วย
- const ah=[...document.querySelectorAll('h2')].find(x=>x.textContent.includes('ทีมผู้ช่วยผู้ใหญ่บ้าน'));
- if(ah&&Array.isArray(db.assistants)){
-   const grid=ah.parentElement.nextElementSibling; if(grid){
-    grid.innerHTML=db.assistants.map(a=>`<div class="bg-surface-container-lowest rounded-2xl p-6 shadow-sm border border-surface-variant flex flex-col sm:flex-row gap-6 items-center sm:items-start hover:shadow-md transition-shadow"><div class="w-32 h-32 rounded-xl overflow-hidden flex-shrink-0 border-2 border-outline-variant">${a.image?`<img alt="${esc(a.name)}" class="w-full h-full object-cover" src="${esc(a.image)}">`:'<div class="w-full h-full flex items-center justify-center text-5xl bg-surface-variant">👤</div>'}</div><div class="flex-grow text-center sm:text-left"><h3 class="font-headline-sm text-headline-sm text-on-surface mb-1">${esc(a.name)}</h3><p class="font-body-md text-body-md text-primary font-medium mb-2">${esc(a.position)}</p><p class="font-body-sm text-body-sm text-on-surface-variant mb-4">${esc(a.detail)}</p>${a.phone?`<a href="${phoneHref(a.phone)}" class="inline-flex bg-primary-fixed-dim text-on-primary-fixed px-6 py-2 rounded-full font-label-md text-label-md hover:bg-primary-fixed transition-colors items-center gap-2"><span class="material-symbols-outlined text-sm">call</span>${esc(a.phone)}</a>`:''}</div></div>`).join('');
-   }
- }
- // เมนูบริการ: ใช้กริดที่มี service tiles ตัวแรก
- const first=document.querySelector('a.group\\/tile'); if(first&&Array.isArray(db.services)){
-   const grid=first.parentElement; grid.innerHTML=db.services.map(x=>`<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim" href="${esc(x.link||'#')}"><span class="material-symbols-outlined text-5xl text-[#195bb2] mb-4">${esc(x.icon||'apps')}</span><span class="font-body-md text-body-md text-center text-on-surface font-medium">${esc(x.name)}</span></a>`).join('');
- }
- // ข่าว
- const nh=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='ข่าวประชาสัมพันธ์');
- if(nh&&Array.isArray(db.news)){
-   const box=nh.closest('.bg-surface-container-lowest'); const list=box&&[...box.querySelectorAll('div')].find(d=>d.children.length>=3&&d.querySelector('img')); if(list){list.innerHTML=db.news.map(n=>`<div class="flex gap-4 items-start"><div class="w-24 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-surface-variant">${n.image?`<img class="w-full h-full object-cover" src="${esc(n.image)}" alt="${esc(n.title)}">`:''}</div><div><h4 class="font-body-md text-body-md text-on-surface line-clamp-2 font-medium">${esc(n.title)}</h4><p class="font-caption text-caption text-on-surface-variant mt-1">${esc(n.date||n.detail||'')}</p></div></div>`).join('');}
- }
- // ประกาศ
- const ph=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='ประกาศสำคัญ');
- if(ph&&Array.isArray(db.announcements)){
-   const box=ph.closest('.bg-surface-container-lowest'); const list=box&&[...box.querySelectorAll('div')].find(d=>d.classList.contains('flex')&&d.classList.contains('flex-col')&&d.classList.contains('gap-6')); if(list){list.innerHTML=db.announcements.map(n=>`<div class="flex gap-4 items-start"><span class="material-symbols-outlined text-[#dc3545] flex-shrink-0 mt-1 text-2xl">campaign</span><div><h4 class="font-body-md text-body-md text-on-surface font-medium">${esc(n.title)}</h4><p class="font-caption text-caption text-on-surface-variant mt-1">${esc(n.date||n.detail||'')}</p></div></div>`).join('');}
- }
- // กิจกรรมเด่น: อัปเดตตัวแรกโดยไม่เปลี่ยนดีไซน์
- const kh=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='กิจกรรมเด่น'); const a=db.activities&&db.activities[0];
- if(kh&&a){const box=kh.closest('.bg-surface-container-lowest'); const card=box&&box.querySelector('[style*="background-image"]'); if(card&&a.image)card.style.backgroundImage=`url('${a.image.replace(/'/g,"\\'")}')`; const h4=box&&box.querySelector('h4'); const pp=box&&box.querySelector('h4 + p'); if(h4)h4.textContent=a.title||'';if(pp)pp.textContent=a.detail||a.date||'';}
- // สถิติ
- const sh=[...document.querySelectorAll('h3')].find(x=>x.textContent.trim()==='สถิติหมู่บ้าน'); if(sh&&Array.isArray(db.statistics)){
-   const box=sh.closest('.bg-surface-container-lowest'); const list=box&&[...box.querySelectorAll('div')].find(d=>d.classList.contains('flex')&&d.classList.contains('flex-col')&&d.classList.contains('gap-4')); if(list)list.innerHTML=db.statistics.map((x,i)=>`<div class="flex justify-between items-center bg-surface-bright p-3 rounded-xl border border-surface-variant"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#339af0] bg-opacity-20 text-[#195bb2] flex items-center justify-center"><span class="material-symbols-outlined">${['home','groups','map'][i]||'analytics'}</span></div><span class="font-body-md text-body-md text-on-surface font-medium">${esc(x.name)}</span></div><span class="font-headline-sm text-headline-sm font-bold text-primary">${esc(x.value)}</span></div>`).join('');
- }
- removeAdminUI();
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',render);else render();
-window.addEventListener('storage',e=>{if(e.key===KEY)render()});
-})();
-</script>
 
 </head>
 <body class="text-on-surface antialiased bg-surface-bright min-h-screen flex flex-col">
@@ -388,12 +356,49 @@ window.addEventListener('storage',e=>{if(e.key===KEY)render()});
 <span class="material-symbols-outlined text-5xl text-[#e03131] mb-4" data-icon="emergency" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emergency</span>
 <span class="font-body-md text-body-md text-center text-on-surface font-medium">แจ้งเหตุฉุกเฉิน</span>
 </a>
+<a class="flex flex-col items-center justify-center bg-surface-bright rounded-2xl p-6 hover:shadow-md transition-shadow border border-surface-variant hover:border-primary-fixed-dim relative group/tile" href="#tourism">
+<button class="absolute top-2 right-2 text-on-surface-variant hover:text-error opacity-0 group-hover/tile:opacity-100 transition-opacity" title="Remove"><span class="material-symbols-outlined text-sm">delete</span></button>
+<span class="material-symbols-outlined text-5xl text-[#7950f2] mb-4" data-icon="travel_explore" data-weight="fill" style="font-variation-settings: 'FILL' 1;">travel_explore</span>
+<span class="font-body-md text-body-md text-center text-on-surface font-medium">สถานที่ท่องเที่ยว</span>
+</a>
 </div>
 <!-- Right Arrow Indicator -->
 <div class="absolute -right-4 top-1/2 -translate-y-1/2 bg-white rounded-full shadow p-2 flex items-center justify-center text-outline-variant">
 <span class="material-symbols-outlined">chevron_right</span>
 </div>
 </div>
+</section>
+<!-- Tourism Section : เพิ่มเฉพาะส่วนใหม่ ไม่เปลี่ยน Layout เดิม -->
+<section id="tourism" class="max-w-container-max mx-auto px-gutter pb-10">
+  <div class="bg-surface-container-lowest rounded-2xl p-6 md:p-8 shadow-md border border-surface-variant">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-1 h-8 bg-[#7950f2] rounded-full"></div>
+          <h2 class="font-headline-md text-headline-md text-on-surface font-bold">สถานที่ท่องเที่ยวและแหล่งเรียนรู้</h2>
+        </div>
+        <p class="font-body-md text-on-surface-variant mt-2">แนะนำสถานที่สำคัญและแหล่งท่องเที่ยวของบ้านร่องเข็ม</p>
+      </div>
+    </div>
+    <div id="tourismList" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <article class="rounded-2xl overflow-hidden border border-surface-variant bg-surface-bright shadow-sm">
+        <div class="h-52 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?auto=format&fit=crop&w=1200&q=80')"></div>
+        <div class="p-6">
+          <div class="flex items-center gap-2 text-[#228be6] mb-2"><span class="material-symbols-outlined">water_drop</span><span class="font-label-md font-medium">แหล่งธรรมชาติ</span></div>
+          <h3 class="font-headline-sm font-bold text-on-surface mb-2">แหล่งซับน้ำจำ</h3>
+          <p class="font-body-md text-on-surface-variant">แหล่งทรัพยากรน้ำสำคัญของชุมชน เหมาะสำหรับการเรียนรู้ธรรมชาติ การอนุรักษ์ และการท่องเที่ยวเชิงชุมชน</p>
+        </div>
+      </article>
+      <article class="rounded-2xl overflow-hidden border border-surface-variant bg-surface-bright shadow-sm">
+        <div class="h-52 bg-cover bg-center" style="background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=80')"></div>
+        <div class="p-6">
+          <div class="flex items-center gap-2 text-[#e67700] mb-2"><span class="material-symbols-outlined">temple_buddhist</span><span class="font-label-md font-medium">สถานที่สำคัญ</span></div>
+          <h3 class="font-headline-sm font-bold text-on-surface mb-2">ศาลเจ้าพ่อพญาเฮียวคำ</h3>
+          <p class="font-body-md text-on-surface-variant">สถานที่สำคัญทางความเชื่อและวัฒนธรรมของชุมชน เชิญชวนประชาชนและนักท่องเที่ยวเข้ามาสักการะและเรียนรู้เรื่องราวท้องถิ่น</p>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 <!-- Bottom Content Grid (Bento Style) -->
 <section class="max-w-container-max mx-auto px-gutter pb-section-padding grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -573,5 +578,63 @@ window.addEventListener('storage',e=>{if(e.key===KEY)render()});
 </div>
 </footer>
 
+
+
+<!-- เพิ่มนาฬิกาโดยไม่แก้ส่วนเดิม -->
+<div id="rkClock" class="fixed bottom-5 left-5 z-50 bg-[#001b3d] text-white px-4 py-2 rounded-full shadow-lg text-sm font-medium flex items-center gap-2"><span class="material-symbols-outlined text-base">schedule</span><span>--:--:-- น.</span></div>
+<script>
+(function(){const el=document.querySelector('#rkClock span:last-child');function tick(){const d=new Date();el.textContent=d.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'})+' น.'}tick();setInterval(tick,1000);})();
+</script>
+
+<button id="rongkhem-ai-launcher" aria-label="เปิดผู้ช่วย AI หมู่บ้าน">
+  <img src="rongkhem-ai-robot.png" alt="RONGKHEM AI Assistant">
+</button>
+<section id="rongkhem-ai-panel" aria-label="ผู้ช่วย AI หมู่บ้าน">
+  <div class="rongkhem-ai-head">
+    <img src="rongkhem-ai-robot.png" alt="">
+    <div><div class="rongkhem-ai-title">RONGKHEM AI ผู้ช่วยหมู่บ้าน</div><div class="rongkhem-ai-sub">ถามข้อมูลเบื้องต้นได้ทันที</div></div>
+    <button id="rongkhem-ai-close" aria-label="ปิด">×</button>
+  </div>
+  <div id="rongkhem-ai-messages"></div>
+  <div class="rongkhem-ai-suggest">
+    <button data-q="ข้อมูลหมู่บ้าน">ข้อมูลหมู่บ้าน</button>
+    <button data-q="แหล่งซับน้ำจำ">แหล่งซับน้ำจำ</button>
+    <button data-q="สถานที่ท่องเที่ยว">สถานที่ท่องเที่ยว</button>
+    <button data-q="ติดต่อผู้ใหญ่บ้าน">ติดต่อผู้ใหญ่บ้าน</button>
+  </div>
+  <form class="rongkhem-ai-form" id="rongkhem-ai-form">
+    <input id="rongkhem-ai-input" autocomplete="off" placeholder="พิมพ์คำถาม..." />
+    <button id="rongkhem-ai-send" type="submit">ส่ง</button>
+  </form>
+</section>
+<script id="rongkhem-ai-assistant-script">
+(function(){
+  const panel=document.getElementById('rongkhem-ai-panel'), launch=document.getElementById('rongkhem-ai-launcher');
+  const close=document.getElementById('rongkhem-ai-close'), box=document.getElementById('rongkhem-ai-messages');
+  const form=document.getElementById('rongkhem-ai-form'), input=document.getElementById('rongkhem-ai-input');
+
+  function add(text,who='bot'){
+    const d=document.createElement('div'); d.className='rongkhem-msg rongkhem-'+who; d.textContent=text; box.appendChild(d); box.scrollTop=box.scrollHeight;
+  }
+  function answer(q){
+    q=(q||'').trim().toLowerCase();
+    if(!q) return 'พิมพ์คำถามมาได้เลยครับ 😊';
+    if(/สวัสดี|หวัดดี|hello|hi/.test(q)) return 'สวัสดีครับ 🙏 ผมคือ RONGKHEM AI ผู้ช่วยหมู่บ้านบ้านร่องเข็ม มีอะไรให้ช่วยถามได้เลยครับ';
+    if(/ผู้ใหญ่บ้าน|ติดต่อ|โทร|เบอร์/.test(q)) return 'ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6\nโทร. 080-1202529';
+    if(/ซับน้ำ|แหล่งน้ำ/.test(q)) return 'แหล่งซับน้ำจำ เป็นแหล่งทรัพยากรธรรมชาติและแหล่งเรียนรู้สำคัญของชุมชน ใช้เป็นพื้นที่อนุรักษ์ ฟื้นฟู และศึกษาธรรมชาติ';
+    if(/ท่องเที่ยว|สถานที่|เที่ยว/.test(q)) return 'สถานที่ท่องเที่ยวและแหล่งเรียนรู้ของชุมชน ได้แก่ แหล่งซับน้ำจำ และสถานที่สำคัญอื่น ๆ ที่แสดงอยู่ในเมนู “สถานที่ท่องเที่ยว” ของเว็บไซต์';
+    if(/ศาลเจ้าพ่อ|พญาเฮียว/.test(q)) return 'ศาลเจ้าพ่อพญาเฮียวคำ เป็นสถานที่สำคัญทางความเชื่อของชุมชน สามารถดูข้อมูลเพิ่มเติมได้จากส่วนสถานที่ท่องเที่ยวของเว็บไซต์';
+    if(/หมู่บ้าน|ครัวเรือน|ประชากร/.test(q)) return 'บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา\nข้อมูลสถิติที่แสดงบนเว็บไซต์: 350 ครัวเรือน ประชากร 1,247 คน';
+    if(/บริการ|ร้องเรียน|คำร้อง/.test(q)) return 'คุณสามารถเลือกเมนู “บริการประชาชน” หรือ “แจ้งเรื่อง / ร้องเรียน” บนเว็บไซต์เพื่อดูบริการที่เกี่ยวข้องได้ครับ';
+    if(/ช่วยอะไร|ทำอะไรได้/.test(q)) return 'ผมช่วยตอบข้อมูลเบื้องต้นเกี่ยวกับหมู่บ้าน สถานที่ท่องเที่ยว แหล่งซับน้ำจำ การติดต่อผู้ใหญ่บ้าน และบริการประชาชนครับ';
+    return 'ผมยังไม่มีข้อมูลคำตอบนี้โดยตรงครับ ลองถามเกี่ยวกับ “ข้อมูลหมู่บ้าน”, “สถานที่ท่องเที่ยว”, “แหล่งซับน้ำจำ” หรือ “ติดต่อผู้ใหญ่บ้าน” ได้ครับ';
+  }
+  function ask(q){ add(q,'user'); setTimeout(()=>add(answer(q),'bot'),180); }
+  launch.onclick=()=>{panel.classList.add('open'); if(!box.dataset.started){add('สวัสดีครับ 🙏 ผมคือ RONGKHEM AI ผู้ช่วยหมู่บ้าน ลองถามข้อมูลได้เลยครับ');box.dataset.started='1'} input.focus()};
+  close.onclick=()=>panel.classList.remove('open');
+  form.onsubmit=e=>{e.preventDefault();const q=input.value.trim();if(q){ask(q);input.value='';input.focus()}};
+  document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>ask(b.dataset.q));
+})();
+</script>
 
 </body></html>
