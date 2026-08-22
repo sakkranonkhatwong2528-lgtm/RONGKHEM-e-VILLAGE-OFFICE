@@ -85,7 +85,16 @@ function uploadImage(e,path){let f=e.target.files[0];if(!f)return;let r=new File
 function clearImage(path){setPath(path,"");render()}
 function addItem(key){let templates={assistants:{name:"",position:"",detail:"",phone:"",image:""},news:{title:"",detail:"",image:""},activities:{title:"",detail:"",image:""},announcements:{title:"",detail:""},services:{name:"เมนูใหม่",icon:"apps",detail:""}};data[key].push(templates[key]);render()}
 function deleteItem(key,i){if(confirm("ยืนยันลบรายการนี้?")){data[key].splice(i,1);render()}}
-function saveAll(){localStorage.setItem(KEY,JSON.stringify(data));show("บันทึกข้อมูลทั้งหมดเรียบร้อยแล้ว ✓")}
+function saveAll(){
+  try{
+    localStorage.setItem(KEY,JSON.stringify(data));
+    const check=localStorage.getItem(KEY);
+    if(!check) throw new Error("ไม่พบข้อมูลหลังบันทึก");
+    show("บันทึกข้อมูลทั้งหมดเรียบร้อยแล้ว ✓");
+  }catch(err){
+    alert("บันทึกไม่สำเร็จ: พื้นที่เก็บข้อมูลเต็ม โดยเฉพาะรูปภาพขนาดใหญ่\n\nกรุณาลดขนาดรูปภาพ แล้วลองบันทึกใหม่");
+  }
+}
 function resetData(){if(confirm("รีเซ็ตข้อมูลกลับค่าเริ่มต้นทั้งหมด?")){localStorage.removeItem(KEY);data=structuredClone(defaults);render();show("รีเซ็ตข้อมูลแล้ว")}}
 function logout(){localStorage.removeItem("rongkhemAdminLoggedIn");localStorage.removeItem("rongkhemAdminUsername");location.href="login.html"}
 function show(t){toast.textContent=t;toast.style.display="block";setTimeout(()=>toast.style.display="none",2800)}
