@@ -1,67 +1,2287 @@
 <!DOCTYPE html>
-<html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RONGKHEM e-VILLAGE ADMIN</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-body{font-family:"Noto Sans Thai",sans-serif;background:#eef2f7;color:#18212f}.card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 3px 15px #001b3d10}.field{width:100%;border:1px solid #d6dbe4;border-radius:10px;padding:10px;margin-top:5px;background:#fff}.label{display:block;font-weight:600;margin-top:12px}.btn{border:0;border-radius:10px;padding:9px 14px;font-weight:600;cursor:pointer}.primary{background:#001b3d;color:#fff}.danger{background:#b42318;color:#fff}.light{background:#e9eef6}.menu-btn{width:100%;text-align:left;padding:10px 12px;border-radius:10px}.menu-btn:hover,.menu-btn.active{background:#001b3d;color:#fff}.item{border:1px solid #e0e5ed;border-radius:14px;padding:14px;margin-top:12px}
-</style></head>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>RONGKHEM e-VILLAGE ADMIN</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    body{
+      font-family:"Noto Sans Thai",sans-serif;
+      background:#eef2f7;
+      color:#18212f;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:18px;
+      padding:20px;
+      box-shadow:0 3px 15px rgba(0,27,61,.08);
+    }
+
+    .field{
+      width:100%;
+      border:1px solid #d6dbe4;
+      border-radius:10px;
+      padding:10px;
+      margin-top:5px;
+      background:#fff;
+    }
+
+    .label{
+      display:block;
+      font-weight:600;
+      margin-top:12px;
+    }
+
+    .btn{
+      border:0;
+      border-radius:10px;
+      padding:9px 14px;
+      font-weight:600;
+      cursor:pointer;
+    }
+
+    .primary{
+      background:#001b3d;
+      color:#fff;
+    }
+
+    .danger{
+      background:#b42318;
+      color:#fff;
+    }
+
+    .menu-btn{
+      width:100%;
+      text-align:left;
+      padding:10px 12px;
+      border-radius:10px;
+      margin-bottom:2px;
+      cursor:pointer;
+    }
+
+    .menu-btn:hover,
+    .menu-btn.active{
+      background:#001b3d;
+      color:#fff;
+    }
+
+    .item{
+      border:1px solid #e0e5ed;
+      border-radius:14px;
+      padding:14px;
+      margin-top:12px;
+    }
+
+    img.preview{
+      width:180px;
+      height:120px;
+      object-fit:cover;
+      border-radius:12px;
+      margin-top:10px;
+    }
+  </style>
+</head>
+
 <body>
+
 <header class="bg-[#001b3d] text-white px-5 py-4 flex justify-between items-center sticky top-0 z-50">
-<div><div class="font-bold text-lg">RONGKHEM e-VILLAGE ADMIN</div><div class="text-xs opacity-70">ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</div></div>
-<div class="flex gap-2"><a href="index.html" class="btn bg-white text-[#001b3d]">ดูหน้าเว็บไซต์</a><button onclick="logout()" class="btn bg-red-600">ออกจากระบบ</button></div>
+
+  <div>
+    <div class="font-bold text-lg">
+      RONGKHEM e-VILLAGE ADMIN
+    </div>
+
+    <div class="text-xs opacity-70">
+      ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6
+    </div>
+  </div>
+
+  <div class="flex gap-2">
+
+    <a
+      href="index.html"
+      class="bg-white text-[#001b3d] px-4 py-2 rounded-lg font-semibold"
+    >
+      ดูหน้าเว็บไซต์
+    </a>
+
+    <button
+      onclick="logout()"
+      class="bg-red-600 px-4 py-2 rounded-lg font-semibold"
+    >
+      ออกจากระบบ
+    </button>
+
+  </div>
+
 </header>
-<div id="login" class="min-h-[85vh] flex items-center justify-center p-5">
-<div class="card w-full max-w-md"><h1 class="text-2xl font-bold">เข้าสู่ระบบผู้ดูแล</h1><p class="text-gray-500">RONGKHEM e-VILLAGE ADMIN</p>
-<label class="label">ชื่อผู้ใช้<input id="user" class="field" value="admin"></label>
-<label class="label">รหัสผ่าน<input id="pass" type="password" class="field" value="1234"></label>
-<button onclick="doLogin()" class="btn primary w-full mt-5">เข้าสู่ระบบ</button>
-<p class="text-xs text-gray-400 mt-3">ค่าเริ่มต้น: admin / 1234</p></div></div>
-<div id="dashboard" class="hidden max-w-7xl mx-auto p-4 md:p-6 grid lg:grid-cols-[270px_1fr] gap-5">
-<aside class="card h-fit lg:sticky lg:top-24"><h2 class="font-bold text-lg mb-3">เมนูจัดการ</h2><div id="menu"></div></aside>
-<main id="app"></main></div>
+
+
+<!-- LOGIN -->
+
+<div
+  id="login"
+  class="min-h-[85vh] flex items-center justify-center p-5"
+>
+
+  <div class="card w-full max-w-md">
+
+    <h1 class="text-2xl font-bold">
+      เข้าสู่ระบบผู้ดูแล
+    </h1>
+
+    <p class="text-gray-500">
+      RONGKHEM e-VILLAGE ADMIN
+    </p>
+
+    <label class="label">
+      ชื่อผู้ใช้
+
+      <input
+        id="username"
+        class="field"
+        value="sakkranon"
+      >
+    </label>
+
+
+    <label class="label">
+      รหัสผ่าน
+
+      <input
+        id="password"
+        type="password"
+        class="field"
+        value="23122528"
+      >
+    </label>
+
+
+    <button
+      onclick="doLogin()"
+      class="btn primary w-full mt-5"
+    >
+      เข้าสู่ระบบ
+    </button>
+
+    <p class="text-xs text-gray-400 mt-3">
+      ค่าเริ่มต้น: admin / 1234
+    </p>
+
+  </div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div
+  id="dashboard"
+  class="hidden max-w-7xl mx-auto p-4 md:p-6 grid lg:grid-cols-[270px_1fr] gap-5"
+>
+
+  <aside class="card h-fit lg:sticky lg:top-24">
+
+    <h2 class="font-bold text-lg mb-3">
+      เมนูจัดการ
+    </h2>
+
+    <div id="menu"></div>
+
+  </aside>
+
+
+  <main id="app"></main>
+
+</div>
+
+
 <script>
-const KEY="RONGKHEM_SITE_DATA_V2",LOGINKEY="RONGKHEM_ADMIN_LOGIN";
-const menus=[
-["dashboard","ภาพรวมระบบ"],["leader","ข้อมูลผู้ใหญ่บ้าน"],["assistants","ทีมผู้ช่วยผู้ใหญ่บ้าน"],
-["news","ข่าวประชาสัมพันธ์"],["activity","กิจกรรมเด่น"],["announcements","ประกาศสำคัญ"],["stats","สถิติหมู่บ้าน"],
-["ข้อมูลหมู่บ้าน","ข้อมูลหมู่บ้าน"],["ข้อมูลครัวเรือน","ข้อมูลครัวเรือน"],["คณะกรรมการหมู่บ้าน","คณะกรรมการหมู่บ้าน"],["ข่าวสาร/ประกาศ","ข่าวสาร/ประกาศ"],
-["ยื่นคำร้องออนไลน์","ยื่นคำร้องออนไลน์"],["อสม.","อสม."],["สุขภาพชุมชน","สุขภาพชุมชน"],["ผู้สูงอายุ","ผู้สูงอายุ"],["กลุ่มเปราะบาง","กลุ่มเปราะบาง"],
-["สิ่งแวดล้อม / PM2.5","สิ่งแวดล้อม / PM2.5"],["แหล่งซับน้ำจำ","แหล่งซับน้ำจำ"],["การเกษตร","การเกษตร"],["ชรบ. / ความปลอดภัย","ชรบ. / ความปลอดภัย"],
-["ร้านค้าในชุมชน","ร้านค้าในชุมชน"],["แผนที่หมู่บ้าน","แผนที่หมู่บ้าน"],["ติดต่อผู้ใหญ่บ้าน","ติดต่อผู้ใหญ่บ้าน"],["แจ้งเหตุฉุกเฉิน","แจ้งเหตุฉุกเฉิน"],["สถานที่ท่องเที่ยว","สถานที่ท่องเที่ยว"],
-["backup","สำรอง / กู้คืนข้อมูล"]];
-const defaults={leader:{name:"นายศักรนนทน์ ขัติย์วงค์",role:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",phone:"080-1202529",image:""},
-assistants:[{name:"น.ส.สุภาพร วังมูล",role:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง",detail:"รับผิดชอบงานด้านทะเบียนและปกครองส่วนท้องถิ่น",phone:"098-9800089",image:""},{name:"นายจักร์กวัส ประพลรัตนัง",role:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ",detail:"ดูแลความเรียบร้อยและความปลอดภัยภายในหมู่บ้าน",phone:"085-1399849",image:""}],
-news:[{title:"ประชุมประจำเดือนหมู่บ้าน",detail:"วันอาทิตย์ที่ 1 มิถุนายน 2567 เวลา 07.00 น.",image:""},{title:"โครงการรณรงค์งดการเผา",detail:"1 ก.พ. - 31 มี.ค. 2567 งดเผาทุกชนิด",image:""}],
-announcements:[{title:"ประกาศห้ามเผาในที่โล่งทุกชนิด",detail:"1 ก.พ. - 31 มี.ค. 2567",image:""}],
-activity:[{title:"จิตอาสาพัฒนาหมู่บ้าน",detail:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",image:""}],
-stats:{households:"350",population:"1,247",area:"2.15",updated:"อัปเดตล่าสุด"},
-sections:{}};
-let D=JSON.parse(localStorage.getItem(KEY)||"null")||structuredClone(defaults);D.sections||={};D.news||=[];D.announcements||=[];D.activity||=[];
-function save(msg=true){localStorage.setItem(KEY,JSON.stringify(D));if(msg)alert("บันทึกข้อมูลเรียบร้อย")}
-function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
-function readFile(input,cb){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=()=>cb(r.result);r.readAsDataURL(f)}
-function doLogin(){if(user.value==="admin"&&pass.value==="1234"){sessionStorage.setItem(LOGINKEY,"1");start()}else alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง")}
-function logout(){sessionStorage.removeItem(LOGINKEY);location.reload()}
-function start(){login.classList.add("hidden");dashboard.classList.remove("hidden");menu.innerHTML=menus.map(([id,n])=>`<button class="menu-btn" data-id="${esc(id)}" onclick='openPage(${JSON.stringify(id)})'>${esc(n)}</button>`).join("");openPage("dashboard")}
-function active(id){document.querySelectorAll(".menu-btn").forEach(x=>x.classList.toggle("active",x.dataset.id===id))}
-function openPage(id){active(id);if(id==="dashboard")return overview();if(id==="leader")return leader();if(id==="assistants")return collection("assistants","ทีมผู้ช่วยผู้ใหญ่บ้าน");if(id==="news")return collection("news","ข่าวประชาสัมพันธ์");if(id==="announcements")return collection("announcements","ประกาศสำคัญ");if(id==="activity")return collection("activity","กิจกรรมเด่น");if(id==="stats")return stats();if(id==="backup")return backup();sectionEditor(id)}
-function overview(){app.innerHTML=`<div class="card"><h1 class="text-2xl font-bold">ภาพรวมระบบ</h1><p class="text-gray-500 mt-1">จัดการข้อมูลทั้งหมดของหน้าเว็บไซต์จากจุดเดียว</p><div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-5">${[['ข่าว',D.news.length],['ประกาศ',D.announcements.length],['กิจกรรม',D.activity.length],['เมนูข้อมูล',menus.length-8]].map(x=>`<div class="item"><div class="text-gray-500">${x[0]}</div><div class="text-3xl font-bold">${x[1]}</div></div>`).join("")}</div></div>`}
-function leader(){const x=D.leader;app.innerHTML=`<div class="card max-w-3xl"><h1 class="text-2xl font-bold">ข้อมูลผู้ใหญ่บ้าน</h1><label class="label">ชื่อ<input id="f_name" class="field" value="${esc(x.name)}"></label><label class="label">ตำแหน่ง<input id="f_role" class="field" value="${esc(x.role)}"></label><label class="label">ที่อยู่<input id="f_address" class="field" value="${esc(x.address)}"></label><label class="label">ข้อความ<input id="f_quote" class="field" value="${esc(x.quote)}"></label><label class="label">โทรศัพท์<input id="f_phone" class="field" value="${esc(x.phone)}"></label><label class="label">อัปโหลดรูปภาพ<input type="file" accept="image/*" class="field" onchange="readFile(this,v=>{D.leader.image=v;save(false)})"></label>${x.image?`<img src="${x.image}" class="w-32 h-32 object-cover rounded-xl mt-3">`:''}<button class="btn primary mt-5" onclick="D.leader={...D.leader,name:f_name.value,role:f_role.value,address:f_address.value,quote:f_quote.value,phone:f_phone.value};save()">บันทึก</button></div>`}
-function collection(key,title){app.innerHTML=`<div class="card"><div class="flex justify-between gap-3 items-center"><div><h1 class="text-2xl font-bold">${esc(title)}</h1><p class="text-gray-500">เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพ</p></div><button class="btn primary" onclick="D[${JSON.stringify(key)}].push({title:'',name:'',role:'',detail:'',phone:'',image:''});collection(${JSON.stringify(key)},${JSON.stringify(title)})">+ เพิ่มรายการ</button></div><div id="items"></div></div>`;items.innerHTML=D[key].map((x,i)=>renderItem(key,title,x,i)).join("")}
-function renderItem(key,title,x,i){let assistant=key==="assistants";return `<div class="item"><div class="flex justify-between"><b>รายการที่ ${i+1}</b><button class="btn danger" onclick="D[${JSON.stringify(key)}].splice(${i},1);collection(${JSON.stringify(key)},${JSON.stringify(title)})">ลบ</button></div>
-<label class="label">${assistant?"ชื่อ":"หัวข้อ"}<input id="name_${i}" class="field" value="${esc(assistant?x.name:x.title)}"></label>
-${assistant?`<label class="label">ตำแหน่ง<input id="role_${i}" class="field" value="${esc(x.role)}"></label><label class="label">โทรศัพท์<input id="phone_${i}" class="field" value="${esc(x.phone)}"></label>`:""}
-<label class="label">รายละเอียด<textarea id="detail_${i}" class="field" rows="4">${esc(x.detail)}</textarea></label>
-<label class="label">อัปโหลดรูปภาพ<input type="file" accept="image/*" class="field" onchange="readFile(this,v=>{D[${JSON.stringify(key)}][${i}].image=v;save(false);collection(${JSON.stringify(key)},${JSON.stringify(title)})})"></label>
-${x.image?`<img src="${x.image}" class="w-40 h-28 object-cover rounded-xl mt-3">`:''}
-<button class="btn primary mt-4" onclick="${assistant?`D[${JSON.stringify(key)}][${i}]={...D[${JSON.stringify(key)}][${i}],name:name_${i}.value,role:role_${i}.value,phone:phone_${i}.value,detail:detail_${i}.value}`:`D[${JSON.stringify(key)}][${i}]={...D[${JSON.stringify(key)}][${i}],title:name_${i}.value,detail:detail_${i}.value}`};save()">บันทึก</button></div>`}
-function stats(){let x=D.stats;app.innerHTML=`<div class="card max-w-2xl"><h1 class="text-2xl font-bold">สถิติหมู่บ้าน</h1><label class="label">ครัวเรือนทั้งหมด<input id="households" class="field" value="${esc(x.households)}"></label><label class="label">ประชากรทั้งหมด<input id="population" class="field" value="${esc(x.population)}"></label><label class="label">พื้นที่หมู่บ้าน<input id="area" class="field" value="${esc(x.area)}"></label><label class="label">ข้อความอัปเดต<input id="updated" class="field" value="${esc(x.updated)}"></label><button class="btn primary mt-5" onclick="D.stats={households:households.value,population:population.value,area:area.value,updated:updated.value};save()">บันทึก</button></div>`}
-function sectionEditor(name){let S=D.sections[name]||{title:name,intro:"",content:"",image:"",items:[]};D.sections[name]=S;app.innerHTML=`<div class="card"><div class="flex flex-wrap justify-between gap-3"><div><h1 class="text-2xl font-bold">${esc(name)}</h1><p class="text-gray-500">จัดการข้อมูลของเมนูนี้ได้ทั้งหมด</p></div><button class="btn primary" onclick="D.sections[${JSON.stringify(name)}].items.push({title:'',detail:'',image:''});sectionEditor(${JSON.stringify(name)})">+ เพิ่มรายการ</button></div>
-<label class="label">ชื่อหน้า<input id="sec_title" class="field" value="${esc(S.title)}"></label><label class="label">คำเกริ่นนำ<textarea id="sec_intro" class="field" rows="3">${esc(S.intro)}</textarea></label><label class="label">รายละเอียดหลัก<textarea id="sec_content" class="field" rows="8">${esc(S.content)}</textarea></label><label class="label">รูปภาพหน้าหลัก<input type="file" accept="image/*" class="field" onchange="readFile(this,v=>{D.sections[${JSON.stringify(name)}].image=v;save(false);sectionEditor(${JSON.stringify(name)})})"></label>${S.image?`<img src="${S.image}" class="w-48 h-32 object-cover rounded-xl mt-3">`:''}<button class="btn primary mt-4" onclick="D.sections[${JSON.stringify(name)}]={...D.sections[${JSON.stringify(name)}],title:sec_title.value,intro:sec_intro.value,content:sec_content.value};save()">บันทึกข้อมูลหลัก</button><div id="subitems"></div></div>`;
-subitems.innerHTML=S.items.map((x,i)=>`<div class="item"><div class="flex justify-between"><b>รายการ ${i+1}</b><button class="btn danger" onclick="D.sections[${JSON.stringify(name)}].items.splice(${i},1);sectionEditor(${JSON.stringify(name)})">ลบ</button></div><label class="label">หัวข้อ<input id="it_${i}" class="field" value="${esc(x.title)}"></label><label class="label">รายละเอียด<textarea id="id_${i}" class="field" rows="4">${esc(x.detail)}</textarea></label><label class="label">รูปภาพ<input type="file" accept="image/*" class="field" onchange="readFile(this,v=>{D.sections[${JSON.stringify(name)}].items[${i}].image=v;save(false);sectionEditor(${JSON.stringify(name)})})"></label>${x.image?`<img src="${x.image}" class="w-36 h-24 object-cover rounded-xl mt-2">`:''}<button class="btn primary mt-3" onclick="D.sections[${JSON.stringify(name)}].items[${i}]={...D.sections[${JSON.stringify(name)}].items[${i}],title:it_${i}.value,detail:id_${i}.value};save()">บันทึก</button></div>`).join("")}
-function backup(){app.innerHTML=`<div class="card max-w-3xl"><h1 class="text-2xl font-bold">สำรอง / กู้คืนข้อมูล</h1><p class="text-gray-500 mt-2">ดาวน์โหลดข้อมูลทั้งหมดเป็น JSON หรือกู้คืนกลับมา</p><button class="btn primary mt-5" onclick="downloadBackup()">ดาวน์โหลดสำรองข้อมูล</button><label class="label">กู้คืนข้อมูลจากไฟล์ JSON<input type="file" accept=".json,application/json" class="field" onchange="restore(this)"></label><button class="btn danger mt-5" onclick="if(confirm('ต้องการล้างข้อมูลทั้งหมด?')){localStorage.removeItem(KEY);location.reload()}">รีเซ็ตข้อมูลทั้งหมด</button></div>`}
-function downloadBackup(){let b=new Blob([JSON.stringify(D,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="rongkhem-e-village-backup.json";a.click();URL.revokeObjectURL(a.href)}
-function restore(input){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{D=JSON.parse(r.result);save(false);alert("กู้คืนข้อมูลเรียบร้อย");location.reload()}catch(e){alert("ไฟล์ข้อมูลไม่ถูกต้อง")}};r.readAsText(f)}
-if(sessionStorage.getItem(LOGINKEY)==="1")start();
-</script></body></html>
+
+/* =====================================================
+   DATABASE
+===================================================== */
+
+const KEY = "RONGKHEM_SITE_DATA_V3";
+
+const LOGIN_KEY = "RONGKHEM_ADMIN_LOGIN";
+
+
+/* =====================================================
+   MENU
+===================================================== */
+
+const menus = [
+
+  ["dashboard","ภาพรวมระบบ"],
+
+  ["leader","ข้อมูลผู้ใหญ่บ้าน"],
+
+  ["assistants","ทีมผู้ช่วยผู้ใหญ่บ้าน"],
+
+  ["news","ข่าวประชาสัมพันธ์"],
+
+  ["activity","กิจกรรมเด่น"],
+
+  ["announcements","ประกาศสำคัญ"],
+
+  ["stats","สถิติหมู่บ้าน"],
+
+  ["ข้อมูลหมู่บ้าน","ข้อมูลหมู่บ้าน"],
+
+  ["ข้อมูลครัวเรือน","ข้อมูลครัวเรือน"],
+
+  ["คณะกรรมการหมู่บ้าน","คณะกรรมการหมู่บ้าน"],
+
+  ["ข่าวสาร/ประกาศ","ข่าวสาร/ประกาศ"],
+
+  ["ยื่นคำร้องออนไลน์","ยื่นคำร้องออนไลน์"],
+
+  ["อสม.","อสม."],
+
+  ["สุขภาพชุมชน","สุขภาพชุมชน"],
+
+  ["ผู้สูงอายุ","ผู้สูงอายุ"],
+
+  ["กลุ่มเปราะบาง","กลุ่มเปราะบาง"],
+
+  ["สิ่งแวดล้อม / PM2.5","สิ่งแวดล้อม / PM2.5"],
+
+  ["แหล่งซับน้ำจำ","แหล่งซับน้ำจำ"],
+
+  ["การเกษตร","การเกษตร"],
+
+  ["ชรบ. / ความปลอดภัย","ชรบ. / ความปลอดภัย"],
+
+  ["ร้านค้าในชุมชน","ร้านค้าในชุมชน"],
+
+  ["แผนที่หมู่บ้าน","แผนที่หมู่บ้าน"],
+
+  ["ติดต่อผู้ใหญ่บ้าน","ติดต่อผู้ใหญ่บ้าน"],
+
+  ["แจ้งเหตุฉุกเฉิน","แจ้งเหตุฉุกเฉิน"],
+
+  ["สถานที่ท่องเที่ยว","สถานที่ท่องเที่ยว"],
+
+  ["backup","สำรอง / กู้คืนข้อมูล"]
+
+];
+
+
+/* =====================================================
+   DEFAULT DATA
+===================================================== */
+
+const defaults = {
+
+  leader:{
+
+    name:"นายศักรนนทน์ ขัติย์วงค์",
+
+    role:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",
+
+    address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",
+
+    quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",
+
+    phone:"080-1202529",
+
+    image:""
+
+  },
+
+
+  assistants:[
+
+    {
+
+      name:"น.ส.สุภาพร วังมูล",
+
+      role:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายปกครอง",
+
+      detail:"รับผิดชอบงานด้านทะเบียนและปกครองส่วนท้องถิ่น",
+
+      phone:"098-9800089",
+
+      image:""
+
+    },
+
+    {
+
+      name:"นายจักร์กวัส ประพลรัตนัง",
+
+      role:"ผู้ช่วยผู้ใหญ่บ้าน ฝ่ายรักษาความสงบ",
+
+      detail:"ดูแลความเรียบร้อยและความปลอดภัยภายในหมู่บ้าน",
+
+      phone:"085-1399849",
+
+      image:""
+
+    }
+
+  ],
+
+
+  news:[
+
+    {
+
+      title:"ประชุมประจำเดือนหมู่บ้าน",
+
+      detail:"วันอาทิตย์ที่ 1 มิถุนายน 2567 เวลา 07.00 น.",
+
+      image:""
+
+    },
+
+    {
+
+      title:"โครงการรณรงค์งดการเผา",
+
+      detail:"1 ก.พ. - 31 มี.ค. 2567 งดเผาทุกชนิด",
+
+      image:""
+
+    },
+
+    {
+
+      title:"โครงการแหล่งซับน้ำจำ",
+
+      detail:"ร่วมอนุรักษ์ ฟื้นฟู แหล่งน้ำชุมชน",
+
+      image:""
+
+    }
+
+  ],
+
+
+  announcements:[
+
+    {
+
+      title:"ประกาศห้ามเผาในที่โล่งทุกชนิด",
+
+      detail:"1 ก.พ. - 31 มี.ค. 2567",
+
+      image:""
+
+    },
+
+    {
+
+      title:"ประชาสัมพันธ์การฉีดวัคซีนป้องกันโรคพิษสุนัขบ้า",
+
+      detail:"วันที่ 15 มิถุนายน 2567 ณ อาคารเอนกประสงค์",
+
+      image:""
+
+    },
+
+    {
+
+      title:"การชำระภาษีที่ดินและสิ่งปลูกสร้าง",
+
+      detail:"ภายในวันที่ 30 มิถุนายน 2567",
+
+      image:""
+
+    }
+
+  ],
+
+
+  activity:[
+
+    {
+
+      title:"จิตอาสาพัฒนาหมู่บ้าน",
+
+      detail:"ร่วมแรงร่วมใจ ทำความดีเพื่อชุมชน",
+
+      image:""
+
+    }
+
+  ],
+
+
+  stats:{
+
+    households:"350",
+
+    population:"1,247",
+
+    area:"2.15",
+
+    updated:"อัปเดตล่าสุด"
+
+  },
+
+
+  sections:{}
+
+};
+
+
+/* =====================================================
+   LOAD DATA
+===================================================== */
+
+let D =
+  JSON.parse(
+    localStorage.getItem(KEY) || "null"
+  )
+  ||
+  structuredClone(defaults);
+
+
+if(!D.sections){
+
+  D.sections = {};
+
+}
+
+
+if(!D.news){
+
+  D.news = [];
+
+}
+
+
+if(!D.activity){
+
+  D.activity = [];
+
+}
+
+
+if(!D.announcements){
+
+  D.announcements = [];
+
+}
+
+
+/* =====================================================
+   ELEMENT
+===================================================== */
+
+const loginBox =
+  document.getElementById("login");
+
+const dashboardBox =
+  document.getElementById("dashboard");
+
+const menuBox =
+  document.getElementById("menu");
+
+const app =
+  document.getElementById("app");
+
+
+/* =====================================================
+   SAVE
+===================================================== */
+
+function save(showMessage=true){
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(D)
+  );
+
+  if(showMessage){
+
+    alert("บันทึกข้อมูลเรียบร้อย");
+
+  }
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function esc(text){
+
+  return String(text ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   READ IMAGE
+===================================================== */
+
+function readFile(input,callback){
+
+  const file = input.files[0];
+
+  if(!file){
+
+    return;
+
+  }
+
+  const reader =
+    new FileReader();
+
+  reader.onload = function(){
+
+    callback(reader.result);
+
+  };
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function doLogin(){
+
+  const user =
+    document
+      .getElementById("username")
+      .value;
+
+  const pass =
+    document
+      .getElementById("password")
+      .value;
+
+
+  if(
+    user === "admin"
+    &&
+    pass === "1234"
+  ){
+
+    sessionStorage.setItem(
+      LOGIN_KEY,
+      "1"
+    );
+
+    start();
+
+  }
+
+  else{
+
+    alert(
+      "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"
+    );
+
+  }
+
+}
+
+
+function logout(){
+
+  sessionStorage.removeItem(
+    LOGIN_KEY
+  );
+
+  location.reload();
+
+}
+
+
+/* =====================================================
+   START ADMIN
+===================================================== */
+
+function start(){
+
+  loginBox.classList.add(
+    "hidden"
+  );
+
+  dashboardBox.classList.remove(
+    "hidden"
+  );
+
+
+  menuBox.innerHTML =
+    menus.map(
+      ([id,name]) =>
+
+      `
+      <button
+        class="menu-btn"
+        data-id="${esc(id)}"
+        onclick='openPage(${JSON.stringify(id)})'
+      >
+        ${esc(name)}
+      </button>
+      `
+
+    ).join("");
+
+
+  openPage(
+    "dashboard"
+  );
+
+}
+
+
+/* =====================================================
+   ACTIVE MENU
+===================================================== */
+
+function activeMenu(id){
+
+  document
+    .querySelectorAll(".menu-btn")
+    .forEach(function(button){
+
+      button.classList.toggle(
+
+        "active",
+
+        button.dataset.id === id
+
+      );
+
+    });
+
+}
+
+
+/* =====================================================
+   OPEN PAGE
+===================================================== */
+
+function openPage(id){
+
+  activeMenu(id);
+
+
+  if(id === "dashboard"){
+
+    overview();
+
+    return;
+
+  }
+
+
+  if(id === "leader"){
+
+    leader();
+
+    return;
+
+  }
+
+
+  if(id === "assistants"){
+
+    collection(
+      "assistants",
+      "ทีมผู้ช่วยผู้ใหญ่บ้าน"
+    );
+
+    return;
+
+  }
+
+
+  if(id === "news"){
+
+    collection(
+      "news",
+      "ข่าวประชาสัมพันธ์"
+    );
+
+    return;
+
+  }
+
+
+  if(id === "activity"){
+
+    collection(
+      "activity",
+      "กิจกรรมเด่น"
+    );
+
+    return;
+
+  }
+
+
+  if(id === "announcements"){
+
+    collection(
+      "announcements",
+      "ประกาศสำคัญ"
+    );
+
+    return;
+
+  }
+
+
+  if(id === "stats"){
+
+    stats();
+
+    return;
+
+  }
+
+
+  if(id === "backup"){
+
+    backup();
+
+    return;
+
+  }
+
+
+  sectionEditor(id);
+
+}
+
+
+/* =====================================================
+   OVERVIEW
+===================================================== */
+
+function overview(){
+
+  app.innerHTML = `
+
+  <div class="card">
+
+    <h1 class="text-2xl font-bold">
+
+      ภาพรวมระบบ
+
+    </h1>
+
+
+    <p class="text-gray-500 mt-1">
+
+      จัดการข้อมูลทั้งหมดของหน้าเว็บไซต์
+
+    </p>
+
+
+    <div
+      class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 mt-5"
+    >
+
+
+      <div class="item">
+
+        <div class="text-gray-500">
+
+          ข่าว
+
+        </div>
+
+        <div class="text-3xl font-bold">
+
+          ${D.news.length}
+
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <div class="text-gray-500">
+
+          ประกาศ
+
+        </div>
+
+        <div class="text-3xl font-bold">
+
+          ${D.announcements.length}
+
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <div class="text-gray-500">
+
+          กิจกรรม
+
+        </div>
+
+        <div class="text-3xl font-bold">
+
+          ${D.activity.length}
+
+        </div>
+
+      </div>
+
+
+      <div class="item">
+
+        <div class="text-gray-500">
+
+          เมนูข้อมูล
+
+        </div>
+
+        <div class="text-3xl font-bold">
+
+          ${menus.length}
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   LEADER
+===================================================== */
+
+function leader(){
+
+  const x = D.leader;
+
+
+  app.innerHTML = `
+
+  <div class="card max-w-3xl">
+
+    <h1 class="text-2xl font-bold">
+
+      ข้อมูลผู้ใหญ่บ้าน
+
+    </h1>
+
+
+    <label class="label">
+
+      ชื่อ
+
+      <input
+        id="leader_name"
+        class="field"
+        value="${esc(x.name)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      ตำแหน่ง
+
+      <input
+        id="leader_role"
+        class="field"
+        value="${esc(x.role)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      ที่อยู่
+
+      <input
+        id="leader_address"
+        class="field"
+        value="${esc(x.address)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      ข้อความ
+
+      <input
+        id="leader_quote"
+        class="field"
+        value="${esc(x.quote)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      โทรศัพท์
+
+      <input
+        id="leader_phone"
+        class="field"
+        value="${esc(x.phone)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      อัปโหลดรูปภาพ
+
+      <input
+        type="file"
+        accept="image/*"
+        id="leader_image"
+        class="field"
+      >
+
+    </label>
+
+
+    <div id="leader_preview">
+
+      ${
+        x.image
+        ?
+        `<img
+          src="${x.image}"
+          class="preview"
+        >`
+        :
+        ""
+      }
+
+    </div>
+
+
+    <button
+      class="btn primary mt-5"
+      id="save_leader"
+    >
+
+      บันทึก
+
+    </button>
+
+  </div>
+
+  `;
+
+
+  document
+    .getElementById("leader_image")
+    .addEventListener(
+      "change",
+      function(){
+
+        readFile(
+          this,
+          function(image){
+
+            D.leader.image = image;
+
+            document
+              .getElementById("leader_preview")
+              .innerHTML =
+              `
+              <img
+                src="${image}"
+                class="preview"
+              >
+              `;
+
+          }
+        );
+
+      }
+    );
+
+
+  document
+    .getElementById("save_leader")
+    .addEventListener(
+      "click",
+      function(){
+
+        D.leader.name =
+          document
+            .getElementById("leader_name")
+            .value;
+
+        D.leader.role =
+          document
+            .getElementById("leader_role")
+            .value;
+
+        D.leader.address =
+          document
+            .getElementById("leader_address")
+            .value;
+
+        D.leader.quote =
+          document
+            .getElementById("leader_quote")
+            .value;
+
+        D.leader.phone =
+          document
+            .getElementById("leader_phone")
+            .value;
+
+
+        save();
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   COLLECTION
+===================================================== */
+
+function collection(key,title){
+
+  app.innerHTML = `
+
+  <div class="card">
+
+    <div
+      class="flex justify-between gap-3 items-center"
+    >
+
+      <div>
+
+        <h1 class="text-2xl font-bold">
+
+          ${esc(title)}
+
+        </h1>
+
+        <p class="text-gray-500">
+
+          เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพ
+
+        </p>
+
+      </div>
+
+
+      <button
+        class="btn primary"
+        id="add_collection"
+      >
+
+        + เพิ่มรายการ
+
+      </button>
+
+    </div>
+
+
+    <div id="items"></div>
+
+  </div>
+
+  `;
+
+
+  document
+    .getElementById("add_collection")
+    .addEventListener(
+      "click",
+      function(){
+
+        if(key === "assistants"){
+
+          D[key].push({
+
+            name:"",
+            role:"",
+            detail:"",
+            phone:"",
+            image:""
+
+          });
+
+        }
+
+        else{
+
+          D[key].push({
+
+            title:"",
+            detail:"",
+            image:""
+
+          });
+
+        }
+
+
+        save(false);
+
+
+        collection(
+          key,
+          title
+        );
+
+      }
+    );
+
+
+  const itemsBox =
+    document.getElementById("items");
+
+
+  itemsBox.innerHTML =
+    D[key]
+      .map(function(x,i){
+
+        if(key === "assistants"){
+
+          return `
+
+          <div class="item">
+
+            <div class="flex justify-between">
+
+              <b>
+                ผู้ช่วยคนที่ ${i+1}
+              </b>
+
+
+              <button
+                class="btn danger"
+                onclick="deleteCollectionItem('${key}',${i},'${title}')"
+              >
+                ลบ
+              </button>
+
+            </div>
+
+
+            <label class="label">
+
+              ชื่อ
+
+              <input
+                id="name_${i}"
+                class="field"
+                value="${esc(x.name)}"
+              >
+
+            </label>
+
+
+            <label class="label">
+
+              ตำแหน่ง
+
+              <input
+                id="role_${i}"
+                class="field"
+                value="${esc(x.role)}"
+              >
+
+            </label>
+
+
+            <label class="label">
+
+              โทรศัพท์
+
+              <input
+                id="phone_${i}"
+                class="field"
+                value="${esc(x.phone)}"
+              >
+
+            </label>
+
+
+            <label class="label">
+
+              รายละเอียด
+
+              <textarea
+                id="detail_${i}"
+                class="field"
+                rows="4"
+              >${esc(x.detail)}</textarea>
+
+            </label>
+
+
+            <label class="label">
+
+              รูปภาพ
+
+              <input
+                type="file"
+                accept="image/*"
+                class="field"
+                onchange="uploadCollectionImage('${key}',${i},this,'${title}')"
+              >
+
+            </label>
+
+
+            ${
+              x.image
+              ?
+              `<img
+                src="${x.image}"
+                class="preview"
+              >`
+              :
+              ""
+            }
+
+
+            <button
+              class="btn primary mt-4"
+              onclick="saveAssistant(${i},'${title}')"
+            >
+
+              บันทึก
+
+            </button>
+
+          </div>
+
+          `;
+
+        }
+
+
+        return `
+
+        <div class="item">
+
+          <div class="flex justify-between">
+
+            <b>
+              รายการที่ ${i+1}
+            </b>
+
+
+            <button
+              class="btn danger"
+              onclick="deleteCollectionItem('${key}',${i},'${title}')"
+            >
+              ลบ
+            </button>
+
+          </div>
+
+
+          <label class="label">
+
+            หัวข้อ
+
+            <input
+              id="title_${i}"
+              class="field"
+              value="${esc(x.title)}"
+            >
+
+          </label>
+
+
+          <label class="label">
+
+            รายละเอียด
+
+            <textarea
+              id="detail_${i}"
+              class="field"
+              rows="4"
+            >${esc(x.detail)}</textarea>
+
+          </label>
+
+
+          <label class="label">
+
+            รูปภาพ
+
+            <input
+              type="file"
+              accept="image/*"
+              class="field"
+              onchange="uploadCollectionImage('${key}',${i},this,'${title}')"
+            >
+
+          </label>
+
+
+          ${
+            x.image
+            ?
+            `<img
+              src="${x.image}"
+              class="preview"
+            >`
+            :
+            ""
+          }
+
+
+          <button
+            class="btn primary mt-4"
+            onclick="saveCollectionItem('${key}',${i},'${title}')"
+          >
+
+            บันทึก
+
+          </button>
+
+        </div>
+
+        `;
+
+      })
+      .join("");
+
+}
+
+
+function saveAssistant(i,title){
+
+  D.assistants[i].name =
+    document
+      .getElementById(`name_${i}`)
+      .value;
+
+  D.assistants[i].role =
+    document
+      .getElementById(`role_${i}`)
+      .value;
+
+  D.assistants[i].phone =
+    document
+      .getElementById(`phone_${i}`)
+      .value;
+
+  D.assistants[i].detail =
+    document
+      .getElementById(`detail_${i}`)
+      .value;
+
+
+  save();
+
+}
+
+
+function saveCollectionItem(key,i,title){
+
+  D[key][i].title =
+    document
+      .getElementById(`title_${i}`)
+      .value;
+
+  D[key][i].detail =
+    document
+      .getElementById(`detail_${i}`)
+      .value;
+
+
+  save();
+
+}
+
+
+function deleteCollectionItem(key,i,title){
+
+  if(confirm("ต้องการลบรายการนี้หรือไม่?")){
+
+    D[key].splice(i,1);
+
+    save(false);
+
+    collection(key,title);
+
+  }
+
+}
+
+
+function uploadCollectionImage(key,i,input,title){
+
+  readFile(
+    input,
+    function(image){
+
+      D[key][i].image = image;
+
+      save(false);
+
+      collection(key,title);
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function stats(){
+
+  const x = D.stats;
+
+
+  app.innerHTML = `
+
+  <div class="card max-w-2xl">
+
+    <h1 class="text-2xl font-bold">
+
+      สถิติหมู่บ้าน
+
+    </h1>
+
+
+    <label class="label">
+
+      ครัวเรือนทั้งหมด
+
+      <input
+        id="households"
+        class="field"
+        value="${esc(x.households)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      ประชากรทั้งหมด
+
+      <input
+        id="population"
+        class="field"
+        value="${esc(x.population)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      พื้นที่หมู่บ้าน
+
+      <input
+        id="area"
+        class="field"
+        value="${esc(x.area)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      ข้อความอัปเดต
+
+      <input
+        id="updated"
+        class="field"
+        value="${esc(x.updated)}"
+      >
+
+    </label>
+
+
+    <button
+      class="btn primary mt-5"
+      id="save_stats"
+    >
+
+      บันทึก
+
+    </button>
+
+  </div>
+
+  `;
+
+
+  document
+    .getElementById("save_stats")
+    .addEventListener(
+      "click",
+      function(){
+
+        D.stats.households =
+          document
+            .getElementById("households")
+            .value;
+
+        D.stats.population =
+          document
+            .getElementById("population")
+            .value;
+
+        D.stats.area =
+          document
+            .getElementById("area")
+            .value;
+
+        D.stats.updated =
+          document
+            .getElementById("updated")
+            .value;
+
+
+        save();
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   SECTION EDITOR
+===================================================== */
+
+function sectionEditor(name){
+
+  let S =
+    D.sections[name];
+
+
+  if(!S){
+
+    S = {
+
+      title:name,
+
+      intro:"",
+
+      content:"",
+
+      image:"",
+
+      items:[]
+
+    };
+
+
+    D.sections[name] = S;
+
+  }
+
+
+  if(!S.items){
+
+    S.items = [];
+
+  }
+
+
+  app.innerHTML = `
+
+  <div class="card">
+
+    <div
+      class="flex flex-wrap justify-between gap-3"
+    >
+
+      <div>
+
+        <h1 class="text-2xl font-bold">
+
+          ${esc(name)}
+
+        </h1>
+
+
+        <p class="text-gray-500">
+
+          จัดการข้อมูลของเมนูนี้ได้ทั้งหมด
+
+        </p>
+
+      </div>
+
+
+      <button
+        class="btn primary"
+        id="add_section_item"
+      >
+
+        + เพิ่มรายการ
+
+      </button>
+
+    </div>
+
+
+    <label class="label">
+
+      ชื่อหน้า
+
+      <input
+        id="sec_title"
+        class="field"
+        value="${esc(S.title)}"
+      >
+
+    </label>
+
+
+    <label class="label">
+
+      คำเกริ่นนำ
+
+      <textarea
+        id="sec_intro"
+        class="field"
+        rows="3"
+      >${esc(S.intro)}</textarea>
+
+    </label>
+
+
+    <label class="label">
+
+      รายละเอียดหลัก
+
+      <textarea
+        id="sec_content"
+        class="field"
+        rows="8"
+      >${esc(S.content)}</textarea>
+
+    </label>
+
+
+    <label class="label">
+
+      รูปภาพหน้าหลัก
+
+      <input
+        type="file"
+        accept="image/*"
+        id="sec_image"
+        class="field"
+      >
+
+    </label>
+
+
+    <div id="main_image_preview">
+
+      ${
+        S.image
+        ?
+        `<img
+          src="${S.image}"
+          class="preview"
+        >`
+        :
+        ""
+      }
+
+    </div>
+
+
+    <button
+      class="btn primary mt-4"
+      id="save_section"
+    >
+
+      บันทึกข้อมูลหลัก
+
+    </button>
+
+
+    <div
+      id="subitems"
+      class="mt-5"
+    ></div>
+
+  </div>
+
+  `;
+
+
+  /* ADD ITEM */
+
+  document
+    .getElementById("add_section_item")
+    .addEventListener(
+      "click",
+      function(){
+
+        D.sections[name].items.push({
+
+          title:"",
+
+          detail:"",
+
+          image:""
+
+        });
+
+
+        save(false);
+
+
+        sectionEditor(name);
+
+      }
+    );
+
+
+  /* IMAGE */
+
+  document
+    .getElementById("sec_image")
+    .addEventListener(
+      "change",
+      function(){
+
+        readFile(
+          this,
+          function(image){
+
+            D.sections[name].image =
+              image;
+
+
+            document
+              .getElementById(
+                "main_image_preview"
+              )
+              .innerHTML =
+              `
+              <img
+                src="${image}"
+                class="preview"
+              >
+              `;
+
+          }
+        );
+
+      }
+    );
+
+
+  /* SAVE MAIN */
+
+  document
+    .getElementById("save_section")
+    .addEventListener(
+      "click",
+      function(){
+
+        const title =
+          document
+            .getElementById("sec_title")
+            .value;
+
+        const intro =
+          document
+            .getElementById("sec_intro")
+            .value;
+
+        const content =
+          document
+            .getElementById("sec_content")
+            .value;
+
+
+        D.sections[name].title =
+          title;
+
+        D.sections[name].intro =
+          intro;
+
+        D.sections[name].content =
+          content;
+
+
+        save();
+
+      }
+    );
+
+
+  /* SUB ITEMS */
+
+  renderSectionItems(name);
+
+}
+
+
+/* =====================================================
+   RENDER SECTION ITEMS
+===================================================== */
+
+function renderSectionItems(name){
+
+  const S =
+    D.sections[name];
+
+
+  const box =
+    document.getElementById(
+      "subitems"
+    );
+
+
+  box.innerHTML =
+    S.items
+      .map(
+        function(x,i){
+
+          return `
+
+          <div class="item">
+
+            <div class="flex justify-between">
+
+              <b>
+
+                รายการ ${i+1}
+
+              </b>
+
+
+              <button
+                class="btn danger"
+                onclick='deleteSectionItem(${JSON.stringify(name)},${i})'
+              >
+
+                ลบ
+
+              </button>
+
+            </div>
+
+
+            <label class="label">
+
+              หัวข้อ
+
+              <input
+                id="section_title_${i}"
+                class="field"
+                value="${esc(x.title)}"
+              >
+
+            </label>
+
+
+            <label class="label">
+
+              รายละเอียด
+
+              <textarea
+                id="section_detail_${i}"
+                class="field"
+                rows="4"
+              >${esc(x.detail)}</textarea>
+
+            </label>
+
+
+            <label class="label">
+
+              รูปภาพ
+
+              <input
+                type="file"
+                accept="image/*"
+                class="field"
+                onchange='uploadSectionItemImage(${JSON.stringify(name)},${i},this)'
+              >
+
+            </label>
+
+
+            ${
+              x.image
+              ?
+              `<img
+                src="${x.image}"
+                class="preview"
+              >`
+              :
+              ""
+            }
+
+
+            <button
+              class="btn primary mt-4"
+              onclick='saveSectionItem(${JSON.stringify(name)},${i})'
+            >
+
+              บันทึก
+
+            </button>
+
+          </div>
+
+          `;
+
+        }
+      )
+      .join("");
+
+}
+
+
+/* =====================================================
+   SAVE SECTION ITEM
+===================================================== */
+
+function saveSectionItem(name,i){
+
+  D.sections[name].items[i].title =
+    document
+      .getElementById(
+        `section_title_${i}`
+      )
+      .value;
+
+
+  D.sections[name].items[i].detail =
+    document
+      .getElementById(
+        `section_detail_${i}`
+      )
+      .value;
+
+
+  save();
+
+}
+
+
+/* =====================================================
+   DELETE SECTION ITEM
+===================================================== */
+
+function deleteSectionItem(name,i){
+
+  if(confirm("ต้องการลบรายการนี้หรือไม่?")){
+
+    D.sections[name].items.splice(i,1);
+
+    save(false);
+
+    sectionEditor(name);
+
+  }
+
+}
+
+
+/* =====================================================
+   UPLOAD SECTION IMAGE
+===================================================== */
+
+function uploadSectionItemImage(name,i,input){
+
+  readFile(
+    input,
+    function(image){
+
+      D.sections[name].items[i].image =
+        image;
+
+
+      save(false);
+
+
+      sectionEditor(name);
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   BACKUP
+===================================================== */
+
+function backup(){
+
+  app.innerHTML = `
+
+  <div class="card max-w-3xl">
+
+    <h1 class="text-2xl font-bold">
+
+      สำรอง / กู้คืนข้อมูล
+
+    </h1>
+
+
+    <p class="text-gray-500 mt-2">
+
+      ดาวน์โหลดข้อมูลทั้งหมด
+      หรือกู้คืนข้อมูลจากไฟล์ JSON
+
+    </p>
+
+
+    <button
+      class="btn primary mt-5"
+      id="download_backup"
+    >
+
+      ดาวน์โหลดสำรองข้อมูล
+
+    </button>
+
+
+    <label class="label">
+
+      กู้คืนข้อมูลจากไฟล์ JSON
+
+      <input
+        type="file"
+        accept=".json,application/json"
+        class="field"
+        id="restore_file"
+      >
+
+    </label>
+
+
+    <button
+      class="btn danger mt-5"
+      id="reset_data"
+    >
+
+      รีเซ็ตข้อมูลทั้งหมด
+
+    </button>
+
+  </div>
+
+  `;
+
+
+  document
+    .getElementById("download_backup")
+    .addEventListener(
+      "click",
+      downloadBackup
+    );
+
+
+  document
+    .getElementById("restore_file")
+    .addEventListener(
+      "change",
+      restoreData
+    );
+
+
+  document
+    .getElementById("reset_data")
+    .addEventListener(
+      "click",
+      function(){
+
+        if(
+          confirm(
+            "ต้องการล้างข้อมูลทั้งหมดหรือไม่?"
+          )
+        ){
+
+          localStorage.removeItem(KEY);
+
+          location.reload();
+
+        }
+
+      }
+    );
+
+}
+
+
+/* =====================================================
+   DOWNLOAD BACKUP
+===================================================== */
+
+function downloadBackup(){
+
+  const blob =
+    new Blob(
+
+      [
+
+        JSON.stringify(
+          D,
+          null,
+          2
+        )
+
+      ],
+
+      {
+
+        type:"application/json"
+
+      }
+
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+
+
+  link.download =
+    "rongkhem-e-village-backup.json";
+
+
+  link.click();
+
+
+  URL.revokeObjectURL(url);
+
+}
+
+
+/* =====================================================
+   RESTORE DATA
+===================================================== */
+
+function restoreData(event){
+
+  const file =
+    event.target.files[0];
+
+
+  if(!file){
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(){
+
+      try{
+
+        D =
+          JSON.parse(
+            reader.result
+          );
+
+
+        save(false);
+
+
+        alert(
+          "กู้คืนข้อมูลเรียบร้อย"
+        );
+
+
+        location.reload();
+
+      }
+
+      catch(error){
+
+        alert(
+          "ไฟล์ข้อมูลไม่ถูกต้อง"
+        );
+
+      }
+
+    };
+
+
+  reader.readAsText(file);
+
+}
+
+
+/* =====================================================
+   CHECK LOGIN
+===================================================== */
+
+if(
+  sessionStorage.getItem(LOGIN_KEY)
+  ===
+  "1"
+){
+
+  start();
+
+}
+
+</script>
+
+</body>
+</html>
