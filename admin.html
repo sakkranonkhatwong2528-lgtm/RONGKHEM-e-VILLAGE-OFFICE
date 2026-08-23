@@ -38,62 +38,102 @@ label{display:block;font-weight:500;margin:13px 0 5px}input,textarea,select{widt
 <div id="toast" class="toast hidden"></div>
 
 <script>
-const KEY='RONGKHEM_EVILLAGE_ADMIN_DATA_V1', LOGIN='RONGKHEM_EVILLAGE_ADMIN_LOGIN';
-const defaultData={
- settings:{siteName:'RONGKHEM e-VILLAGE',username:'sakkranon',password:'23122528'},
- leader:{name:'นายศักรนนทน์ ขัติย์วงศ์',role:'ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6',phone:'',address:'ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา',quote:'พร้อมดูแลชุมชน ด้วยระบบดิจิทัล',image:''},
- assistants:[],committee:[],advisors:[],sao:[],healthVolunteers:[],
- news:[],activities:[],announcements:[],
- tourism:[],temples:[],maps:[],subnamjam:[],shops:[],
- pm25:{title:'ค่าฝุ่น PM2.5',detail:'ติดตามสถานการณ์คุณภาพอากาศของชุมชน',value:'',level:'',updated:''},
- weather:{title:'พยากรณ์อากาศ',detail:'ข้อมูลสภาพอากาศ',temperature:'',description:'',updated:''},
- calendar:[],ai:{title:'RONGKHEM AI',welcome:'สวัสดีครับ ผมคือ RONGKHEM AI ผู้ช่วยข้อมูลหมู่บ้าน'},
- stats:{households:'350',population:'1,247',area:'2.15',updated:''}
-};
-let D=load(), current='dashboard';
-const menus=[
- ['dashboard','📊 ภาพรวมระบบ'],
- ['people','👥 บุคลากรและคณะทำงาน'],
- ['leader','👨‍💼 ผู้ใหญ่บ้าน'],
- ['assistants','🤝 ผู้ช่วยผู้ใหญ่บ้าน'],
- ['committee','🏛️ คณะกรรมการหมู่บ้าน'],
- ['advisors','🎓 คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ'],
- ['sao','🗳️ ส.อบต.'],
- ['healthVolunteers','❤️ อสม.'],
- ['content','📰 ข่าวและกิจกรรม'],
- ['news','📢 ข่าวประชาสัมพันธ์'],
- ['activities','📅 กิจกรรมเด่น'],
- ['announcements','📣 ประกาศสำคัญ'],
- ['places','📍 สถานที่และแผนที่'],
- ['tourism','🌿 แหล่งท่องเที่ยว'],
- ['temples','🛕 วัดและสถานที่สำคัญ'],
- ['maps','🗺️ แผนที่หมู่บ้าน'],
- ['subnamjam','💧 แหล่งซับน้ำจำ'],
- ['shops','🏪 ร้านค้าในชุมชน'],
- ['environment','🌦️ สิ่งแวดล้อมและปฏิทิน'],
- ['pm25','🌫️ PM2.5'],
- ['weather','☁️ พยากรณ์อากาศ'],
- ['calendar','🗓️ วันพระ / วันสำคัญ'],
- ['ai','🤖 ผู้ช่วย AI'],
- ['stats','📈 สถิติหมู่บ้าน'],
- ['backup','💾 สำรอง / กู้คืน'],
- ['settings','⚙️ ตั้งค่าระบบ']
-];
-function load(){try{return merge(JSON.parse(localStorage.getItem(KEY)||'{}'),structuredClone(defaultData))}catch(e){return structuredClone(defaultData)}}
-function merge(a,b){for(const k in b){if(a[k]===undefined)a[k]=b[k];else if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a[k]&&typeof a[k]==='object')merge(a[k],b[k])}return a}
+const KEY='RONGKHEM_EVILLAGE_DATA';
+const DB_NAME='RONGKHEM_EVILLAGE_MEDIA';
+const STORE='images';
+
+function openMediaDB(){
+  return new Promise((resolve,reject)=>{
+    const req=indexedDB.open(DB_NAME,1);
+    req.onupgradeneeded=()=>req.result.createObjectStore(STORE,{keyPath:'id'});
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error);
+  });
+}
+async function saveImageFile(file){
+  const id='img_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+  const db=await openMediaDB();
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE,'readwrite');
+    tx.objectStore(STORE).put({id,file,name:file.name,type:file.type,updated:Date.now()});
+    tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error);
+  });
+  return id;
+}
+async function getImageURL(id){
+  if(!id || typeof id!=='string' || !id.startsWith('img_')) return id||'';
+  try{
+    const db=await openMediaDB();
+    const row=await new Promise((resolve,reject)=>{
+      const r=db.transaction(STORE,'readonly').objectStore(STORE).get(id);
+      r.onsuccess=()=>resolve(r.result); r.onerror=()=>reject(r.error);
+    });
+    return row?.file ? URL.createObjectURL(row.file) : '';
+  }catch(e){ console.error(e); return ''; }
+}
+async function deleteImage(id){
+  if(!id || !String(id).startsWith('img_')) return;
+  const db=await openMediaDB();
+  await new Promise((resolve,reject)=>{
+    const tx=db.transaction(STORE,'readwrite');
+    tx.objectStore(STORE).delete(id);
+    tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error);
+  });
+}
+async function readFile(el,cb){
+  const f=el.files?.[0];
+  if(!f) return;
+  try{
+    const id=await saveImageFile(f);
+    cb(id);
+  }catch(e){
+    console.error(e);
+    alert('อัปโหลดรูปไม่สำเร็จ กรุณาลองใหม่');
+  }
+}
+async function hydrateImages(obj){
+  if(!obj) return;
+  if(Array.isArray(obj)){
+    for(const x of obj) await hydrateImages(x);
+    return;
+  }
+  if(typeof obj==='object'){
+    for(const k of Object.keys(obj)){
+      const v=obj[k];
+      if(k==='image' && typeof v==='string' && v.startsWith('img_')){
+        obj[k+'_id']=v;
+        obj[k]=await getImageURL(v);
+      }else await hydrateImages(v);
+    }
+  }
+}
+function dehydrateImages(obj){
+  if(Array.isArray(obj)) return obj.map(dehydrateImages);
+  if(obj && typeof obj==='object'){
+    const out={};
+    for(const k of Object.keys(obj)){
+      if(k.endsWith('_id')) continue;
+      if(k==='image' && obj.image_id) out.image=obj.image_id;
+      else out[k]=dehydrateImages(obj[k]);
+    }
+    return out;
+  }
+  return obj;
+}
+function load(){
+  try{return merge(JSON.parse(localStorage.getItem(KEY)||'{}'),structuredClone(defaultData))}
+  catch(e){return structuredClone(defaultData)}
+}
 function save(msg=true){
   try{
-    localStorage.setItem(KEY,JSON.stringify(D));
+    localStorage.setItem(KEY,JSON.stringify(dehydrateImages(D)));
     localStorage.setItem('RONGKHEM_LAST_PUBLISHED',String(Date.now()));
     if(msg) toast('✓ บันทึกข้อมูลเรียบร้อยแล้ว');
   }catch(e){
     console.error(e);
-    alert('บันทึกไม่สำเร็จ: พื้นที่จัดเก็บข้อมูลเต็มหรือเบราว์เซอร์บล็อกการจัดเก็บ');
+    alert('บันทึกข้อมูลข้อความไม่สำเร็จ กรุณาตรวจสอบพื้นที่เบราว์เซอร์');
   }
 }
-function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
-function toast(t){const x=document.querySelector('#toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.add('hidden'),2200)}
-function readFile(el,cb){const f=el.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f)}
 function start(){
   const shell=document.getElementById('appShell');
   const logout=document.getElementById('logoutBtn');
@@ -117,7 +157,7 @@ function openPage(id){current=id;document.querySelectorAll('.menu').forEach(b=>b
 function card(title,body){main.innerHTML=`<section class="card"><div class="toolbar"><div><h2 style="margin:0">${title}</h2><div class="note">แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้</div></div></div>${body}</section>`}
 function groupPage(id){const map={people:['👥 บุคลากรและคณะทำงาน','เลือกเมนูด้านซ้ายเพื่อจัดการผู้ใหญ่บ้าน ผู้ช่วย คณะกรรมการ คณะที่ปรึกษา ส.อบต. และ อสม.'],content:['📰 ข่าวและกิจกรรม','จัดการข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศสำคัญ'],places:['📍 สถานที่และแผนที่','จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า'],environment:['🌦️ สิ่งแวดล้อมและปฏิทิน','จัดการ PM2.5 พยากรณ์อากาศ วันพระและวันสำคัญ']}[id];card(map[0],`<p>${map[1]}</p>`)}
 function dashboard(){card('📊 ภาพรวมระบบ',`<div class="grid">${[['👥 ผู้ช่วย',D.assistants.length],['🏛️ คณะกรรมการ',D.committee.length],['❤️ อสม.',D.healthVolunteers.length],['📢 ข่าว',D.news.length],['📅 กิจกรรม',D.activities.length],['🌿 ท่องเที่ยว',D.tourism.length],['🛕 วัด',D.temples.length],['🗓️ ปฏิทิน',D.calendar.length]].map(x=>`<div class="stat">${x[0]}<b>${x[1]}</b></div>`).join('')}</div><div class="actions"><button class="btn primary" onclick="save()">บันทึกข้อมูลทั้งหมด</button><a class="btn light" href="index.html">เปิดหน้าเว็บไซต์</a></div>`)}
-function leaderPage(){const x=D.leader;card('👨‍💼 ข้อมูลผู้ใหญ่บ้าน',`<div class="row"><div><label>ชื่อ-นามสกุล<input id="f_name" value="${esc(x.name)}"></label><label>ตำแหน่ง<input id="f_role" value="${esc(x.role)}"></label><label>โทรศัพท์<input id="f_phone" value="${esc(x.phone)}"></label></div><div><label>ที่อยู่<input id="f_address" value="${esc(x.address)}"></label><label>คำกล่าว / คำขวัญ<textarea id="f_quote">${esc(x.quote)}</textarea></label><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D.leader.image=v;save(false);leaderPage()})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><div class="actions"><button class="btn primary" onclick="saveLeader()">บันทึก</button>${x.image?`<button class="btn danger" onclick="D.leader.image='';save(false);leaderPage()">ลบรูป</button>`:''}</div>`)}
+function leaderPage(){const x=D.leader;card('👨‍💼 ข้อมูลผู้ใหญ่บ้าน',`<div class="row"><div><label>ชื่อ-นามสกุล<input id="f_name" value="${esc(x.name)}"></label><label>ตำแหน่ง<input id="f_role" value="${esc(x.role)}"></label><label>โทรศัพท์<input id="f_phone" value="${esc(x.phone)}"></label></div><div><label>ที่อยู่<input id="f_address" value="${esc(x.address)}"></label><label>คำกล่าว / คำขวัญ<textarea id="f_quote">${esc(x.quote)}</textarea></label><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D.leader.image_id=v;D.leader.image=await getImageURL(v);save(false);leaderPage()})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><div class="actions"><button class="btn primary" onclick="saveLeader()">บันทึก</button>${x.image?`<button class="btn danger" onclick="deleteImage(D.leader.image_id);D.leader.image_id='';D.leader.image='';save(false);leaderPage()">ลบรูป</button>`:''}</div>`)}
 const personMeta={assistants:'ผู้ช่วยผู้ใหญ่บ้าน',committee:'คณะกรรมการหมู่บ้าน',advisors:'คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ',sao:'สมาชิก ส.อบต.',healthVolunteers:'อสม.'};
 function saveLeader(){
   D.leader={
@@ -131,10 +171,10 @@ function saveLeader(){
   save();
 }
 function personList(key){const title=personMeta[key];card(`👥 ${title}`,`<div class="toolbar"><span class="note">เพิ่มรูป ชื่อ ตำแหน่ง หน้าที่ และเบอร์โทรได้</span><button class="btn primary" onclick="D['${key}'].push({name:'',role:'',detail:'',phone:'',image:'',order:D['${key}'].length+1});save(false);personList('${key}')">+ เพิ่มบุคลากร</button></div>${D[key].map((x,i)=>personEditor(key,title,x,i)).join('')||'<p class="note">ยังไม่มีข้อมูล กด “เพิ่มบุคลากร” เพื่อเริ่มต้น</p>'}`)}
-function personEditor(key,title,x,i){return `<div class="item"><div class="item-head"><b>${title} ลำดับ ${i+1}</b><div><button class="btn light" onclick="move('${key}',${i},-1)">↑</button><button class="btn light" onclick="move('${key}',${i},1)">↓</button><button class="btn danger" onclick="D['${key}'].splice(${i},1);save(false);personList('${key}')">ลบ</button></div></div><div class="row"><div><label>ชื่อ-นามสกุล<input id="n_${i}" value="${esc(x.name)}"></label><label>ตำแหน่ง<input id="r_${i}" value="${esc(x.role)}"></label><label>เบอร์โทรศัพท์<input id="p_${i}" value="${esc(x.phone)}"></label></div><div><label>หน้าที่ / รายละเอียด<textarea id="d_${i}">${esc(x.detail)}</textarea></label><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D['${key}'][${i}].image=v;save(false);personList('${key}')})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><div class="actions"><button class="btn primary" onclick="D['${key}'][${i}]={...D['${key}'][${i}],name:n_${i}.value,role:r_${i}.value,phone:p_${i}.value,detail:d_${i}.value};save()">บันทึก</button></div></div>`}
+function personEditor(key,title,x,i){return `<div class="item"><div class="item-head"><b>${title} ลำดับ ${i+1}</b><div><button class="btn light" onclick="move('${key}',${i},-1)">↑</button><button class="btn light" onclick="move('${key}',${i},1)">↓</button><button class="btn danger" onclick="D['${key}'].splice(${i},1);save(false);personList('${key}')">ลบ</button></div></div><div class="row"><div><label>ชื่อ-นามสกุล<input id="n_${i}" value="${esc(x.name)}"></label><label>ตำแหน่ง<input id="r_${i}" value="${esc(x.role)}"></label><label>เบอร์โทรศัพท์<input id="p_${i}" value="${esc(x.phone)}"></label></div><div><label>หน้าที่ / รายละเอียด<textarea id="d_${i}">${esc(x.detail)}</textarea></label><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D['${key}'][${i}].image_id=v;D['${key}'][${i}].image=await getImageURL(v);save(false);personList('${key}')})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><div class="actions"><button class="btn primary" onclick="D['${key}'][${i}]={...D['${key}'][${i}],name:n_${i}.value,role:r_${i}.value,phone:p_${i}.value,detail:d_${i}.value};save()">บันทึก</button></div></div>`}
 const contentMeta={news:['ข่าวประชาสัมพันธ์','title,detail,date,image'],activities:['กิจกรรมเด่น','title,detail,date,image'],announcements:['ประกาศสำคัญ','title,detail,date,image'],tourism:['แหล่งท่องเที่ยว','title,detail,location,phone,image'],temples:['วัดและสถานที่สำคัญ','title,detail,location,image'],maps:['แผนที่หมู่บ้าน','title,detail,mapUrl,image'],subnamjam:['แหล่งซับน้ำจำ','title,detail,location,image'],shops:['ร้านค้าในชุมชน','title,detail,location,phone,image'],calendar:['วันพระ / วันสำคัญ','title,detail,date,image']};
 function contentList(key){const [title]=contentMeta[key];card(`📝 ${title}`,`<div class="toolbar"><span class="note">จัดเรียงลำดับ เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพได้</span><button class="btn primary" onclick="D['${key}'].push({title:'',detail:'',date:'',location:'',phone:'',mapUrl:'',image:''});save(false);contentList('${key}')">+ เพิ่มรายการ</button></div>${D[key].map((x,i)=>contentEditor(key,title,x,i)).join('')||'<p class="note">ยังไม่มีข้อมูล</p>'}`)}
-function contentEditor(key,title,x,i){const extra=key==='maps'?`<label>ลิงก์แผนที่<input id="u_${i}" value="${esc(x.mapUrl)}"></label>`:(['tourism','temples','subnamjam','shops'].includes(key)?`<label>สถานที่ / ที่ตั้ง<input id="l_${i}" value="${esc(x.location)}"></label>`:'')+(key==='shops'||key==='tourism'?`<label>โทรศัพท์<input id="p_${i}" value="${esc(x.phone)}"></label>`:'')+(['news','activities','announcements','calendar'].includes(key)?`<label>วันที่<input id="dt_${i}" value="${esc(x.date)}"></label>`:'');return `<div class="item"><div class="item-head"><b>${title} ${i+1}</b><div><button class="btn light" onclick="move('${key}',${i},-1)">↑</button><button class="btn light" onclick="move('${key}',${i},1)">↓</button><button class="btn danger" onclick="D['${key}'].splice(${i},1);save(false);contentList('${key}')">ลบ</button></div></div><div class="row"><div><label>หัวข้อ<input id="t_${i}" value="${esc(x.title)}"></label>${extra}<label>รายละเอียด<textarea id="d_${i}">${esc(x.detail)}</textarea></label></div><div><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D['${key}'][${i}].image=v;save(false);contentList('${key}')})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><button class="btn primary" onclick="saveContent('${key}',${i})">บันทึก</button></div>`}
+function contentEditor(key,title,x,i){const extra=key==='maps'?`<label>ลิงก์แผนที่<input id="u_${i}" value="${esc(x.mapUrl)}"></label>`:(['tourism','temples','subnamjam','shops'].includes(key)?`<label>สถานที่ / ที่ตั้ง<input id="l_${i}" value="${esc(x.location)}"></label>`:'')+(key==='shops'||key==='tourism'?`<label>โทรศัพท์<input id="p_${i}" value="${esc(x.phone)}"></label>`:'')+(['news','activities','announcements','calendar'].includes(key)?`<label>วันที่<input id="dt_${i}" value="${esc(x.date)}"></label>`:'');return `<div class="item"><div class="item-head"><b>${title} ${i+1}</b><div><button class="btn light" onclick="move('${key}',${i},-1)">↑</button><button class="btn light" onclick="move('${key}',${i},1)">↓</button><button class="btn danger" onclick="D['${key}'].splice(${i},1);save(false);contentList('${key}')">ลบ</button></div></div><div class="row"><div><label>หัวข้อ<input id="t_${i}" value="${esc(x.title)}"></label>${extra}<label>รายละเอียด<textarea id="d_${i}">${esc(x.detail)}</textarea></label></div><div><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D['${key}'][${i}].image_id=v;D['${key}'][${i}].image=await getImageURL(v);save(false);contentList('${key}')})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><button class="btn primary" onclick="saveContent('${key}',${i})">บันทึก</button></div>`}
 function saveContent(key,i){const x=D[key][i];x.title=document.querySelector('#t_'+i).value;x.detail=document.querySelector('#d_'+i).value;const dt=document.querySelector('#dt_'+i),l=document.querySelector('#l_'+i),p=document.querySelector('#p_'+i),u=document.querySelector('#u_'+i);if(dt)x.date=dt.value;if(l)x.location=l.value;if(p)x.phone=p.value;if(u)x.mapUrl=u.value;save()}
 function move(key,i,d){const j=i+d;if(j<0||j>=D[key].length)return;[D[key][i],D[key][j]]=[D[key][j],D[key][i]];save(false);(['assistants','committee','advisors','sao','healthVolunteers'].includes(key)?personList:contentList)(key)}
 function singlePage(key){const title={pm25:'🌫️ PM2.5',weather:'☁️ พยากรณ์อากาศ',ai:'🤖 ผู้ช่วย AI'}[key],x=D[key];let body='';if(key==='ai')body=`<label>ชื่อผู้ช่วย AI<input id="a_title" value="${esc(x.title)}"></label><label>ข้อความต้อนรับ<textarea id="a_welcome">${esc(x.welcome)}</textarea></label><button class="btn primary" onclick="D.ai={title:document.getElementById('a_title').value,welcome:document.getElementById('a_welcome').value};save()">บันทึก</button>`;else body=`<div class="row"><div><label>หัวข้อ<input id="s_title" value="${esc(x.title)}"></label><label>รายละเอียด<textarea id="s_detail">${esc(x.detail)}</textarea></label><label>สถานะ / ระดับ<input id="s_level" value="${esc(x.level||'')}"></label></div><div><label>ค่า / อุณหภูมิ<input id="s_value" value="${esc(x.value||x.temperature||'')}"></label><label>อัปเดตล่าสุด<input id="s_updated" value="${esc(x.updated||'')}"></label><button class="btn primary" onclick="saveSingle('${key}')">บันทึก</button></div></div>`;card(title,body)}
@@ -164,12 +204,13 @@ function logout(){
 logoutBtn.onclick=logout;
 
 // ใช้การล็อกอินจาก login.html เพียงครั้งเดียว
-function bootAdmin(){
+async function bootAdmin(){
   if(localStorage.getItem('rongkhemAdminLoggedIn')!=='true'){
     location.replace('login.html');
     return;
   }
   sessionStorage.setItem(LOGIN,'1');
+  await hydrateImages(D);
   start();
 }
 bootAdmin();
