@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="th"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RONGKHEM e-VILLAGE ADMIN</title>
-<script src="https://cdn.tailwindcss.com">
-function logout(){
-  localStorage.removeItem('rongkhemAdminLoggedIn');
-  localStorage.removeItem('rongkhemAdminUsername');
-  sessionStorage.removeItem('RONGKHEM_EVILLAGE_ADMIN_LOGIN');
-  sessionStorage.removeItem('RONGKHEM_ADMIN_LOGIN');
-  location.href='login.html';
-}
-if(localStorage.getItem('rongkhemAdminLoggedIn')!=='true'){
-  location.href='login.html';
-}
-</script>
+<script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 body{font-family:"Noto Sans Thai",sans-serif;background:#eef2f7;color:#18212f}.card{background:#fff;border-radius:18px;padding:20px;box-shadow:0 3px 15px #001b3d10}.field{width:100%;border:1px solid #d6dbe4;border-radius:10px;padding:10px;margin-top:5px;background:#fff}.label{display:block;font-weight:600;margin-top:12px}.btn{border:0;border-radius:10px;padding:9px 14px;font-weight:600;cursor:pointer}.primary{background:#001b3d;color:#fff}.danger{background:#b42318;color:#fff}.light{background:#e9eef6}.menu-btn{width:100%;text-align:left;padding:10px 12px;border-radius:10px}.menu-btn:hover,.menu-btn.active{background:#001b3d;color:#fff}.item{border:1px solid #e0e5ed;border-radius:14px;padding:14px;margin-top:12px}
@@ -47,7 +36,13 @@ function save(msg=true){localStorage.setItem(KEY,JSON.stringify(D));if(msg)alert
 function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
 function readFile(input,cb){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=()=>cb(r.result);r.readAsDataURL(f)}
 function doLogin(){if(user.value==="admin"&&pass.value==="1234"){sessionStorage.setItem(LOGINKEY,"1");start()}else alert("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง")}
-function logout(){sessionStorage.removeItem(LOGINKEY);location.reload()}
+function logout(){
+  localStorage.removeItem("rongkhemAdminLoggedIn");
+  localStorage.removeItem("rongkhemAdminUsername");
+  sessionStorage.removeItem("RONGKHEM_EVILLAGE_ADMIN_LOGIN");
+  sessionStorage.removeItem("RONGKHEM_ADMIN_LOGIN");
+  window.location.href="login.html";
+}
 function start(){login.classList.add("hidden");dashboard.classList.remove("hidden");menu.innerHTML=menus.map(([id,n])=>`<button class="menu-btn" data-id="${esc(id)}" onclick='openPage(${JSON.stringify(id)})'>${esc(n)}</button>`).join("");openPage("dashboard")}
 function active(id){document.querySelectorAll(".menu-btn").forEach(x=>x.classList.toggle("active",x.dataset.id===id))}
 function openPage(id){active(id);if(id==="dashboard")return overview();if(id==="leader")return leader();if(id==="assistants")return collection("assistants","ทีมผู้ช่วยผู้ใหญ่บ้าน");if(id==="news")return collection("news","ข่าวประชาสัมพันธ์");if(id==="announcements")return collection("announcements","ประกาศสำคัญ");if(id==="activity")return collection("activity","กิจกรรมเด่น");if(id==="stats")return stats();if(id==="backup")return backup();sectionEditor(id)}
@@ -69,4 +64,9 @@ function backup(){app.innerHTML=`<div class="card max-w-3xl"><h1 class="text-2xl
 function downloadBackup(){let b=new Blob([JSON.stringify(D,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="rongkhem-e-village-backup.json";a.click();URL.revokeObjectURL(a.href)}
 function restore(input){const f=input.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{D=JSON.parse(r.result);save(false);alert("กู้คืนข้อมูลเรียบร้อย");location.reload()}catch(e){alert("ไฟล์ข้อมูลไม่ถูกต้อง")}};r.readAsText(f)}
 if(sessionStorage.getItem(LOGINKEY)==="1")start();
+
+// ระบบล็อกอินใช้ login.html เพียงครั้งเดียว
+if(localStorage.getItem("rongkhemAdminLoggedIn")!=="true"){
+  window.location.href="login.html";
+}
 </script></body></html>
