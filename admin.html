@@ -29,16 +29,7 @@ label{display:block;font-weight:500;margin:13px 0 5px}input,textarea,select{widt
   </div>
 </header>
 
-<section class="login" id="loginBox">
- <div class="login-card">
-  <h2>เข้าสู่ระบบผู้ดูแล</h2>
-  <p class="note">เข้าสู่ระบบเพื่อแก้ไขข้อมูลหน้าเว็บไซต์</p>
-  <label>ชื่อผู้ใช้<input id="user" value="sakkranon"></label>
-  <label>รหัสผ่าน<input id="pass" type="password" value=""></label>
-  <button class="btn primary" style="width:100%;margin-top:18px" id="loginBtn">เข้าสู่ระบบ</button>
-  <p class="small">เปลี่ยนบัญชีเริ่มต้นได้ในส่วนตั้งค่าระบบ</p>
- </div>
-</section>
+
 
 <section class="shell hidden" id="appShell">
  <aside class="sidebar"><div id="menuBox"></div></aside>
@@ -99,26 +90,11 @@ function save(msg=true){
     console.error(e);
     alert('บันทึกไม่สำเร็จ: พื้นที่จัดเก็บข้อมูลเต็มหรือเบราว์เซอร์บล็อกการจัดเก็บ');
   }
-}));if(msg)toast('✓ บันทึกข้อมูลเรียบร้อยแล้ว')}
+}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function toast(t){const x=document.querySelector('#toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.add('hidden'),2200)}
 function readFile(el,cb){const f=el.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f)}
-function login(){
-  const u=(document.getElementById('user').value||'').trim();
-  const p=document.getElementById('pass').value||'';
-  const validUser=(D.settings&&D.settings.username)||'sakkranon';
-  const validPass=(D.settings&&D.settings.password)||'23122528';
-  if(u===validUser && p===validPass){
-    localStorage.setItem('rongkhemAdminLoggedIn','true');
-    localStorage.setItem('rongkhemAdminUsername',u);
-    sessionStorage.setItem(LOGIN,'1');
-    start();
-    toast('✓ เข้าสู่ระบบสำเร็จ');
-  }else{
-    alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
-  }
-}
-function start(){loginBox.classList.add('hidden');appShell.classList.remove('hidden');logoutBtn.classList.remove('hidden');menuBox.innerHTML=menus.map(([id,n])=>`<button class="menu" data-id="${id}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
+function start(){appShell.classList.remove('hidden');logoutBtn.classList.remove('hidden');menuBox.innerHTML=menus.map(([id,n])=>`<button class="menu" data-id="${id}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
 function openPage(id){current=id;document.querySelectorAll('.menu').forEach(b=>b.classList.toggle('active',b.dataset.id===id));if(['people','content','places','environment'].includes(id)){return groupPage(id)};if(id==='dashboard')return dashboard();if(id==='leader')return leaderPage();if(['assistants','committee','advisors','sao','healthVolunteers'].includes(id))return personList(id);if(['news','activities','announcements','tourism','temples','maps','subnamjam','shops','calendar'].includes(id))return contentList(id);if(['pm25','weather','ai'].includes(id))return singlePage(id);if(id==='stats')return statsPage();if(id==='backup')return backupPage();if(id==='settings')return settingsPage()}
 function card(title,body){main.innerHTML=`<section class="card"><div class="toolbar"><div><h2 style="margin:0">${title}</h2><div class="note">แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้</div></div></div>${body}</section>`}
 function groupPage(id){const map={people:['👥 บุคลากรและคณะทำงาน','เลือกเมนูด้านซ้ายเพื่อจัดการผู้ใหญ่บ้าน ผู้ช่วย คณะกรรมการ คณะที่ปรึกษา ส.อบต. และ อสม.'],content:['📰 ข่าวและกิจกรรม','จัดการข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศสำคัญ'],places:['📍 สถานที่และแผนที่','จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า'],environment:['🌦️ สิ่งแวดล้อมและปฏิทิน','จัดการ PM2.5 พยากรณ์อากาศ วันพระและวันสำคัญ']}[id];card(map[0],`<p>${map[1]}</p>`)}
@@ -154,18 +130,27 @@ function saveSingle(key){
   else x.temperature=value;
   x.updated=document.getElementById('s_updated').value;
   save();
-}else{x.temperature=s_value.value;x.level=s_level.value}x.updated=s_updated.value;save()}
+}
 function statsPage(){const x=D.stats;card('📈 สถิติหมู่บ้าน',`<div class="row"><div><label>จำนวนครัวเรือน<input id="st1" value="${esc(x.households)}"></label><label>ประชากร<input id="st2" value="${esc(x.population)}"></label></div><div><label>พื้นที่<input id="st3" value="${esc(x.area)}"></label><label>อัปเดตล่าสุด<input id="st4" value="${esc(x.updated)}"></label></div></div><button class="btn primary" onclick="D.stats={households:document.getElementById('st1').value,population:document.getElementById('st2').value,area:document.getElementById('st3').value,updated:document.getElementById('st4').value};save()">บันทึก</button>`)}
 function backupPage(){card('💾 สำรอง / กู้คืนข้อมูล',`<p>สำรองข้อมูลทั้งหมดก่อนแก้ไขครั้งใหญ่ และสามารถกู้คืนได้ทุกเมนู</p><div class="actions"><button class="btn primary" onclick="exportData()">ดาวน์โหลด Backup JSON</button><label class="btn light">เลือกไฟล์กู้คืน<input type="file" accept=".json,application/json" style="display:none" onchange="importData(this)"></label><button class="btn danger" onclick="if(confirm('ต้องการล้างข้อมูลทั้งหมดหรือไม่?')){localStorage.removeItem(KEY);location.reload()}">รีเซ็ตข้อมูล</button></div>`)}
 function exportData(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));a.download='rongkhem-e-village-backup.json';a.click()}
 function importData(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{D=merge(JSON.parse(r.result),structuredClone(defaultData));save(false);toast('✓ กู้คืนข้อมูลแล้ว');openPage('dashboard')}catch(e){alert('ไฟล์ไม่ถูกต้อง')}};r.readAsText(f)}
 function settingsPage(){const x=D.settings;card('⚙️ ตั้งค่าระบบ',`<div class="row"><div><label>ชื่อเว็บไซต์<input id="set_site" value="${esc(x.siteName)}"></label><label>ชื่อผู้ใช้ผู้ดูแล<input id="set_user" value="${esc(x.username)}"></label></div><div><label>รหัสผ่านใหม่<input id="set_pass" type="password" value="${esc(x.password)}"></label><p class="small">หลังบันทึก ใช้ชื่อผู้ใช้และรหัสผ่านใหม่ในครั้งถัดไป</p></div></div><button class="btn primary" onclick="D.settings={siteName:document.getElementById('set_site').value,username:document.getElementById('set_user').value,password:document.getElementById('set_pass').value};save()">บันทึกการตั้งค่า</button>`)}
-loginBtn.onclick=login;pass.addEventListener('keydown',e=>{if(e.key==='Enter')login()});logoutBtn.onclick=logout;
-if(localStorage.getItem('rongkhemAdminLoggedIn')==='true' || sessionStorage.getItem(LOGIN)==='1'){
+function logout(){
+  sessionStorage.removeItem(LOGIN);
+  localStorage.removeItem('rongkhemAdminLoggedIn');
+  localStorage.removeItem('rongkhemAdminUsername');
+  location.href='login.html';
+}
+
+logoutBtn.onclick=logout;
+
+// ใช้การล็อกอินจาก login.html เพียงครั้งเดียว
+if(localStorage.getItem('rongkhemAdminLoggedIn')==='true'){
   sessionStorage.setItem(LOGIN,'1');
   start();
 }else{
-  location.href='login.html';
+  location.replace('login.html');
 }
 </script>
 </body></html>
