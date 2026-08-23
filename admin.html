@@ -89,7 +89,7 @@ const menus=[
 ];
 function load(){try{return merge(JSON.parse(localStorage.getItem(KEY)||'{}'),structuredClone(defaultData))}catch(e){return structuredClone(defaultData)}}
 function merge(a,b){for(const k in b){if(a[k]===undefined)a[k]=b[k];else if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a[k]&&typeof a[k]==='object')merge(a[k],b[k])}return a}
-function save(msg=true){localStorage.setItem(KEY,JSON.stringify(D));window.dispatchEvent(new StorageEvent('storage',{key:KEY,newValue:JSON.stringify(D)}));if(msg)toast('✓ บันทึกข้อมูลเรียบร้อยแล้ว')}
+function save(msg=true){localStorage.setItem(KEY,JSON.stringify(D)); localStorage.setItem('RONGKHEM_LAST_PUBLISHED',String(Date.now()));window.dispatchEvent(new StorageEvent('storage',{key:KEY,newValue:JSON.stringify(D)}));if(msg)toast('✓ บันทึกข้อมูลเรียบร้อยแล้ว')}
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function toast(t){const x=document.querySelector('#toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.add('hidden'),2200)}
 function readFile(el,cb){const f=el.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f)}
