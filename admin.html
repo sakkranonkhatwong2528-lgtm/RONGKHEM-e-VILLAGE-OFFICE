@@ -25,13 +25,13 @@ label{display:block;font-weight:500;margin:13px 0 5px}input,textarea,select{widt
   <div><h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1><p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p></div>
   <div class="top-actions">
     <a class="btn dark" href="index.html">ดูหน้าเว็บไซต์</a>
-    <button class="btn danger hidden" id="logoutBtn">ออกจากระบบ</button>
+    <button class="btn danger" id="logoutBtn">ออกจากระบบ</button>
   </div>
 </header>
 
 
 
-<section class="shell hidden" id="appShell">
+<section class="shell" id="appShell">
  <aside class="sidebar"><div id="menuBox"></div></aside>
  <main class="main" id="main"></main>
 </section>
@@ -94,7 +94,25 @@ function save(msg=true){
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function toast(t){const x=document.querySelector('#toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.add('hidden'),2200)}
 function readFile(el,cb){const f=el.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f)}
-function start(){appShell.classList.remove('hidden');logoutBtn.classList.remove('hidden');menuBox.innerHTML=menus.map(([id,n])=>`<button class="menu" data-id="${id}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
+function start(){
+  const shell=document.getElementById('appShell');
+  const logout=document.getElementById('logoutBtn');
+  const box=document.getElementById('menuBox');
+  if(!shell||!logout||!box) return;
+  shell.classList.remove('hidden');
+  logout.classList.remove('hidden');
+  box.innerHTML='';
+  menus.forEach(([id,name])=>{
+    const button=document.createElement('button');
+    button.type='button';
+    button.className='menu';
+    button.dataset.id=id;
+    button.textContent=name;
+    button.addEventListener('click',()=>openPage(id));
+    box.appendChild(button);
+  });
+  openPage(current||'dashboard');
+}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
 function openPage(id){current=id;document.querySelectorAll('.menu').forEach(b=>b.classList.toggle('active',b.dataset.id===id));if(['people','content','places','environment'].includes(id)){return groupPage(id)};if(id==='dashboard')return dashboard();if(id==='leader')return leaderPage();if(['assistants','committee','advisors','sao','healthVolunteers'].includes(id))return personList(id);if(['news','activities','announcements','tourism','temples','maps','subnamjam','shops','calendar'].includes(id))return contentList(id);if(['pm25','weather','ai'].includes(id))return singlePage(id);if(id==='stats')return statsPage();if(id==='backup')return backupPage();if(id==='settings')return settingsPage()}
 function card(title,body){main.innerHTML=`<section class="card"><div class="toolbar"><div><h2 style="margin:0">${title}</h2><div class="note">แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้</div></div></div>${body}</section>`}
 function groupPage(id){const map={people:['👥 บุคลากรและคณะทำงาน','เลือกเมนูด้านซ้ายเพื่อจัดการผู้ใหญ่บ้าน ผู้ช่วย คณะกรรมการ คณะที่ปรึกษา ส.อบต. และ อสม.'],content:['📰 ข่าวและกิจกรรม','จัดการข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศสำคัญ'],places:['📍 สถานที่และแผนที่','จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า'],environment:['🌦️ สิ่งแวดล้อมและปฏิทิน','จัดการ PM2.5 พยากรณ์อากาศ วันพระและวันสำคัญ']}[id];card(map[0],`<p>${map[1]}</p>`)}
@@ -146,11 +164,14 @@ function logout(){
 logoutBtn.onclick=logout;
 
 // ใช้การล็อกอินจาก login.html เพียงครั้งเดียว
-if(localStorage.getItem('rongkhemAdminLoggedIn')==='true'){
+function bootAdmin(){
+  if(localStorage.getItem('rongkhemAdminLoggedIn')!=='true'){
+    location.replace('login.html');
+    return;
+  }
   sessionStorage.setItem(LOGIN,'1');
   start();
-}else{
-  location.replace('login.html');
 }
+bootAdmin();
 </script>
 </body></html>
