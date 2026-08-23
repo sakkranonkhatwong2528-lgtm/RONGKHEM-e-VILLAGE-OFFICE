@@ -3,216 +3,2403 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>RONGKHEM e-VILLAGE | ระบบหลังบ้าน</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+
 <style>
-:root{--navy:#082342;--blue:#164d84;--gold:#e8ad2e;--bg:#eef3f8;--line:#dce4ed}
-*{box-sizing:border-box}body{margin:0;font-family:Kanit,sans-serif;background:var(--bg);color:#182432}
-header{position:sticky;top:0;z-index:10;background:linear-gradient(90deg,#061a32,#123f70);color:#fff;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:15px}
-header h1{margin:0;font-size:21px}header p{margin:2px 0 0;font-size:13px;opacity:.75}
-.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:10px;padding:10px 14px;font:inherit;cursor:pointer}.primary{background:var(--gold);color:#16233a}.dark{background:#fff;color:var(--navy)}.danger{background:#c62828;color:#fff}.light{background:#e8eef5;color:#15263b}.success{background:#087a4b;color:#fff}
-.login{min-height:calc(100vh - 80px);display:grid;place-items:center;padding:20px}.login-card,.card{background:#fff;border-radius:18px;box-shadow:0 5px 24px #17345a14;padding:20px}.login-card{width:min(420px,100%)}.login-card h2{margin-top:0}
-label{display:block;font-weight:500;margin:13px 0 5px}input,textarea,select{width:100%;font:inherit;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff}textarea{min-height:100px}
-.shell{display:grid;grid-template-columns:280px 1fr;max-width:1500px;margin:auto;gap:18px;padding:18px}.sidebar{background:#fff;border-radius:18px;padding:12px;height:fit-content;position:sticky;top:92px}.menu-title{font-size:12px;color:#718093;padding:10px 12px 4px}.menu{width:100%;text-align:left;border:0;background:transparent;border-radius:10px;padding:10px 12px;font:inherit;cursor:pointer}.menu:hover,.menu.active{background:var(--navy);color:#fff}
-.main{min-width:0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat{background:#fff;border-radius:16px;padding:18px}.stat b{display:block;font-size:28px;color:var(--navy)}.toolbar{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.item{border:1px solid var(--line);border-radius:15px;padding:16px;margin-top:14px;background:#fff}.item-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.preview{width:150px;height:105px;object-fit:cover;border-radius:12px;border:1px solid var(--line);margin-top:8px}.note{color:#718093;font-size:13px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.hidden{display:none!important}
-#loginBox{display:none!important}.toast{position:fixed;right:18px;bottom:18px;background:#102b4b;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 8px 25px #0003;z-index:50}
-.small{font-size:12px;color:#68788b}.danger-link{color:#c62828}
-@media(max-width:900px){.shell{grid-template-columns:1fr}.sidebar{position:static}.grid{grid-template-columns:repeat(2,1fr)}.row,.row3{grid-template-columns:1fr}}@media(max-width:560px){header{padding:12px}.grid{grid-template-columns:1fr}}
+:root{
+  --navy:#082342;
+  --blue:#164d84;
+  --gold:#e8ad2e;
+  --bg:#eef3f8;
+  --line:#dce4ed
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:Kanit,sans-serif;
+  background:var(--bg);
+  color:#182432
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:linear-gradient(90deg,#061a32,#123f70);
+  color:#fff;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px
+}
+
+header h1{
+  margin:0;
+  font-size:21px
+}
+
+header p{
+  margin:2px 0 0;
+  font-size:13px;
+  opacity:.75
+}
+
+.top-actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+.btn{
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  font:inherit;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block
+}
+
+.primary{
+  background:var(--gold);
+  color:#16233a
+}
+
+.dark{
+  background:#fff;
+  color:var(--navy)
+}
+
+.danger{
+  background:#c62828;
+  color:#fff
+}
+
+.light{
+  background:#e8eef5;
+  color:#15263b
+}
+
+.success{
+  background:#087a4b;
+  color:#fff
+}
+
+.shell{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  max-width:1500px;
+  margin:auto;
+  gap:18px;
+  padding:18px
+}
+
+.sidebar{
+  background:#fff;
+  border-radius:18px;
+  padding:12px;
+  height:fit-content;
+  position:sticky;
+  top:92px
+}
+
+.menu{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  border-radius:10px;
+  padding:10px 12px;
+  font:inherit;
+  cursor:pointer
+}
+
+.menu:hover,
+.menu.active{
+  background:var(--navy);
+  color:#fff
+}
+
+.main{
+  min-width:0
+}
+
+.card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 5px 24px #17345a14;
+  padding:20px
+}
+
+label{
+  display:block;
+  font-weight:500;
+  margin:13px 0 5px
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  font:inherit;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  background:#fff
+}
+
+textarea{
+  min-height:100px
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
+}
+
+.stat{
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  border:1px solid var(--line)
+}
+
+.stat b{
+  display:block;
+  font-size:28px;
+  color:var(--navy)
+}
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:14px
+}
+
+.item{
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:16px;
+  margin-top:14px;
+  background:#fff
+}
+
+.item-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px
+}
+
+.row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+
+.preview{
+  width:150px;
+  height:105px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid var(--line);
+  margin-top:8px
+}
+
+.note{
+  color:#718093;
+  font-size:13px
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px
+}
+
+.hidden{
+  display:none!important
+}
+
+.toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#102b4b;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:12px;
+  box-shadow:0 8px 25px #0003;
+  z-index:50
+}
+
+.small{
+  font-size:12px;
+  color:#68788b
+}
+
+.loading{
+  opacity:.6;
+  pointer-events:none
+}
+
+@media(max-width:900px){
+  .shell{
+    grid-template-columns:1fr
+  }
+
+  .sidebar{
+    position:static
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr)
+  }
+
+  .row{
+    grid-template-columns:1fr
+  }
+}
+
+@media(max-width:560px){
+  header{
+    padding:12px
+  }
+
+  .grid{
+    grid-template-columns:1fr
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <div><h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1><p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p></div>
-  <div class="top-actions">
-    <a class="btn dark" href="index.html">ดูหน้าเว็บไซต์</a>
-    <button class="btn danger" id="logoutBtn">ออกจากระบบ</button>
-  </div>
+
+<div>
+<h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1>
+<p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p>
+</div>
+
+<div class="top-actions">
+
+<a class="btn dark" href="index.html">
+ดูหน้าเว็บไซต์
+</a>
+
+<button class="btn danger" id="logoutBtn">
+ออกจากระบบ
+</button>
+
+</div>
+
 </header>
 
-
-
 <section class="shell" id="appShell">
- <aside class="sidebar"><div id="menuBox"></div></aside>
- <main class="main" id="main"></main>
+
+<aside class="sidebar">
+<div id="menuBox"></div>
+</aside>
+
+<main class="main" id="main"></main>
+
 </section>
+
 <div id="toast" class="toast hidden"></div>
 
 <script>
-const KEY='RONGKHEM_EVILLAGE_DATA';
-const DB_NAME='RONGKHEM_EVILLAGE_MEDIA';
-const STORE='images';
 
-function openMediaDB(){
-  return new Promise((resolve,reject)=>{
-    const req=indexedDB.open(DB_NAME,1);
-    req.onupgradeneeded=()=>req.result.createObjectStore(STORE,{keyPath:'id'});
-    req.onsuccess=()=>resolve(req.result);
-    req.onerror=()=>reject(req.error);
-  });
+/* =====================================================
+   CONFIG
+===================================================== */
+
+const LOGIN="RONGKHEM_EVILLAGE_ADMIN_LOGIN";
+const DATA_KEY="rongkhem_e_village_data";
+
+/* =====================================================
+   DEFAULT DATA
+===================================================== */
+
+const defaultData={
+
+settings:{
+siteName:"RONGKHEM e-VILLAGE",
+username:"sakkranon",
+password:"23122528"
+},
+
+leader:{
+name:"นายศักรนนท์ ขัติย์วงศ์",
+role:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",
+phone:"",
+address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",
+quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",
+image:""
+},
+
+assistants:[],
+committee:[],
+advisors:[],
+sao:[],
+healthVolunteers:[],
+
+news:[],
+activities:[],
+announcements:[],
+
+tourism:[],
+temples:[],
+maps:[],
+subnamjam:[],
+shops:[],
+
+pm25:{
+title:"ค่าฝุ่น PM2.5",
+detail:"ติดตามสถานการณ์คุณภาพอากาศของชุมชน",
+value:"",
+level:"",
+updated:""
+},
+
+weather:{
+title:"พยากรณ์อากาศ",
+detail:"ข้อมูลสภาพอากาศ",
+temperature:"",
+level:"",
+updated:""
+},
+
+calendar:[],
+
+ai:{
+title:"RONGKHEM AI",
+welcome:"สวัสดีครับ ผมคือ RONGKHEM AI ผู้ช่วยข้อมูลหมู่บ้าน"
+},
+
+stats:{
+households:"350",
+population:"1,247",
+area:"2.15",
+updated:""
 }
-async function saveImageFile(file){
-  const id='img_'+Date.now()+'_'+Math.random().toString(36).slice(2);
-  const db=await openMediaDB();
-  await new Promise((resolve,reject)=>{
-    const tx=db.transaction(STORE,'readwrite');
-    tx.objectStore(STORE).put({id,file,name:file.name,type:file.type,updated:Date.now()});
-    tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error);
-  });
-  return id;
+
+};
+
+let D=structuredClone(defaultData);
+let current="dashboard";
+
+/* =====================================================
+   MENUS
+===================================================== */
+
+const menus=[
+
+["dashboard","📊 ภาพรวมระบบ"],
+
+["people","👥 บุคลากรและคณะทำงาน"],
+["leader","👨‍💼 ผู้ใหญ่บ้าน"],
+["assistants","🤝 ผู้ช่วยผู้ใหญ่บ้าน"],
+["committee","🏛️ คณะกรรมการหมู่บ้าน"],
+["advisors","🎓 คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ"],
+["sao","🗳️ ส.อบต."],
+["healthVolunteers","❤️ อสม."],
+
+["content","📰 ข่าวและกิจกรรม"],
+["news","📢 ข่าวประชาสัมพันธ์"],
+["activities","📅 กิจกรรมเด่น"],
+["announcements","📣 ประกาศสำคัญ"],
+
+["places","📍 สถานที่และแผนที่"],
+["tourism","🌿 แหล่งท่องเที่ยว"],
+["temples","🛕 วัดและสถานที่สำคัญ"],
+["maps","🗺️ แผนที่หมู่บ้าน"],
+["subnamjam","💧 แหล่งซับน้ำจำ"],
+["shops","🏪 ร้านค้าในชุมชน"],
+
+["environment","🌦️ สิ่งแวดล้อมและปฏิทิน"],
+["pm25","🌫️ PM2.5"],
+["weather","☁️ พยากรณ์อากาศ"],
+["calendar","🗓️ วันพระ / วันสำคัญ"],
+
+["ai","🤖 ผู้ช่วย AI"],
+["stats","📈 สถิติหมู่บ้าน"],
+["backup","💾 สำรอง / กู้คืน"],
+["settings","⚙️ ตั้งค่าระบบ"]
+
+];
+
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+
+function merge(a,b){
+
+for(const k in b){
+
+if(a[k]===undefined){
+
+a[k]=structuredClone(b[k]);
+
 }
-async function getImageURL(id){
-  if(!id || typeof id!=='string' || !id.startsWith('img_')) return id||'';
-  try{
-    const db=await openMediaDB();
-    const row=await new Promise((resolve,reject)=>{
-      const r=db.transaction(STORE,'readonly').objectStore(STORE).get(id);
-      r.onsuccess=()=>resolve(r.result); r.onerror=()=>reject(r.error);
-    });
-    return row?.file ? URL.createObjectURL(row.file) : '';
-  }catch(e){ console.error(e); return ''; }
+
+else if(
+b[k] &&
+typeof b[k]==="object" &&
+!Array.isArray(b[k]) &&
+a[k] &&
+typeof a[k]==="object"
+){
+
+merge(a[k],b[k]);
+
 }
-async function deleteImage(id){
-  if(!id || !String(id).startsWith('img_')) return;
-  const db=await openMediaDB();
-  await new Promise((resolve,reject)=>{
-    const tx=db.transaction(STORE,'readwrite');
-    tx.objectStore(STORE).delete(id);
-    tx.oncomplete=resolve; tx.onerror=()=>reject(tx.error);
-  });
+
 }
-async function readFile(el,cb){
-  const f=el.files?.[0];
-  if(!f) return;
-  try{
-    const id=await saveImageFile(f);
-    cb(id);
-  }catch(e){
-    console.error(e);
-    alert('อัปโหลดรูปไม่สำเร็จ กรุณาลองใหม่');
-  }
+
+return a;
+
 }
-async function hydrateImages(obj){
-  if(!obj) return;
-  if(Array.isArray(obj)){
-    for(const x of obj) await hydrateImages(x);
-    return;
-  }
-  if(typeof obj==='object'){
-    for(const k of Object.keys(obj)){
-      const v=obj[k];
-      if(k==='image' && typeof v==='string' && v.startsWith('img_')){
-        obj[k+'_id']=v;
-        obj[k]=await getImageURL(v);
-      }else await hydrateImages(v);
-    }
-  }
+
+function esc(v){
+
+return String(v??"").replace(
+/[&<>"']/g,
+c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[c])
+);
+
 }
-function dehydrateImages(obj){
-  if(Array.isArray(obj)) return obj.map(dehydrateImages);
-  if(obj && typeof obj==='object'){
-    const out={};
-    for(const k of Object.keys(obj)){
-      if(k.endsWith('_id')) continue;
-      if(k==='image' && obj.image_id) out.image=obj.image_id;
-      else out[k]=dehydrateImages(obj[k]);
-    }
-    return out;
-  }
-  return obj;
+
+function toast(t){
+
+const x=document.querySelector("#toast");
+
+x.textContent=t;
+
+x.classList.remove("hidden");
+
+clearTimeout(window.tt);
+
+window.tt=setTimeout(
+()=>x.classList.add("hidden"),
+2500
+);
+
 }
-function load(){
-  try{return merge(JSON.parse(localStorage.getItem(KEY)||'{}'),structuredClone(defaultData))}
-  catch(e){return structuredClone(defaultData)}
+
+
+/* =====================================================
+   SUPABASE LOAD
+===================================================== */
+
+async function loadData(){
+
+try{
+
+const {data,error}=await supabaseClient
+.from("website_data")
+.select("data_value")
+.eq("data_key",DATA_KEY)
+.maybeSingle();
+
+if(error) throw error;
+
+if(data && data.data_value){
+
+D=merge(
+data.data_value,
+structuredClone(defaultData)
+);
+
+}else{
+
+D=structuredClone(defaultData);
+
+await save(false);
+
 }
-function save(msg=true){
-  try{
-    localStorage.setItem(KEY,JSON.stringify(dehydrateImages(D)));
-    localStorage.setItem('RONGKHEM_LAST_PUBLISHED',String(Date.now()));
-    if(msg) toast('✓ บันทึกข้อมูลเรียบร้อยแล้ว');
-  }catch(e){
-    console.error(e);
-    alert('บันทึกข้อมูลข้อความไม่สำเร็จ กรุณาตรวจสอบพื้นที่เบราว์เซอร์');
-  }
+
+}catch(error){
+
+console.error(error);
+
+toast("⚠️ โหลดข้อมูลจาก Supabase ไม่สำเร็จ");
+
 }
-function start(){
-  const shell=document.getElementById('appShell');
-  const logout=document.getElementById('logoutBtn');
-  const box=document.getElementById('menuBox');
-  if(!shell||!logout||!box) return;
-  shell.classList.remove('hidden');
-  logout.classList.remove('hidden');
-  box.innerHTML='';
-  menus.forEach(([id,name])=>{
-    const button=document.createElement('button');
-    button.type='button';
-    button.className='menu';
-    button.dataset.id=id;
-    button.textContent=name;
-    button.addEventListener('click',()=>openPage(id));
-    box.appendChild(button);
-  });
-  openPage(current||'dashboard');
-}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
-function openPage(id){current=id;document.querySelectorAll('.menu').forEach(b=>b.classList.toggle('active',b.dataset.id===id));if(['people','content','places','environment'].includes(id)){return groupPage(id)};if(id==='dashboard')return dashboard();if(id==='leader')return leaderPage();if(['assistants','committee','advisors','sao','healthVolunteers'].includes(id))return personList(id);if(['news','activities','announcements','tourism','temples','maps','subnamjam','shops','calendar'].includes(id))return contentList(id);if(['pm25','weather','ai'].includes(id))return singlePage(id);if(id==='stats')return statsPage();if(id==='backup')return backupPage();if(id==='settings')return settingsPage()}
-function card(title,body){main.innerHTML=`<section class="card"><div class="toolbar"><div><h2 style="margin:0">${title}</h2><div class="note">แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้</div></div></div>${body}</section>`}
-function groupPage(id){const map={people:['👥 บุคลากรและคณะทำงาน','เลือกเมนูด้านซ้ายเพื่อจัดการผู้ใหญ่บ้าน ผู้ช่วย คณะกรรมการ คณะที่ปรึกษา ส.อบต. และ อสม.'],content:['📰 ข่าวและกิจกรรม','จัดการข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศสำคัญ'],places:['📍 สถานที่และแผนที่','จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า'],environment:['🌦️ สิ่งแวดล้อมและปฏิทิน','จัดการ PM2.5 พยากรณ์อากาศ วันพระและวันสำคัญ']}[id];card(map[0],`<p>${map[1]}</p>`)}
-function dashboard(){card('📊 ภาพรวมระบบ',`<div class="grid">${[['👥 ผู้ช่วย',D.assistants.length],['🏛️ คณะกรรมการ',D.committee.length],['❤️ อสม.',D.healthVolunteers.length],['📢 ข่าว',D.news.length],['📅 กิจกรรม',D.activities.length],['🌿 ท่องเที่ยว',D.tourism.length],['🛕 วัด',D.temples.length],['🗓️ ปฏิทิน',D.calendar.length]].map(x=>`<div class="stat">${x[0]}<b>${x[1]}</b></div>`).join('')}</div><div class="actions"><button class="btn primary" onclick="save()">บันทึกข้อมูลทั้งหมด</button><a class="btn light" href="index.html">เปิดหน้าเว็บไซต์</a></div>`)}
-function leaderPage(){const x=D.leader;card('👨‍💼 ข้อมูลผู้ใหญ่บ้าน',`<div class="row"><div><label>ชื่อ-นามสกุล<input id="f_name" value="${esc(x.name)}"></label><label>ตำแหน่ง<input id="f_role" value="${esc(x.role)}"></label><label>โทรศัพท์<input id="f_phone" value="${esc(x.phone)}"></label></div><div><label>ที่อยู่<input id="f_address" value="${esc(x.address)}"></label><label>คำกล่าว / คำขวัญ<textarea id="f_quote">${esc(x.quote)}</textarea></label><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D.leader.image_id=v;D.leader.image=await getImageURL(v);save(false);leaderPage()})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><div class="actions"><button class="btn primary" onclick="saveLeader()">บันทึก</button>${x.image?`<button class="btn danger" onclick="deleteImage(D.leader.image_id);D.leader.image_id='';D.leader.image='';save(false);leaderPage()">ลบรูป</button>`:''}</div>`)}
-const personMeta={assistants:'ผู้ช่วยผู้ใหญ่บ้าน',committee:'คณะกรรมการหมู่บ้าน',advisors:'คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ',sao:'สมาชิก ส.อบต.',healthVolunteers:'อสม.'};
-function saveLeader(){
-  D.leader={
-    ...D.leader,
-    name:document.getElementById('f_name').value,
-    role:document.getElementById('f_role').value,
-    phone:document.getElementById('f_phone').value,
-    address:document.getElementById('f_address').value,
-    quote:document.getElementById('f_quote').value
-  };
-  save();
+
 }
-function personList(key){const title=personMeta[key];card(`👥 ${title}`,`<div class="toolbar"><span class="note">เพิ่มรูป ชื่อ ตำแหน่ง หน้าที่ และเบอร์โทรได้</span><button class="btn primary" onclick="D['${key}'].push({name:'',role:'',detail:'',phone:'',image:'',order:D['${key}'].length+1});save(false);personList('${key}')">+ เพิ่มบุคลากร</button></div>${D[key].map((x,i)=>personEditor(key,title,x,i)).join('')||'<p class="note">ยังไม่มีข้อมูล กด “เพิ่มบุคลากร” เพื่อเริ่มต้น</p>'}`)}
-function personEditor(key,title,x,i){return `<div class="item"><div class="item-head"><b>${title} ลำดับ ${i+1}</b><div><button class="btn light" onclick="move('${key}',${i},-1)">↑</button><button class="btn light" onclick="move('${key}',${i},1)">↓</button><button class="btn danger" onclick="D['${key}'].splice(${i},1);save(false);personList('${key}')">ลบ</button></div></div><div class="row"><div><label>ชื่อ-นามสกุล<input id="n_${i}" value="${esc(x.name)}"></label><label>ตำแหน่ง<input id="r_${i}" value="${esc(x.role)}"></label><label>เบอร์โทรศัพท์<input id="p_${i}" value="${esc(x.phone)}"></label></div><div><label>หน้าที่ / รายละเอียด<textarea id="d_${i}">${esc(x.detail)}</textarea></label><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D['${key}'][${i}].image_id=v;D['${key}'][${i}].image=await getImageURL(v);save(false);personList('${key}')})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><div class="actions"><button class="btn primary" onclick="D['${key}'][${i}]={...D['${key}'][${i}],name:n_${i}.value,role:r_${i}.value,phone:p_${i}.value,detail:d_${i}.value};save()">บันทึก</button></div></div>`}
-const contentMeta={news:['ข่าวประชาสัมพันธ์','title,detail,date,image'],activities:['กิจกรรมเด่น','title,detail,date,image'],announcements:['ประกาศสำคัญ','title,detail,date,image'],tourism:['แหล่งท่องเที่ยว','title,detail,location,phone,image'],temples:['วัดและสถานที่สำคัญ','title,detail,location,image'],maps:['แผนที่หมู่บ้าน','title,detail,mapUrl,image'],subnamjam:['แหล่งซับน้ำจำ','title,detail,location,image'],shops:['ร้านค้าในชุมชน','title,detail,location,phone,image'],calendar:['วันพระ / วันสำคัญ','title,detail,date,image']};
-function contentList(key){const [title]=contentMeta[key];card(`📝 ${title}`,`<div class="toolbar"><span class="note">จัดเรียงลำดับ เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพได้</span><button class="btn primary" onclick="D['${key}'].push({title:'',detail:'',date:'',location:'',phone:'',mapUrl:'',image:''});save(false);contentList('${key}')">+ เพิ่มรายการ</button></div>${D[key].map((x,i)=>contentEditor(key,title,x,i)).join('')||'<p class="note">ยังไม่มีข้อมูล</p>'}`)}
-function contentEditor(key,title,x,i){const extra=key==='maps'?`<label>ลิงก์แผนที่<input id="u_${i}" value="${esc(x.mapUrl)}"></label>`:(['tourism','temples','subnamjam','shops'].includes(key)?`<label>สถานที่ / ที่ตั้ง<input id="l_${i}" value="${esc(x.location)}"></label>`:'')+(key==='shops'||key==='tourism'?`<label>โทรศัพท์<input id="p_${i}" value="${esc(x.phone)}"></label>`:'')+(['news','activities','announcements','calendar'].includes(key)?`<label>วันที่<input id="dt_${i}" value="${esc(x.date)}"></label>`:'');return `<div class="item"><div class="item-head"><b>${title} ${i+1}</b><div><button class="btn light" onclick="move('${key}',${i},-1)">↑</button><button class="btn light" onclick="move('${key}',${i},1)">↓</button><button class="btn danger" onclick="D['${key}'].splice(${i},1);save(false);contentList('${key}')">ลบ</button></div></div><div class="row"><div><label>หัวข้อ<input id="t_${i}" value="${esc(x.title)}"></label>${extra}<label>รายละเอียด<textarea id="d_${i}">${esc(x.detail)}</textarea></label></div><div><label>อัปโหลดรูปภาพ<input type="file" accept="image/*" onchange="readFile(this,v=>{D['${key}'][${i}].image_id=v;D['${key}'][${i}].image=await getImageURL(v);save(false);contentList('${key}')})"></label>${x.image?`<img class="preview" src="${x.image}">`:''}</div></div><button class="btn primary" onclick="saveContent('${key}',${i})">บันทึก</button></div>`}
-function saveContent(key,i){const x=D[key][i];x.title=document.querySelector('#t_'+i).value;x.detail=document.querySelector('#d_'+i).value;const dt=document.querySelector('#dt_'+i),l=document.querySelector('#l_'+i),p=document.querySelector('#p_'+i),u=document.querySelector('#u_'+i);if(dt)x.date=dt.value;if(l)x.location=l.value;if(p)x.phone=p.value;if(u)x.mapUrl=u.value;save()}
-function move(key,i,d){const j=i+d;if(j<0||j>=D[key].length)return;[D[key][i],D[key][j]]=[D[key][j],D[key][i]];save(false);(['assistants','committee','advisors','sao','healthVolunteers'].includes(key)?personList:contentList)(key)}
-function singlePage(key){const title={pm25:'🌫️ PM2.5',weather:'☁️ พยากรณ์อากาศ',ai:'🤖 ผู้ช่วย AI'}[key],x=D[key];let body='';if(key==='ai')body=`<label>ชื่อผู้ช่วย AI<input id="a_title" value="${esc(x.title)}"></label><label>ข้อความต้อนรับ<textarea id="a_welcome">${esc(x.welcome)}</textarea></label><button class="btn primary" onclick="D.ai={title:document.getElementById('a_title').value,welcome:document.getElementById('a_welcome').value};save()">บันทึก</button>`;else body=`<div class="row"><div><label>หัวข้อ<input id="s_title" value="${esc(x.title)}"></label><label>รายละเอียด<textarea id="s_detail">${esc(x.detail)}</textarea></label><label>สถานะ / ระดับ<input id="s_level" value="${esc(x.level||'')}"></label></div><div><label>ค่า / อุณหภูมิ<input id="s_value" value="${esc(x.value||x.temperature||'')}"></label><label>อัปเดตล่าสุด<input id="s_updated" value="${esc(x.updated||'')}"></label><button class="btn primary" onclick="saveSingle('${key}')">บันทึก</button></div></div>`;card(title,body)}
-function saveSingle(key){
-  const x=D[key];
-  x.title=document.getElementById('s_title').value;
-  x.detail=document.getElementById('s_detail').value;
-  const value=document.getElementById('s_value').value;
-  x.level=document.getElementById('s_level').value;
-  if(key==='pm25') x.value=value;
-  else x.temperature=value;
-  x.updated=document.getElementById('s_updated').value;
-  save();
+
+
+/* =====================================================
+   SUPABASE SAVE
+===================================================== */
+
+async function save(msg=true){
+
+try{
+
+const {error}=await supabaseClient
+.from("website_data")
+.upsert(
+{
+data_key:DATA_KEY,
+data_value:D,
+updated_at:new Date().toISOString()
+},
+{
+onConflict:"data_key"
 }
-function statsPage(){const x=D.stats;card('📈 สถิติหมู่บ้าน',`<div class="row"><div><label>จำนวนครัวเรือน<input id="st1" value="${esc(x.households)}"></label><label>ประชากร<input id="st2" value="${esc(x.population)}"></label></div><div><label>พื้นที่<input id="st3" value="${esc(x.area)}"></label><label>อัปเดตล่าสุด<input id="st4" value="${esc(x.updated)}"></label></div></div><button class="btn primary" onclick="D.stats={households:document.getElementById('st1').value,population:document.getElementById('st2').value,area:document.getElementById('st3').value,updated:document.getElementById('st4').value};save()">บันทึก</button>`)}
-function backupPage(){card('💾 สำรอง / กู้คืนข้อมูล',`<p>สำรองข้อมูลทั้งหมดก่อนแก้ไขครั้งใหญ่ และสามารถกู้คืนได้ทุกเมนู</p><div class="actions"><button class="btn primary" onclick="exportData()">ดาวน์โหลด Backup JSON</button><label class="btn light">เลือกไฟล์กู้คืน<input type="file" accept=".json,application/json" style="display:none" onchange="importData(this)"></label><button class="btn danger" onclick="if(confirm('ต้องการล้างข้อมูลทั้งหมดหรือไม่?')){localStorage.removeItem(KEY);location.reload()}">รีเซ็ตข้อมูล</button></div>`)}
-function exportData(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(D,null,2)],{type:'application/json'}));a.download='rongkhem-e-village-backup.json';a.click()}
-function importData(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{D=merge(JSON.parse(r.result),structuredClone(defaultData));save(false);toast('✓ กู้คืนข้อมูลแล้ว');openPage('dashboard')}catch(e){alert('ไฟล์ไม่ถูกต้อง')}};r.readAsText(f)}
-function settingsPage(){const x=D.settings;card('⚙️ ตั้งค่าระบบ',`<div class="row"><div><label>ชื่อเว็บไซต์<input id="set_site" value="${esc(x.siteName)}"></label><label>ชื่อผู้ใช้ผู้ดูแล<input id="set_user" value="${esc(x.username)}"></label></div><div><label>รหัสผ่านใหม่<input id="set_pass" type="password" value="${esc(x.password)}"></label><p class="small">หลังบันทึก ใช้ชื่อผู้ใช้และรหัสผ่านใหม่ในครั้งถัดไป</p></div></div><button class="btn primary" onclick="D.settings={siteName:document.getElementById('set_site').value,username:document.getElementById('set_user').value,password:document.getElementById('set_pass').value};save()">บันทึกการตั้งค่า</button>`)}
+);
+
+if(error) throw error;
+
+if(msg){
+
+toast("✓ บันทึกข้อมูลเรียบร้อยแล้ว");
+
+}
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"บันทึกไม่สำเร็จ: "+
+error.message
+);
+
+}
+
+}
+
+
+/* =====================================================
+   UPLOAD IMAGE TO SUPABASE STORAGE
+===================================================== */
+
+async function uploadImage(file){
+
+if(!file) return "";
+
+try{
+
+const ext=file.name.split(".").pop();
+
+const fileName=
+"rongkhem/"+
+Date.now()+
+"-"+
+Math.random()
+.toString(36)
+.substring(2)+
+"."+
+ext;
+
+const {error}=await supabaseClient
+.storage
+.from("village-images")
+.upload(
+fileName,
+file,
+{
+cacheControl:"3600",
+upsert:false
+}
+);
+
+if(error) throw error;
+
+const {data}=supabaseClient
+.storage
+.from("village-images")
+.getPublicUrl(fileName);
+
+return data.publicUrl;
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"อัปโหลดรูปไม่สำเร็จ: "+
+error.message
+);
+
+return "";
+
+}
+
+}
+
+
+/* =====================================================
+   DELETE IMAGE
+===================================================== */
+
+async function deleteImage(url){
+
+if(!url) return;
+
+try{
+
+const marker="/storage/v1/object/public/village-images/";
+
+const index=url.indexOf(marker);
+
+if(index===-1) return;
+
+const path=url.substring(
+index+marker.length
+);
+
+await supabaseClient
+.storage
+.from("village-images")
+.remove([path]);
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+/* =====================================================
+   READ FILE
+===================================================== */
+
+async function readFile(el,callback){
+
+const file=el.files?.[0];
+
+if(!file) return;
+
+toast("กำลังอัปโหลดรูปภาพ...");
+
+const imageUrl=
+await uploadImage(file);
+
+if(imageUrl){
+
+await callback(imageUrl);
+
+toast("✓ อัปโหลดรูปสำเร็จ");
+
+}
+
+}
+
+
+/* =====================================================
+   START SYSTEM
+===================================================== */
+
+async function start(){
+
+document
+.getElementById("appShell")
+.classList
+.remove("hidden");
+
+document
+.getElementById("logoutBtn")
+.classList
+.remove("hidden");
+
+menuBox.innerHTML=
+menus.map(
+([id,name])=>
+`<button
+class="menu"
+data-id="${id}"
+onclick="openPage('${id}')"
+>${name}</button>`
+).join("");
+
+await loadData();
+
+openPage(current);
+
+}
+
+
+/* =====================================================
+   OPEN PAGE
+===================================================== */
+
+function openPage(id){
+
+current=id;
+
+document
+.querySelectorAll(".menu")
+.forEach(
+b=>b.classList.toggle(
+"active",
+b.dataset.id===id
+)
+);
+
+if(
+["people","content","places","environment"]
+.includes(id)
+){
+
+return groupPage(id);
+
+}
+
+if(id==="dashboard") return dashboard();
+
+if(id==="leader") return leaderPage();
+
+if(
+[
+"assistants",
+"committee",
+"advisors",
+"sao",
+"healthVolunteers"
+].includes(id)
+){
+
+return personList(id);
+
+}
+
+if(
+[
+"news",
+"activities",
+"announcements",
+"tourism",
+"temples",
+"maps",
+"subnamjam",
+"shops",
+"calendar"
+].includes(id)
+){
+
+return contentList(id);
+
+}
+
+if(
+[
+"pm25",
+"weather",
+"ai"
+].includes(id)
+){
+
+return singlePage(id);
+
+}
+
+if(id==="stats") return statsPage();
+
+if(id==="backup") return backupPage();
+
+if(id==="settings") return settingsPage();
+
+}
+
+
+/* =====================================================
+   CARD
+===================================================== */
+
+function card(title,body){
+
+main.innerHTML=`
+
+<section class="card">
+
+<div class="toolbar">
+
+<div>
+
+<h2 style="margin:0">
+${title}
+</h2>
+
+<div class="note">
+แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้
+</div>
+
+</div>
+
+</div>
+
+${body}
+
+</section>
+
+`;
+
+}
+
+
+/* =====================================================
+   GROUP PAGE
+===================================================== */
+
+function groupPage(id){
+
+const map={
+
+people:[
+"👥 บุคลากรและคณะทำงาน",
+"เลือกเมนูด้านซ้ายเพื่อจัดการข้อมูลบุคลากร"
+],
+
+content:[
+"📰 ข่าวและกิจกรรม",
+"จัดการข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศ"
+],
+
+places:[
+"📍 สถานที่และแผนที่",
+"จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า"
+],
+
+environment:[
+"🌦️ สิ่งแวดล้อมและปฏิทิน",
+"จัดการ PM2.5 พยากรณ์อากาศ วันพระและวันสำคัญ"
+]
+
+};
+
+card(
+map[id][0],
+`<p>${map[id][1]}</p>`
+);
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function dashboard(){
+
+card(
+
+"📊 ภาพรวมระบบ",
+
+`
+
+<div class="grid">
+
+${[
+
+["👥 ผู้ช่วย",D.assistants.length],
+["🏛️ คณะกรรมการ",D.committee.length],
+["❤️ อสม.",D.healthVolunteers.length],
+["📢 ข่าว",D.news.length],
+["📅 กิจกรรม",D.activities.length],
+["🌿 ท่องเที่ยว",D.tourism.length],
+["🛕 วัด",D.temples.length],
+["🗓️ ปฏิทิน",D.calendar.length]
+
+].map(
+x=>`
+<div class="stat">
+${x[0]}
+<b>${x[1]}</b>
+</div>
+`
+).join("")}
+
+</div>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="save()"
+>
+บันทึกข้อมูลทั้งหมด
+</button>
+
+<a
+class="btn light"
+href="index.html"
+>
+เปิดหน้าเว็บไซต์
+</a>
+
+</div>
+
+`
+
+);
+
+}
+
+
+/* =====================================================
+   LEADER
+===================================================== */
+
+function leaderPage(){
+
+const x=D.leader;
+
+card(
+
+"👨‍💼 ข้อมูลผู้ใหญ่บ้าน",
+
+`
+
+<div class="row">
+
+<div>
+
+<label>
+ชื่อ-นามสกุล
+
+<input
+id="f_name"
+value="${esc(x.name)}"
+>
+
+</label>
+
+<label>
+ตำแหน่ง
+
+<input
+id="f_role"
+value="${esc(x.role)}"
+>
+
+</label>
+
+<label>
+โทรศัพท์
+
+<input
+id="f_phone"
+value="${esc(x.phone)}"
+>
+
+</label>
+
+</div>
+
+<div>
+
+<label>
+ที่อยู่
+
+<input
+id="f_address"
+value="${esc(x.address)}"
+>
+
+</label>
+
+<label>
+คำกล่าว / คำขวัญ
+
+<textarea id="f_quote">${esc(x.quote)}</textarea>
+
+</label>
+
+<label>
+อัปโหลดรูปภาพ
+
+<input
+type="file"
+accept="image/*"
+onchange="
+readFile(
+this,
+async v=>{
+D.leader.image=v;
+await save(false);
+leaderPage();
+}
+)
+"
+>
+
+</label>
+
+${x.image?
+`<img
+class="preview"
+src="${x.image}"
+>`
+:""}
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="saveLeader()"
+>
+บันทึก
+</button>
+
+${x.image?
+
+`<button
+class="btn danger"
+onclick="removeLeaderImage()"
+>
+ลบรูป
+</button>`
+
+:""}
+
+</div>
+
+`
+
+);
+
+}
+
+async function saveLeader(){
+
+D.leader={
+
+...D.leader,
+
+name:f_name.value,
+
+role:f_role.value,
+
+phone:f_phone.value,
+
+address:f_address.value,
+
+quote:f_quote.value
+
+};
+
+await save();
+
+}
+
+async function removeLeaderImage(){
+
+if(!confirm("ต้องการลบรูปหรือไม่?")) return;
+
+await deleteImage(D.leader.image);
+
+D.leader.image="";
+
+await save();
+
+leaderPage();
+
+}
+
+
+/* =====================================================
+   PERSONNEL
+===================================================== */
+
+const personMeta={
+
+assistants:"ผู้ช่วยผู้ใหญ่บ้าน",
+
+committee:"คณะกรรมการหมู่บ้าน",
+
+advisors:"คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ",
+
+sao:"สมาชิก ส.อบต.",
+
+healthVolunteers:"อสม."
+
+};
+
+function personList(key){
+
+const title=personMeta[key];
+
+card(
+
+`👥 ${title}`,
+
+`
+
+<div class="toolbar">
+
+<span class="note">
+เพิ่มรูป ชื่อ ตำแหน่ง หน้าที่ และเบอร์โทรได้
+</span>
+
+<button
+class="btn primary"
+onclick="addPerson('${key}')"
+>
++ เพิ่มบุคลากร
+</button>
+
+</div>
+
+${
+D[key].map(
+(x,i)=>
+personEditor(
+key,
+title,
+x,
+i
+)
+).join("")
+
+||
+
+'<p class="note">ยังไม่มีข้อมูล กด “เพิ่มบุคลากร” เพื่อเริ่มต้น</p>'
+
+}
+
+`
+
+);
+
+}
+
+async function addPerson(key){
+
+D[key].push({
+
+name:"",
+
+role:"",
+
+detail:"",
+
+phone:"",
+
+image:"",
+
+order:D[key].length+1
+
+});
+
+await save(false);
+
+personList(key);
+
+}
+
+function personEditor(key,title,x,i){
+
+return `
+
+<div class="item">
+
+<div class="item-head">
+
+<b>
+${title}
+ลำดับ ${i+1}
+</b>
+
+<div>
+
+<button
+class="btn light"
+onclick="move('${key}',${i},-1)"
+>
+↑
+</button>
+
+<button
+class="btn light"
+onclick="move('${key}',${i},1)"
+>
+↓
+</button>
+
+<button
+class="btn danger"
+onclick="deletePerson('${key}',${i})"
+>
+ลบ
+</button>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div>
+
+<label>
+ชื่อ-นามสกุล
+
+<input
+id="n_${key}_${i}"
+value="${esc(x.name)}"
+>
+
+</label>
+
+<label>
+ตำแหน่ง
+
+<input
+id="r_${key}_${i}"
+value="${esc(x.role)}"
+>
+
+</label>
+
+<label>
+เบอร์โทรศัพท์
+
+<input
+id="p_${key}_${i}"
+value="${esc(x.phone)}"
+>
+
+</label>
+
+</div>
+
+<div>
+
+<label>
+หน้าที่ / รายละเอียด
+
+<textarea
+id="d_${key}_${i}"
+>${esc(x.detail)}</textarea>
+
+</label>
+
+<label>
+
+อัปโหลดรูปภาพ
+
+<input
+type="file"
+accept="image/*"
+onchange="
+readFile(
+this,
+async v=>{
+D['${key}'][${i}].image=v;
+await save(false);
+personList('${key}');
+}
+)
+"
+
+>
+
+</label>
+
+${x.image?
+
+`<img
+class="preview"
+src="${x.image}"
+>`
+
+:""}
+
+</div>
+
+</div>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="savePerson('${key}',${i})"
+>
+บันทึก
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+async function savePerson(key,i){
+
+D[key][i]={
+
+...D[key][i],
+
+name:
+document.getElementById(
+`n_${key}_${i}`
+).value,
+
+role:
+document.getElementById(
+`r_${key}_${i}`
+).value,
+
+phone:
+document.getElementById(
+`p_${key}_${i}`
+).value,
+
+detail:
+document.getElementById(
+`d_${key}_${i}`
+).value
+
+};
+
+await save();
+
+}
+
+async function deletePerson(key,i){
+
+if(!confirm("ต้องการลบข้อมูลหรือไม่?")) return;
+
+const image=D[key][i].image;
+
+if(image){
+
+await deleteImage(image);
+
+}
+
+D[key].splice(i,1);
+
+await save();
+
+personList(key);
+
+}
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+const contentMeta={
+
+news:"ข่าวประชาสัมพันธ์",
+
+activities:"กิจกรรมเด่น",
+
+announcements:"ประกาศสำคัญ",
+
+tourism:"แหล่งท่องเที่ยว",
+
+temples:"วัดและสถานที่สำคัญ",
+
+maps:"แผนที่หมู่บ้าน",
+
+subnamjam:"แหล่งซับน้ำจำ",
+
+shops:"ร้านค้าในชุมชน",
+
+calendar:"วันพระ / วันสำคัญ"
+
+};
+
+function contentList(key){
+
+const title=contentMeta[key];
+
+card(
+
+`📝 ${title}`,
+
+`
+
+<div class="toolbar">
+
+<span class="note">
+จัดเรียงลำดับ เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพได้
+</span>
+
+<button
+class="btn primary"
+onclick="addContent('${key}')"
+>
++ เพิ่มรายการ
+</button>
+
+</div>
+
+${
+D[key].map(
+(x,i)=>
+contentEditor(
+key,
+title,
+x,
+i
+)
+).join("")
+
+||
+
+'<p class="note">ยังไม่มีข้อมูล</p>'
+
+}
+
+`
+
+);
+
+}
+
+async function addContent(key){
+
+D[key].push({
+
+title:"",
+
+detail:"",
+
+date:"",
+
+location:"",
+
+phone:"",
+
+mapUrl:"",
+
+image:""
+
+});
+
+await save(false);
+
+contentList(key);
+
+}
+
+function contentEditor(key,title,x,i){
+
+let extra="";
+
+if(key==="maps"){
+
+extra+=`
+
+<label>
+
+ลิงก์แผนที่
+
+<input
+id="u_${key}_${i}"
+value="${esc(x.mapUrl)}"
+>
+
+</label>
+
+`;
+
+}
+
+if(
+[
+"tourism",
+"temples",
+"subnamjam",
+"shops"
+].includes(key)
+){
+
+extra+=`
+
+<label>
+
+สถานที่ / ที่ตั้ง
+
+<input
+id="l_${key}_${i}"
+value="${esc(x.location)}"
+>
+
+</label>
+
+`;
+
+}
+
+if(
+[
+"shops",
+"tourism"
+].includes(key)
+){
+
+extra+=`
+
+<label>
+
+โทรศัพท์
+
+<input
+id="p_${key}_${i}"
+value="${esc(x.phone)}"
+>
+
+</label>
+
+`;
+
+}
+
+if(
+[
+"news",
+"activities",
+"announcements",
+"calendar"
+].includes(key)
+){
+
+extra+=`
+
+<label>
+
+วันที่
+
+<input
+id="dt_${key}_${i}"
+value="${esc(x.date)}"
+>
+
+</label>
+
+`;
+
+}
+
+return `
+
+<div class="item">
+
+<div class="item-head">
+
+<b>
+${title}
+${i+1}
+</b>
+
+<div>
+
+<button
+class="btn light"
+onclick="move('${key}',${i},-1)"
+>
+↑
+</button>
+
+<button
+class="btn light"
+onclick="move('${key}',${i},1)"
+>
+↓
+</button>
+
+<button
+class="btn danger"
+onclick="deleteContent('${key}',${i})"
+>
+ลบ
+</button>
+
+</div>
+
+</div>
+
+<div class="row">
+
+<div>
+
+<label>
+
+หัวข้อ
+
+<input
+id="t_${key}_${i}"
+value="${esc(x.title)}"
+>
+
+</label>
+
+${extra}
+
+<label>
+
+รายละเอียด
+
+<textarea
+id="d_${key}_${i}"
+>${esc(x.detail)}</textarea>
+
+</label>
+
+</div>
+
+<div>
+
+<label>
+
+อัปโหลดรูปภาพ
+
+<input
+type="file"
+accept="image/*"
+onchange="
+readFile(
+this,
+async v=>{
+D['${key}'][${i}].image=v;
+await save(false);
+contentList('${key}');
+}
+)
+"
+
+>
+
+</label>
+
+${x.image?
+
+`<img
+class="preview"
+src="${x.image}"
+>`
+
+:""}
+
+</div>
+
+</div>
+
+<button
+class="btn primary"
+onclick="saveContent('${key}',${i})"
+>
+บันทึก
+</button>
+
+</div>
+
+`;
+
+}
+
+async function saveContent(key,i){
+
+const x=D[key][i];
+
+x.title=
+document
+.getElementById(
+`t_${key}_${i}`
+).value;
+
+x.detail=
+document
+.getElementById(
+`d_${key}_${i}`
+).value;
+
+const date=document.getElementById(
+`dt_${key}_${i}`
+);
+
+const location=document.getElementById(
+`l_${key}_${i}`
+);
+
+const phone=document.getElementById(
+`p_${key}_${i}`
+);
+
+const mapUrl=document.getElementById(
+`u_${key}_${i}`
+);
+
+if(date) x.date=date.value;
+
+if(location) x.location=location.value;
+
+if(phone) x.phone=phone.value;
+
+if(mapUrl) x.mapUrl=mapUrl.value;
+
+await save();
+
+}
+
+async function deleteContent(key,i){
+
+if(!confirm("ต้องการลบรายการหรือไม่?")) return;
+
+const image=D[key][i].image;
+
+if(image){
+
+await deleteImage(image);
+
+}
+
+D[key].splice(i,1);
+
+await save();
+
+contentList(key);
+
+}
+
+
+/* =====================================================
+   MOVE
+===================================================== */
+
+async function move(key,i,d){
+
+const j=i+d;
+
+if(
+j<0 ||
+j>=D[key].length
+) return;
+
+[D[key][i],D[key][j]]
+=
+[D[key][j],D[key][i]];
+
+await save(false);
+
+if(
+[
+"assistants",
+"committee",
+"advisors",
+"sao",
+"healthVolunteers"
+].includes(key)
+){
+
+personList(key);
+
+}else{
+
+contentList(key);
+
+}
+
+}
+
+
+/* =====================================================
+   PM2.5 WEATHER AI
+===================================================== */
+
+function singlePage(key){
+
+const title={
+
+pm25:"🌫️ PM2.5",
+
+weather:"☁️ พยากรณ์อากาศ",
+
+ai:"🤖 ผู้ช่วย AI"
+
+}[key];
+
+const x=D[key];
+
+let body="";
+
+if(key==="ai"){
+
+body=`
+
+<label>
+
+ชื่อผู้ช่วย AI
+
+<input
+id="a_title"
+value="${esc(x.title)}"
+>
+
+</label>
+
+<label>
+
+ข้อความต้อนรับ
+
+<textarea
+id="a_welcome"
+>${esc(x.welcome)}</textarea>
+
+</label>
+
+<button
+class="btn primary"
+onclick="saveAI()"
+>
+บันทึก
+</button>
+
+`;
+
+}else{
+
+body=`
+
+<div class="row">
+
+<div>
+
+<label>
+
+หัวข้อ
+
+<input
+id="s_title"
+value="${esc(x.title)}"
+>
+
+</label>
+
+<label>
+
+รายละเอียด
+
+<textarea
+id="s_detail"
+>${esc(x.detail)}</textarea>
+
+</label>
+
+<label>
+
+สถานะ / ระดับ
+
+<input
+id="s_level"
+value="${esc(x.level||'')}"
+>
+
+</label>
+
+</div>
+
+<div>
+
+<label>
+
+ค่า / อุณหภูมิ
+
+<input
+id="s_value"
+value="${esc(
+x.value||
+x.temperature||
+''
+)}"
+>
+
+</label>
+
+<label>
+
+อัปเดตล่าสุด
+
+<input
+id="s_updated"
+value="${esc(x.updated||'')}"
+>
+
+</label>
+
+<button
+class="btn primary"
+onclick="saveSingle('${key}')"
+>
+บันทึก
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+card(title,body);
+
+}
+
+async function saveAI(){
+
+D.ai={
+
+title:a_title.value,
+
+welcome:a_welcome.value
+
+};
+
+await save();
+
+}
+
+async function saveSingle(key){
+
+const x=D[key];
+
+x.title=s_title.value;
+
+x.detail=s_detail.value;
+
+const value=s_value.value;
+
+x.level=s_level.value;
+
+if(key==="pm25"){
+
+x.value=value;
+
+}else{
+
+x.temperature=value;
+
+}
+
+x.updated=s_updated.value;
+
+await save();
+
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+function statsPage(){
+
+const x=D.stats;
+
+card(
+
+"📈 สถิติหมู่บ้าน",
+
+`
+
+<div class="row">
+
+<div>
+
+<label>
+
+จำนวนครัวเรือน
+
+<input
+id="st1"
+value="${esc(x.households)}"
+>
+
+</label>
+
+<label>
+
+ประชากร
+
+<input
+id="st2"
+value="${esc(x.population)}"
+>
+
+</label>
+
+</div>
+
+<div>
+
+<label>
+
+พื้นที่
+
+<input
+id="st3"
+value="${esc(x.area)}"
+>
+
+</label>
+
+<label>
+
+อัปเดตล่าสุด
+
+<input
+id="st4"
+value="${esc(x.updated)}"
+>
+
+</label>
+
+</div>
+
+</div>
+
+<button
+class="btn primary"
+onclick="saveStats()"
+>
+บันทึก
+</button>
+
+`
+
+);
+
+}
+
+async function saveStats(){
+
+D.stats={
+
+households:st1.value,
+
+population:st2.value,
+
+area:st3.value,
+
+updated:st4.value
+
+};
+
+await save();
+
+}
+
+
+/* =====================================================
+   BACKUP
+===================================================== */
+
+function backupPage(){
+
+card(
+
+"💾 สำรอง / กู้คืนข้อมูล",
+
+`
+
+<p>
+ดาวน์โหลดข้อมูลทั้งหมดเป็น JSON
+หรือกู้คืนข้อมูลกลับมาได้
+</p>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="exportData()"
+>
+ดาวน์โหลด Backup JSON
+</button>
+
+<label class="btn light">
+
+เลือกไฟล์กู้คืน
+
+<input
+type="file"
+accept=".json,application/json"
+style="display:none"
+onchange="importData(this)"
+>
+
+</label>
+
+</div>
+
+`
+
+);
+
+}
+
+function exportData(){
+
+const blob=new Blob(
+
+[
+JSON.stringify(
+D,
+null,
+2
+)
+],
+
+{
+type:"application/json"
+}
+
+);
+
+const url=
+URL.createObjectURL(blob);
+
+const a=
+document.createElement("a");
+
+a.href=url;
+
+a.download=
+"rongkhem-e-village-backup.json";
+
+a.click();
+
+URL.revokeObjectURL(url);
+
+}
+
+function importData(el){
+
+const file=el.files?.[0];
+
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=async()=>{
+
+try{
+
+const imported=
+JSON.parse(reader.result);
+
+D=merge(
+imported,
+structuredClone(defaultData)
+);
+
+await save();
+
+toast("✓ กู้คืนข้อมูลเรียบร้อยแล้ว");
+
+openPage("dashboard");
+
+}catch(error){
+
+alert("ไฟล์ข้อมูลไม่ถูกต้อง");
+
+}
+
+};
+
+reader.readAsText(file);
+
+}
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+function settingsPage(){
+
+const x=D.settings;
+
+card(
+
+"⚙️ ตั้งค่าระบบ",
+
+`
+
+<div class="row">
+
+<div>
+
+<label>
+
+ชื่อเว็บไซต์
+
+<input
+id="set_site"
+value="${esc(x.siteName)}"
+>
+
+</label>
+
+<label>
+
+ชื่อผู้ใช้ผู้ดูแล
+
+<input
+id="set_user"
+value="${esc(x.username)}"
+>
+
+</label>
+
+</div>
+
+<div>
+
+<label>
+
+รหัสผ่านใหม่
+
+<input
+id="set_pass"
+type="password"
+value="${esc(x.password)}"
+>
+
+</label>
+
+<p class="small">
+
+หลังบันทึก
+ใช้ชื่อผู้ใช้และรหัสผ่านใหม่ในครั้งถัดไป
+
+</p>
+
+</div>
+
+</div>
+
+<button
+class="btn primary"
+onclick="saveSettings()"
+>
+บันทึกการตั้งค่า
+</button>
+
+`
+
+);
+
+}
+
+async function saveSettings(){
+
+D.settings={
+
+siteName:set_site.value,
+
+username:set_user.value,
+
+password:set_pass.value
+
+};
+
+await save();
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
 function logout(){
-  sessionStorage.removeItem(LOGIN);
-  localStorage.removeItem('rongkhemAdminLoggedIn');
-  localStorage.removeItem('rongkhemAdminUsername');
-  location.href='login.html';
+
+sessionStorage.removeItem(LOGIN);
+
+localStorage.removeItem(
+"rongkhemAdminLoggedIn"
+);
+
+localStorage.removeItem(
+"rongkhemAdminUsername"
+);
+
+location.href="login.html";
+
 }
 
-logoutBtn.onclick=logout;
+document
+.getElementById("logoutBtn")
+.addEventListener(
+"click",
+logout
+);
 
-// ใช้การล็อกอินจาก login.html เพียงครั้งเดียว
-async function bootAdmin(){
-  if(localStorage.getItem('rongkhemAdminLoggedIn')!=='true'){
-    location.replace('login.html');
-    return;
-  }
-  sessionStorage.setItem(LOGIN,'1');
-  await hydrateImages(D);
-  start();
+
+/* =====================================================
+   CHECK LOGIN
+===================================================== */
+
+(async function(){
+
+const loggedIn=
+localStorage.getItem(
+"rongkhemAdminLoggedIn"
+)==="true"
+
+||
+
+sessionStorage.getItem(
+LOGIN
+)==="1";
+
+if(!loggedIn){
+
+location.href="login.html";
+
+return;
+
 }
-bootAdmin();
+
+sessionStorage.setItem(
+LOGIN,
+"1"
+);
+
+await start();
+
+})();
+
 </script>
-</body></html>
+
+</body>
+</html>
