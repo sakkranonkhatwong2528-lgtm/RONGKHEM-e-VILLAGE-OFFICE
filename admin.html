@@ -32,8 +32,8 @@ label{display:block;font-weight:500;margin:13px 0 5px}input,textarea,select{widt
  <div class="login-card">
   <h2>เข้าสู่ระบบผู้ดูแล</h2>
   <p class="note">เข้าสู่ระบบเพื่อแก้ไขข้อมูลหน้าเว็บไซต์</p>
-  <label>ชื่อผู้ใช้<input id="user" value="admin"></label>
-  <label>รหัสผ่าน<input id="pass" type="password" value="1234"></label>
+  <label>ชื่อผู้ใช้<input id="user" value="sakkranon"></label>
+  <label>รหัสผ่าน<input id="pass" type="password" value=""></label>
   <button class="btn primary" style="width:100%;margin-top:18px" id="loginBtn">เข้าสู่ระบบ</button>
   <p class="small">เปลี่ยนบัญชีเริ่มต้นได้ในส่วนตั้งค่าระบบ</p>
  </div>
@@ -48,7 +48,7 @@ label{display:block;font-weight:500;margin:13px 0 5px}input,textarea,select{widt
 <script>
 const KEY='RONGKHEM_EVILLAGE_ADMIN_DATA_V1', LOGIN='RONGKHEM_EVILLAGE_ADMIN_LOGIN';
 const defaultData={
- settings:{siteName:'RONGKHEM e-VILLAGE',username:'admin',password:'1234'},
+ settings:{siteName:'RONGKHEM e-VILLAGE',username:'sakkranon',password:'23122528'},
  leader:{name:'นายศักรนนทน์ ขัติย์วงศ์',role:'ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6',phone:'',address:'ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา',quote:'พร้อมดูแลชุมชน ด้วยระบบดิจิทัล',image:''},
  assistants:[],committee:[],advisors:[],sao:[],healthVolunteers:[],
  news:[],activities:[],announcements:[],
@@ -93,12 +93,20 @@ function save(msg=true){localStorage.setItem(KEY,JSON.stringify(D)); localStorag
 function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
 function toast(t){const x=document.querySelector('#toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.add('hidden'),2200)}
 function readFile(el,cb){const f=el.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f)}
-function login(){if(user.value===D.settings.username&&pass.value===D.settings.password){sessionStorage.setItem(LOGIN,'1');start()}else alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')}
-function logout(){
-  sessionStorage.removeItem(LOGIN);
-  localStorage.removeItem('rongkhemAdminLoggedIn');
-  localStorage.removeItem('rongkhemAdminUsername');
-  location.href='login.html';
+function login(){
+  const u=(document.getElementById('user').value||'').trim();
+  const p=document.getElementById('pass').value||'';
+  const validUser=(D.settings&&D.settings.username)||'sakkranon';
+  const validPass=(D.settings&&D.settings.password)||'23122528';
+  if(u===validUser && p===validPass){
+    localStorage.setItem('rongkhemAdminLoggedIn','true');
+    localStorage.setItem('rongkhemAdminUsername',u);
+    sessionStorage.setItem(LOGIN,'1');
+    start();
+    toast('✓ เข้าสู่ระบบสำเร็จ');
+  }else{
+    alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
+  }
 }
 function start(){loginBox.classList.add('hidden');appShell.classList.remove('hidden');logoutBtn.classList.remove('hidden');menuBox.innerHTML=menus.map(([id,n])=>`<button class="menu" data-id="${id}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
 function openPage(id){current=id;document.querySelectorAll('.menu').forEach(b=>b.classList.toggle('active',b.dataset.id===id));if(['people','content','places','environment'].includes(id)){return groupPage(id)};if(id==='dashboard')return dashboard();if(id==='leader')return leaderPage();if(['assistants','committee','advisors','sao','healthVolunteers'].includes(id))return personList(id);if(['news','activities','announcements','tourism','temples','maps','subnamjam','shops','calendar'].includes(id))return contentList(id);if(['pm25','weather','ai'].includes(id))return singlePage(id);if(id==='stats')return statsPage();if(id==='backup')return backupPage();if(id==='settings')return settingsPage()}
