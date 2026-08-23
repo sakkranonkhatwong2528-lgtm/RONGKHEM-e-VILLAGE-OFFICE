@@ -94,7 +94,12 @@ function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&l
 function toast(t){const x=document.querySelector('#toast');x.textContent=t;x.classList.remove('hidden');clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.add('hidden'),2200)}
 function readFile(el,cb){const f=el.files?.[0];if(!f)return;const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(f)}
 function login(){if(user.value===D.settings.username&&pass.value===D.settings.password){sessionStorage.setItem(LOGIN,'1');start()}else alert('ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง')}
-function logout(){sessionStorage.removeItem(LOGIN);location.reload()}
+function logout(){
+  sessionStorage.removeItem(LOGIN);
+  localStorage.removeItem('rongkhemAdminLoggedIn');
+  localStorage.removeItem('rongkhemAdminUsername');
+  location.href='login.html';
+}
 function start(){loginBox.classList.add('hidden');appShell.classList.remove('hidden');logoutBtn.classList.remove('hidden');menuBox.innerHTML=menus.map(([id,n])=>`<button class="menu" data-id="${id}" onclick="openPage('${id}')">${n}</button>`).join('');openPage(current)}
 function openPage(id){current=id;document.querySelectorAll('.menu').forEach(b=>b.classList.toggle('active',b.dataset.id===id));if(['people','content','places','environment'].includes(id)){return groupPage(id)};if(id==='dashboard')return dashboard();if(id==='leader')return leaderPage();if(['assistants','committee','advisors','sao','healthVolunteers'].includes(id))return personList(id);if(['news','activities','announcements','tourism','temples','maps','subnamjam','shops','calendar'].includes(id))return contentList(id);if(['pm25','weather','ai'].includes(id))return singlePage(id);if(id==='stats')return statsPage();if(id==='backup')return backupPage();if(id==='settings')return settingsPage()}
 function card(title,body){main.innerHTML=`<section class="card"><div class="toolbar"><div><h2 style="margin:0">${title}</h2><div class="note">แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้</div></div></div>${body}</section>`}
@@ -117,6 +122,11 @@ function exportData(){const a=document.createElement('a');a.href=URL.createObjec
 function importData(el){const f=el.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{D=merge(JSON.parse(r.result),structuredClone(defaultData));save(false);toast('✓ กู้คืนข้อมูลแล้ว');openPage('dashboard')}catch(e){alert('ไฟล์ไม่ถูกต้อง')}};r.readAsText(f)}
 function settingsPage(){const x=D.settings;card('⚙️ ตั้งค่าระบบ',`<div class="row"><div><label>ชื่อเว็บไซต์<input id="set_site" value="${esc(x.siteName)}"></label><label>ชื่อผู้ใช้ผู้ดูแล<input id="set_user" value="${esc(x.username)}"></label></div><div><label>รหัสผ่านใหม่<input id="set_pass" type="password" value="${esc(x.password)}"></label><p class="small">หลังบันทึก ใช้ชื่อผู้ใช้และรหัสผ่านใหม่ในครั้งถัดไป</p></div></div><button class="btn primary" onclick="D.settings={siteName:set_site.value,username:set_user.value,password:set_pass.value};save()">บันทึกการตั้งค่า</button>`)}
 loginBtn.onclick=login;pass.addEventListener('keydown',e=>{if(e.key==='Enter')login()});logoutBtn.onclick=logout;
-if(sessionStorage.getItem(LOGIN)==='1')start();
+if(localStorage.getItem('rongkhemAdminLoggedIn')==='true' || sessionStorage.getItem(LOGIN)==='1'){
+  sessionStorage.setItem(LOGIN,'1');
+  start();
+}else{
+  location.href='login.html';
+}
 </script>
 </body></html>
