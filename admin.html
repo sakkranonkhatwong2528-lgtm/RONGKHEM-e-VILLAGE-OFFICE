@@ -1,252 +1,203 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RONGKHEM e-VILLAGE | ระบบหลังบ้าน</title>
 
-<title>RONGKHEM e-VILLAGE ADMIN</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+  --navy:#082342;
+  --blue:#164d84;
+  --gold:#e8ad2e;
+  --bg:#eef3f8;
+  --line:#dce4ed;
+}
 *{box-sizing:border-box}
 body{
-    margin:0;
-    font-family:"Noto Sans Thai",sans-serif;
-    background:#eef2f7;
-    color:#18212f;
+  margin:0;
+  font-family:Kanit,sans-serif;
+  background:var(--bg);
+  color:#182432
 }
 header{
-    background:#001b3d;
-    color:#fff;
-    padding:16px 24px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    position:sticky;
-    top:0;
-    z-index:100;
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:linear-gradient(90deg,#061a32,#123f70);
+  color:#fff;
+  padding:14px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px
 }
-.brand h1{
-    margin:0;
-    font-size:20px;
-}
-.brand p{
-    margin:3px 0 0;
-    font-size:12px;
-    opacity:.75;
-}
-.header-actions{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-}
-.wrap{
-    max-width:1450px;
-    margin:auto;
-    padding:24px;
-    display:grid;
-    grid-template-columns:270px 1fr;
-    gap:20px;
-}
-.sidebar,
-.card{
-    background:#fff;
-    border-radius:18px;
-    box-shadow:0 3px 18px rgba(0,27,61,.08);
-}
-.sidebar{
-    padding:15px;
-    height:max-content;
-    position:sticky;
-    top:90px;
-}
-.sidebar h2{
-    font-size:18px;
-    margin:5px 8px 15px;
-}
-.menu-group{
-    font-size:11px;
-    font-weight:700;
-    color:#789;
-    padding:15px 10px 5px;
-}
-.menu-btn{
-    width:100%;
-    border:0;
-    background:transparent;
-    padding:11px 12px;
-    text-align:left;
-    border-radius:10px;
-    cursor:pointer;
-    font-family:inherit;
-    font-size:14px;
-}
-.menu-btn:hover,
-.menu-btn.active{
-    background:#001b3d;
-    color:#fff;
-}
-.card{
-    padding:24px;
-}
-.card h1{
-    margin-top:0;
-}
-.row{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
-}
-.field-label{
-    display:block;
-    margin-top:14px;
-    font-size:14px;
-    font-weight:600;
-}
-input,
-textarea,
-select{
-    width:100%;
-    margin-top:6px;
-    padding:11px 12px;
-    border:1px solid #d8dee8;
-    border-radius:10px;
-    font-family:inherit;
-    font-size:14px;
-    background:#fff;
-}
-textarea{
-    resize:vertical;
-}
+header h1{margin:0;font-size:21px}
+header p{margin:2px 0 0;font-size:13px;opacity:.75}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+
 .btn{
-    border:0;
-    padding:10px 15px;
-    border-radius:10px;
-    cursor:pointer;
-    font-family:inherit;
-    font-weight:600;
-    display:inline-block;
-    text-decoration:none;
+  border:0;
+  border-radius:10px;
+  padding:10px 14px;
+  font:inherit;
+  cursor:pointer
 }
-.primary{
-    background:#075ca8;
-    color:#fff;
+.primary{background:var(--gold);color:#16233a}
+.dark{background:#fff;color:var(--navy)}
+.danger{background:#c62828;color:#fff}
+.light{background:#e8eef5;color:#15263b}
+.success{background:#087a4b;color:#fff}
+
+.card,.sidebar,.item,.stat{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:0 5px 24px #17345a14;
+  padding:20px
 }
-.primary:hover{
-    background:#03477f;
+
+label{
+  display:block;
+  font-weight:500;
+  margin:13px 0 5px
 }
-.danger{
-    background:#c62828;
-    color:#fff;
+input,textarea,select{
+  width:100%;
+  font:inherit;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  background:#fff
 }
-.light{
-    background:#e9eef6;
-    color:#18212f;
+textarea{min-height:100px}
+
+.shell{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  max-width:1500px;
+  margin:auto;
+  gap:18px;
+  padding:18px
 }
-.green{
-    background:#198754;
-    color:#fff;
+
+.sidebar{
+  height:fit-content;
+  position:sticky;
+  top:92px;
+  padding:12px
 }
-.item{
-    margin-top:15px;
-    border:1px solid #e0e5ed;
-    border-radius:15px;
-    padding:18px;
+
+.menu{
+  width:100%;
+  text-align:left;
+  border:0;
+  background:transparent;
+  border-radius:10px;
+  padding:10px 12px;
+  font:inherit;
+  cursor:pointer
 }
-.item-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
+.menu:hover,.menu.active{
+  background:var(--navy);
+  color:#fff
 }
-.preview{
-    width:160px;
-    height:110px;
-    object-fit:cover;
-    border-radius:12px;
-    margin-top:10px;
-    border:1px solid #ddd;
-}
-.actions{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-top:20px;
-}
-.status{
-    margin-bottom:15px;
-    padding:11px 14px;
-    border-radius:10px;
-    font-size:13px;
-}
-.status.ok{
-    background:#e9f8ef;
-    color:#198754;
-}
-.status.error{
-    background:#fff0f0;
-    color:#c62828;
-}
-.status.loading{
-    background:#eef5ff;
-    color:#075ca8;
-}
-.stat-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-.stat{
-    border:1px solid #e3e8f0;
-    border-radius:14px;
-    padding:18px;
-}
-.stat small{
-    color:#789;
+
+.main{min-width:0}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px
 }
 .stat b{
-    display:block;
-    font-size:30px;
-    margin-top:5px;
+  display:block;
+  font-size:28px;
+  color:var(--navy)
 }
-.empty{
-    color:#789;
-    padding:30px;
-    text-align:center;
+
+.toolbar{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  flex-wrap:wrap;
+  margin-bottom:14px
 }
+
+.item{
+  border:1px solid var(--line);
+  margin-top:14px
+}
+
+.item-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px
+}
+
+.row{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px
+}
+
+.preview{
+  width:150px;
+  height:105px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid var(--line);
+  margin-top:8px
+}
+
+.note{
+  color:#718093;
+  font-size:13px
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px
+}
+
+.hidden{display:none!important}
+
+.toast{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  background:#102b4b;
+  color:#fff;
+  padding:12px 16px;
+  border-radius:12px;
+  z-index:50
+}
+
+.loading{
+  position:fixed;
+  inset:0;
+  background:#ffffffdd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999
+}
+
 @media(max-width:900px){
-    header{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-    .wrap{
-        grid-template-columns:1fr;
-        padding:15px;
-    }
-    .sidebar{
-        position:relative;
-        top:auto;
-    }
-    .row{
-        grid-template-columns:1fr;
-    }
-    .stat-grid{
-        grid-template-columns:1fr 1fr;
-    }
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:1fr}
 }
-@media(max-width:500px){
-    .stat-grid{
-        grid-template-columns:1fr;
-    }
-    .card{
-        padding:16px;
-    }
+
+@media(max-width:560px){
+  header{padding:12px}
+  .grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -254,39 +205,41 @@ textarea{
 <body>
 
 <header>
-    <div class="brand">
-        <h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1>
-        <p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p>
-    </div>
+  <div>
+    <h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1>
+    <p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p>
+  </div>
 
-    <div class="header-actions">
-        <a href="index.html" class="btn light">🌐 ดูหน้าเว็บไซต์</a>
-        <button onclick="logout()" class="btn danger">ออกจากระบบ</button>
-    </div>
+  <div class="top-actions">
+    <a class="btn dark" href="index.html">ดูหน้าเว็บไซต์</a>
+    <button class="btn danger" id="logoutBtn">ออกจากระบบ</button>
+  </div>
 </header>
 
-<div class="wrap">
+<section class="shell" id="appShell">
 
-<aside class="sidebar">
-    <h2>เมนูจัดการ</h2>
-    <div id="menu"></div>
-</aside>
+  <aside class="sidebar">
+    <div id="menuBox"></div>
+  </aside>
 
-<main id="app">
+  <main class="main" id="main"></main>
 
-<div id="status" class="status loading">
-กำลังเชื่อมต่อระบบข้อมูล...
+</section>
+
+<div id="toast" class="toast hidden"></div>
+
+<div id="loading" class="loading">
+  กำลังเชื่อมต่อระบบ...
 </div>
 
-</main>
-
-</div>
-
-<script>
+<script type="module">
 
 /* =========================================================
    SUPABASE CONFIG
-   ========================================================= */
+========================================================= */
+
+import { createClient }
+from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL =
 "https://qtnjtsigdgiwdsdfocmq.supabase.co";
@@ -294,1519 +247,2113 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN";
 
-const TABLE_NAME = "village_content";
-const STORAGE_BUCKET = "รูปภาพ";
-
-const sb = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
 );
 
+const TABLE = "rongkhem_content";
+const STORAGE_BUCKET = "รูปภาพ";
+const CONTENT_KEY = "website_data";
 
 /* =========================================================
    LOGIN CHECK
-   ใช้ระบบเดียวกับ login.html
-   ========================================================= */
+========================================================= */
 
-const isLoggedIn =
-    localStorage.getItem("rongkhemAdminLoggedIn") === "true";
-
-if(!isLoggedIn){
-    window.location.href = "login.html";
+if(
+  localStorage.getItem(
+    "rongkhemAdminLoggedIn"
+  ) !== "true"
+){
+  location.replace("login.html");
 }
 
-
 /* =========================================================
-   DATA
-   ========================================================= */
+   DEFAULT DATA
+========================================================= */
 
-const DEFAULTS = {
+const defaultData = {
 
-leader:{
+  settings:{
+    siteName:"RONGKHEM e-VILLAGE",
+    username:"sakkranon",
+    password:"23122528"
+  },
+
+  leader:{
     name:"นายศักรนนท์ ขัติย์วงศ์",
     role:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",
+    phone:"",
     address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",
     quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",
-    phone:"",
     image:""
-},
+  },
 
-assistants:[],
+  assistants:[],
+  committee:[],
+  advisors:[],
+  sao:[],
+  healthVolunteers:[],
 
-committee:[],
+  news:[],
+  activities:[],
+  announcements:[],
 
-advisors:[],
+  tourism:[],
+  temples:[],
+  maps:[],
+  subnamjam:[],
+  shops:[],
 
-saobor:[],
-
-healthvolunteers:[],
-
-news:[
-    {
-        title:"ประชุมประจำเดือนหมู่บ้าน",
-        detail:"ติดตามวัน เวลา และสถานที่",
-        image:""
-    }
-],
-
-activity:[],
-
-announcements:[],
-
-tourism:[],
-
-temples:[],
-
-shops:[],
-
-subnamjam:[],
-
-map:{
-    title:"แผนที่หมู่บ้าน",
-    detail:"",
-    image:""
-},
-
-pm25:{
-    title:"PM2.5",
+  pm25:{
+    title:"ค่าฝุ่น PM2.5",
+    detail:"ติดตามสถานการณ์คุณภาพอากาศของชุมชน",
     value:"",
     level:"",
     updated:""
-},
+  },
 
-weather:{
+  weather:{
     title:"พยากรณ์อากาศ",
+    detail:"ข้อมูลสภาพอากาศ",
     temperature:"",
-    level:"",
+    description:"",
     updated:""
-},
+  },
 
-calendar:{
-    title:"วันพระ / วันสำคัญ",
-    detail:"",
-    updated:""
-},
+  calendar:[],
 
-stats:{
+  ai:{
+    title:"RONGKHEM AI",
+    welcome:
+    "สวัสดีครับ ผมคือ RONGKHEM AI ผู้ช่วยข้อมูลหมู่บ้าน"
+  },
+
+  stats:{
     households:"350",
     population:"1,247",
-    area:"",
+    area:"2.15",
     updated:""
-},
-
-sections:{}
+  }
 
 };
 
-
-let D = structuredClone(DEFAULTS);
-
+let D = structuredClone(defaultData);
+let current = "dashboard";
 
 /* =========================================================
    MENU
-   ========================================================= */
+========================================================= */
 
 const menus = [
 
 ["dashboard","📊 ภาพรวมระบบ"],
 
-["group","👥 บุคลากรและคณะทำงาน"],
-
+["people","👥 บุคลากรและคณะทำงาน"],
 ["leader","👨‍💼 ผู้ใหญ่บ้าน"],
 ["assistants","🤝 ผู้ช่วยผู้ใหญ่บ้าน"],
 ["committee","🏛️ คณะกรรมการหมู่บ้าน"],
 ["advisors","🎓 คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ"],
-["saobor","🗳️ ส.อบต."],
-["healthvolunteers","❤️ อสม."],
+["sao","🗳️ ส.อบต."],
+["healthVolunteers","❤️ อสม."],
 
-["group","📰 ข่าวและกิจกรรม"],
-
+["content","📰 ข่าวและกิจกรรม"],
 ["news","📢 ข่าวประชาสัมพันธ์"],
-["activity","📅 กิจกรรมเด่น"],
+["activities","📅 กิจกรรมเด่น"],
 ["announcements","📣 ประกาศสำคัญ"],
 
-["group","📍 สถานที่และแผนที่"],
-
+["places","📍 สถานที่และแผนที่"],
 ["tourism","🌿 แหล่งท่องเที่ยว"],
 ["temples","🛕 วัดและสถานที่สำคัญ"],
-["map","🗺️ แผนที่หมู่บ้าน"],
+["maps","🗺️ แผนที่หมู่บ้าน"],
 ["subnamjam","💧 แหล่งซับน้ำจำ"],
 ["shops","🏪 ร้านค้าในชุมชน"],
 
-["group","🌦️ สิ่งแวดล้อมและปฏิทิน"],
-
+["environment","🌦️ สิ่งแวดล้อมและปฏิทิน"],
 ["pm25","🌫️ PM2.5"],
 ["weather","☁️ พยากรณ์อากาศ"],
 ["calendar","🗓️ วันพระ / วันสำคัญ"],
 
+["ai","🤖 ผู้ช่วย AI"],
 ["stats","📈 สถิติหมู่บ้าน"],
 
-["backup","💾 สำรอง / กู้คืน"]
+["backup","💾 สำรอง / กู้คืน"],
+["settings","⚙️ ตั้งค่าระบบ"]
 
 ];
 
-
 /* =========================================================
-   UTILITIES
-   ========================================================= */
+   HELPERS
+========================================================= */
 
-function esc(value){
+function esc(v){
+  return String(v ?? "")
+  .replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  }[c]));
+}
 
-    return String(value ?? "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function toast(text){
+
+  const x =
+  document.getElementById("toast");
+
+  x.textContent = text;
+
+  x.classList.remove("hidden");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+  setTimeout(
+    ()=>x.classList.add("hidden"),
+    2500
+  );
 
 }
 
+function merge(a,b){
 
-function setStatus(message,type="ok"){
+  for(const k in b){
 
-    const box=document.getElementById("status");
+    if(a[k] === undefined){
 
-    if(box){
+      a[k] = b[k];
 
-        box.className="status "+type;
-        box.textContent=message;
+    }else if(
 
-    }
+      b[k] &&
+      typeof b[k] === "object" &&
+      !Array.isArray(b[k]) &&
+      a[k] &&
+      typeof a[k] === "object"
 
-}
-
-
-function mergeData(defaultData,savedData){
-
-    if(
-        typeof defaultData !== "object" ||
-        defaultData === null
     ){
-        return savedData ?? defaultData;
-    }
 
-    if(Array.isArray(defaultData)){
-        return Array.isArray(savedData)
-            ? savedData
-            : defaultData;
-    }
-
-    const result={...defaultData};
-
-    if(savedData && typeof savedData==="object"){
-
-        Object.keys(savedData).forEach(key=>{
-
-            if(
-                typeof savedData[key] === "object" &&
-                savedData[key] !== null &&
-                !Array.isArray(savedData[key]) &&
-                typeof defaultData[key] === "object" &&
-                defaultData[key] !== null &&
-                !Array.isArray(defaultData[key])
-            ){
-
-                result[key]=mergeData(
-                    defaultData[key],
-                    savedData[key]
-                );
-
-            }else{
-
-                result[key]=savedData[key];
-
-            }
-
-        });
+      merge(a[k],b[k]);
 
     }
 
-    return result;
+  }
+
+  return a;
 
 }
-
 
 /* =========================================================
    LOAD FROM SUPABASE
-   ========================================================= */
+========================================================= */
 
 async function loadData(){
 
-    try{
+  const {data,error} =
+  await supabase
+  .from(TABLE)
+  .select("content")
+  .eq("content_key",CONTENT_KEY)
+  .maybeSingle();
 
-        setStatus(
-            "กำลังโหลดข้อมูลจาก Supabase...",
-            "loading"
-        );
+  if(error){
 
-        const {data,error} =
-            await sb
-            .from(TABLE_NAME)
-            .select("*")
-            .eq("id",1)
-            .maybeSingle();
+    console.error(error);
 
-        if(error){
+    toast(
+      "ไม่สามารถโหลดข้อมูล Supabase"
+    );
 
-            console.error(error);
+    return;
 
-            throw error;
+  }
 
-        }
+  if(data && data.content){
 
-        if(data && data.data){
+    D =
+    merge(
+      data.content,
+      structuredClone(defaultData)
+    );
 
-            D=mergeData(
-                DEFAULTS,
-                data.data
-            );
+  }else{
 
-        }
-
-        setStatus(
-            "✓ เชื่อมต่อ Supabase และโหลดข้อมูลเรียบร้อย",
-            "ok"
-        );
-
-        renderMenu();
-
-        openPage("dashboard");
-
-    }catch(error){
-
-        console.error(error);
-
-        D=structuredClone(DEFAULTS);
-
-        setStatus(
-            "⚠️ ยังโหลดข้อมูลจาก Supabase ไม่สำเร็จ: "
-            + error.message,
-            "error"
-        );
-
-        renderMenu();
-
-        openPage("dashboard");
-
-    }
-
-}
-
-
-/* =========================================================
-   SAVE TO SUPABASE
-   ========================================================= */
-
-async function saveData(showMessage=true){
-
-    try{
-
-        setStatus(
-            "กำลังบันทึกข้อมูล...",
-            "loading"
-        );
-
-        const {error} =
-            await sb
-            .from(TABLE_NAME)
-            .upsert({
-                id:1,
-                data:D,
-                updated_at:new Date().toISOString()
-            });
-
-        if(error) throw error;
-
-        setStatus(
-            "✓ บันทึกข้อมูลเรียบร้อย",
-            "ok"
-        );
-
-        if(showMessage){
-
-            alert("บันทึกข้อมูลเรียบร้อย");
-
-        }
-
-        return true;
-
-    }catch(error){
-
-        console.error(error);
-
-        setStatus(
-            "❌ บันทึกไม่สำเร็จ: "
-            + error.message,
-            "error"
-        );
-
-        alert(
-            "บันทึกไม่สำเร็จ\n\n"
-            + error.message
-        );
-
-        return false;
-
-    }
-
-}
-
-
-/* =========================================================
-   IMAGE UPLOAD
-   ========================================================= */
-
-async function uploadImage(file){
-
-    if(!file) return "";
-
-    try{
-
-        const extension =
-            file.name.split(".").pop();
-
-        const filename =
-            "images/"
-            + Date.now()
-            + "-"
-            + Math.random()
-            .toString(36)
-            .substring(2,10)
-            + "."
-            + extension;
-
-        setStatus(
-            "กำลังอัปโหลดรูปภาพ...",
-            "loading"
-        );
-
-        const {error} =
-            await sb
-            .storage
-            .from(STORAGE_BUCKET)
-            .upload(
-                filename,
-                file,
-                {
-                    cacheControl:"3600",
-                    upsert:false
-                }
-            );
-
-        if(error) throw error;
-
-        const {data} =
-            sb
-            .storage
-            .from(STORAGE_BUCKET)
-            .getPublicUrl(filename);
-
-        setStatus(
-            "✓ อัปโหลดรูปภาพเรียบร้อย",
-            "ok"
-        );
-
-        return data.publicUrl;
-
-    }catch(error){
-
-        console.error(error);
-
-        alert(
-            "อัปโหลดรูปไม่สำเร็จ\n\n"
-            + error.message
-        );
-
-        return "";
-
-    }
-
-}
-
-
-/* =========================================================
-   RENDER MENU
-   ========================================================= */
-
-function renderMenu(){
-
-    const menu=document.getElementById("menu");
-
-    menu.innerHTML=menus.map(item=>{
-
-        if(item[0]==="group"){
-
-            return `
-            <div class="menu-group">
-                ${esc(item[1])}
-            </div>
-            `;
-
-        }
-
-        return `
-        <button
-            class="menu-btn"
-            data-id="${esc(item[0])}"
-            onclick="openPage('${esc(item[0])}')"
-        >
-            ${esc(item[1])}
-        </button>
-        `;
-
-    }).join("");
-
-}
-
-
-function activeMenu(id){
-
-    document
-    .querySelectorAll(".menu-btn")
-    .forEach(button=>{
-
-        button.classList.toggle(
-            "active",
-            button.dataset.id===id
-        );
-
-    });
-
-}
-
-
-/* =========================================================
-   OPEN PAGE
-   ========================================================= */
-
-function openPage(id){
-
-    activeMenu(id);
-
-    if(id==="dashboard") return dashboardPage();
-
-    if(id==="leader") return leaderPage();
-
-    if(id==="assistants")
-        return collectionPage(
-            "assistants",
-            "🤝 ทีมผู้ช่วยผู้ใหญ่บ้าน"
-        );
-
-    if(id==="committee")
-        return collectionPage(
-            "committee",
-            "🏛️ คณะกรรมการหมู่บ้าน"
-        );
-
-    if(id==="advisors")
-        return collectionPage(
-            "advisors",
-            "🎓 คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ"
-        );
-
-    if(id==="saobor")
-        return collectionPage(
-            "saobor",
-            "🗳️ สมาชิก ส.อบต."
-        );
-
-    if(id==="healthvolunteers")
-        return collectionPage(
-            "healthvolunteers",
-            "❤️ อสม."
-        );
-
-    if(id==="news")
-        return collectionPage(
-            "news",
-            "📢 ข่าวประชาสัมพันธ์"
-        );
-
-    if(id==="activity")
-        return collectionPage(
-            "activity",
-            "📅 กิจกรรมเด่น"
-        );
-
-    if(id==="announcements")
-        return collectionPage(
-            "announcements",
-            "📣 ประกาศสำคัญ"
-        );
-
-    if(id==="tourism")
-        return collectionPage(
-            "tourism",
-            "🌿 แหล่งท่องเที่ยว"
-        );
-
-    if(id==="temples")
-        return collectionPage(
-            "temples",
-            "🛕 วัดและสถานที่สำคัญ"
-        );
-
-    if(id==="subnamjam")
-        return collectionPage(
-            "subnamjam",
-            "💧 แหล่งซับน้ำจำ"
-        );
-
-    if(id==="shops")
-        return collectionPage(
-            "shops",
-            "🏪 ร้านค้าในชุมชน"
-        );
-
-    if(id==="stats")
-        return statsPage();
-
-    if(id==="map")
-        return singlePage(
-            "map",
-            "🗺️ แผนที่หมู่บ้าน"
-        );
-
-    if(id==="pm25")
-        return singlePage(
-            "pm25",
-            "🌫️ PM2.5"
-        );
-
-    if(id==="weather")
-        return singlePage(
-            "weather",
-            "☁️ พยากรณ์อากาศ"
-        );
-
-    if(id==="calendar")
-        return singlePage(
-            "calendar",
-            "🗓️ วันพระ / วันสำคัญ"
-        );
-
-    if(id==="backup")
-        return backupPage();
-
-}
-
-
-/* =========================================================
-   DASHBOARD
-   ========================================================= */
-
-function dashboardPage(){
-
-    const app=document.getElementById("app");
-
-    app.innerHTML=`
-
-    <div id="status" class="status ok">
-        ระบบพร้อมใช้งาน
-    </div>
-
-    <div class="card">
-
-        <h1>📊 ภาพรวมระบบ</h1>
-
-        <p>
-            ระบบจัดการข้อมูลเว็บไซต์
-            บ้านร่องเข็ม หมู่ที่ 6
-        </p>
-
-        <div class="stat-grid">
-
-            <div class="stat">
-                <small>ข่าวประชาสัมพันธ์</small>
-                <b>${D.news.length}</b>
-            </div>
-
-            <div class="stat">
-                <small>กิจกรรม</small>
-                <b>${D.activity.length}</b>
-            </div>
-
-            <div class="stat">
-                <small>ประกาศสำคัญ</small>
-                <b>${D.announcements.length}</b>
-            </div>
-
-            <div class="stat">
-                <small>บุคลากร</small>
-                <b>${
-                    D.assistants.length+
-                    D.committee.length+
-                    D.advisors.length+
-                    D.saobor.length+
-                    D.healthvolunteers.length
-                }</b>
-            </div>
-
-        </div>
-
-    </div>
-    `;
-
-}
-
-
-/* =========================================================
-   LEADER PAGE
-   ========================================================= */
-
-function leaderPage(){
-
-    const x=D.leader;
-
-    document.getElementById("app").innerHTML=`
-
-    <div class="card">
-
-        <h1>👨‍💼 ข้อมูลผู้ใหญ่บ้าน</h1>
-
-        <div class="row">
-
-            <div>
-
-                <label class="field-label">
-                    ชื่อ-นามสกุล
-
-                    <input
-                        id="leader_name"
-                        value="${esc(x.name)}"
-                    >
-
-                </label>
-
-                <label class="field-label">
-                    ตำแหน่ง
-
-                    <input
-                        id="leader_role"
-                        value="${esc(x.role)}"
-                    >
-
-                </label>
-
-                <label class="field-label">
-                    โทรศัพท์
-
-                    <input
-                        id="leader_phone"
-                        value="${esc(x.phone)}"
-                    >
-
-                </label>
-
-            </div>
-
-            <div>
-
-                <label class="field-label">
-                    ที่อยู่
-
-                    <textarea
-                        id="leader_address"
-                        rows="3"
-                    >${esc(x.address)}</textarea>
-
-                </label>
-
-                <label class="field-label">
-                    คำกล่าว / คำขวัญ
-
-                    <textarea
-                        id="leader_quote"
-                        rows="3"
-                    >${esc(x.quote)}</textarea>
-
-                </label>
-
-                <label class="field-label">
-                    อัปโหลดรูปภาพ
-
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onchange="leaderImage(this)"
-                    >
-
-                </label>
-
-                ${
-                    x.image
-                    ? `<img src="${esc(x.image)}" class="preview">`
-                    : ""
-                }
-
-            </div>
-
-        </div>
-
-        <div class="actions">
-
-            <button
-                class="btn primary"
-                onclick="saveLeader()"
-            >
-                💾 บันทึก
-            </button>
-
-        </div>
-
-    </div>
-
-    `;
-
-}
-
-
-async function leaderImage(input){
-
-    const file=input.files[0];
-
-    if(!file) return;
-
-    const url=await uploadImage(file);
-
-    if(url){
-
-        D.leader.image=url;
-
-        await saveData(false);
-
-        leaderPage();
-
-    }
-
-}
-
-
-async function saveLeader(){
-
-    D.leader.name=
-        document.getElementById("leader_name").value;
-
-    D.leader.role=
-        document.getElementById("leader_role").value;
-
-    D.leader.phone=
-        document.getElementById("leader_phone").value;
-
-    D.leader.address=
-        document.getElementById("leader_address").value;
-
-    D.leader.quote=
-        document.getElementById("leader_quote").value;
-
-    await saveData();
-
-}
-
-
-/* =========================================================
-   COLLECTION PAGE
-   ========================================================= */
-
-function collectionPage(key,title){
-
-    if(!Array.isArray(D[key])) D[key]=[];
-
-    const app=document.getElementById("app");
-
-    app.innerHTML=`
-
-    <div class="card">
-
-        <div class="item-head">
-
-            <div>
-
-                <h1>${esc(title)}</h1>
-
-                <p>
-                    เพิ่ม แก้ไข ลบ
-                    และอัปโหลดรูปภาพได้
-                </p>
-
-            </div>
-
-            <button
-                class="btn primary"
-                onclick="addItem('${key}','${title}')"
-            >
-                + เพิ่มรายการ
-            </button>
-
-        </div>
-
-        <div id="items"></div>
-
-    </div>
-
-    `;
-
-    renderItems(key,title);
-
-}
-
-
-function renderItems(key,title){
-
-    const box=document.getElementById("items");
-
-    if(!D[key].length){
-
-        box.innerHTML=`
-        <div class="empty">
-            ยังไม่มีข้อมูล<br>
-            กด “เพิ่มรายการ”
-        </div>
-        `;
-
-        return;
-
-    }
-
-    box.innerHTML=D[key]
-    .map((item,index)=>`
-
-    <div class="item">
-
-        <div class="item-head">
-
-            <b>
-                รายการที่ ${index+1}
-            </b>
-
-            <button
-                class="btn danger"
-                onclick="deleteItem('${key}',${index},'${title}')"
-            >
-                🗑️ ลบ
-            </button>
-
-        </div>
-
-        <label class="field-label">
-            ชื่อ / หัวข้อ
-
-            <input
-                id="${key}_title_${index}"
-                value="${esc(item.title || item.name || "")}"
-            >
-
-        </label>
-
-        <label class="field-label">
-            ตำแหน่ง
-
-            <input
-                id="${key}_role_${index}"
-                value="${esc(item.role || "")}"
-            >
-
-        </label>
-
-        <label class="field-label">
-            โทรศัพท์
-
-            <input
-                id="${key}_phone_${index}"
-                value="${esc(item.phone || "")}"
-            >
-
-        </label>
-
-        <label class="field-label">
-            รายละเอียด
-
-            <textarea
-                id="${key}_detail_${index}"
-                rows="4"
-            >${esc(item.detail || "")}</textarea>
-
-        </label>
-
-        <label class="field-label">
-            รูปภาพ
-
-            <input
-                type="file"
-                accept="image/*"
-                onchange="itemImage('${key}',${index},'${title}',this)"
-            >
-
-        </label>
-
-        ${
-            item.image
-            ? `
-            <img
-                src="${esc(item.image)}"
-                class="preview"
-            >
-            `
-            : ""
-        }
-
-        <div class="actions">
-
-            <button
-                class="btn primary"
-                onclick="saveItem('${key}',${index})"
-            >
-                💾 บันทึก
-            </button>
-
-        </div>
-
-    </div>
-
-    `)
-    .join("");
-
-}
-
-
-function addItem(key,title){
-
-    D[key].push({
-
-        title:"",
-        name:"",
-        role:"",
-        phone:"",
-        detail:"",
-        image:""
-
-    });
-
-    collectionPage(key,title);
-
-}
-
-
-async function deleteItem(key,index,title){
-
-    if(!confirm("ต้องการลบรายการนี้ใช่หรือไม่?")) return;
-
-    D[key].splice(index,1);
+    D =
+    structuredClone(defaultData);
 
     await saveData(false);
 
-    collectionPage(key,title);
+  }
 
 }
-
-
-async function saveItem(key,index){
-
-    const titleInput=
-        document.getElementById(
-            `${key}_title_${index}`
-        );
-
-    const roleInput=
-        document.getElementById(
-            `${key}_role_${index}`
-        );
-
-    const phoneInput=
-        document.getElementById(
-            `${key}_phone_${index}`
-        );
-
-    const detailInput=
-        document.getElementById(
-            `${key}_detail_${index}`
-        );
-
-    D[key][index]={
-        ...D[key][index],
-
-        title:titleInput.value,
-        name:titleInput.value,
-
-        role:roleInput.value,
-
-        phone:phoneInput.value,
-
-        detail:detailInput.value
-    };
-
-    await saveData();
-
-}
-
-
-async function itemImage(
-    key,
-    index,
-    title,
-    input
-){
-
-    const file=input.files[0];
-
-    if(!file) return;
-
-    const url=await uploadImage(file);
-
-    if(url){
-
-        D[key][index].image=url;
-
-        await saveData(false);
-
-        collectionPage(key,title);
-
-    }
-
-}
-
 
 /* =========================================================
-   SINGLE PAGE
-   ========================================================= */
+   SAVE TO SUPABASE
+========================================================= */
 
-function singlePage(key,title){
+async function saveData(showMessage=true){
 
-    const x=D[key];
+  const {error} =
+  await supabase
+  .from(TABLE)
+  .upsert({
 
-    document.getElementById("app").innerHTML=`
+    content_key:CONTENT_KEY,
 
-    <div class="card">
+    content:D,
 
-        <h1>${esc(title)}</h1>
+    updated_at:
+    new Date().toISOString()
 
-        <label class="field-label">
+  },{
+    onConflict:"content_key"
+  });
 
-            ชื่อเรื่อง
+  if(error){
 
-            <input
-                id="single_title"
-                value="${esc(x.title || "")}"
-            >
+    console.error(error);
 
-        </label>
+    alert(
+      "บันทึกไม่สำเร็จ: " +
+      error.message
+    );
 
-        <label class="field-label">
+    return false;
 
-            รายละเอียด
+  }
 
-            <textarea
-                id="single_detail"
-                rows="6"
-            >${esc(x.detail || "")}</textarea>
+  if(showMessage){
 
-        </label>
+    toast(
+      "✓ บันทึกข้อมูลเรียบร้อยแล้ว"
+    );
 
-        ${
-            key==="pm25"
-            ? `
-            <label class="field-label">
-                ค่าฝุ่น
-                <input
-                    id="single_value"
-                    value="${esc(x.value || "")}"
-                >
-            </label>
-            `
-            : ""
-        }
+  }
 
-        ${
-            key==="weather"
-            ? `
-            <label class="field-label">
-                อุณหภูมิ
-                <input
-                    id="single_value"
-                    value="${esc(x.temperature || "")}"
-                >
-            </label>
-            `
-            : ""
-        }
+  return true;
 
-        <label class="field-label">
+}
 
-            สถานะ / ระดับ
+/* =========================================================
+   IMAGE UPLOAD TO SUPABASE STORAGE
+========================================================= */
 
-            <input
-                id="single_level"
-                value="${esc(x.level || "")}"
-            >
+async function uploadImage(file){
 
-        </label>
+  if(!file) return "";
 
-        <label class="field-label">
+  const ext =
+  file.name
+  .split(".")
+  .pop();
 
-            อัปเดตล่าสุด
+  const fileName =
+  "images/" +
+  Date.now() +
+  "-" +
+  Math.random()
+  .toString(36)
+  .slice(2) +
+  "." +
+  ext;
 
-            <input
-                id="single_updated"
-                value="${esc(x.updated || "")}"
-            >
+  toast("กำลังอัปโหลดรูปภาพ...");
 
-        </label>
+  const {error} =
+  await supabase
+  .storage
+  .from(STORAGE_BUCKET)
+  .upload(
+    fileName,
+    file,
+    {
+      upsert:false,
+      cacheControl:"3600"
+    }
+  );
 
-        <label class="field-label">
+  if(error){
 
-            รูปภาพ
+    console.error(error);
 
-            <input
-                type="file"
-                accept="image/*"
-                onchange="singleImage('${key}','${title}',this)"
-            >
+    alert(
+      "อัปโหลดรูปไม่สำเร็จ: " +
+      error.message
+    );
 
-        </label>
+    return "";
 
-        ${
-            x.image
-            ? `
-            <img
-                src="${esc(x.image)}"
-                class="preview"
-            >
-            `
-            : ""
-        }
+  }
 
-        <div class="actions">
+  const {data} =
+  supabase
+  .storage
+  .from(STORAGE_BUCKET)
+  .getPublicUrl(fileName);
 
-            <button
-                class="btn primary"
-                onclick="saveSingle('${key}')"
-            >
-                💾 บันทึก
-            </button>
+  return data.publicUrl;
+
+}
+
+async function handleImageUpload(
+  input,
+  callback
+){
+
+  const file =
+  input.files?.[0];
+
+  if(!file) return;
+
+  const url =
+  await uploadImage(file);
+
+  if(url){
+
+    await callback(url);
+
+    await saveData(false);
+
+    toast(
+      "✓ อัปโหลดรูปภาพสำเร็จ"
+    );
+
+    openPage(current);
+
+  }
+
+}
+
+/* =========================================================
+   START SYSTEM
+========================================================= */
+
+function start(){
+
+  menuBox.innerHTML =
+  menus.map(([id,name])=>
+  `
+  <button
+    class="menu"
+    data-id="${id}"
+    onclick="window.openPage('${id}')"
+  >
+    ${name}
+  </button>
+  `
+  ).join("");
+
+  openPage(current);
+
+}
+
+/* =========================================================
+   OPEN PAGE
+========================================================= */
+
+function openPage(id){
+
+  current = id;
+
+  document
+  .querySelectorAll(".menu")
+  .forEach(btn=>{
+
+    btn.classList.toggle(
+      "active",
+      btn.dataset.id === id
+    );
+
+  });
+
+  if(
+    ["people","content","places","environment"]
+    .includes(id)
+  ){
+    return groupPage(id);
+  }
+
+  if(id==="dashboard")
+    return dashboard();
+
+  if(id==="leader")
+    return leaderPage();
+
+  if(
+    [
+      "assistants",
+      "committee",
+      "advisors",
+      "sao",
+      "healthVolunteers"
+    ]
+    .includes(id)
+  ){
+    return personList(id);
+  }
+
+  if(
+    [
+      "news",
+      "activities",
+      "announcements",
+      "tourism",
+      "temples",
+      "maps",
+      "subnamjam",
+      "shops",
+      "calendar"
+    ]
+    .includes(id)
+  ){
+    return contentList(id);
+  }
+
+  if(
+    ["pm25","weather","ai"]
+    .includes(id)
+  ){
+    return singlePage(id);
+  }
+
+  if(id==="stats")
+    return statsPage();
+
+  if(id==="backup")
+    return backupPage();
+
+  if(id==="settings")
+    return settingsPage();
+
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+function card(title,body){
+
+  main.innerHTML = `
+  <section class="card">
+
+    <div class="toolbar">
+
+      <div>
+
+        <h2 style="margin:0">
+          ${title}
+        </h2>
+
+        <div class="note">
+
+          แก้ไข เพิ่ม ลบ บันทึก
+          และอัปโหลดรูปภาพได้จากหน้านี้
 
         </div>
 
+      </div>
+
     </div>
 
-    `;
+    ${body}
+
+  </section>
+  `;
 
 }
 
+/* =========================================================
+   GROUP PAGE
+========================================================= */
+
+function groupPage(id){
+
+  const map={
+
+    people:[
+      "👥 บุคลากรและคณะทำงาน",
+      "เลือกเมนูด้านซ้ายเพื่อจัดการข้อมูลบุคลากร"
+    ],
+
+    content:[
+      "📰 ข่าวและกิจกรรม",
+      "จัดการข่าวประชาสัมพันธ์ กิจกรรม และประกาศ"
+    ],
+
+    places:[
+      "📍 สถานที่และแผนที่",
+      "จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า"
+    ],
+
+    environment:[
+      "🌦️ สิ่งแวดล้อมและปฏิทิน",
+      "จัดการ PM2.5 พยากรณ์อากาศ และวันสำคัญ"
+    ]
+
+  }[id];
+
+  card(
+    map[0],
+    `<p>${map[1]}</p>`
+  );
+
+}
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function dashboard(){
+
+  const data = [
+
+    ["👥 ผู้ช่วย",D.assistants.length],
+    ["🏛️ คณะกรรมการ",D.committee.length],
+    ["❤️ อสม.",D.healthVolunteers.length],
+    ["📢 ข่าว",D.news.length],
+    ["📅 กิจกรรม",D.activities.length],
+    ["🌿 ท่องเที่ยว",D.tourism.length],
+    ["🛕 วัด",D.temples.length],
+    ["🗓️ ปฏิทิน",D.calendar.length]
+
+  ];
+
+  card(
+    "📊 ภาพรวมระบบ",
+
+    `
+    <div class="grid">
+
+      ${data.map(x=>`
+      <div class="stat">
+        ${x[0]}
+        <b>${x[1]}</b>
+      </div>
+      `).join("")}
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn primary"
+        onclick="window.saveAll()"
+      >
+        💾 บันทึกข้อมูลทั้งหมด
+      </button>
+
+      <a
+        class="btn light"
+        href="index.html"
+      >
+        เปิดหน้าเว็บไซต์
+      </a>
+
+    </div>
+    `
+  );
+
+}
+
+/* =========================================================
+   LEADER
+========================================================= */
+
+function leaderPage(){
+
+  const x = D.leader;
+
+  card(
+    "👨‍💼 ข้อมูลผู้ใหญ่บ้าน",
+
+    `
+    <div class="row">
+
+      <div>
+
+        <label>
+          ชื่อ-นามสกุล
+
+          <input
+            id="f_name"
+            value="${esc(x.name)}"
+          >
+
+        </label>
+
+        <label>
+          ตำแหน่ง
+
+          <input
+            id="f_role"
+            value="${esc(x.role)}"
+          >
+
+        </label>
+
+        <label>
+          โทรศัพท์
+
+          <input
+            id="f_phone"
+            value="${esc(x.phone)}"
+          >
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          ที่อยู่
+
+          <input
+            id="f_address"
+            value="${esc(x.address)}"
+          >
+
+        </label>
+
+        <label>
+          คำกล่าว / คำขวัญ
+
+          <textarea id="f_quote">${esc(x.quote)}</textarea>
+
+        </label>
+
+        <label>
+          อัปโหลดรูปภาพ
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="window.uploadLeader(this)"
+          >
+
+        </label>
+
+        ${
+          x.image
+          ? `<img class="preview" src="${x.image}">`
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn primary"
+        onclick="window.saveLeader()"
+      >
+        💾 บันทึก
+      </button>
+
+      ${
+        x.image
+        ? `
+        <button
+          class="btn danger"
+          onclick="window.deleteLeaderImage()"
+        >
+          ลบรูป
+        </button>
+        `
+        : ""
+      }
+
+    </div>
+    `
+  );
+
+}
+
+async function saveLeader(){
+
+  D.leader = {
+
+    ...D.leader,
+
+    name:
+    document
+    .getElementById("f_name")
+    .value,
+
+    role:
+    document
+    .getElementById("f_role")
+    .value,
+
+    phone:
+    document
+    .getElementById("f_phone")
+    .value,
+
+    address:
+    document
+    .getElementById("f_address")
+    .value,
+
+    quote:
+    document
+    .getElementById("f_quote")
+    .value
+
+  };
+
+  await saveData();
+
+}
+
+async function uploadLeader(input){
+
+  await handleImageUpload(
+    input,
+    async url=>{
+      D.leader.image=url;
+    }
+  );
+
+}
+
+async function deleteLeaderImage(){
+
+  D.leader.image="";
+
+  await saveData();
+
+  leaderPage();
+
+}
+
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+const personMeta={
+
+  assistants:"ผู้ช่วยผู้ใหญ่บ้าน",
+
+  committee:"คณะกรรมการหมู่บ้าน",
+
+  advisors:
+  "คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ",
+
+  sao:"สมาชิก ส.อบต.",
+
+  healthVolunteers:"อสม."
+
+};
+
+function personList(key){
+
+  const title =
+  personMeta[key];
+
+  card(
+    "👥 "+title,
+
+    `
+    <div class="toolbar">
+
+      <span class="note">
+
+        เพิ่มรูป ชื่อ ตำแหน่ง
+        หน้าที่ และเบอร์โทรได้
+
+      </span>
+
+      <button
+        class="btn primary"
+        onclick="window.addPerson('${key}')"
+      >
+        + เพิ่มบุคลากร
+      </button>
+
+    </div>
+
+    ${
+      D[key]
+      .map((x,i)=>
+        personEditor(
+          key,
+          title,
+          x,
+          i
+        )
+      )
+      .join("")
+      ||
+      `
+      <p class="note">
+        ยังไม่มีข้อมูล
+        กดเพิ่มบุคลากรเพื่อเริ่มต้น
+      </p>
+      `
+    }
+    `
+  );
+
+}
+
+function personEditor(
+  key,
+  title,
+  x,
+  i
+){
+
+  return `
+
+  <div class="item">
+
+    <div class="item-head">
+
+      <b>
+        ${title}
+        ลำดับ ${i+1}
+      </b>
+
+      <div>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},-1)"
+        >
+          ↑
+        </button>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},1)"
+        >
+          ↓
+        </button>
+
+        <button
+          class="btn danger"
+          onclick="window.deletePerson('${key}',${i})"
+        >
+          ลบ
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div>
+
+        <label>
+          ชื่อ-นามสกุล
+
+          <input
+            id="n_${key}_${i}"
+            value="${esc(x.name)}"
+          >
+
+        </label>
+
+        <label>
+          ตำแหน่ง
+
+          <input
+            id="r_${key}_${i}"
+            value="${esc(x.role)}"
+          >
+
+        </label>
+
+        <label>
+          เบอร์โทรศัพท์
+
+          <input
+            id="p_${key}_${i}"
+            value="${esc(x.phone)}"
+          >
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          หน้าที่ / รายละเอียด
+
+          <textarea
+            id="d_${key}_${i}"
+          >${esc(x.detail)}</textarea>
+
+        </label>
+
+        <label>
+          อัปโหลดรูปภาพ
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="window.uploadPerson('${key}',${i},this)"
+          >
+
+        </label>
+
+        ${
+          x.image
+          ? `<img class="preview" src="${x.image}">`
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn primary"
+        onclick="window.savePerson('${key}',${i})"
+      >
+        💾 บันทึก
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
+
+}
+
+async function addPerson(key){
+
+  D[key].push({
+
+    name:"",
+    role:"",
+    detail:"",
+    phone:"",
+    image:""
+
+  });
+
+  await saveData(false);
+
+  personList(key);
+
+}
+
+async function savePerson(key,i){
+
+  D[key][i] = {
+
+    ...D[key][i],
+
+    name:
+    document
+    .getElementById(
+      `n_${key}_${i}`
+    )
+    .value,
+
+    role:
+    document
+    .getElementById(
+      `r_${key}_${i}`
+    )
+    .value,
+
+    phone:
+    document
+    .getElementById(
+      `p_${key}_${i}`
+    )
+    .value,
+
+    detail:
+    document
+    .getElementById(
+      `d_${key}_${i}`
+    )
+    .value
+
+  };
+
+  await saveData();
+
+}
+
+async function uploadPerson(
+  key,
+  i,
+  input
+){
+
+  await handleImageUpload(
+    input,
+    async url=>{
+      D[key][i].image=url;
+    }
+  );
+
+}
+
+async function deletePerson(key,i){
+
+  if(!confirm("ต้องการลบรายการนี้หรือไม่?"))
+    return;
+
+  D[key].splice(i,1);
+
+  await saveData();
+
+  personList(key);
+
+}
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+const contentMeta={
+
+  news:"ข่าวประชาสัมพันธ์",
+
+  activities:"กิจกรรมเด่น",
+
+  announcements:"ประกาศสำคัญ",
+
+  tourism:"แหล่งท่องเที่ยว",
+
+  temples:"วัดและสถานที่สำคัญ",
+
+  maps:"แผนที่หมู่บ้าน",
+
+  subnamjam:"แหล่งซับน้ำจำ",
+
+  shops:"ร้านค้าในชุมชน",
+
+  calendar:"วันพระ / วันสำคัญ"
+
+};
+
+function contentList(key){
+
+  const title =
+  contentMeta[key];
+
+  card(
+    "📝 "+title,
+
+    `
+    <div class="toolbar">
+
+      <span class="note">
+
+        จัดเรียง เพิ่ม แก้ไข ลบ
+        และอัปโหลดรูปภาพได้
+
+      </span>
+
+      <button
+        class="btn primary"
+        onclick="window.addContent('${key}')"
+      >
+        + เพิ่มรายการ
+      </button>
+
+    </div>
+
+    ${
+      D[key]
+      .map((x,i)=>
+        contentEditor(
+          key,
+          title,
+          x,
+          i
+        )
+      )
+      .join("")
+      ||
+      `<p class="note">ยังไม่มีข้อมูล</p>`
+    }
+    `
+  );
+
+}
+
+function contentEditor(
+  key,
+  title,
+  x,
+  i
+){
+
+  let extra="";
+
+  if(key==="maps"){
+
+    extra=`
+    <label>
+      ลิงก์แผนที่
+
+      <input
+        id="u_${key}_${i}"
+        value="${esc(x.mapUrl)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  if(
+    [
+      "tourism",
+      "temples",
+      "subnamjam",
+      "shops"
+    ]
+    .includes(key)
+  ){
+
+    extra+=`
+    <label>
+      สถานที่ / ที่ตั้ง
+
+      <input
+        id="l_${key}_${i}"
+        value="${esc(x.location)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  if(
+    ["shops","tourism"]
+    .includes(key)
+  ){
+
+    extra+=`
+    <label>
+      โทรศัพท์
+
+      <input
+        id="p_${key}_${i}"
+        value="${esc(x.phone)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  if(
+    [
+      "news",
+      "activities",
+      "announcements",
+      "calendar"
+    ]
+    .includes(key)
+  ){
+
+    extra+=`
+    <label>
+      วันที่
+
+      <input
+        id="dt_${key}_${i}"
+        value="${esc(x.date)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  return `
+
+  <div class="item">
+
+    <div class="item-head">
+
+      <b>
+        ${title} ${i+1}
+      </b>
+
+      <div>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},-1)"
+        >
+          ↑
+        </button>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},1)"
+        >
+          ↓
+        </button>
+
+        <button
+          class="btn danger"
+          onclick="window.deleteContent('${key}',${i})"
+        >
+          ลบ
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div>
+
+        <label>
+          หัวข้อ
+
+          <input
+            id="t_${key}_${i}"
+            value="${esc(x.title)}"
+          >
+
+        </label>
+
+        ${extra}
+
+        <label>
+          รายละเอียด
+
+          <textarea
+            id="d_${key}_${i}"
+          >${esc(x.detail)}</textarea>
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          อัปโหลดรูปภาพ
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="window.uploadContent('${key}',${i},this)"
+          >
+
+        </label>
+
+        ${
+          x.image
+          ? `<img class="preview" src="${x.image}">`
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+    <button
+      class="btn primary"
+      onclick="window.saveContent('${key}',${i})"
+    >
+      💾 บันทึก
+    </button>
+
+  </div>
+
+  `;
+
+}
+
+async function addContent(key){
+
+  D[key].push({
+
+    title:"",
+    detail:"",
+    date:"",
+    location:"",
+    phone:"",
+    mapUrl:"",
+    image:""
+
+  });
+
+  await saveData(false);
+
+  contentList(key);
+
+}
+
+async function saveContent(key,i){
+
+  const x =
+  D[key][i];
+
+  x.title =
+  document
+  .getElementById(
+    `t_${key}_${i}`
+  )
+  .value;
+
+  x.detail =
+  document
+  .getElementById(
+    `d_${key}_${i}`
+  )
+  .value;
+
+  const dt =
+  document.getElementById(
+    `dt_${key}_${i}`
+  );
+
+  const l =
+  document.getElementById(
+    `l_${key}_${i}`
+  );
+
+  const p =
+  document.getElementById(
+    `p_${key}_${i}`
+  );
+
+  const u =
+  document.getElementById(
+    `u_${key}_${i}`
+  );
+
+  if(dt) x.date=dt.value;
+  if(l) x.location=l.value;
+  if(p) x.phone=p.value;
+  if(u) x.mapUrl=u.value;
+
+  await saveData();
+
+}
+
+async function uploadContent(
+  key,
+  i,
+  input
+){
+
+  await handleImageUpload(
+    input,
+    async url=>{
+      D[key][i].image=url;
+    }
+  );
+
+}
+
+async function deleteContent(key,i){
+
+  if(!confirm("ต้องการลบรายการนี้หรือไม่?"))
+    return;
+
+  D[key].splice(i,1);
+
+  await saveData();
+
+  contentList(key);
+
+}
+
+/* =========================================================
+   MOVE ITEM
+========================================================= */
+
+async function moveItem(
+  key,
+  i,
+  direction
+){
+
+  const j=i+direction;
+
+  if(
+    j<0 ||
+    j>=D[key].length
+  ) return;
+
+  [
+    D[key][i],
+    D[key][j]
+  ] =
+  [
+    D[key][j],
+    D[key][i]
+  ];
+
+  await saveData(false);
+
+  if(
+    [
+      "assistants",
+      "committee",
+      "advisors",
+      "sao",
+      "healthVolunteers"
+    ]
+    .includes(key)
+  ){
+
+    personList(key);
+
+  }else{
+
+    contentList(key);
+
+  }
+
+}
+
+/* =========================================================
+   PM25 WEATHER AI
+========================================================= */
+
+function singlePage(key){
+
+  const title={
+
+    pm25:"🌫️ PM2.5",
+
+    weather:"☁️ พยากรณ์อากาศ",
+
+    ai:"🤖 ผู้ช่วย AI"
+
+  }[key];
+
+  const x=D[key];
+
+  if(key==="ai"){
+
+    card(
+      title,
+
+      `
+      <label>
+        ชื่อผู้ช่วย AI
+
+        <input
+          id="ai_title"
+          value="${esc(x.title)}"
+        >
+
+      </label>
+
+      <label>
+        ข้อความต้อนรับ
+
+        <textarea
+          id="ai_welcome"
+        >${esc(x.welcome)}</textarea>
+
+      </label>
+
+      <button
+        class="btn primary"
+        onclick="window.saveAI()"
+      >
+        💾 บันทึก
+      </button>
+      `
+    );
+
+    return;
+
+  }
+
+  const value =
+  key==="pm25"
+  ? x.value
+  : x.temperature;
+
+  card(
+    title,
+
+    `
+    <div class="row">
+
+      <div>
+
+        <label>
+          หัวข้อ
+
+          <input
+            id="s_title"
+            value="${esc(x.title)}"
+          >
+
+        </label>
+
+        <label>
+          รายละเอียด
+
+          <textarea
+            id="s_detail"
+          >${esc(x.detail)}</textarea>
+
+        </label>
+
+        <label>
+          สถานะ / ระดับ
+
+          <input
+            id="s_level"
+            value="${esc(x.level || x.description || "")}"
+          >
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          ค่า / อุณหภูมิ
+
+          <input
+            id="s_value"
+            value="${esc(value)}"
+          >
+
+        </label>
+
+        <label>
+          อัปเดตล่าสุด
+
+          <input
+            id="s_updated"
+            value="${esc(x.updated)}"
+          >
+
+        </label>
+
+        <button
+          class="btn primary"
+          onclick="window.saveSingle('${key}')"
+        >
+          💾 บันทึก
+        </button>
+
+      </div>
+
+    </div>
+    `
+  );
+
+}
 
 async function saveSingle(key){
 
-    D[key].title=
-        document.getElementById("single_title").value;
+  const x=D[key];
 
-    D[key].detail=
-        document.getElementById("single_detail").value;
+  x.title=
+  document.getElementById("s_title").value;
 
-    const valueElement=
-        document.getElementById("single_value");
+  x.detail=
+  document.getElementById("s_detail").value;
 
-    if(valueElement){
+  const value=
+  document.getElementById("s_value").value;
 
-        if(key==="pm25"){
+  x.updated=
+  document.getElementById("s_updated").value;
 
-            D[key].value=valueElement.value;
+  const level=
+  document.getElementById("s_level").value;
 
-        }
+  if(key==="pm25"){
 
-        if(key==="weather"){
+    x.value=value;
+    x.level=level;
 
-            D[key].temperature=valueElement.value;
+  }else{
 
-        }
+    x.temperature=value;
+    x.description=level;
 
-    }
+  }
 
-    D[key].level=
-        document.getElementById("single_level").value;
-
-    D[key].updated=
-        document.getElementById("single_updated").value;
-
-    await saveData();
+  await saveData();
 
 }
 
+async function saveAI(){
 
-async function singleImage(key,title,input){
+  D.ai={
 
-    const file=input.files[0];
+    title:
+    document
+    .getElementById("ai_title")
+    .value,
 
-    if(!file) return;
+    welcome:
+    document
+    .getElementById("ai_welcome")
+    .value
 
-    const url=await uploadImage(file);
+  };
 
-    if(url){
-
-        D[key].image=url;
-
-        await saveData(false);
-
-        singlePage(key,title);
-
-    }
+  await saveData();
 
 }
-
 
 /* =========================================================
    STATS
-   ========================================================= */
+========================================================= */
 
 function statsPage(){
 
-    const x=D.stats;
+  const x=D.stats;
 
-    document.getElementById("app").innerHTML=`
+  card(
+    "📈 สถิติหมู่บ้าน",
 
-    <div class="card">
+    `
+    <div class="row">
 
-        <h1>📈 สถิติหมู่บ้าน</h1>
+      <div>
 
-        <label class="field-label">
+        <label>
+          จำนวนครัวเรือน
 
-            ครัวเรือนทั้งหมด
-
-            <input
-                id="stat_households"
-                value="${esc(x.households)}"
-            >
-
-        </label>
-
-        <label class="field-label">
-
-            ประชากรทั้งหมด
-
-            <input
-                id="stat_population"
-                value="${esc(x.population)}"
-            >
+          <input
+            id="st1"
+            value="${esc(x.households)}"
+          >
 
         </label>
 
-        <label class="field-label">
+        <label>
+          ประชากร
 
-            พื้นที่หมู่บ้าน
-
-            <input
-                id="stat_area"
-                value="${esc(x.area)}"
-            >
-
-        </label>
-
-        <label class="field-label">
-
-            อัปเดตล่าสุด
-
-            <input
-                id="stat_updated"
-                value="${esc(x.updated)}"
-            >
+          <input
+            id="st2"
+            value="${esc(x.population)}"
+          >
 
         </label>
 
-        <div class="actions">
+      </div>
 
-            <button
-                class="btn primary"
-                onclick="saveStats()"
-            >
-                💾 บันทึก
-            </button>
+      <div>
 
-        </div>
+        <label>
+          พื้นที่
+
+          <input
+            id="st3"
+            value="${esc(x.area)}"
+          >
+
+        </label>
+
+        <label>
+          อัปเดตล่าสุด
+
+          <input
+            id="st4"
+            value="${esc(x.updated)}"
+          >
+
+        </label>
+
+      </div>
 
     </div>
 
-    `;
+    <button
+      class="btn primary"
+      onclick="window.saveStats()"
+    >
+      💾 บันทึก
+    </button>
+    `
+  );
 
 }
-
 
 async function saveStats(){
 
-    D.stats={
-        households:
-            document.getElementById("stat_households").value,
+  D.stats={
 
-        population:
-            document.getElementById("stat_population").value,
+    households:
+    document
+    .getElementById("st1")
+    .value,
 
-        area:
-            document.getElementById("stat_area").value,
+    population:
+    document
+    .getElementById("st2")
+    .value,
 
-        updated:
-            document.getElementById("stat_updated").value
-    };
+    area:
+    document
+    .getElementById("st3")
+    .value,
 
-    await saveData();
+    updated:
+    document
+    .getElementById("st4")
+    .value
+
+  };
+
+  await saveData();
 
 }
-
 
 /* =========================================================
    BACKUP
-   ========================================================= */
+========================================================= */
 
 function backupPage(){
 
-    document.getElementById("app").innerHTML=`
+  card(
+    "💾 สำรอง / กู้คืนข้อมูล",
 
-    <div class="card">
+    `
+    <p>
+      สำรองข้อมูลทั้งหมด
+      และสามารถกู้คืนข้อมูลได้ทุกเมนู
+    </p>
 
-        <h1>💾 สำรอง / กู้คืนข้อมูล</h1>
+    <div class="actions">
 
-        <p>
-            ดาวน์โหลดข้อมูลทั้งหมดเป็นไฟล์ JSON
-            หรือกู้คืนข้อมูลกลับเข้าสู่ระบบ
+      <button
+        class="btn primary"
+        onclick="window.exportData()"
+      >
+        ดาวน์โหลด Backup JSON
+      </button>
+
+      <label class="btn light">
+
+        เลือกไฟล์กู้คืน
+
+        <input
+          type="file"
+          accept=".json,application/json"
+          style="display:none"
+          onchange="window.importData(this)"
+        >
+
+      </label>
+
+      <button
+        class="btn danger"
+        onclick="window.resetData()"
+      >
+        รีเซ็ตข้อมูล
+      </button>
+
+    </div>
+    `
+  );
+
+}
+
+function exportData(){
+
+  const a =
+  document.createElement("a");
+
+  a.href =
+  URL.createObjectURL(
+
+    new Blob(
+
+      [
+        JSON.stringify(
+          D,
+          null,
+          2
+        )
+      ],
+
+      {
+        type:"application/json"
+      }
+
+    )
+
+  );
+
+  a.download =
+  "rongkhem-e-village-backup.json";
+
+  a.click();
+
+}
+
+function importData(el){
+
+  const file =
+  el.files[0];
+
+  if(!file) return;
+
+  const reader =
+  new FileReader();
+
+  reader.onload =
+  async ()=>{
+
+    try{
+
+      D =
+      merge(
+
+        JSON.parse(reader.result),
+
+        structuredClone(defaultData)
+
+      );
+
+      const ok =
+      await saveData(false);
+
+      if(ok){
+
+        toast(
+          "✓ กู้คืนข้อมูลสำเร็จ"
+        );
+
+        openPage("dashboard");
+
+      }
+
+    }catch(e){
+
+      alert(
+        "ไฟล์ไม่ถูกต้อง"
+      );
+
+    }
+
+  };
+
+  reader.readAsText(file);
+
+}
+
+async function resetData(){
+
+  if(
+    !confirm(
+      "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่?"
+    )
+  ) return;
+
+  D =
+  structuredClone(defaultData);
+
+  await saveData();
+
+  openPage("dashboard");
+
+}
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function settingsPage(){
+
+  const x=D.settings;
+
+  card(
+    "⚙️ ตั้งค่าระบบ",
+
+    `
+    <div class="row">
+
+      <div>
+
+        <label>
+          ชื่อเว็บไซต์
+
+          <input
+            id="set_site"
+            value="${esc(x.siteName)}"
+          >
+
+        </label>
+
+        <label>
+          ชื่อผู้ใช้ผู้ดูแล
+
+          <input
+            id="set_user"
+            value="${esc(x.username)}"
+          >
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          รหัสผ่านใหม่
+
+          <input
+            id="set_pass"
+            type="password"
+            value="${esc(x.password)}"
+          >
+
+        </label>
+
+        <p class="note">
+          การเปลี่ยนชื่อผู้ใช้และรหัสผ่าน
+          ต้องแก้ระบบ login.html ให้ใช้ข้อมูลจาก Supabase
         </p>
 
-        <div class="actions">
-
-            <button
-                class="btn primary"
-                onclick="downloadBackup()"
-            >
-                ⬇️ ดาวน์โหลด Backup
-            </button>
-
-            <label class="btn light">
-
-                📂 เลือกไฟล์กู้คืน
-
-                <input
-                    type="file"
-                    accept=".json,application/json"
-                    style="display:none"
-                    onchange="restoreBackup(this)"
-                >
-
-            </label>
-
-        </div>
+      </div>
 
     </div>
 
-    `;
+    <button
+      class="btn primary"
+      onclick="window.saveSettings()"
+    >
+      💾 บันทึกการตั้งค่า
+    </button>
+    `
+  );
 
 }
 
+async function saveSettings(){
 
-function downloadBackup(){
+  D.settings={
 
-    const blob=new Blob(
-        [
-            JSON.stringify(
-                D,
-                null,
-                2
-            )
-        ],
-        {
-            type:"application/json"
-        }
-    );
+    siteName:
+    document
+    .getElementById("set_site")
+    .value,
 
-    const url=
-        URL.createObjectURL(blob);
+    username:
+    document
+    .getElementById("set_user")
+    .value,
 
-    const a=
-        document.createElement("a");
+    password:
+    document
+    .getElementById("set_pass")
+    .value
 
-    a.href=url;
+  };
 
-    a.download=
-        "rongkhem-e-village-backup.json";
-
-    a.click();
-
-    URL.revokeObjectURL(url);
+  await saveData();
 
 }
 
+/* =========================================================
+   SAVE ALL
+========================================================= */
 
-function restoreBackup(input){
+async function saveAll(){
 
-    const file=input.files[0];
-
-    if(!file) return;
-
-    const reader=new FileReader();
-
-    reader.onload=async function(){
-
-        try{
-
-            const imported=
-                JSON.parse(reader.result);
-
-            D=mergeData(
-                DEFAULTS,
-                imported
-            );
-
-            const success=
-                await saveData(false);
-
-            if(success){
-
-                alert(
-                    "กู้คืนข้อมูลเรียบร้อย"
-                );
-
-                openPage("dashboard");
-
-            }
-
-        }catch(error){
-
-            alert(
-                "ไฟล์ Backup ไม่ถูกต้อง"
-            );
-
-        }
-
-    };
-
-    reader.readAsText(file);
+  await saveData();
 
 }
-
 
 /* =========================================================
    LOGOUT
-   ========================================================= */
+========================================================= */
 
 function logout(){
 
-    localStorage.removeItem(
-        "rongkhemAdminLoggedIn"
-    );
+  localStorage.removeItem(
+    "rongkhemAdminLoggedIn"
+  );
 
-    localStorage.removeItem(
-        "rongkhemAdminUsername"
-    );
+  localStorage.removeItem(
+    "rongkhemAdminUsername"
+  );
 
-    sessionStorage.removeItem(
-        "RONGKHEM_EVILLAGE_ADMIN_LOGIN"
-    );
+  sessionStorage.removeItem(
+    "RONGKHEM_EVILLAGE_ADMIN_LOGIN"
+  );
 
-    window.location.href="login.html";
+  location.href="login.html";
 
 }
 
+/* =========================================================
+   EXPOSE FUNCTIONS
+========================================================= */
+
+window.openPage=openPage;
+
+window.saveAll=saveAll;
+
+window.saveLeader=saveLeader;
+window.uploadLeader=uploadLeader;
+window.deleteLeaderImage=deleteLeaderImage;
+
+window.addPerson=addPerson;
+window.savePerson=savePerson;
+window.uploadPerson=uploadPerson;
+window.deletePerson=deletePerson;
+
+window.addContent=addContent;
+window.saveContent=saveContent;
+window.uploadContent=uploadContent;
+window.deleteContent=deleteContent;
+
+window.moveItem=moveItem;
+
+window.saveSingle=saveSingle;
+window.saveAI=saveAI;
+
+window.saveStats=saveStats;
+
+window.exportData=exportData;
+window.importData=importData;
+window.resetData=resetData;
+
+window.saveSettings=saveSettings;
 
 /* =========================================================
    START
-   ========================================================= */
+========================================================= */
 
-loadData();
+document
+.getElementById("logoutBtn")
+.addEventListener(
+  "click",
+  logout
+);
+
+await loadData();
+
+document
+.getElementById("loading")
+.style.display="none";
+
+start();
 
 </script>
 
