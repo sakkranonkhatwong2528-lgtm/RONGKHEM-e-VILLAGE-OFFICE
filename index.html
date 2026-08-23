@@ -2191,6 +2191,18 @@ button{
 
 }
 
+
+.community-live{cursor:pointer}
+.community-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.community-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;align-items:center;gap:15px;box-shadow:var(--shadow)}
+.community-card-icon{width:52px;height:52px;border-radius:15px;display:grid;place-items:center;background:#eaf7ef;color:var(--green);font-size:23px;flex:0 0 auto}
+.community-card small{display:block;color:var(--muted);font-size:13px;margin-bottom:4px}
+.community-card strong{display:block;font-size:16px;line-height:1.45}
+.emergency-card .community-card-icon{background:#fff0f0;color:#df3434}
+.community-card-wide{grid-column:span 2}
+@media(max-width:900px){.community-grid{grid-template-columns:1fr 1fr}.community-card-wide{grid-column:span 2}}
+@media(max-width:620px){.community-grid{grid-template-columns:1fr}.community-card-wide{grid-column:auto}}
+
 </style>
 </head>
 
@@ -2526,32 +2538,16 @@ button{
         </div>
 
 
-        <!-- CALENDAR -->
-
-        <div class="live-card calendar-live">
-
-            <div class="live-icon">
-                <i class="fa-solid fa-calendar-days"></i>
-            </div>
-
+        <!-- COMMUNITY INFO -->
+        <div class="live-card community-live" onclick="document.getElementById('community-info').scrollIntoView({behavior:'smooth'})">
+            <div class="live-icon"><i class="fa-solid fa-phone-volume"></i></div>
             <div class="live-info">
-
-                <small>วันพระ / วันสำคัญ</small>
-
-                <strong id="importantDay">
-                    ปฏิทินชุมชน
-                </strong>
-
-                <span>
-                    คลิกเมนูเพื่อดูรายละเอียด
-                </span>
-
+                <small>ศูนย์ข้อมูลชุมชน</small>
+                <strong id="communityQuickTitle">เบอร์ติดต่อสำคัญ</strong>
+                <span id="communityQuickText">จุดบริการ • แจ้งเหตุฉุกเฉิน</span>
             </div>
-
         </div>
-
     </div>
-
 </section>
 
 
@@ -2924,7 +2920,7 @@ button{
 
             <i class="fa-solid fa-moon orange"></i>
 
-            <span>วันพระ / วันสำคัญ</span>
+            <span>ศูนย์ข้อมูลชุมชน</span>
 
         </button>
 
@@ -3468,24 +3464,19 @@ button{
      CALENDAR
 ===================================================== -->
 
-<section class="detail-section" id="calendar">
-
-    <div class="detail-header">
-
-        <h2>
-            <i class="fa-solid fa-calendar-days"></i>
-            ปฏิทินชุมชน / วันพระ / วันสำคัญ
-        </h2>
-
-        <span id="calendarTitle"></span>
-
-    </div>
-
-
-    <div class="calendar-box" id="calendarBox">
-
-    </div>
-
+<section class="detail-section" id="community-info">
+<div class="detail-header">
+<h2><i class="fa-solid fa-circle-info"></i> 📌 ศูนย์ข้อมูลชุมชน</h2>
+<span>ข้อมูลสำคัญสำหรับประชาชน</span>
+</div>
+<div class="community-grid">
+<div class="community-card emergency-card"><div class="community-card-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><div><small>แจ้งเหตุฉุกเฉิน</small><strong id="communityEmergency">กำลังโหลด...</strong></div></div>
+<div class="community-card"><div class="community-card-icon"><i class="fa-solid fa-phone"></i></div><div><small>ข้อมูลติดต่อสำคัญ</small><strong id="communityVillageHead">กำลังโหลด...</strong></div></div>
+<div class="community-card"><div class="community-card-icon"><i class="fa-solid fa-building"></i></div><div><small>จุดบริการประชาชน</small><strong id="communityOffice">กำลังโหลด...</strong></div></div>
+<div class="community-card"><div class="community-card-icon"><i class="fa-solid fa-hospital"></i></div><div><small>โรงพยาบาล / สาธารณสุข</small><strong id="communityHospital">กำลังโหลด...</strong></div></div>
+<div class="community-card"><div class="community-card-icon"><i class="fa-solid fa-shield-halved"></i></div><div><small>ตำรวจ / หน่วยงาน</small><strong id="communityPolice">กำลังโหลด...</strong></div></div>
+<div class="community-card community-card-wide"><div class="community-card-icon"><i class="fa-solid fa-location-dot"></i></div><div><small>ข้อมูลเพิ่มเติม</small><strong id="communityDetail">ข้อมูลบริการประชาชนและหน่วยงานในพื้นที่</strong></div></div>
+</div>
 </section>
 
 
@@ -3698,6 +3689,35 @@ button{
 <!-- =====================================================
      JAVASCRIPT
 ===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const RONGKHEM_SUPABASE_URL="https://qtnjtsigdgiwdsdfocmq.supabase.co";
+const RONGKHEM_SUPABASE_KEY="sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN";
+const rongkhemSupabase=window.supabase?window.supabase.createClient(RONGKHEM_SUPABASE_URL,RONGKHEM_SUPABASE_KEY):null;
+function setCommunityText(id,value,fallback){const el=document.getElementById(id);if(el)el.textContent=value||fallback}
+async function loadCommunityInfo(){
+const fallback={emergencyPhone:"191",policeContact:"สถานีตำรวจ / หน่วยงานในพื้นที่",hospitalContact:"โรงพยาบาล / สาธารณสุข",villageOfficeContact:"ที่ทำการผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",villageHeadPhone:"ติดต่อผู้ใหญ่บ้าน",detail:"เบอร์ติดต่อสำคัญ จุดบริการประชาชน แจ้งเหตุฉุกเฉิน และข้อมูลติดต่อหน่วยงานในพื้นที่"};
+try{
+if(!rongkhemSupabase)throw new Error("Supabase not available");
+const {data,error}=await rongkhemSupabase.from("site_content").select("content").eq("section","community_info").maybeSingle();
+if(error)throw error;
+let c=fallback;
+if(data&&data.content)c=typeof data.content==="string"?{...fallback,...JSON.parse(data.content)}:{...fallback,...data.content};
+setCommunityText("communityEmergency",c.emergencyPhone,fallback.emergencyPhone);
+setCommunityText("communityVillageHead",c.villageHeadPhone,fallback.villageHeadPhone);
+setCommunityText("communityOffice",c.villageOfficeContact,fallback.villageOfficeContact);
+setCommunityText("communityHospital",c.hospitalContact,fallback.hospitalContact);
+setCommunityText("communityPolice",c.policeContact,fallback.policeContact);
+setCommunityText("communityDetail",c.detail,fallback.detail);
+setCommunityText("communityQuickTitle",c.emergencyPhone?"โทรฉุกเฉิน "+c.emergencyPhone:"เบอร์ติดต่อสำคัญ","เบอร์ติดต่อสำคัญ");
+setCommunityText("communityQuickText","จุดบริการ • แจ้งเหตุฉุกเฉิน • หน่วยงานในพื้นที่","");
+}catch(error){
+console.warn("โหลดศูนย์ข้อมูลชุมชนไม่สำเร็จ:",error.message);
+Object.entries({communityEmergency:"191",communityVillageHead:"ติดต่อผู้ใหญ่บ้าน",communityOffice:"ที่ทำการผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",communityHospital:"โรงพยาบาล / สาธารณสุข",communityPolice:"สถานีตำรวจ / หน่วยงานในพื้นที่",communityDetail:fallback.detail}).forEach(([id,v])=>setCommunityText(id,v,""));
+}}
+document.addEventListener("DOMContentLoaded",loadCommunityInfo);
+</script>
 
 <script>
 
@@ -4780,7 +4800,7 @@ function getAIResponse(question){
 
         return `
         📅 ผมพาไปยัง
-        <b>ปฏิทินชุมชน / วันพระ / วันสำคัญ</b>
+        <b>ศูนย์ข้อมูลชุมชน</b>
         ให้แล้วครับ
         `;
 
