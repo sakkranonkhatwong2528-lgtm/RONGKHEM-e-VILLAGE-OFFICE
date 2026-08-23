@@ -3,13 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>RONGKHEM e-VILLAGE | ระบบหลังบ้าน</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="supabase-config.js"></script>
 
 <style>
 :root{
@@ -17,18 +13,15 @@
   --blue:#164d84;
   --gold:#e8ad2e;
   --bg:#eef3f8;
-  --line:#dce4ed
+  --line:#dce4ed;
 }
-
 *{box-sizing:border-box}
-
 body{
   margin:0;
   font-family:Kanit,sans-serif;
   background:var(--bg);
   color:#182432
 }
-
 header{
   position:sticky;
   top:0;
@@ -41,58 +34,44 @@ header{
   justify-content:space-between;
   gap:15px
 }
-
-header h1{
-  margin:0;
-  font-size:21px
-}
-
-header p{
-  margin:2px 0 0;
-  font-size:13px;
-  opacity:.75
-}
-
-.top-actions{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap
-}
+header h1{margin:0;font-size:21px}
+header p{margin:2px 0 0;font-size:13px;opacity:.75}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap}
 
 .btn{
   border:0;
   border-radius:10px;
   padding:10px 14px;
   font:inherit;
-  cursor:pointer;
-  text-decoration:none;
-  display:inline-block
+  cursor:pointer
 }
+.primary{background:var(--gold);color:#16233a}
+.dark{background:#fff;color:var(--navy)}
+.danger{background:#c62828;color:#fff}
+.light{background:#e8eef5;color:#15263b}
+.success{background:#087a4b;color:#fff}
 
-.primary{
-  background:var(--gold);
-  color:#16233a
-}
-
-.dark{
+.card,.sidebar,.item,.stat{
   background:#fff;
-  color:var(--navy)
+  border-radius:18px;
+  box-shadow:0 5px 24px #17345a14;
+  padding:20px
 }
 
-.danger{
-  background:#c62828;
-  color:#fff
+label{
+  display:block;
+  font-weight:500;
+  margin:13px 0 5px
 }
-
-.light{
-  background:#e8eef5;
-  color:#15263b
+input,textarea,select{
+  width:100%;
+  font:inherit;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:10px;
+  background:#fff
 }
-
-.success{
-  background:#087a4b;
-  color:#fff
-}
+textarea{min-height:100px}
 
 .shell{
   display:grid;
@@ -104,12 +83,10 @@ header p{
 }
 
 .sidebar{
-  background:#fff;
-  border-radius:18px;
-  padding:12px;
   height:fit-content;
   position:sticky;
-  top:92px
+  top:92px;
+  padding:12px
 }
 
 .menu{
@@ -122,58 +99,18 @@ header p{
   font:inherit;
   cursor:pointer
 }
-
-.menu:hover,
-.menu.active{
+.menu:hover,.menu.active{
   background:var(--navy);
   color:#fff
 }
 
-.main{
-  min-width:0
-}
-
-.card{
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 5px 24px #17345a14;
-  padding:20px
-}
-
-label{
-  display:block;
-  font-weight:500;
-  margin:13px 0 5px
-}
-
-input,
-textarea,
-select{
-  width:100%;
-  font:inherit;
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px;
-  background:#fff
-}
-
-textarea{
-  min-height:100px
-}
+.main{min-width:0}
 
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:14px
 }
-
-.stat{
-  background:#fff;
-  border-radius:16px;
-  padding:18px;
-  border:1px solid var(--line)
-}
-
 .stat b{
   display:block;
   font-size:28px;
@@ -191,10 +128,7 @@ textarea{
 
 .item{
   border:1px solid var(--line);
-  border-radius:15px;
-  padding:16px;
-  margin-top:14px;
-  background:#fff
+  margin-top:14px
 }
 
 .item-head{
@@ -231,9 +165,7 @@ textarea{
   margin-top:15px
 }
 
-.hidden{
-  display:none!important
-}
+.hidden{display:none!important}
 
 .toast{
   position:fixed;
@@ -243,46 +175,29 @@ textarea{
   color:#fff;
   padding:12px 16px;
   border-radius:12px;
-  box-shadow:0 8px 25px #0003;
   z-index:50
 }
 
-.small{
-  font-size:12px;
-  color:#68788b
-}
-
 .loading{
-  opacity:.6;
-  pointer-events:none
+  position:fixed;
+  inset:0;
+  background:#ffffffdd;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999
 }
 
 @media(max-width:900px){
-  .shell{
-    grid-template-columns:1fr
-  }
-
-  .sidebar{
-    position:static
-  }
-
-  .grid{
-    grid-template-columns:repeat(2,1fr)
-  }
-
-  .row{
-    grid-template-columns:1fr
-  }
+  .shell{grid-template-columns:1fr}
+  .sidebar{position:static}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:1fr}
 }
 
 @media(max-width:560px){
-  header{
-    padding:12px
-  }
-
-  .grid{
-    grid-template-columns:1fr
-  }
+  header{padding:12px}
+  .grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -290,124 +205,147 @@ textarea{
 <body>
 
 <header>
+  <div>
+    <h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1>
+    <p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p>
+  </div>
 
-<div>
-<h1>🏛️ RONGKHEM e-VILLAGE ADMIN</h1>
-<p>ระบบจัดการเว็บไซต์บ้านร่องเข็ม หมู่ที่ 6</p>
-</div>
-
-<div class="top-actions">
-
-<a class="btn dark" href="index.html">
-ดูหน้าเว็บไซต์
-</a>
-
-<button class="btn danger" id="logoutBtn">
-ออกจากระบบ
-</button>
-
-</div>
-
+  <div class="top-actions">
+    <a class="btn dark" href="index.html">ดูหน้าเว็บไซต์</a>
+    <button class="btn danger" id="logoutBtn">ออกจากระบบ</button>
+  </div>
 </header>
 
 <section class="shell" id="appShell">
 
-<aside class="sidebar">
-<div id="menuBox"></div>
-</aside>
+  <aside class="sidebar">
+    <div id="menuBox"></div>
+  </aside>
 
-<main class="main" id="main"></main>
+  <main class="main" id="main"></main>
 
 </section>
 
 <div id="toast" class="toast hidden"></div>
 
-<script>
+<div id="loading" class="loading">
+  กำลังเชื่อมต่อระบบ...
+</div>
 
-/* =====================================================
-   CONFIG
-===================================================== */
+<script type="module">
 
-const LOGIN="RONGKHEM_EVILLAGE_ADMIN_LOGIN";
-const DATA_KEY="rongkhem_e_village_data";
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
 
-/* =====================================================
-   DEFAULT DATA
-===================================================== */
+import { createClient }
+from "https://esm.sh/@supabase/supabase-js@2";
 
-const defaultData={
+const SUPABASE_URL =
+"https://qtnjtsigdgiwdsdfocmq.supabase.co";
 
-settings:{
-siteName:"RONGKHEM e-VILLAGE",
-username:"sakkranon",
-password:"23122528"
-},
+const SUPABASE_KEY =
+"sb_publishable_xsHzrDWMBlYwWyTIrojR4Q_8W6mEbJN";
 
-leader:{
-name:"นายศักรนนท์ ขัติย์วงศ์",
-role:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",
-phone:"",
-address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",
-quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",
-image:""
-},
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
-assistants:[],
-committee:[],
-advisors:[],
-sao:[],
-healthVolunteers:[],
+const TABLE = "rongkhem_content";
+const STORAGE_BUCKET = "rongkhem-images";
+const CONTENT_KEY = "website_data";
 
-news:[],
-activities:[],
-announcements:[],
+/* =========================================================
+   LOGIN CHECK
+========================================================= */
 
-tourism:[],
-temples:[],
-maps:[],
-subnamjam:[],
-shops:[],
-
-pm25:{
-title:"ค่าฝุ่น PM2.5",
-detail:"ติดตามสถานการณ์คุณภาพอากาศของชุมชน",
-value:"",
-level:"",
-updated:""
-},
-
-weather:{
-title:"พยากรณ์อากาศ",
-detail:"ข้อมูลสภาพอากาศ",
-temperature:"",
-level:"",
-updated:""
-},
-
-calendar:[],
-
-ai:{
-title:"RONGKHEM AI",
-welcome:"สวัสดีครับ ผมคือ RONGKHEM AI ผู้ช่วยข้อมูลหมู่บ้าน"
-},
-
-stats:{
-households:"350",
-population:"1,247",
-area:"2.15",
-updated:""
+if(
+  localStorage.getItem(
+    "rongkhemAdminLoggedIn"
+  ) !== "true"
+){
+  location.replace("login.html");
 }
+
+/* =========================================================
+   DEFAULT DATA
+========================================================= */
+
+const defaultData = {
+
+  settings:{
+    siteName:"RONGKHEM e-VILLAGE",
+    username:"sakkranon",
+    password:"23122528"
+  },
+
+  leader:{
+    name:"นายศักรนนท์ ขัติย์วงศ์",
+    role:"ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6",
+    phone:"",
+    address:"ต.จำป่าหวาย อ.เมืองพะเยา จ.พะเยา",
+    quote:"พร้อมดูแลชุมชน ด้วยระบบดิจิทัล",
+    image:""
+  },
+
+  assistants:[],
+  committee:[],
+  advisors:[],
+  sao:[],
+  healthVolunteers:[],
+
+  news:[],
+  activities:[],
+  announcements:[],
+
+  tourism:[],
+  temples:[],
+  maps:[],
+  subnamjam:[],
+  shops:[],
+
+  pm25:{
+    title:"ค่าฝุ่น PM2.5",
+    detail:"ติดตามสถานการณ์คุณภาพอากาศของชุมชน",
+    value:"",
+    level:"",
+    updated:""
+  },
+
+  weather:{
+    title:"พยากรณ์อากาศ",
+    detail:"ข้อมูลสภาพอากาศ",
+    temperature:"",
+    description:"",
+    updated:""
+  },
+
+  calendar:[],
+
+  ai:{
+    title:"RONGKHEM AI",
+    welcome:
+    "สวัสดีครับ ผมคือ RONGKHEM AI ผู้ช่วยข้อมูลหมู่บ้าน"
+  },
+
+  stats:{
+    households:"350",
+    population:"1,247",
+    area:"2.15",
+    updated:""
+  }
 
 };
 
-let D=structuredClone(defaultData);
-let current="dashboard";
+let D = structuredClone(defaultData);
+let current = "dashboard";
 
-/* =====================================================
-   MENUS
-===================================================== */
+/* =========================================================
+   MENU
+========================================================= */
 
-const menus=[
+const menus = [
 
 ["dashboard","📊 ภาพรวมระบบ"],
 
@@ -438,1966 +376,1984 @@ const menus=[
 
 ["ai","🤖 ผู้ช่วย AI"],
 ["stats","📈 สถิติหมู่บ้าน"],
+
 ["backup","💾 สำรอง / กู้คืน"],
 ["settings","⚙️ ตั้งค่าระบบ"]
 
 ];
 
+/* =========================================================
+   HELPERS
+========================================================= */
 
-/* =====================================================
-   UTILITIES
-===================================================== */
+function esc(v){
+  return String(v ?? "")
+  .replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  }[c]));
+}
+
+function toast(text){
+
+  const x =
+  document.getElementById("toast");
+
+  x.textContent = text;
+
+  x.classList.remove("hidden");
+
+  clearTimeout(window.toastTimer);
+
+  window.toastTimer =
+  setTimeout(
+    ()=>x.classList.add("hidden"),
+    2500
+  );
+
+}
 
 function merge(a,b){
 
-for(const k in b){
+  for(const k in b){
 
-if(a[k]===undefined){
+    if(a[k] === undefined){
 
-a[k]=structuredClone(b[k]);
+      a[k] = b[k];
 
-}
+    }else if(
 
-else if(
-b[k] &&
-typeof b[k]==="object" &&
-!Array.isArray(b[k]) &&
-a[k] &&
-typeof a[k]==="object"
-){
+      b[k] &&
+      typeof b[k] === "object" &&
+      !Array.isArray(b[k]) &&
+      a[k] &&
+      typeof a[k] === "object"
 
-merge(a[k],b[k]);
+    ){
 
-}
+      merge(a[k],b[k]);
 
-}
+    }
 
-return a;
+  }
 
-}
-
-function esc(v){
-
-return String(v??"").replace(
-/[&<>"']/g,
-c=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[c])
-);
+  return a;
 
 }
 
-function toast(t){
-
-const x=document.querySelector("#toast");
-
-x.textContent=t;
-
-x.classList.remove("hidden");
-
-clearTimeout(window.tt);
-
-window.tt=setTimeout(
-()=>x.classList.add("hidden"),
-2500
-);
-
-}
-
-
-/* =====================================================
-   SUPABASE LOAD
-===================================================== */
+/* =========================================================
+   LOAD FROM SUPABASE
+========================================================= */
 
 async function loadData(){
 
-try{
+  const {data,error} =
+  await supabase
+  .from(TABLE)
+  .select("content")
+  .eq("content_key",CONTENT_KEY)
+  .maybeSingle();
 
-const {data,error}=await supabaseClient
-.from("website_data")
-.select("data_value")
-.eq("data_key",DATA_KEY)
-.maybeSingle();
+  if(error){
 
-if(error) throw error;
+    console.error(error);
 
-if(data && data.data_value){
+    toast(
+      "ไม่สามารถโหลดข้อมูล Supabase"
+    );
 
-D=merge(
-data.data_value,
-structuredClone(defaultData)
-);
+    return;
 
-}else{
+  }
 
-D=structuredClone(defaultData);
+  if(data && data.content){
 
-await save(false);
+    D =
+    merge(
+      data.content,
+      structuredClone(defaultData)
+    );
 
-}
+  }else{
 
-}catch(error){
+    D =
+    structuredClone(defaultData);
 
-console.error(error);
+    await saveData(false);
 
-toast("⚠️ โหลดข้อมูลจาก Supabase ไม่สำเร็จ");
-
-}
-
-}
-
-
-/* =====================================================
-   SUPABASE SAVE
-===================================================== */
-
-async function save(msg=true){
-
-try{
-
-const {error}=await supabaseClient
-.from("website_data")
-.upsert(
-{
-data_key:DATA_KEY,
-data_value:D,
-updated_at:new Date().toISOString()
-},
-{
-onConflict:"data_key"
-}
-);
-
-if(error) throw error;
-
-if(msg){
-
-toast("✓ บันทึกข้อมูลเรียบร้อยแล้ว");
+  }
 
 }
 
-}catch(error){
+/* =========================================================
+   SAVE TO SUPABASE
+========================================================= */
 
-console.error(error);
+async function saveData(showMessage=true){
 
-alert(
-"บันทึกไม่สำเร็จ: "+
-error.message
-);
+  const {error} =
+  await supabase
+  .from(TABLE)
+  .upsert({
+
+    content_key:CONTENT_KEY,
+
+    content:D,
+
+    updated_at:
+    new Date().toISOString()
+
+  },{
+    onConflict:"content_key"
+  });
+
+  if(error){
+
+    console.error(error);
+
+    alert(
+      "บันทึกไม่สำเร็จ: " +
+      error.message
+    );
+
+    return false;
+
+  }
+
+  if(showMessage){
+
+    toast(
+      "✓ บันทึกข้อมูลเรียบร้อยแล้ว"
+    );
+
+  }
+
+  return true;
 
 }
 
-}
-
-
-/* =====================================================
-   UPLOAD IMAGE TO SUPABASE STORAGE
-===================================================== */
+/* =========================================================
+   IMAGE UPLOAD TO SUPABASE STORAGE
+========================================================= */
 
 async function uploadImage(file){
 
-if(!file) return "";
+  if(!file) return "";
 
-try{
+  const ext =
+  file.name
+  .split(".")
+  .pop();
 
-const ext=file.name.split(".").pop();
+  const fileName =
+  "images/" +
+  Date.now() +
+  "-" +
+  Math.random()
+  .toString(36)
+  .slice(2) +
+  "." +
+  ext;
 
-const fileName=
-"rongkhem/"+
-Date.now()+
-"-"+
-Math.random()
-.toString(36)
-.substring(2)+
-"."+
-ext;
+  toast("กำลังอัปโหลดรูปภาพ...");
 
-const {error}=await supabaseClient
-.storage
-.from("village-images")
-.upload(
-fileName,
-file,
-{
-cacheControl:"3600",
-upsert:false
-}
-);
+  const {error} =
+  await supabase
+  .storage
+  .from(STORAGE_BUCKET)
+  .upload(
+    fileName,
+    file,
+    {
+      upsert:false,
+      cacheControl:"3600"
+    }
+  );
 
-if(error) throw error;
+  if(error){
 
-const {data}=supabaseClient
-.storage
-.from("village-images")
-.getPublicUrl(fileName);
+    console.error(error);
 
-return data.publicUrl;
+    alert(
+      "อัปโหลดรูปไม่สำเร็จ: " +
+      error.message
+    );
 
-}catch(error){
+    return "";
 
-console.error(error);
+  }
 
-alert(
-"อัปโหลดรูปไม่สำเร็จ: "+
-error.message
-);
+  const {data} =
+  supabase
+  .storage
+  .from(STORAGE_BUCKET)
+  .getPublicUrl(fileName);
 
-return "";
-
-}
-
-}
-
-
-/* =====================================================
-   DELETE IMAGE
-===================================================== */
-
-async function deleteImage(url){
-
-if(!url) return;
-
-try{
-
-const marker="/storage/v1/object/public/village-images/";
-
-const index=url.indexOf(marker);
-
-if(index===-1) return;
-
-const path=url.substring(
-index+marker.length
-);
-
-await supabaseClient
-.storage
-.from("village-images")
-.remove([path]);
-
-}catch(error){
-
-console.error(error);
+  return data.publicUrl;
 
 }
 
+async function handleImageUpload(
+  input,
+  callback
+){
+
+  const file =
+  input.files?.[0];
+
+  if(!file) return;
+
+  const url =
+  await uploadImage(file);
+
+  if(url){
+
+    await callback(url);
+
+    await saveData(false);
+
+    toast(
+      "✓ อัปโหลดรูปภาพสำเร็จ"
+    );
+
+    openPage(current);
+
+  }
+
 }
 
-
-/* =====================================================
-   READ FILE
-===================================================== */
-
-async function readFile(el,callback){
-
-const file=el.files?.[0];
-
-if(!file) return;
-
-toast("กำลังอัปโหลดรูปภาพ...");
-
-const imageUrl=
-await uploadImage(file);
-
-if(imageUrl){
-
-await callback(imageUrl);
-
-toast("✓ อัปโหลดรูปสำเร็จ");
-
-}
-
-}
-
-
-/* =====================================================
+/* =========================================================
    START SYSTEM
-===================================================== */
+========================================================= */
 
-async function start(){
+function start(){
 
-document
-.getElementById("appShell")
-.classList
-.remove("hidden");
+  menuBox.innerHTML =
+  menus.map(([id,name])=>
+  `
+  <button
+    class="menu"
+    data-id="${id}"
+    onclick="window.openPage('${id}')"
+  >
+    ${name}
+  </button>
+  `
+  ).join("");
 
-document
-.getElementById("logoutBtn")
-.classList
-.remove("hidden");
-
-menuBox.innerHTML=
-menus.map(
-([id,name])=>
-`<button
-class="menu"
-data-id="${id}"
-onclick="openPage('${id}')"
->${name}</button>`
-).join("");
-
-await loadData();
-
-openPage(current);
+  openPage(current);
 
 }
 
-
-/* =====================================================
+/* =========================================================
    OPEN PAGE
-===================================================== */
+========================================================= */
 
 function openPage(id){
 
-current=id;
+  current = id;
 
-document
-.querySelectorAll(".menu")
-.forEach(
-b=>b.classList.toggle(
-"active",
-b.dataset.id===id
-)
-);
+  document
+  .querySelectorAll(".menu")
+  .forEach(btn=>{
 
-if(
-["people","content","places","environment"]
-.includes(id)
-){
+    btn.classList.toggle(
+      "active",
+      btn.dataset.id === id
+    );
 
-return groupPage(id);
+  });
 
-}
+  if(
+    ["people","content","places","environment"]
+    .includes(id)
+  ){
+    return groupPage(id);
+  }
 
-if(id==="dashboard") return dashboard();
+  if(id==="dashboard")
+    return dashboard();
 
-if(id==="leader") return leaderPage();
+  if(id==="leader")
+    return leaderPage();
 
-if(
-[
-"assistants",
-"committee",
-"advisors",
-"sao",
-"healthVolunteers"
-].includes(id)
-){
+  if(
+    [
+      "assistants",
+      "committee",
+      "advisors",
+      "sao",
+      "healthVolunteers"
+    ]
+    .includes(id)
+  ){
+    return personList(id);
+  }
 
-return personList(id);
+  if(
+    [
+      "news",
+      "activities",
+      "announcements",
+      "tourism",
+      "temples",
+      "maps",
+      "subnamjam",
+      "shops",
+      "calendar"
+    ]
+    .includes(id)
+  ){
+    return contentList(id);
+  }
 
-}
+  if(
+    ["pm25","weather","ai"]
+    .includes(id)
+  ){
+    return singlePage(id);
+  }
 
-if(
-[
-"news",
-"activities",
-"announcements",
-"tourism",
-"temples",
-"maps",
-"subnamjam",
-"shops",
-"calendar"
-].includes(id)
-){
+  if(id==="stats")
+    return statsPage();
 
-return contentList(id);
+  if(id==="backup")
+    return backupPage();
 
-}
-
-if(
-[
-"pm25",
-"weather",
-"ai"
-].includes(id)
-){
-
-return singlePage(id);
-
-}
-
-if(id==="stats") return statsPage();
-
-if(id==="backup") return backupPage();
-
-if(id==="settings") return settingsPage();
+  if(id==="settings")
+    return settingsPage();
 
 }
 
-
-/* =====================================================
+/* =========================================================
    CARD
-===================================================== */
+========================================================= */
 
 function card(title,body){
 
-main.innerHTML=`
+  main.innerHTML = `
+  <section class="card">
 
-<section class="card">
+    <div class="toolbar">
 
-<div class="toolbar">
+      <div>
 
-<div>
+        <h2 style="margin:0">
+          ${title}
+        </h2>
 
-<h2 style="margin:0">
-${title}
-</h2>
+        <div class="note">
 
-<div class="note">
-แก้ไข เพิ่ม ลบ บันทึก และอัปโหลดรูปภาพได้จากหน้านี้
-</div>
+          แก้ไข เพิ่ม ลบ บันทึก
+          และอัปโหลดรูปภาพได้จากหน้านี้
 
-</div>
+        </div>
 
-</div>
+      </div>
 
-${body}
+    </div>
 
-</section>
+    ${body}
 
-`;
+  </section>
+  `;
 
 }
 
-
-/* =====================================================
+/* =========================================================
    GROUP PAGE
-===================================================== */
+========================================================= */
 
 function groupPage(id){
 
-const map={
+  const map={
 
-people:[
-"👥 บุคลากรและคณะทำงาน",
-"เลือกเมนูด้านซ้ายเพื่อจัดการข้อมูลบุคลากร"
-],
+    people:[
+      "👥 บุคลากรและคณะทำงาน",
+      "เลือกเมนูด้านซ้ายเพื่อจัดการข้อมูลบุคลากร"
+    ],
 
-content:[
-"📰 ข่าวและกิจกรรม",
-"จัดการข่าวประชาสัมพันธ์ กิจกรรมเด่น และประกาศ"
-],
+    content:[
+      "📰 ข่าวและกิจกรรม",
+      "จัดการข่าวประชาสัมพันธ์ กิจกรรม และประกาศ"
+    ],
 
-places:[
-"📍 สถานที่และแผนที่",
-"จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า"
-],
+    places:[
+      "📍 สถานที่และแผนที่",
+      "จัดการแหล่งท่องเที่ยว วัด แผนที่ แหล่งซับน้ำจำ และร้านค้า"
+    ],
 
-environment:[
-"🌦️ สิ่งแวดล้อมและปฏิทิน",
-"จัดการ PM2.5 พยากรณ์อากาศ วันพระและวันสำคัญ"
-]
+    environment:[
+      "🌦️ สิ่งแวดล้อมและปฏิทิน",
+      "จัดการ PM2.5 พยากรณ์อากาศ และวันสำคัญ"
+    ]
 
-};
+  }[id];
 
-card(
-map[id][0],
-`<p>${map[id][1]}</p>`
-);
+  card(
+    map[0],
+    `<p>${map[1]}</p>`
+  );
 
 }
 
-
-/* =====================================================
+/* =========================================================
    DASHBOARD
-===================================================== */
+========================================================= */
 
 function dashboard(){
 
-card(
+  const data = [
 
-"📊 ภาพรวมระบบ",
+    ["👥 ผู้ช่วย",D.assistants.length],
+    ["🏛️ คณะกรรมการ",D.committee.length],
+    ["❤️ อสม.",D.healthVolunteers.length],
+    ["📢 ข่าว",D.news.length],
+    ["📅 กิจกรรม",D.activities.length],
+    ["🌿 ท่องเที่ยว",D.tourism.length],
+    ["🛕 วัด",D.temples.length],
+    ["🗓️ ปฏิทิน",D.calendar.length]
 
-`
+  ];
 
-<div class="grid">
+  card(
+    "📊 ภาพรวมระบบ",
 
-${[
+    `
+    <div class="grid">
 
-["👥 ผู้ช่วย",D.assistants.length],
-["🏛️ คณะกรรมการ",D.committee.length],
-["❤️ อสม.",D.healthVolunteers.length],
-["📢 ข่าว",D.news.length],
-["📅 กิจกรรม",D.activities.length],
-["🌿 ท่องเที่ยว",D.tourism.length],
-["🛕 วัด",D.temples.length],
-["🗓️ ปฏิทิน",D.calendar.length]
+      ${data.map(x=>`
+      <div class="stat">
+        ${x[0]}
+        <b>${x[1]}</b>
+      </div>
+      `).join("")}
 
-].map(
-x=>`
-<div class="stat">
-${x[0]}
-<b>${x[1]}</b>
-</div>
-`
-).join("")}
+    </div>
 
-</div>
+    <div class="actions">
 
-<div class="actions">
+      <button
+        class="btn primary"
+        onclick="window.saveAll()"
+      >
+        💾 บันทึกข้อมูลทั้งหมด
+      </button>
 
-<button
-class="btn primary"
-onclick="save()"
->
-บันทึกข้อมูลทั้งหมด
-</button>
+      <a
+        class="btn light"
+        href="index.html"
+      >
+        เปิดหน้าเว็บไซต์
+      </a>
 
-<a
-class="btn light"
-href="index.html"
->
-เปิดหน้าเว็บไซต์
-</a>
-
-</div>
-
-`
-
-);
+    </div>
+    `
+  );
 
 }
 
-
-/* =====================================================
+/* =========================================================
    LEADER
-===================================================== */
+========================================================= */
 
 function leaderPage(){
 
-const x=D.leader;
+  const x = D.leader;
 
-card(
+  card(
+    "👨‍💼 ข้อมูลผู้ใหญ่บ้าน",
 
-"👨‍💼 ข้อมูลผู้ใหญ่บ้าน",
+    `
+    <div class="row">
 
-`
+      <div>
 
-<div class="row">
+        <label>
+          ชื่อ-นามสกุล
 
-<div>
+          <input
+            id="f_name"
+            value="${esc(x.name)}"
+          >
 
-<label>
-ชื่อ-นามสกุล
+        </label>
 
-<input
-id="f_name"
-value="${esc(x.name)}"
->
+        <label>
+          ตำแหน่ง
 
-</label>
+          <input
+            id="f_role"
+            value="${esc(x.role)}"
+          >
 
-<label>
-ตำแหน่ง
+        </label>
 
-<input
-id="f_role"
-value="${esc(x.role)}"
->
+        <label>
+          โทรศัพท์
 
-</label>
+          <input
+            id="f_phone"
+            value="${esc(x.phone)}"
+          >
 
-<label>
-โทรศัพท์
+        </label>
 
-<input
-id="f_phone"
-value="${esc(x.phone)}"
->
+      </div>
 
-</label>
+      <div>
 
-</div>
+        <label>
+          ที่อยู่
 
-<div>
+          <input
+            id="f_address"
+            value="${esc(x.address)}"
+          >
 
-<label>
-ที่อยู่
+        </label>
 
-<input
-id="f_address"
-value="${esc(x.address)}"
->
+        <label>
+          คำกล่าว / คำขวัญ
 
-</label>
+          <textarea id="f_quote">${esc(x.quote)}</textarea>
 
-<label>
-คำกล่าว / คำขวัญ
+        </label>
 
-<textarea id="f_quote">${esc(x.quote)}</textarea>
+        <label>
+          อัปโหลดรูปภาพ
 
-</label>
+          <input
+            type="file"
+            accept="image/*"
+            onchange="window.uploadLeader(this)"
+          >
 
-<label>
-อัปโหลดรูปภาพ
+        </label>
 
-<input
-type="file"
-accept="image/*"
-onchange="
-readFile(
-this,
-async v=>{
-D.leader.image=v;
-await save(false);
-leaderPage();
-}
-)
-"
->
+        ${
+          x.image
+          ? `<img class="preview" src="${x.image}">`
+          : ""
+        }
 
-</label>
+      </div>
 
-${x.image?
-`<img
-class="preview"
-src="${x.image}"
->`
-:""}
+    </div>
 
-</div>
+    <div class="actions">
 
-</div>
+      <button
+        class="btn primary"
+        onclick="window.saveLeader()"
+      >
+        💾 บันทึก
+      </button>
 
-<div class="actions">
+      ${
+        x.image
+        ? `
+        <button
+          class="btn danger"
+          onclick="window.deleteLeaderImage()"
+        >
+          ลบรูป
+        </button>
+        `
+        : ""
+      }
 
-<button
-class="btn primary"
-onclick="saveLeader()"
->
-บันทึก
-</button>
-
-${x.image?
-
-`<button
-class="btn danger"
-onclick="removeLeaderImage()"
->
-ลบรูป
-</button>`
-
-:""}
-
-</div>
-
-`
-
-);
+    </div>
+    `
+  );
 
 }
 
 async function saveLeader(){
 
-D.leader={
+  D.leader = {
 
-...D.leader,
+    ...D.leader,
 
-name:f_name.value,
+    name:
+    document
+    .getElementById("f_name")
+    .value,
 
-role:f_role.value,
+    role:
+    document
+    .getElementById("f_role")
+    .value,
 
-phone:f_phone.value,
+    phone:
+    document
+    .getElementById("f_phone")
+    .value,
 
-address:f_address.value,
+    address:
+    document
+    .getElementById("f_address")
+    .value,
 
-quote:f_quote.value
+    quote:
+    document
+    .getElementById("f_quote")
+    .value
 
-};
+  };
 
-await save();
+  await saveData();
 
 }
 
-async function removeLeaderImage(){
+async function uploadLeader(input){
 
-if(!confirm("ต้องการลบรูปหรือไม่?")) return;
-
-await deleteImage(D.leader.image);
-
-D.leader.image="";
-
-await save();
-
-leaderPage();
+  await handleImageUpload(
+    input,
+    async url=>{
+      D.leader.image=url;
+    }
+  );
 
 }
 
+async function deleteLeaderImage(){
 
-/* =====================================================
-   PERSONNEL
-===================================================== */
+  D.leader.image="";
+
+  await saveData();
+
+  leaderPage();
+
+}
+
+/* =========================================================
+   PEOPLE
+========================================================= */
 
 const personMeta={
 
-assistants:"ผู้ช่วยผู้ใหญ่บ้าน",
+  assistants:"ผู้ช่วยผู้ใหญ่บ้าน",
 
-committee:"คณะกรรมการหมู่บ้าน",
+  committee:"คณะกรรมการหมู่บ้าน",
 
-advisors:"คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ",
+  advisors:
+  "คณะที่ปรึกษา / ผู้ทรงคุณวุฒิ",
 
-sao:"สมาชิก ส.อบต.",
+  sao:"สมาชิก ส.อบต.",
 
-healthVolunteers:"อสม."
+  healthVolunteers:"อสม."
 
 };
 
 function personList(key){
 
-const title=personMeta[key];
+  const title =
+  personMeta[key];
 
-card(
+  card(
+    "👥 "+title,
 
-`👥 ${title}`,
+    `
+    <div class="toolbar">
 
-`
+      <span class="note">
 
-<div class="toolbar">
+        เพิ่มรูป ชื่อ ตำแหน่ง
+        หน้าที่ และเบอร์โทรได้
 
-<span class="note">
-เพิ่มรูป ชื่อ ตำแหน่ง หน้าที่ และเบอร์โทรได้
-</span>
+      </span>
 
-<button
-class="btn primary"
-onclick="addPerson('${key}')"
->
-+ เพิ่มบุคลากร
-</button>
+      <button
+        class="btn primary"
+        onclick="window.addPerson('${key}')"
+      >
+        + เพิ่มบุคลากร
+      </button>
 
-</div>
+    </div>
 
-${
-D[key].map(
-(x,i)=>
-personEditor(
-key,
-title,
-x,
-i
-)
-).join("")
-
-||
-
-'<p class="note">ยังไม่มีข้อมูล กด “เพิ่มบุคลากร” เพื่อเริ่มต้น</p>'
+    ${
+      D[key]
+      .map((x,i)=>
+        personEditor(
+          key,
+          title,
+          x,
+          i
+        )
+      )
+      .join("")
+      ||
+      `
+      <p class="note">
+        ยังไม่มีข้อมูล
+        กดเพิ่มบุคลากรเพื่อเริ่มต้น
+      </p>
+      `
+    }
+    `
+  );
 
 }
 
-`
+function personEditor(
+  key,
+  title,
+  x,
+  i
+){
 
-);
+  return `
+
+  <div class="item">
+
+    <div class="item-head">
+
+      <b>
+        ${title}
+        ลำดับ ${i+1}
+      </b>
+
+      <div>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},-1)"
+        >
+          ↑
+        </button>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},1)"
+        >
+          ↓
+        </button>
+
+        <button
+          class="btn danger"
+          onclick="window.deletePerson('${key}',${i})"
+        >
+          ลบ
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div>
+
+        <label>
+          ชื่อ-นามสกุล
+
+          <input
+            id="n_${key}_${i}"
+            value="${esc(x.name)}"
+          >
+
+        </label>
+
+        <label>
+          ตำแหน่ง
+
+          <input
+            id="r_${key}_${i}"
+            value="${esc(x.role)}"
+          >
+
+        </label>
+
+        <label>
+          เบอร์โทรศัพท์
+
+          <input
+            id="p_${key}_${i}"
+            value="${esc(x.phone)}"
+          >
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          หน้าที่ / รายละเอียด
+
+          <textarea
+            id="d_${key}_${i}"
+          >${esc(x.detail)}</textarea>
+
+        </label>
+
+        <label>
+          อัปโหลดรูปภาพ
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="window.uploadPerson('${key}',${i},this)"
+          >
+
+        </label>
+
+        ${
+          x.image
+          ? `<img class="preview" src="${x.image}">`
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+    <div class="actions">
+
+      <button
+        class="btn primary"
+        onclick="window.savePerson('${key}',${i})"
+      >
+        💾 บันทึก
+      </button>
+
+    </div>
+
+  </div>
+
+  `;
 
 }
 
 async function addPerson(key){
 
-D[key].push({
+  D[key].push({
 
-name:"",
+    name:"",
+    role:"",
+    detail:"",
+    phone:"",
+    image:""
 
-role:"",
+  });
 
-detail:"",
+  await saveData(false);
 
-phone:"",
-
-image:"",
-
-order:D[key].length+1
-
-});
-
-await save(false);
-
-personList(key);
-
-}
-
-function personEditor(key,title,x,i){
-
-return `
-
-<div class="item">
-
-<div class="item-head">
-
-<b>
-${title}
-ลำดับ ${i+1}
-</b>
-
-<div>
-
-<button
-class="btn light"
-onclick="move('${key}',${i},-1)"
->
-↑
-</button>
-
-<button
-class="btn light"
-onclick="move('${key}',${i},1)"
->
-↓
-</button>
-
-<button
-class="btn danger"
-onclick="deletePerson('${key}',${i})"
->
-ลบ
-</button>
-
-</div>
-
-</div>
-
-<div class="row">
-
-<div>
-
-<label>
-ชื่อ-นามสกุล
-
-<input
-id="n_${key}_${i}"
-value="${esc(x.name)}"
->
-
-</label>
-
-<label>
-ตำแหน่ง
-
-<input
-id="r_${key}_${i}"
-value="${esc(x.role)}"
->
-
-</label>
-
-<label>
-เบอร์โทรศัพท์
-
-<input
-id="p_${key}_${i}"
-value="${esc(x.phone)}"
->
-
-</label>
-
-</div>
-
-<div>
-
-<label>
-หน้าที่ / รายละเอียด
-
-<textarea
-id="d_${key}_${i}"
->${esc(x.detail)}</textarea>
-
-</label>
-
-<label>
-
-อัปโหลดรูปภาพ
-
-<input
-type="file"
-accept="image/*"
-onchange="
-readFile(
-this,
-async v=>{
-D['${key}'][${i}].image=v;
-await save(false);
-personList('${key}');
-}
-)
-"
-
->
-
-</label>
-
-${x.image?
-
-`<img
-class="preview"
-src="${x.image}"
->`
-
-:""}
-
-</div>
-
-</div>
-
-<div class="actions">
-
-<button
-class="btn primary"
-onclick="savePerson('${key}',${i})"
->
-บันทึก
-</button>
-
-</div>
-
-</div>
-
-`;
+  personList(key);
 
 }
 
 async function savePerson(key,i){
 
-D[key][i]={
+  D[key][i] = {
 
-...D[key][i],
+    ...D[key][i],
 
-name:
-document.getElementById(
-`n_${key}_${i}`
-).value,
+    name:
+    document
+    .getElementById(
+      `n_${key}_${i}`
+    )
+    .value,
 
-role:
-document.getElementById(
-`r_${key}_${i}`
-).value,
+    role:
+    document
+    .getElementById(
+      `r_${key}_${i}`
+    )
+    .value,
 
-phone:
-document.getElementById(
-`p_${key}_${i}`
-).value,
+    phone:
+    document
+    .getElementById(
+      `p_${key}_${i}`
+    )
+    .value,
 
-detail:
-document.getElementById(
-`d_${key}_${i}`
-).value
+    detail:
+    document
+    .getElementById(
+      `d_${key}_${i}`
+    )
+    .value
 
-};
+  };
 
-await save();
+  await saveData();
+
+}
+
+async function uploadPerson(
+  key,
+  i,
+  input
+){
+
+  await handleImageUpload(
+    input,
+    async url=>{
+      D[key][i].image=url;
+    }
+  );
 
 }
 
 async function deletePerson(key,i){
 
-if(!confirm("ต้องการลบข้อมูลหรือไม่?")) return;
+  if(!confirm("ต้องการลบรายการนี้หรือไม่?"))
+    return;
 
-const image=D[key][i].image;
+  D[key].splice(i,1);
 
-if(image){
+  await saveData();
 
-await deleteImage(image);
-
-}
-
-D[key].splice(i,1);
-
-await save();
-
-personList(key);
+  personList(key);
 
 }
 
-
-/* =====================================================
+/* =========================================================
    CONTENT
-===================================================== */
+========================================================= */
 
 const contentMeta={
 
-news:"ข่าวประชาสัมพันธ์",
+  news:"ข่าวประชาสัมพันธ์",
 
-activities:"กิจกรรมเด่น",
+  activities:"กิจกรรมเด่น",
 
-announcements:"ประกาศสำคัญ",
+  announcements:"ประกาศสำคัญ",
 
-tourism:"แหล่งท่องเที่ยว",
+  tourism:"แหล่งท่องเที่ยว",
 
-temples:"วัดและสถานที่สำคัญ",
+  temples:"วัดและสถานที่สำคัญ",
 
-maps:"แผนที่หมู่บ้าน",
+  maps:"แผนที่หมู่บ้าน",
 
-subnamjam:"แหล่งซับน้ำจำ",
+  subnamjam:"แหล่งซับน้ำจำ",
 
-shops:"ร้านค้าในชุมชน",
+  shops:"ร้านค้าในชุมชน",
 
-calendar:"วันพระ / วันสำคัญ"
+  calendar:"วันพระ / วันสำคัญ"
 
 };
 
 function contentList(key){
 
-const title=contentMeta[key];
+  const title =
+  contentMeta[key];
 
-card(
+  card(
+    "📝 "+title,
 
-`📝 ${title}`,
+    `
+    <div class="toolbar">
 
-`
+      <span class="note">
 
-<div class="toolbar">
+        จัดเรียง เพิ่ม แก้ไข ลบ
+        และอัปโหลดรูปภาพได้
 
-<span class="note">
-จัดเรียงลำดับ เพิ่ม แก้ไข ลบ และอัปโหลดรูปภาพได้
-</span>
+      </span>
 
-<button
-class="btn primary"
-onclick="addContent('${key}')"
->
-+ เพิ่มรายการ
-</button>
+      <button
+        class="btn primary"
+        onclick="window.addContent('${key}')"
+      >
+        + เพิ่มรายการ
+      </button>
 
-</div>
+    </div>
 
-${
-D[key].map(
-(x,i)=>
-contentEditor(
-key,
-title,
-x,
-i
-)
-).join("")
-
-||
-
-'<p class="note">ยังไม่มีข้อมูล</p>'
+    ${
+      D[key]
+      .map((x,i)=>
+        contentEditor(
+          key,
+          title,
+          x,
+          i
+        )
+      )
+      .join("")
+      ||
+      `<p class="note">ยังไม่มีข้อมูล</p>`
+    }
+    `
+  );
 
 }
 
-`
+function contentEditor(
+  key,
+  title,
+  x,
+  i
+){
 
-);
+  let extra="";
+
+  if(key==="maps"){
+
+    extra=`
+    <label>
+      ลิงก์แผนที่
+
+      <input
+        id="u_${key}_${i}"
+        value="${esc(x.mapUrl)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  if(
+    [
+      "tourism",
+      "temples",
+      "subnamjam",
+      "shops"
+    ]
+    .includes(key)
+  ){
+
+    extra+=`
+    <label>
+      สถานที่ / ที่ตั้ง
+
+      <input
+        id="l_${key}_${i}"
+        value="${esc(x.location)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  if(
+    ["shops","tourism"]
+    .includes(key)
+  ){
+
+    extra+=`
+    <label>
+      โทรศัพท์
+
+      <input
+        id="p_${key}_${i}"
+        value="${esc(x.phone)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  if(
+    [
+      "news",
+      "activities",
+      "announcements",
+      "calendar"
+    ]
+    .includes(key)
+  ){
+
+    extra+=`
+    <label>
+      วันที่
+
+      <input
+        id="dt_${key}_${i}"
+        value="${esc(x.date)}"
+      >
+
+    </label>
+    `;
+
+  }
+
+  return `
+
+  <div class="item">
+
+    <div class="item-head">
+
+      <b>
+        ${title} ${i+1}
+      </b>
+
+      <div>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},-1)"
+        >
+          ↑
+        </button>
+
+        <button
+          class="btn light"
+          onclick="window.moveItem('${key}',${i},1)"
+        >
+          ↓
+        </button>
+
+        <button
+          class="btn danger"
+          onclick="window.deleteContent('${key}',${i})"
+        >
+          ลบ
+        </button>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div>
+
+        <label>
+          หัวข้อ
+
+          <input
+            id="t_${key}_${i}"
+            value="${esc(x.title)}"
+          >
+
+        </label>
+
+        ${extra}
+
+        <label>
+          รายละเอียด
+
+          <textarea
+            id="d_${key}_${i}"
+          >${esc(x.detail)}</textarea>
+
+        </label>
+
+      </div>
+
+      <div>
+
+        <label>
+          อัปโหลดรูปภาพ
+
+          <input
+            type="file"
+            accept="image/*"
+            onchange="window.uploadContent('${key}',${i},this)"
+          >
+
+        </label>
+
+        ${
+          x.image
+          ? `<img class="preview" src="${x.image}">`
+          : ""
+        }
+
+      </div>
+
+    </div>
+
+    <button
+      class="btn primary"
+      onclick="window.saveContent('${key}',${i})"
+    >
+      💾 บันทึก
+    </button>
+
+  </div>
+
+  `;
 
 }
 
 async function addContent(key){
 
-D[key].push({
+  D[key].push({
 
-title:"",
+    title:"",
+    detail:"",
+    date:"",
+    location:"",
+    phone:"",
+    mapUrl:"",
+    image:""
 
-detail:"",
+  });
 
-date:"",
+  await saveData(false);
 
-location:"",
-
-phone:"",
-
-mapUrl:"",
-
-image:""
-
-});
-
-await save(false);
-
-contentList(key);
-
-}
-
-function contentEditor(key,title,x,i){
-
-let extra="";
-
-if(key==="maps"){
-
-extra+=`
-
-<label>
-
-ลิงก์แผนที่
-
-<input
-id="u_${key}_${i}"
-value="${esc(x.mapUrl)}"
->
-
-</label>
-
-`;
-
-}
-
-if(
-[
-"tourism",
-"temples",
-"subnamjam",
-"shops"
-].includes(key)
-){
-
-extra+=`
-
-<label>
-
-สถานที่ / ที่ตั้ง
-
-<input
-id="l_${key}_${i}"
-value="${esc(x.location)}"
->
-
-</label>
-
-`;
-
-}
-
-if(
-[
-"shops",
-"tourism"
-].includes(key)
-){
-
-extra+=`
-
-<label>
-
-โทรศัพท์
-
-<input
-id="p_${key}_${i}"
-value="${esc(x.phone)}"
->
-
-</label>
-
-`;
-
-}
-
-if(
-[
-"news",
-"activities",
-"announcements",
-"calendar"
-].includes(key)
-){
-
-extra+=`
-
-<label>
-
-วันที่
-
-<input
-id="dt_${key}_${i}"
-value="${esc(x.date)}"
->
-
-</label>
-
-`;
-
-}
-
-return `
-
-<div class="item">
-
-<div class="item-head">
-
-<b>
-${title}
-${i+1}
-</b>
-
-<div>
-
-<button
-class="btn light"
-onclick="move('${key}',${i},-1)"
->
-↑
-</button>
-
-<button
-class="btn light"
-onclick="move('${key}',${i},1)"
->
-↓
-</button>
-
-<button
-class="btn danger"
-onclick="deleteContent('${key}',${i})"
->
-ลบ
-</button>
-
-</div>
-
-</div>
-
-<div class="row">
-
-<div>
-
-<label>
-
-หัวข้อ
-
-<input
-id="t_${key}_${i}"
-value="${esc(x.title)}"
->
-
-</label>
-
-${extra}
-
-<label>
-
-รายละเอียด
-
-<textarea
-id="d_${key}_${i}"
->${esc(x.detail)}</textarea>
-
-</label>
-
-</div>
-
-<div>
-
-<label>
-
-อัปโหลดรูปภาพ
-
-<input
-type="file"
-accept="image/*"
-onchange="
-readFile(
-this,
-async v=>{
-D['${key}'][${i}].image=v;
-await save(false);
-contentList('${key}');
-}
-)
-"
-
->
-
-</label>
-
-${x.image?
-
-`<img
-class="preview"
-src="${x.image}"
->`
-
-:""}
-
-</div>
-
-</div>
-
-<button
-class="btn primary"
-onclick="saveContent('${key}',${i})"
->
-บันทึก
-</button>
-
-</div>
-
-`;
+  contentList(key);
 
 }
 
 async function saveContent(key,i){
 
-const x=D[key][i];
+  const x =
+  D[key][i];
 
-x.title=
-document
-.getElementById(
-`t_${key}_${i}`
-).value;
+  x.title =
+  document
+  .getElementById(
+    `t_${key}_${i}`
+  )
+  .value;
 
-x.detail=
-document
-.getElementById(
-`d_${key}_${i}`
-).value;
+  x.detail =
+  document
+  .getElementById(
+    `d_${key}_${i}`
+  )
+  .value;
 
-const date=document.getElementById(
-`dt_${key}_${i}`
-);
+  const dt =
+  document.getElementById(
+    `dt_${key}_${i}`
+  );
 
-const location=document.getElementById(
-`l_${key}_${i}`
-);
+  const l =
+  document.getElementById(
+    `l_${key}_${i}`
+  );
 
-const phone=document.getElementById(
-`p_${key}_${i}`
-);
+  const p =
+  document.getElementById(
+    `p_${key}_${i}`
+  );
 
-const mapUrl=document.getElementById(
-`u_${key}_${i}`
-);
+  const u =
+  document.getElementById(
+    `u_${key}_${i}`
+  );
 
-if(date) x.date=date.value;
+  if(dt) x.date=dt.value;
+  if(l) x.location=l.value;
+  if(p) x.phone=p.value;
+  if(u) x.mapUrl=u.value;
 
-if(location) x.location=location.value;
+  await saveData();
 
-if(phone) x.phone=phone.value;
+}
 
-if(mapUrl) x.mapUrl=mapUrl.value;
+async function uploadContent(
+  key,
+  i,
+  input
+){
 
-await save();
+  await handleImageUpload(
+    input,
+    async url=>{
+      D[key][i].image=url;
+    }
+  );
 
 }
 
 async function deleteContent(key,i){
 
-if(!confirm("ต้องการลบรายการหรือไม่?")) return;
+  if(!confirm("ต้องการลบรายการนี้หรือไม่?"))
+    return;
 
-const image=D[key][i].image;
+  D[key].splice(i,1);
 
-if(image){
+  await saveData();
 
-await deleteImage(image);
-
-}
-
-D[key].splice(i,1);
-
-await save();
-
-contentList(key);
+  contentList(key);
 
 }
 
+/* =========================================================
+   MOVE ITEM
+========================================================= */
 
-/* =====================================================
-   MOVE
-===================================================== */
-
-async function move(key,i,d){
-
-const j=i+d;
-
-if(
-j<0 ||
-j>=D[key].length
-) return;
-
-[D[key][i],D[key][j]]
-=
-[D[key][j],D[key][i]];
-
-await save(false);
-
-if(
-[
-"assistants",
-"committee",
-"advisors",
-"sao",
-"healthVolunteers"
-].includes(key)
+async function moveItem(
+  key,
+  i,
+  direction
 ){
 
-personList(key);
+  const j=i+direction;
 
-}else{
+  if(
+    j<0 ||
+    j>=D[key].length
+  ) return;
 
-contentList(key);
+  [
+    D[key][i],
+    D[key][j]
+  ] =
+  [
+    D[key][j],
+    D[key][i]
+  ];
+
+  await saveData(false);
+
+  if(
+    [
+      "assistants",
+      "committee",
+      "advisors",
+      "sao",
+      "healthVolunteers"
+    ]
+    .includes(key)
+  ){
+
+    personList(key);
+
+  }else{
+
+    contentList(key);
+
+  }
 
 }
 
-}
-
-
-/* =====================================================
-   PM2.5 WEATHER AI
-===================================================== */
+/* =========================================================
+   PM25 WEATHER AI
+========================================================= */
 
 function singlePage(key){
 
-const title={
+  const title={
 
-pm25:"🌫️ PM2.5",
+    pm25:"🌫️ PM2.5",
 
-weather:"☁️ พยากรณ์อากาศ",
+    weather:"☁️ พยากรณ์อากาศ",
 
-ai:"🤖 ผู้ช่วย AI"
+    ai:"🤖 ผู้ช่วย AI"
 
-}[key];
+  }[key];
 
-const x=D[key];
+  const x=D[key];
 
-let body="";
+  if(key==="ai"){
 
-if(key==="ai"){
+    card(
+      title,
 
-body=`
+      `
+      <label>
+        ชื่อผู้ช่วย AI
 
-<label>
+        <input
+          id="ai_title"
+          value="${esc(x.title)}"
+        >
 
-ชื่อผู้ช่วย AI
+      </label>
 
-<input
-id="a_title"
-value="${esc(x.title)}"
->
+      <label>
+        ข้อความต้อนรับ
 
-</label>
+        <textarea
+          id="ai_welcome"
+        >${esc(x.welcome)}</textarea>
 
-<label>
+      </label>
 
-ข้อความต้อนรับ
+      <button
+        class="btn primary"
+        onclick="window.saveAI()"
+      >
+        💾 บันทึก
+      </button>
+      `
+    );
 
-<textarea
-id="a_welcome"
->${esc(x.welcome)}</textarea>
+    return;
 
-</label>
+  }
 
-<button
-class="btn primary"
-onclick="saveAI()"
->
-บันทึก
-</button>
+  const value =
+  key==="pm25"
+  ? x.value
+  : x.temperature;
 
-`;
+  card(
+    title,
 
-}else{
+    `
+    <div class="row">
 
-body=`
+      <div>
 
-<div class="row">
+        <label>
+          หัวข้อ
 
-<div>
+          <input
+            id="s_title"
+            value="${esc(x.title)}"
+          >
 
-<label>
+        </label>
 
-หัวข้อ
+        <label>
+          รายละเอียด
 
-<input
-id="s_title"
-value="${esc(x.title)}"
->
+          <textarea
+            id="s_detail"
+          >${esc(x.detail)}</textarea>
 
-</label>
+        </label>
 
-<label>
+        <label>
+          สถานะ / ระดับ
 
-รายละเอียด
+          <input
+            id="s_level"
+            value="${esc(x.level || x.description || "")}"
+          >
 
-<textarea
-id="s_detail"
->${esc(x.detail)}</textarea>
+        </label>
 
-</label>
+      </div>
 
-<label>
+      <div>
 
-สถานะ / ระดับ
+        <label>
+          ค่า / อุณหภูมิ
 
-<input
-id="s_level"
-value="${esc(x.level||'')}"
->
+          <input
+            id="s_value"
+            value="${esc(value)}"
+          >
 
-</label>
+        </label>
 
-</div>
+        <label>
+          อัปเดตล่าสุด
 
-<div>
+          <input
+            id="s_updated"
+            value="${esc(x.updated)}"
+          >
 
-<label>
+        </label>
 
-ค่า / อุณหภูมิ
+        <button
+          class="btn primary"
+          onclick="window.saveSingle('${key}')"
+        >
+          💾 บันทึก
+        </button>
 
-<input
-id="s_value"
-value="${esc(
-x.value||
-x.temperature||
-''
-)}"
->
+      </div>
 
-</label>
-
-<label>
-
-อัปเดตล่าสุด
-
-<input
-id="s_updated"
-value="${esc(x.updated||'')}"
->
-
-</label>
-
-<button
-class="btn primary"
-onclick="saveSingle('${key}')"
->
-บันทึก
-</button>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-card(title,body);
-
-}
-
-async function saveAI(){
-
-D.ai={
-
-title:a_title.value,
-
-welcome:a_welcome.value
-
-};
-
-await save();
+    </div>
+    `
+  );
 
 }
 
 async function saveSingle(key){
 
-const x=D[key];
+  const x=D[key];
 
-x.title=s_title.value;
+  x.title=
+  document.getElementById("s_title").value;
 
-x.detail=s_detail.value;
+  x.detail=
+  document.getElementById("s_detail").value;
 
-const value=s_value.value;
+  const value=
+  document.getElementById("s_value").value;
 
-x.level=s_level.value;
+  x.updated=
+  document.getElementById("s_updated").value;
 
-if(key==="pm25"){
+  const level=
+  document.getElementById("s_level").value;
 
-x.value=value;
+  if(key==="pm25"){
 
-}else{
+    x.value=value;
+    x.level=level;
 
-x.temperature=value;
+  }else{
+
+    x.temperature=value;
+    x.description=level;
+
+  }
+
+  await saveData();
 
 }
 
-x.updated=s_updated.value;
+async function saveAI(){
 
-await save();
+  D.ai={
+
+    title:
+    document
+    .getElementById("ai_title")
+    .value,
+
+    welcome:
+    document
+    .getElementById("ai_welcome")
+    .value
+
+  };
+
+  await saveData();
 
 }
 
-
-/* =====================================================
+/* =========================================================
    STATS
-===================================================== */
+========================================================= */
 
 function statsPage(){
 
-const x=D.stats;
+  const x=D.stats;
 
-card(
+  card(
+    "📈 สถิติหมู่บ้าน",
 
-"📈 สถิติหมู่บ้าน",
+    `
+    <div class="row">
 
-`
+      <div>
 
-<div class="row">
+        <label>
+          จำนวนครัวเรือน
 
-<div>
+          <input
+            id="st1"
+            value="${esc(x.households)}"
+          >
 
-<label>
+        </label>
 
-จำนวนครัวเรือน
+        <label>
+          ประชากร
 
-<input
-id="st1"
-value="${esc(x.households)}"
->
+          <input
+            id="st2"
+            value="${esc(x.population)}"
+          >
 
-</label>
+        </label>
 
-<label>
+      </div>
 
-ประชากร
+      <div>
 
-<input
-id="st2"
-value="${esc(x.population)}"
->
+        <label>
+          พื้นที่
 
-</label>
+          <input
+            id="st3"
+            value="${esc(x.area)}"
+          >
 
-</div>
+        </label>
 
-<div>
+        <label>
+          อัปเดตล่าสุด
 
-<label>
+          <input
+            id="st4"
+            value="${esc(x.updated)}"
+          >
 
-พื้นที่
+        </label>
 
-<input
-id="st3"
-value="${esc(x.area)}"
->
+      </div>
 
-</label>
+    </div>
 
-<label>
-
-อัปเดตล่าสุด
-
-<input
-id="st4"
-value="${esc(x.updated)}"
->
-
-</label>
-
-</div>
-
-</div>
-
-<button
-class="btn primary"
-onclick="saveStats()"
->
-บันทึก
-</button>
-
-`
-
-);
+    <button
+      class="btn primary"
+      onclick="window.saveStats()"
+    >
+      💾 บันทึก
+    </button>
+    `
+  );
 
 }
 
 async function saveStats(){
 
-D.stats={
+  D.stats={
 
-households:st1.value,
+    households:
+    document
+    .getElementById("st1")
+    .value,
 
-population:st2.value,
+    population:
+    document
+    .getElementById("st2")
+    .value,
 
-area:st3.value,
+    area:
+    document
+    .getElementById("st3")
+    .value,
 
-updated:st4.value
+    updated:
+    document
+    .getElementById("st4")
+    .value
 
-};
+  };
 
-await save();
+  await saveData();
 
 }
 
-
-/* =====================================================
+/* =========================================================
    BACKUP
-===================================================== */
+========================================================= */
 
 function backupPage(){
 
-card(
+  card(
+    "💾 สำรอง / กู้คืนข้อมูล",
 
-"💾 สำรอง / กู้คืนข้อมูล",
+    `
+    <p>
+      สำรองข้อมูลทั้งหมด
+      และสามารถกู้คืนข้อมูลได้ทุกเมนู
+    </p>
 
-`
+    <div class="actions">
 
-<p>
-ดาวน์โหลดข้อมูลทั้งหมดเป็น JSON
-หรือกู้คืนข้อมูลกลับมาได้
-</p>
+      <button
+        class="btn primary"
+        onclick="window.exportData()"
+      >
+        ดาวน์โหลด Backup JSON
+      </button>
 
-<div class="actions">
+      <label class="btn light">
 
-<button
-class="btn primary"
-onclick="exportData()"
->
-ดาวน์โหลด Backup JSON
-</button>
+        เลือกไฟล์กู้คืน
 
-<label class="btn light">
+        <input
+          type="file"
+          accept=".json,application/json"
+          style="display:none"
+          onchange="window.importData(this)"
+        >
 
-เลือกไฟล์กู้คืน
+      </label>
 
-<input
-type="file"
-accept=".json,application/json"
-style="display:none"
-onchange="importData(this)"
->
+      <button
+        class="btn danger"
+        onclick="window.resetData()"
+      >
+        รีเซ็ตข้อมูล
+      </button>
 
-</label>
-
-</div>
-
-`
-
-);
+    </div>
+    `
+  );
 
 }
 
 function exportData(){
 
-const blob=new Blob(
+  const a =
+  document.createElement("a");
 
-[
-JSON.stringify(
-D,
-null,
-2
-)
-],
+  a.href =
+  URL.createObjectURL(
 
-{
-type:"application/json"
-}
+    new Blob(
 
-);
+      [
+        JSON.stringify(
+          D,
+          null,
+          2
+        )
+      ],
 
-const url=
-URL.createObjectURL(blob);
+      {
+        type:"application/json"
+      }
 
-const a=
-document.createElement("a");
+    )
 
-a.href=url;
+  );
 
-a.download=
-"rongkhem-e-village-backup.json";
+  a.download =
+  "rongkhem-e-village-backup.json";
 
-a.click();
-
-URL.revokeObjectURL(url);
+  a.click();
 
 }
 
 function importData(el){
 
-const file=el.files?.[0];
+  const file =
+  el.files[0];
 
-if(!file) return;
+  if(!file) return;
 
-const reader=new FileReader();
+  const reader =
+  new FileReader();
 
-reader.onload=async()=>{
+  reader.onload =
+  async ()=>{
 
-try{
+    try{
 
-const imported=
-JSON.parse(reader.result);
+      D =
+      merge(
 
-D=merge(
-imported,
-structuredClone(defaultData)
-);
+        JSON.parse(reader.result),
 
-await save();
+        structuredClone(defaultData)
 
-toast("✓ กู้คืนข้อมูลเรียบร้อยแล้ว");
+      );
 
-openPage("dashboard");
+      const ok =
+      await saveData(false);
 
-}catch(error){
+      if(ok){
 
-alert("ไฟล์ข้อมูลไม่ถูกต้อง");
+        toast(
+          "✓ กู้คืนข้อมูลสำเร็จ"
+        );
+
+        openPage("dashboard");
+
+      }
+
+    }catch(e){
+
+      alert(
+        "ไฟล์ไม่ถูกต้อง"
+      );
+
+    }
+
+  };
+
+  reader.readAsText(file);
 
 }
 
-};
+async function resetData(){
 
-reader.readAsText(file);
+  if(
+    !confirm(
+      "ต้องการรีเซ็ตข้อมูลทั้งหมดหรือไม่?"
+    )
+  ) return;
+
+  D =
+  structuredClone(defaultData);
+
+  await saveData();
+
+  openPage("dashboard");
 
 }
 
-
-/* =====================================================
+/* =========================================================
    SETTINGS
-===================================================== */
+========================================================= */
 
 function settingsPage(){
 
-const x=D.settings;
+  const x=D.settings;
 
-card(
+  card(
+    "⚙️ ตั้งค่าระบบ",
 
-"⚙️ ตั้งค่าระบบ",
+    `
+    <div class="row">
 
-`
+      <div>
 
-<div class="row">
+        <label>
+          ชื่อเว็บไซต์
 
-<div>
+          <input
+            id="set_site"
+            value="${esc(x.siteName)}"
+          >
 
-<label>
+        </label>
 
-ชื่อเว็บไซต์
+        <label>
+          ชื่อผู้ใช้ผู้ดูแล
 
-<input
-id="set_site"
-value="${esc(x.siteName)}"
->
+          <input
+            id="set_user"
+            value="${esc(x.username)}"
+          >
 
-</label>
+        </label>
 
-<label>
+      </div>
 
-ชื่อผู้ใช้ผู้ดูแล
+      <div>
 
-<input
-id="set_user"
-value="${esc(x.username)}"
->
+        <label>
+          รหัสผ่านใหม่
 
-</label>
+          <input
+            id="set_pass"
+            type="password"
+            value="${esc(x.password)}"
+          >
 
-</div>
+        </label>
 
-<div>
+        <p class="note">
+          การเปลี่ยนชื่อผู้ใช้และรหัสผ่าน
+          ต้องแก้ระบบ login.html ให้ใช้ข้อมูลจาก Supabase
+        </p>
 
-<label>
+      </div>
 
-รหัสผ่านใหม่
+    </div>
 
-<input
-id="set_pass"
-type="password"
-value="${esc(x.password)}"
->
-
-</label>
-
-<p class="small">
-
-หลังบันทึก
-ใช้ชื่อผู้ใช้และรหัสผ่านใหม่ในครั้งถัดไป
-
-</p>
-
-</div>
-
-</div>
-
-<button
-class="btn primary"
-onclick="saveSettings()"
->
-บันทึกการตั้งค่า
-</button>
-
-`
-
-);
+    <button
+      class="btn primary"
+      onclick="window.saveSettings()"
+    >
+      💾 บันทึกการตั้งค่า
+    </button>
+    `
+  );
 
 }
 
 async function saveSettings(){
 
-D.settings={
+  D.settings={
 
-siteName:set_site.value,
+    siteName:
+    document
+    .getElementById("set_site")
+    .value,
 
-username:set_user.value,
+    username:
+    document
+    .getElementById("set_user")
+    .value,
 
-password:set_pass.value
+    password:
+    document
+    .getElementById("set_pass")
+    .value
 
-};
+  };
 
-await save();
+  await saveData();
 
 }
 
+/* =========================================================
+   SAVE ALL
+========================================================= */
 
-/* =====================================================
+async function saveAll(){
+
+  await saveData();
+
+}
+
+/* =========================================================
    LOGOUT
-===================================================== */
+========================================================= */
 
 function logout(){
 
-sessionStorage.removeItem(LOGIN);
+  localStorage.removeItem(
+    "rongkhemAdminLoggedIn"
+  );
 
-localStorage.removeItem(
-"rongkhemAdminLoggedIn"
-);
+  localStorage.removeItem(
+    "rongkhemAdminUsername"
+  );
 
-localStorage.removeItem(
-"rongkhemAdminUsername"
-);
+  sessionStorage.removeItem(
+    "RONGKHEM_EVILLAGE_ADMIN_LOGIN"
+  );
 
-location.href="login.html";
+  location.href="login.html";
 
 }
+
+/* =========================================================
+   EXPOSE FUNCTIONS
+========================================================= */
+
+window.openPage=openPage;
+
+window.saveAll=saveAll;
+
+window.saveLeader=saveLeader;
+window.uploadLeader=uploadLeader;
+window.deleteLeaderImage=deleteLeaderImage;
+
+window.addPerson=addPerson;
+window.savePerson=savePerson;
+window.uploadPerson=uploadPerson;
+window.deletePerson=deletePerson;
+
+window.addContent=addContent;
+window.saveContent=saveContent;
+window.uploadContent=uploadContent;
+window.deleteContent=deleteContent;
+
+window.moveItem=moveItem;
+
+window.saveSingle=saveSingle;
+window.saveAI=saveAI;
+
+window.saveStats=saveStats;
+
+window.exportData=exportData;
+window.importData=importData;
+window.resetData=resetData;
+
+window.saveSettings=saveSettings;
+
+/* =========================================================
+   START
+========================================================= */
 
 document
 .getElementById("logoutBtn")
 .addEventListener(
-"click",
-logout
+  "click",
+  logout
 );
 
+await loadData();
 
-/* =====================================================
-   CHECK LOGIN
-===================================================== */
+document
+.getElementById("loading")
+.style.display="none";
 
-(async function(){
-
-const loggedIn=
-localStorage.getItem(
-"rongkhemAdminLoggedIn"
-)==="true"
-
-||
-
-sessionStorage.getItem(
-LOGIN
-)==="1";
-
-if(!loggedIn){
-
-location.href="login.html";
-
-return;
-
-}
-
-sessionStorage.setItem(
-LOGIN,
-"1"
-);
-
-await start();
-
-})();
+start();
 
 </script>
 
