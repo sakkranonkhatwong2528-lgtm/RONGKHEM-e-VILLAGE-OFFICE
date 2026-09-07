@@ -1,624 +1,914 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+<html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ผู้ใหญ่บ้านออนไลน์ - ศูนย์บริการประชาชนประจำชุมชน</title>
-  <!-- Google Fonts: Prompt -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Prompt', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              50: '#f2f9f4',
-              100: '#e1f2e6',
-              500: '#1b8744',
-              600: '#156d36',
-              700: '#11542a',
-              800: '#0f4323',
-              900: '#0c371d',
-            }
-          }
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>บ้านร่องเข็ม หมู่ที่ 6 | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+  <meta name="description" content="ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b4f6c;
+      --primary-dark: #06364c;
+      --secondary: #168a65;
+      --accent: #f4b942;
+      --light: #f4f8f7;
+      --text: #1b2b34;
+      --muted: #64748b;
+      --white: #ffffff;
+      --border: #dce8e5;
+      --danger: #c23b3b;
+      --shadow: 0 10px 30px rgba(11, 79, 108, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Noto Sans Thai", sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    .topbar {
+      background: var(--primary-dark);
+      color: #dff5ff;
+      font-size: 0.9rem;
+      padding: 8px 0;
+    }
+
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    header {
+      background: var(--white);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .navbar {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      font-size: 1.5rem;
+    }
+
+    .brand h1 {
+      margin: 0;
+      color: var(--primary-dark);
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+      font-size: 0.94rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: var(--primary);
+      font-size: 1.7rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 520px;
+      display: grid;
+      align-items: center;
+      color: var(--white);
+      background:
+        linear-gradient(90deg, rgba(4, 47, 67, 0.9), rgba(11, 79, 108, 0.65)),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .hero-content {
+      max-width: 720px;
+      padding: 72px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.12);
+      border-radius: 50px;
+      font-size: 0.9rem;
+    }
+
+    .hero h2 {
+      font-size: clamp(2rem, 5vw, 3.6rem);
+      line-height: 1.25;
+      margin: 18px 0 12px;
+    }
+
+    .hero p {
+      max-width: 630px;
+      color: #eaf8f5;
+      font-size: 1.08rem;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #302000;
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      background: transparent;
+      color: var(--white);
+    }
+
+    section {
+      padding: 72px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .section-title span {
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .section-title h2 {
+      color: var(--primary-dark);
+      margin: 4px 0 0;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 24px 18px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 5px 16px rgba(11, 79, 108, 0.05);
+      transition: 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+      border-color: #a8d6c7;
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin: auto;
+      border-radius: 18px;
+      background: #e5f4ef;
+      font-size: 1.7rem;
+    }
+
+    .card h3 {
+      margin: 12px 0 6px;
+      color: var(--primary-dark);
+      font-size: 1.05rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 0.88rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 26px;
+    }
+
+    .panel {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 26px;
+      border: 1px solid var(--border);
+    }
+
+    .panel h3 {
+      margin-top: 0;
+      color: var(--primary-dark);
+    }
+
+    .news-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .news-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .news-item time {
+      color: var(--secondary);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .news-item h4 {
+      margin: 3px 0;
+      font-size: 1rem;
+    }
+
+    .news-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .event {
+      display: flex;
+      gap: 12px;
+      margin: 14px 0;
+      align-items: center;
+    }
+
+    .event-date {
+      width: 55px;
+      min-width: 55px;
+      text-align: center;
+      padding: 6px;
+      color: var(--white);
+      background: var(--secondary);
+      border-radius: 10px;
+      line-height: 1.25;
+      font-weight: 700;
+    }
+
+    .event-date small {
+      display: block;
+      font-weight: 400;
+    }
+
+    .leader {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 30px;
+      align-items: center;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .leader-photo {
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px dashed rgba(255, 255, 255, 0.55);
+      border-radius: 18px;
+      font-size: 3.2rem;
+    }
+
+    .leader h2 {
+      margin: 0;
+      font-size: 1.7rem;
+    }
+
+    .leader p {
+      margin: 5px 0;
+      color: #d9f1ee;
+    }
+
+    .tracking {
+      background: #e3f3ed;
+    }
+
+    .tracking-box {
+      max-width: 760px;
+      margin: auto;
+      background: var(--white);
+      padding: 30px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .tracking-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    input, select, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbdad6;
+      border-radius: 9px;
+      outline: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(22, 138, 101, 0.12);
+    }
+
+    .btn-green {
+      background: var(--secondary);
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    #trackResult {
+      margin: 16px 0 0;
+      padding: 12px;
+      border-radius: 9px;
+      display: none;
+      text-align: left;
+    }
+
+    .success {
+      background: #def5e9;
+      color: #075d3c;
+    }
+
+    .error {
+      background: #ffe4e4;
+      color: #9b1c1c;
+    }
+
+    footer {
+      background: #062d3e;
+      color: #d7e9e7;
+      padding: 42px 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 30px;
+    }
+
+    footer h3 {
+      margin-top: 0;
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    footer p, footer li {
+      font-size: 0.9rem;
+      margin: 6px 0;
+    }
+
+    footer ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .copyright {
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      margin-top: 24px;
+      padding-top: 16px;
+      text-align: center;
+      font-size: 0.82rem;
+    }
+
+    .modal {
+      position: fixed;
+      z-index: 300;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0, 25, 35, 0.72);
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      width: min(640px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      position: relative;
+    }
+
+    .modal-content h2 {
+      color: var(--primary-dark);
+      margin-top: 0;
+    }
+
+    .close {
+      position: absolute;
+      right: 14px;
+      top: 10px;
+      border: 0;
+      background: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .form-group {
+      margin: 14px 0;
+    }
+
+    label {
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .notice {
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: #f2f7f6;
+      padding: 10px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 850px) {
+      .menu-button {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        padding: 18px 4%;
+        background: var(--white);
+        flex-direction: column;
+        gap: 12px;
+        box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content-grid, .footer-grid {
+        grid-template-columns: 1fr;
       }
     }
-  </script>
+
+    @media (max-width: 520px) {
+      .hero {
+        min-height: 470px;
+      }
+
+      .hero-content {
+        padding: 55px 0;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .leader {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .leader-photo {
+        width: 130px;
+        margin: auto;
+      }
+
+      .tracking-form {
+        flex-direction: column;
+      }
+
+      .topbar .container {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans antialiased">
 
-  <!-- Header / Navigation -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-20">
-        <a href="#hero" class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-full bg-brand-500 text-white flex items-center justify-center text-xl font-bold shadow-md">
-            <i class="fa-solid fa-landmark"></i>
-          </div>
-          <div>
-            <span class="text-xl font-bold text-brand-900 block leading-tight">ผู้ใหญ่บ้านออนไลน์</span>
-            <span class="text-xs text-gray-500">ศูนย์บริการประชาชนประจำชุมชน</span>
-          </div>
-        </a>
-
-        <!-- Desktop Navigation -->
-        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <a href="#services" class="hover:text-brand-600 transition">บริการ</a>
-          <a href="#news" class="hover:text-brand-600 transition">ข่าวสาร</a>
-          <a href="#documents" class="hover:text-brand-600 transition">เอกสาร</a>
-          <a href="#about" class="hover:text-brand-600 transition">รู้จักชุมชน</a>
-          <a href="#faq" class="hover:text-brand-600 transition">คำถาม</a>
-          <a href="#contact" class="px-5 py-2.5 bg-brand-600 text-white rounded-full font-semibold hover:bg-brand-700 shadow-sm transition">
-            ติดต่อผู้ใหญ่บ้าน
-          </a>
-        </nav>
-      </div>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span>📍 บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา</span>
+      <span>บริการประชาชนออนไลน์</span>
     </div>
+  </div>
+
+  <header>
+    <nav class="container navbar">
+      <a class="brand" href="#home">
+        <div class="brand-logo">🏡</div>
+        <div>
+          <h1>ที่ทำการผู้ใหญ่บ้านออนไลน์</h1>
+          <p>บ้านร่องเข็ม หมู่ที่ 6</p>
+        </div>
+      </a>
+
+      <button class="menu-button" id="menuButton" aria-label="เปิดเมนู">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">หน้าแรก</a></li>
+        <li><a href="#services">บริการออนไลน์</a></li>
+        <li><a href="#news">ข่าวประชาสัมพันธ์</a></li>
+        <li><a href="#leader">ผู้นำชุมชน</a></li>
+        <li><a href="#contact">ติดต่อเรา</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero" class="relative py-20 lg:py-32 bg-gradient-to-b from-brand-50 via-white to-gray-50 border-b border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100 text-brand-800 text-sm font-semibold mb-6">
-        <i class="fa-solid fa-bullhorn text-xs"></i> ศูนย์ข้อมูลกลางประจำชุมชน
-      </div>
-      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-brand-900 leading-tight mb-6">
-        ผู้ใหญ่บ้านออนไลน์ <br class="hidden sm:inline" />
-        <span class="text-brand-600">เรื่องชุมชน เข้าถึงง่าย</span>
-      </h1>
-      <p class="max-w-3xl mx-auto text-lg sm:text-xl text-gray-600 mb-10 leading-relaxed font-light">
-        รวมข่าวประกาศ งานเอกสาร การขอความช่วยเหลือ และช่องทางประสานงานไว้ในที่เดียว ให้ทุกครัวเรือนรู้เรื่องสำคัญและเตรียมตัวได้อย่างมั่นใจ
-      </p>
-      <div class="flex flex-wrap justify-center gap-4 mb-16">
-        <a href="#services" class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold shadow-lg shadow-brand-500/20 hover:bg-brand-700 transition transform hover:-translate-y-0.5">
-          ดูบริการทั้งหมด
-        </a>
-        <a href="#contact" class="px-8 py-4 bg-white text-gray-700 border border-gray-200 rounded-xl font-semibold hover:bg-gray-50 shadow-sm transition">
-          ติดต่อผู้ประสานงาน
-        </a>
-      </div>
-
-      <!-- Quick Action Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-red-50 text-red-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-          </div>
-          <h3 class="font-bold text-gray-900 mb-1">แจ้งเหตุเดือดร้อน</h3>
-          <p class="text-sm text-gray-500">ถนน น้ำ ไฟ และเหตุในชุมชน</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-file-lines"></i>
-          </div>
-          <h3 class="font-bold text-gray-900 mb-1">ตรวจรายการเอกสาร</h3>
-          <p class="text-sm text-gray-500">เตรียมพร้อมก่อนรับบริการ</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-newspaper"></i>
-          </div>
-          <h3 class="font-bold text-gray-900 mb-1">ติดตามข่าวชุมชน</h3>
-          <p class="text-sm text-gray-500">ประกาศ นัดหมาย และกิจกรรม</p>
-        </div>
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition">
-          <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-headset"></i>
-          </div>
-          <h3 class="font-bold text-gray-900 mb-1">ติดต่อผู้ประสานงาน</h3>
-          <p class="text-sm text-gray-500">สอบถามข้อมูลและเสนอแนะ</p>
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-content">
+        <span class="tag">ยินดีต้อนรับสู่ชุมชนบ้านร่องเข็ม</span>
+        <h2>ที่ทำการผู้ใหญ่บ้านออนไลน์<br>บ้านร่องเข็ม หมู่ที่ 6</h2>
+        <p>ช่องทางบริการข้อมูล ข่าวสาร และการประสานงานของชุมชน เพื่อให้ประชาชนเข้าถึงบริการได้สะดวก รวดเร็ว และโปร่งใส</p>
+        <div class="btn-group">
+          <button class="btn btn-primary" onclick="openModal()">📝 แจ้งปัญหาออนไลน์</button>
+          <a class="btn btn-outline" href="#news">📢 ดูข่าวประชาสัมพันธ์</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services Section -->
-  <section id="services" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-brand-600 font-semibold text-sm tracking-wide uppercase">บริการสำหรับคนในชุมชน</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">รวมบริการประชาชน เรื่องใกล้ตัว ติดต่อได้ในจุดเดียว</h2>
-        <p class="text-gray-600">เลือกเรื่องที่ต้องการ เพื่อดูช่องทางติดต่อหรือรายการเอกสารที่ควรเตรียมก่อนประสานงานกับผู้ใหญ่บ้าน</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Service 1 -->
-        <div class="border border-gray-100 bg-gray-50/50 rounded-2xl p-6 hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl mb-4">
-              <i class="fa-solid fa-shield-halved"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">แจ้งเหตุและขอความช่วยเหลือ</h3>
-            <p class="text-sm text-gray-600 mb-6">ประสานเหตุเร่งด่วน น้ำไฟ ถนน และความเดือดร้อน</p>
-          </div>
-          <a href="#help-steps" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-            ดูรายละเอียด <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-          </a>
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <span>บริการสำหรับประชาชน</span>
+          <h2>บริการออนไลน์ที่เข้าถึงง่าย</h2>
         </div>
 
-        <!-- Service 2 -->
-        <div class="border border-gray-100 bg-gray-50/50 rounded-2xl p-6 hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl mb-4">
-              <i class="fa-solid fa-stamp"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">งานรับรองเอกสาร</h3>
-            <p class="text-sm text-gray-600 mb-6">ตรวจรายการสำหรับหนังสือรับรองที่อยู่/บุคคล</p>
-          </div>
-          <a href="#documents" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-            ดูรายละเอียด <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+        <div class="cards">
+          <a class="card" href="javascript:void(0)" onclick="openModal()">
+            <div class="card-icon">📝</div>
+            <h3>แจ้งปัญหา</h3>
+            <p>แจ้งถนน น้ำประปา ไฟฟ้า ขยะ และเรื่องเดือดร้อน</p>
           </a>
-        </div>
 
-        <!-- Service 3 -->
-        <div class="border border-gray-100 bg-gray-50/50 rounded-2xl p-6 hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
-              <i class="fa-solid fa-volume-high"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">ข่าวสารและเสียงตามสาย</h3>
-            <p class="text-sm text-gray-600 mb-6">ติดตามประกาศ นัดหมาย และกิจกรรม</p>
-          </div>
-          <a href="#news" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-            ดูรายละเอียด <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+          <a class="card" href="#tracking">
+            <div class="card-icon">🔎</div>
+            <h3>ติดตามเรื่อง</h3>
+            <p>ตรวจสอบสถานะคำร้องด้วยเลขรับเรื่อง</p>
           </a>
-        </div>
 
-        <!-- Service 4 -->
-        <div class="border border-gray-100 bg-gray-50/50 rounded-2xl p-6 hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl mb-4">
-              <i class="fa-solid fa-hand-holding-heart"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">สวัสดิการชุมชน</h3>
-            <p class="text-sm text-gray-600 mb-6">ข้อมูลผู้สูงอายุ ผู้พิการ และครัวเรือนที่ต้องการความช่วยเหลือ</p>
-          </div>
-          <a href="#contact" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-            ดูรายละเอียด <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+          <a class="card" href="#news">
+            <div class="card-icon">📢</div>
+            <h3>ข่าวประกาศ</h3>
+            <p>ข่าวประชุม กิจกรรม และประกาศจากหมู่บ้าน</p>
           </a>
-        </div>
 
-        <!-- Service 5 -->
-        <div class="border border-gray-100 bg-gray-50/50 rounded-2xl p-6 hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl mb-4">
-              <i class="fa-solid fa-wheat-awn"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">งานเกษตรและอาชีพ</h3>
-            <p class="text-sm text-gray-600 mb-6">ข่าวอบรม แหล่งงาน และโครงการส่งเสริมอาชีพ</p>
-          </div>
-          <a href="#news" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-            ดูรายละเอียด <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
-          </a>
-        </div>
-
-        <!-- Service 6 -->
-        <div class="border border-gray-100 bg-gray-50/50 rounded-2xl p-6 hover:shadow-lg transition flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-cyan-100 text-cyan-600 flex items-center justify-center text-xl mb-4">
-              <i class="fa-solid fa-comment-dots"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-900 mb-2">ร้องเรียนและข้อเสนอแนะ</h3>
-            <p class="text-sm text-gray-600 mb-6">แจ้งเรื่องอย่างสุภาพพร้อมข้อมูลที่จำเป็น</p>
-          </div>
-          <a href="#contact" class="inline-flex items-center text-sm font-semibold text-brand-600 hover:text-brand-700">
-            ดูรายละเอียด <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+          <a class="card" href="#contact">
+            <div class="card-icon">☎️</div>
+            <h3>ติดต่อที่ทำการ</h3>
+            <p>ช่องทางติดต่อและประสานงานกับชุมชน</p>
           </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- News Section -->
-  <section id="news" class="py-20 bg-gray-50 border-y border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-12">
-        <span class="text-brand-600 font-semibold text-sm tracking-wide uppercase">ประกาศชุมชน</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">ข่าวสารจากชุมชน</h2>
-        <p class="text-gray-600">พื้นที่นี้รวบรวมข่าวสำคัญและเรื่องที่ควรรู้สำหรับคนในชุมชน โปรดตรวจสอบวันและเวลา พร้อมโทรยืนยันกับผู้เกี่ยวข้องเมื่อจำเป็น</p>
+    <section id="news">
+      <div class="container content-grid">
+        <article class="panel">
+          <h3>📢 ข่าวประชาสัมพันธ์ล่าสุด</h3>
+
+          <div class="news-item">
+            <time>ประกาศหมู่บ้าน</time>
+            <h4>แจ้งกำหนดการประชุมหมู่บ้านประจำเดือน</h4>
+            <p>ขอเชิญพี่น้องประชาชนติดตามกำหนดการประชุมและวาระสำคัญจากทางหมู่บ้าน</p>
+          </div>
+
+          <div class="news-item">
+            <time>ข่าวสารชุมชน</time>
+            <h4>ขอความร่วมมือดูแลความสะอาดในพื้นที่สาธารณะ</h4>
+            <p>ร่วมกันคัดแยกขยะและรักษาความสะอาด เพื่อชุมชนที่น่าอยู่ของเรา</p>
+          </div>
+
+          <div class="news-item">
+            <time>บริการประชาชน</time>
+            <h4>เปิดช่องทางแจ้งปัญหาและติดตามคำร้องออนไลน์</h4>
+            <p>ประชาชนสามารถส่งข้อมูลปัญหาเบื้องต้นผ่านเว็บไซต์ได้ตลอดเวลา</p>
+          </div>
+        </article>
+
+        <aside class="panel">
+          <h3>🗓️ ปฏิทินกิจกรรม</h3>
+
+          <div class="event">
+            <div class="event-date">12<small>มิ.ย.</small></div>
+            <div><strong>ประชุมหมู่บ้าน</strong><br><small>ศาลาประชาคมหมู่บ้าน</small></div>
+          </div>
+
+          <div class="event">
+            <div class="event-date">20<small>มิ.ย.</small></div>
+            <div><strong>กิจกรรมพัฒนาหมู่บ้าน</strong><br><small>นัดหมายตามจุดที่กำหนด</small></div>
+          </div>
+
+          <div class="event">
+            <div class="event-date">28<small>มิ.ย.</small></div>
+            <div><strong>ให้บริการประชาชน</strong><br><small>โปรดติดตามประกาศเพิ่มเติม</small></div>
+          </div>
+        </aside>
       </div>
+    </section>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- News 1 (Featured) -->
-        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col justify-between">
+    <section id="leader">
+      <div class="container">
+        <div class="leader">
+          <div class="leader-photo">👤</div>
           <div>
-            <div class="flex items-center gap-2 mb-4">
-              <span class="px-3 py-1 bg-red-100 text-red-700 text-xs font-bold rounded-full">ข่าวเด่น</span>
-              <span class="text-sm text-gray-500"><i class="fa-regular fa-clock mr-1"></i>ทุกวันเสาร์แรกของเดือน</span>
+            <p>ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6</p>
+            <h2>นายศักรนนทน์ ขัติย์วงศ์</h2>
+            <p>“พร้อมรับฟัง ประสานงาน และร่วมพัฒนาคุณภาพชีวิตที่ดีของพี่น้องชาวบ้านทุกคน”</p>
+            <div class="btn-group">
+              <a class="btn btn-primary" href="#contact">ติดต่อที่ทำการ</a>
+              <button class="btn btn-outline" onclick="openModal()">ส่งเรื่องถึงผู้ใหญ่บ้าน</button>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">ประชุมประชาคมประจำเดือน</h3>
-            <p class="text-gray-600 leading-relaxed mb-6">ขอเชิญคนในชุมชนติดตามและร่วมแลกเปลี่ยนความคิดเห็นในที่ประชุมประจำเดือน วาระสำคัญครอบคลุมการพัฒนาหมู่บ้าน การจัดการน้ำ และความปลอดภัยของทุกครัวเรือน</p>
-          </div>
-          <a href="#contact" class="text-brand-600 font-semibold text-sm hover:underline">ดูช่องทางสอบถาม →</a>
-        </div>
-
-        <!-- News 2 -->
-        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="mb-4">
-              <span class="text-sm text-gray-500"><i class="fa-regular fa-clock mr-1"></i>เปิดรับข้อมูลตลอดเดือนนี้</span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">แจ้งข่าวโครงการส่งเสริมอาชีพ</h3>
-            <p class="text-gray-600 leading-relaxed mb-6">ขอเชิญคนในชุมชนติดตามข้อมูลโครงการที่ช่วยต่อยอดอาชีพและรายได้ครัวเรือน ผู้สนใจควรเตรียมข้อมูลของตนเองและสอบถามรายละเอียดก่อนดำเนินการ</p>
-          </div>
-          <a href="#contact" class="text-brand-600 font-semibold text-sm hover:underline">สอบถามข้อมูลเพิ่มเติม →</a>
-        </div>
-
-        <!-- News 3 -->
-        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="mb-4">
-              <span class="text-sm text-gray-500"><i class="fa-regular fa-clock mr-1"></i>เสาร์–อาทิตย์ เวลา 06.00–11.00 น.</span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">ตลาดนัดสินค้าชุมชน</h3>
-            <p class="text-gray-600 leading-relaxed mb-6">เลือกซื้อผลผลิต อาหาร และสินค้าจากฝีมือคนในชุมชน พร้อมร่วมสนับสนุนรายได้ของผู้ประกอบการรายย่อย โปรดตรวจสอบวันและเวลาก่อนเดินทางทุกครั้ง</p>
-          </div>
-          <a href="#contact" class="text-brand-600 font-semibold text-sm hover:underline">ดูรายละเอียดตลาด →</a>
-        </div>
-
-        <!-- News 4 -->
-        <div class="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <div class="mb-4">
-              <span class="text-sm text-gray-500"><i class="fa-regular fa-clock mr-1"></i>ติดตามประกาศอย่างสม่ำเสมอ</span>
-            </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-3">เฝ้าระวังสภาพอากาศและแหล่งน้ำ</h3>
-            <p class="text-gray-600 leading-relaxed mb-6">ขอให้ครัวเรือนและเกษตรกรสังเกตสภาพอากาศรวมถึงระดับน้ำในพื้นที่ของตน ควรติดตามประกาศล่าสุดและวางแผนใช้น้ำอย่างเหมาะสม</p>
-          </div>
-          <a href="#contact" class="text-brand-600 font-semibold text-sm hover:underline">แจ้งข้อมูลระดับน้ำ →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Help Steps Section -->
-  <section id="help-steps" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-brand-600 font-semibold text-sm tracking-wide uppercase">ขั้นตอนการขอความช่วยเหลือ</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">ขอความช่วยเหลืออย่างไรให้รวดเร็ว</h2>
-        <p class="text-gray-600 mb-4">เตรียมข้อมูลสำคัญให้ครบและดำเนินการตามขั้นตอน เพื่อให้ผู้ประสานงานตรวจสอบและช่วยเหลือได้รวดเร็วยิ่งขึ้น</p>
-        <div class="p-4 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl font-medium">
-          <i class="fa-solid fa-circle-exclamation mr-1"></i> กรณีฉุกเฉินหรือมีอันตรายเฉพาะหน้า กรุณาโทรหน่วยฉุกเฉินในพื้นที่ก่อนติดต่อเรา
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-        <div class="p-6 rounded-2xl border border-gray-100 bg-gray-50/50">
-          <span class="text-4xl font-black text-brand-500 block mb-3">01</span>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">เลือกประเภทเรื่อง</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">ระบุว่าเป็นเหตุฉุกเฉิน การขอความช่วยเหลือ หรือการสอบถามทั่วไป เพื่อให้เรื่องส่งถึงผู้รับผิดชอบได้ตรงจุด</p>
-        </div>
-        <div class="p-6 rounded-2xl border border-gray-100 bg-gray-50/50">
-          <span class="text-4xl font-black text-brand-500 block mb-3">02</span>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">เตรียมข้อมูลที่จำเป็น</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">รวบรวมรายละเอียดของเหตุ จุดเกิดเหตุ และช่องทางติดต่อกลับ ข้อมูลที่ครบถ้วนช่วยลดเวลาการตรวจสอบเบื้องต้น</p>
-        </div>
-        <div class="p-6 rounded-2xl border border-gray-100 bg-gray-50/50">
-          <span class="text-4xl font-black text-brand-500 block mb-3">03</span>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">ติดต่อผู้ประสานงาน</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">แจ้งข้อมูลกับผู้ประสานงานผ่านช่องทางติดต่อของเรา และรับคำแนะนำเกี่ยวกับการดำเนินการในลำดับถัดไป</p>
-        </div>
-        <div class="p-6 rounded-2xl border border-gray-100 bg-gray-50/50">
-          <span class="text-4xl font-black text-brand-500 block mb-3">04</span>
-          <h3 class="text-lg font-bold text-gray-900 mb-2">ติดตามผลตามนัดหมาย</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">เก็บรายละเอียดการนัดหมายและติดตามความคืบหน้าตามเวลาที่ได้รับแจ้ง หากสถานการณ์เปลี่ยนแปลงควรแจ้งผู้ประสานงานทันที</p>
-        </div>
-      </div>
-
-      <!-- Checklist Box -->
-      <div class="bg-brand-900 text-white rounded-3xl p-8 lg:p-12">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
-          <div>
-            <h3 class="text-2xl font-bold mb-4">ข้อมูลที่ควรเตรียมให้พร้อม</h3>
-            <ul class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-sm text-brand-100">
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> ชื่อผู้แจ้ง</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> เบอร์ติดต่อ</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> รายละเอียด</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> จุดเกิดเหตุ/พิกัด</li>
-              <li class="flex items-center gap-2"><i class="fa-solid fa-check text-green-400"></i> ภาพประกอบถ้ามี</li>
-            </ul>
-          </div>
-          <div class="text-center lg:text-right w-full lg:w-auto">
-            <span class="text-sm text-brand-200 block mb-2">ต้องการความช่วยเหลือโดยเร็ว</span>
-            <a href="#contact" class="inline-block px-8 py-4 bg-emerald-500 text-white font-bold rounded-xl hover:bg-emerald-400 shadow-md transition">
-              เหตุเร่งด่วน โทรติดต่อทันที
-            </a>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Documents Section -->
-  <section id="documents" class="py-20 bg-gray-50 border-y border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-brand-600 font-semibold text-sm tracking-wide uppercase">เตรียมพร้อมก่อนรับบริการ</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">ศูนย์ข้อมูลและเอกสาร</h2>
-        <p class="text-gray-600">เตรียมเอกสารให้ครบก่อนติดต่อ ช่วยลดเวลาในการรับบริการ แบบฟอร์มและเงื่อนไขอาจแตกต่างกัน กรุณาสอบถามก่อนเดินทาง</p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-md">01</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-3 mb-4">หนังสือรับรองที่อยู่</h3>
-            <ul class="text-sm text-gray-600 space-y-2 mb-6">
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> บัตรประชาชน</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> สำเนาทะเบียนบ้าน</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> หลักฐานประกอบ</li>
-            </ul>
+    <section class="tracking" id="tracking">
+      <div class="container">
+        <div class="tracking-box">
+          <div class="section-title">
+            <span>ตรวจสอบคำร้อง</span>
+            <h2>ติดตามสถานะเรื่องที่แจ้ง</h2>
           </div>
-          <a href="#contact" class="text-center w-full py-2 bg-gray-50 text-brand-700 font-medium rounded-lg text-sm hover:bg-brand-50 transition border border-gray-100">สอบถามเอกสาร</a>
-        </div>
 
-        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-md">02</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-3 mb-4">หนังสือรับรองบุคคล</h3>
-            <ul class="text-sm text-gray-600 space-y-2 mb-6">
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> บัตรประชาชน</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> สำเนาทะเบียนบ้าน</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> ข้อมูลวัตถุประสงค์</li>
-            </ul>
-          </div>
-          <a href="#contact" class="text-center w-full py-2 bg-gray-50 text-brand-700 font-medium rounded-lg text-sm hover:bg-brand-50 transition border border-gray-100">สอบถามเอกสาร</a>
-        </div>
+          <p>กรอกเลขรับเรื่อง เช่น <strong>RK6-2026-0001</strong></p>
 
-        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-md">03</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-3 mb-4">แบบแจ้งเหตุเดือดร้อน</h3>
-            <ul class="text-sm text-gray-600 space-y-2 mb-6">
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> รายละเอียดเรื่อง</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> จุดเกิดเหตุ</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> ภาพประกอบถ้ามี</li>
-            </ul>
-          </div>
-          <a href="#contact" class="text-center w-full py-2 bg-gray-50 text-brand-700 font-medium rounded-lg text-sm hover:bg-brand-50 transition border border-gray-100">สอบถามเอกสาร</a>
-        </div>
+          <form class="tracking-form" id="trackingForm">
+            <input id="trackingCode" type="text" placeholder="กรอกเลขรับเรื่อง" required />
+            <button class="btn btn-green" type="submit">ค้นหาสถานะ</button>
+          </form>
 
-        <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm flex flex-col justify-between">
-          <div>
-            <span class="text-xs font-bold text-brand-600 bg-brand-50 px-2.5 py-1 rounded-md">04</span>
-            <h3 class="text-lg font-bold text-gray-900 mt-3 mb-4">ข้อมูลสวัสดิการชุมชน</h3>
-            <ul class="text-sm text-gray-600 space-y-2 mb-6">
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> เอกสารยืนยันตัวตน</li>
-              <li class="flex items-center gap-2"><i class="fa-regular fa-circle-check text-brand-500"></i> เอกสารสิทธิที่เกี่ยวข้อง</li>
-              <li class="flex items-center gap-2 opacity-0"><i class="fa-regular fa-circle-check"></i> -</li>
-            </ul>
-          </div>
-          <a href="#contact" class="text-center w-full py-2 bg-gray-50 text-brand-700 font-medium rounded-lg text-sm hover:bg-brand-50 transition border border-gray-100">สอบถามเอกสาร</a>
+          <div id="trackResult"></div>
         </div>
       </div>
+    </section>
+  </main>
 
-      <!-- Notice -->
-      <div class="p-6 bg-amber-50 border border-amber-200 rounded-2xl flex items-start gap-4">
-        <i class="fa-solid fa-circle-exclamation text-amber-600 text-2xl mt-0.5"></i>
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-grid">
         <div>
-          <h4 class="font-bold text-amber-900 mb-1">หมายเหตุสำคัญ</h4>
-          <p class="text-sm text-amber-800 leading-relaxed">กรุณานำเอกสารฉบับจริงมาแสดง พร้อมสำเนาที่ลงลายมือชื่อรับรองสำเนาถูกต้อง และตรวจสอบรายละเอียดกับเจ้าหน้าที่ก่อนเดินทางทุกครั้ง</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="max-w-3xl mb-12">
-        <span class="text-brand-600 font-semibold text-sm tracking-wide uppercase">เรื่องราวของชุมชน</span>
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-6 leading-tight">หมู่บ้านเข้มแข็ง เริ่มจากการสื่อสารที่ทั่วถึง</h2>
-        <p class="text-gray-600 leading-relaxed mb-4">เว็บไซต์นี้เป็นประตูข้อมูลกลางที่เชื่อมชาวบ้านกับผู้ใหญ่บ้านและทีมประสานงาน ให้ข่าวสาร ประกาศ และเรื่องที่ควรรู้ค้นหาได้จากจุดเดียว</p>
-        <p class="text-gray-600 leading-relaxed mb-4">ข้อมูลที่เป็นระบบช่วยลดการตกข่าว ทำให้ชาวบ้านตรวจสอบขั้นตอนและเตรียมเอกสารได้ถูกต้อง พร้อมส่งความคิดเห็นหรือข้อเสนอถึงผู้ดูแลได้สะดวกขึ้น</p>
-        <p class="text-gray-600 leading-relaxed">เป้าหมายคือให้งานชุมชนโปร่งใส เข้าถึงง่าย และดูแลคนทุกช่วงวัย ด้วยการสื่อสารที่ชัดเจนและการรับฟังอย่างต่อเนื่อง</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 border-t border-gray-100">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-bolt"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">ข่าวสารตรงเวลา</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">รวมประกาศและเรื่องสำคัญไว้ในที่เดียว เพื่อให้ทุกครัวเรือนติดตามและเตรียมตัวได้ทันเวลา</p>
-        </div>
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-scale-balanced"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">บริการเท่าเทียม</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">อธิบายขั้นตอนและเอกสารให้เข้าใจง่าย เพื่อให้คนทุกช่วงวัยเข้าถึงบริการชุมชนอย่างทั่วถึง</p>
-        </div>
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl mb-4">
-            <i class="fa-solid fa-people-group"></i>
-          </div>
-          <h3 class="text-xl font-bold text-gray-900 mb-2">ร่วมคิด ร่วมทำ</h3>
-          <p class="text-sm text-gray-600 leading-relaxed">เปิดพื้นที่รับฟังความคิดเห็น เพื่อเปลี่ยนข้อเสนอของชาวบ้านให้เป็นการลงมือทำร่วมกัน</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq" class="py-20 bg-gray-50 border-t border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div>
-          <span class="text-brand-600 font-semibold text-sm tracking-wide uppercase">ข้อมูลที่ควรรู้</span>
-          <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mt-2 mb-4">คำถามที่พบบ่อย</h2>
-          <p class="text-gray-600 mb-6">รวมคำตอบเบื้องต้นสำหรับบริการและเรื่องสำคัญในชุมชน หากต้องการข้อมูลเฉพาะกรณี ทีมผู้ประสานงานพร้อมช่วยตรวจสอบให้ชัดเจน</p>
-          <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
-            <h4 class="font-bold text-gray-900 mb-2">ยังไม่พบคำตอบ?</h4>
-            <p class="text-sm text-gray-500 mb-4">ติดต่อทีมงานเพื่อสอบถามข้อมูลเพิ่มเติม</p>
-            <a href="#contact" class="inline-block px-5 py-2.5 bg-brand-600 text-white rounded-xl text-sm font-semibold hover:bg-brand-700 transition">สอบถามผู้ประสานงาน</a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-2 space-y-4">
-          <details class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm group" open>
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>01. ขอหนังสือรับรองต้องเตรียมอะไร?</span>
-              <span class="text-brand-600 font-bold group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100 leading-relaxed">
-              โดยทั่วไปควรเตรียมบัตรประชาชน ทะเบียนบ้าน และเอกสารประกอบตามวัตถุประสงค์ แนะนำให้โทรยืนยันรายการเอกสารกับผู้ประสานงานก่อนเดินทาง
-            </p>
-          </details>
-
-          <details class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>02. แจ้งไฟส่องสว่างหรือถนนชำรุดอย่างไร?</span>
-              <span class="text-brand-600 font-bold group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100 leading-relaxed">
-              สามารถเตรียมภาพถ่าย ระบุตำแหน่ง/เสาไฟ หรือจุดเกิดเหตุให้ชัดเจน แล้วติดต่อแจ้งผ่านช่องทางโทรศัพท์หรือผู้ประสานงานหมู่บ้านได้ทันที
-            </p>
-          </details>
-
-          <details class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>03. หากเป็นเหตุฉุกเฉินควรทำอย่างไร?</span>
-              <span class="text-brand-600 font-bold group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100 leading-relaxed">
-              ให้โทรแจ้งหน่วยงานฉุกเฉินที่เกี่ยวข้องโดยตรงก่อน (เช่น 1669 หรือ 191) จากนั้นจึงแจ้งผู้ใหญ่บ้านเพื่อช่วยประสานงานดูแลในพื้นที่
-            </p>
-          </details>
-
-          <details class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>04. ติดตามข่าวได้จากที่ไหน?</span>
-              <span class="text-brand-600 font-bold group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100 leading-relaxed">
-              สามารถติดตามได้ผ่านหน้าเว็บไซต์ในหมวดหมู่ข่าวสาร, กลุ่ม LINE ชุมชน และเสียงตามสายประจำหมู่บ้าน
-            </p>
-          </details>
-
-          <details class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm group">
-            <summary class="font-bold text-gray-900 cursor-pointer text-sm font-bold flex justify-between items-center">
-              <span>05. ฝากข้อเสนอแนะได้หรือไม่?</span>
-              <span class="text-brand-600 font-bold group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100 leading-relaxed">
-              สามารถส่งข้อเสนอแนะหรือข้อคิดเห็นที่เป็นประโยชน์ต่อการพัฒนาชุมชนได้ผ่านทางแบบฟอร์มติดต่อหรือแจ้งกับผู้ประสานงานได้ตลอดเวลา
-            </p>
-          </details>
-
-          <details class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm group">
-            <summary class="font-bold text-gray-900 cursor-pointer text-sm font-bold flex justify-between items-center">
-              <span>06. เว็บไซต์รับเรื่องแทนการติดต่อเจ้าหน้าที่เลยหรือไม่?</span>
-              <span class="text-brand-600 font-bold group-open:rotate-180 transition-transform">▼</span>
-            </summary>
-            <p class="text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100 leading-relaxed">
-              เว็บไซต์เป็นช่องทางแนะนำและเตรียมข้อมูลเบื้องต้นเพื่อความสะดวกและรวดเร็ว สำหรับขั้นตอนทางกฎหมายหรือเอกสารสำคัญยังต้องติดต่อเจ้าหน้าที่โดยตรง
-            </p>
-          </details>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-gradient-to-br from-brand-900 to-brand-800 rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-xl">
-        <div class="max-w-3xl mb-12">
-          <span class="text-emerald-400 font-semibold text-sm tracking-wide uppercase">พร้อมรับฟังทุกเรื่องของชุมชน</span>
-          <h2 class="text-3xl sm:text-4xl font-bold mt-2 mb-4">ติดต่อผู้ใหญ่บ้านและทีมประสานงาน</h2>
-          <p class="text-brand-100 leading-relaxed">แจ้งเรื่อง สอบถามเอกสาร หรือเสนอแนวทางพัฒนาหมู่บ้านได้ผ่านช่องทางที่ชุมชนกำหนด กรุณาเตรียมข้อมูลให้ครบเพื่อช่วยให้ประสานงานได้รวดเร็ว</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-            <i class="fa-solid fa-phone text-2xl text-emerald-400 mb-4"></i>
-            <h3 class="font-bold text-lg mb-1">โทรศัพท์</h3>
-            <p class="text-sm text-brand-100 mb-3">กรณีทั่วไป โปรดติดต่อในเวลาทำการ</p>
-            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full">ติดต่อเราเพื่อรับข้อมูลเพิ่มเติม</span>
-          </div>
-
-          <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-            <i class="fa-regular fa-clock text-2xl text-emerald-400 mb-4"></i>
-            <h3 class="font-bold text-lg mb-1">เวลาทำการ</h3>
-            <p class="text-sm text-brand-100 mb-3">วันจันทร์–วันศุกร์</p>
-            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full">กรุณาติดต่อเพื่อยืนยันวันและเวลา</span>
-          </div>
-
-          <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10">
-            <i class="fa-solid fa-location-dot text-2xl text-emerald-400 mb-4"></i>
-            <h3 class="font-bold text-lg mb-1">ที่ทำการ</h3>
-            <p class="text-sm text-brand-100 mb-3">ที่ทำการผู้ใหญ่บ้าน</p>
-            <span class="text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full">ติดต่อเราเพื่อรับที่อยู่และพิกัด</span>
-          </div>
-        </div>
-
-        <div class="p-6 bg-white/5 border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p class="text-sm text-brand-200">
-            <strong class="text-white">ก่อนติดต่อ โปรดเตรียม:</strong> ชื่อ เบอร์ติดต่อ รายละเอียด และสถานที่เกิดเหตุ
-          </p>
-          <a href="#help-steps" class="whitespace-nowrap px-6 py-2.5 bg-white text-brand-900 rounded-xl text-sm font-bold hover:bg-gray-100 transition">
-            ดูขั้นตอนทั้งหมด
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-16 border-t border-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold">
-              <i class="fa-solid fa-landmark"></i>
-            </div>
-            <span class="text-xl font-bold text-white">ผู้ใหญ่บ้านออนไลน์</span>
-          </div>
-          <p class="text-sm leading-relaxed max-w-sm mb-4">
-            ศูนย์บริการประชาชนประจำชุมชน พื้นที่กลางสำหรับติดตามข่าวสาร เตรียมเอกสาร ขอคำแนะนำ และเข้าถึงช่องทางประสานงานของหมู่บ้านอย่างสะดวก
-          </p>
+          <h3>🏡 ที่ทำการผู้ใหญ่บ้านออนไลน์</h3>
+          <p>บ้านร่องเข็ม หมู่ที่ 6<br>ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา</p>
         </div>
 
         <div>
-          <h4 class="text-white font-semibold text-sm mb-4">บริการสำคัญ</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#services" class="hover:text-white transition">รวมบริการประชาชน</a></li>
-            <li><a href="#news" class="hover:text-white transition">ข่าวสารชุมชน</a></li>
-            <li><a href="#documents" class="hover:text-white transition">รายการเอกสาร</a></li>
-            <li><a href="#help-steps" class="hover:text-white transition">ขั้นตอนขอความช่วยเหลือ</a></li>
+          <h3>เมนูบริการ</h3>
+          <ul>
+            <li><a href="#services">แจ้งปัญหาออนไลน์</a></li>
+            <li><a href="#tracking">ติดตามคำร้อง</a></li>
+            <li><a href="#news">ข่าวประชาสัมพันธ์</a></li>
           </ul>
         </div>
 
         <div>
-          <h4 class="text-white font-semibold text-sm mb-4">ข้อมูลเพิ่มเติม</h4>
-          <ul class="space-y-2 text-sm">
-            <li><a href="#about" class="hover:text-white transition">รู้จักชุมชน</a></li>
-            <li><a href="#faq" class="hover:text-white transition">คำถามที่พบบ่อย</a></li>
-            <li><a href="#contact" class="hover:text-white transition">ติดต่อผู้ประสานงาน</a></li>
-            <li><a href="#contact" class="hover:text-white transition">แจ้งข้อเสนอแนะ</a></li>
-          </ul>
+          <h3>ติดต่อเรา</h3>
+          <p>โทรศัพท์: โปรดระบุเบอร์ติดต่อ</p>
+          <p>LINE / Facebook: โปรดระบุช่องทางทางการ</p>
         </div>
       </div>
 
-      <div class="pt-8 border-t border-gray-800 text-center sm:flex sm:justify-between sm:items-center text-xs">
-        <p>© 2026 ผู้ใหญ่บ้านออนไลน์ สงวนสิทธิ์ตามกฎหมาย</p>
-        <p class="mt-2 sm:mt-0 text-gray-500">ข้อมูลบนเว็บไซต์ใช้เพื่อการสื่อสารเบื้องต้น โปรดตรวจสอบรายละเอียดกับผู้ประสานงานก่อนดำเนินการทุกครั้ง</p>
+      <div class="copyright">
+        © 2026 บ้านร่องเข็ม หมู่ที่ 6 | สงวนลิขสิทธิ์
       </div>
     </div>
   </footer>
 
+  <div class="modal" id="reportModal">
+    <div class="modal-content">
+      <button class="close" onclick="closeModal()" aria-label="ปิด">&times;</button>
+      <h2>📝 แจ้งปัญหาออนไลน์</h2>
+      <p>กรอกข้อมูลเบื้องต้นเพื่อส่งเรื่องให้ผู้รับผิดชอบดำเนินการ</p>
+
+      <form id="reportForm">
+        <div class="form-group">
+          <label for="name">ชื่อ-นามสกุล</label>
+          <input id="name" type="text" required placeholder="กรอกชื่อ-นามสกุล" />
+        </div>
+
+        <div class="form-group">
+          <label for="phone">เบอร์โทรศัพท์</label>
+          <input id="phone" type="tel" required placeholder="กรอกเบอร์โทรศัพท์" />
+        </div>
+
+        <div class="form-group">
+          <label for="problemType">ประเภทปัญหา</label>
+          <select id="problemType" required>
+            <option value="">-- เลือกประเภทปัญหา --</option>
+            <option>ถนนชำรุด</option>
+            <option>ไฟฟ้าส่องสว่าง</option>
+            <option>น้ำประปา</option>
+            <option>ขยะและสิ่งแวดล้อม</option>
+            <option>ความเดือดร้อนอื่น ๆ</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="detail">รายละเอียดปัญหา</label>
+          <textarea id="detail" required placeholder="ระบุสถานที่และรายละเอียดปัญหา"></textarea>
+        </div>
+
+        <p class="notice">ข้อมูลของท่านจะใช้เพื่อการรับเรื่องและประสานงานเท่านั้น กรุณาไม่กรอกข้อมูลส่วนบุคคลที่ไม่จำเป็น</p>
+
+        <div class="btn-group">
+          <button class="btn btn-green" type="submit">ส่งเรื่องแจ้งปัญหา</button>
+          <button class="btn" type="button" onclick="closeModal()">ยกเลิก</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById("reportModal");
+    const navLinks = document.getElementById("navLinks");
+
+    function openModal() {
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("menuButton").addEventListener("click", () => {
+      navLinks.classList.toggle("show");
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => navLinks.classList.remove("show"));
+    });
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.getElementById("reportForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const reports = JSON.parse(localStorage.getItem("rk6Reports") || "[]");
+      const year = new Date().getFullYear();
+      const code = `RK6-${year}-${String(reports.length + 1).padStart(4, "0")}`;
+
+      const report = {
+        code: code,
+        name: document.getElementById("name").value,
+        phone: document.getElementById("phone").value,
+        type: document.getElementById("problemType").value,
+        detail: document.getElementById("detail").value,
+        status: "รับเรื่องแล้ว",
+        date: new Date().toLocaleDateString("th-TH")
+      };
+
+      reports.push(report);
+      localStorage.setItem("rk6Reports", JSON.stringify(reports));
+
+      alert(`ส่งเรื่องเรียบร้อย\nเลขรับเรื่องของท่านคือ: ${code}\nกรุณาบันทึกเลขนี้เพื่อติดตามสถานะ`);
+      this.reset();
+      closeModal();
+    });
+
+    document.getElementById("trackingForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const code = document.getElementById("trackingCode").value.trim().toUpperCase();
+      const reports = JSON.parse(localStorage.getItem("rk6Reports") || "[]");
+      const found = reports.find(report => report.code === code);
+      const result = document.getElementById("trackResult");
+
+      result.style.display = "block";
+
+      if (found) {
+        result.className = "success";
+        result.innerHTML = `
+          <strong>พบข้อมูลคำร้อง</strong><br>
+          <strong>เลขรับเรื่อง:</strong> ${found.code}<br>
+          <strong>ประเภท:</strong> ${found.type}<br>
+          <strong>สถานะ:</strong> ${found.status}<br>
+          <strong>วันที่แจ้ง:</strong> ${found.date}
+        `;
+      } else {
+        result.className = "error";
+        result.innerHTML = "ไม่พบเลขรับเรื่อง กรุณาตรวจสอบรหัสอีกครั้ง";
+      }
+    });
+  </script>
 </body>
 </html>
