@@ -3,26 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>บ้านร่องเข็ม หมู่ที่ 6 | ที่ทำการผู้ใหญ่บ้านออนไลน์</title>
+  <title>RONGKHEM e-VILLAGE OFFICE | บ้านร่องเข็ม หมู่ที่ 6</title>
   <meta name="description" content="ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Prompt:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 
   <style>
     :root {
-      --primary: #0b4f6c;
-      --primary-dark: #06364c;
-      --secondary: #168a65;
-      --accent: #f4b942;
-      --light: #f4f8f7;
-      --text: #1b2b34;
-      --muted: #64748b;
+      --blue-950: #04245e;
+      --blue-900: #063c91;
+      --blue-800: #0756b8;
+      --blue-700: #0d68d7;
+      --blue-100: #eaf3ff;
+      --blue-50: #f6faff;
+      --text: #15233b;
+      --muted: #6b7890;
+      --green: #1a9b53;
+      --red: #e31f26;
       --white: #ffffff;
-      --border: #dce8e5;
-      --danger: #c23b3b;
-      --shadow: 0 10px 30px rgba(11, 79, 108, 0.12);
+      --border: #e5ebf4;
+      --shadow: 0 5px 20px rgba(19, 58, 120, 0.09);
+      --radius: 13px;
     }
 
     * {
@@ -35,10 +39,10 @@
 
     body {
       margin: 0;
-      font-family: "Noto Sans Thai", sans-serif;
-      background: var(--light);
       color: var(--text);
-      line-height: 1.7;
+      background: #f5f8fc;
+      font-family: "Noto Sans Thai", sans-serif;
+      line-height: 1.55;
     }
 
     a {
@@ -46,428 +50,1060 @@
       text-decoration: none;
     }
 
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
     .container {
-      width: min(1120px, 92%);
+      width: min(1510px, calc(100% - 30px));
       margin: auto;
     }
 
-    .topbar {
-      background: var(--primary-dark);
-      color: #dff5ff;
-      font-size: 0.9rem;
-      padding: 8px 0;
-    }
-
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    header {
+    /* Header */
+    .site-header {
       background: var(--white);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
     }
 
-    .navbar {
-      min-height: 78px;
+    .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 22px;
+      min-height: 112px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
+      min-width: 390px;
     }
 
-    .brand-logo {
-      width: 48px;
-      height: 48px;
+    .village-logo {
+      width: 84px;
+      height: 84px;
       display: grid;
       place-items: center;
-      border-radius: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      font-size: 1.5rem;
+      overflow: hidden;
+      flex: 0 0 auto;
+      border: 3px solid #eef4f7;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 36%, #ffea84 0 14%, transparent 15%),
+        linear-gradient(145deg, #6eb4e6 0 46%, #4c994b 47% 64%, #70c2e7 65% 100%);
+      box-shadow: 0 3px 9px rgba(0, 0, 0, 0.16);
     }
 
-    .brand h1 {
+    .village-logo span {
+      display: grid;
+      width: 64px;
+      height: 64px;
+      place-items: center;
+      border: 2px solid var(--white);
+      border-radius: 50%;
+      color: var(--white);
+      background: rgba(4, 63, 128, 0.22);
+      font-size: 1.8rem;
+    }
+
+    .brand-title {
       margin: 0;
-      color: var(--primary-dark);
-      font-size: 1.05rem;
+      color: #10469e;
+      font-family: "Prompt", sans-serif;
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-subtitle {
+      margin: 4px 0 0;
+      color: #172342;
+      font-size: 1.1rem;
+      font-weight: 700;
       line-height: 1.35;
     }
 
-    .brand p {
+    .brand-address {
       margin: 0;
-      color: var(--muted);
-      font-size: 0.75rem;
+      color: #536078;
+      font-size: 0.86rem;
     }
 
-    .nav-links {
+    .header-widgets {
       display: flex;
-      list-style: none;
-      gap: 20px;
-      padding: 0;
-      margin: 0;
-      font-size: 0.94rem;
-      font-weight: 600;
+      align-items: stretch;
+      justify-content: flex-end;
+      gap: 16px;
     }
 
-    .nav-links a:hover {
-      color: var(--secondary);
-    }
-
-    .menu-button {
-      display: none;
-      border: 0;
-      background: transparent;
-      color: var(--primary);
-      font-size: 1.7rem;
-      cursor: pointer;
-    }
-
-    .hero {
-      min-height: 520px;
-      display: grid;
+    .info-widget {
+      display: flex;
       align-items: center;
-      color: var(--white);
-      background:
-        linear-gradient(90deg, rgba(4, 47, 67, 0.9), rgba(11, 79, 108, 0.65)),
-        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=80") center/cover;
+      gap: 11px;
+      min-width: 145px;
+      padding: 12px 15px;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      background: var(--white);
+      box-shadow: 0 3px 12px rgba(24, 48, 88, 0.05);
     }
 
-    .hero-content {
-      max-width: 720px;
-      padding: 72px 0;
+    .widget-icon {
+      color: var(--blue-900);
+      font-size: 1.45rem;
     }
 
-    .tag {
-      display: inline-block;
-      padding: 6px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 50px;
-      font-size: 0.9rem;
+    .weather-icon {
+      font-size: 2rem;
     }
 
-    .hero h2 {
-      font-size: clamp(2rem, 5vw, 3.6rem);
-      line-height: 1.25;
-      margin: 18px 0 12px;
+    .air-icon {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 2px solid #5eb95d;
+      border-radius: 50%;
+      color: #419940;
+      font-size: 1.25rem;
     }
 
-    .hero p {
-      max-width: 630px;
-      color: #eaf8f5;
-      font-size: 1.08rem;
-    }
-
-    .btn-group {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    .btn {
-      border: 0;
-      border-radius: 10px;
-      padding: 12px 20px;
-      font-family: inherit;
+    .widget-main {
+      display: block;
+      color: #172342;
       font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s ease;
-      display: inline-flex;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .widget-small {
+      display: block;
+      margin-top: 2px;
+      color: #68758b;
+      font-size: 0.73rem;
+    }
+
+    .login-btn {
+      display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #302000;
-    }
-
-    .btn-outline {
-      border: 1px solid rgba(255, 255, 255, 0.65);
-      background: transparent;
+      min-width: 122px;
+      padding: 10px 15px;
+      border: 0;
+      border-radius: 10px;
       color: var(--white);
-    }
-
-    section {
-      padding: 72px 0;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 34px;
-    }
-
-    .section-title span {
-      color: var(--secondary);
+      background: linear-gradient(135deg, #0b4eb1, #082f77);
+      box-shadow: 0 6px 14px rgba(7, 66, 154, 0.24);
       font-weight: 700;
-      font-size: 0.9rem;
+      transition: 0.25s ease;
     }
 
-    .section-title h2 {
-      color: var(--primary-dark);
-      margin: 4px 0 0;
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    .login-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(7, 66, 154, 0.3);
     }
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
+    /* Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg, #0758c5, #032e79);
+      box-shadow: 0 3px 10px rgba(4, 39, 103, 0.22);
     }
 
-    .card {
-      display: block;
-      background: var(--white);
-      border: 1px solid var(--border);
-      padding: 24px 18px;
-      border-radius: 16px;
-      text-align: center;
-      box-shadow: 0 5px 16px rgba(11, 79, 108, 0.05);
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 51px;
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 0;
+      color: var(--white);
+      background: transparent;
+      font-size: 1.35rem;
+    }
+
+    .nav-list {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .nav-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 7px;
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 0.91rem;
+      font-weight: 700;
+      white-space: nowrap;
       transition: 0.2s ease;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
+    .nav-list a:hover,
+    .nav-list a.active {
+      color: var(--white);
+      background: rgba(61, 152, 255, 0.33);
+    }
+
+    /* Main grid */
+    main {
+      padding: 13px 0 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.84fr 1fr;
+      gap: 12px;
+    }
+
+    .hero-banner {
+      position: relative;
+      min-height: 215px;
+      overflow: hidden;
+      border-radius: 10px;
+      background:
+        linear-gradient(90deg, rgba(0, 18, 49, 0.15), rgba(0, 15, 46, 0.06)),
+        url("https://images.unsplash.com/photo-1528181304800-259b08848526?auto=format&fit=crop&w=1400&q=85") center/cover;
       box-shadow: var(--shadow);
-      border-color: #a8d6c7;
     }
 
-    .card-icon {
-      display: grid;
-      place-items: center;
-      width: 58px;
-      height: 58px;
-      margin: auto;
-      border-radius: 18px;
-      background: #e5f4ef;
-      font-size: 1.7rem;
+    .hero-banner::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background: linear-gradient(90deg, rgba(1, 12, 35, 0.04), rgba(1, 14, 43, 0.3));
     }
 
-    .card h3 {
-      margin: 12px 0 6px;
-      color: var(--primary-dark);
-      font-size: 1.05rem;
+    .hero-message {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      left: 54%;
+      width: 48%;
+      transform: translate(-50%, -50%);
+      color: var(--white);
+      text-align: center;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.75);
     }
 
-    .card p {
-      color: var(--muted);
+    .hero-message h1 {
       margin: 0;
-      font-size: 0.88rem;
+      font-size: clamp(1.4rem, 2.5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1.35fr 0.85fr;
-      gap: 26px;
+    .hero-message p {
+      margin: 0;
+      font-size: clamp(1.15rem, 2.1vw, 1.85rem);
+      font-weight: 700;
     }
 
-    .panel {
+    .hero-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 130px;
+      margin: 16px auto 0;
+    }
+
+    .hero-divider::before,
+    .hero-divider::after {
+      width: 47px;
+      height: 1px;
+      content: "";
       background: var(--white);
-      border-radius: 16px;
-      padding: 26px;
-      border: 1px solid var(--border);
     }
 
-    .panel h3 {
-      margin-top: 0;
-      color: var(--primary-dark);
+    .hero-divider i {
+      font-size: 0.65rem;
     }
 
-    .news-item {
-      padding: 16px 0;
+    .important-news,
+    .section-card {
+      border: 1px solid #e6ebf2;
+      border-radius: var(--radius);
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+
+    .important-news {
+      overflow: hidden;
+      padding: 14px 16px;
+    }
+
+    .card-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 9px;
       border-bottom: 1px solid var(--border);
     }
 
-    .news-item:last-child {
-      border-bottom: 0;
-      padding-bottom: 0;
+    .card-heading h2 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 0;
+      color: #073d97;
+      font-size: 1.13rem;
+      font-weight: 800;
     }
 
-    .news-item time {
-      color: var(--secondary);
-      font-size: 0.85rem;
+    .card-heading h2 i {
+      color: #075ac4;
+    }
+
+    .important-news .card-heading h2 i {
+      color: var(--red);
+    }
+
+    .all-link {
+      color: #0d59b8;
+      font-size: 0.77rem;
       font-weight: 700;
     }
 
-    .news-item h4 {
-      margin: 3px 0;
-      font-size: 1rem;
+    .all-link:hover {
+      text-decoration: underline;
     }
 
-    .news-item p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
+    .notice-list {
+      padding: 0;
+      margin: 6px 0 0;
+      list-style: none;
     }
 
-    .event {
+    .notice-list li {
       display: flex;
-      gap: 12px;
-      margin: 14px 0;
       align-items: center;
-    }
-
-    .event-date {
-      width: 55px;
-      min-width: 55px;
-      text-align: center;
-      padding: 6px;
-      color: var(--white);
-      background: var(--secondary);
-      border-radius: 10px;
-      line-height: 1.25;
-      font-weight: 700;
-    }
-
-    .event-date small {
-      display: block;
-      font-weight: 400;
-    }
-
-    .leader {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 30px;
-      align-items: center;
-      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: var(--white);
-      border-radius: 20px;
-      padding: 32px;
-    }
-
-    .leader-photo {
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      background: rgba(255, 255, 255, 0.15);
-      border: 2px dashed rgba(255, 255, 255, 0.55);
-      border-radius: 18px;
-      font-size: 3.2rem;
-    }
-
-    .leader h2 {
-      margin: 0;
-      font-size: 1.7rem;
-    }
-
-    .leader p {
-      margin: 5px 0;
-      color: #d9f1ee;
-    }
-
-    .tracking {
-      background: #e3f3ed;
-    }
-
-    .tracking-box {
-      max-width: 760px;
-      margin: auto;
-      background: var(--white);
-      padding: 30px;
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
-
-    .tracking-form {
-      display: flex;
       gap: 10px;
-      margin-top: 18px;
+      padding: 7px 0;
+      border-bottom: 1px solid #eef1f5;
+      font-size: 0.78rem;
     }
 
-    input, select, textarea {
-      font-family: inherit;
-      font-size: 1rem;
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #cbdad6;
-      border-radius: 9px;
-      outline: none;
+    .notice-list li:last-child {
+      border-bottom: 0;
     }
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--secondary);
-      box-shadow: 0 0 0 3px rgba(22, 138, 101, 0.12);
-    }
-
-    .btn-green {
-      background: var(--secondary);
+    .notice-date {
+      flex: 0 0 auto;
+      min-width: 67px;
+      padding: 5px 4px;
+      border-radius: 4px;
       color: var(--white);
+      background: #0a4fa8;
+      font-size: 0.69rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .notice-text {
+      overflow: hidden;
+      flex: 1;
+      text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    #trackResult {
-      margin: 16px 0 0;
-      padding: 12px;
+    .new-tag {
+      padding: 2px 6px;
       border-radius: 9px;
-      display: none;
-      text-align: left;
-    }
-
-    .success {
-      background: #def5e9;
-      color: #075d3c;
-    }
-
-    .error {
-      background: #ffe4e4;
-      color: #9b1c1c;
-    }
-
-    footer {
-      background: #062d3e;
-      color: #d7e9e7;
-      padding: 42px 0 20px;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 30px;
-    }
-
-    footer h3 {
-      margin-top: 0;
       color: var(--white);
+      background: #e31220;
+      font-size: 0.6rem;
+      font-weight: 800;
+    }
+
+    /* Content grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1.22fr 0.84fr 1.12fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .section-card {
+      padding: 14px;
+    }
+
+    /* Leaders */
+    .leaders {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .leader-item {
+      padding: 11px 9px 12px;
+      border: 1px solid #e4eaf2;
+      border-radius: 9px;
+      background: linear-gradient(180deg, #fbfdff, #ffffff);
+      text-align: center;
+    }
+
+    .leader-role {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 4px;
+      color: var(--white);
+      background: #08469c;
+      font-size: 0.68rem;
+      font-weight: 800;
+    }
+
+    .leader-photo {
+      width: 100%;
+      aspect-ratio: 0.81;
+      margin: 8px auto;
+      overflow: hidden;
+      border-radius: 4px;
+      background: #edf3fa;
+    }
+
+    .leader-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .leader-name {
+      min-height: 42px;
+      margin: 0;
+      color: #0b3f94;
+      font-size: 0.83rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .leader-position {
+      min-height: 25px;
+      margin: 0 0 10px;
+      color: #38445b;
+      font-size: 0.72rem;
+    }
+
+    .outline-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 84px;
+      padding: 6px 8px;
+      border: 1px solid #b7c7dc;
+      border-radius: 6px;
+      color: #06439d;
+      background: var(--white);
+      box-shadow: 0 2px 4px rgba(23, 53, 97, 0.08);
+      font-size: 0.72rem;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .outline-btn:hover {
+      color: var(--white);
+      border-color: #0b57b7;
+      background: #0b57b7;
+    }
+
+    /* Activities */
+    .activity-list {
+      margin-top: 7px;
+    }
+
+    .activity-item {
+      display: flex;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid #ebeff5;
+    }
+
+    .activity-item:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-image {
+      width: 94px;
+      height: 62px;
+      overflow: hidden;
+      flex: 0 0 auto;
+      border-radius: 4px;
+      background: #eaf0f4;
+    }
+
+    .activity-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .activity-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .activity-title {
+      display: block;
+      overflow: hidden;
+      color: #1b2940;
+      font-size: 0.77rem;
+      font-weight: 700;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .activity-meta {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 3px;
+      color: #68778c;
+      font-size: 0.65rem;
+    }
+
+    .activity-meta i {
+      color: var(--green);
+    }
+
+    .activity-attendees {
+      margin-left: auto;
+      color: #33705a;
+    }
+
+    .activity-more {
+      display: block;
+      width: 125px;
+      margin: 8px auto 0;
+      padding: 4px;
+      border-radius: 4px;
+      color: var(--white);
+      background: #09479c;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    /* Statistics */
+    .statistics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .stat-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 91px;
+      padding: 11px;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 2px 7px rgba(25, 60, 115, 0.05);
+    }
+
+    .stat-icon {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      font-size: 1.8rem;
+    }
+
+    .stat-icon.people {
+      color: #2e98df;
+      background: #e9f6ff;
+    }
+
+    .stat-icon.house {
+      color: #45a74d;
+      background: #eff9ea;
+    }
+
+    .stat-icon.child {
+      background: #fff5e8;
+    }
+
+    .stat-icon.elder {
+      background: #fff0ec;
+    }
+
+    .stat-icon.disabled {
+      color: #245eac;
+      background: #eef4ff;
+    }
+
+    .stat-icon.group {
+      color: #ed6262;
+      background: #fff0f0;
+    }
+
+    .stat-label {
+      color: #4c576d;
+      font-size: 0.69rem;
+    }
+
+    .stat-value {
+      margin-top: 1px;
+      color: #0a469e;
+      font-size: 1.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .stat-unit {
+      color: #33415a;
+      font-size: 0.7rem;
+    }
+
+    .updated-date {
+      margin: 6px 0 0;
+      color: #758198;
+      font-size: 0.65rem;
+      text-align: right;
+    }
+
+    /* Bottom section */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.84fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+    }
+
+    .services-card {
+      padding: 14px;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-top: 13px;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      min-height: 76px;
+      padding: 8px;
+      border: 1px solid #e3e9f1;
+      border-radius: 11px;
+      background: #fff;
+      box-shadow: 0 2px 7px rgba(29, 58, 106, 0.04);
+      color: #08449b;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-align: center;
+      transition: 0.23s ease;
+    }
+
+    .service-item:hover {
+      transform: translateY(-5px);
+      border-color: #8fb4e5;
+      box-shadow: 0 10px 18px rgba(21, 72, 143, 0.12);
+    }
+
+    .service-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      font-size: 1.55rem;
+    }
+
+    .icon-red {
+      color: #ed2828;
+      background: #ffe9e9;
+    }
+
+    .icon-purple {
+      color: #7150d4;
+      background: #f0ecff;
+    }
+
+    .icon-green {
+      color: #169b4a;
+      background: #e8f8e8;
+    }
+
+    .icon-blue {
+      color: #1768cf;
+      background: #eaf3ff;
+    }
+
+    .icon-orange {
+      color: #f19818;
+      background: #fff3dd;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      overflow: hidden;
+      border-radius: 11px;
+      box-shadow: var(--shadow);
+    }
+
+    .social-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      padding: 18px;
+      color: var(--white);
+      background: linear-gradient(145deg, #123c8d, #062760);
+    }
+
+    .social-box h3 {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 9px;
+    }
+
+    .social-links a {
+      display: grid;
+      width: 31px;
+      height: 31px;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 1.15rem;
+    }
+
+    .facebook {
+      background: #1b78e6;
+    }
+
+    .youtube {
+      background: #ee2027;
+    }
+
+    .line {
+      background: #16ba48;
+    }
+
+    .mayor-contact {
+      display: flex;
+      align-items: end;
+      gap: 11px;
+      min-height: 150px;
+      padding: 13px 13px 0;
+      background: linear-gradient(135deg, #e5f1ff, #f5faff);
+    }
+
+    .mayor-contact img {
+      width: 105px;
+      height: 137px;
+      align-self: end;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .mayor-contact-content {
+      align-self: center;
+      padding-bottom: 13px;
+    }
+
+    .mayor-contact h3 {
+      margin: 0 0 4px;
+      color: #08449c;
       font-size: 1rem;
     }
 
-    footer p, footer li {
-      font-size: 0.9rem;
-      margin: 6px 0;
-    }
-
-    footer ul {
-      padding-left: 18px;
+    .mayor-contact p {
       margin: 0;
+      color: #263751;
+      font-size: 0.76rem;
+      font-weight: 700;
     }
 
-    .copyright {
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-      margin-top: 24px;
-      padding-top: 16px;
-      text-align: center;
+    .contact-mayor-btn {
+      display: inline-block;
+      margin-top: 11px;
+      padding: 6px 16px;
+      border-radius: 5px;
+      color: white;
+      background: #0751ae;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      color: #edf5ff;
+      background: linear-gradient(90deg, #073b8f, #021e51);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
+      padding: 10px 0;
+      font-size: 0.74rem;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-logo {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border: 2px solid #d7e9ff;
+      border-radius: 50%;
+      background: #4b9c63;
+    }
+
+    .footer-brand p {
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* AI Assistant */
+    .ai-button {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 200;
+      display: grid;
+      width: 62px;
+      height: 62px;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: white;
+      background: linear-gradient(135deg, #0867cf, #073983);
+      box-shadow: 0 10px 30px rgba(4, 52, 132, 0.42);
+      font-size: 1.65rem;
+      transition: 0.25s ease;
+    }
+
+    .ai-button:hover {
+      transform: translateY(-6px) rotate(-6deg);
+    }
+
+    .ai-button::before {
+      position: absolute;
+      inset: -6px;
+      border: 2px solid rgba(17, 102, 211, 0.5);
+      border-radius: 50%;
+      content: "";
+      animation: pulse 1.8s infinite;
+    }
+
+    .ai-chat {
+      position: fixed;
+      right: 22px;
+      bottom: 98px;
+      z-index: 201;
+      display: flex;
+      flex-direction: column;
+      width: min(375px, calc(100vw - 30px));
+      height: 510px;
+      overflow: hidden;
+      border: 1px solid #d9e4f3;
+      border-radius: 17px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(18px) scale(0.96);
+      background: white;
+      box-shadow: 0 22px 55px rgba(10, 38, 93, 0.28);
+      transition: 0.25s ease;
+    }
+
+    .ai-chat.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .ai-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px;
+      color: white;
+      background: linear-gradient(135deg, #063b90, #0a69ca);
+    }
+
+    .ai-avatar {
+      display: grid;
+      width: 40px;
+      height: 40px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      font-size: 1.25rem;
+    }
+
+    .ai-chat-header strong,
+    .ai-chat-header small {
+      display: block;
+    }
+
+    .ai-chat-header small {
+      color: #d8eeff;
+      font-size: 0.68rem;
+    }
+
+    .online-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #65f4a0;
+    }
+
+    .close-ai {
+      margin-left: auto;
+      border: 0;
+      color: white;
+      background: transparent;
+      font-size: 1.6rem;
+    }
+
+    .ai-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 14px;
+      background: #f5f9ff;
+    }
+
+    .message {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message-icon {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: white;
+      background: #0a60be;
+      font-size: 0.75rem;
+    }
+
+    .bubble {
+      max-width: 79%;
+      padding: 9px 11px;
+      border-radius: 12px;
       font-size: 0.82rem;
     }
 
+    .bot .bubble {
+      border-top-left-radius: 3px;
+      background: white;
+      box-shadow: 0 2px 7px rgba(24, 61, 114, 0.08);
+    }
+
+    .user .bubble {
+      border-top-right-radius: 3px;
+      color: white;
+      background: #0758b9;
+    }
+
+    .ai-quick {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 9px;
+      border-top: 1px solid #e5edf7;
+      background: white;
+    }
+
+    .ai-quick button {
+      flex: 0 0 auto;
+      padding: 5px 8px;
+      border: 1px solid #bcd2ee;
+      border-radius: 14px;
+      color: #0751ad;
+      background: #f2f7ff;
+      font-size: 0.68rem;
+    }
+
+    .ai-input {
+      display: flex;
+      gap: 8px;
+      padding: 10px;
+      border-top: 1px solid #e5edf7;
+      background: white;
+    }
+
+    .ai-input input {
+      min-width: 0;
+      flex: 1;
+      padding: 9px 11px;
+      border: 1px solid #cbd9eb;
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.8rem;
+    }
+
+    .ai-input input:focus {
+      border-color: #0b63c9;
+      box-shadow: 0 0 0 3px rgba(11, 99, 201, 0.12);
+    }
+
+    .ai-input button {
+      width: 39px;
+      border: 0;
+      border-radius: 8px;
+      color: white;
+      background: #0758b9;
+    }
+
+    /* Modals */
     .modal {
       position: fixed;
       z-index: 300;
@@ -475,439 +1111,990 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      background: rgba(0, 25, 35, 0.72);
+      padding: 18px;
+      background: rgba(2, 20, 58, 0.65);
+      backdrop-filter: blur(4px);
     }
 
-    .modal.active {
+    .modal.show {
       display: flex;
     }
 
-    .modal-content {
-      width: min(640px, 100%);
-      max-height: 90vh;
-      overflow-y: auto;
-      background: var(--white);
-      border-radius: 16px;
-      padding: 28px;
+    .modal-box {
       position: relative;
+      width: min(520px, 100%);
+      padding: 27px;
+      border-radius: 15px;
+      background: white;
+      box-shadow: 0 25px 65px rgba(0, 0, 0, 0.28);
     }
 
-    .modal-content h2 {
-      color: var(--primary-dark);
-      margin-top: 0;
+    .modal-box h2 {
+      margin: 0 0 5px;
+      color: #074498;
+      font-size: 1.3rem;
     }
 
-    .close {
+    .modal-box p {
+      color: #65728a;
+      font-size: 0.85rem;
+    }
+
+    .modal-close {
       position: absolute;
-      right: 14px;
-      top: 10px;
+      top: 8px;
+      right: 13px;
       border: 0;
-      background: none;
-      font-size: 2rem;
-      cursor: pointer;
-      color: var(--muted);
+      color: #647189;
+      background: transparent;
+      font-size: 1.8rem;
     }
 
     .form-group {
-      margin: 14px 0;
+      margin: 12px 0;
     }
 
-    label {
+    .form-group label {
       display: block;
-      font-size: 0.92rem;
+      margin-bottom: 4px;
+      color: #27364d;
+      font-size: 0.82rem;
       font-weight: 700;
-      margin-bottom: 5px;
     }
 
-    textarea {
-      min-height: 100px;
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #cdd9e7;
+      border-radius: 7px;
+      outline: none;
+      font: inherit;
+      font-size: 0.84rem;
+    }
+
+    .form-group textarea {
+      min-height: 90px;
       resize: vertical;
     }
 
-    .notice {
-      font-size: 0.8rem;
-      color: var(--muted);
-      background: #f2f7f6;
+    .submit-btn {
+      width: 100%;
       padding: 10px;
-      border-radius: 8px;
+      border: 0;
+      border-radius: 7px;
+      color: white;
+      background: #0754b4;
+      font-weight: 700;
     }
 
-    @media (max-width: 850px) {
-      .menu-button {
+    @keyframes pulse {
+      0% {
+        transform: scale(0.85);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1190px) {
+      .header-widgets {
+        gap: 8px;
+      }
+
+      .info-widget {
+        min-width: auto;
+        padding: 9px;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-card {
+        grid-column: span 2;
+      }
+
+      .service-list {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .nav-list a {
+        padding: 12px 9px;
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .header-top {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .header-widgets {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .nav-inner {
+        min-height: 53px;
+      }
+
+      .menu-toggle {
         display: block;
       }
 
-      .nav-links {
-        display: none;
+      .nav-list {
         position: absolute;
-        top: 78px;
-        left: 0;
+        top: 53px;
         right: 0;
-        padding: 18px 4%;
-        background: var(--white);
+        left: 0;
+        display: none;
         flex-direction: column;
-        gap: 12px;
-        box-shadow: 0 12px 18px rgba(0, 0, 0, 0.08);
+        align-items: stretch;
+        padding: 8px 15px 15px;
+        background: #063a8b;
       }
 
-      .nav-links.show {
+      .nav-list.show {
         display: flex;
       }
 
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
+      .nav-list a {
+        padding: 10px;
       }
 
-      .content-grid, .footer-grid {
+      .hero-grid,
+      .bottom-grid {
         grid-template-columns: 1fr;
+      }
+
+      .hero-banner {
+        min-height: 270px;
+      }
+
+      .hero-message {
+        left: 50%;
+        width: 90%;
       }
     }
 
-    @media (max-width: 520px) {
-      .hero {
-        min-height: 470px;
+    @media (max-width: 650px) {
+      .brand-title {
+        font-size: 1.22rem;
       }
 
-      .hero-content {
-        padding: 55px 0;
+      .brand-subtitle {
+        font-size: 0.87rem;
       }
 
-      .cards {
+      .brand-address {
+        font-size: 0.7rem;
+      }
+
+      .village-logo {
+        width: 62px;
+        height: 62px;
+      }
+
+      .village-logo span {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+      }
+
+      .header-widgets {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .login-btn {
+        min-height: 70px;
+      }
+
+      .content-grid {
         grid-template-columns: 1fr;
       }
 
-      .leader {
+      .stats-card {
+        grid-column: auto;
+      }
+
+      .leaders {
         grid-template-columns: 1fr;
-        text-align: center;
+      }
+
+      .leader-item {
+        display: grid;
+        grid-template-columns: 95px 1fr;
+        column-gap: 12px;
+        align-items: center;
+        text-align: left;
+      }
+
+      .leader-role {
+        grid-column: span 2;
+        width: fit-content;
       }
 
       .leader-photo {
-        width: 130px;
-        margin: auto;
+        grid-row: span 3;
+        margin: 5px 0 0;
       }
 
-      .tracking-form {
+      .leader-name,
+      .leader-position {
+        min-height: auto;
+      }
+
+      .outline-btn {
+        width: fit-content;
+      }
+
+      .statistics-grid,
+      .service-list {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-box {
+        min-height: 100px;
+      }
+
+      .mayor-contact {
+        justify-content: center;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
         flex-direction: column;
       }
+    }
 
-      .topbar .container {
-        justify-content: center;
-        text-align: center;
+    @media (max-width: 430px) {
+      .header-widgets {
+        grid-template-columns: 1fr;
+      }
+
+      .statistics-grid,
+      .service-list {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-box {
+        min-height: 75px;
+      }
+
+      .hero-banner {
+        min-height: 235px;
+      }
+
+      .ai-button {
+        right: 15px;
+        bottom: 15px;
+      }
+
+      .ai-chat {
+        right: 15px;
+        bottom: 86px;
+        height: min(510px, calc(100vh - 105px));
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="container">
-      <span>📍 บ้านร่องเข็ม หมู่ที่ 6 ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา</span>
-      <span>บริการประชาชนออนไลน์</span>
-    </div>
-  </div>
-
-  <header>
-    <nav class="container navbar">
-      <a class="brand" href="#home">
-        <div class="brand-logo">🏡</div>
+  <header class="site-header">
+    <div class="container header-top">
+      <a class="brand" href="#">
+        <div class="village-logo"><span><i class="fa-solid fa-mountain-sun"></i></span></div>
         <div>
-          <h1>ที่ทำการผู้ใหญ่บ้านออนไลน์</h1>
-          <p>บ้านร่องเข็ม หมู่ที่ 6</p>
+          <h1 class="brand-title">RONGKHEM e-VILLAGE OFFICE</h1>
+          <p class="brand-subtitle">ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6</p>
+          <p class="brand-address">ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
         </div>
       </a>
 
-      <button class="menu-button" id="menuButton" aria-label="เปิดเมนู">☰</button>
+      <div class="header-widgets">
+        <div class="info-widget">
+          <i class="fa-regular fa-clock widget-icon"></i>
+          <div>
+            <span class="widget-main" id="clock">17:45 น.</span>
+            <span class="widget-small" id="thaiDate">15 พฤษภาคม 2569</span>
+          </div>
+        </div>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">หน้าแรก</a></li>
-        <li><a href="#services">บริการออนไลน์</a></li>
-        <li><a href="#news">ข่าวประชาสัมพันธ์</a></li>
-        <li><a href="#leader">ผู้นำชุมชน</a></li>
-        <li><a href="#contact">ติดต่อเรา</a></li>
-      </ul>
-    </nav>
+        <div class="info-widget">
+          <span class="weather-icon">🌤️</span>
+          <div>
+            <span class="widget-main">27°C</span>
+            <span class="widget-small">แจ่มใส</span>
+          </div>
+        </div>
+
+        <div class="info-widget">
+          <span class="air-icon"><i class="fa-solid fa-leaf"></i></span>
+          <div>
+            <span class="widget-main">PM2.5 18 <small style="font-size:0.65rem;">µg/m³</small></span>
+            <span class="widget-small">คุณภาพอากาศดี</span>
+          </div>
+        </div>
+
+        <button class="login-btn" id="loginButton">
+          <i class="fa-solid fa-lock"></i>
+          <span>เข้าสู่ระบบ<br><small>สำหรับผู้ใหญ่บ้าน</small></span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="hero" id="home">
-      <div class="container hero-content">
-        <span class="tag">ยินดีต้อนรับสู่ชุมชนบ้านร่องเข็ม</span>
-        <h2>ที่ทำการผู้ใหญ่บ้านออนไลน์<br>บ้านร่องเข็ม หมู่ที่ 6</h2>
-        <p>ช่องทางบริการข้อมูล ข่าวสาร และการประสานงานของชุมชน เพื่อให้ประชาชนเข้าถึงบริการได้สะดวก รวดเร็ว และโปร่งใส</p>
-        <div class="btn-group">
-          <button class="btn btn-primary" onclick="openModal()">📝 แจ้งปัญหาออนไลน์</button>
-          <a class="btn btn-outline" href="#news">📢 ดูข่าวประชาสัมพันธ์</a>
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <button class="menu-toggle" id="menuToggle"><i class="fa-solid fa-bars"></i></button>
+      <ul class="nav-list" id="navList">
+        <li><a class="active" href="#home"><i class="fa-solid fa-house"></i> หน้าแรก</a></li>
+        <li><a href="#leaders"><i class="fa-solid fa-user-tie"></i> ผู้นำชุมชน</a></li>
+        <li><a href="#news"><i class="fa-solid fa-newspaper"></i> ข่าวสาร</a></li>
+        <li><a href="#activities"><i class="fa-solid fa-calendar-days"></i> กิจกรรม</a></li>
+        <li><a href="#works"><i class="fa-solid fa-people-carry-box"></i> ผลงาน</a></li>
+        <li><a href="#projects"><i class="fa-solid fa-clipboard-list"></i> โครงการ</a></li>
+        <li><a href="#services"><i class="fa-solid fa-circle-down"></i> บริการประชาชน</a></li>
+        <li><a href="#statistics"><i class="fa-solid fa-circle-info"></i> ข้อมูลหมู่บ้าน</a></li>
+        <li><a href="#statistics"><i class="fa-solid fa-chart-simple"></i> สถิติหมู่บ้าน</a></li>
+        <li><a href="#contact"><i class="fa-regular fa-envelope"></i> ติดต่อเรา</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="home">
+    <div class="container">
+      <section class="hero-grid">
+        <div class="hero-banner">
+          <div class="hero-message">
+            <h1>ร่วมสร้าง ร่วมพัฒนา</h1>
+            <p>บ้านร่องเข็มให้น่าอยู่ อย่างยั่งยืน</p>
+            <div class="hero-divider"><i class="fa-solid fa-diamond"></i></div>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <section id="services">
-      <div class="container">
-        <div class="section-title">
-          <span>บริการสำหรับประชาชน</span>
-          <h2>บริการออนไลน์ที่เข้าถึงง่าย</h2>
-        </div>
-
-        <div class="cards">
-          <a class="card" href="javascript:void(0)" onclick="openModal()">
-            <div class="card-icon">📝</div>
-            <h3>แจ้งปัญหา</h3>
-            <p>แจ้งถนน น้ำประปา ไฟฟ้า ขยะ และเรื่องเดือดร้อน</p>
-          </a>
-
-          <a class="card" href="#tracking">
-            <div class="card-icon">🔎</div>
-            <h3>ติดตามเรื่อง</h3>
-            <p>ตรวจสอบสถานะคำร้องด้วยเลขรับเรื่อง</p>
-          </a>
-
-          <a class="card" href="#news">
-            <div class="card-icon">📢</div>
-            <h3>ข่าวประกาศ</h3>
-            <p>ข่าวประชุม กิจกรรม และประกาศจากหมู่บ้าน</p>
-          </a>
-
-          <a class="card" href="#contact">
-            <div class="card-icon">☎️</div>
-            <h3>ติดต่อที่ทำการ</h3>
-            <p>ช่องทางติดต่อและประสานงานกับชุมชน</p>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="news">
-      <div class="container content-grid">
-        <article class="panel">
-          <h3>📢 ข่าวประชาสัมพันธ์ล่าสุด</h3>
-
-          <div class="news-item">
-            <time>ประกาศหมู่บ้าน</time>
-            <h4>แจ้งกำหนดการประชุมหมู่บ้านประจำเดือน</h4>
-            <p>ขอเชิญพี่น้องประชาชนติดตามกำหนดการประชุมและวาระสำคัญจากทางหมู่บ้าน</p>
+        <aside class="important-news" id="news">
+          <div class="card-heading">
+            <h2><i class="fa-solid fa-bullhorn"></i> ประกาศสำคัญ</h2>
+            <a class="all-link" href="#">ดูทั้งหมด</a>
           </div>
 
-          <div class="news-item">
-            <time>ข่าวสารชุมชน</time>
-            <h4>ขอความร่วมมือดูแลความสะอาดในพื้นที่สาธารณะ</h4>
-            <p>ร่วมกันคัดแยกขยะและรักษาความสะอาด เพื่อชุมชนที่น่าอยู่ของเรา</p>
+          <ul class="notice-list">
+            <li>
+              <span class="notice-date">14 พ.ค. 69</span>
+              <span class="notice-text">ประกาศการจัดเก็บภาษีที่ดินและสิ่งปลูกสร้าง ประจำปี 2569</span>
+              <span class="new-tag">ใหม่</span>
+            </li>
+            <li>
+              <span class="notice-date">10 พ.ค. 69</span>
+              <span class="notice-text">ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</span>
+              <span class="new-tag">ใหม่</span>
+            </li>
+            <li>
+              <span class="notice-date">5 พ.ค. 69</span>
+              <span class="notice-text">เชิญร่วมกิจกรรม Big Cleaning Day</span>
+              <span class="new-tag">ใหม่</span>
+            </li>
+            <li>
+              <span class="notice-date">1 พ.ค. 69</span>
+              <span class="notice-text">ประกาศรับสมัครอาสาสมัครสาธารณสุขประจำหมู่บ้าน</span>
+            </li>
+          </ul>
+        </aside>
+      </section>
+
+      <section class="content-grid">
+        <article class="section-card" id="leaders">
+          <div class="card-heading">
+            <h2><i class="fa-solid fa-user"></i> คณะผู้บริหารหมู่บ้าน</h2>
           </div>
 
-          <div class="news-item">
-            <time>บริการประชาชน</time>
-            <h4>เปิดช่องทางแจ้งปัญหาและติดตามคำร้องออนไลน์</h4>
-            <p>ประชาชนสามารถส่งข้อมูลปัญหาเบื้องต้นผ่านเว็บไซต์ได้ตลอดเวลา</p>
+          <div class="leaders">
+            <div class="leader-item">
+              <span class="leader-role">ผู้ใหญ่บ้าน</span>
+              <div class="leader-photo">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="นายศักรนนทน์ ขัติย์วงศ์" />
+              </div>
+              <p class="leader-name">นายศักรนนทน์ ขัติย์วงศ์</p>
+              <p class="leader-position">ผู้ใหญ่บ้าน หมู่ที่ 6</p>
+              <button class="outline-btn" onclick="showProfile('นายศักรนนทน์ ขัติย์วงศ์', 'ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6')">
+                <i class="fa-regular fa-pen-to-square"></i> ดูประวัติ
+              </button>
+            </div>
+
+            <div class="leader-item">
+              <span class="leader-role">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1</span>
+              <div class="leader-photo">
+                <img src="https://randomuser.me/api/portraits/men/46.jpg" alt="ผู้ช่วยผู้ใหญ่บ้าน" />
+              </div>
+              <p class="leader-name">นายพงษพล วินัยปัญญา</p>
+              <p class="leader-position">ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</p>
+              <button class="outline-btn" onclick="showProfile('นายพงษพล วินัยปัญญา', 'ผู้ช่วยผู้ใหญ่บ้าน คนที่ 1')">
+                <i class="fa-regular fa-pen-to-square"></i> ดูประวัติ
+              </button>
+            </div>
+
+            <div class="leader-item">
+              <span class="leader-role">ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2</span>
+              <div class="leader-photo">
+                <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="ผู้ช่วยผู้ใหญ่บ้าน" />
+              </div>
+              <p class="leader-name">นายวุฒิชัย ต๊ะปันตา</p>
+              <p class="leader-position">ผู้ช่วยผู้ใหญ่บ้าน หมู่ที่ 6</p>
+              <button class="outline-btn" onclick="showProfile('นายวุฒิชัย ต๊ะปันตา', 'ผู้ช่วยผู้ใหญ่บ้าน คนที่ 2')">
+                <i class="fa-regular fa-pen-to-square"></i> ดูประวัติ
+              </button>
+            </div>
           </div>
         </article>
 
-        <aside class="panel">
-          <h3>🗓️ ปฏิทินกิจกรรม</h3>
-
-          <div class="event">
-            <div class="event-date">12<small>มิ.ย.</small></div>
-            <div><strong>ประชุมหมู่บ้าน</strong><br><small>ศาลาประชาคมหมู่บ้าน</small></div>
+        <article class="section-card" id="activities">
+          <div class="card-heading">
+            <h2><i class="fa-solid fa-calendar-days"></i> กิจกรรมล่าสุด</h2>
+            <a class="all-link" href="#">ดูทั้งหมด</a>
           </div>
 
-          <div class="event">
-            <div class="event-date">20<small>มิ.ย.</small></div>
-            <div><strong>กิจกรรมพัฒนาหมู่บ้าน</strong><br><small>นัดหมายตามจุดที่กำหนด</small></div>
-          </div>
+          <div class="activity-list">
+            <div class="activity-item">
+              <div class="activity-image">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=300&q=80" alt="กิจกรรมพัฒนาหมู่บ้าน" />
+              </div>
+              <div class="activity-content">
+                <span class="activity-title">กิจกรรมพัฒนาพื้นที่สาธารณะ</span>
+                <div class="activity-meta"><i class="fa-regular fa-calendar"></i> 15 พฤษภาคม 2569</div>
+                <div class="activity-meta"><i class="fa-solid fa-location-dot"></i> ศาลาประชาคมหมู่บ้าน <span class="activity-attendees"><i class="fa-solid fa-user"></i> 65 คน</span></div>
+              </div>
+            </div>
 
-          <div class="event">
-            <div class="event-date">28<small>มิ.ย.</small></div>
-            <div><strong>ให้บริการประชาชน</strong><br><small>โปรดติดตามประกาศเพิ่มเติม</small></div>
-          </div>
-        </aside>
-      </div>
-    </section>
+            <div class="activity-item">
+              <div class="activity-image">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80" alt="ประชุมประชาคมหมู่บ้าน" />
+              </div>
+              <div class="activity-content">
+                <span class="activity-title">ประชุมประชาคมหมู่บ้าน ครั้งที่ 3/2569</span>
+                <div class="activity-meta"><i class="fa-regular fa-calendar"></i> 10 พฤษภาคม 2569</div>
+                <div class="activity-meta"><i class="fa-solid fa-location-dot"></i> ศาลาประชาคมหมู่บ้าน <span class="activity-attendees"><i class="fa-solid fa-user"></i> 78 คน</span></div>
+              </div>
+            </div>
 
-    <section id="leader">
-      <div class="container">
-        <div class="leader">
-          <div class="leader-photo">👤</div>
-          <div>
-            <p>ผู้ใหญ่บ้าน บ้านร่องเข็ม หมู่ที่ 6</p>
-            <h2>นายศักรนนทน์ ขัติย์วงศ์</h2>
-            <p>“พร้อมรับฟัง ประสานงาน และร่วมพัฒนาคุณภาพชีวิตที่ดีของพี่น้องชาวบ้านทุกคน”</p>
-            <div class="btn-group">
-              <a class="btn btn-primary" href="#contact">ติดต่อที่ทำการ</a>
-              <button class="btn btn-outline" onclick="openModal()">ส่งเรื่องถึงผู้ใหญ่บ้าน</button>
+            <div class="activity-item">
+              <div class="activity-image">
+                <img src="https://images.unsplash.com/photo-1618477462146-050d276e1c9e?auto=format&fit=crop&w=300&q=80" alt="Big Cleaning Day" />
+              </div>
+              <div class="activity-content">
+                <span class="activity-title">Big Cleaning Day</span>
+                <div class="activity-meta"><i class="fa-regular fa-calendar"></i> 5 พฤษภาคม 2569</div>
+                <div class="activity-meta"><i class="fa-solid fa-location-dot"></i> รอบหมู่บ้าน <span class="activity-attendees"><i class="fa-solid fa-user"></i> 120 คน</span></div>
+              </div>
+            </div>
+
+            <div class="activity-item">
+              <div class="activity-image">
+                <img src="https://images.unsplash.com/photo-1527525443983-6e60c75fff46?auto=format&fit=crop&w=300&q=80" alt="โครงการปลูกต้นไม้" />
+              </div>
+              <div class="activity-content">
+                <span class="activity-title">โครงการปลูกต้นไม้เพิ่มพื้นที่สีเขียว</span>
+                <div class="activity-meta"><i class="fa-regular fa-calendar"></i> 1 พฤษภาคม 2569</div>
+                <div class="activity-meta"><i class="fa-solid fa-location-dot"></i> ป่าชุมชนบ้านร่องเข็ม <span class="activity-attendees"><i class="fa-solid fa-user"></i> 45 คน</span></div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="tracking" id="tracking">
-      <div class="container">
-        <div class="tracking-box">
-          <div class="section-title">
-            <span>ตรวจสอบคำร้อง</span>
-            <h2>ติดตามสถานะเรื่องที่แจ้ง</h2>
+          <a class="activity-more" href="#">ดูทั้งหมด</a>
+        </article>
+
+        <article class="section-card stats-card" id="statistics">
+          <div class="card-heading">
+            <h2><i class="fa-solid fa-truck-medical"></i> สถิติข้อมูลหมู่บ้าน</h2>
+            <a class="all-link" href="#">ดูทั้งหมด</a>
           </div>
 
-          <p>กรอกเลขรับเรื่อง เช่น <strong>RK6-2026-0001</strong></p>
+          <div class="statistics-grid">
+            <div class="stat-box">
+              <div class="stat-icon people"><i class="fa-solid fa-users"></i></div>
+              <div>
+                <div class="stat-label">ประชากรรวม</div>
+                <div class="stat-value" data-count="1247">0</div>
+                <div class="stat-unit">คน</div>
+              </div>
+            </div>
 
-          <form class="tracking-form" id="trackingForm">
-            <input id="trackingCode" type="text" placeholder="กรอกเลขรับเรื่อง" required />
-            <button class="btn btn-green" type="submit">ค้นหาสถานะ</button>
-          </form>
+            <div class="stat-box">
+              <div class="stat-icon house"><i class="fa-solid fa-house"></i></div>
+              <div>
+                <div class="stat-label">ครัวเรือนทั้งหมด</div>
+                <div class="stat-value" data-count="352">0</div>
+                <div class="stat-unit">ครัวเรือน</div>
+              </div>
+            </div>
 
-          <div id="trackResult"></div>
-        </div>
-      </div>
-    </section>
+            <div class="stat-box">
+              <div class="stat-icon child">👧</div>
+              <div>
+                <div class="stat-label">เด็ก (0-5 ปี)</div>
+                <div class="stat-value" data-count="86">0</div>
+                <div class="stat-unit">คน</div>
+              </div>
+            </div>
+
+            <div class="stat-box">
+              <div class="stat-icon elder">🧓</div>
+              <div>
+                <div class="stat-label">ผู้สูงอายุ (60 ปีขึ้นไป)</div>
+                <div class="stat-value" data-count="210">0</div>
+                <div class="stat-unit">คน</div>
+              </div>
+            </div>
+
+            <div class="stat-box">
+              <div class="stat-icon disabled"><i class="fa-solid fa-wheelchair"></i></div>
+              <div>
+                <div class="stat-label">ผู้พิการ</div>
+                <div class="stat-value" data-count="18">0</div>
+                <div class="stat-unit">คน</div>
+              </div>
+            </div>
+
+            <div class="stat-box">
+              <div class="stat-icon group"><i class="fa-solid fa-hands-holding-heart"></i></div>
+              <div>
+                <div class="stat-label">กลุ่มเปราะบาง</div>
+                <div class="stat-value" data-count="23">0</div>
+                <div class="stat-unit">ครัวเรือน</div>
+              </div>
+            </div>
+          </div>
+
+          <p class="updated-date">ข้อมูล ณ วันที่ 15 พฤษภาคม 2569</p>
+        </article>
+      </section>
+
+      <section class="bottom-grid">
+        <article class="section-card services-card" id="services">
+          <div class="card-heading">
+            <h2><i class="fa-solid fa-life-ring"></i> บริการประชาชน</h2>
+          </div>
+
+          <div class="service-list">
+            <button class="service-item" onclick="openReportModal()">
+              <span class="service-icon icon-red"><i class="fa-solid fa-bell"></i></span>
+              <span>แจ้งเหตุ/<br>ร้องเรียน</span>
+            </button>
+
+            <button class="service-item" onclick="openReportModal()">
+              <span class="service-icon icon-purple"><i class="fa-solid fa-file-lines"></i></span>
+              <span>แบบฟอร์ม<br>ออนไลน์</span>
+            </button>
+
+            <button class="service-item" onclick="toggleAI()">
+              <span class="service-icon icon-green"><i class="fa-solid fa-comments"></i></span>
+              <span>ถาม-ตอบ<br>(Q&A)</span>
+            </button>
+
+            <a class="service-item" href="tel:191">
+              <span class="service-icon icon-blue"><i class="fa-solid fa-phone"></i></span>
+              <span>เบอร์โทรศัพท์<br>สำคัญ</span>
+            </a>
+
+            <a class="service-item" href="https://www.google.com/maps" target="_blank">
+              <span class="service-icon icon-orange"><i class="fa-solid fa-location-dot"></i></span>
+              <span>แผนที่หมู่บ้าน</span>
+            </a>
+          </div>
+        </article>
+
+        <aside class="contact-grid" id="contact">
+          <div class="social-box">
+            <h3>ติดตามเรา</h3>
+            <div class="social-links">
+              <a class="facebook" href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a class="youtube" href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a class="line" href="#" aria-label="LINE"><i class="fa-brands fa-line"></i></a>
+            </div>
+          </div>
+
+          <div class="mayor-contact">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="นายศักรนนทน์ ขัติย์วงศ์" />
+            <div class="mayor-contact-content">
+              <h3>ช่องทางติดต่อผู้ใหญ่บ้าน</h3>
+              <p>นายศักรนนทน์ ขัติย์วงศ์</p>
+              <p>ผู้ใหญ่บ้าน หมู่ที่ 6</p>
+              <button class="contact-mayor-btn" onclick="openReportModal()">ติดต่อผู้ใหญ่บ้าน</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+    </div>
   </main>
 
-  <footer id="contact">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h3>🏡 ที่ทำการผู้ใหญ่บ้านออนไลน์</h3>
-          <p>บ้านร่องเข็ม หมู่ที่ 6<br>ตำบลจำป่าหวาย อำเภอเมือง จังหวัดพะเยา</p>
-        </div>
-
-        <div>
-          <h3>เมนูบริการ</h3>
-          <ul>
-            <li><a href="#services">แจ้งปัญหาออนไลน์</a></li>
-            <li><a href="#tracking">ติดตามคำร้อง</a></li>
-            <li><a href="#news">ข่าวประชาสัมพันธ์</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>ติดต่อเรา</h3>
-          <p>โทรศัพท์: โปรดระบุเบอร์ติดต่อ</p>
-          <p>LINE / Facebook: โปรดระบุช่องทางทางการ</p>
-        </div>
+  <footer>
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo"><i class="fa-solid fa-mountain-sun"></i></div>
+        <p>RONGKHEM e-VILLAGE OFFICE ที่ทำการผู้ใหญ่บ้านออนไลน์ บ้านร่องเข็ม หมู่ที่ 6<br>ตำบลจำป่าหวาย อำเภอเมืองพะเยา จังหวัดพะเยา</p>
       </div>
-
-      <div class="copyright">
-        © 2026 บ้านร่องเข็ม หมู่ที่ 6 | สงวนลิขสิทธิ์
-      </div>
+      <p>© 2026 RONGKHEM e-VILLAGE OFFICE All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- AI Assistant -->
+  <button class="ai-button" id="aiButton" aria-label="เปิดผู้ช่วย AI">
+    <i class="fa-solid fa-robot"></i>
+  </button>
+
+  <section class="ai-chat" id="aiChat">
+    <div class="ai-chat-header">
+      <div class="ai-avatar"><i class="fa-solid fa-robot"></i></div>
+      <div>
+        <strong>น้องร่องเข็ม AI</strong>
+        <small><span class="online-dot"></span> พร้อมให้บริการ</small>
+      </div>
+      <button class="close-ai" id="closeAI">&times;</button>
+    </div>
+
+    <div class="ai-messages" id="aiMessages">
+      <div class="message bot">
+        <div class="message-icon"><i class="fa-solid fa-robot"></i></div>
+        <div class="bubble">
+          สวัสดีครับ ผมคือน้องร่องเข็ม AI 😊<br>
+          สอบถามเรื่องข่าวสาร การแจ้งปัญหา เอกสาร หรือการติดต่อผู้ใหญ่บ้านได้ครับ
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-quick">
+      <button data-question="ต้องการแจ้งปัญหา">แจ้งปัญหา</button>
+      <button data-question="ติดตามคำร้องอย่างไร">ติดตามคำร้อง</button>
+      <button data-question="ติดต่อผู้ใหญ่บ้าน">ติดต่อผู้ใหญ่บ้าน</button>
+      <button data-question="ข่าวกิจกรรมล่าสุด">ข่าวกิจกรรม</button>
+    </div>
+
+    <form class="ai-input" id="aiForm">
+      <input id="aiInput" type="text" placeholder="พิมพ์คำถาม..." autocomplete="off" />
+      <button type="submit" aria-label="ส่งข้อความ"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+  </section>
+
+  <!-- Modal: ติดต่อ/แจ้งปัญหา -->
   <div class="modal" id="reportModal">
-    <div class="modal-content">
-      <button class="close" onclick="closeModal()" aria-label="ปิด">&times;</button>
-      <h2>📝 แจ้งปัญหาออนไลน์</h2>
-      <p>กรอกข้อมูลเบื้องต้นเพื่อส่งเรื่องให้ผู้รับผิดชอบดำเนินการ</p>
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeReportModal()">&times;</button>
+      <h2>แจ้งเหตุ / ติดต่อผู้ใหญ่บ้าน</h2>
+      <p>กรอกข้อมูลเพื่อให้เจ้าหน้าที่ติดต่อกลับและดำเนินการตามเรื่องที่แจ้ง</p>
 
       <form id="reportForm">
         <div class="form-group">
-          <label for="name">ชื่อ-นามสกุล</label>
-          <input id="name" type="text" required placeholder="กรอกชื่อ-นามสกุล" />
+          <label for="reportName">ชื่อ-นามสกุล</label>
+          <input id="reportName" type="text" required placeholder="กรอกชื่อ-นามสกุล" />
         </div>
 
         <div class="form-group">
-          <label for="phone">เบอร์โทรศัพท์</label>
-          <input id="phone" type="tel" required placeholder="กรอกเบอร์โทรศัพท์" />
+          <label for="reportPhone">เบอร์โทรศัพท์</label>
+          <input id="reportPhone" type="tel" required placeholder="กรอกเบอร์โทรศัพท์" />
         </div>
 
         <div class="form-group">
-          <label for="problemType">ประเภทปัญหา</label>
-          <select id="problemType" required>
-            <option value="">-- เลือกประเภทปัญหา --</option>
-            <option>ถนนชำรุด</option>
-            <option>ไฟฟ้าส่องสว่าง</option>
-            <option>น้ำประปา</option>
-            <option>ขยะและสิ่งแวดล้อม</option>
-            <option>ความเดือดร้อนอื่น ๆ</option>
+          <label for="reportType">ประเภทเรื่อง</label>
+          <select id="reportType" required>
+            <option value="">-- เลือกประเภทเรื่อง --</option>
+            <option>แจ้งถนนชำรุด</option>
+            <option>แจ้งไฟฟ้าส่องสว่าง</option>
+            <option>แจ้งน้ำประปา</option>
+            <option>แจ้งขยะ/สิ่งแวดล้อม</option>
+            <option>ติดต่อผู้ใหญ่บ้าน</option>
+            <option>เรื่องอื่น ๆ</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="detail">รายละเอียดปัญหา</label>
-          <textarea id="detail" required placeholder="ระบุสถานที่และรายละเอียดปัญหา"></textarea>
+          <label for="reportDetail">รายละเอียด</label>
+          <textarea id="reportDetail" required placeholder="ระบุรายละเอียด สถานที่ และปัญหาที่พบ"></textarea>
         </div>
 
-        <p class="notice">ข้อมูลของท่านจะใช้เพื่อการรับเรื่องและประสานงานเท่านั้น กรุณาไม่กรอกข้อมูลส่วนบุคคลที่ไม่จำเป็น</p>
-
-        <div class="btn-group">
-          <button class="btn btn-green" type="submit">ส่งเรื่องแจ้งปัญหา</button>
-          <button class="btn" type="button" onclick="closeModal()">ยกเลิก</button>
-        </div>
+        <button class="submit-btn" type="submit"><i class="fa-solid fa-paper-plane"></i> ส่งเรื่อง</button>
       </form>
     </div>
   </div>
 
-  <script>
-    const modal = document.getElementById("reportModal");
-    const navLinks = document.getElementById("navLinks");
+  <!-- Modal: Login -->
+  <div class="modal" id="loginModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+      <h2>เข้าสู่ระบบเจ้าหน้าที่</h2>
+      <p>สำหรับผู้ใหญ่บ้าน ผู้ช่วยผู้ใหญ่บ้าน และผู้ดูแลระบบ</p>
 
-    function openModal() {
-      modal.classList.add("active");
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">ชื่อผู้ใช้</label>
+          <input id="username" type="text" required placeholder="ชื่อผู้ใช้" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">รหัสผ่าน</label>
+          <input id="password" type="password" required placeholder="รหัสผ่าน" />
+        </div>
+
+        <button class="submit-btn" type="submit"><i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Profile -->
+  <div class="modal" id="profileModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeProfileModal()">&times;</button>
+      <h2 id="profileName">ข้อมูลผู้นำชุมชน</h2>
+      <p id="profileRole"></p>
+      <hr style="border:0;border-top:1px solid #e5ebf4;margin:16px 0;">
+      <p>หน้านี้เป็นตัวอย่างสำหรับแสดงประวัติ หน้าที่รับผิดชอบ ผลงาน และช่องทางติดต่อของผู้นำชุมชน</p>
+    </div>
+  </div>
+
+  <script>
+    // เมนูมือถือ
+    const menuToggle = document.getElementById("menuToggle");
+    const navList = document.getElementById("navList");
+
+    menuToggle.addEventListener("click", () => {
+      navList.classList.toggle("show");
+    });
+
+    document.querySelectorAll(".nav-list a").forEach(link => {
+      link.addEventListener("click", () => navList.classList.remove("show"));
+    });
+
+    // นาฬิกา
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString("th-TH", {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+
+      const date = now.toLocaleDateString("th-TH", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+
+      document.getElementById("clock").textContent = `${time} น.`;
+      document.getElementById("thaiDate").textContent = date;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // ตัวเลขสถิติ
+    function animateCounter(element) {
+      const target = Number(element.dataset.count);
+      const duration = 1200;
+      const startTime = performance.now();
+
+      function updateCounter(currentTime) {
+        const progress = Math.min((currentTime - startTime) / duration, 1);
+        const value = Math.floor(progress * target);
+        element.textContent = value.toLocaleString("th-TH");
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          element.textContent = target.toLocaleString("th-TH");
+        }
+      }
+
+      requestAnimationFrame(updateCounter);
+    }
+
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          document.querySelectorAll("[data-count]").forEach(animateCounter);
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    statsObserver.observe(document.getElementById("statistics"));
+
+    // Modal แจ้งปัญหา
+    const reportModal = document.getElementById("reportModal");
+
+    function openReportModal() {
+      reportModal.classList.add("show");
       document.body.style.overflow = "hidden";
     }
 
-    function closeModal() {
-      modal.classList.remove("active");
+    function closeReportModal() {
+      reportModal.classList.remove("show");
       document.body.style.overflow = "";
     }
 
-    document.getElementById("menuButton").addEventListener("click", () => {
-      navLinks.classList.toggle("show");
-    });
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => navLinks.classList.remove("show"));
-    });
-
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) closeModal();
-    });
-
-    document.getElementById("reportForm").addEventListener("submit", function(event) {
+    document.getElementById("reportForm").addEventListener("submit", event => {
       event.preventDefault();
 
-      const reports = JSON.parse(localStorage.getItem("rk6Reports") || "[]");
-      const year = new Date().getFullYear();
-      const code = `RK6-${year}-${String(reports.length + 1).padStart(4, "0")}`;
+      const reports = JSON.parse(localStorage.getItem("rongkhemReports") || "[]");
+      const code = `RK6-${new Date().getFullYear()}-${String(reports.length + 1).padStart(4, "0")}`;
 
-      const report = {
+      reports.push({
         code: code,
-        name: document.getElementById("name").value,
-        phone: document.getElementById("phone").value,
-        type: document.getElementById("problemType").value,
-        detail: document.getElementById("detail").value,
+        name: document.getElementById("reportName").value,
+        phone: document.getElementById("reportPhone").value,
+        type: document.getElementById("reportType").value,
+        detail: document.getElementById("reportDetail").value,
         status: "รับเรื่องแล้ว",
         date: new Date().toLocaleDateString("th-TH")
-      };
+      });
 
-      reports.push(report);
-      localStorage.setItem("rk6Reports", JSON.stringify(reports));
+      localStorage.setItem("rongkhemReports", JSON.stringify(reports));
 
-      alert(`ส่งเรื่องเรียบร้อย\nเลขรับเรื่องของท่านคือ: ${code}\nกรุณาบันทึกเลขนี้เพื่อติดตามสถานะ`);
-      this.reset();
-      closeModal();
+      alert(`ส่งเรื่องสำเร็จ\nเลขรับเรื่องของท่านคือ: ${code}\nกรุณาบันทึกเลขนี้ไว้เพื่อติดตามผล`);
+      event.target.reset();
+      closeReportModal();
     });
 
-    document.getElementById("trackingForm").addEventListener("submit", function(event) {
+    // Modal Login
+    const loginModal = document.getElementById("loginModal");
+
+    document.getElementById("loginButton").addEventListener("click", () => {
+      loginModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    });
+
+    function closeLoginModal() {
+      loginModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", event => {
       event.preventDefault();
+      alert("ตัวอย่างหน้าเข้าสู่ระบบ: สำหรับใช้งานจริงควรเชื่อมต่อฐานข้อมูลและระบบยืนยันตัวตน");
+      closeLoginModal();
+    });
 
-      const code = document.getElementById("trackingCode").value.trim().toUpperCase();
-      const reports = JSON.parse(localStorage.getItem("rk6Reports") || "[]");
-      const found = reports.find(report => report.code === code);
-      const result = document.getElementById("trackResult");
+    // Modal Profile
+    const profileModal = document.getElementById("profileModal");
 
-      result.style.display = "block";
+    function showProfile(name, role) {
+      document.getElementById("profileName").textContent = name;
+      document.getElementById("profileRole").textContent = role;
+      profileModal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
 
-      if (found) {
-        result.className = "success";
-        result.innerHTML = `
-          <strong>พบข้อมูลคำร้อง</strong><br>
-          <strong>เลขรับเรื่อง:</strong> ${found.code}<br>
-          <strong>ประเภท:</strong> ${found.type}<br>
-          <strong>สถานะ:</strong> ${found.status}<br>
-          <strong>วันที่แจ้ง:</strong> ${found.date}
+    function closeProfileModal() {
+      profileModal.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+
+    // ปิด Modal เมื่อคลิกพื้นที่ด้านนอก
+    document.querySelectorAll(".modal").forEach(modal => {
+      modal.addEventListener("click", event => {
+        if (event.target === modal) {
+          modal.classList.remove("show");
+          document.body.style.overflow = "";
+        }
+      });
+    });
+
+    // ผู้ช่วย AI
+    const aiButton = document.getElementById("aiButton");
+    const aiChat = document.getElementById("aiChat");
+    const closeAI = document.getElementById("closeAI");
+    const aiForm = document.getElementById("aiForm");
+    const aiInput = document.getElementById("aiInput");
+    const aiMessages = document.getElementById("aiMessages");
+
+    function toggleAI() {
+      aiChat.classList.toggle("show");
+
+      if (aiChat.classList.contains("show")) {
+        setTimeout(() => aiInput.focus(), 200);
+      }
+    }
+
+    aiButton.addEventListener("click", toggleAI);
+    closeAI.addEventListener("click", () => aiChat.classList.remove("show"));
+
+    function addAIMessage(text, sender = "bot") {
+      const message = document.createElement("div");
+      message.className = `message ${sender}`;
+
+      if (sender === "bot") {
+        message.innerHTML = `
+          <div class="message-icon"><i class="fa-solid fa-robot"></i></div>
+          <div class="bubble">${text}</div>
         `;
       } else {
-        result.className = "error";
-        result.innerHTML = "ไม่พบเลขรับเรื่อง กรุณาตรวจสอบรหัสอีกครั้ง";
+        message.innerHTML = `<div class="bubble">${text}</div>`;
       }
+
+      aiMessages.appendChild(message);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+    }
+
+    function getAIResponse(question) {
+      const q = question.toLowerCase();
+
+      if (q.includes("แจ้ง") || q.includes("ร้องเรียน") || q.includes("ปัญหา")) {
+        return `ท่านสามารถกดเมนู <strong>“แจ้งเหตุ/ร้องเรียน”</strong> ในส่วนบริการประชาชน หรือกดปุ่มด้านล่างนี้ได้ครับ <button onclick="openReportModal()" style="margin-top:7px;padding:5px 8px;border:0;border-radius:5px;color:white;background:#0758b9;font-family:inherit;font-size:0.72rem;">เปิดแบบฟอร์มแจ้งเรื่อง</button>`;
+      }
+
+      if (q.includes("ติดต่อ") || q.includes("ผู้ใหญ่บ้าน") || q.includes("เบอร์")) {
+        return `ผู้ใหญ่บ้านบ้านร่องเข็ม หมู่ที่ 6 คือ <strong>นายศักรนนทน์ ขัติย์วงศ์</strong> ครับ ท่านสามารถกดปุ่ม “ติดต่อผู้ใหญ่บ้าน” ในหน้าเว็บไซต์เพื่อส่งข้อความได้`;
+      }
+
+      if (q.includes("กิจกรรม") || q.includes("ข่าว") || q.includes("ประชุม")) {
+        return `ข่าวและกิจกรรมล่าสุดจะแสดงในส่วน <strong>ประกาศสำคัญ</strong> และ <strong>กิจกรรมล่าสุด</strong> บนหน้าแรกครับ`;
+      }
+
+      if (q.includes("เอกสาร") || q.includes("แบบฟอร์ม") || q.includes("หนังสือ")) {
+        return `สามารถเลือกเมนู <strong>แบบฟอร์มออนไลน์</strong> ในส่วนบริการประชาชนได้ครับ สำหรับเอกสารเฉพาะเรื่อง เจ้าหน้าที่จะตรวจสอบและติดต่อกลับ`;
+      }
+
+      if (q.includes("สถิติ") || q.includes("ประชากร") || q.includes("ครัวเรือน")) {
+        return `ข้อมูลตัวอย่างปัจจุบัน: ประชากร <strong>1,247 คน</strong> และมี <strong>352 ครัวเรือน</strong> ครับ ข้อมูลจริงควรอัปเดตผ่านระบบหลังบ้านเป็นประจำ`;
+      }
+
+      return `ผมช่วยตอบคำถามเกี่ยวกับบริการบ้านร่องเข็ม หมู่ที่ 6 ได้ครับ เช่น แจ้งปัญหา ข่าวกิจกรรม เอกสาร สถิติ และการติดต่อผู้ใหญ่บ้าน 😊`;
+    }
+
+    function sendAIQuestion(question) {
+      if (!question.trim()) return;
+
+      addAIMessage(question, "user");
+      aiInput.value = "";
+
+      setTimeout(() => {
+        addAIMessage(getAIResponse(question), "bot");
+      }, 450);
+    }
+
+    aiForm.addEventListener("submit", event => {
+      event.preventDefault();
+      sendAIQuestion(aiInput.value);
+    });
+
+    document.querySelectorAll(".ai-quick button").forEach(button => {
+      button.addEventListener("click", () => {
+        sendAIQuestion(button.dataset.question);
+      });
     });
   </script>
 </body>
